@@ -10,12 +10,16 @@ import log.data_types.LogLine;
  * 
  * To write to the log use the:
  * log.WriteToLog(LINE TYPE, LOG MSG);
+ * OR
+ * log.WriteToLog(LINE TYPE, LOG MSG, WRITE CALLING CLASS)
  * 
  * LINE TYPE: 
  * 			LogLine.LineType.ERROR - Indicate an error log line
  * 			LogLine.LineType.INFO - Indicate a info log line
  * 
  * LOG MSG: the message you want to write to the log........... -_-
+ * 
+ * WRITE CALLING CLASS: if true the calling class name will be written to the log
  */
 
 public class Log {
@@ -35,6 +39,14 @@ public class Log {
 	// Writes to the log
 	public void WriteToLog(LogLine.LineType line_type, String log_msg) {
 		logFile.AppendToLog(new LogLine(line_type, log_msg, getCallerClassName()));
+	}
+	
+	// Writes to the log
+	// writeCallerClassName if true -> writes to the log the calling class name
+	public void WriteToLog(LogLine.LineType line_type, String log_msg, boolean writeCallerClassName) {
+		if (writeCallerClassName)
+			logFile.AppendToLog(new LogLine(line_type, log_msg, getCallerClassName()));
+		else logFile.AppendToLog(new LogLine(line_type, log_msg, ""));
 	}
 	
 	// Returns the name of the caaller class

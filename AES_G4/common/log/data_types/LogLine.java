@@ -59,7 +59,8 @@ public class LogLine {
 	public String toString() {
 		String format = "";
 		format += "[" + getTypeString(this.log_type) + "]";
-		format += "[" + callClassName + "] ";
+		if (callClassName != "")
+			format += "[" + callClassName + "] ";
 		format += log_line;
 		format += " | " + line_date.toString();
 		format += "\n";
