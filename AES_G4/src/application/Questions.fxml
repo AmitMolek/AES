@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="window" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuestionsController">
+   <children>
+      <TextField fx:id="txtFieldQuestion" alignment="CENTER" layoutX="706.0" layoutY="42.0" prefHeight="24.0" prefWidth="246.0" promptText="Question" styleClass="textFields" />
+      <TextField fx:id="txtFieldName" alignment="CENTER" layoutX="388.0" layoutY="42.0" prefHeight="24.0" prefWidth="246.0" promptText="Teacher name" styleClass="textFields" />
+      <TextField fx:id="txtFieldId" alignment="CENTER" layoutX="70.0" layoutY="42.0" prefHeight="24.0" prefWidth="246.0" promptText="ID" styleClass="textFields" />
+      <TableView fx:id="tblQuestions" layoutX="38.0" layoutY="275.0" prefHeight="245.0" prefWidth="918.0">
+        <columns>
+          <TableColumn fx:id="tbcId" prefWidth="102.0" styleClass="tableColumn" text="ID" />
+            <TableColumn fx:id="tbcIdNum" prefWidth="102.0" styleClass="tableColumn" text="Num" />
+          <TableColumn fx:id="tbcName" prefWidth="102.0" styleClass="tableColumn" text="Teacher Name" />
+            <TableColumn fx:id="tbcIdText" prefWidth="102.0" styleClass="tableColumn" text="Text" />
+            <TableColumn fx:id="tbcAns1" prefWidth="102.0" styleClass="tableColumn" text="Answer 1" />
+            <TableColumn fx:id="tbcAns2" prefWidth="102.0" styleClass="tableColumn" text="Answer 2" />
+            <TableColumn fx:id="tbcAns3" prefWidth="102.0" styleClass="tableColumn" text="Answer 3" />
+            <TableColumn fx:id="tbcAns4" prefWidth="102.0" styleClass="tableColumn" text="Answer 4" />
+            <TableColumn fx:id="tbcCorr" onEditCommit="#updateCorrect" prefWidth="102.0" styleClass="tableColumn" text="Correct" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSearch" layoutX="460.0" layoutY="145.0" mnemonicParsing="false" onAction="#searchQuestion" styleClass="buttonStyleSearch" text="Search" />
+      <Button fx:id="update" layoutX="460.0" layoutY="585.0" mnemonicParsing="false" onAction="#updateQuestion" styleClass="buttonStyleUpdate" text="Update" />
+      	<Label fx:id="lblUpdateError" layoutX="435.0" layoutY="555.0" text="Please update the row!" textFill="#ee0707" />
+   </children>
+</AnchorPane>
