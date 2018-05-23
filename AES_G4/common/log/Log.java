@@ -34,7 +34,13 @@ public class Log {
 	
 	// Writes to the log
 	public void WriteToLog(LogLine.LineType line_type, String log_msg) {
-		logFile.AppendToLog(new LogLine(line_type, log_msg));
+		logFile.AppendToLog(new LogLine(line_type, log_msg, getCallerClassName()));
+	}
+	
+	// Returns the name of the caaller class
+	private String getCallerClassName(){
+		final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		return (stackTrace[3].getClassName()); 
 	}
 	
 	// Returns the singleton of this class (Log)

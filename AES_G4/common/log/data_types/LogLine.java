@@ -13,17 +13,23 @@ public class LogLine {
 	private LineType log_type;
 	private String log_line;
 	private Timestamp line_date;
+	private String callClassName;
 	
 	public LogLine() {
-		log_type = LineType.INFO;
-		log_line = "empty line";
-		line_date = getTimestamp();
+		this(LineType.INFO, "empty line");
 	}
 	
 	public LogLine(LineType type, String log_line) {
 		this.log_type = type;
 		this.log_line = log_line;
 		this.line_date = getTimestamp();
+		callClassName = "";
+	}
+	
+	public LogLine(LineType type, String log_line, String callClassName) {
+		this(type, log_line);
+		this.callClassName = callClassName;
+		
 	}
 	
 	// Returns the current time stamp
@@ -52,7 +58,8 @@ public class LogLine {
 	@Override
 	public String toString() {
 		String format = "";
-		format += "[" + getTypeString(this.log_type) + "] ";
+		format += "[" + getTypeString(this.log_type) + "]";
+		format += "[" + callClassName + "] ";
 		format += log_line;
 		format += " | " + line_date.toString();
 		format += "\n";
