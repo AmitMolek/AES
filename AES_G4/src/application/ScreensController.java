@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Stack;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ public class ScreensController extends Application {
 
 	    private static HashMap<String, String> screenMap = new HashMap<>();
 	    private static Stage primaryStage;
+	    private Stack<Scene> sceneStack = new Stack<Scene>();
 	    private double height=400;
 	    private double width=400;
 	    
@@ -51,6 +53,8 @@ public class ScreensController extends Application {
 	    
 	    protected void activate(String name) throws IOException
 	    {
+	    	if(primaryStage.getScene()!=null)	
+	    		sceneStack.add(primaryStage.getScene());
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(screenMap.get(name)));
 			AnchorPane root = (AnchorPane)fxmlLoader.load();
 			height = primaryStage.getHeight();
