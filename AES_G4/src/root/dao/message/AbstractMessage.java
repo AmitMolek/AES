@@ -23,4 +23,6 @@ public abstract class AbstractMessage {
 	public String[] splitMsg() {
 		return msg.split("-");
 	}
+	
+	public abstract String getType();
 }

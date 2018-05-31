@@ -11,7 +11,8 @@ import java.util.Set;
 import java.sql.PreparedStatement;
 import ocsf.server.*;
 import root.dao.app.Question;
-import root.dao.message.Message;
+import root.dao.message.*;
+import root.server.managers.*;
 
 /**
  * bla
@@ -19,15 +20,19 @@ import root.dao.message.Message;
  * class Super class is implemented all the connection methods
  * The connection with the server is used with message class.
  */
-public class EchoServer extends AbstractServer {
+public class AES_Server extends AbstractServer {
 
 	final public static int DEFAULT_PORT = 8000;
+	private ServerMessageManager smm;
+	private MessageFactory msgFactory;
 	String[] recivedMSG;
 	private ArrayList<Question> dataBase;
 	private static Connection conn;
 
-	public EchoServer(int port) {
+	public AES_Server(int port) {
 		super(port);
+		smm=ServerMessageManager.getInstance();
+		msgFactory=MessageFactory.getInstance();
 	}
 
 	// Instance methods ************************************************
@@ -36,7 +41,10 @@ public class EchoServer extends AbstractServer {
 	 * This method handles any messages received from the client.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		Message handleMsg = (Message) msg;
+		Message msgToHandle = (Message) msg;
+		
+		
+		
 		System.out.println("Message received: " + handleMsg.getMsg() + " from " + client);
 		recivedMSG = handleMsg.getMsg().split("-");
 		dataBase = new ArrayList<Question>();
@@ -91,8 +99,8 @@ public class EchoServer extends AbstractServer {
 		} catch (Throwable t) {
 			port = DEFAULT_PORT;
 		}
-
-		EchoServer sv = new EchoServer(port);
+		
+		AES_Server sv = new AES_Server(port);
 
 		try {
 			sv.listen(); // Start listening for connections
