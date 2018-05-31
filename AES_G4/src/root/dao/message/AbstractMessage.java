@@ -1,6 +1,8 @@
 package root.dao.message;
 
-public abstract class AbstractMessage {
+import java.io.Serializable;
+
+public abstract class AbstractMessage implements Serializable {
 	private String msg;
 	
 	public AbstractMessage() {

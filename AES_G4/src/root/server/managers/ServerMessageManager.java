@@ -18,6 +18,6 @@ public class ServerMessageManager {
 	}
 	
 	public static AbstractMessage handleMessage(AbstractMessage msg) {
-		
+		return null;
 	}
 }

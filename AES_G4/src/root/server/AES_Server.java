@@ -1,5 +1,6 @@
 package root.server;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,10 +42,16 @@ public class AES_Server extends AbstractServer {
 	 * This method handles any messages received from the client.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		Message msgToHandle = (Message) msg;
+		AbstractMessage msgToHandle = (AbstractMessage) msg;
+		AbstractMessage msgToReturn=smm.handleMessage(msgToHandle);
+		try {
+			client.sendToClient(msgToReturn);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
-		
+		/*
 		System.out.println("Message received: " + handleMsg.getMsg() + " from " + client);
 		recivedMSG = handleMsg.getMsg().split("-");
 		dataBase = new ArrayList<Question>();
@@ -53,6 +60,7 @@ public class AES_Server extends AbstractServer {
 		}
 		if (recivedMSG[0].equals("set"))
 			setObj(handleMsg);
+			*/
 	}
 
 	/**

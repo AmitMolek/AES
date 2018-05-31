@@ -6,7 +6,7 @@ import java.util.Map;
 
 import root.dao.app.Question;
 
-
+//DEPRICATED, DO NOT USE!!!!
 @SuppressWarnings("serial")
 public class Message implements Serializable {
 
