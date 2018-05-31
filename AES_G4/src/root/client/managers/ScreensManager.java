@@ -62,7 +62,7 @@ public class ScreensManager extends Application {
 			primaryStage.setHeight(height);
 			primaryStage.setWidth(width);			
 			Scene scene = new Scene(root,height,width);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

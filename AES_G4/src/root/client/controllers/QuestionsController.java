@@ -27,7 +27,6 @@ import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.dao.app.Question;
 import root.dao.message.Message;
-import comunication.*;
 
 public class QuestionsController implements Observer{
 
@@ -163,13 +162,13 @@ public class QuestionsController implements Observer{
 		//tbcCorr.setCellFactory(TextFieldTableCell.<Question, Integer>forTableColumn(new IntegerStringConverter()));
 		tbcCorr.setCellFactory(ComboBoxTableCell.forTableColumn(1,2,3,4));
 		newValues = new HashMap<String,Integer>();
-		client = new ObservableClient("192.168.178.54",8000);
+		//client = new ObservableClient("192.168.178.54",8000);
 		btnSearch.setDisable(true);
 		lblUpdateError.setVisible(false);
-		client.addObserver(this);
-		client.openConnection();
+		//client.addObserver(this);
+		//client.openConnection();
 		Message send = new Message("get-questions");
-		client.sendToServer(send);
+		//client.sendToServer(send);
 
 	}
 	/**
