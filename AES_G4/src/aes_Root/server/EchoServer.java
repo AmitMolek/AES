@@ -1,4 +1,4 @@
-package Server;
+package aes_Root.server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-import comunication.Message;
-import comunication.Question;
+import aes_Root.dao.Message;
+import aes_Root.dao.Question;
 
 import java.sql.PreparedStatement;
 import ocsf.server.*;

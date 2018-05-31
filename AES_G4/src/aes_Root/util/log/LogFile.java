@@ -1,4 +1,4 @@
-package log;
+package aes_Root.util.log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import log.data_types.LogLine;
+import aes_Root.dao.LogLine;
 
 public class LogFile {
 	

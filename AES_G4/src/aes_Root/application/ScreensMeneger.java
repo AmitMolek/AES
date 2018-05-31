@@ -1,4 +1,4 @@
-package application;
+package aes_Root.application;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * @author Naor Saadia
  *
  */
-public class ScreensController extends Application {
+public class ScreensMeneger extends Application {
 
 	    private static HashMap<String, String> screenMap = new HashMap<>();
 	    private static Stage primaryStage;
@@ -24,13 +24,13 @@ public class ScreensController extends Application {
 	    private double width=400;
 	    
 	    
-	    private static ScreensController INSTANCE = new ScreensController();
+	    private static ScreensMeneger INSTANCE = new ScreensMeneger();
 	    
 	   /**
 	    * This class is a singleton
 	    * @return the instance of the class
 	    */
-	    public static ScreensController getInstance() {
+	    public static ScreensMeneger getInstance() {
 	    	return INSTANCE;
 	    }
 
@@ -75,7 +75,7 @@ public class ScreensController extends Application {
 	    @Override
 		public void start(Stage primaryStage) throws Exception {
 			try {
-				ScreensController.primaryStage = primaryStage;
+				ScreensMeneger.primaryStage = primaryStage;
 				activate("main");
 			} catch(Exception e) {
 				e.printStackTrace();

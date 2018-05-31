@@ -1,4 +1,4 @@
-package comunication;
+package aes_Root.dao;
 
 public class Question implements java.io.Serializable {
 

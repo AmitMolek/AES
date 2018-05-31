@@ -1,4 +1,4 @@
-package application;
+package aes_Root.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +9,8 @@ import java.util.Observer;
 
 import org.controlsfx.control.textfield.TextFields;
 
+import aes_Root.dao.Message;
+import aes_Root.dao.Question;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

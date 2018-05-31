@@ -1,6 +1,6 @@
-package log;
+package aes_Root.util.log;
 
-import log.data_types.LogLine;
+import aes_Root.dao.LogLine;
 
 /*
  * To use the log manager:

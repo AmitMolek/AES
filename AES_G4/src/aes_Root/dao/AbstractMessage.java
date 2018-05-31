@@ -1,4 +1,4 @@
-package comunication;
+package aes_Root.dao;
 
 public abstract class AbstractMessage {
 	private String msg;

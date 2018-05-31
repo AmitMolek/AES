@@ -1,7 +1,7 @@
-package log;
+package aes_Root.util.log;
 
-import log.data_types.LogLine;
-import log.data_types.LogLine.LineType;
+import aes_Root.dao.LogLine;
+import aes_Root.dao.LogLine.LineType;
 
 public class LogTest {
 
