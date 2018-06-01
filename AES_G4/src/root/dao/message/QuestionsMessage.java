@@ -6,10 +6,14 @@ import root.dao.app.Question;
 
 public class QuestionsMessage extends AbstractMessage {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Question> questions;
 	
 	public QuestionsMessage(ArrayList<Question> questions) {
-		super("ok-questions");
+		super("ok-get-questions");
 		this.questions=questions;
 	}
 
