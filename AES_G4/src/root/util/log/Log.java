@@ -47,7 +47,7 @@ public class Log {
 		else logFile.AppendToLog(new LogLine(line_type, log_msg, ""));
 	}
 	
-	// Returns the name of the caaller class
+	// Returns the name of the caller class
 	private String getCallerClassName(){
 		final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
 		return (stackTrace[3].getClassName()); 
