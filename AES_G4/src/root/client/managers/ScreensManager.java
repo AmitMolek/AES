@@ -55,10 +55,10 @@ public class ScreensManager extends Application {
 	    {
 	    	if(primaryStage.getScene()!=null)	
 	    		sceneStack.add(primaryStage.getScene());
-			System.out.println(getClass().getResource(screenMap.get(name)));
+			System.out.println(getClass().getResource("resources/view/MainScreen.fxml"));
+			System.out.println(getClass().getResource("resources/view/LoginScreen.fxml"));
 	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(screenMap.get(name)));
-			
-			AnchorPane root = (AnchorPane)fxmlLoader.load();
+	    				AnchorPane root = (AnchorPane)fxmlLoader.load();
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
 			primaryStage.setHeight(height);
