@@ -1,15 +1,25 @@
 package root.dao.message;
 
+import root.dao.app.User;
+
 public class UserMessage extends AbstractMessage {
 
-	public UserMessage(Object payload) {
-		// TODO Auto-generated constructor stub
+	private User user;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public UserMessage(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "User";
 	}
 
 }

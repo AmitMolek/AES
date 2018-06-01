@@ -75,28 +75,15 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getLoginMessage(String[] msgContent, Object payload) {
-		//User user = null;
-		GetFromDB getLogin = new GetFromDB();
-		ArrayList<User> users = getLogin.users();
-		LoginInfo loginInformation = (LoginInfo)payload;
-		for(User user: users) {
-			if (user.getUserID().equals(loginInformation.getUserID())) {
-				if (user.getUserPassword().equals(loginInformation.getPassword())) {
-					return new LoginMessage(user );
-				}
-				else {
-					return new ErrorMessage(new Exception("Wrong Password"));
-				}
-			}
-		}
-		return new ErrorMessage(new Exception("User not exist"));		
+		
+		return new LoginMessage((LoginInfo)payload);	
 	}
 
 	@SuppressWarnings("unchecked")
 	public AbstractMessage getOkMessage(String[] msgContent,Object payload) {
 		switch(msgContent[1]) {
 		case "login":
-			return new UserMessage(payload);
+			return new UserMessage((User)payload);
 		case "get":
 			return getGetMessage(msgContent,payload);
 		case "set":
@@ -123,6 +110,7 @@ public class MessageFactory {
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
+	
 	
 
 }

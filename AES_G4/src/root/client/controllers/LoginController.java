@@ -13,6 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import ocsf.client.ObservableClient;
+import root.dao.app.LoginInfo;
+import root.dao.app.User;
+import root.dao.message.LoginMessage;
+import root.dao.message.MessageFactory;
+import root.dao.message.UserMessage;
 
 public class LoginController implements Observer {
 
@@ -38,8 +43,8 @@ public class LoginController implements Observer {
     private TextField txtPassword;
     
     private ObservableClient client;
-    
-    
+    private MessageFactory message;
+    private User user;
     
     /**
      * This method occurs when someone presses the sign in button
@@ -49,6 +54,13 @@ public class LoginController implements Observer {
     public void SignIn(ActionEvent event) {
     	String userId = txtId.getText();
     	String userPassword = txtPassword.getText();
+    	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
+    	LoginMessage newLoginMessage = (LoginMessage) message.getMessage("login",loginInformation);
+    	try {
+			client.sendToServer(newLoginMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
 
     }
@@ -60,10 +72,10 @@ public class LoginController implements Observer {
     @FXML
 	public void initialize() throws IOException{
     	Platform.runLater(() -> rootPane.requestFocus());
+    	message = MessageFactory.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
-    	
     	
     }
     
@@ -72,7 +84,10 @@ public class LoginController implements Observer {
      */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		if(arg1 instanceof UserMessage) {
+			UserMessage newMessasge = (UserMessage) arg1;
+			user = newMessasge.getUser();
+		}
 	}
     
     
