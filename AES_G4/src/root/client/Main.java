@@ -10,7 +10,7 @@ public class Main extends ScreensManager {
 
 	public static void main(String[] args) {
 		Log.getInstance().WriteToLog(LineType.INFO, "Application started", false);
-		ScreensManager.addScreen("main", "resources/view/Questions.fxml");
+		ScreensManager.addScreen("main", "resources/view/LoginScreen.fxml");
 		launch(args);
 	}
 	
