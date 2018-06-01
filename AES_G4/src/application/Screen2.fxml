@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="Screen2Controller" prefHeight="870.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Screen2Controller">
+   <children>
+      <Button layoutX="104.0" layoutY="497.0" mnemonicParsing="false" onAction="#backToMain" text="Button" />
+      <Label layoutX="104.0" layoutY="78.0" prefHeight="45.0" prefWidth="330.0" text="Screen2" />
+   </children>
+</AnchorPane>
