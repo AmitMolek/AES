@@ -3,10 +3,14 @@ package root.dao.message;
 import java.util.ArrayList;
 
 import root.dao.app.Exam;
+import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.User;
+import root.server.managers.dbmgr.GetFromDB;
 
 public class MessageFactory {
 	private static MessageFactory instance=null;
+	
 	private MessageFactory(){
 		
 	}
@@ -71,9 +75,21 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getLoginMessage(String[] msgContent, Object payload) {
-		// TODO Auto-generated method stub
-		return null;
-		
+		//User user = null;
+		GetFromDB getLogin = new GetFromDB();
+		ArrayList<User> users = getLogin.users();
+		LoginInfo loginInformation = (LoginInfo)payload;
+		for(User user: users) {
+			if (user.getUserID().equals(loginInformation.getUserID())) {
+				if (user.getUserPassword().equals(loginInformation.getPassword())) {
+					return new LoginMessage(user );
+				}
+				else {
+					return new ErrorMessage(new Exception("Wrong Password"));
+				}
+			}
+		}
+		return new ErrorMessage(new Exception("User not exist"));		
 	}
 
 	@SuppressWarnings("unchecked")
