@@ -1,13 +1,15 @@
 package root.dao.app;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 private String userID;
 private String userFirstName;
 private String userLastName;
 private String userPassword;
-private Integer userPremission;
+private String userPremission;
 
-public User(String userID, String userFirstName, String userLastName, String userPassword, Integer userPremission) {
+public User(String userID, String userFirstName, String userLastName, String userPassword, String userPremission) {
 	super();
 	this.userID = userID;
 	this.userFirstName = userFirstName;
@@ -48,11 +50,11 @@ public void setUserPassword(String userPassword) {
 	this.userPassword = userPassword;
 }
 
-public Integer getUserPremission() {
+public String getUserPremission() {
 	return userPremission;
 }
 
-public void setUserPremission(Integer userPremission) {
+public void setUserPremission(String userPremission) {
 	this.userPremission = userPremission;
 }
 

@@ -1,10 +1,12 @@
 package root.dao.message;
 
 
+import java.io.Serializable;
+
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
 
-public class LoginMessage extends AbstractMessage {
+public class LoginMessage extends AbstractMessage implements Serializable{
 	private LoginInfo user;
 	
 	public LoginInfo getUser() {

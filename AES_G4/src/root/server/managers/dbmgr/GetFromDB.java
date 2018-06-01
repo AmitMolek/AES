@@ -40,7 +40,7 @@ public class GetFromDB implements DbManagerInterface {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM USERS;");
 			while(rs.next()) {
-				users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+				users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 			}
 			rs.close();
 			return users;			// A list of all users
