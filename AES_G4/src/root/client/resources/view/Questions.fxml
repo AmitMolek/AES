@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="window" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuestionsController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="window" stylesheets="@/root/client/resources/css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.QuestionsController">
    <children>
       <TextField fx:id="txtFieldQuestion" alignment="CENTER" layoutX="706.0" layoutY="42.0" prefHeight="24.0" prefWidth="246.0" promptText="Question" styleClass="textFields" />
       <TextField fx:id="txtFieldName" alignment="CENTER" layoutX="388.0" layoutY="42.0" prefHeight="24.0" prefWidth="246.0" promptText="Teacher name" styleClass="textFields" />
