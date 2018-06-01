@@ -51,7 +51,7 @@ public class ScreensManager extends Application {
 	        screenMap.remove(name);
 	    }
 	    
-	    protected void activate(String name) throws IOException
+	    public void activate(String name) throws IOException
 	    {
 	    	if(primaryStage.getScene()!=null)	
 	    		sceneStack.add(primaryStage.getScene());

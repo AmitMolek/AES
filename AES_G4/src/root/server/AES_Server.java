@@ -35,7 +35,12 @@ public class AES_Server extends AbstractServer {
 		smm=ServerMessageManager.getInstance();
 		msgFactory=MessageFactory.getInstance();
 	}
-
+	/**
+	 *  Get the server connection
+	 */
+	public static Connection getConnection() {
+		return conn;
+	}
 	// Instance methods ************************************************
 
 	/**

@@ -5,9 +5,10 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import root.client.managers.ScreensManager;
 
 public class Screen1Controller {
-	private ScreensController screensController = ScreensController.getInstance();
+	private ScreensManager screensController = ScreensManager.getInstance();
 	
     @FXML
     private AnchorPane Screen1Controller;
