@@ -1,5 +1,5 @@
 .window{
-    -fx-background-image: url("/application/icons/background.jpg");
+    -fx-background-image: url("/root/client/resources/images/background.jpg");
     -fx-background-size: cover,auto;
 }
 
