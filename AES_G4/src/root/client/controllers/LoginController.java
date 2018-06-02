@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -40,7 +41,7 @@ public class LoginController implements Observer {
 	    private Label lblPassword;
 
 	    @FXML
-	    private StackPane SecondPane;
+	    private BorderPane secondPane;
 
 	    @FXML
 	    private HBox hBoxUserId;
