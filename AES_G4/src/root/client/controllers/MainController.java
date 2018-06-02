@@ -10,7 +10,7 @@ import ocsf.client.ObservableClient;
 
 public class MainController implements Observer{
 	  
-		private ObservableClient client;
+	private ObservableClient client;
     @FXML
     private AnchorPane paneId;
     

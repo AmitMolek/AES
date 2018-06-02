@@ -99,7 +99,7 @@ public class AES_Server extends AbstractServer {
 			/* handle the error */}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "204403257");
 			System.out.println("SQL connection succeed");
 		} catch (SQLException ex) {/* handle any errors */
 			System.out.println("SQLException: " + ex.getMessage());

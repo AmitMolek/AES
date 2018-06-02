@@ -1,4 +1,4 @@
-package root.client.managers;
+package root.client.resources.view;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import root.client.Main;
 
 /**
  * @author Naor Saadia
@@ -54,16 +55,14 @@ public class ScreensManager extends Application {
 	    public void activate(String name) throws IOException
 	    {
 	    	if(primaryStage.getScene()!=null)	
-	    		sceneStack.add(primaryStage.getScene());
-			//System.out.println(getClass().getResource("../resources/view/MainScreen.fxml"));
-			//System.out.println(getClass().getResource("../resources/view/LoginScreen.fxml"));
-	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(screenMap.get(name)));
-	    				AnchorPane root = (AnchorPane)fxmlLoader.load();
+	    	sceneStack.add(primaryStage.getScene());
+	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
+	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
-			primaryStage.setHeight(height);
-			primaryStage.setWidth(width);			
-			Scene scene = new Scene(root,height,width);
+			//primaryStage.setHeight(height);
+			//primaryStage.setWidth(width);			
+			Scene scene = new Scene(root,1024,720);
 			scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

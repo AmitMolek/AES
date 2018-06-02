@@ -7,13 +7,18 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import ocsf.client.ObservableClient;
-import root.client.managers.ScreensManager;
+import root.client.resources.view.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
 import root.dao.message.LoginMessage;
@@ -22,26 +27,44 @@ import root.dao.message.UserMessage;
 
 public class LoginController implements Observer {
 
-    @FXML
-    private TextField txtId;
+	  @FXML
+	    private VBox vBoxLogin;
 
-    @FXML
-    private Label lblId;
+	    @FXML
+	    private HBox hBoxLink;
 
-    @FXML
-    private Hyperlink linkForgot;
+	    @FXML
+	    private AnchorPane rootPane;
 
-    @FXML
-    private AnchorPane rootPane;
+	    @FXML
+	    private Label lblPassword;
 
-    @FXML
-    private Label lblPassword;
+	    @FXML
+	    private StackPane SecondPane;
 
-    @FXML
-    private Button btnSignIn;
+	    @FXML
+	    private HBox hBoxUserId;
 
-    @FXML
-    private TextField txtPassword;
+	    @FXML
+	    private Label lblId;
+
+	    @FXML
+	    private TextField txtId;
+
+	    @FXML
+	    private HBox hBoxUserPassword;
+
+	    @FXML
+	    private Hyperlink linkForgot;
+
+	    @FXML
+	    private HBox hBoxButton;
+
+	    @FXML
+	    private Button btnSignIn;
+
+	    @FXML
+	    private PasswordField txtPassword;
     
     private ObservableClient client;
     private MessageFactory message;
@@ -94,7 +117,7 @@ public class LoginController implements Observer {
 			user = newMessasge.getUser();
 			try {
 				screenManager.activate("mainWindow");
-				System.out.println("test");
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
