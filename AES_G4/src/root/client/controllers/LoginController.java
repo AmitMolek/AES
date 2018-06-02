@@ -28,44 +28,27 @@ import root.dao.message.UserMessage;
 
 public class LoginController implements Observer {
 
-	  @FXML
-	    private VBox vBoxLogin;
+    @FXML
+    private AnchorPane rootPane;
 
-	    @FXML
-	    private HBox hBoxLink;
+    @FXML
+    private Hyperlink linkForgot;
 
-	    @FXML
-	    private AnchorPane rootPane;
+    @FXML
+    private Button btnSignIn;
 
-	    @FXML
-	    private Label lblPassword;
+    @FXML
+    private Label lblId;
 
-	    @FXML
-	    private BorderPane secondPane;
+    @FXML
+    private TextField txtId;
 
-	    @FXML
-	    private HBox hBoxUserId;
+    @FXML
+    private Label lblPassword;
 
-	    @FXML
-	    private Label lblId;
+    @FXML
+    private PasswordField txtPassword;
 
-	    @FXML
-	    private TextField txtId;
-
-	    @FXML
-	    private HBox hBoxUserPassword;
-
-	    @FXML
-	    private Hyperlink linkForgot;
-
-	    @FXML
-	    private HBox hBoxButton;
-
-	    @FXML
-	    private Button btnSignIn;
-
-	    @FXML
-	    private PasswordField txtPassword;
     
     private ObservableClient client;
     private MessageFactory message;
