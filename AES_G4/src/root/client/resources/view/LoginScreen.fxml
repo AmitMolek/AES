@@ -11,7 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1200.0" styleClass="window" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.LoginController">
+=======
+<AnchorPane styleClass="window" stylesheets="@/root/client/resources/css/style.css" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.LoginController">
+>>>>>>> refs/remotes/origin/Omer
    <children>
       <BorderPane fx:id="secondPane" prefHeight="0.0" prefWidth="0.0" styleClass="window" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -20,7 +24,11 @@
                   <HBox fx:id="hBoxUserId" prefHeight="0.0" prefWidth="473.0" spacing="50.0">
                      <children>
                         <Label fx:id="lblId" text="User Id:" />
+<<<<<<< HEAD
                         <TextField fx:id="txtId" alignment="CENTER" promptText="ID" styleClass="textFields" />
+=======
+                        <TextField styleClass="textFields" fx:id="txtId" alignment="CENTER" promptText="ID" />
+>>>>>>> refs/remotes/origin/Omer
                      </children>
                      <VBox.margin>
                         <Insets left="38.0" />
@@ -29,7 +37,11 @@
                   <HBox fx:id="hBoxUserPassword" prefHeight="0.0" prefWidth="0.0" spacing="50.0" stylesheets="@../css/style.css">
                      <children>
                         <Label fx:id="lblPassword" text="User Password:" />
+<<<<<<< HEAD
                         <PasswordField fx:id="txtPassword" alignment="CENTER" promptText="Password" styleClass="textFields" />
+=======
+                        <PasswordField styleClass="textFields" fx:id="txtPassword" alignment="CENTER" promptText="Password" />
+>>>>>>> refs/remotes/origin/Omer
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -46,7 +58,11 @@
                   </HBox>
                   <HBox fx:id="hBoxButton" prefHeight="0.0" prefWidth="0.0">
                      <children>
+<<<<<<< HEAD
                         <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#SignIn" styleClass="buttonStyleUpdate" text="Sign In">
+=======
+                        <Button styleClass="buttons" fx:id="btnSignIn" mnemonicParsing="false" onAction="#SignIn" text="Sign In">
+>>>>>>> refs/remotes/origin/Omer
                            <HBox.margin>
                               <Insets left="164.0" />
                            </HBox.margin>

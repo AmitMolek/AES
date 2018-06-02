@@ -10,7 +10,7 @@
 	
 }
 
-.buttonStyleSearch{
+.buttons{
 	-fx-effect: innershadow(one-pass-box, black, 10, 0, 0, 0); 
 	-fx-effect: dropshadow(one-pass-box, black, 10, 0, 0, 0); 
 	-fx-padding: 6px 15px;
@@ -18,17 +18,4 @@
 	-fx-border-width: 2;
 	-fx-opacity:0.8;
 	-fx-font-weight:bold;
-}
-.buttonStyleUpdate{
-	-fx-effect: innershadow(one-pass-box, black, 10, 0, 0, 0); 
-	-fx-effect: dropshadow(one-pass-box, black, 10, 0, 0, 0); 
-	-fx-background-size: cover,auto;
-	-fx-padding: 6px 15px;
-	-fx-border-color: #6897BB;
-	-fx-border-width: 2;
-	-fx-opacity:0.8;
-	-fx-font-weight:bold;
-}
-.tableColumn {
-  -fx-alignment: CENTER;
 }

@@ -58,6 +58,7 @@ public class ScreensManager extends Application {
 	    	sceneStack.add(primaryStage.getScene());
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
 	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
+	    	primaryStage.setResizable(false);
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
 			//primaryStage.setHeight(height);
