@@ -30,22 +30,30 @@ public class ServerMessageManager {
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[0]) {
 		case "login":
-			LoginMessage login = (LoginMessage) msg;
-			GetFromDB getLogin = new GetFromDB();
-			ArrayList<User> users = getLogin.users();
-			LoginInfo loginInformation = login.getUser();
-			for(User user: users) {
-				if (user.getUserID().equals(loginInformation.getUserID())) {
-					if (user.getUserPassword().equals(loginInformation.getPassword())) {
-						return message.getMessage("ok-login",user);
-					}
-					else {
-						return message.getMessage("error-login",new Exception("Wrong Password"));
-					}
-				}
-			}
-			return message.getMessage("error-login",new Exception("User not exist"));	
+			return handleLoginMessage(msg);	
 		}
 		return null;
+	}
+	/**
+	 * 
+	 * @param msg type of LoginMessage which contain string, and loginInfo payload.
+	 * @return AbstrackMessage with required information.
+	 */
+	private static AbstractMessage handleLoginMessage(AbstractMessage msg) {
+		LoginMessage login = (LoginMessage) msg;
+		GetFromDB getLogin = new GetFromDB();
+		ArrayList<User> users = getLogin.users(login.getUser().getUserID());
+		LoginInfo loginInformation = login.getUser();
+		for(User user: users) {
+			if (user.getUserID().equals(loginInformation.getUserID())) {
+				if (user.getUserPassword().equals(loginInformation.getPassword())) {
+					return message.getMessage("ok-login",user);
+				}
+				else {
+					return message.getMessage("error-login",new Exception("Wrong Password"));
+				}
+			}
+		}
+		return message.getMessage("error-login",new Exception("User not exist"));
 	}
 }

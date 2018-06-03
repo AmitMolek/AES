@@ -84,6 +84,11 @@ public class LoginController implements Observer {
     	client.openConnection();
     	
     	
+    	// Listen for selection changes and show the person details when changed.
+    	txtId.setOnMouseClicked(e -> {
+    		btnSignIn.setDisable(false);
+        });
+    	btnSignIn.setDisable(true);
     }
     
     /**
@@ -91,12 +96,12 @@ public class LoginController implements Observer {
      */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println(arg1);
 		
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
-			Platform.runLater(() -> {
+			//System.out.println(user);
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					screenManager.activate("mainWindow");
 				} catch (IOException e) {

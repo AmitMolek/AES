@@ -63,7 +63,8 @@ public class ScreensManager extends Application {
 	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
 	    	primaryStage.setResizable(false);
 	    	primaryStage.setTitle("AES_G4");
-	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
+	    	if(primaryStage.getIcons().size() ==0)
+	    		primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
 			//primaryStage.setHeight(height);
@@ -83,7 +84,7 @@ public class ScreensManager extends Application {
 		public void start(Stage primaryStage) throws Exception {
 			try {
 				ScreensManager.primaryStage = primaryStage;
-				activate("main");
+				activate("loginScreen");
 				
 				// when pressed "Close" button, kill thread and exit app.
 				primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {

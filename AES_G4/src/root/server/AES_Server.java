@@ -16,7 +16,7 @@ import root.dao.message.*;
 import root.server.managers.*;
 
 /**
- * bla
+ * 
  * This Class is implements the server side The class extends the AbstractServer
  * class Super class is implemented all the connection methods
  * The connection with the server is used with message class.

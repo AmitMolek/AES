@@ -7,6 +7,7 @@ public class LoginInfo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String userID;
 	private String password;
 	
@@ -26,6 +27,12 @@ public class LoginInfo implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserID: "+userID+"\nUserPassword: "+password;
+		
 	}
 	
 	
