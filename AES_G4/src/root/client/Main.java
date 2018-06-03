@@ -1,7 +1,7 @@
 package root.client;
 	
 
-import root.client.resources.view.ScreensManager;
+import root.client.managers.ScreensManager;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 

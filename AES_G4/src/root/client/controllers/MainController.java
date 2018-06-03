@@ -16,9 +16,6 @@ public class MainController implements Observer{
     
     @FXML
 	public void initialize() throws IOException{
-    	client = new ObservableClient("localhost", 8000);
-    	client.addObserver(this);
-    	client.openConnection();
     }
 
 	@Override

@@ -1,4 +1,4 @@
-package root.client.resources.view;
+package root.client.managers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import root.client.Main;
@@ -70,7 +69,7 @@ public class ScreensManager extends Application {
 			//primaryStage.setHeight(height);
 			//primaryStage.setWidth(width);			
 			Scene scene = new Scene(root,1024,720);
-			scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
+			scene.getStylesheets().add(Main.class.getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

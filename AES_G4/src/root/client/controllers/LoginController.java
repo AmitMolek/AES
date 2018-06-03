@@ -14,12 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+
 import ocsf.client.ObservableClient;
-import root.client.resources.view.ScreensManager;
+import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
 import root.dao.message.LoginMessage;
@@ -99,16 +96,15 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
-			try {
-				screenManager.activate("mainWindow");
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Platform.runLater(() -> {
+				try {
+					screenManager.activate("mainWindow");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
 		}
 	}
     
-    
-
 }
