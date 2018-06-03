@@ -31,7 +31,7 @@ public class LoginInfo implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "UserID: "+userID+"\nUserPassword: "+password;
+		return "userID ="+ userID +"\npassword = "+password;
 		
 	}
 	

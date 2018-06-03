@@ -7,18 +7,20 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import ocsf.client.ObservableClient;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
+import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.UserMessage;
@@ -100,7 +102,7 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
-			//System.out.println(user);
+			System.out.println(user);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					screenManager.activate("mainWindow");
@@ -109,6 +111,19 @@ public class LoginController implements Observer {
 					e.printStackTrace();
 				}
 			});
+		}
+		else if (arg1 instanceof ErrorMessage) {
+			System.out.println(arg1);
+			// waiting for Naor to make getstage() method for screenManager
+			/* // Show the error message.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+            */
 		}
 	}
     

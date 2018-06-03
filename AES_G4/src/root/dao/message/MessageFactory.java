@@ -44,7 +44,7 @@ public class MessageFactory {
 	}
 	
 	private AbstractMessage getErrorMessage(String[] msgContent, Object payload) {
-		return null;
+		return new ErrorMessage((Exception)payload);
 		
 		// TODO Auto-generated method stub
 		
