@@ -145,3 +145,9 @@
 [INFO] Application started | 2018-06-02 19:21:10.605
 [INFO] Application started | 2018-06-02 19:23:57.002
 [INFO] Application started | 2018-06-02 19:24:15.399
+[ERROR][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.708
+[ERROR][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.725
+[ERROR][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.725
+[ERROR][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.725
+[INFO][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.725
+[ERROR] Testing the new log | 2018-06-03 18:12:32.725
