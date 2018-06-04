@@ -14,6 +14,7 @@ public class Main extends ScreensManager {
 		Log.getInstance().writeToLog(LineType.INFO, "Application started", false);
 		ScreensManager.addScreen("loginScreen","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("mainWindow","resources/view/MainScreen.fxml");
+		ScreensManager.addScreen("questions","resources/view/Questions.fxml");	// questions
 		
 		launch(args);
 	}
