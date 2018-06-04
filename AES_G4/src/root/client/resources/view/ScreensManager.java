@@ -1,34 +1,27 @@
-package root.client.managers;
+package root.client.resources.view;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Stack;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import root.client.Main;
-import root.util.log.Log;
-import root.util.log.LogLine;
 
 /**
  * @author Naor Saadia
  *
  */
 public class ScreensManager extends Application {
-
+		
 	    private static HashMap<String, String> screenMap = new HashMap<>();
 	    private static Stage primaryStage;
 	    private Stack<Scene> sceneStack = new Stack<Scene>();
 	    private double height=400;
 	    private double width=400;
-	    Log log = Log.getInstance();
 	    
 	    
 	    private static ScreensManager INSTANCE = new ScreensManager();
@@ -62,20 +55,34 @@ public class ScreensManager extends Application {
 	    {
 	    	if(primaryStage.getScene()!=null)	
 	    		sceneStack.add(primaryStage.getScene());
+	    	System.out.println(screenMap.get(name));
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
 	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
-	    	primaryStage.setResizable(false);
-	    	primaryStage.setTitle("AES_G4");
-	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
-			Scene scene = new Scene(root,1024,720);
-			scene.getStylesheets().add(Main.class.getResource("resources/css/application.css").toExternalForm());
+			primaryStage.setHeight(height);
+			primaryStage.setWidth(width);			
+			Scene scene = new Scene(root,height,width);
+			//scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
 	    }
 	    
+	    /**
+	     * method that show the previous screen
+	     */
+	    public void backScreen() {
+	    	Scene curScene = sceneStack.pop();
+	    	Scene backScene = sceneStack.pop();
+	    	primaryStage.setScene(backScene);
+	    	primaryStage.show();
+	    }
+	    
+	    public void changeSize(double height, double width) {
+	    	this.height=height;
+	    	this.width=width;
+	    }
 		
 	    /**
 	     * Method that called where the main call launch 
@@ -85,18 +92,8 @@ public class ScreensManager extends Application {
 			try {
 				ScreensManager.primaryStage = primaryStage;
 				activate("main");
-				
-				// when pressed "Close" button, kill thread and exit app.
-				primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-				       @Override
-				       public void handle(WindowEvent e) {
-				          Platform.exit();
-				          System.exit(0);
-				       }
-				    });
-				
 			} catch(Exception e) {
-				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				e.printStackTrace();
 			}
 		}
 		
