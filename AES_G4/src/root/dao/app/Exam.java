@@ -3,7 +3,7 @@ package root.dao.app;
 import java.util.ArrayList;
 /**
  * Class for exams
- * @author OmerHaimovich
+ * @author Omer Haimovich
  *
  */
 public class Exam {
