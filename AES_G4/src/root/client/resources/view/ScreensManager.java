@@ -83,24 +83,6 @@ public class ScreensManager extends Application {
 	    	
 	    	primaryStage.setScene(scene);
 	    	primaryStage.show();
-	    	
-	    	/*
-	    	if(primaryStage.getScene()!=null)	
-	    	sceneStack.add(primaryStage.getScene());
-	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
-	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
-	    	primaryStage.setResizable(false);
-	    	primaryStage.setTitle("AES_G4");
-	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
-			height = primaryStage.getHeight();
-			width = primaryStage.getWidth();
-			//primaryStage.setHeight(height);
-			//primaryStage.setWidth(width);			
-			Scene scene = new Scene(root,1024,720);
-			scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			*/
 	    }
 	    
 		
