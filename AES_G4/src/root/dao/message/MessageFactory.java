@@ -2,6 +2,7 @@ package root.dao.message;
 
 import java.util.ArrayList;
 
+import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
@@ -73,6 +74,8 @@ public class MessageFactory {
 		switch(msgContent[1]) {
 		case "subjects":
 			return new SubjectMessage((String)payload);
+		case "courses":
+			return new CourseMessage((Subject)payload);
 		}
 		
 		return null;
@@ -106,18 +109,23 @@ public class MessageFactory {
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
 	{
 		switch(msgContent[2]) {
-		case "questions":
-			if(payload instanceof ArrayList<?>)
-				return new QuestionsMessage((ArrayList<Question>) payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "exams":
-			if(payload instanceof ArrayList<?>)
-				return new ExamMessage((ArrayList<Exam>) payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "subjects":
-			if(payload instanceof ArrayList<?>)
-				return new SubjectMessage((ArrayList<Subject>)payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "questions":
+				if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage((ArrayList<Question>) payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "exams":
+				if(payload instanceof ArrayList<?>)
+					return new ExamMessage((ArrayList<Exam>) payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "subjects":
+				if(payload instanceof ArrayList<?>)
+					return new SubjectMessage((ArrayList<Subject>)payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "courses":
+				if(payload instanceof ArrayList<?>)
+					return new CourseMessage((ArrayList<Course>)payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

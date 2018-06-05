@@ -41,7 +41,7 @@ public class GetFromDB implements DbManagerInterface {
 	}
 /**
  * @author gal
- * @param str can be null, and then all users wil return, or str can contain a specific user ID
+ * @param str can be null, and then all users will return, or str can contain a specific user ID
  */
 	@Override
 	public ArrayList<User> users(String... str) {
@@ -93,9 +93,36 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * @author Omer Haimovich
+	 * @param str can be null, and then all courses in subject will return, or str can contain a specific user ID
+	 */
 	@Override
 	public ArrayList<Course> coursesInSubject(String... str) {
-		// TODO Auto-generated method stub
+		ArrayList<Course> courses = new ArrayList<Course>();
+		ResultSet rs;
+		String courseInSubjectQuery = "SELECT * FROM " + " `courses in subject`";
+		try {
+			stmt = conn.createStatement();
+			switch(str.length){
+			case 0:
+				courseInSubjectQuery = courseInSubjectQuery + ";";
+				break;
+			case 1:
+				String getSpecificUser =  ", courses" + " WHERE `courses in subject`.subject_id = "+"\'"+str[0]+"\'" + " And  courses.course_id = `courses in subject`.course_id" + ";";
+				courseInSubjectQuery = courseInSubjectQuery+ getSpecificUser;
+				break;	
+			}
+			rs = stmt.executeQuery(courseInSubjectQuery);
+			while(rs.next()) {
+				courses.add(new Course(rs.getString(2),rs.getString(4)));
+			}
+			rs.close();
+			return courses;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
 		return null;
 	}
 
@@ -114,7 +141,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<Subject> subjects = new ArrayList<Subject>();
 		ResultSet rs;
 		String subjectQuery = "SELECT * FROM " + "subject_a_teacher_teach"  + ", subjects";
-		try {
+		try {		
 			stmt = conn.createStatement();
 			switch(str.length){
 				case 0:

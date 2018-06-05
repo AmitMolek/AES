@@ -13,12 +13,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import ocsf.client.ObservableClient;
-import root.client.managers.LoggedInUserManager;
+import root.dao.app.Course;
 import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.message.CourseMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.SubjectMessage;
-import root.dao.message.UserMessage;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 /**
  *Class for add exam screen controller
@@ -65,13 +67,25 @@ public class AddExamController implements Observer {
     private MessageFactory messageFact;
     private ObservableClient client;
     private ArrayList<Subject> teacherSubject;
+    private ArrayList<Course> CourseInSubject;
+    private Log log;
     /**
      * Method the occurs when teacher select subject
      * @param event on action in subject combo box
      */
     @FXML
     void SelectSubject(ActionEvent event) {
-    	
+    	cmbCourse.getItems().clear();
+    	String selectedVaule = cmbSubject.getValue();
+    	String[] selectedSubject = selectedVaule.toLowerCase().split("-");
+    	Subject newSubject = new Subject(selectedSubject[0],selectedSubject[1]);
+    	CourseMessage getCourseSubject = (CourseMessage) messageFact.getMessage("get-courses", newSubject);
+    	try {
+			client.sendToServer(getCourseSubject);
+		} catch (IOException e) {
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -115,6 +129,8 @@ public class AddExamController implements Observer {
      */
     @FXML
 	public void initialize() throws IOException{
+    	log = Log.getInstance();
+    	cmbCourse.setDisable(true);
     	client = new ObservableClient("localhost",8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -139,5 +155,15 @@ public class AddExamController implements Observer {
 				cmbSubject.getItems().add(s.getSubjectID() + " - " + s.getSubjectName());
 			}
 		}
+		
+		if(arg1 instanceof CourseMessage) {
+			CourseMessage intialCourseMessage = (CourseMessage)arg1;
+			CourseInSubject = intialCourseMessage.getCourses();
+			for(Course c: CourseInSubject ) {
+				cmbCourse.getItems().add(c.getCourseId() + " - " + c.getCourseName());
+			}
+			cmbCourse.setDisable(false);
+		}
+		
 	}
 }

@@ -2,10 +2,12 @@ package root.server.managers;
 
 import java.util.ArrayList;
 
+import root.dao.app.Course;
 import root.dao.app.LoginInfo;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
+import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
@@ -38,6 +40,23 @@ public class ServerMessageManager {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param msg type of get message
+	 * @return new message for client
+	 */
+	private static AbstractMessage handleGetMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+			case "subjects":
+				return handleSubjectMessage(msg);
+			case "courses":
+				return handleCourseMessage(msg);
+		}
+		
+		return null;
+	}
 	/**
 	 * 
 	 * @param msg type of LoginMessage which contain string, and loginInfo payload.
@@ -61,31 +80,32 @@ public class ServerMessageManager {
 		return message.getMessage("error-login",new Exception("User not exist"));
 	}
 	
-	/**
-	 * 
-	 * @param msg type of get message
-	 * @return new message for client
-	 */
-	private static AbstractMessage handleGetMessage(AbstractMessage msg) {
-		String[] msgContent = msg.getMsg().toLowerCase().split("-");
-		switch(msgContent[1]) {
-		case "subjects":
-			return handleSubjectMessage(msg);
-		}
-		
-		return null;
-	}
-	
+
 	/**
 	 * 
 	 * @param msg type of subject message
-	 * @return the subject message that includes the subect list
+	 * @return the subject message that includes the subject list
 	 */
 	private static AbstractMessage handleSubjectMessage(AbstractMessage msg) {
+
 		SubjectMessage recivedMessage = (SubjectMessage) msg;
 		String teacherId = recivedMessage.getTeacherId();
 		GetFromDB getSubject = new GetFromDB();
 		ArrayList<Subject> subjects = getSubject.subjects(teacherId);
 		return message.getMessage("ok-get-subjects", subjects);
 	}
+	
+	/**
+	 * 
+	 * @param msg type of course message
+	 * @return the course message that includes the course list
+	 */
+	private static AbstractMessage handleCourseMessage(AbstractMessage msg) {
+		CourseMessage recivedMessage = (CourseMessage) msg;
+		String subjectId = recivedMessage.getCourseSubject().getSubjectID();
+		GetFromDB getCourse = new GetFromDB();
+		ArrayList<Course> courses = getCourse.coursesInSubject(subjectId);
+		return message.getMessage("ok-get-courses", courses);
+	}
+	
 }

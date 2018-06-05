@@ -16,8 +16,7 @@ public class SubjectMessage extends AbstractMessage {
 	
 	/**
 	 * Constructor for message get-subject from client
-	 * @param msg
-	 * @param teacherId
+	 * @param teacherId the teacher id
 	 */
 	public SubjectMessage (String teacherId)
 	{
@@ -26,11 +25,11 @@ public class SubjectMessage extends AbstractMessage {
 	}
 	 /**
 	  * Constructor for message ok-subject form server
-	  * @param teacherSubject
+	  * @param teacherSubject the list of the subject of the teacher
 	  */
 	public SubjectMessage (ArrayList<Subject> teacherSubject)
 	{
-		super("ok-subjects");
+		super("ok-get-subjects");
 		this.teacherSubject = teacherSubject;
 	}
 	
