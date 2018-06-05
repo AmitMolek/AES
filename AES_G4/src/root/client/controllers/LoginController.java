@@ -27,6 +27,8 @@ import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.UserMessage;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 public class LoginController implements Observer {
 
@@ -60,6 +62,8 @@ public class LoginController implements Observer {
     private User user;
     private ScreensManager screenManager;
     private LoggedInUserManager loggedInManager;
+    
+    Log log = Log.getInstance();
     /**
      * This method occurs when someone presses the sign in button
      * @param event action event when someone presses the sign in button
@@ -74,6 +78,7 @@ public class LoginController implements Observer {
 			client.sendToServer(newLoginMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
     	
 
@@ -120,6 +125,7 @@ public class LoginController implements Observer {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
 			});
 		}

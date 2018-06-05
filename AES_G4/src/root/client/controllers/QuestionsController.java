@@ -39,6 +39,8 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 public class QuestionsController implements Observer{
 	
@@ -127,7 +129,7 @@ public class QuestionsController implements Observer{
     private ScreensManager screenManager;
     private LoggedInUserManager loggedInManager;
 	private ArrayList<Subject> userSubjects;
-    
+	Log log = Log.getInstance();
   
 
 	public QuestionsController() {
@@ -291,6 +293,7 @@ public class QuestionsController implements Observer{
 			newValues.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
     	
     }
@@ -373,6 +376,7 @@ private void getUserQuestions(ArrayList<Subject> userSubjects) {
 				client.sendToServer(newQuestionMessage);
 			} catch (IOException e) {
 				e.printStackTrace();
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
 		}
 	}
@@ -384,6 +388,7 @@ private void getUserSubjects(User user) {
 			client.sendToServer(newUserSubjectMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
 
