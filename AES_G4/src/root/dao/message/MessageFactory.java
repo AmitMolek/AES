@@ -69,6 +69,13 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getGetMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "usersubjects":
+			return new UserSubjectMessage((User)payload);
+			
+		default:
+			break;
+		}
 		return null;
 		// TODO Auto-generated method stub
 		
@@ -107,7 +114,11 @@ public class MessageFactory {
 			if(payload instanceof ArrayList<?>)
 				return new ExamMessage((ArrayList<Exam>) payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
 		}
+		
+			
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	

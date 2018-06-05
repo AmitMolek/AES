@@ -50,7 +50,7 @@ public class LoginController implements Observer {
     private PasswordField txtPassword;
     
     @FXML
-    private TextField ErrorTxtField;
+    private Label ErrorTxtField;
     
     
     private ObservableClient client;
@@ -92,7 +92,7 @@ public class LoginController implements Observer {
     	client.openConnection();
     	
     	
-    	//ErrorTxtField.setVisible(false);
+    	ErrorTxtField.setVisible(false);
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
@@ -114,7 +114,7 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					screenManager.activate("mainWindow");
+					screenManager.activate("questions");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -123,26 +123,11 @@ public class LoginController implements Observer {
 		}
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
-			ErrorTxtField.setText(arg1.toString());
-			ErrorTxtField.setVisible(true);
-			
-			// waiting for Naor to make getstage() method for screenManager
-			// Show the error message.
-			//showAlert(arg1);
-          
-            
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				ErrorTxtField.setText(arg1.toString());
+				ErrorTxtField.setVisible(true);	
+			});
 		}
 	}
-
-	private void showAlert(Object arg1) {
-		// TODO Auto-generated method stub
-		  Alert alert = new Alert(AlertType.ERROR);
-          alert.initOwner(this.screenManager.getPrimaryStage());
-          alert.setTitle("Invalid Fields");
-          alert.setHeaderText("Please correct invalid fields");
-          alert.setContentText(arg1.toString());
-
-          alert.showAndWait();
-	}
-    
+	
 }

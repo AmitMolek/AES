@@ -34,7 +34,7 @@ public class LoggedInUserManager {
     	userCounter++;
     }
     public User getUser() {
-    	return connectedUsers.get(userCounter--);
+    	return connectedUsers.get(--userCounter);
     }
     
     public String toString() {

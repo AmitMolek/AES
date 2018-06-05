@@ -36,6 +36,7 @@ import root.dao.message.LoginMessage;
 import root.dao.message.Message;
 import root.dao.message.MessageFactory;
 import root.dao.message.UserMessage;
+import root.dao.message.UserSubjectMessage;
 
 public class QuestionsController implements Observer{
 	
@@ -174,13 +175,15 @@ public class QuestionsController implements Observer{
     private User user;
     private ScreensManager screenManager;
     private LoggedInUserManager loggedInManager;
-	
+	private ArrayList<Subject> userSubjects;
     
-    public QuestionsController() {
+  
+
+	public QuestionsController() {
 		super();
 	
 	}
-	private void init_for_testing() {
+	/*private void init_for_testing() {
     	String userId = "301726717";
     	String userPassword = "gal";
     	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
@@ -190,8 +193,16 @@ public class QuestionsController implements Observer{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+    }*/
 	
+	public ArrayList<Subject> getUserSubjects() {
+		return userSubjects;
+	}
+
+	public void setUserSubjects(ArrayList<Subject> userSubjects) {
+		this.userSubjects = userSubjects;
+	}
+		
 	private void fillCombobox(Subject teacherSubject) {
 		
 	}
@@ -269,6 +280,10 @@ public class QuestionsController implements Observer{
     	client.addObserver(this);
     	client.openConnection();
     	user = loggedInManager.getUser();
+    	
+    	setUserDetails(user);
+    	getUserSubjects(user);
+    	//fillCombobox()
     	//init_for_testing();
     	
     	/*
@@ -292,7 +307,18 @@ public class QuestionsController implements Observer{
         });
     	btnSignIn.setDisable(true);*/
     }
-//	/**
+private void getUserSubjects(User user) {
+		// TODO Auto-generated method stub
+		//UserMessage userMessage = new UserMessage(user);
+		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		try {
+			client.sendToServer(newUserSubjectMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	//	/**
 //	 * This method happens when the window shown 
 //	 */
 //	
@@ -342,14 +368,10 @@ public class QuestionsController implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		
-		// this IF is only for developing, 'user' should be passed from Screenmanager.
-		if(arg1 instanceof UserMessage) {
-			UserMessage newMessasge = (UserMessage) arg1;
-			user = newMessasge.getUser();
-			setUserDetails(user);
+		if(arg1 instanceof UserSubjectMessage) {
+			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
+			System.out.println(this.userSubjects);
 		}
-		
-		
 		
 		
 		if(arg1 instanceof String)
@@ -398,10 +420,7 @@ public class QuestionsController implements Observer{
 	}
 
 
-
-
-
-	private void setUserDetails(User user2) {
+	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
 		teacherIDLbl.setText(user.getUserID());
 		fstNameLbl.setText(user.getUserFirstName());

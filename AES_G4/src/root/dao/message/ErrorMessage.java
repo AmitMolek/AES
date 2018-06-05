@@ -16,7 +16,7 @@ public class ErrorMessage extends AbstractMessage {
 
 	@Override
 	public String toString() {
-		return "ErrorMessage [errorException=" + errorException + "]";
+		return errorException.getMessage();
 	}
 
 	public Exception getErrorException() {

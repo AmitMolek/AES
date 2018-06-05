@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="window" stylesheets="@/root/client/resources/css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.QuestionsController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.QuestionsController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -53,7 +53,7 @@
                         <Label text="select Subject:" GridPane.halignment="CENTER" />
                         <TextField fx:id="txtFieldQuestion" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="serach Question by ID" styleClass="textFields" GridPane.rowIndex="1" />
                         <ComboBox fx:id="subjectCombobox" prefWidth="150.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                        <Button fx:id="updateQuestion" mnemonicParsing="false" onAction="#updateQuestion" styleClass="buttonStyleUpdate" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="updateQuestion" mnemonicParsing="false" onAction="#updateQuestion" text="Update" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                       <Button fx:id="newQuestion" mnemonicParsing="false" text="new Question" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                           <columnConstraints>
@@ -80,18 +80,20 @@
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="First Name" GridPane.halignment="CENTER" />
-                        <Label text="Teacher ID" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Label text="Last Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label text="Permission" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Label fx:id="fstNameLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                        <Label fx:id="lstNamelbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label fx:id="teacherIDLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Label fx:id="TeacherPremissionLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label text="First Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label text="Teacher ID" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label text="Last Name" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label text="Permission" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Label fx:id="fstNameLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label fx:id="lstNamelbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <Label fx:id="teacherIDLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label fx:id="TeacherPremissionLbl" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Label styleClass="label-header" text="Welcome" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                </items>

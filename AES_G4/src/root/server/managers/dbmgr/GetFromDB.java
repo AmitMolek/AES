@@ -49,14 +49,14 @@ public class GetFromDB implements DbManagerInterface {
 			stmt = conn.createStatement();
 			switch(str.length) {
 				case 0:
-					rs = stmt.executeQuery(usersQuery);
+					rs = stmt.executeQuery(usersQuery+";");
 					while(rs.next()) {
 						users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
 					}
 					rs.close();
 					return users;			// Return A list of all users
 				case 1:
-					String getSpecificUser = " WHERE users.Users_ID = "+"\'"+str[0]+"\';";
+					String getSpecificUser = " WHERE users.Users_ID = "+str[0]+";";
 					//System.out.println(usersQuery+getSpecificUser);	// for debug - print the query
 					rs = stmt.executeQuery(usersQuery+getSpecificUser);
 					while(rs.next()) {
@@ -79,12 +79,12 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
-	@Override
-	public ArrayList<Course> courseOfTeacher(String... str) {
+/*	@Override
+	public ArrayList<Course> subjectOfTeacher(String... str) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	@Override
 	public ArrayList<Course> courses(String... str) {
 		// TODO Auto-generated method stub
@@ -105,9 +105,39 @@ public class GetFromDB implements DbManagerInterface {
 
 	@Override
 	public ArrayList<Subject> subjects(String... str) {
-		// TODO Auto-generated method stub
+		ArrayList<Subject> userSubjects = new ArrayList<Subject>();
+		ResultSet rs;
+		String SubjectsQuery =  "SELECT * FROM subjects";// fetch all subjects
+		try {
+			stmt = conn.createStatement();
+			switch(str.length) {
+				case 0: // if str empty retrieve all subject
+					rs = stmt.executeQuery(SubjectsQuery+";");
+					while(rs.next()) {
+						userSubjects.add(new Subject(rs.getString(1), rs.getString(2)));
+					}
+					rs.close();
+					return userSubjects;			// Return A list of all subjects
+				case 1:		// if str contain user id retrieve only his subjects (jubjectsTabl join subjectofTeacherTable)
+					/**
+					 * @author gal
+					 * given a teacher id, this query will return all his teaching subjects
+					 */
+					String userSubjectsQuery = " WHERE subjects.subject_id in (SELECT `subject a teacher teach`.subject_ID FROM `subject a teacher teach` WHERE `subject a teacher teach`.teacher_ID = "+str[0]+");";
+					rs = stmt.executeQuery(SubjectsQuery+userSubjectsQuery);
+					while(rs.next()) {
+						userSubjects.add(new Subject(rs.getString(1), rs.getString(2)));
+					}
+					rs.close();
+					return userSubjects;			// Return A list of all subjects a teacher teach
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
+		
 
 	@Override
 	public ArrayList<Statistic> solvedExamStatistic(String... str) {
@@ -123,6 +153,12 @@ public class GetFromDB implements DbManagerInterface {
 
 	@Override
 	public ArrayList<Question> questionInExam(String... str) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Course> courseOfTeacher(String... str) {
 		// TODO Auto-generated method stub
 		return null;
 	}
