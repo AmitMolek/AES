@@ -156,7 +156,6 @@ public class GetFromDB implements DbManagerInterface {
 	 */
 	@Override
 	public ArrayList<Subject> subjects(String... str) {
-<<<<<<< HEAD
 		ArrayList<Subject> userSubjects = new ArrayList<Subject>();
 		ResultSet rs;
 		String SubjectsQuery =  "SELECT * FROM subjects";// fetch all subjects
@@ -186,34 +185,8 @@ public class GetFromDB implements DbManagerInterface {
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-=======
-		ArrayList<Subject> subjects = new ArrayList<Subject>();
-		ResultSet rs;
-		String subjectQuery = "SELECT * FROM " + "subject_a_teacher_teach"  + ", subjects";
-		try {		
-			stmt = conn.createStatement();
-			switch(str.length){
-				case 0:
-					subjectQuery = subjectQuery + ";";
-					break;
-				case 1:
-					String getSpecificUser = " WHERE subject_a_teacher_teach.teacher_ID = "+"\'"+str[0]+"\'" + " And  subjects.subject_id = subject_a_teacher_teach.subject_ID" + ";";
-					subjectQuery = subjectQuery+ getSpecificUser;
-					break;	
-			}
-			rs = stmt.executeQuery(subjectQuery);
-			while(rs.next()) {
-				subjects.add(new Subject(rs.getString(2),rs.getString(4)));
-			}
-			rs.close();
-			return subjects;
-		} catch (SQLException e) {
-			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
-		
->>>>>>> refs/remotes/origin/Omer
 		return null;
 	}
 		
