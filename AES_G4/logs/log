@@ -342,3 +342,21 @@
 [INFO][root.server.AES_Server] The server is connected | 2018-06-05 13:45:53.594
 [INFO] Application started | 2018-06-05 13:45:56.923
 [INFO] Application started | 2018-06-05 13:46:55.43
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 14:03:06.723
+[INFO] Application started | 2018-06-05 14:03:08.689
+[INFO] Application started | 2018-06-05 14:03:39.75
+[INFO] Application started | 2018-06-05 14:04:09.241
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 15:38:41.916
+[INFO] Application started | 2018-06-05 15:38:44.682
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 15:42:10.678
+[INFO] Application started | 2018-06-05 15:42:14.275
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 15:46:36.613
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-05 15:46:36.615
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 15:46:42.968
+[INFO] Application started | 2018-06-05 15:46:44.752
+[INFO] Application started | 2018-06-05 15:48:03.172
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 19:51:16.161
+[INFO] Application started | 2018-06-05 19:51:19.432
+[INFO] Application started | 2018-06-05 19:52:35.306
+[INFO] Application started | 2018-06-05 19:55:05.201
+[INFO] Application started | 2018-06-05 19:56:15.521
