@@ -247,7 +247,7 @@ public class QuestionsController implements Observer{
 			// TODO Auto-generated method stub
     	tblQuestions.getItems().clear();
 		tblQuestions.setEditable(true);
-		
+	
 	}
 
 	//	/**

@@ -11,7 +11,7 @@ public class Log {
 	
 	private LogFile logFile;
 	
-	private static Log log = new Log(); 
+	private static Log log = new Log();
 	
 	/**
 	 * Private constructor (because singleton)
