@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.Subject;
 import root.dao.app.User;
 import root.server.managers.dbmgr.GetFromDB;
 
@@ -69,8 +70,13 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getGetMessage(String[] msgContent, Object payload) {
+		switch(msgContent[1]) {
+		case "subjects":
+			return new SubjectMessage((String)payload);
+		}
+		
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -85,13 +91,14 @@ public class MessageFactory {
 		case "login":
 			return new UserMessage((User)payload);
 		case "get":
-			return getGetMessage(msgContent,payload);
+			return  getOkGetMessage(msgContent,payload);
 		case "set":
 			return new SimpleMessage("ok-set-"+msgContent[2]);
 		case "put":
 			return new SimpleMessage("ok-put-"+msgContent[2]);
 		case "delete":
 			return new SimpleMessage("ok-delete-"+msgContent[2]);
+
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
@@ -106,6 +113,10 @@ public class MessageFactory {
 		case "exams":
 			if(payload instanceof ArrayList<?>)
 				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		return new ErrorMessage(new Exception("Invalid request"));

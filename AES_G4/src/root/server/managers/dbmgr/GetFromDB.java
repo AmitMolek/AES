@@ -20,15 +20,18 @@ import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.Message;
 import root.server.AES_Server;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 public class GetFromDB implements DbManagerInterface {
 	private java.sql.Statement stmt;
 	private Connection conn;
-	
+	private Log log;
 	
 	public GetFromDB() {
 		super();
 		conn = AES_Server.getConnection();
+		log.getInstance();
 	}
 
 	@Override
@@ -66,8 +69,7 @@ public class GetFromDB implements DbManagerInterface {
 					return users;			// Return a list contain specific user
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 		return null;
 	}
@@ -103,9 +105,37 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * @author Omer Haimovich
+	 * @param str can be null, and then all subjects of teacher wil return, or str can contain a specific user ID
+	 */
 	@Override
 	public ArrayList<Subject> subjects(String... str) {
-		// TODO Auto-generated method stub
+		ArrayList<Subject> subjects = new ArrayList<Subject>();
+		ResultSet rs;
+		String subjectQuery = "SELECT * FROM " + "subject_a_teacher_teach"  + ", subjects";
+		try {
+			stmt = conn.createStatement();
+			switch(str.length){
+				case 0:
+					subjectQuery = subjectQuery + ";";
+					break;
+				case 1:
+					String getSpecificUser = " WHERE subject_a_teacher_teach.teacher_ID = "+"\'"+str[0]+"\'" + " And  subjects.subject_id = subject_a_teacher_teach.subject_ID" + ";";
+					subjectQuery = subjectQuery+ getSpecificUser;
+					break;	
+			}
+			rs = stmt.executeQuery(subjectQuery);
+			while(rs.next()) {
+				subjects.add(new Subject(rs.getString(2),rs.getString(4)));
+			}
+			rs.close();
+			return subjects;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
+		
 		return null;
 	}
 

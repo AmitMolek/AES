@@ -1,5 +1,7 @@
 package root.dao.app;
 
-public class AlterDuration {
+import java.io.Serializable;
+
+public class AlterDuration implements Serializable {
 
 }

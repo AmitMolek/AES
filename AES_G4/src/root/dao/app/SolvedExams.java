@@ -1,5 +1,7 @@
 package root.dao.app;
 
-public class SolvedExams {
+import java.io.Serializable;
+
+public class SolvedExams implements Serializable {
 
 }

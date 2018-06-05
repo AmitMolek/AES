@@ -1,11 +1,13 @@
 package root.dao.app;
 
+import java.io.Serializable;
+
 /**
  * Class for question in exam include grade and free text for each question
  * @author Omer Haimovich
  *
  */
-public class QuestionInExam {
+public class QuestionInExam implements Serializable {
 	private Question question;
 	private int questionGrade;
 	private String freeTextForTeacher;

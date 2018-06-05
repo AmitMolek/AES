@@ -1,6 +1,8 @@
 package root.dao.app;
 
-public class Subject {
+import java.io.Serializable;
+
+public class Subject implements Serializable {
 	/**
 	 * @author gal
 	 * 

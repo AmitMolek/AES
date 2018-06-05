@@ -1,5 +1,7 @@
 package root.dao.app;
 
-public class Statistic {
+import java.io.Serializable;
+
+public class Statistic implements Serializable {
 
 }
