@@ -48,7 +48,10 @@ public class LoginController implements Observer {
 
     @FXML
     private PasswordField txtPassword;
-
+    
+    @FXML
+    private TextField ErrorTxtField;
+    
     
     private ObservableClient client;
     private MessageFactory message;
@@ -89,6 +92,7 @@ public class LoginController implements Observer {
     	client.openConnection();
     	
     	
+    	//ErrorTxtField.setVisible(false);
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
@@ -106,7 +110,7 @@ public class LoginController implements Observer {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
 			loggedInManager.addUser(user);
-			System.out.println(user);
+			//System.out.println(user);
 			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
@@ -119,17 +123,26 @@ public class LoginController implements Observer {
 		}
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
+			ErrorTxtField.setText(arg1.toString());
+			ErrorTxtField.setVisible(true);
+			
 			// waiting for Naor to make getstage() method for screenManager
 			// Show the error message.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(this.screenManager.get);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(arg1.toString());
-
-            alert.showAndWait();
+			//showAlert(arg1);
+          
             
 		}
+	}
+
+	private void showAlert(Object arg1) {
+		// TODO Auto-generated method stub
+		  Alert alert = new Alert(AlertType.ERROR);
+          alert.initOwner(this.screenManager.getPrimaryStage());
+          alert.setTitle("Invalid Fields");
+          alert.setHeaderText("Please correct invalid fields");
+          alert.setContentText(arg1.toString());
+
+          alert.showAndWait();
 	}
     
 }

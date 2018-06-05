@@ -29,11 +29,11 @@ public class LoggedInUserManager {
      * Static add user to the singelton
      * @param user
      */
-    public static void addUser(User user) {
+    public void addUser(User user) {
     	connectedUsers.add(user);
     	userCounter++;
     }
-    public static User getUser() {
+    public User getUser() {
     	return connectedUsers.get(userCounter--);
     }
     

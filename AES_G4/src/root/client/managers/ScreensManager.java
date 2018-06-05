@@ -24,7 +24,7 @@ import root.util.log.LogLine;
 public class ScreensManager extends Application {
 
 	    private static HashMap<String, String> screenMap = new HashMap<>();
-	    private static Stage primaryStage;
+	    private static Stage primaryStage=null;
 	    private Stack<Scene> sceneStack = new Stack<Scene>();
 	    private double height=400;
 	    private double width=400;
@@ -100,6 +100,10 @@ public class ScreensManager extends Application {
 				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
 		}
+	    
+	    public Stage getPrimaryStage() {
+	    	return primaryStage;
+	    }
 		
 	}
     
