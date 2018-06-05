@@ -120,15 +120,15 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
 			// waiting for Naor to make getstage() method for screenManager
-			/*// Show the error message.
+			// Show the error message.
             Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(this.screenManager.getInstance().p);
+            alert.initOwner(this.screenManager.get);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(arg1.toString());
 
             alert.showAndWait();
-            */
+            
 		}
 	}
     
