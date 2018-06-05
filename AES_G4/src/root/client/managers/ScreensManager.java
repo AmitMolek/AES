@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import root.client.Main;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 /**
  * @author Naor Saadia
@@ -22,10 +24,11 @@ import root.client.Main;
 public class ScreensManager extends Application {
 
 	    private static HashMap<String, String> screenMap = new HashMap<>();
-	    private static Stage primaryStage;
+	    private static Stage primaryStage=null;
 	    private Stack<Scene> sceneStack = new Stack<Scene>();
 	    private double height=400;
 	    private double width=400;
+	    Log log = Log.getInstance();
 	    
 	    
 	    private static ScreensManager INSTANCE = new ScreensManager();
@@ -58,7 +61,7 @@ public class ScreensManager extends Application {
 	    public void activate(String name) throws IOException
 	    {
 	    	if(primaryStage.getScene()!=null)	
-	    	sceneStack.add(primaryStage.getScene());
+	    		sceneStack.add(primaryStage.getScene());
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
 	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
 	    	primaryStage.setResizable(false);
@@ -67,8 +70,6 @@ public class ScreensManager extends Application {
 	    		primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
 			height = primaryStage.getHeight();
 			width = primaryStage.getWidth();
-			//primaryStage.setHeight(height);
-			//primaryStage.setWidth(width);			
 			Scene scene = new Scene(root,1024,720);
 			scene.getStylesheets().add(Main.class.getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -96,9 +97,13 @@ public class ScreensManager extends Application {
 				    });
 				
 			} catch(Exception e) {
-				e.printStackTrace();
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
 		}
+	    
+	    public Stage getPrimaryStage() {
+	    	return primaryStage;
+	    }
 		
 	}
     

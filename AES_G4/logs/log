@@ -162,6 +162,7 @@
 [INFO][root.util.log.TestLog] Testing the new log | 2018-06-03 18:12:32.725
 [ERROR] Testing the new log | 2018-06-03 18:12:32.725
 >>>>>>> refs/remotes/origin/Amit
+<<<<<<< HEAD
 [INFO] Application started | 2018-06-03 18:48:25.544
 [INFO] Application started | 2018-06-03 18:48:34.778
 [INFO] Application started | 2018-06-03 18:49:01.724
@@ -228,3 +229,15 @@
 [INFO] Application started | 2018-06-04 19:23:53.068
 [INFO] Application started | 2018-06-04 19:26:50.339
 [INFO] Application started | 2018-06-04 19:28:40.455
+=======
+[INFO] Application started | 2018-06-04 12:55:20.973
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/Aviel%20Mines/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-04 12:55:22.408
+[INFO] Application started | 2018-06-04 12:55:42.635
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/Aviel%20Mines/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-04 12:55:43.894
+[INFO] Application started | 2018-06-04 12:57:34.656
+>>>>>>> refs/remotes/origin/Naor
+[INFO] Application started | 2018-06-05 09:13:02.916

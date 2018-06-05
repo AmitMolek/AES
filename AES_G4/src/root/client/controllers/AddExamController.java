@@ -101,7 +101,6 @@ public class AddExamController {
      */
     @FXML
 	public void initialize() throws IOException{
-    	cmbCourse.getItems().addAll("Hello");
     	cmbCourse.setPromptText("Choose course");
     	cmbQuestion.setPromptText("Question");
     	cmbSubject.setPromptText("Choose subject");
