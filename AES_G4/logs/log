@@ -583,3 +583,12 @@
 [INFO] Application started | 2018-06-05 20:21:55.054
 [INFO][root.server.AES_Server] The server is connected | 2018-06-05 20:31:54.291
 [INFO] Application started | 2018-06-05 20:31:56.787
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 20:58:09.957
+[INFO] Application started | 2018-06-05 20:58:12.239
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 21:14:56.353
+[INFO] Application started | 2018-06-05 21:15:00.412
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 21:23:12.891
+[INFO] Application started | 2018-06-05 21:23:15.016
+[INFO][root.server.AES_Server] The server is connected | 2018-06-05 21:25:25.527
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-05 21:25:25.528
+[INFO] Application started | 2018-06-05 21:25:27.065
