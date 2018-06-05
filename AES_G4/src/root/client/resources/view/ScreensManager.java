@@ -1,6 +1,7 @@
 package root.client.resources.view;
 
 import java.io.IOException;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -8,10 +9,13 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import root.client.Main;
@@ -58,6 +62,29 @@ public class ScreensManager extends Application {
 	    
 	    public void activate(String name) throws IOException
 	    {
+	    	VBox sRoot = new VBox();
+	    	
+	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource("resources/view/Menu.fxml"));
+	    	Pane menu = menuFxml.load();
+	    	sRoot.getChildren().add(menu);
+	    	
+	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
+	    	Pane screen = fxmlLoader.load();
+	    	sRoot.getChildren().add(screen);
+	    	
+	    	primaryStage.setResizable(false);
+	    	primaryStage.setTitle("AES");
+	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/icons/book.png"));
+	    	
+	    	Scene scene = new Scene(sRoot, 1280, 720);
+	    	//Scene scene = new Scene(sRoot, 1024, 720);
+	    	if (scene.getStylesheets().isEmpty())
+	    		scene.getStylesheets().add(Main.class.getResource("resources/css/materialDesign.css").toExternalForm());
+	    	
+	    	primaryStage.setScene(scene);
+	    	primaryStage.show();
+	    	
+	    	/*
 	    	if(primaryStage.getScene()!=null)	
 	    	sceneStack.add(primaryStage.getScene());
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
@@ -73,7 +100,7 @@ public class ScreensManager extends Application {
 			scene.getStylesheets().add(getClass().getResource("resources/css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
+			*/
 	    }
 	    
 		

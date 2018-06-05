@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.client.resources.view.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
@@ -99,6 +100,7 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
+			DataKeepManager.getInstance().keepObject("user", user);
 			try {
 				screenManager.activate("mainWindow");
 
