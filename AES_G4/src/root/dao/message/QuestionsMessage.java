@@ -1,25 +1,65 @@
 package root.dao.message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import root.dao.app.Question;
+import root.dao.app.Subject;
 
-public class QuestionsMessage extends AbstractMessage {
+public class QuestionsMessage extends AbstractMessage implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Question> questions;
+	private Subject thisQuestionsSubject;
 	
-	public QuestionsMessage(ArrayList<Question> questions) {
-		super("ok-get-questions");
-		this.questions=questions;
+	public QuestionsMessage(Subject payload) {
+		super("Questions");
+		this.thisQuestionsSubject=payload;
+	}
+
+	public QuestionsMessage(ArrayList<Question> payload) {
+		// TODO Auto-generated constructor stub
+		super("Questions");
+		this.questions = payload;
+	}
+
+	public QuestionsMessage(QuestionsMessage payload) {
+		// TODO Auto-generated constructor stub
+		super("Questions");
+		this.questions = payload.getQuestions();
+		this.thisQuestionsSubject = payload.getThisQuestionsSubject();
 	}
 
 	@Override
 	public String getType() {
 		return "Questions";
+	}
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
+	}
+
+	public Subject getThisQuestionsSubject() {
+		return thisQuestionsSubject;
+	}
+
+	public void setThisQuestionsSubject(Subject thisQuestionsSubject) {
+		this.thisQuestionsSubject = thisQuestionsSubject;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "QuestionsMessage [questions=" + questions + ", thisQuestionsSubject=" + thisQuestionsSubject + "]";
 	}
 
 }

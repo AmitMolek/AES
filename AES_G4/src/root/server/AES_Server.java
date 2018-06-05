@@ -55,17 +55,6 @@ public class AES_Server extends AbstractServer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		/*
-		System.out.println("Message received: " + handleMsg.getMsg() + " from " + client);
-		recivedMSG = handleMsg.getMsg().split("-");
-		dataBase = new ArrayList<Question>();
-		if (recivedMSG[0].equals("get")) {
-			getObj(handleMsg);
-		}
-		if (recivedMSG[0].equals("set"))
-			setObj(handleMsg);
-			*/
 	}
 
 	/**
@@ -126,7 +115,7 @@ public class AES_Server extends AbstractServer {
 	/**
 	 * getObj method give to client for an asked question
 	 */
-	
+	/*
 	public void getObj(Message msg) {
 		recivedMSG = msg.getMsg().split("-");
 		if (recivedMSG[1].equals("questions")) {
@@ -145,7 +134,8 @@ public class AES_Server extends AbstractServer {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
+	
 	 /**
 	  *  setObj method give to client for an asked question
 	  * @param msg

@@ -35,6 +35,7 @@ import root.dao.app.User;
 import root.dao.message.LoginMessage;
 import root.dao.message.Message;
 import root.dao.message.MessageFactory;
+import root.dao.message.QuestionsMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 
@@ -115,58 +116,7 @@ public class QuestionsController implements Observer{
 
     @FXML // fx:id="TeacherPremissionLbl"
     private Label TeacherPremissionLbl; // Value injected by FXMLLoader
-	/*
-    @FXML
-    private TextField txtFieldQuestion;
 
-    @FXML
-    private TableColumn<Question, String> tbcAns1;
-
-    @FXML
-    private TableColumn<Question, Integer> tbcCorr;
-
-    @FXML
-    private TableColumn<Question, String> tbcId;
-
-    @FXML
-    private TableColumn<Question, String> tbcAns3;
-    
-    @FXML
-    private TableColumn<Question, String> tbcAns2;
-
-    @FXML
-    private TextField txtFieldId;
-
-    @FXML
-    private TableColumn<Question, String> tbcAns4;
-
-    @FXML
-    private Button btnSearch;
-
-    @FXML
-    private TableColumn<Question, String> tbcIdText;
-
-    @FXML
-    private TableColumn<Question, String> tbcName;
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private TextField txtFieldName;
-
-    @FXML
-    private Button update;
-
-    @FXML
-    private TableView<Question> tblQuestions;
-
-    @FXML
-    private Label lblUpdateError;
-    
-    @FXML
-    private TableColumn<Question, Integer> tbcIdNum;
-*/
     private ObservableClient client;
     private Map<String,Integer> newValues;
 	private ArrayList<Question> questions;
@@ -183,17 +133,6 @@ public class QuestionsController implements Observer{
 		super();
 	
 	}
-	/*private void init_for_testing() {
-    	String userId = "301726717";
-    	String userPassword = "gal";
-    	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
-    	LoginMessage newLoginMessage = (LoginMessage) message.getMessage("login",loginInformation);
-    	try {
-			client.sendToServer(newLoginMessage);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }*/
 	
 	public ArrayList<Subject> getUserSubjects() {
 		return userSubjects;
@@ -203,14 +142,15 @@ public class QuestionsController implements Observer{
 		this.userSubjects = userSubjects;
 	}
 		
-	private void fillCombobox(Subject teacherSubject) {
-		
+	private void fillCombobox(ArrayList<Subject> teacherSubject) {
+		subjectCombobox.getItems().addAll(teacherSubject);
 	}
     /**
 	 * This method happens when the user press on the search button 
 	 * @param event
 	 */
 
+	
 	@FXML
  	void searchQuestion(ActionEvent event) {
 		tblQuestions.getItems().clear();
@@ -221,9 +161,9 @@ public class QuestionsController implements Observer{
 		if (questionId != null) {
 			for (int i = 0; i < questions.size(); i++) {
 				Question q = questions.get(i);
-				if (q.getId().equals(questionId)) {
+	/*			if (q.getId().equals(questionId)) {
 					queryQuestions.add(q);
-				}
+				}*/
 			}
 
 		}
@@ -231,13 +171,14 @@ public class QuestionsController implements Observer{
 		if (questionName != null) {
 			for (int i = 0; i < questions.size(); i++) {
 				Question q = questions.get(i);
-				if (q.getTeacherName().equals(questionName) && (!queryQuestions.contains(q))) {
-					queryQuestions.add(q);
+	/*			if (q.getTeacherName().equals(questionName) && (!queryQuestions.contains(q))) {
+					queryQuestions.add(q);*/
 				}
 			}
 
 		}
-		if (questionIns != null) {
+
+		/*if (questionIns != null) {
 			for (int i = 0; i < questions.size(); i++) {
 				Question q = questions.get(i);
 				if (q.getQuestionIns().equals(questionIns) && (!queryQuestions.contains(q))) {
@@ -245,7 +186,8 @@ public class QuestionsController implements Observer{
 				}
 			}
 
-		}
+		}*/
+		/*
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("id"));
 		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherName"));
 		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionIns"));
@@ -261,8 +203,8 @@ public class QuestionsController implements Observer{
 		txtFieldId.clear();
 		txtFieldName.clear();
 		txtFieldQuestion.clear();
-
-	}
+		 */
+	
 
 
 
@@ -280,11 +222,12 @@ public class QuestionsController implements Observer{
     	client.addObserver(this);
     	client.openConnection();
     	user = loggedInManager.getUser();
+    	questions = new ArrayList<Question>();
     	
     	setUserDetails(user);
     	getUserSubjects(user);
-    	//fillCombobox()
-    	//init_for_testing();
+    	
+    	
     	
     	/*
     	 // Initialize the person table with the two columns.
@@ -307,9 +250,21 @@ public class QuestionsController implements Observer{
         });
     	btnSignIn.setDisable(true);*/
     }
+private void getUserQuestions(ArrayList<Subject> userSubjects) {
+		// TODO Auto-generated method stub
+		// Here well get all question that in the same subject of the user
+		for (Subject subject: userSubjects) {
+			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
+			try {
+				client.sendToServer(newQuestionMessage);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 private void getUserSubjects(User user) {
 		// TODO Auto-generated method stub
-		//UserMessage userMessage = new UserMessage(user);
 		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
 		try {
 			client.sendToServer(newUserSubjectMessage);
@@ -368,9 +323,20 @@ private void getUserSubjects(User user) {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		
+		if (arg1 instanceof QuestionsMessage) {
+			System.out.println(arg1.toString());
+			
+			if(this.getQuestions().size() == 0)
+				this.setQuestions(((QuestionsMessage) arg1).getQuestions());
+			addQuestions(((QuestionsMessage) arg1).getQuestions());
+			//this.getQuestions().addAll(((QuestionsMessage) arg1).getQuestions());
+		}
+		
 		if(arg1 instanceof UserSubjectMessage) {
 			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
-			System.out.println(this.userSubjects);
+			fillCombobox(this.userSubjects);
+			getUserQuestions(this.userSubjects);
+			System.out.println(this.userSubjects.toString());
 		}
 		
 		
@@ -379,7 +345,7 @@ private void getUserSubjects(User user) {
 			String s = (String)arg1;
 			System.out.println(s);
 		}
-		if(arg1 instanceof Message)
+		/*if(arg1 instanceof Message)
 		{
 			Message handleMsg = (Message) arg1;
 			String[] recivedMSG = handleMsg.getMsg().split("-");
@@ -394,9 +360,9 @@ private void getUserSubjects(User user) {
 				for(Question q : questions)
 				{
 					
-					possibleIDs[i] = q.getId();
-					possibleNames[i] = q.getTeacherName();
-					possibleQuestion[i] = q.getQuestionIns();
+	//				possibleIDs[i] = q.getId();
+		//			possibleNames[i] = q.getTeacherName();
+			//		possibleQuestion[i] = q.getQuestionIns();
 					i++;
 				}		
 				TextFields.bindAutoCompletion(txtFieldId, possibleIDs);
@@ -416,9 +382,27 @@ private void getUserSubjects(User user) {
 			}
 			
 			
-		}
+		}*/
+	
 	}
 
+
+	/**
+	 * @return the questions
+	 */
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+	/**
+	 * @param questions the questions to set
+	 */
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
+	}
+	public void addQuestions(ArrayList<Question> questions) {
+		this.getQuestions().addAll(questions);
+	}
 
 	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
@@ -431,13 +415,13 @@ private void getUserSubjects(User user) {
 	@FXML public void updateCorrect(TableColumn.CellEditEvent<Question, Integer> correctEditEvent) {
 		Question question = tblQuestions.getSelectionModel().getSelectedItem();
 		Integer newValue = correctEditEvent.getNewValue();
-		if(newValue>=1 && newValue <= 4)
+		/*if(newValue>=1 && newValue <= 4)
 			newValues.put(question.getId(),newValue);
 		else
 		{
 			lblUpdateError.setText("Please enter valid input!");
 			lblUpdateError.setVisible(true);
-		}
+		}*/
 		
 	}
 

@@ -34,8 +34,26 @@ public class GetFromDB implements DbManagerInterface {
 	@Override
 	public ArrayList<Question> questions(String... str) {
 		// TODO Auto-generated method stub
+		// str contain a subject id
+		ArrayList<Question> questions= new ArrayList<Question>();
+		ResultSet rs;
+		String QuestionQuery = "SELECT * FROM questions WHERE question_id LIKE '"+str[0]+"%'";
+		try {
+			stmt = conn.createStatement();
+					rs = stmt.executeQuery(QuestionQuery+";");
+					while(rs.next()) {
+						questions.add(new Question(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7), rs.getInt(8),rs.getString(9)));
+					}
+					rs.close();
+					return questions;			// Return A list of all users
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
+	
+	
 /**
  * @author gal
  * @param str can be null, and then all users wil return, or str can contain a specific user ID

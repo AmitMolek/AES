@@ -31,5 +31,10 @@ public class Subject implements Serializable{
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+
+	@Override
+	public String toString() {
+		return "Subject = " + subjectID + ", subjectName=" + subjectName ;
+	}
 	
 }

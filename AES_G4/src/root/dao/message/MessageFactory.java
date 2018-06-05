@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.Subject;
 import root.dao.app.User;
 import root.server.managers.dbmgr.GetFromDB;
 
@@ -72,7 +73,8 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 		case "usersubjects":
 			return new UserSubjectMessage((User)payload);
-			
+		case "questions":
+			return new QuestionsMessage((Subject)payload);
 		default:
 			break;
 		}
@@ -107,9 +109,7 @@ public class MessageFactory {
 	{
 		switch(msgContent[2]) {
 		case "questions":
-			if(payload instanceof ArrayList<?>)
-				return new QuestionsMessage((ArrayList<Question>) payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			return new QuestionsMessage((QuestionsMessage)payload);
 		case "exams":
 			if(payload instanceof ArrayList<?>)
 				return new ExamMessage((ArrayList<Exam>) payload);

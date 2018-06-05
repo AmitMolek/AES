@@ -3,12 +3,14 @@ package root.server.managers;
 import java.util.ArrayList;
 
 import root.dao.app.LoginInfo;
+import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
+import root.dao.message.QuestionsMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
@@ -33,15 +35,33 @@ public class ServerMessageManager {
 		switch(msgContent[0]) {
 		case "login":
 			return handleLoginMessage(msg);	
-		
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
-		
+		case "questions":
+			return handleQuestionsMassage(msg);
 		default:
 			return null;
 		}
 	}
 	
+	/**
+	 * @author gal
+	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
+	 * @return	{@link AbstractMessage} of QuestionMessage filled with question from the same subject
+	 */
+	private static AbstractMessage handleQuestionsMassage(AbstractMessage msg) {
+		// TODO Auto-generated method stub
+		QuestionsMessage questionMessage = (QuestionsMessage)msg;
+		GetFromDB getQuestions = new GetFromDB();
+		ArrayList<Question> questions = getQuestions.questions(questionMessage.getThisQuestionsSubject().getSubjectID());
+		questionMessage.setQuestions(questions);	
+		questionMessage.setThisQuestionsSubject(questionMessage.getThisQuestionsSubject());
+		
+		if (questions.size() ==0) return message.getMessage("error-Qeustions",new Exception("No Questions in this subject"));	// return Exception
+		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questionMessage);	// found questions for this subject, return them
+		return message.getMessage("error-Qesutions",new Exception("Error in finding Qesutions"));
+	}
+
 	/**
 	 * @author gal
 	 * @param msg type of UserSubjectMessage wich contain string "UserSubjects" and User payload
@@ -54,7 +74,7 @@ public class ServerMessageManager {
 		userSubjects.setSubjects(subjects);											
 		if (subjects.size() ==0) return message.getMessage("error-userSubjects",new Exception("No subjects for the User"));	// this user has now teaching subject, return Exception
 		else if (subjects.size() >= 1) return message.getOkGetMessage("ok-get-usersubjects".split("-"),userSubjects);	// this user has teaching subjects, return his HIS subjects
-		return message.getMessage("error-login",new Exception("Error in finding userSubjects"));
+		return message.getMessage("error-userSubjects",new Exception("Error in finding userSubjects"));
 	}
 
 	/**
