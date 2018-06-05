@@ -15,7 +15,6 @@ public class Main extends ScreensManager {
 	
 	public static void main(String[] args) {
 		Log.getInstance().writeToLog(LineType.INFO, "Application started", false);
-		Font.loadFont(Main.class.getResource("resources/fonts/Roboto-Regular.ttf").toExternalForm(), 12);
 		
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");	// questions
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");

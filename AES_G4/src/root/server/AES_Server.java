@@ -98,7 +98,7 @@ public class AES_Server extends AbstractServer {
 
 			System.out.println("SQL connection succeed");
 		} catch (SQLException ex) {/* handle any errors */
-			log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
+			//log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());

@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import root.client.Main;
@@ -60,21 +62,26 @@ public class ScreensManager extends Application {
 	    
 	    public void activate(String name) throws IOException
 	    {
-	    	if(primaryStage.getScene()!=null)	
-	    		sceneStack.add(primaryStage.getScene());
+	    	VBox sRoot = new VBox();
+	    	
+	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource("resources/view/Menu.fxml"));
+	    	Pane menu = menuFxml.load();
+	    	sRoot.getChildren().add(menu);
+	    	
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
-	    	AnchorPane root = (AnchorPane)fxmlLoader.load();
+	    	Pane screen = fxmlLoader.load();
+	    	sRoot.getChildren().add(screen);
+	    	
 	    	primaryStage.setResizable(false);
-	    	primaryStage.setTitle("AES_G4");
-	    	if(primaryStage.getIcons().size() ==0)
-	    		primaryStage.getIcons().add(new Image("/root/client/resources/images/Categories-applications-education-university-icon.png"));
-			height = primaryStage.getHeight();
-			width = primaryStage.getWidth();
-			Scene scene = new Scene(root,1024,720);
-			scene.getStylesheets().add(Main.class.getResource("resources/css/application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-
+	    	primaryStage.setTitle("AES");
+	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/icons/book.png"));
+	    	
+	    	Scene scene = new Scene(sRoot, 1280, 720);
+	    	if (scene.getStylesheets().isEmpty())
+	    		scene.getStylesheets().add(Main.class.getResource("resources/css/materialDesign.css").toExternalForm());
+	    	
+	    	primaryStage.setScene(scene);
+	    	primaryStage.show();
 	    }
 	    
 		
