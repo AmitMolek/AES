@@ -32,9 +32,9 @@ public class DataKeepManager {
 	 * @param user the user object
 	 * @return returns true if the user was added (saved)
 	 */
-	public boolean keepUser(User user) {
+	public boolean keepUser(User userToKeep) {
 		if (user != null) return false;
-		this.user = user;
+		user = userToKeep;
 		log.writeToLog(LineType.INFO, "Keep user: " + user.getUserID());
 		return true;
 	}
