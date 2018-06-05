@@ -26,6 +26,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.client.managers.LoggedInUserManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
@@ -213,7 +214,7 @@ public class QuestionsController implements Observer{
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
-    	user = loggedInManager.getUser();
+    	user = (User) DataKeepManager.getInstance().getObject("user");//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
     
     	setUserDetails(user);

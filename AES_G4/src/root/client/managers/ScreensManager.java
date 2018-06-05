@@ -85,7 +85,7 @@ public class ScreensManager extends Application {
 		public void start(Stage primaryStage) throws Exception {
 			try {
 				ScreensManager.primaryStage = primaryStage;
-				activate("loginScreen");
+				activate("main");
 				
 				// when pressed "Close" button, kill thread and exit app.
 				primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
