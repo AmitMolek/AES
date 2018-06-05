@@ -108,7 +108,5 @@ public class AddExamController {
     	cmbCourse.setPromptText("Choose course");
     	cmbQuestion.setPromptText("Question");
     	cmbSubject.setPromptText("Choose subject");
-    	LoggedInUserManager log = LoggedInUserManager.getInstance();
-    	teacher = log.getUser();
     }
 }
