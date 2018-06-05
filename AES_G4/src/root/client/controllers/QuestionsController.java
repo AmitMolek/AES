@@ -133,60 +133,52 @@ public class QuestionsController implements Observer{
 		super();
 	
 	}
-	
-	public ArrayList<Subject> getUserSubjects() {
-		return userSubjects;
-	}
 
-	public void setUserSubjects(ArrayList<Subject> userSubjects) {
-		this.userSubjects = userSubjects;
-	}
-		
-	private void fillCombobox(ArrayList<Subject> teacherSubject) {
-		subjectCombobox.getItems().addAll(teacherSubject);
-	}
-    /**
-	 * This method happens when the user press on the search button 
-	 * @param event
-	 */
-
+	@FXML
+    void selectFromCombobox(ActionEvent event) {
+		System.out.println(event);
+		System.out.println(subjectCombobox.getSelectionModel().getSelectedItem().toString());
+    }
 	
+	   
 	@FXML
  	void searchQuestion(ActionEvent event) {
-		tblQuestions.getItems().clear();
-		String questionId = txtFieldId.getText();
-		String questionName = txtFieldName.getText();
-		String questionIns = txtFieldQuestion.getText();
-		ObservableList<Question> queryQuestions = FXCollections.observableArrayList();
-		if (questionId != null) {
-			for (int i = 0; i < questions.size(); i++) {
-				Question q = questions.get(i);
-	/*			if (q.getId().equals(questionId)) {
-					queryQuestions.add(q);
-				}*/
-			}
-
-		}
-
-		if (questionName != null) {
-			for (int i = 0; i < questions.size(); i++) {
-				Question q = questions.get(i);
-	/*			if (q.getTeacherName().equals(questionName) && (!queryQuestions.contains(q))) {
-					queryQuestions.add(q);*/
-				}
-			}
-
-		}
-
-		/*if (questionIns != null) {
-			for (int i = 0; i < questions.size(); i++) {
-				Question q = questions.get(i);
-				if (q.getQuestionIns().equals(questionIns) && (!queryQuestions.contains(q))) {
-					queryQuestions.add(q);
-				}
-			}
-
-		}*/
+//		tblQuestions.getItems().clear();
+//		String questionId = txtFieldId.getText();
+//		String questionName = txtFieldName.getText();
+//		String questionIns = txtFieldQuestion.getText();
+//		ObservableList<Question> queryQuestions = FXCollections.observableArrayList();
+//		if (questionId != null) {
+//			for (int i = 0; i < questions.size(); i++) {
+//				Question q = questions.get(i);
+//				if (q.getId().equals(questionId)) {
+//					queryQuestions.add(q);
+//				}
+//			}
+//
+//		}
+//
+//		if (questionName != null) {
+//			for (int i = 0; i < questions.size(); i++) {
+//				Question q = questions.get(i);
+//				if (q.getTeacherName().equals(questionName) && (!queryQuestions.contains(q))) {
+//					queryQuestions.add(q);
+//				}
+//			}
+//
+//		}
+//
+////		if (questionIns != null) {
+////			for (int i = 0; i < questions.size(); i++) {
+////				Question q = questions.get(i);
+////				if (q.getQuestionIns().equals(questionIns) && (!queryQuestions.contains(q))) {
+////					queryQuestions.add(q);
+////				}
+////			}
+////
+////		}
+	}
+		
 		/*
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("id"));
 		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherName"));
@@ -223,12 +215,12 @@ public class QuestionsController implements Observer{
     	client.openConnection();
     	user = loggedInManager.getUser();
     	questions = new ArrayList<Question>();
-    	
+    
     	setUserDetails(user);
     	getUserSubjects(user);
     	
-    	
-    	
+    	initQuestionsTable();
+
     	/*
     	 // Initialize the person table with the two columns.
         firstNameColumn.setCellValueFactory(
@@ -250,27 +242,12 @@ public class QuestionsController implements Observer{
         });
     	btnSignIn.setDisable(true);*/
     }
-private void getUserQuestions(ArrayList<Subject> userSubjects) {
-		// TODO Auto-generated method stub
-		// Here well get all question that in the same subject of the user
-		for (Subject subject: userSubjects) {
-			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
-			try {
-				client.sendToServer(newQuestionMessage);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 
-private void getUserSubjects(User user) {
-		// TODO Auto-generated method stub
-		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
-		try {
-			client.sendToServer(newUserSubjectMessage);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void initQuestionsTable() {
+			// TODO Auto-generated method stub
+    	tblQuestions.getItems().clear();
+		tblQuestions.setEditable(true);
+		
 	}
 
 	//	/**
@@ -386,7 +363,42 @@ private void getUserSubjects(User user) {
 	
 	}
 
+private void getUserQuestions(ArrayList<Subject> userSubjects) {
+		// TODO Auto-generated method stub
+		// Here well get all question that in the same subject of the user
+		for (Subject subject: userSubjects) {
+			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
+			try {
+				client.sendToServer(newQuestionMessage);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
+private void getUserSubjects(User user) {
+		// TODO Auto-generated method stub
+		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		try {
+			client.sendToServer(newUserSubjectMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+public ArrayList<Subject> getUserSubjects() {
+	return userSubjects;
+}
+
+public void setUserSubjects(ArrayList<Subject> userSubjects) {
+	this.userSubjects = userSubjects;
+}
+	
+private void fillCombobox(ArrayList<Subject> teacherSubject) {
+	ObservableList<Subject> observableSubjects = FXCollections.observableArrayList(teacherSubject);
+	subjectCombobox.getItems().addAll(observableSubjects);
+}
+	
 	/**
 	 * @return the questions
 	 */

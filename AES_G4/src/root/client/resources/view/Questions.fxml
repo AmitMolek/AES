@@ -52,7 +52,7 @@
                         	<Label fx:id="lblUpdateError" text="Please update the row!" textFill="#ee0707" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="select Subject:" GridPane.halignment="CENTER" />
                         <TextField fx:id="txtFieldQuestion" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="serach Question by ID" styleClass="textFields" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="subjectCombobox" prefWidth="150.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <ComboBox fx:id="subjectCombobox" onAction="#selectFromCombobox" prefWidth="150.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                         <Button fx:id="updateQuestion" mnemonicParsing="false" onAction="#updateQuestion" text="Update" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                       <Button fx:id="newQuestion" mnemonicParsing="false" text="new Question" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
