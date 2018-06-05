@@ -2,7 +2,7 @@ package root.dao.app;
 
 /**
  * Class for question in exam include grade and free text for each question
- * @author OmerHaimovich
+ * @author Omer Haimovich
  *
  */
 public class QuestionInExam {
