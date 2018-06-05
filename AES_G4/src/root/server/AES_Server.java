@@ -14,6 +14,8 @@ import ocsf.server.*;
 import root.dao.app.Question;
 import root.dao.message.*;
 import root.server.managers.*;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 /**
  * 
@@ -29,11 +31,13 @@ public class AES_Server extends AbstractServer {
 	String[] recivedMSG;
 	private ArrayList<Question> dataBase;
 	private static Connection conn;
-
+	private static Log log;
+	
 	public AES_Server(int port) {
 		super(port);
 		smm=ServerMessageManager.getInstance();
 		msgFactory=MessageFactory.getInstance();
+		log = Log.getInstance();
 	}
 	/**
 	 *  Get the server connection
@@ -52,8 +56,8 @@ public class AES_Server extends AbstractServer {
 		try {
 			client.sendToClient(msgToReturn);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
 
@@ -85,6 +89,7 @@ public class AES_Server extends AbstractServer {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (Exception ex) {
+			log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
 			/* handle the error */}
 
 		try {
@@ -93,6 +98,7 @@ public class AES_Server extends AbstractServer {
 
 			System.out.println("SQL connection succeed");
 		} catch (SQLException ex) {/* handle any errors */
+			log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
@@ -105,65 +111,15 @@ public class AES_Server extends AbstractServer {
 		}
 		
 		AES_Server sv = new AES_Server(port);
+		log.writeToLog(LogLine.LineType.INFO, "The server is connected");
 
 		try {
 			sv.listen(); // Start listening for connections
 		} catch (Exception ex) {
+			log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
 			System.out.println("ERROR - Could not listen for clients!");
 		}
 	}
-	/**
-	 * getObj method give to client for an asked question
-	 */
-	/*
-	public void getObj(Message msg) {
-		recivedMSG = msg.getMsg().split("-");
-		if (recivedMSG[1].equals("questions")) {
-			Statement stmt;
-			try {
-				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM questions;");
-				while (rs.next()) {
-					dataBase.add(new Question(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4),
-							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9)));
-				}
-				Message replyMsg = new Message("ok-arraylist", dataBase);
-				this.sendToAllClients(replyMsg);
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}*/
-	
-	 /**
-	  *  setObj method give to client for an asked question
-	  * @param msg
-	  * 	The changed objects from the client
-	  */
 
-	public void setObj(Message msg) {
-		recivedMSG = msg.getMsg().split("-");
-		String updateString = "UPDATE questions set correctans=? where idquestions=?";
-		if (recivedMSG[1].equals("questions") && recivedMSG[2].equals("map")) {
-			Map<String, Integer> updateMap = msg.getCorrectAns();
-			PreparedStatement stmt;
-			try {
-				stmt = conn.prepareStatement(updateString);
-				Set <String> ids = updateMap.keySet();
-				for(String id:ids) {
-					stmt.setInt(1, updateMap.get(id));
-					stmt.setString(2, id);
-					stmt.executeUpdate();
-				}
-				Message replyMsg = new Message("ok-map");
-				this.sendToAllClients(replyMsg);
-				stmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-	}
 }
 // End of EchoServer class

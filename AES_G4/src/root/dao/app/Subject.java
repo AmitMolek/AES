@@ -3,6 +3,7 @@ package root.dao.app;
 import java.io.Serializable;
 
 public class Subject implements Serializable{
+
 	/**
 	 * @author gal
 	 * 

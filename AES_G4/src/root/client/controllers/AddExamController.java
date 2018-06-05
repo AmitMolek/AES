@@ -1,6 +1,9 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,15 +12,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import root.client.managers.LoggedInUserManager;
+import ocsf.client.ObservableClient;
+import root.dao.app.Course;
+import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.message.CourseMessage;
+import root.dao.message.MessageFactory;
+import root.dao.message.SubjectMessage;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 /**
  *Class for add exam screen controller
  * @author Omer Haimovich
  *
  */
-public class AddExamController {
+public class AddExamController implements Observer {
 
     @FXML
     private TextArea txtFreeTeacher;
@@ -54,14 +64,28 @@ public class AddExamController {
 
     
     private User teacher;
-    
+    private MessageFactory messageFact;
+    private ObservableClient client;
+    private ArrayList<Subject> teacherSubject;
+    private ArrayList<Course> CourseInSubject;
+    private Log log;
     /**
      * Method the occurs when teacher select subject
      * @param event on action in subject combo box
      */
     @FXML
     void SelectSubject(ActionEvent event) {
-    	
+    	cmbCourse.getItems().clear();
+    	String selectedVaule = cmbSubject.getValue();
+    	String[] selectedSubject = selectedVaule.toLowerCase().split("-");
+    	Subject newSubject = new Subject(selectedSubject[0],selectedSubject[1]);
+    	CourseMessage getCourseSubject = (CourseMessage) messageFact.getMessage("get-courses", newSubject);
+    	try {
+			client.sendToServer(getCourseSubject);
+		} catch (IOException e) {
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -105,8 +129,41 @@ public class AddExamController {
      */
     @FXML
 	public void initialize() throws IOException{
+    	log = Log.getInstance();
+    	cmbCourse.setDisable(true);
+    	client = new ObservableClient("localhost",8000);
+    	client.addObserver(this);
+    	client.openConnection();
+    	messageFact = MessageFactory.getInstance();
     	cmbCourse.setPromptText("Choose course");
     	cmbQuestion.setPromptText("Question");
     	cmbSubject.setPromptText("Choose subject");
+    	teacher = new User("204403257","omer","haimovich" ,"12345","teacher");
+    	SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
+    	client.sendToServer(getTeacherSubject);
     }
+
+    /**
+     * This method occurs when the server send message to the client
+     */
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		if(arg1 instanceof SubjectMessage) {
+			SubjectMessage intialSubjectMessage = (SubjectMessage)arg1;
+			teacherSubject = intialSubjectMessage.getTeacherSubject();
+			for(Subject s: teacherSubject ) {
+				cmbSubject.getItems().add(s.getSubjectID() + " - " + s.getSubjectName());
+			}
+		}
+		
+		if(arg1 instanceof CourseMessage) {
+			CourseMessage intialCourseMessage = (CourseMessage)arg1;
+			CourseInSubject = intialCourseMessage.getCourses();
+			for(Course c: CourseInSubject ) {
+				cmbCourse.getItems().add(c.getCourseId() + " - " + c.getCourseName());
+			}
+			cmbCourse.setDisable(false);
+		}
+		
+	}
 }

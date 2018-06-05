@@ -1,12 +1,13 @@
 package root.dao.app;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * Class for exams
  * @author Omer Haimovich
  *
  */
-public class Exam {
+public class Exam implements Serializable {
 	private String examId;
 	private User author;
 	private int examDuration;

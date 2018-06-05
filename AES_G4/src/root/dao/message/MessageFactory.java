@@ -2,6 +2,7 @@ package root.dao.message;
 
 import java.util.ArrayList;
 
+import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
@@ -75,11 +76,16 @@ public class MessageFactory {
 			return new UserSubjectMessage((User)payload);
 		case "questions":
 			return new QuestionsMessage((Subject)payload);
+		case "subjects":
+			return new SubjectMessage((String)payload);
+		case "courses":
+			return new CourseMessage((Subject)payload);
 		default:
 			break;
 		}
+
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -94,13 +100,14 @@ public class MessageFactory {
 		case "login":
 			return new UserMessage((User)payload);
 		case "get":
-			return getGetMessage(msgContent,payload);
+			return  getOkGetMessage(msgContent,payload);
 		case "set":
 			return new SimpleMessage("ok-set-"+msgContent[2]);
 		case "put":
 			return new SimpleMessage("ok-put-"+msgContent[2]);
 		case "delete":
 			return new SimpleMessage("ok-delete-"+msgContent[2]);
+
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
@@ -108,14 +115,23 @@ public class MessageFactory {
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
 	{
 		switch(msgContent[2]) {
+
 		case "questions":
 			return new QuestionsMessage((QuestionsMessage)payload);
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
 		case "exams":
 			if(payload instanceof ArrayList<?>)
 				return new ExamMessage((ArrayList<Exam>) payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "usersubjects":
-			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
 			

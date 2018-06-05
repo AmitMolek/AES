@@ -2,15 +2,20 @@ package root.server.managers;
 
 import java.util.ArrayList;
 
+import root.dao.app.Course;
 import root.dao.app.LoginInfo;
+
 import root.dao.app.Question;
+
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
+import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SubjectMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
@@ -35,16 +40,22 @@ public class ServerMessageManager {
 		switch(msgContent[0]) {
 		case "login":
 			return handleLoginMessage(msg);	
+
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
 			return handleQuestionsMassage(msg);
 		default:
 			return null;
+
+		case "get":
+			return handleGetMessage(msg);
+
 		}
 	}
 	
 	/**
+
 	 * @author gal
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
 	 * @return	{@link AbstractMessage} of QuestionMessage filled with question from the same subject
@@ -77,6 +88,23 @@ public class ServerMessageManager {
 		return message.getMessage("error-userSubjects",new Exception("Error in finding userSubjects"));
 	}
 
+
+	 /* 
+	 * @param msg type of get message
+	 * @return new message for client
+	 */
+	private static AbstractMessage handleGetMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+			case "subjects":
+				return handleSubjectMessage(msg);
+			case "courses":
+				return handleCourseMessage(msg);
+		}
+		
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param msg type of LoginMessage which contain string, and loginInfo payload.
@@ -99,4 +127,33 @@ public class ServerMessageManager {
 		}
 		return message.getMessage("error-login",new Exception("User not exist"));
 	}
+	
+
+	/**
+	 * 
+	 * @param msg type of subject message
+	 * @return the subject message that includes the subject list
+	 */
+	private static AbstractMessage handleSubjectMessage(AbstractMessage msg) {
+
+		SubjectMessage recivedMessage = (SubjectMessage) msg;
+		String teacherId = recivedMessage.getTeacherId();
+		GetFromDB getSubject = new GetFromDB();
+		ArrayList<Subject> subjects = getSubject.subjects(teacherId);
+		return message.getMessage("ok-get-subjects", subjects);
+	}
+	
+	/**
+	 * 
+	 * @param msg type of course message
+	 * @return the course message that includes the course list
+	 */
+	private static AbstractMessage handleCourseMessage(AbstractMessage msg) {
+		CourseMessage recivedMessage = (CourseMessage) msg;
+		String subjectId = recivedMessage.getCourseSubject().getSubjectID();
+		GetFromDB getCourse = new GetFromDB();
+		ArrayList<Course> courses = getCourse.coursesInSubject(subjectId);
+		return message.getMessage("ok-get-courses", courses);
+	}
+	
 }
