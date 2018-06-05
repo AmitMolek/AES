@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import root.dao.app.User;
+import root.util.log.Log;
+import root.util.log.LogLine.LineType;
 
 /**
  * Saves data (object) for using in the system
@@ -16,11 +18,13 @@ public class DataKeepManager {
 
 	Map<String, Object> objMap;
 	User user;
+	Log log;
 	
 	private static DataKeepManager instace = new DataKeepManager();
 	
 	private DataKeepManager() {
 		objMap = new HashMap<String, Object>();
+		log = Log.getInstance();
 	}
 	
 	/**
@@ -31,6 +35,7 @@ public class DataKeepManager {
 	public boolean keepUser(User user) {
 		if (user != null) return false;
 		this.user = user;
+		log.writeToLog(LineType.INFO, "Keep user: " + user.getUserID());
 		return true;
 	}
 	
@@ -50,6 +55,7 @@ public class DataKeepManager {
 	public boolean removeUser() {
 		if (user == null) return false;
 		user = null;
+		log.writeToLog(LineType.INFO, "Removed user from keep: " + user.getUserID());
 		return true;
 	}
 	
@@ -62,6 +68,7 @@ public class DataKeepManager {
 	public boolean keepObject(String objKey, Object obj) {
 		if (objMap.containsKey(objKey)) return false;
 		objMap.put(objKey, obj);
+		log.writeToLog(LineType.INFO, "Keep object: " + obj.getClass());
 		return true;
 	}
 	
@@ -74,6 +81,7 @@ public class DataKeepManager {
 		if (!objMap.containsKey(objKey)) return null;
 		Object tmpObj = objMap.get(objKey);
 		objMap.remove(tmpObj);
+		log.writeToLog(LineType.INFO, "Removed object from keep: " + tmpObj.getClass());
 		return tmpObj;
 	}
 	

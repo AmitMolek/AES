@@ -77,7 +77,6 @@ public class ScreensManager extends Application {
 	    	primaryStage.getIcons().add(new Image("/root/client/resources/images/icons/book.png"));
 	    	
 	    	Scene scene = new Scene(sRoot, 1280, 720);
-	    	//Scene scene = new Scene(sRoot, 1024, 720);
 	    	if (scene.getStylesheets().isEmpty())
 	    		scene.getStylesheets().add(Main.class.getResource("resources/css/materialDesign.css").toExternalForm());
 	    	
