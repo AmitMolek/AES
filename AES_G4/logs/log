@@ -224,6 +224,7 @@
 [INFO] Application started | 2018-06-04 09:28:24.637
 [INFO] Application started | 2018-06-04 09:32:33.991
 [INFO] Application started | 2018-06-04 09:37:27.181
+<<<<<<< HEAD
 [INFO] Application started | 2018-06-04 19:19:16.976
 [INFO] Application started | 2018-06-04 19:23:23.084
 [INFO] Application started | 2018-06-04 19:23:53.068
@@ -241,3 +242,19 @@
 [INFO] Application started | 2018-06-04 12:57:34.656
 >>>>>>> refs/remotes/origin/Naor
 [INFO] Application started | 2018-06-05 09:13:02.916
+=======
+[INFO] Application started | 2018-06-04 19:10:33.257
+[INFO] Application started | 2018-06-04 19:56:09.354
+[INFO] Application started | 2018-06-04 20:43:28.439
+[INFO] Application started | 2018-06-04 21:23:26.372
+[INFO] Application started | 2018-06-04 21:25:04.841
+[INFO] Application started | 2018-06-04 21:25:56.784
+[INFO] Application started | 2018-06-04 21:26:42.929
+>>>>>>> refs/remotes/origin/Gal
+[INFO] Application started | 2018-06-05 09:19:46.573
+[INFO] Application started | 2018-06-05 09:20:43.607
+[INFO] Application started | 2018-06-05 09:21:34.775
+[INFO] Application started | 2018-06-05 09:22:04.559
+[INFO] Application started | 2018-06-05 09:22:33.567
+[INFO] Application started | 2018-06-05 09:23:05.888
+[INFO] Application started | 2018-06-05 09:25:17.421

@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import ocsf.client.ObservableClient;
+import root.client.managers.LoggedInUserManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
@@ -53,6 +54,7 @@ public class LoginController implements Observer {
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
+    private LoggedInUserManager loggedInManager;
     /**
      * This method occurs when someone presses the sign in button
      * @param event action event when someone presses the sign in button
@@ -81,6 +83,7 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
+    	loggedInManager = LoggedInUserManager.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -102,7 +105,9 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
+			loggedInManager.addUser(user);
 			System.out.println(user);
+			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					screenManager.activate("mainWindow");
@@ -115,12 +120,12 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
 			// waiting for Naor to make getstage() method for screenManager
-			/* // Show the error message.
+			/*// Show the error message.
             Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(dialogStage);
+            alert.initOwner(this.screenManager.getInstance().p);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
-            alert.setContentText(errorMessage);
+            alert.setContentText(arg1.toString());
 
             alert.showAndWait();
             */

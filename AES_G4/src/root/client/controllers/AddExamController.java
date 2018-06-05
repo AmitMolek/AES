@@ -9,6 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import root.client.managers.LoggedInUserManager;
+import root.dao.app.User;
 
 /**
  *Class for add exam screen controller
@@ -50,6 +52,8 @@ public class AddExamController {
     @FXML
     private Button btnAddQuestion;
 
+    
+    private User teacher;
     
     /**
      * Method the occurs when teacher select subject
@@ -104,5 +108,7 @@ public class AddExamController {
     	cmbCourse.setPromptText("Choose course");
     	cmbQuestion.setPromptText("Question");
     	cmbSubject.setPromptText("Choose subject");
+    	LoggedInUserManager log = LoggedInUserManager.getInstance();
+    	teacher = log.getUser();
     }
 }
