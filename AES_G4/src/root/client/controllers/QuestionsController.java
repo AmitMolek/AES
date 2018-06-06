@@ -34,7 +34,6 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
-import root.client.managers.LoggedInUserManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
@@ -138,7 +137,6 @@ public class QuestionsController implements Observer{
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
-    private LoggedInUserManager loggedInManager;
 	private ArrayList<Subject> userSubjects;
 	Log log = Log.getInstance();
   
@@ -223,7 +221,6 @@ public class QuestionsController implements Observer{
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	loggedInManager = LoggedInUserManager.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -296,25 +293,25 @@ public class QuestionsController implements Observer{
 	 * This method happens when the user press on the update button 
 	 * @param event
 	 */
-    @FXML
-    void updateQuestion(ActionEvent event) {
-    	try {
-    		if(newValues.size() == 0)
-    		{
-    			lblUpdateError.setText("Please update the row!");
-    			lblUpdateError.setVisible(true);
-    		}
-    		else
-    			lblUpdateError.setVisible(false);
-    		Message send = new Message("set-questions-map",newValues);
-			client.sendToServer(send);
-			newValues.clear();
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-		}
-    	
-    }
+//    @FXML
+//    void updateQuestion(ActionEvent event) {
+//    	try {
+//    		if(newValues.size() == 0)
+//    		{
+//    			lblUpdateError.setText("Please update the row!");
+//    			lblUpdateError.setVisible(true);
+//    		}
+//    		else
+//    			lblUpdateError.setVisible(false);
+//    		Message send = new Message("set-questions-map",newValues);
+//			client.sendToServer(send);
+//			newValues.clear();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+//		}
+//    	
+//    }
     
    
     /**

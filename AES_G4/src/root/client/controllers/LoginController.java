@@ -59,7 +59,7 @@ public class LoginController implements Observer {
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
-    private LoggedInUserManager loggedInManager;
+
     
     Log log = Log.getInstance();
     /**
