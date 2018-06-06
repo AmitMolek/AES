@@ -9,8 +9,8 @@
    <children>
       <GridPane fx:id="questionGridPane" layoutY="16.0" prefHeight="56.0" prefWidth="894.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="131.0" text="Question number 1: " GridPane.halignment="CENTER" />
-            <ComboBox fx:id="cmbQuestion" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="1" />
+            <Label fx:id="lblQuestionNumber" prefHeight="17.0" prefWidth="131.0" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="cmbQuestion" onAction="#SelectQuestion" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtScore" prefHeight="25.0" prefWidth="166.0" GridPane.columnIndex="3" />
             <TextArea fx:id="txtFreeStudent" prefHeight="28.0" prefWidth="198.0" GridPane.columnIndex="5" />
             <TextArea fx:id="txtFreeTeacher" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" />

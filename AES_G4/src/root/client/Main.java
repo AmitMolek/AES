@@ -19,6 +19,7 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");	// questions
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
+		ScreensManager.addScreen("addExam", "resources/view/AddExamScreen.fxml");
 
 		
 		launch(args);

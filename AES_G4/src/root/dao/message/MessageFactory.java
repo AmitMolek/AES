@@ -117,7 +117,9 @@ public class MessageFactory {
 		switch(msgContent[2]) {
 
 		case "questions":
-			return new QuestionsMessage((QuestionsMessage)payload);
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "usersubjects":
 			return new UserSubjectMessage((UserSubjectMessage)payload);
 		case "exams":

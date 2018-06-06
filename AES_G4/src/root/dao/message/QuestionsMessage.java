@@ -16,7 +16,7 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 	private Subject thisQuestionsSubject;
 	
 	public QuestionsMessage(Subject payload) {
-		super("Questions");
+		super("get-questions");
 		this.thisQuestionsSubject=payload;
 	}
 

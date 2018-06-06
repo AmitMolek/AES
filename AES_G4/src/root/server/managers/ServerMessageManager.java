@@ -44,7 +44,7 @@ public class ServerMessageManager {
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
-			return handleQuestionsMassage(msg);
+			return handleQuestionsMessage(msg);
 		default:
 			return null;
 
@@ -60,16 +60,16 @@ public class ServerMessageManager {
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
 	 * @return	{@link AbstractMessage} of QuestionMessage filled with question from the same subject
 	 */
-	private static AbstractMessage handleQuestionsMassage(AbstractMessage msg) {
+	private static AbstractMessage handleQuestionsMessage(AbstractMessage msg) {
 		// TODO Auto-generated method stub
 		QuestionsMessage questionMessage = (QuestionsMessage)msg;
 		GetFromDB getQuestions = new GetFromDB();
 		ArrayList<Question> questions = getQuestions.questions(questionMessage.getThisQuestionsSubject().getSubjectID());
-		questionMessage.setQuestions(questions);	
-		questionMessage.setThisQuestionsSubject(questionMessage.getThisQuestionsSubject());
+		//questionMessage.setQuestions(questions);	
+		//questionMessage.setThisQuestionsSubject(questionMessage.getThisQuestionsSubject());
 		
 		if (questions.size() ==0) return message.getMessage("error-Qeustions",new Exception("No Questions in this subject"));	// return Exception
-		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questionMessage);	// found questions for this subject, return them
+		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questions);	// found questions for this subject, return them
 		return message.getMessage("error-Qesutions",new Exception("Error in finding Qesutions"));
 	}
 
@@ -100,6 +100,8 @@ public class ServerMessageManager {
 				return handleSubjectMessage(msg);
 			case "courses":
 				return handleCourseMessage(msg);
+			case "questions":
+				return handleQuestionsMessage(msg);
 		}
 		
 		return null;
