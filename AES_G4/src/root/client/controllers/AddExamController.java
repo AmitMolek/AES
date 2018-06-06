@@ -9,9 +9,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import ocsf.client.ObservableClient;
 import root.dao.app.Course;
 import root.dao.app.Subject;
@@ -29,39 +33,30 @@ import root.util.log.LogLine;
  */
 public class AddExamController implements Observer {
 
-    @FXML
-    private TextArea txtFreeTeacher;
+	
+	 	@FXML
+	    private FlowPane myFlow;
 
-    @FXML
-    private ComboBox<String> cmbCourse;
+	    @FXML
+	    private ComboBox<String> cmbCourse;
 
-    @FXML
-    private ComboBox<String> cmbSubject;
+	    @FXML
+	    private ComboBox<String> cmbSubject;
 
-    @FXML
-    private TextField txtScore;
+	    @FXML
+	    private AnchorPane rootPane;
 
-    @FXML
-    private AnchorPane rootPane;
+	    @FXML
+	    private Button btnAddExam;
 
-    @FXML
-    private Button btnAddExam;
+	    @FXML
+	    private TextField txtDuration;
 
-    @FXML
-    private ComboBox<String> cmbQuestion;
+	    @FXML
+	    private TextField txtTeacher;
 
-    @FXML
-    private TextArea txtFreeStudent;
-
-    @FXML
-    private TextField txtDuration;
-
-    @FXML
-    private TextField txtTeacher;
-
-    @FXML
-    private Button btnAddQuestion;
-
+	    @FXML
+	    private Button btnAddQuestion;
     
     private User teacher;
     private MessageFactory messageFact;
@@ -94,7 +89,7 @@ public class AddExamController implements Observer {
      */
     @FXML
     void SelectCourse(ActionEvent event) {
-
+    	
     }
 
     /**
@@ -112,7 +107,7 @@ public class AddExamController implements Observer {
 
     @FXML
     void AddQuestionToExam(ActionEvent event) {
-
+    	myFlow.getChildren().add(new AddQuestionToExam());
     }
   
     /**
@@ -136,9 +131,11 @@ public class AddExamController implements Observer {
     	client.openConnection();
     	messageFact = MessageFactory.getInstance();
     	cmbCourse.setPromptText("Choose course");
-    	cmbQuestion.setPromptText("Question");
+    	//cmbQuestion.setPromptText("Question");
     	cmbSubject.setPromptText("Choose subject");
     	teacher = new User("204403257","omer","haimovich" ,"12345","teacher");
+    	txtTeacher.setText(teacher.getUserFirstName() + " " +  teacher.getUserLastName());
+    	txtTeacher.setDisable(true);
     	SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
     	client.sendToServer(getTeacherSubject);
     }

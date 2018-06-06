@@ -39,6 +39,8 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
+import root.util.log.Log;
+import root.util.log.LogLine;
 
 public class QuestionsController implements Observer{
 	
@@ -127,7 +129,7 @@ public class QuestionsController implements Observer{
     private ScreensManager screenManager;
     private LoggedInUserManager loggedInManager;
 	private ArrayList<Subject> userSubjects;
-    
+	Log log = Log.getInstance();
   
 
 	public QuestionsController() {
@@ -221,7 +223,7 @@ public class QuestionsController implements Observer{
     	getUserSubjects(user);
     	
     	initQuestionsTable();
-
+    	addNewQuestion(userSubjects.get(1));
     	/*
     	 // Initialize the person table with the two columns.
         firstNameColumn.setCellValueFactory(
@@ -291,10 +293,12 @@ public class QuestionsController implements Observer{
 			newValues.clear();
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
     	
     }
     
+   
     /**
 	 * This method happens when the server send an message 
 	 */
@@ -363,6 +367,37 @@ public class QuestionsController implements Observer{
 		}*/
 	
 	}
+private void addNewQuestion(Subject subject) {
+	Question newQuestion;
+	String questionId = prepareQuestionID(subject);
+	String questionText;
+	String idquestionIntruction;
+	String ans1;
+	String ans2;
+	String ans3;
+	String ans4;
+	int correctAns;
+	String teacherAssembeld;
+}
+private String prepareQuestionID(Subject subject) {
+	// TODO Auto-generated method stub
+	String newId = new String(subject.getSubjectID());
+	int newQuestionID = 0;
+	for (Question question: this.getQuestions()) {
+		String questionID = question.getQuestionId();
+		if (subject.getSubjectID().equals(questionID.substring(0, 2))) {
+			int tempId = Integer.parseInt(questionID.substring(2));
+			if (newQuestionID <= tempId) newQuestionID = tempId;
+		}
+		
+		//		newId +=tempId;
+	}
+	newQuestionID++;
+	if (newQuestionID < 10)newId+= "00"+newQuestionID;
+	else if(newQuestionID <100)newId+= "0"+newQuestionID;
+	
+	return newId;
+}
 
 private void getUserQuestions(ArrayList<Subject> userSubjects) {
 		// TODO Auto-generated method stub
@@ -373,6 +408,7 @@ private void getUserQuestions(ArrayList<Subject> userSubjects) {
 				client.sendToServer(newQuestionMessage);
 			} catch (IOException e) {
 				e.printStackTrace();
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
 		}
 	}
@@ -384,6 +420,7 @@ private void getUserSubjects(User user) {
 			client.sendToServer(newUserSubjectMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
 

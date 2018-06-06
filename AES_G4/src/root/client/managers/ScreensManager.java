@@ -11,6 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,8 +35,8 @@ public class ScreensManager extends Application {
 	    private Stack<Scene> sceneStack = new Stack<Scene>();
 	    private double height=400;
 	    private double width=400;
-	    Log log = Log.getInstance();
-	    
+	    private Log log = Log.getInstance();
+	    private Pane currentScreen = new Pane();
 	    
 	    private static ScreensManager INSTANCE = new ScreensManager();
 	    
@@ -64,13 +69,16 @@ public class ScreensManager extends Application {
 	    {
 	    	VBox sRoot = new VBox();
 	    	
-	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource("resources/view/Menu.fxml"));
-	    	Pane menu = menuFxml.load();
-	    	sRoot.getChildren().add(menu);
+	    	if (name != "main") {
+		    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource("resources/view/Menu.fxml"));
+		    	Pane menu = menuFxml.load();
+		    	sRoot.getChildren().add(menu);
+	    	}
 	    	
 	    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(screenMap.get(name)));
 	    	Pane screen = fxmlLoader.load();
 	    	sRoot.getChildren().add(screen);
+	    	DataKeepManager.getInstance().keepObject("currentScreen", screen);
 	    	
 	    	primaryStage.setResizable(false);
 	    	primaryStage.setTitle("AES");
@@ -84,7 +92,6 @@ public class ScreensManager extends Application {
 	    	primaryStage.show();
 	    }
 	    
-		
 	    /**
 	     * Method that called where the main call launch 
 	     */
@@ -111,7 +118,7 @@ public class ScreensManager extends Application {
 	    public Stage getPrimaryStage() {
 	    	return primaryStage;
 	    }
-		
+	    
 	}
     
     

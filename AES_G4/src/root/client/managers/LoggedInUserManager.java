@@ -9,6 +9,7 @@ import root.util.log.Log;
 public class LoggedInUserManager {
 	/**
 	 * @author gal
+	 *  NOT IN USE - MALLOC MADE SOMETHING BETTER
 	 * This singleton class purpose to contain all loggedIn users, in a FIFO queue.
 	 */
 	private static int userCounter=0;
