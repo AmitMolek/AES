@@ -10,6 +10,7 @@ import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.message.AbstractMessage;
 
 public class SetInDB implements DbManagerInterface {
 
@@ -77,6 +78,11 @@ public class SetInDB implements DbManagerInterface {
 	public ArrayList<Question> questionInExam(String... str) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public AbstractMessage Exam(String... str) {
+		return null;
+		
 	}
 
 }

@@ -12,6 +12,7 @@ import root.dao.app.User;
 import root.dao.message.AbstractMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
+import root.dao.message.ExamMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
@@ -50,6 +51,8 @@ public class ServerMessageManager {
 
 		case "get":
 			return handleGetMessage(msg);
+		case "put":
+			return handlePutMessage(msg);
 
 		}
 	}
@@ -156,6 +159,21 @@ public class ServerMessageManager {
 		GetFromDB getCourse = new GetFromDB();
 		ArrayList<Course> courses = getCourse.coursesInSubject(subjectId);
 		return message.getMessage("ok-get-courses", courses);
+	}
+	
+	private static AbstractMessage handlePutMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+		case "exams":
+			return handleExamMessage(msg);
+		}
+		return null;
+		
+	}
+	
+	private static AbstractMessage handleExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		return recivedMessage;
 	}
 	
 }

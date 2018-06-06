@@ -59,14 +59,16 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getPutMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+			case "exams":
+				return new ExamMessage((Exam)payload);
+		}
 		return null;
-		// TODO Auto-generated method stub
-		
 	}
 
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 

@@ -25,6 +25,7 @@ import root.dao.app.QuestionInExam;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.CourseMessage;
+import root.dao.message.ExamMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SubjectMessage;
@@ -138,8 +139,15 @@ public class AddExamController implements Observer {
     	String examDuration = txtDuration.getText();
     	int duration = Integer.parseInt(examDuration); 
     	Exam newExam = new Exam(ExamId,teacher,duration,examQuestions);
+    	ExamMessage newMessage = (ExamMessage)messageFact.getMessage("put-exams", newExam);
+    	try {
+			client.sendToServer(newMessage);
+		} catch (IOException e) {
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
     	
-    	}
+    }
     /**
    	 * This method occurs when the window is shown up.
      * @throws IOException if the window cannot be shown
