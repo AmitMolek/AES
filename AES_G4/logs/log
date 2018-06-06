@@ -1216,3 +1216,16 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 17:43:35.445
 [INFO][root.client.managers.DataKeepManager] Keep user: 318298262 | 2018-06-06 17:43:38.921
 >>>>>>> refs/remotes/origin/Amit
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 22:26:16.183
+[INFO] Application started | 2018-06-06 22:26:18.498
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:26:18.787
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:26:23.473
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:26:23.474
+[ERROR][root.client.controllers.LoginController] Error resolving onAction='#updateQuestion', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml:56
+ | 2018-06-06 22:26:23.546
+[INFO] Application started | 2018-06-06 22:28:02.31
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:28:02.552
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:28:07.003
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:28:07.003
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:28:07.098
