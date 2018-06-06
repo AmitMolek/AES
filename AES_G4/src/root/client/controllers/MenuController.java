@@ -1,6 +1,9 @@
 package root.client.controllers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import root.client.Main;
+import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
+import root.util.log.Log;
+import root.util.log.LogLine.LineType;
 
 public class MenuController {
 
@@ -32,8 +39,14 @@ public class MenuController {
     @FXML
     private ImageView homeImg;
     
+    private ScreensManager mgr;
+    private Log log;
+    
     @FXML
 	public void initialize() throws IOException{
+    	mgr = ScreensManager.getInstance();
+    	log = Log.getInstance();
+    	
     	initGoHome();
     }
     
@@ -64,20 +77,31 @@ public class MenuController {
     	menuPane.setOnMouseClicked(e);
     }
     
-    @FXML
+    public void initReturnMenu() {
+    	Image img = new Image(getClass().getResource("../resources/images/icons/back_arrow.png").toExternalForm());
+    	EventHandler<MouseEvent> e = getChangeScreenEvent("");
+    	createMenuItem(menu_item_1, img, "Home", 70, 25, e);
+    }
+    
     public void initGoHome() {
     	Image img = new Image(getClass().getResource("../resources/images/icons/home.png").toExternalForm());
+    	EventHandler<MouseEvent> e = getChangeScreenEvent("home");
+    	createMenuItem(menu_item_1, img, "Home", 70, 25, e);
+    }
+ 
+    private EventHandler<MouseEvent> getChangeScreenEvent(String screenName){
     	EventHandler<MouseEvent> e = new EventHandler<MouseEvent>() {
     		@Override
     		public void handle(MouseEvent event) {
     			try {
-    				ScreensManager.getInstance().activate("home");
+    				mgr.activate(screenName);
 				} catch (IOException e) {
+					log.writeToLog(LineType.ERROR, "Failed activating screen: " + screenName);
 					e.printStackTrace();
 				}
     		}
 		};
-    	createMenuItem(menu_item_1, img, "Home", 70, 25, e);
+		return e;
     }
     
 }

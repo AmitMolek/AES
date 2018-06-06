@@ -48,7 +48,7 @@ import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
-//import tableToturials.Main2.Person;
+
 
 public class QuestionsController implements Observer{
 	
@@ -234,9 +234,13 @@ public class QuestionsController implements Observer{
     	getUserSubjects(user);
     	
     	initQuestionsTable();
-    	// calling it here for debug
-    	
-    	
+//<<<<<<< HEAD
+//    	// calling it here for debug
+//    	
+//    	
+//=======
+//    	addNewQuestion(userSubjects.get(1));
+//>>>>>>> refs/remotes/origin/Amit
     	/*
     	 // Initialize the person table with the two columns.
         firstNameColumn.setCellValueFactory(
@@ -383,6 +387,7 @@ public class QuestionsController implements Observer{
 		}*/
 	
 	}
+
 	
 	 
 
@@ -436,6 +441,27 @@ private String prepareQuestionID(String subjectID) {
 	for (Question question: this.getQuestions()) {
 		String questionID = question.getQuestionId();
 		if (subjectID.equals(questionID.substring(0, 2))) {
+//=======
+//private void addNewQuestion(Subject subject) {
+//	Question newQuestion;
+//	String questionId = prepareQuestionID(subject);
+//	String questionText;
+//	String idquestionIntruction;
+//	String ans1;
+//	String ans2;
+//	String ans3;
+//	String ans4;
+//	int correctAns;
+//	String teacherAssembeld;
+//}
+//private String prepareQuestionID(Subject subject) {
+//	// TODO Auto-generated method stub
+//	String newId = new String(subject.getSubjectID());
+//	int newQuestionID = 0;
+//	for (Question question: this.getQuestions()) {
+//		String questionID = question.getQuestionId();
+//		if (subject.getSubjectID().equals(questionID.substring(0, 2))) {
+//>>>>>>> refs/remotes/origin/Amit
 			int tempId = Integer.parseInt(questionID.substring(2));
 			if (newQuestionID <= tempId) newQuestionID = tempId;
 		}

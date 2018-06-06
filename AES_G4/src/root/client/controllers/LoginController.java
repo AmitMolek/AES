@@ -1,4 +1,3 @@
-
 package root.client.controllers;
 
 import java.io.IOException;
@@ -19,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
-import root.client.managers.LoggedInUserManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
