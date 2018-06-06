@@ -1229,3 +1229,100 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:28:07.003
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:28:07.003
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:28:07.098
+[INFO] Application started | 2018-06-06 22:33:33.989
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 22:33:35.22
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 22:33:39.465
+[INFO] Application started | 2018-06-06 22:33:41.62
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:33:41.907
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:33:49.797
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:33:49.798
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:33:49.897
+[INFO] Application started | 2018-06-06 22:36:08.415
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:36:08.656
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:36:13.294
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:36:13.294
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:36:13.393
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 22:41:05.477
+[INFO] Application started | 2018-06-06 22:41:07.246
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:41:07.534
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:41:12.058
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:41:12.058
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:41:12.158
+[INFO] Application started | 2018-06-06 22:47:06.473
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:47:06.723
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:47:11.26
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:47:11.26
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:47:11.359
+[INFO] Application started | 2018-06-06 22:49:33.327
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:49:33.568
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:49:37.65
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:49:37.65
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:49:37.747
+[INFO] Application started | 2018-06-06 22:52:42.851
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:52:43.117
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:52:47.171
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:52:47.171
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:52:47.349
+[INFO] Application started | 2018-06-06 22:57:37.356
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:57:37.604
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:57:42.111
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:57:42.111
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:57:42.214
+[INFO] Application started | 2018-06-06 22:59:53.515
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 22:59:53.826
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 22:59:57.94
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:59:57.94
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 22:59:58.038
+[INFO] Application started | 2018-06-06 23:12:23.312
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:12:23.618
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:12:27.585
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:12:27.585
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:12:27.753
+[INFO] Application started | 2018-06-06 23:12:44.786
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:12:45.06
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:12:51.607
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:12:51.609
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:12:51.78
+[INFO] Application started | 2018-06-06 23:13:50.811
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:13:51.086
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:13:55.074
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:13:55.074
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:13:55.243
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 23:14:12.637
+[INFO] Application started | 2018-06-06 23:14:14.316
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:14:14.633
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:14:19.552
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:14:19.552
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:14:19.719
+[INFO] Application started | 2018-06-06 23:14:44.718
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:14:45.051
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:14:50.096
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:14:50.096
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:14:50.263
+[INFO] Application started | 2018-06-06 23:15:27.864
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:15:28.17
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:15:32.464
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:15:32.464
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:15:32.626
+[INFO] Application started | 2018-06-06 23:16:28.987
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:16:29.254
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:16:33.369
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:16:33.369
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:16:33.544
+[INFO] Application started | 2018-06-06 23:35:06.547
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:35:06.794
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:35:11.08
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:35:11.08
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:35:11.181
+[INFO] Application started | 2018-06-06 23:38:47.588
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:38:47.837
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:38:52.764
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:38:52.765
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:38:52.864
+[INFO] Application started | 2018-06-06 23:42:30.558
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-06 23:42:30.8
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:42:35.501
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:42:35.502
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:42:35.609
