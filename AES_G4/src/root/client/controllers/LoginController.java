@@ -93,7 +93,7 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	loggedInManager = LoggedInUserManager.getInstance();
+    	//loggedInManager = LoggedInUserManager.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -118,7 +118,7 @@ public class LoginController implements Observer {
 			user = newMessasge.getUser();
 			DataKeepManager.getInstance().keepObject("user", user);
 			//System.out.println(user);
-			System.out.println("Logged In Users: "+ loggedInManager);
+			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getObject("user"));
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					screenManager.activate("questions");

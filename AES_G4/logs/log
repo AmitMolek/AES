@@ -613,3 +613,211 @@
 [INFO] Application started | 2018-06-05 19:55:05.201
 [INFO] Application started | 2018-06-05 19:56:15.521
 >>>>>>> refs/remotes/origin/Omer
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:32:45.18
+[INFO] Application started | 2018-06-06 15:32:56.785
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:33:04.11
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:33:04.227
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:33:04.233
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:37:34.926
+[INFO] Application started | 2018-06-06 15:37:40.664
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:37:49.647
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:37:50.18
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:37:50.185
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:37:52.219
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:37:52.222
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:37:53.176
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:37:53.179
+[INFO] Application started | 2018-06-06 15:39:48.86
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:39:54.116
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:39:54.211
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:39:54.215
+[INFO] Application started | 2018-06-06 15:41:05.187
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:41:10.998
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:41:10.998
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:41:11.084
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:41:11.089
+[INFO] Application started | 2018-06-06 15:41:51.267
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:41:56.276
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:41:56.276
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:42:07.387
+[INFO] Application started | 2018-06-06 15:43:58.042
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:44:03.492
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:03.493
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:03.585
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:44:03.59
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:06.995
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:07.038
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:44:07.041
+[INFO] Application started | 2018-06-06 15:44:44.526
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:44:50.984
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:50.984
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:44:51.069
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:44:51.074
+[INFO] Application started | 2018-06-06 15:44:56.807
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:45:02.01
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:45:02.011
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:45:06.261
+[INFO] Application started | 2018-06-06 15:46:56.7
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:47:06.01
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:47:06.01
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:47:06.095
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:47:06.101
+[INFO] Application started | 2018-06-06 15:47:30.543
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:47:36.267
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:47:36.268
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:47:36.354
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:49:05.027
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:49:05.065
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:49:05.067
+[INFO] Application started | 2018-06-06 15:52:21.777
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:52:27.049
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:52:27.049
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:52:27.134
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:52:27.139
+[INFO] Application started | 2018-06-06 15:53:48.004
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:53:52.893
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:53:52.893
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:53:52.981
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 15:53:52.986
+[INFO] Application started | 2018-06-06 15:54:15.672
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:54:20.505
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:54:20.506
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:54:20.594
+[INFO] Application started | 2018-06-06 15:55:14.944
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:55:20.022
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:55:20.022
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:55:20.105
+[INFO] Application started | 2018-06-06 15:56:23.445
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:56:28.327
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:56:28.327
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:56:28.411
+[INFO] Application started | 2018-06-06 15:59:01.098
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:59:06.612
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:59:06.612
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 15:59:06.697
+[INFO] Application started | 2018-06-06 16:02:28.437
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:02:33.716
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 16:02:33.716
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 16:02:33.806
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 16:02:33.81
+[INFO] Application started | 2018-06-06 16:02:49.533
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:02:55.928
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 16:02:55.928
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 16:02:56.017
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 19:03:09.916
+[INFO] Application started | 2018-06-06 19:03:12.711
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:03:17.957
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:03:17.958
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:03:18.04
+[INFO] Application started | 2018-06-06 19:05:34.536
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:05:39.151
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:05:39.151
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:05:51.006
+[INFO] Application started | 2018-06-06 19:07:34.662
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:07:38.796
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:07:38.796
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:07:38.883
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 19:08:36.309
+[INFO] Application started | 2018-06-06 19:08:38.176
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:08:42.712
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:08:42.713
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:08:42.808
+[INFO] Application started | 2018-06-06 19:10:14.797
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:10:19.257
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:10:19.257
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:10:19.344
+[INFO] Application started | 2018-06-06 19:11:20.83
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:11:26.52
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:11:26.521
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:11:26.614
+[INFO] Application started | 2018-06-06 19:12:39.114
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:12:48.6
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:12:48.6
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:12:48.687
+[ERROR][root.client.controllers.QuestionsController] No controller specified.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:57
+ | 2018-06-06 19:12:49.991
+[INFO] Application started | 2018-06-06 19:14:56.055
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:15:00.793
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:15:00.793
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:15:00.884
+[INFO] Application started | 2018-06-06 19:15:34.682
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:15:39.503
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:15:39.503
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:15:39.597
+[ERROR][root.client.controllers.QuestionsController] No controller specified.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:57
+ | 2018-06-06 19:15:40.868
+[INFO] Application started | 2018-06-06 19:16:01.286
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:16:05.523
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:16:05.523
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:16:09.738
+[ERROR][root.client.controllers.QuestionsController] No controller specified.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:57
+ | 2018-06-06 19:16:58.843
+[INFO] Application started | 2018-06-06 19:19:11.364
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 19:19:12.677
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 19:19:18.185
+[INFO] Application started | 2018-06-06 19:19:19.756
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:19:24.507
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:19:24.507
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:19:24.596
+[ERROR][root.client.controllers.QuestionsController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:14
+ | 2018-06-06 19:19:26.433
+[INFO] Application started | 2018-06-06 19:20:29.794
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:20:34.109
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:20:34.11
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:20:34.195
+[ERROR][root.client.controllers.QuestionsController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:14
+ | 2018-06-06 19:20:35.65
+[INFO] Application started | 2018-06-06 19:21:58.999
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:22:03.839
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:22:03.839
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:22:03.926
+[INFO] Application started | 2018-06-06 19:22:33.574
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:22:38.663
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:22:38.664
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:22:38.755
+[INFO] Application started | 2018-06-06 19:23:26.584
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:23:31.446
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:23:31.446
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:23:35.108
+[ERROR][root.client.controllers.QuestionsController] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/AddQuestionWizzard.fxml:14
+ | 2018-06-06 19:24:40.12
+[INFO] Application started | 2018-06-06 19:26:20.081
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 19:26:25.091
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:26:25.091
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 19:26:25.178
