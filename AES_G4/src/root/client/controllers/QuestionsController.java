@@ -293,25 +293,25 @@ public class QuestionsController implements Observer{
 	 * This method happens when the user press on the update button 
 	 * @param event
 	 */
-//    @FXML
-//    void updateQuestion(ActionEvent event) {
-//    	try {
-//    		if(newValues.size() == 0)
-//    		{
-//    			lblUpdateError.setText("Please update the row!");
-//    			lblUpdateError.setVisible(true);
-//    		}
-//    		else
-//    			lblUpdateError.setVisible(false);
-//    		Message send = new Message("set-questions-map",newValues);
-//			client.sendToServer(send);
-//			newValues.clear();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-//		}
-//    	
-//    }
+    @FXML
+    void updateQuestion(ActionEvent event) {
+    	try {
+    		if(newValues.size() == 0)
+    		{
+    			lblUpdateError.setText("Please update the row!");
+    			lblUpdateError.setVisible(true);
+    		}
+    		else
+    			lblUpdateError.setVisible(false);
+    		Message send = new Message("set-questions-map",newValues);
+			client.sendToServer(send);
+			newValues.clear();
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
+    	
+    }
     
    
     /**
