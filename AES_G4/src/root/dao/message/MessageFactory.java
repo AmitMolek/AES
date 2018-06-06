@@ -65,9 +65,13 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "questions":
+			return new QuestionsMessage((Question)payload);
+		default:
+			break;
+		}
 		return null;
-		// TODO Auto-generated method stub
-		
 	}
 
 	private AbstractMessage getGetMessage(String[] msgContent, Object payload) {
@@ -83,10 +87,7 @@ public class MessageFactory {
 		default:
 			break;
 		}
-
 		return null;
-		
-		
 	}
 
 	private AbstractMessage getLoginMessage(String[] msgContent, Object payload) {
@@ -115,23 +116,22 @@ public class MessageFactory {
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
 	{
 		switch(msgContent[2]) {
-
-		case "questions":
-			return new QuestionsMessage((QuestionsMessage)payload);
-		case "usersubjects":
-			return new UserSubjectMessage((UserSubjectMessage)payload);
-		case "exams":
-			if(payload instanceof ArrayList<?>)
-				return new ExamMessage((ArrayList<Exam>) payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "subjects":
-			if(payload instanceof ArrayList<?>)
-				return new SubjectMessage((ArrayList<Subject>)payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "courses":
-			if(payload instanceof ArrayList<?>)
-				return new CourseMessage((ArrayList<Course>)payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "questions":
+				return new QuestionsMessage((QuestionsMessage)payload);
+			case "usersubjects":
+				return new UserSubjectMessage((UserSubjectMessage)payload);
+			case "exams":
+				if(payload instanceof ArrayList<?>)
+					return new ExamMessage((ArrayList<Exam>) payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "subjects":
+				if(payload instanceof ArrayList<?>)
+					return new SubjectMessage((ArrayList<Subject>)payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			case "courses":
+				if(payload instanceof ArrayList<?>)
+					return new CourseMessage((ArrayList<Course>)payload);
+				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
 			

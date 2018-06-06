@@ -40,7 +40,6 @@ public class ServerMessageManager {
 		switch(msgContent[0]) {
 		case "login":
 			return handleLoginMessage(msg);	
-
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
@@ -50,10 +49,16 @@ public class ServerMessageManager {
 
 		case "get":
 			return handleGetMessage(msg);
-
+		case "set":
+			return handleSetMessage(msg);
 		}
 	}
 	
+	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB (create new data, or change existing data)
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 
 	 * @author gal

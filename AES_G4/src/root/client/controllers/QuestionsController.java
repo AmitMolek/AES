@@ -273,13 +273,12 @@ public class QuestionsController implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		
 		if (arg1 instanceof QuestionsMessage) {
-			System.out.println(arg1.toString());
+			//System.out.println(arg1.toString());
 			
 			if(this.getQuestions().size() == 0)
 				this.setQuestions(((QuestionsMessage) arg1).getQuestions());
 			addQuestions(((QuestionsMessage) arg1).getQuestions());
 			observabaleQuestions = FXCollections.observableArrayList(questions); 
-			//this.getQuestions().addAll(((QuestionsMessage) arg1).getQuestions());
 		}
 		
 		if(arg1 instanceof UserSubjectMessage) {
@@ -310,10 +309,12 @@ public class QuestionsController implements Observer{
 		    stage.setTitle("New question wizzard");
 		    stage.showAndWait();
 		    
-			if (observebaleNewQuestion.size() != 0) {
+			if (observebaleNewQuestion.size() != 0) {	// if not empty, we have received new question
 			    String questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
 			    observebaleNewQuestion.get(0).setQuestionId(questionId);
 			    System.out.println(observebaleNewQuestion.get(0));
+			    observabaleQuestions.add(observebaleNewQuestion.get(0));
+			    setNewQuestion(observebaleNewQuestion.get(0));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -323,7 +324,6 @@ public class QuestionsController implements Observer{
 			
 	});
  }
-
 
 private String prepareQuestionID(String subjectID) {
 	// TODO Auto-generated method stub
@@ -340,6 +340,19 @@ private String prepareQuestionID(String subjectID) {
 	if (newQuestionID < 10)newId+= "00"+newQuestionID;
 	else if(newQuestionID <100)newId+= "0"+newQuestionID;
 	return newId;
+}
+
+
+private void setNewQuestion(Question question) {
+	// TODO Auto-generated method stub
+	// here well prepare a message with {"set-new-Question", Question }
+	QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
+	try {
+		client.sendToServer(newQuestionMessage);
+	} catch (IOException e) {
+		e.printStackTrace();
+		log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+	}
 }
 
 private void getUserQuestions(ArrayList<Subject> userSubjects) {
