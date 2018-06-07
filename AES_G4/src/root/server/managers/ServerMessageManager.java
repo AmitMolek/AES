@@ -47,38 +47,25 @@ public class ServerMessageManager {
 		case "questions":
 			return handleQuestionsMessage(msg);
 		case "get":
-<<<<<<< HEAD
 			return handleGetMessage(msg);
 		case "set":															// update an already existing data
 			return handleSetMessage(msg);
 
 		case "put":															// insert newData
-=======
-			return handleGetMessage(msg);
-		case "put":
->>>>>>> refs/remotes/origin/Omer
 			return handlePutMessage(msg);
-<<<<<<< HEAD
-
-=======
 		case "delete":
 			return handleDeleteMessage(msg);
 		default:
 			return null;
-
-
->>>>>>> refs/remotes/origin/Omer
 		}
 	}
 	
-<<<<<<< HEAD
+
 	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-=======
->>>>>>> refs/remotes/origin/Omer
 	/**
 	 * @author gal
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload

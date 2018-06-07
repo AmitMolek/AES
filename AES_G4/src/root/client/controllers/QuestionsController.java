@@ -384,7 +384,6 @@ public class QuestionsController implements Observer{
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
 			// TODO Auto-generated method stub
 			// Here well get all question that in the same subject of the user
-		counter++;
 			for (Subject subject: userSubjects) {
 				QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
 				try {
