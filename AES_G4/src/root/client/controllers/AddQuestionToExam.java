@@ -16,8 +16,15 @@ import root.client.Main;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
 
+/**
+ * Class for add question custom component
+ * @author Omer Haimovich
+ *
+ */
 public class AddQuestionToExam extends AnchorPane {
 	private static int count = 0;
+
+
 
 	private String id;
 
@@ -48,6 +55,9 @@ public class AddQuestionToExam extends AnchorPane {
 	
 	private Question newQuestion;
 
+	/**
+	 * Constructor for add question custom component
+	 */
 	public AddQuestionToExam() {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/AddQuestionToAnExam.fxml"));
 		fxmlLoader.setRoot(this);
@@ -63,14 +73,26 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 	}
 
+	/**
+	 * 
+	 * @return component id
+	 */
 	public String getID() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @return number of components
+	 */
 	public static int getCount() {
 		return count;
 	}
 
+	/**
+	 * Method that occurs when teacher select question
+	 * @param event when teacher select from question combo box
+	 */
     @FXML
     void SelectQuestion(ActionEvent event) {
     	int i = 0;
@@ -88,6 +110,10 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 	}
 	
+    /**
+     * Add question to an exam
+     * @return list of questions in exam
+     */
 	public ArrayList<QuestionInExam> AddQuestion() {
 	
 		String scoringPoints = txtScore.getText();
@@ -99,14 +125,25 @@ public class AddQuestionToExam extends AnchorPane {
 		return examQuestions;
 	}
 
-	public void clearQuestionInExam() {
+	/**
+	 * Clears the question exam list
+	 */
+	public static void clearQuestionInExam() {
 		examQuestions.clear();
 	}
 
+	/**
+	 * 
+	 * @return the question in exam list
+	 */
 	public static ArrayList<QuestionInExam> getExamQuestions() {
 		return examQuestions;
 	}
 
+	/**
+	 * Sets the question in the combo box
+	 * @param question the question list
+	 */
 	public void setQuestionCombo(ArrayList<Question> question) {
 		for (Question q : question) {
 			cmbQuestion.getItems().add(q.getQuestionId() + "-" + q.getQuestionText());
@@ -114,8 +151,20 @@ public class AddQuestionToExam extends AnchorPane {
 		this.questions = question;
 	}
 
+	/**
+	 * 
+	 * @return the question list
+	 */
 	public static ArrayList<Question> getQuestions() {
 		return questions;
+	}
+	
+	/**
+	 * Sets new value to the count
+	 * @param count the new count value
+	 */
+	public static void setCount(int count) {
+		AddQuestionToExam.count = count;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import ocsf.client.ObservableClient;
+import root.client.managers.ScreensManager;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.Question;
@@ -28,6 +30,7 @@ import root.dao.message.CourseMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -79,6 +82,7 @@ public class AddExamController implements Observer {
     private static int countId = 10;
     private Subject newSubject;
     private Course newCourse;
+    private ScreensManager screenManager;
     /**
      * Method the occurs when teacher select subject
      * @param event on action in subject combo box
@@ -155,6 +159,7 @@ public class AddExamController implements Observer {
     @FXML
 	public void initialize() throws IOException{
     	log = Log.getInstance();
+    	screenManager = ScreensManager.getInstance();
     	cmbCourse.setDisable(true);
     	client = new ObservableClient("localhost",8000);
     	client.addObserver(this);
@@ -198,6 +203,20 @@ public class AddExamController implements Observer {
 			question = intialQuestionMessage.getQuestions();
 		}
 		
+		if(arg1 instanceof SimpleMessage) {
+			log.writeToLog(LogLine.LineType.INFO, "Exam added");
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				try {
+					screenManager.activate("home");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				}
+			});
+			
+		}
+		
 	}
 	
 	/**
@@ -209,6 +228,7 @@ public class AddExamController implements Observer {
     	examQuestions = newQuestion.AddQuestion();
     	btnAddQuestion.setDisable(false);
     	btnAddToExam.setDisable(true);
+    	
     }
     
     

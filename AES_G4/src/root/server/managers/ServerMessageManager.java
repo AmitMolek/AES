@@ -3,6 +3,7 @@ package root.server.managers;
 import java.util.ArrayList;
 
 import root.dao.app.Course;
+import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 
 import root.dao.app.Question;
@@ -16,10 +17,12 @@ import root.dao.message.ExamMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
+import root.server.managers.dbmgr.SetInDB;
 
 public class ServerMessageManager {
 	
@@ -173,7 +176,10 @@ public class ServerMessageManager {
 	
 	private static AbstractMessage handleExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
-		return recivedMessage;
+		Exam addExam = recivedMessage.getNewExam();
+		SetInDB putExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putExam.AddExam(addExam);
+		return sendMessage;
 	}
 	
 }
