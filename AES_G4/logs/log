@@ -1796,3 +1796,8 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:48:59.868
 [INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:49:09.112
 [INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 17:49:25.491
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 17:52:00.168
+[INFO] Application started | 2018-06-07 17:52:02.152
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:52:02.433
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:52:09.552
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 17:52:32.526
