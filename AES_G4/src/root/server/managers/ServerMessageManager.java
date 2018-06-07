@@ -49,13 +49,15 @@ public class ServerMessageManager {
 			return handleUserSubjectsMessage(msg);
 		case "questions":
 			return handleQuestionsMessage(msg);
-		default:
-			return null;
-
 		case "get":
 			return handleGetMessage(msg);
 		case "put":
 			return handlePutMessage(msg);
+		case "delete":
+			return handleDeleteMessage(msg);
+		default:
+			return null;
+
 
 		}
 	}
@@ -190,6 +192,23 @@ public class ServerMessageManager {
 		GetFromDB getExam = new GetFromDB();
 		ArrayList<Exam> exams = getExam.exams(examId);
 		return message.getMessage("ok-get-exams", exams);
+	}
+	
+	private static AbstractMessage handleDeleteMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+		case "exams":
+			return handleDeleteExamMessage(msg);
+		}
+		return null;
+	}
+	
+	private static AbstractMessage handleDeleteExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		Exam deleteExam = recivedMessage.getNewExam();
+		SetInDB deletesExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) deletesExam.deleteTheExam(deleteExam);
+		return sendMessage;
 	}
 	
 }

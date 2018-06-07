@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import root.dao.message.CourseMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -43,10 +45,10 @@ public class UpdateDeleteExamController implements Observer {
     private TableColumn<Exam, String> tbcExamId;
 
     @FXML
-    private TableColumn<Exam, String> tbcTeacherId;
+    private TableColumn<Exam, User> tbcTeacherId;
 
     @FXML
-    private TableColumn<Exam, String> tbcDuration;
+    private TableColumn<Exam, Integer> tbcDuration;
 
     @FXML
     private TableView<Exam> tblExams;
@@ -115,7 +117,16 @@ public class UpdateDeleteExamController implements Observer {
      */
     @FXML
     void DeleteExam(ActionEvent event) {
-
+    	ObservableList<Exam> examSelected;
+    	examSelected = tblExams.getSelectionModel().getSelectedItems();
+    	Exam removeExam = examSelected.get(0);
+    	ExamMessage deleteExam = (ExamMessage)messageFact.getMessage("delete-exams", removeExam);
+    	try {
+			client.sendToServer(deleteExam);
+		} catch (IOException e) {
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
     }
 
 
@@ -146,17 +157,32 @@ public class UpdateDeleteExamController implements Observer {
 		if(arg1 instanceof ExamMessage) {
 			ExamMessage intialCourseMessage = (ExamMessage)arg1;
 			ArrayList<Exam> exams = intialCourseMessage.getExams();
-			ObservableList<Exam> queryQuestions = FXCollections.observableArrayList();
-			queryQuestions = (ObservableList<Exam>) exams;
-			tbcExamId.setCellValueFactory(new PropertyValueFactory<Exam, String>("examId"));
-			tbcTeacherId.setCellValueFactory(new PropertyValueFactory<Exam, String>("author"));
-			tbcDuration.setCellValueFactory(new PropertyValueFactory<Exam, String>("examDuration"));
-			tblExams.setItems(queryQuestions);
-			
+			ObservableList<Exam> observerseExams = FXCollections.observableArrayList();
+			for(Exam e: exams)
+				observerseExams.add(e);
+			tblExams.setItems(observerseExams);
 
 		}
 		
+		if(arg1 instanceof SimpleMessage) {
+			SimpleMessage simple = (SimpleMessage)arg1;
+			log.writeToLog(LogLine.LineType.INFO, "Exam deleted");
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				try {
+					screenManager.activate("home");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				}
+			});
+
+		}
+		
+		
+		
 	}
+	
 	
     /**
    	 * This method occurs when the window is shown up.
@@ -167,6 +193,9 @@ public class UpdateDeleteExamController implements Observer {
     	messageFact = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
     	log = Log.getInstance();
+    	tbcExamId.setCellValueFactory(new PropertyValueFactory("examId"));
+    	tbcTeacherId.setCellValueFactory(new PropertyValueFactory("author"));
+    	tbcDuration.setCellValueFactory(new PropertyValueFactory("examDuration"));
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
