@@ -167,7 +167,7 @@ public class MessageFactory {
 	 * @param payload the object with the message(arrayList, exam ,question , etc)
 	 * @return the relevant message
 	 */
-	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
+	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload) {
 		switch(msgContent[2]) {
 
 		case "questions":
@@ -187,11 +187,9 @@ public class MessageFactory {
 		case "courses":
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
-<<<<<<< HEAD
+
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-=======
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
->>>>>>> refs/remotes/origin/Omer
+
 		}
 		
 			
