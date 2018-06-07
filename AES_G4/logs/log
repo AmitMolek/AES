@@ -920,3 +920,23 @@
 [INFO] Application started | 2018-06-07 11:54:42.247
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:54:51.496
 [INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:55:11.821
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:48:14.521
+[INFO] Application started | 2018-06-07 12:48:16.727
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:48:24.149
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:49:36.994
+[INFO] Application started | 2018-06-07 12:49:41.025
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:49:47.752
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:51:04.985
+[INFO] Application started | 2018-06-07 12:51:10.351
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:51:16.217
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:32:00.97
+[INFO] Application started | 2018-06-07 13:32:03.038
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:32:09.75
+[ERROR][root.client.controllers.UpdateDeleteExamController] socket does not exist | 2018-06-07 13:32:23.217
+[INFO] Application started | 2018-06-07 13:32:50.812
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:32:58.165
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:34:26.394
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-07 13:34:26.396
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:34:36.942
+[INFO] Application started | 2018-06-07 13:34:39.018
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:34:46.195

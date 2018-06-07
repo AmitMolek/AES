@@ -2,7 +2,9 @@ package root.dao.message;
 
 import java.util.ArrayList;
 
+import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.Subject;
 
 /**
  * Class for exam
@@ -13,6 +15,12 @@ public class ExamMessage extends AbstractMessage {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Exam> exams;
 	private Exam newExam;
+	private Subject examSubject;
+	private Course examCourse;
+	private String id;
+
+	
+
 
 	/**
 	 * Constructor that send message from server
@@ -31,6 +39,29 @@ public class ExamMessage extends AbstractMessage {
 		super("put-exams");
 		this.newExam = newExam;
 	}
+	
+	/**
+	 * Constructor that send get message from client
+	 * @param examSubject the exam subject
+	 * @param examCourse the exam course
+	 */
+	public ExamMessage(Subject examSubject, Course examCourse) {
+		super("get-exams");
+		this.examSubject = examSubject;
+		this.examCourse = examCourse;
+	}
+	
+	/**
+	 * Constructor that send get message from client
+	 * @param id the id
+	 */
+	public ExamMessage(String id) {
+		super("get-exams");
+		this.id = id;
+		
+	}
+	
+	
 
 	/**
 	 * Return type of exam
@@ -71,7 +102,46 @@ public class ExamMessage extends AbstractMessage {
 	public void setNewExam(Exam newExam) {
 		this.newExam = newExam;
 	}
+	
+	/**
+	 * 
+	 * @return the exam subject
+	 */
+	public Subject getExamSubject() {
+		return examSubject;
+	}
 
+	/**
+	 * Set new subject to exam
+	 * @param examSubject the new subject
+	 */
+	public void setExamSubject(Subject examSubject) {
+		this.examSubject = examSubject;
+	}
+
+	/**
+	 * 
+	 * @return the exam course
+	 */
+	public Course getExamCourse() {
+		return examCourse;
+	}
+
+	/**
+	 * Set new course to exam
+	 * @param examCourse the new course
+	 */
+	public void setExamCourse(Course examCourse) {
+		this.examCourse = examCourse;
+	}
+
+	/**
+	 * 
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
 
 
 }

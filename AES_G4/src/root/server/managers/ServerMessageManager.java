@@ -108,6 +108,8 @@ public class ServerMessageManager {
 				return handleCourseMessage(msg);
 			case "questions":
 				return handleQuestionsMessage(msg);
+			case "exams":
+				return handleGetExamMessage(msg);
 		}
 		
 		return null;
@@ -168,18 +170,26 @@ public class ServerMessageManager {
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[1]) {
 		case "exams":
-			return handleExamMessage(msg);
+			return handlePutExamMessage(msg);
 		}
 		return null;
 		
 	}
 	
-	private static AbstractMessage handleExamMessage(AbstractMessage msg) {
+	private static AbstractMessage handlePutExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
 		Exam addExam = recivedMessage.getNewExam();
 		SetInDB putExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putExam.AddExam(addExam);
 		return sendMessage;
+	}
+	
+	private static AbstractMessage handleGetExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage) msg;
+		String examId = recivedMessage.getId();
+		GetFromDB getExam = new GetFromDB();
+		ArrayList<Exam> exams = getExam.exams(examId);
+		return message.getMessage("ok-get-exams", exams);
 	}
 	
 }
