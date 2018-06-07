@@ -1718,3 +1718,10 @@
 [INFO] Application started | 2018-06-07 17:15:11.128
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:15:11.571
 [INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:15:18.343
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 17:20:40.164
+[INFO] Application started | 2018-06-07 17:20:42.885
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:20:43.337
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:20:49.947
+[INFO] Application started | 2018-06-07 17:21:41.963
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:21:42.37
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:21:47.038
