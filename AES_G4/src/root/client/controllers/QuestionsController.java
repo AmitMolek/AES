@@ -217,21 +217,20 @@ public class QuestionsController implements Observer{
     }
 
 	private void initQuestionsTable() {
-			// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		tbcId.setCellValueFactory(new PropertyValueFactory("questionId"));
+		tbcIdText.setCellValueFactory(new PropertyValueFactory("questionText"));
 		
-		tblQuestions = new TableView<>();
-		//tblQuestions.getItems().clear();
-		tblQuestions.setEditable(true);
+
+	//	tblQuestions.setEditable(true);
 
 		//tbcId = new TableColumn("QuestionID");
-		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
-		
 		
 		
 //		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>(""));
-		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
-		tblQuestions.setItems(observabaleQuestions);
-		tblQuestions.getColumns().addAll(tbcId,tbcIdText);
+		
+		
+		//tblQuestions.getColumns().addAll(tbcId,tbcIdText);
 ////		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
 //		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
 //		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
@@ -283,12 +282,13 @@ public class QuestionsController implements Observer{
 			
 			if(this.getQuestions().size() == 0)
 				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
-			addQuestions(((QuestionsMessage) arg1).getQuestions());					// add new questions to a teachet.
+			else addQuestions(((QuestionsMessage) arg1).getQuestions());					// add new questions to a teachet.
 			//observabaleQuestions = FXCollections.observableArrayList(questions);
 			observabaleQuestions = FXCollections.observableArrayList(); 
 			for (Question question: questions) {
 				observabaleQuestions.add(question);
 			}
+			tblQuestions.setItems(observabaleQuestions);
 		}
 		
 		if(arg1 instanceof UserSubjectMessage) {
