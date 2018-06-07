@@ -18,7 +18,6 @@ import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
-import root.dao.message.Message;
 import root.server.AES_Server;
 import root.util.log.Log;
 import root.util.log.LogLine;

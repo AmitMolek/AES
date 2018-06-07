@@ -1725,3 +1725,105 @@
 [INFO] Application started | 2018-06-07 17:21:41.963
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:21:42.37
 [INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:21:47.038
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 19:11:07.753
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 19:11:30.833
+[INFO] Application started | 2018-06-07 19:11:39.637
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 19:11:39.8
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 19:11:48.54
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 19:23:13.27
+[INFO] Application started | 2018-06-07 19:23:18.295
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 19:23:18.453
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 19:23:24.427
+[INFO] Application started | 2018-06-07 19:26:17.528
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 19:26:17.682
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 19:26:23.809
+[INFO] Application started | 2018-06-07 20:03:24.481
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:03:24.64
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:03:30.162
+[INFO] Application started | 2018-06-07 20:04:18.594
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:04:18.754
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:04:24.667
+[INFO] Application started | 2018-06-07 20:06:23.197
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:06:23.357
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:06:29.635
+[INFO] Application started | 2018-06-07 20:32:34.115
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:32:34.276
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:32:39.955
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesStudent.fxml:22
+ | 2018-06-07 20:32:40.0
+[INFO] Application started | 2018-06-07 20:33:56.354
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:33:56.512
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 20:34:17.54
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:34:17.576
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:34:19.216
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:34:20.825
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:34:21.356
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:34:56.765
+[INFO] Application started | 2018-06-07 20:35:03.429
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:35:03.587
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 20:35:15.629
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:35:15.666
+[INFO] Application started | 2018-06-07 20:36:39.036
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:36:39.215
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 20:36:44.923
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:37:30.696
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:37:51.522
+[INFO] Application started | 2018-06-07 20:39:03.346
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:39:03.509
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 20:42:21.592
+[INFO] Application started | 2018-06-07 20:42:26.99
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:42:27.147
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:42:32.093
+[ERROR][root.client.controllers.LoginController] Label is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesStudent.fxml:22
+ | 2018-06-07 20:42:32.128
+[INFO] Application started | 2018-06-07 20:43:14.604
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:43:14.762
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:43:19.339
+[INFO] Application started | 2018-06-07 20:44:01.738
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:44:01.898
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:44:14.103
+[INFO] Application started | 2018-06-07 20:44:48.398
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:44:48.558
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:44:54.486
+[INFO] Application started | 2018-06-07 20:46:23.35
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:46:23.511
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:46:29.728
+[INFO] Application started | 2018-06-07 20:46:44.442
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:46:44.603
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-07 20:46:56.5
+[ERROR][root.client.controllers.LoginController] Text is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesPrincipal.fxml:22
+ | 2018-06-07 20:46:56.535
+[ERROR][root.client.controllers.LoginController] Text is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesPrincipal.fxml:22
+ | 2018-06-07 20:47:22.876
+[ERROR][root.client.controllers.LoginController] Text is not a valid type.
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/TestGradesTeacher.fxml:22
+ | 2018-06-07 20:47:37.035
+[INFO] Application started | 2018-06-07 20:47:48.506
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:47:48.66
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:47:54.783
+[INFO] Application started | 2018-06-07 20:48:27.253
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:48:27.418
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-07 20:48:33.144
+[INFO] Application started | 2018-06-07 20:48:36.823
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:48:36.98
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-07 20:48:46.479
