@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import root.client.controllers.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="740.0" prefWidth="1024.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.AddExamController">
+
+<AnchorPane fx:id="rootPane" prefHeight="740.0" prefWidth="1024.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.AddExamController">
 
    <children>
       <AnchorPane layoutX="33.0" layoutY="72.0" prefHeight="576.0" prefWidth="945.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="72.0">
@@ -45,8 +46,7 @@
                   <FlowPane fx:id="myFlow" prefHeight="168.0" prefWidth="894.0" />
                </content>
             </ScrollPane>
-            <Button fx:id="btnAddQuestion" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddQuestionToExam" text="Add Question" />
-            <Button fx:id="btnAddToExam" layoutX="549.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddToTheExamForm" text="Add the question to the exam" />
+            <Button fx:id="btnAddQuestion" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddQuestionToExam" text="+" />
          </children>
       </AnchorPane>
    </children>

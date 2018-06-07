@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
+import root.client.managers.LoggedInUserManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
@@ -59,7 +60,7 @@ public class LoginController implements Observer {
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
-
+    private LoggedInUserManager loggedInManager;
     
     Log log = Log.getInstance();
     /**
@@ -91,7 +92,7 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	//loggedInManager = LoggedInUserManager.getInstance();
+    	loggedInManager = LoggedInUserManager.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -114,12 +115,13 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
-			DataKeepManager.getInstance().keepObject("user", user);
+			DataKeepManager.getInstance().keepUser(user);
+			//DataKeepManager.getInstance().keepObject("user", user);
 			//System.out.println(user);
-			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getObject("user"));
+			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					screenManager.activate("addExam");
+					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -254,4 +256,3 @@ public class LoginController implements Observer {
 //    
 //
 //}
-

@@ -146,25 +146,7 @@ public class GetFromDB implements DbManagerInterface {
 
 	@Override
 	public ArrayList<Exam> exams(String... str) {
-		ArrayList<Exam> exams= new ArrayList<Exam>();
-		ArrayList<User> newUsers = new ArrayList<User>();
-		User teacher;
-		ResultSet rs;
-		String examQuery = "SELECT * FROM exams WHERE exam_id LIKE '"+str[0]+"%'";
-		try {
-			stmt = conn.createStatement();
-					rs = stmt.executeQuery(examQuery+";");
-					while(rs.next()) {
-						newUsers = users(rs.getString(2));
-						teacher = newUsers.get(0);
-						exams.add(new Exam(rs.getString(1), teacher,rs.getInt(3),null));
-					}
-					rs.close();
-					return exams;			// Return A list of all users
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 
