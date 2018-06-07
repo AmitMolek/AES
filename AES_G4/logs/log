@@ -1774,3 +1774,25 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:40:16.704
 [INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:40:23.962
 [INFO][root.client.controllers.UpdateDeleteExamController] Exam deleted | 2018-06-07 17:40:28.713
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 17:41:17.631
+[INFO] Application started | 2018-06-07 17:41:20.034
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:41:20.414
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:41:27.969
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 17:44:21.094
+[INFO] Application started | 2018-06-07 17:44:23.206
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:44:23.491
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:44:30.96
+[INFO] Application started | 2018-06-07 17:46:28.247
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:46:28.526
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:46:35.278
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/AddExamScreen.fxml
+ | 2018-06-07 17:46:35.33
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 17:47:34.104
+[INFO] Application started | 2018-06-07 17:47:36.091
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:47:36.373
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:47:42.994
+[INFO] Application started | 2018-06-07 17:48:59.588
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 17:48:59.868
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-07 17:49:09.112
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 17:49:25.491
