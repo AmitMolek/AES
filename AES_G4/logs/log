@@ -969,3 +969,7 @@
 [INFO] Application started | 2018-06-07 16:21:37.398
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 16:21:44.241
 [INFO][root.client.controllers.UpdateDeleteExamController] Exam deleted | 2018-06-07 16:21:53.174
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 16:39:42.117
+[INFO] Application started | 2018-06-07 16:39:44.706
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 16:39:51.635
+[INFO][root.client.controllers.UpdateDeleteExamController] Exam deleted | 2018-06-07 16:40:02.747
