@@ -207,7 +207,7 @@ public class QuestionsController implements Observer{
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
-    	user = (User) DataKeepManager.getInstance().getObject("user");//loggedInManager.getUser();
+    	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
 
     	setUserDetails(user);
