@@ -15,7 +15,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.LoggedInUserManager;
@@ -121,8 +120,8 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					screenManager.activate("home");
-				} catch (IOException e) {
+					screenManager.activate("updateDeleteExam");
+			} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());

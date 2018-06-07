@@ -194,7 +194,6 @@ public class QuestionsController implements Observer{
 	//	tbcIdNum.setCellValueFactory(new PropertyValueFactory<Question, Integer>("questionNum"));
 		tblQuestions.setItems(queryQuestions);
 		
-
 		txtFieldId.clear();
 		txtFieldName.clear();
 		txtFieldQuestion.clear();
@@ -230,10 +229,8 @@ public class QuestionsController implements Observer{
                 cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(
                 cellData -> cellData.getValue().lastNameProperty());
-
         // Clear person details.
         showPersonDetails(null);
-
         // Listen for selection changes and show the person details when changed.
         personTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));

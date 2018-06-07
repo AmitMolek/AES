@@ -1,24 +1,25 @@
 package root.server.managers;
 
 import java.util.ArrayList;
-
 import root.dao.app.Course;
+import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
-
 import root.dao.app.Question;
-
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
+import root.dao.message.ExamMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
+import root.server.managers.dbmgr.SetInDB;
 
 public class ServerMessageManager {
 	
@@ -44,32 +45,35 @@ public class ServerMessageManager {
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
-			return handleQuestionsMassage(msg);
+			return handleQuestionsMessage(msg);
+		case "get":
+			return handleGetMessage(msg);
+		case "put":
+			return handlePutMessage(msg);
+		case "delete":
+			return handleDeleteMessage(msg);
 		default:
 			return null;
 
-		case "get":
-			return handleGetMessage(msg);
 
 		}
 	}
 	
 	/**
-
 	 * @author gal
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
 	 * @return	{@link AbstractMessage} of QuestionMessage filled with question from the same subject
 	 */
-	private static AbstractMessage handleQuestionsMassage(AbstractMessage msg) {
+	private static AbstractMessage handleQuestionsMessage(AbstractMessage msg) {
 		// TODO Auto-generated method stub
 		QuestionsMessage questionMessage = (QuestionsMessage)msg;
 		GetFromDB getQuestions = new GetFromDB();
 		ArrayList<Question> questions = getQuestions.questions(questionMessage.getThisQuestionsSubject().getSubjectID());
-		questionMessage.setQuestions(questions);	
-		questionMessage.setThisQuestionsSubject(questionMessage.getThisQuestionsSubject());
+		//questionMessage.setQuestions(questions);	
+		//questionMessage.setThisQuestionsSubject(questionMessage.getThisQuestionsSubject());
 		
 		if (questions.size() ==0) return message.getMessage("error-Qeustions",new Exception("No Questions in this subject"));	// return Exception
-		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questionMessage);	// found questions for this subject, return them
+		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questions);	// found questions for this subject, return them
 		return message.getMessage("error-Qesutions",new Exception("Error in finding Qesutions"));
 	}
 
@@ -100,6 +104,10 @@ public class ServerMessageManager {
 				return handleSubjectMessage(msg);
 			case "courses":
 				return handleCourseMessage(msg);
+			case "questions":
+				return handleQuestionsMessage(msg);
+			case "exams":
+				return handleGetExamMessage(msg);
 		}
 		
 		return null;
@@ -154,6 +162,49 @@ public class ServerMessageManager {
 		GetFromDB getCourse = new GetFromDB();
 		ArrayList<Course> courses = getCourse.coursesInSubject(subjectId);
 		return message.getMessage("ok-get-courses", courses);
+	}
+	
+	private static AbstractMessage handlePutMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+		case "exams":
+			return handlePutExamMessage(msg);
+		}
+		return null;
+		
+	}
+	
+	private static AbstractMessage handlePutExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		Exam addExam = recivedMessage.getNewExam();
+		SetInDB putExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putExam.AddExam(addExam);
+		return sendMessage;
+	}
+	
+	private static AbstractMessage handleGetExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage) msg;
+		String examId = recivedMessage.getId();
+		GetFromDB getExam = new GetFromDB();
+		ArrayList<Exam> exams = getExam.exams(examId);
+		return message.getMessage("ok-get-exams", exams);
+	}
+	
+	private static AbstractMessage handleDeleteMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+		case "exams":
+			return handleDeleteExamMessage(msg);
+		}
+		return null;
+	}
+	
+	private static AbstractMessage handleDeleteExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		Exam deleteExam = recivedMessage.getNewExam();
+		SetInDB deletesExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) deletesExam.deleteTheExam(deleteExam);
+		return sendMessage;
 	}
 	
 }

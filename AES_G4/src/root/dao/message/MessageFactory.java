@@ -53,8 +53,12 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getDelMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "exams":
+			return new ExamMessage("delete-exams",(Exam)payload);
+		}
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 

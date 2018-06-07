@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="rootPane" prefHeight="740.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="root.client.controllers.UpdateDeleteExamController">
+   <children>
+      <GridPane layoutX="92.0" layoutY="61.0" prefHeight="29.0" prefWidth="1111.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Select subject:" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="cmbSubject" onAction="#SelectSubject" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" />
+            <Label text="Select course:" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="cmbCourse" onAction="#SelectCourse" prefHeight="25.0" prefWidth="234.0" GridPane.columnIndex="4" />
+         </children>
+      </GridPane>
+      <TableView fx:id="tblExams" layoutX="107.0" layoutY="159.0" prefHeight="331.0" prefWidth="1110.0">
+        <columns>
+          <TableColumn fx:id="tbcExamId" maxWidth="370.0" minWidth="370.0" prefWidth="370.0" text="Exam ID" />
+          <TableColumn fx:id="tbcTeacherId" maxWidth="370.0" minWidth="370.0" prefWidth="370.0" text="Teacher ID" />
+            <TableColumn fx:id="tbcDuration" maxWidth="370.0" minWidth="370.0" prefWidth="370.0" text="Duration" />
+        </columns>
+      </TableView>
+      <Button layoutX="279.0" layoutY="591.0" mnemonicParsing="false" onAction="#UpdateExam" text="Update" />
+      <Button layoutX="916.0" layoutY="591.0" mnemonicParsing="false" onAction="#DeleteExam" text="Delete" />
+   </children>
+</AnchorPane>
