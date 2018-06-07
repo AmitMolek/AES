@@ -89,7 +89,7 @@ public class AddNewQuestionController {
 		    	String ans2 = txtFieldPossibleAnswer2.getText();
 		    	String ans3 = txtFieldPossibleAnswer3.getText();
 		    	String ans4 = txtFieldPossibleAnswer4.getText();
-		    	int correctAns = comboboxCorrectQuestion.getSelectionModel().getSelectedIndex();
+		    	int correctAns = comboboxCorrectQuestion.getSelectionModel().getSelectedItem();
 		    	String teacherAssembeld = user.getUserID();	
 		        
 		    	

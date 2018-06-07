@@ -226,7 +226,7 @@ public class QuestionsController implements Observer{
     	client.openConnection();
     	user = (User) DataKeepManager.getInstance().getObject("user");//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
-    	observebaleNewQuestion = FXCollections.observableArrayList(); 
+
     	setUserDetails(user);
     	getUserSubjects(user);
     	
@@ -290,11 +290,18 @@ public class QuestionsController implements Observer{
 		}
 	}
 
-
+/**
+ *  if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save&Close" 
+ *  add newly created question to Questions in THIS, and to DB.
+ * @param event
+ * @throws IOException
+ */
  @FXML
     void onOpenDialog(ActionEvent event) throws IOException {
 	 Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 		try {
+	    	observebaleNewQuestion = FXCollections.observableArrayList(); 
+	    	
 		 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/view/AddQuestionWizzard.fxml"));
 		    Parent parent = fxmlLoader.load();
 		    AddNewQuestionController dialogController = fxmlLoader.<AddNewQuestionController>getController();
@@ -308,14 +315,14 @@ public class QuestionsController implements Observer{
 		    stage.setScene(scene);
 		    stage.setTitle("New question wizzard");
 		    stage.showAndWait();
-		    
-			if (observebaleNewQuestion.size() != 0) {	// if not empty, we have received new question
-			    String questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
-			    observebaleNewQuestion.get(0).setQuestionId(questionId);
-			    System.out.println(observebaleNewQuestion.get(0));
-			    observabaleQuestions.add(observebaleNewQuestion.get(0));
-			    setNewQuestion(observebaleNewQuestion.get(0));
-			}
+		  
+		    String questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
+		    observebaleNewQuestion.get(0).setQuestionId(questionId);
+		    observabaleQuestions.add(observebaleNewQuestion.get(0));
+		    questions.add(observebaleNewQuestion.get(0));
+		    putNewQuestion(observebaleNewQuestion.get(0));
+		    System.out.println(observebaleNewQuestion.get(0));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -325,6 +332,11 @@ public class QuestionsController implements Observer{
 	});
  }
 
+ /**
+  *  function to create a valid Question ID
+  * @param subjectID
+  * @return String a Question valid ID
+  */
 private String prepareQuestionID(String subjectID) {
 	// TODO Auto-generated method stub
 	String newId = subjectID;
@@ -337,16 +349,22 @@ private String prepareQuestionID(String subjectID) {
 		}
 	}
 	newQuestionID++;
-	if (newQuestionID < 10)newId+= "00"+newQuestionID;
-	else if(newQuestionID <100)newId+= "0"+newQuestionID;
+	String x = "30";
+	int temp  =100;
+	while(temp > newQuestionID){
+		newId =  newId.concat("0");
+		temp = temp/10;
+	}
+	newId = newId.concat(String.valueOf(newQuestionID));
+	System.out.println("My tst "+newId);
 	return newId;
 }
 
 
-private void setNewQuestion(Question question) {
+private void putNewQuestion(Question question) {
 	// TODO Auto-generated method stub
 	// here well prepare a message with {"set-new-Question", Question }
-	QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
+	QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
 	try {
 		client.sendToServer(newQuestionMessage);
 	} catch (IOException e) {
@@ -408,6 +426,7 @@ private void fillCombobox(ArrayList<Subject> teacherSubject) {
 	}
 	public void addQuestions(ArrayList<Question> questions) {
 		this.getQuestions().addAll(questions);
+		
 	}
 
 	private void setUserDetails(User user1) {
@@ -428,6 +447,7 @@ private void fillCombobox(ArrayList<Subject> teacherSubject) {
 			lblUpdateError.setText("Please enter valid input!");
 			lblUpdateError.setVisible(true);
 		}*/
+
 		
 	}
 

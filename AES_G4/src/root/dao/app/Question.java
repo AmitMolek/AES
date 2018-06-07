@@ -35,6 +35,24 @@ public class Question implements java.io.Serializable {
 		this.correctAns = correctAns;
 		this.teacherAssembeld = teacherAssembeld;
 	}
+/**
+ * copy constractor
+ * @param question
+ */
+
+	public Question(Question question) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.questionId = question.getQuestionId();
+		this.questionText = question.getQuestionText();
+		this.idquestionIntruction = question.getIdquestionIntruction();
+		this.ans1 = question.getAns1();
+		this.ans2 = question.getAns2();
+		this.ans3 = question.getAns3();
+		this.ans4 = question.getAns4();
+		this.correctAns = question.getCorrectAns();
+		this.teacherAssembeld = question.getTeacherAssembeld();
+	}
 
 	/**
 	 * @return the questionId

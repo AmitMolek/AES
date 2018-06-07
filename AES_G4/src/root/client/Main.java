@@ -22,7 +22,7 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("addExam", "resources/view/AddExamScreen.fxml");
 		ScreensManager.addScreen("updateDeleteExam", "resources/view/DeleteExamScreen.fxml");
 
-		
+	
 		launch(args);
 	}
 	

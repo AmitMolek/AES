@@ -53,18 +53,16 @@ public class ServerMessageManager {
 
 		case "get":
 			return handleGetMessage(msg);
-<<<<<<< HEAD
-		case "set":
+		case "set":															// update an already existing data
 			return handleSetMessage(msg);
-=======
-		case "put":
+
+		case "put":															// insert newData
 			return handlePutMessage(msg);
 
->>>>>>> refs/remotes/origin/Omer
 		}
 	}
 	
-	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB (create new data, or change existing data)
+	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -178,6 +176,8 @@ public class ServerMessageManager {
 	private static AbstractMessage handlePutMessage(AbstractMessage msg) {
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[1]) {
+		case "questions":
+			return handlePutQuestion(msg);
 		case "exams":
 			return handlePutExamMessage(msg);
 		}
@@ -185,6 +185,15 @@ public class ServerMessageManager {
 		
 	}
 	
+	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {
+		// TODO Auto-generated method stub
+		QuestionsMessage recievedNewQuestion = (QuestionsMessage)msg;
+		Question newQuestionTooAdd = recievedNewQuestion.getQuestions().get(0); // ArrayList<Question> will contain only 1 new question
+		SetInDB putQuestion = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putQuestion.AddNewQuestion(newQuestionTooAdd);
+		return null;
+	}
+
 	private static AbstractMessage handlePutExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
 		Exam addExam = recivedMessage.getNewExam();

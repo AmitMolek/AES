@@ -79,6 +79,8 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 			case "exams":
 				return new ExamMessage((Exam)payload);
+			case "questions":
+				return new QuestionsMessage((Question)payload);
 		}
 		return null;
 	}
@@ -91,11 +93,6 @@ public class MessageFactory {
 			break;
 		}
 		return null;
-<<<<<<< HEAD
-=======
-		
-		
->>>>>>> refs/remotes/origin/Omer
 	}
 
 	/**
@@ -165,25 +162,6 @@ public class MessageFactory {
 	 */
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
 	{
-<<<<<<< HEAD
-		switch(msgContent[2]) {
-			case "questions":
-				return new QuestionsMessage((QuestionsMessage)payload);
-			case "usersubjects":
-				return new UserSubjectMessage((UserSubjectMessage)payload);
-			case "exams":
-				if(payload instanceof ArrayList<?>)
-					return new ExamMessage((ArrayList<Exam>) payload);
-				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-			case "subjects":
-				if(payload instanceof ArrayList<?>)
-					return new SubjectMessage((ArrayList<Subject>)payload);
-				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-			case "courses":
-				if(payload instanceof ArrayList<?>)
-					return new CourseMessage((ArrayList<Course>)payload);
-				else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-=======
 		switch(msgContent[2]) {
 
 		case "questions":
@@ -204,7 +182,6 @@ public class MessageFactory {
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
->>>>>>> refs/remotes/origin/Omer
 		}
 		
 			
