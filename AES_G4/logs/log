@@ -614,6 +614,7 @@
 [INFO] Application started | 2018-06-05 19:56:15.521
 >>>>>>> refs/remotes/origin/Omer
 <<<<<<< HEAD
+<<<<<<< HEAD
 [INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:32:45.18
 [INFO] Application started | 2018-06-06 15:32:56.785
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:33:04.11
@@ -1326,3 +1327,332 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 23:42:35.501
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:42:35.502
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 23:42:35.609
+=======
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 09:51:17.261
+[INFO] Application started | 2018-06-06 09:51:20.509
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 09:51:28.793
+[INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.User | 2018-06-06 09:51:28.873
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml
+ | 2018-06-06 09:51:28.876
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 09:53:32.149
+[INFO] Application started | 2018-06-06 09:53:39.161
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 09:53:46.354
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 09:58:27.529
+[INFO] Application started | 2018-06-06 09:58:30.121
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 09:58:37.068
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 09:59:58.932
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-06 09:59:58.934
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:00:06.909
+[INFO] Application started | 2018-06-06 10:00:08.962
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:00:24.718
+[INFO] Application started | 2018-06-06 10:01:47.256
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 10:01:48.587
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:01:53.438
+[INFO] Application started | 2018-06-06 10:01:59.116
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:02:07.625
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:03:23.942
+[INFO] Application started | 2018-06-06 10:03:29.225
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:03:44.483
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:04:50.893
+[INFO] Application started | 2018-06-06 10:04:53.404
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:05:04.106
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:07:27.857
+[INFO] Application started | 2018-06-06 10:07:29.86
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:07:40.326
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:10:28.926
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:10:33.467
+[INFO] Application started | 2018-06-06 10:10:36.079
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:10:49.991
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:15:36.447
+[INFO] Application started | 2018-06-06 10:15:40.257
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:15:51.291
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:18:23.645
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:18:35.438
+[INFO] Application started | 2018-06-06 10:18:38.682
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:18:46.084
+[INFO] Application started | 2018-06-06 10:19:29.984
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 10:19:31.318
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:19:34.551
+[INFO] Application started | 2018-06-06 10:19:39.062
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:19:53.735
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:21:51.188
+[INFO] Application started | 2018-06-06 10:21:55.301
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:22:10.346
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:23:27.79
+[INFO] Application started | 2018-06-06 10:23:30.588
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:23:40.552
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:24:16.728
+[INFO] Application started | 2018-06-06 10:24:20.308
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:24:27.04
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:24:40.353
+[INFO] Application started | 2018-06-06 10:24:43.183
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:24:50.92
+[INFO] Application started | 2018-06-06 10:26:20.212
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:26:27.373
+[INFO] Application started | 2018-06-06 10:28:36.718
+[INFO] Application started | 2018-06-06 10:28:44.635
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:28:50.354
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:33:09.478
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-06 10:33:09.479
+[INFO] Application started | 2018-06-06 10:33:17.22
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:33:24.069
+[INFO] Application started | 2018-06-06 10:35:28.489
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:35:34.99
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:46:43.059
+[INFO] Application started | 2018-06-06 10:46:47.23
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:46:55.059
+[INFO] Application started | 2018-06-06 10:48:03.192
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:48:10.326
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:51:28.052
+[INFO] Application started | 2018-06-06 10:51:30.494
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:51:38.087
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:54:28.226
+[INFO] Application started | 2018-06-06 10:54:30.971
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:54:38.018
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 10:55:21.51
+[INFO] Application started | 2018-06-06 10:55:23.928
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 10:55:31.123
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 13:23:45.917
+[INFO] Application started | 2018-06-06 13:23:49.183
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 14:21:55.682
+[INFO] Application started | 2018-06-06 14:21:58.435
+[INFO] Application started | 2018-06-06 14:22:04.525
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 14:22:11.628
+[INFO] Application started | 2018-06-06 14:24:17.007
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 14:24:27.109
+[INFO] Application started | 2018-06-06 14:27:16.226
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 14:27:24.99
+[INFO] Application started | 2018-06-06 15:00:32.337
+[INFO] Application started | 2018-06-06 15:00:54.17
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:01:01.022
+[INFO] Application started | 2018-06-06 15:04:03.157
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 15:04:04.484
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:04:10.35
+[INFO] Application started | 2018-06-06 15:04:12.583
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:04:29.627
+[INFO] Application started | 2018-06-06 15:05:31.486
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:05:38.376
+[INFO] Application started | 2018-06-06 15:07:47.562
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 15:07:49.082
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:07:54.917
+[INFO] Application started | 2018-06-06 15:07:56.917
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:08:02.915
+[INFO] Application started | 2018-06-06 15:08:26.48
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:08:32.874
+[INFO] Application started | 2018-06-06 15:09:26.383
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:09:32.663
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:16:37.758
+[INFO] Application started | 2018-06-06 15:16:39.506
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:16:46.128
+[INFO] Application started | 2018-06-06 15:34:35.149
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:34:43.934
+[INFO] Application started | 2018-06-06 15:35:07.071
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-06 15:35:08.614
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 15:35:16.574
+[INFO] Application started | 2018-06-06 15:35:18.299
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:35:25.503
+[INFO] Application started | 2018-06-06 15:36:09.27
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:36:15.738
+[INFO] Application started | 2018-06-06 15:37:08.556
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:37:15.963
+[INFO] Application started | 2018-06-06 15:38:37.062
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:38:43.776
+[INFO] Application started | 2018-06-06 15:39:46.678
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:39:53.212
+[INFO] Application started | 2018-06-06 15:40:32.498
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:40:39.803
+[INFO] Application started | 2018-06-06 15:49:25.849
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:49:33.822
+[INFO] Application started | 2018-06-06 15:52:09.834
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:52:16.729
+[INFO] Application started | 2018-06-06 15:56:20.027
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:56:27.937
+[INFO] Application started | 2018-06-06 15:56:55.454
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 15:57:02.515
+[INFO] Application started | 2018-06-06 15:59:59.831
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:00:18.606
+[INFO] Application started | 2018-06-06 16:00:33.733
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:00:40.897
+[INFO] Application started | 2018-06-06 16:03:48.6
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:03:54.893
+[INFO] Application started | 2018-06-06 16:04:42.405
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:04:48.486
+[INFO] Application started | 2018-06-06 16:06:34.925
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:06:42.982
+[INFO] Application started | 2018-06-06 16:11:38.878
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:11:45.791
+[INFO] Application started | 2018-06-06 16:12:18.342
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:12:26.071
+[INFO] Application started | 2018-06-06 16:23:08.1
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:23:15.601
+[INFO] Application started | 2018-06-06 16:24:38.988
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:24:45.352
+[INFO] Application started | 2018-06-06 16:25:25.214
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:25:31.583
+[INFO] Application started | 2018-06-06 16:25:48.71
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:26:04.386
+[INFO] Application started | 2018-06-06 16:27:33.467
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:27:41.061
+[INFO] Application started | 2018-06-06 16:35:31.964
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:35:45.42
+[INFO] Application started | 2018-06-06 16:36:03.013
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:36:13.628
+[INFO] Application started | 2018-06-06 16:39:17.358
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:39:24.676
+[INFO] Application started | 2018-06-06 16:43:33.735
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:43:40.608
+[INFO] Application started | 2018-06-06 16:44:00.583
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:44:07.257
+[INFO] Application started | 2018-06-06 16:44:55.866
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:45:03.183
+[INFO] Application started | 2018-06-06 16:45:59.765
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:46:05.533
+[INFO] Application started | 2018-06-06 16:47:20.18
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:47:27.401
+[INFO] Application started | 2018-06-06 16:48:15.483
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:48:22.507
+[INFO] Application started | 2018-06-06 16:49:41.169
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:49:47.568
+[INFO] Application started | 2018-06-06 16:50:00.877
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 16:50:07.118
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 17:08:41.557
+[INFO] Application started | 2018-06-06 17:08:45.929
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:08:53.693
+[INFO] Application started | 2018-06-06 17:13:31.729
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:13:38.312
+[INFO] Application started | 2018-06-06 17:14:19.506
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:14:26.518
+[INFO] Application started | 2018-06-06 17:15:36.55
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:15:42.724
+[INFO] Application started | 2018-06-06 17:20:28.51
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:20:36.42
+[INFO] Application started | 2018-06-06 17:21:29.43
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 17:21:35.77
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 20:12:25.691
+[INFO][root.server.AES_Server] The server is connected | 2018-06-06 20:12:30.392
+[INFO] Application started | 2018-06-06 20:12:32.38
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:12:41.001
+[INFO] Application started | 2018-06-06 20:13:27.193
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:13:34.794
+[INFO] Application started | 2018-06-06 20:13:58.949
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:14:06.364
+[INFO] Application started | 2018-06-06 20:15:24.852
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:15:32.315
+[INFO] Application started | 2018-06-06 20:16:03.308
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:16:10.523
+[INFO] Application started | 2018-06-06 20:17:06.062
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:17:13.98
+[INFO] Application started | 2018-06-06 20:18:23.867
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-06 20:18:31.349
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 10:47:34.795
+[INFO] Application started | 2018-06-07 10:47:38.563
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 10:47:46.087
+[INFO] Application started | 2018-06-07 10:51:35.589
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 10:51:43.149
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 10:52:43.913
+[INFO] Application started | 2018-06-07 10:52:46.956
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 10:53:04.173
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 10:55:13.946
+[INFO] Application started | 2018-06-07 10:55:18.666
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 10:56:04.84
+[INFO] Application started | 2018-06-07 11:00:12.716
+[INFO] Application started | 2018-06-07 11:00:25.903
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:00:38.255
+[INFO] Application started | 2018-06-07 11:00:41.098
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:00:51.332
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:02:33.921
+[INFO] Application started | 2018-06-07 11:02:37.012
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:02:55.205
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:05:30.941
+[INFO] Application started | 2018-06-07 11:05:34.194
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:05:45.528
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:06:40.135
+[INFO] Application started | 2018-06-07 11:06:41.913
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:06:54.407
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:07:56.466
+[INFO] Application started | 2018-06-07 11:07:58.345
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:08:10.287
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:10:03.57
+[INFO] Application started | 2018-06-07 11:10:05.648
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:10:50.648
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:11:54.897
+[INFO] Application started | 2018-06-07 11:11:57.672
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:12:37.966
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:19:53.815
+[INFO] Application started | 2018-06-07 11:19:57.957
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:20:29.699
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:23:22.925
+[INFO] Application started | 2018-06-07 11:23:25.404
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:23:36.147
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:26:16.887
+[INFO] Application started | 2018-06-07 11:26:20.507
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:26:41.648
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:31:33.047
+[INFO] Application started | 2018-06-07 11:31:36.095
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:31:43.114
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:33:25.306
+[INFO] Application started | 2018-06-07 11:33:28.437
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:33:36.204
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:34:17.386
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:36:32.345
+[INFO] Application started | 2018-06-07 11:36:34.704
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:36:42.067
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:37:02.539
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:39:56.235
+[INFO] Application started | 2018-06-07 11:40:01.647
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:40:08.674
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:41:10.411
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:42:06.076
+[INFO] Application started | 2018-06-07 11:42:09.272
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:42:39.542
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:45:36.883
+[INFO] Application started | 2018-06-07 11:45:39.413
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:45:45.153
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:46:04.356
+[INFO] Application started | 2018-06-07 11:46:53.259
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:46:59.696
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:47:13.457
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:47:39.368
+[INFO] Application started | 2018-06-07 11:47:42.0
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:47:49.727
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:48:51.588
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:49:27.067
+[INFO] Application started | 2018-06-07 11:49:30.273
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:49:50.606
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:50:34.576
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 11:54:39.072
+[INFO] Application started | 2018-06-07 11:54:42.247
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 11:54:51.496
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-07 11:55:11.821
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:48:14.521
+[INFO] Application started | 2018-06-07 12:48:16.727
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:48:24.149
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:49:36.994
+[INFO] Application started | 2018-06-07 12:49:41.025
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:49:47.752
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 12:51:04.985
+[INFO] Application started | 2018-06-07 12:51:10.351
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 12:51:16.217
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:32:00.97
+[INFO] Application started | 2018-06-07 13:32:03.038
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:32:09.75
+[ERROR][root.client.controllers.UpdateDeleteExamController] socket does not exist | 2018-06-07 13:32:23.217
+[INFO] Application started | 2018-06-07 13:32:50.812
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:32:58.165
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:34:26.394
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-07 13:34:26.396
+[INFO][root.server.AES_Server] The server is connected | 2018-06-07 13:34:36.942
+[INFO] Application started | 2018-06-07 13:34:39.018
+[INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.User | 2018-06-07 13:34:46.195
+>>>>>>> refs/remotes/origin/Omer
