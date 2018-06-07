@@ -59,8 +59,6 @@ public class LoginController implements Observer {
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
-
-    
     Log log = Log.getInstance();
     /**
      * This method occurs when someone presses the sign in button
@@ -78,8 +76,6 @@ public class LoginController implements Observer {
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
-    	
-
     }
     
     /**
@@ -91,13 +87,9 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	//loggedInManager = LoggedInUserManager.getInstance();
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
-    	
-    	
-    	ErrorTxtField.setVisible(false);
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
@@ -115,7 +107,6 @@ public class LoginController implements Observer {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
 			DataKeepManager.getInstance().keepObject("user", user);
-			//System.out.println(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getObject("user"));
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
@@ -130,18 +121,13 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-				//ErrorTxtField.setText(arg1.toString());
-				//ErrorTxtField.setVisible(true);	
-				  // Show the error message.
+				// Show the error message.
 	            Alert alert = new Alert(AlertType.ERROR);
 	            alert.initOwner(screenManager.getPrimaryStage());
 	            alert.setTitle("Invalid Fields");
 	            alert.setHeaderText("Please correct invalid fields");
 	            alert.setContentText(arg1.toString());
-
 	            alert.showAndWait();
-
-	            
 			});
 		}
 	}

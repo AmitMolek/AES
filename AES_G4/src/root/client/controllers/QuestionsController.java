@@ -127,13 +127,13 @@ public class QuestionsController implements Observer{
     @FXML // fx:id="TeacherPremissionLbl"
     private Label TeacherPremissionLbl; // Value injected by FXMLLoader
 
+    //private int counter =0;
     private ObservableList<Subject> observableSubjects;
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
     private ObservableClient client;
     private Map<String,Integer> newValues;
 	private ArrayList<Question> questions;
-	
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
@@ -191,23 +191,6 @@ public class QuestionsController implements Observer{
 ////		}
 	}
 		
-		/*
-		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("id"));
-		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherName"));
-		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionIns"));
-//		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
-		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
-		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
-		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
-		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
-	//	tbcIdNum.setCellValueFactory(new PropertyValueFactory<Question, Integer>("questionNum"));
-		tblQuestions.setItems(queryQuestions);
-		
-
-		txtFieldId.clear();
-		txtFieldName.clear();
-		txtFieldQuestion.clear();
-		 */
 	
 
 
@@ -229,16 +212,39 @@ public class QuestionsController implements Observer{
 
     	setUserDetails(user);
     	getUserSubjects(user);
-    	
     	initQuestionsTable();
+    	//System.out.println(counter);
     }
 
 	private void initQuestionsTable() {
-			// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		//tbcId = new TableColumn("QuestionID");
+		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
+		
+		
+		
+//		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>(""));
+		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
+		
 		tblQuestions = new TableView<>();
-		tblQuestions.getItems().clear();
+		tblQuestions.setItems(observabaleQuestions);
+		tblQuestions.getColumns().addAll(tbcId,tbcIdText);
+		//tblQuestions.getItems().clear();
 		tblQuestions.setEditable(true);
-	
+
+////		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
+//		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
+//		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
+//		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
+//		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
+//	//	tbcIdNum.setCellValueFactory(new PropertyValueFactory<Question, Integer>("questionNum"));
+
+
+		//System.out.println(observabaleQuestions.size());
+//
+//		txtFieldId.clear();
+//		txtFieldName.clear();
+//		txtFieldQuestion.clear();
 	}
 
 	/**
@@ -276,9 +282,13 @@ public class QuestionsController implements Observer{
 			//System.out.println(arg1.toString());
 			
 			if(this.getQuestions().size() == 0)
-				this.setQuestions(((QuestionsMessage) arg1).getQuestions());
-			addQuestions(((QuestionsMessage) arg1).getQuestions());
-			observabaleQuestions = FXCollections.observableArrayList(questions); 
+				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
+			addQuestions(((QuestionsMessage) arg1).getQuestions());					// add new questions to a teachet.
+			//observabaleQuestions = FXCollections.observableArrayList(questions);
+			observabaleQuestions = FXCollections.observableArrayList(); 
+			for (Question question: questions) {
+				observabaleQuestions.add(question);
+			}
 		}
 		
 		if(arg1 instanceof UserSubjectMessage) {
@@ -289,16 +299,16 @@ public class QuestionsController implements Observer{
 			
 		}
 	}
-
-/**
- *  if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save&Close" 
- *  add newly created question to Questions in THIS, and to DB.
- * @param event
- * @throws IOException
- */
- @FXML
-    void onOpenDialog(ActionEvent event) throws IOException {
-	 Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
+	
+	/**
+	 *  if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save&Close" 
+	 *  add newly created question to Questions in THIS, and to DB.
+	 * @param event
+	 * @throws IOException
+	 */
+	 @FXML
+	 void onOpenDialog(ActionEvent event) throws IOException {
+		Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 		try {
 	    	observebaleNewQuestion = FXCollections.observableArrayList(); 
 	    	
@@ -328,96 +338,95 @@ public class QuestionsController implements Observer{
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
-			
+				
 	});
- }
-
- /**
-  *  function to create a valid Question ID
-  * @param subjectID
-  * @return String a Question valid ID
-  */
-private String prepareQuestionID(String subjectID) {
-	// TODO Auto-generated method stub
-	String newId = subjectID;
-	int newQuestionID = 0;
-	for (Question question: this.getQuestions()) {
-		String questionID = question.getQuestionId();
-		if (subjectID.equals(questionID.substring(0, 2))) {
-			int tempId = Integer.parseInt(questionID.substring(2));
-			if (newQuestionID <= tempId) newQuestionID = tempId;
-		}
 	}
-	newQuestionID++;
-	String x = "30";
-	int temp  =100;
-	while(temp > newQuestionID){
-		newId =  newId.concat("0");
-		temp = temp/10;
-	}
-	newId = newId.concat(String.valueOf(newQuestionID));
-	System.out.println("My tst "+newId);
-	return newId;
-}
-
-
-private void putNewQuestion(Question question) {
-	// TODO Auto-generated method stub
-	// here well prepare a message with {"set-new-Question", Question }
-	QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
-	try {
-		client.sendToServer(newQuestionMessage);
-	} catch (IOException e) {
-		e.printStackTrace();
-		log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-	}
-}
-
-private void getUserQuestions(ArrayList<Subject> userSubjects) {
+	
+	 /**
+	  *  function to create a valid Question ID
+	  * @param subjectID
+	  * @return String a Question valid ID
+	  */
+	private String prepareQuestionID(String subjectID) {
 		// TODO Auto-generated method stub
-		// Here well get all question that in the same subject of the user
-		for (Subject subject: userSubjects) {
-			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
-			try {
-				client.sendToServer(newQuestionMessage);
-			} catch (IOException e) {
-				e.printStackTrace();
-				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		String newId = subjectID;
+		int newQuestionID = 0;
+		for (Question question: this.getQuestions()) {
+			String questionID = question.getQuestionId();
+			if (subjectID.equals(questionID.substring(0, 2))) {
+				int tempId = Integer.parseInt(questionID.substring(2));
+				if (newQuestionID <= tempId) newQuestionID = tempId;
 			}
 		}
+		newQuestionID++;
+		int temp  =100;
+		while(temp > newQuestionID){
+			newId =  newId.concat("0");
+			temp = temp/10;
+		}
+		newId = newId.concat(String.valueOf(newQuestionID));
+		System.out.println("My tst "+newId);
+		return newId;
 	}
-
-private void getUserSubjects(User user) {
+	
+	private void putNewQuestion(Question question) {
 		// TODO Auto-generated method stub
-		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		// here well prepare a message with {"set-new-Question", Question }
+		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
 		try {
-			client.sendToServer(newUserSubjectMessage);
+			client.sendToServer(newQuestionMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
-
-public ArrayList<Subject> getUserSubjects() {
-	return userSubjects;
-}
-
-public void setUserSubjects(ArrayList<Subject> userSubjects) {
-	this.userSubjects = userSubjects;
-}
 	
-private void fillCombobox(ArrayList<Subject> teacherSubject) {
-	observableSubjects = FXCollections.observableArrayList(teacherSubject);
-	subjectCombobox.getItems().addAll(observableSubjects);
-}
+	private void getUserQuestions(ArrayList<Subject> userSubjects) {
+			// TODO Auto-generated method stub
+			// Here well get all question that in the same subject of the user
+		
+			for (Subject subject: userSubjects) {
+				QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
+				try {
+					client.sendToServer(newQuestionMessage);
+				} catch (IOException e) {
+					e.printStackTrace();
+					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				}
+			}
+		}
 	
+	private void getUserSubjects(User user) {
+			// TODO Auto-generated method stub
+			UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+			try {
+				client.sendToServer(newUserSubjectMessage);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			}
+		}
+	
+	public ArrayList<Subject> getUserSubjects() {
+		return userSubjects;
+	}
+	
+	public void setUserSubjects(ArrayList<Subject> userSubjects) {
+		this.userSubjects = userSubjects;
+	}
+		
+	private void fillCombobox(ArrayList<Subject> teacherSubject) {
+		observableSubjects = FXCollections.observableArrayList(teacherSubject);
+		subjectCombobox.getItems().addAll(observableSubjects);
+	}
+		
 	/**
 	 * @return the questions
 	 */
 	public ArrayList<Question> getQuestions() {
 		return questions;
 	}
-
+	
 	/**
 	 * @param questions the questions to set
 	 */
@@ -428,7 +437,7 @@ private void fillCombobox(ArrayList<Subject> teacherSubject) {
 		this.getQuestions().addAll(questions);
 		
 	}
-
+	
 	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
 		teacherIDLbl.setText(user.getUserID());
@@ -447,16 +456,8 @@ private void fillCombobox(ArrayList<Subject> teacherSubject) {
 			lblUpdateError.setText("Please enter valid input!");
 			lblUpdateError.setVisible(true);
 		}*/
-
+	
 		
 	}
-
-
-
-
-
-	@FXML public void updateCorrect() {}
-
-
-
+		@FXML public void updateCorrect() {}
 }

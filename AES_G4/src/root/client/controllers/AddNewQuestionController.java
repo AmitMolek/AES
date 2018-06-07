@@ -91,12 +91,8 @@ public class AddNewQuestionController {
 		    	String ans4 = txtFieldPossibleAnswer4.getText();
 		    	int correctAns = comboboxCorrectQuestion.getSelectionModel().getSelectedItem();
 		    	String teacherAssembeld = user.getUserID();	
-		        
-		    	
 		        Question newQuestion = new Question(questionId,questionText,questionIntruction,ans1,ans2,ans3,ans4,correctAns,teacherAssembeld);
-		        
 		        appMainObservableList.add(newQuestion);
-		        
 		        closeStage(event);
 	    	}
     	});
@@ -156,9 +152,7 @@ public class AddNewQuestionController {
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
-
             alert.showAndWait();
-
             return false;
         }
     }
