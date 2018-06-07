@@ -14,6 +14,7 @@ public class Exam implements Serializable {
 	private int ExamState;//0 - clean, 1- dirty
 	private int lock;// 0-locked, 1- unlocked
 	private ArrayList<QuestionInExam> examQuestions;
+	private String teacherId;
 	
 	/**
 	 * Constructor for exam
@@ -32,6 +33,7 @@ public class Exam implements Serializable {
 		ExamState = 0;
 		this.lock = 0;
 		this.examQuestions = examQuestions;
+		teacherId = author.getUserID();
 	}
 
 	/**

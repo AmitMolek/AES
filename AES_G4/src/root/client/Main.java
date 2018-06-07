@@ -2,9 +2,7 @@ package root.client;
 	
 
 import javafx.scene.text.Font;
-//<<<<<<< HEAD
 import root.client.managers.ScreensManager;
-//>>>>>>> refs/remotes/origin/Amit
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
@@ -21,8 +19,9 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
 		ScreensManager.addScreen("addExam", "resources/view/AddExamScreen.fxml");
 		ScreensManager.addScreen("updateDeleteExam", "resources/view/DeleteExamScreen.fxml");
+		ScreensManager.addScreen("executeExam", "resources/view/ExecuteExamScreen.fxml");
+		
 
-	
 		launch(args);
 	}
 	

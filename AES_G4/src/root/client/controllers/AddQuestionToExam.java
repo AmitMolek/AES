@@ -1,6 +1,5 @@
 package root.client.controllers;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -169,4 +168,3 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 }
-

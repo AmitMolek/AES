@@ -2,9 +2,9 @@ package root.server.managers.dbmgr;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -157,4 +157,17 @@ public class SetInDB implements DbManagerInterface {
 		
 	}
 
+	public AbstractMessage deleteTheExam(Exam exam) {
+		String deleteExam = "delete from exams where exam_id = " + exam.getExamId();
+		try {
+			newStmt = conn.prepareStatement(deleteExam+";");
+			newStmt.execute();
+			return message.getMessage("ok-delete-exams",null);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -213,11 +213,16 @@ public class QuestionsController implements Observer{
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();
-    	//System.out.println(counter);
+ 
     }
 
 	private void initQuestionsTable() {
-		// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
+		
+		tblQuestions = new TableView<>();
+		//tblQuestions.getItems().clear();
+		tblQuestions.setEditable(true);
+
 		//tbcId = new TableColumn("QuestionID");
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
 		
@@ -225,13 +230,8 @@ public class QuestionsController implements Observer{
 		
 //		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>(""));
 		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
-		
-		tblQuestions = new TableView<>();
 		tblQuestions.setItems(observabaleQuestions);
 		tblQuestions.getColumns().addAll(tbcId,tbcIdText);
-		//tblQuestions.getItems().clear();
-		tblQuestions.setEditable(true);
-
 ////		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
 //		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
 //		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
@@ -384,7 +384,7 @@ public class QuestionsController implements Observer{
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
 			// TODO Auto-generated method stub
 			// Here well get all question that in the same subject of the user
-		
+		counter++;
 			for (Subject subject: userSubjects) {
 				QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
 				try {

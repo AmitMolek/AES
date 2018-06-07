@@ -1,5 +1,3 @@
-
-
 package root.client.controllers;
 
 import java.io.IOException;
@@ -12,9 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import ocsf.client.ObservableClient;
 import root.client.managers.ScreensManager;
 import root.dao.app.Course;
@@ -227,5 +230,6 @@ public class AddExamController implements Observer {
     	btnAddToExam.setDisable(true);
     	
     }
-
+    
+    
 }

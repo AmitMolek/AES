@@ -41,6 +41,15 @@ public class ExamMessage extends AbstractMessage {
 	}
 	
 	/**
+	 * Constructor that send message from client
+	 * @param newExam the exam
+	 */
+	public ExamMessage(String message,Exam newExam){
+		super(message);
+		this.newExam = newExam;
+	}
+	
+	/**
 	 * Constructor that send get message from client
 	 * @param examSubject the exam subject
 	 * @param examCourse the exam course

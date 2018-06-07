@@ -1,13 +1,10 @@
 package root.server.managers;
 
 import java.util.ArrayList;
-
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
-
 import root.dao.app.Question;
-
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
@@ -44,31 +41,45 @@ public class ServerMessageManager {
 		switch(msgContent[0]) {
 		case "login":
 			return handleLoginMessage(msg);	
+
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
 			return handleQuestionsMessage(msg);
-		default:
-			return null;
-
 		case "get":
+<<<<<<< HEAD
 			return handleGetMessage(msg);
 		case "set":															// update an already existing data
 			return handleSetMessage(msg);
 
 		case "put":															// insert newData
+=======
+			return handleGetMessage(msg);
+		case "put":
+>>>>>>> refs/remotes/origin/Omer
 			return handlePutMessage(msg);
+<<<<<<< HEAD
 
+=======
+		case "delete":
+			return handleDeleteMessage(msg);
+		default:
+			return null;
+
+
+>>>>>>> refs/remotes/origin/Omer
 		}
 	}
 	
+<<<<<<< HEAD
 	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+=======
+>>>>>>> refs/remotes/origin/Omer
 	/**
-
 	 * @author gal
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
 	 * @return	{@link AbstractMessage} of QuestionMessage filled with question from the same subject
@@ -208,6 +219,23 @@ public class ServerMessageManager {
 		GetFromDB getExam = new GetFromDB();
 		ArrayList<Exam> exams = getExam.exams(examId);
 		return message.getMessage("ok-get-exams", exams);
+	}
+	
+	private static AbstractMessage handleDeleteMessage(AbstractMessage msg) {
+		String[] msgContent = msg.getMsg().toLowerCase().split("-");
+		switch(msgContent[1]) {
+		case "exams":
+			return handleDeleteExamMessage(msg);
+		}
+		return null;
+	}
+	
+	private static AbstractMessage handleDeleteExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		Exam deleteExam = recivedMessage.getNewExam();
+		SetInDB deletesExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) deletesExam.deleteTheExam(deleteExam);
+		return sendMessage;
 	}
 	
 }

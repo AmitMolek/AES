@@ -2,7 +2,6 @@ package root.client.controllers;
 
 import java.io.IOException;
 import java.util.Observer;
-
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

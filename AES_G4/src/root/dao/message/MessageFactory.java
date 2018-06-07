@@ -64,8 +64,12 @@ public class MessageFactory {
 	}
 
 	private AbstractMessage getDelMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "exams":
+			return new ExamMessage("delete-exams",(Exam)payload);
+		}
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -116,7 +120,10 @@ public class MessageFactory {
 		default:
 			break;
 		}
+
 		return null;
+		
+		
 	}
 	
 	/**
@@ -161,7 +168,6 @@ public class MessageFactory {
 	 * @return the relevant message
 	 */
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
-	{
 		switch(msgContent[2]) {
 
 		case "questions":
@@ -181,7 +187,11 @@ public class MessageFactory {
 		case "courses":
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
+<<<<<<< HEAD
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+=======
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+>>>>>>> refs/remotes/origin/Omer
 		}
 		
 			

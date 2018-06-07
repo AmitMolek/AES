@@ -16,7 +16,7 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 	private Subject thisQuestionsSubject;
 	
 	public QuestionsMessage(Subject payload) {
-		super("get-questions");
+		super("Questions");
 		this.thisQuestionsSubject=payload;
 	}
 
@@ -32,6 +32,7 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 		this.questions = payload.getQuestions();
 		this.thisQuestionsSubject = payload.getThisQuestionsSubject();
 	}
+
 	
 	/**
 	 * Constructor that send message to client
@@ -44,6 +45,7 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 		this.questions.add(payload);
 		
 	}
+
 
 	@Override
 	public String getType() {
