@@ -10,6 +10,11 @@ import root.dao.app.Subject;
 import root.dao.app.User;
 import root.server.managers.dbmgr.GetFromDB;
 
+/**
+ * Class for make new message
+ * @author Omer Haimovich
+ *
+ */
 public class MessageFactory {
 	private static MessageFactory instance=null;
 	
@@ -24,6 +29,12 @@ public class MessageFactory {
 		return instance;
 	}
 	
+	/**
+	 * make new message (factory for all types of messages)
+	 * @param msg the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return
+	 */
 	public AbstractMessage getMessage(String msg,Object payload) {
 		String[] msgContent=msg.toLowerCase().split("-");
 		switch(msgContent[0]) {
@@ -62,18 +73,32 @@ public class MessageFactory {
 		
 	}
 
+	/**
+	 * Make new put message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
 	private AbstractMessage getPutMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+			case "exams":
+				return new ExamMessage((Exam)payload);
+		}
 		return null;
-		// TODO Auto-generated method stub
-		
 	}
 
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 
+	/**
+	  * Make new get message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
 	private AbstractMessage getGetMessage(String[] msgContent, Object payload) {
 		switch (msgContent[1]) {
 		case "usersubjects":
@@ -84,6 +109,8 @@ public class MessageFactory {
 			return new SubjectMessage((String)payload);
 		case "courses":
 			return new CourseMessage((Subject)payload);
+		case "exams":
+			return new ExamMessage((String)payload);
 		default:
 			break;
 		}
@@ -92,12 +119,24 @@ public class MessageFactory {
 		
 		
 	}
-
+	
+	/**
+	  * Make new login message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
 	private AbstractMessage getLoginMessage(String[] msgContent, Object payload) {
 		
 		return new LoginMessage((LoginInfo)payload);	
 	}
 
+	/**
+	  * Make new ok message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
 	@SuppressWarnings("unchecked")
 	public AbstractMessage getOkMessage(String[] msgContent,Object payload) {
 		switch(msgContent[1]) {
@@ -116,12 +155,20 @@ public class MessageFactory {
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	
+	/**
+	  * Make new ok-get message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
 	public AbstractMessage getOkGetMessage(String[] msgContent,Object payload)
 	{
 		switch(msgContent[2]) {
 
 		case "questions":
-			return new QuestionsMessage((QuestionsMessage)payload);
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "usersubjects":
 			return new UserSubjectMessage((UserSubjectMessage)payload);
 		case "exams":

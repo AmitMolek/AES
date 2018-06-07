@@ -120,7 +120,7 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ loggedInManager);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					screenManager.activate("executeExam");
+					screenManager.activate("updateDeleteExam");
 			} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
