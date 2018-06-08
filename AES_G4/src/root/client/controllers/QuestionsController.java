@@ -11,26 +11,34 @@ import java.util.Optional;
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
@@ -40,13 +48,16 @@ import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.LoginMessage;
-import root.dao.message.Message;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
+import root.dao.message.SimpleMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
+//import tableButtonTest.Main.Record;
+//import tableButtonTest.Main.ButtonCell;
+//import tableButtonTest.Mai//n.Record;
 
 
 public class QuestionsController implements Observer{
@@ -66,10 +77,10 @@ public class QuestionsController implements Observer{
     private TableColumn<Question, String> tbcId; // Value injected by FXMLLoader
 
     @FXML // fx:id="tbcIdNum"
-    private TableColumn<Question, String> tbcIdNum; // Value injected by FXMLLoader
+    private TableColumn<Question, String> tbcIdInstruction; // Value injected by FXMLLoader
 
     @FXML // fx:id="tbcName"
-    private TableColumn<Question, String> tbcName; // Value injected by FXMLLoader
+    private TableColumn<Question, String> tbcTeacherName; // Value injected by FXMLLoader
 
     @FXML // fx:id="tbcIdText"
     private TableColumn<Question, String> tbcIdText; // Value injected by FXMLLoader
@@ -87,7 +98,8 @@ public class QuestionsController implements Observer{
     private TableColumn<Question, String> tbcAns4; // Value injected by FXMLLoader
 
     @FXML // fx:id="tbcCorr"
-    private TableColumn<Question, String> tbcCorr; // Value injected by FXMLLoader
+    private TableColumn<Question, Integer> tbcCorr; // Value injected by FXMLLoader
+
 
     @FXML // fx:id="txtFieldId"
     private TextField txtFieldId; // Value injected by FXMLLoader
@@ -104,14 +116,6 @@ public class QuestionsController implements Observer{
     @FXML // fx:id="subjectCombobox"
     private ComboBox<Subject> subjectCombobox; // Value injected by FXMLLoader
 
-
-    @FXML
-    private Button updateQuestion;
-
-    @FXML
-    private Button newQuestion;
-
-
     @FXML // fx:id="btnSearch"
     private Button btnSearch; // Value injected by FXMLLoader
 
@@ -126,8 +130,16 @@ public class QuestionsController implements Observer{
 
     @FXML // fx:id="TeacherPremissionLbl"
     private Label TeacherPremissionLbl; // Value injected by FXMLLoader
+    
+    @FXML
+    private Button deleteQuestion;
 
-    //private int counter =0;
+    @FXML
+    private Button newQuestion;
+
+    @FXML
+    private Button editQuestion;
+    
     private ObservableList<Subject> observableSubjects;
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
@@ -148,7 +160,7 @@ public class QuestionsController implements Observer{
 
 	@FXML
     void selectFromCombobox(ActionEvent event) {
-		System.out.println(event);
+		//System.out.println(event);
 		System.out.println(subjectCombobox.getSelectionModel().getSelectedItem().toString());
     }
 	
@@ -209,7 +221,13 @@ public class QuestionsController implements Observer{
     	client.openConnection();
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
-
+    	
+    	// Listen for selection changes and show the person details when changed.
+    	tblQuestions.setOnMouseClicked(e -> {
+    		editQuestion.setDisable(false);
+        });
+    	editQuestion.setDisable(true);
+    	
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();
@@ -217,58 +235,78 @@ public class QuestionsController implements Observer{
     }
 
 	private void initQuestionsTable() {
-			// TODO Auto-generated method stub
-		
-		tblQuestions = new TableView<>();
-		//tblQuestions.getItems().clear();
-		tblQuestions.setEditable(true);
+		// TODO Auto-generated method stub
+		//tblQuestions.setEditable(true);
 
-		//tbcId = new TableColumn("QuestionID");
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
-		
-		
-		
-//		tbcName.setCellValueFactory(new PropertyValueFactory<Question, String>(""));
 		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
-		tblQuestions.setItems(observabaleQuestions);
-		tblQuestions.getColumns().addAll(tbcId,tbcIdText);
-////		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
-//		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
-//		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
-//		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
-//		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
-//	//	tbcIdNum.setCellValueFactory(new PropertyValueFactory<Question, Integer>("questionNum"));
-
-
-		//System.out.println(observabaleQuestions.size());
-//
-//		txtFieldId.clear();
-//		txtFieldName.clear();
-//		txtFieldQuestion.clear();
+		tbcIdInstruction.setCellValueFactory(new PropertyValueFactory<Question, String>("idquestionIntruction"));
+		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
+		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
+		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
+		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
+		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
+		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherAssembeld"));
+		
+		
+		//editButton =  new TableColumn<>("Action");
+		
+		
+		
+		
+		
 	}
-
+	
 	/**
-	 * This method happens when the user press on the update button 
+	 * This method will set a edit option
+	 * @param event
+	 */
+	@FXML
+    void editSelectedQuestion(ActionEvent event) {
+		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+        	tblQuestions.getItems().remove(selectedIndex);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+        }
+    }
+	   
+	/**
+	 * This method happens when the user press on the delete button 
 	 * @param event
 	 */
     @FXML
-    void updateQuestion(ActionEvent event) {
-    	try {
-    		if(newValues.size() == 0)
-    		{
-    			lblUpdateError.setText("Please update the row!");
-    			lblUpdateError.setVisible(true);
+    void deleteSelectedQuestion(ActionEvent event) {
+    	Question questionToDelete;
+    	int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+        	tblQuestions.getItems().remove(selectedIndex);
+        	questionToDelete = tblQuestions.getSelectionModel().getSelectedItem();
+        	questions.remove(questionToDelete);
+        	QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
+        	try {
+    			client.sendToServer(questionDeleteMessage);
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
     		}
-    		else
-    			lblUpdateError.setVisible(false);
-    		Message send = new Message("set-questions-map",newValues);
-			client.sendToServer(send);
-			newValues.clear();
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-		}
-    	
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+        }
     }
     
    
@@ -279,16 +317,14 @@ public class QuestionsController implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		
 		if (arg1 instanceof QuestionsMessage) {
-			//System.out.println(arg1.toString());
-			
 			if(this.getQuestions().size() == 0)
 				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
 			addQuestions(((QuestionsMessage) arg1).getQuestions());					// add new questions to a teachet.
-			//observabaleQuestions = FXCollections.observableArrayList(questions);
 			observabaleQuestions = FXCollections.observableArrayList(); 
 			for (Question question: questions) {
 				observabaleQuestions.add(question);
 			}
+			tblQuestions.setItems(observabaleQuestions);
 		}
 		
 		if(arg1 instanceof UserSubjectMessage) {
@@ -297,6 +333,20 @@ public class QuestionsController implements Observer{
 			getUserQuestions(this.userSubjects);
 			System.out.println(this.userSubjects.toString());
 			
+		}
+		
+		if(arg1 instanceof SimpleMessage) {
+			SimpleMessage simple = (SimpleMessage)arg1;
+			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				try {
+					screenManager.activate("home");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				}
+			});
 		}
 	}
 	
@@ -307,7 +357,7 @@ public class QuestionsController implements Observer{
 	 * @throws IOException
 	 */
 	 @FXML
-	 void onOpenDialog(ActionEvent event) throws IOException {
+	 void newQuestionDialog(ActionEvent event) throws IOException {
 		Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 		try {
 	    	observebaleNewQuestion = FXCollections.observableArrayList(); 
@@ -330,6 +380,7 @@ public class QuestionsController implements Observer{
 		    observebaleNewQuestion.get(0).setQuestionId(questionId);
 		    observabaleQuestions.add(observebaleNewQuestion.get(0));
 		    questions.add(observebaleNewQuestion.get(0));
+		    
 		    putNewQuestion(observebaleNewQuestion.get(0));
 		    System.out.println(observebaleNewQuestion.get(0));
 			
@@ -445,18 +496,6 @@ public class QuestionsController implements Observer{
 		TeacherPremissionLbl.setText(user.getUserPremission());
 	}
 	
-	@FXML public void updateCorrect(TableColumn.CellEditEvent<Question, Integer> correctEditEvent) {
-		Question question = tblQuestions.getSelectionModel().getSelectedItem();
-		Integer newValue = correctEditEvent.getNewValue();
-		/*if(newValue>=1 && newValue <= 4)
-			newValues.put(question.getId(),newValue);
-		else
-		{
-			lblUpdateError.setText("Please enter valid input!");
-			lblUpdateError.setVisible(true);
-		}*/
 	
-		
-	}
 		@FXML public void updateCorrect() {}
 }

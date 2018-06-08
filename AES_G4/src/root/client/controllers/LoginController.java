@@ -133,12 +133,6 @@ public class LoginController implements Observer {
 			});
 		}
 	}
-}
-				ErrorTxtField.setText(arg1.toString());
-				ErrorTxtField.setVisible(true);	
-			});
-		}
-	}
 	
 	public void AddUserSpecificScreens() {
 		if(user.getUserPremission().equals("Teacher")) {

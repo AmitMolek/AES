@@ -163,7 +163,18 @@ public class SetInDB implements DbManagerInterface {
 			newStmt = conn.prepareStatement(deleteExam+";");
 			newStmt.execute();
 			return message.getMessage("ok-delete-exams",null);
-
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public AbstractMessage deleteTheQuestion(Question Question) {
+		String deleteQuestion = "delete from questions where question_id = " + Question.getQuestionId();
+		try {
+			newStmt = conn.prepareStatement(deleteQuestion+";");
+			newStmt.execute();
+			return message.getMessage("ok-delete-questions",null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

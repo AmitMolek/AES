@@ -50,7 +50,6 @@ public class ServerMessageManager {
 			return handleGetMessage(msg);
 		case "set":															// update an already existing data
 			return handleSetMessage(msg);
-
 		case "put":															// insert newData
 			return handlePutMessage(msg);
 		case "delete":
@@ -213,10 +212,20 @@ public class ServerMessageManager {
 		switch(msgContent[1]) {
 		case "exams":
 			return handleDeleteExamMessage(msg);
+		case "questions":
+			return handleDeleteQuestionMessage(msg);
 		}
 		return null;
 	}
 	
+	private static AbstractMessage handleDeleteQuestionMessage(AbstractMessage msg) {
+		QuestionsMessage recievedMessage = (QuestionsMessage)msg;
+		Question deleteQuestion = recievedMessage.getQuestions().get(0);
+		SetInDB deletesQuestion = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) deletesQuestion.deleteTheQuestion(deleteQuestion);
+		return sendMessage;
+	}
+
 	private static AbstractMessage handleDeleteExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
 		Exam deleteExam = recivedMessage.getNewExam();
