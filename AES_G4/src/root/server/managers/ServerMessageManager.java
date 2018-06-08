@@ -183,11 +183,30 @@ public class ServerMessageManager {
 	}
 	
 	private static AbstractMessage handleGetExamMessage(AbstractMessage msg) {
-		ExamMessage recivedMessage = (ExamMessage) msg;
-		String examId = recivedMessage.getId();
-		GetFromDB getExam = new GetFromDB();
-		ArrayList<Exam> exams = getExam.exams(examId);
-		return message.getMessage("ok-get-exams", exams);
+		if(msg instanceof SimpleMessage)
+		{
+			SimpleMessage recievedMessage = (SimpleMessage) msg;
+			String strMsg =recievedMessage.getMsg();
+			String[] msgContent = msg.getMsg().toLowerCase().split("-");
+			if(msgContent[2].equals("pass")) {
+				GetFromDB getExam = new GetFromDB();
+				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
+				if(exams!=null)
+					return message.getMessage("ok-get-exams", exams);
+				else
+					return new ErrorMessage(new NullPointerException("not find exam"));
+			}
+			
+		}
+		else {
+			ExamMessage recivedMessage = (ExamMessage) msg;
+			String examId = recivedMessage.getId();
+			GetFromDB getExam = new GetFromDB();
+			ArrayList<Exam> exams = getExam.exams(examId);
+			return message.getMessage("ok-get-exams", exams);
+
+		}
+		return null;
 	}
 	
 	private static AbstractMessage handleDeleteMessage(AbstractMessage msg) {

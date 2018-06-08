@@ -18,7 +18,6 @@ public class ExamMessage extends AbstractMessage {
 	private Subject examSubject;
 	private Course examCourse;
 	private String id;
-
 	
 
 
@@ -69,6 +68,8 @@ public class ExamMessage extends AbstractMessage {
 		this.id = id;
 		
 	}
+	
+	
 	
 	
 

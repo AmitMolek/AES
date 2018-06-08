@@ -9,16 +9,6 @@
 <AnchorPane fx:id="rootExecute" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.ExecuteExamController">
    <children>
       <BorderPane fx:id="myBorder" prefHeight="638.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <Label fx:id="lblTimer" alignment="CENTER" prefHeight="55.0" prefWidth="801.0" text="test" textAlignment="RIGHT" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="53.0" />
-               </font></Label>
-            
-         </top>
-         <bottom>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
-         </bottom>
          <left>
             <VBox prefHeight="570.0" prefWidth="137.0" BorderPane.alignment="CENTER" />
          </left>
@@ -26,13 +16,31 @@
             <AnchorPane fx:id="answersPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </center>
          <right>
-            <ScrollPane prefHeight="762.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane opacity="0.52" prefHeight="270.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="vbxQuetionsTab" prefHeight="532.0" prefWidth="197.0" />
+                  <VBox fx:id="vbxQuetionsTab" prefHeight="348.0" prefWidth="197.0" />
                </content>
             </ScrollPane>
          </right>
+         <bottom>
+            <AnchorPane prefHeight="57.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="575.0" mnemonicParsing="false" text="submit" />
+                  <Button fx:id="btnNext" layoutX="974.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+               </children>
+            </AnchorPane>
+         </bottom>
+         <top>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="lblTimer" alignment="CENTER" layoutX="761.0" layoutY="14.0" prefHeight="107.0" prefWidth="505.0" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="53.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
       </BorderPane>
-      <Button fx:id="btnNext" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
    </children>
 </AnchorPane>

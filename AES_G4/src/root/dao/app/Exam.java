@@ -23,6 +23,14 @@ public class Exam implements Serializable {
 	 * @param examDuration the exam duration
 	 * @param examQuestions the list of the questions in the exam
 	 */
+	public Exam(String examId, String teacherId, int examDuration) {
+		super();
+		this.examId = examId;
+		this.examDuration = examDuration;
+		ExamState = 1;
+		this.lock = 1;
+		this.teacherId = teacherId;
+	}
 	
 	public Exam(String examId, User author, int examDuration,
 			ArrayList<QuestionInExam> examQuestions) {
