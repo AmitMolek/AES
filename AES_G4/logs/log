@@ -2199,3 +2199,372 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-07 20:48:36.98
 [INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-07 20:48:46.479
 >>>>>>> refs/remotes/origin/Alon
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 11:34:21.895
+[INFO] Application started | 2018-06-08 11:34:24.464
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:34:24.755
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:34:29.249
+[INFO] Application started | 2018-06-08 11:35:26.924
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:35:27.182
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:35:31.164
+[INFO] Application started | 2018-06-08 11:37:41.681
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 11:37:42.915
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 11:37:46.394
+[INFO] Application started | 2018-06-08 11:37:50.85
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:37:51.141
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:37:55.272
+[INFO] Application started | 2018-06-08 11:38:57.326
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:38:57.57
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:39:01.674
+[INFO] Application started | 2018-06-08 11:39:41.761
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:39:42.029
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:39:45.869
+[INFO] Application started | 2018-06-08 11:40:47.207
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:40:47.448
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:40:51.16
+[ERROR][root.client.controllers.QuestionsController] socket does not exist | 2018-06-08 11:41:03.362
+[INFO] Application started | 2018-06-08 11:41:20.417
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:41:20.69
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:41:24.681
+[INFO] Application started | 2018-06-08 11:47:03.708
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 11:47:04.94
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 11:47:20.64
+[INFO] Application started | 2018-06-08 11:47:22.169
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:47:22.46
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:47:26.454
+[INFO] Application started | 2018-06-08 11:47:47.415
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:47:47.721
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:47:51.327
+[INFO] Application started | 2018-06-08 11:48:48.391
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:48:48.662
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:48:52.768
+[INFO] Application started | 2018-06-08 11:50:34.804
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:50:35.072
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:50:38.793
+[INFO] Application started | 2018-06-08 11:51:44.931
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:51:45.194
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:51:49.157
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 11:51:52.79
+[INFO] Application started | 2018-06-08 11:54:42.542
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:54:42.836
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:54:46.822
+[INFO] Application started | 2018-06-08 11:57:01.582
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 11:57:02.843
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 11:57:09.794
+[INFO] Application started | 2018-06-08 11:57:11.567
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 11:57:11.875
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 11:57:15.873
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 12:21:40.928
+[INFO] Application started | 2018-06-08 12:21:43.573
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:21:43.862
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:21:47.635
+[INFO] Application started | 2018-06-08 12:23:14.395
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:23:14.641
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:23:18.855
+[INFO] Application started | 2018-06-08 12:25:15.764
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:25:16.018
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:25:20.206
+[INFO] Application started | 2018-06-08 12:26:34.221
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:26:34.566
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:26:38.321
+[INFO] Application started | 2018-06-08 12:28:03.942
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:28:04.244
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:28:08.71
+[INFO] Application started | 2018-06-08 12:28:18.749
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:28:19.021
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:28:23.011
+[INFO] Application started | 2018-06-08 12:31:25.535
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:31:25.796
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:31:29.878
+[INFO] Application started | 2018-06-08 12:33:41.452
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:33:41.715
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:33:45.592
+[INFO] Application started | 2018-06-08 12:34:48.332
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:34:48.594
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:34:52.895
+[INFO] Application started | 2018-06-08 12:35:22.792
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:35:23.057
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:35:27.025
+[INFO] Application started | 2018-06-08 12:36:25.113
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:36:25.382
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:36:29.941
+[INFO] Application started | 2018-06-08 12:37:32.75
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 12:37:33.98
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 12:37:35.3
+[INFO] Application started | 2018-06-08 12:37:37.341
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:37:37.629
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:37:41.431
+[INFO] Application started | 2018-06-08 12:40:04.718
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:40:04.968
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:40:09.808
+[INFO] Application started | 2018-06-08 12:41:25.172
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:41:25.416
+[INFO] Application started | 2018-06-08 12:41:52.251
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:41:52.493
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:41:56.153
+[INFO] Application started | 2018-06-08 12:42:27.878
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:42:28.144
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:42:31.957
+[INFO] Application started | 2018-06-08 12:43:51.487
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 12:43:51.759
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 12:43:55.541
+[INFO] Application started | 2018-06-08 13:28:13.508
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 13:28:13.769
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 13:28:17.383
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 13:38:04.966
+[INFO] Application started | 2018-06-08 13:38:07.814
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 13:38:08.102
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 13:38:11.7
+[INFO] Application started | 2018-06-08 14:08:29.258
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:08:29.531
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:08:33.726
+[INFO] Application started | 2018-06-08 14:09:55.499
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:09:55.761
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:10:03.585
+[INFO] Application started | 2018-06-08 14:16:37.421
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:16:37.677
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:16:41.367
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:18:41.496
+[INFO] Application started | 2018-06-08 14:18:43.376
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:18:43.664
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:18:47.008
+[INFO] Application started | 2018-06-08 14:20:08.263
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 14:20:09.532
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:20:12.613
+[INFO] Application started | 2018-06-08 14:20:13.667
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:20:13.966
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:20:17.946
+[INFO] Application started | 2018-06-08 14:20:38.495
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:20:38.737
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:20:42.15
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:21:22.52
+[INFO] Application started | 2018-06-08 14:21:25.004
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:21:25.315
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:21:32.453
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:24:44.009
+[INFO] Application started | 2018-06-08 14:24:45.828
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:24:46.153
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:24:58.473
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:27:37.882
+[INFO] Application started | 2018-06-08 14:27:39.712
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:27:40.061
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:27:50.703
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:29:23.571
+[INFO] Application started | 2018-06-08 14:29:25.043
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:29:25.341
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:30:46.837
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:31:35.562
+[INFO] Application started | 2018-06-08 14:31:37.342
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:31:37.638
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:31:44.61
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:35:10.162
+[INFO] Application started | 2018-06-08 14:35:11.409
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:35:11.694
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:35:15.458
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:35:58.386
+[INFO] Application started | 2018-06-08 14:36:00.172
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:36:00.459
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:36:04.442
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:38:25.123
+[INFO] Application started | 2018-06-08 14:38:26.421
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:38:26.711
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:38:30.421
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:38:53.955
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:40:45.29
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-08 14:40:45.291
+[INFO] Application started | 2018-06-08 14:40:46.7
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:40:46.948
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:40:50.613
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:41:00.61
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:41:20.959
+[INFO] Application started | 2018-06-08 14:41:22.689
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:41:22.982
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:41:31.065
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:42:28.355
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:43:03.63
+[INFO] Application started | 2018-06-08 14:43:05.174
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:43:05.462
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:43:09.56
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:43:18.507
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:44:19.722
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-08 14:44:19.724
+[INFO] Application started | 2018-06-08 14:44:21.535
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:44:21.778
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:44:25.321
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:44:33.131
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:45:49.57
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-08 14:45:49.571
+[INFO] Application started | 2018-06-08 14:45:51.242
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:45:51.507
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:45:55.234
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:50:59.702
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-08 14:50:59.703
+[INFO] Application started | 2018-06-08 14:51:01.08
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:51:01.322
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:51:05.521
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 14:57:13.649
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-08 14:57:13.65
+[INFO] Application started | 2018-06-08 14:57:15.224
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 14:57:15.47
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 14:57:19.838
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:57:26.28
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:57:41.758
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-08 14:58:01.015
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 15:57:09.586
+[INFO] Application started | 2018-06-08 15:57:11.014
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 15:57:11.325
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 15:57:15.586
+[ERROR][root.client.controllers.LoginController] Error resolving onEditCommit='#updateCorrect', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml:30
+ | 2018-06-08 15:57:15.67
+[INFO] Application started | 2018-06-08 15:57:47.148
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 15:57:47.396
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 15:57:51.494
+[ERROR][root.client.controllers.LoginController] Error resolving onEditCommit='#updateCorrect', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml:30
+ | 2018-06-08 15:57:51.556
+[INFO] Application started | 2018-06-08 15:59:36.796
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 15:59:37.041
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 15:59:40.869
+[ERROR][root.client.controllers.LoginController] Error resolving onEditCommit='#updateCorrect', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml:30
+ | 2018-06-08 15:59:40.934
+[INFO] Application started | 2018-06-08 16:00:44.299
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:00:44.542
+[ERROR][root.client.controllers.LoginController] Wrong Password | 2018-06-08 16:00:49.667
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:00:53.356
+[INFO] Application started | 2018-06-08 16:01:30.726
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:01:30.992
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:01:39.629
+[INFO] Application started | 2018-06-08 16:03:37.316
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:03:37.561
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:03:41.035
+[INFO] Application started | 2018-06-08 16:08:22.644
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:08:22.883
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:08:26.848
+[INFO] Application started | 2018-06-08 16:14:10.672
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:14:10.915
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:14:16.39
+[INFO] Application started | 2018-06-08 16:22:44.614
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:22:44.887
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:22:49.266
+[INFO] Application started | 2018-06-08 16:23:28.479
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:23:28.716
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:23:32.786
+[INFO] Application started | 2018-06-08 16:24:15.932
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:24:16.206
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:24:19.802
+[INFO] Application started | 2018-06-08 16:25:03.584
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:25:03.862
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:25:07.785
+[INFO] Application started | 2018-06-08 16:26:09.191
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:26:09.476
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:26:13.218
+[INFO] Application started | 2018-06-08 16:27:46.736
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:27:46.985
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:27:50.519
+[INFO] Application started | 2018-06-08 16:30:27.044
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:30:27.302
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:30:30.985
+[INFO] Application started | 2018-06-08 16:35:09.151
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:35:09.405
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:35:13.317
+[INFO] Application started | 2018-06-08 16:36:02.055
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 16:36:02.304
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 16:36:05.716
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 19:04:01.966
+[INFO] Application started | 2018-06-08 19:04:03.649
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:04:03.955
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:04:09.022
+[INFO] Application started | 2018-06-08 19:04:38.167
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:04:38.431
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:04:41.838
+[INFO] Application started | 2018-06-08 19:05:38.918
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:05:39.183
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:05:42.808
+[INFO] Application started | 2018-06-08 19:07:05.309
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:07:05.574
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:07:09.714
+[INFO] Application started | 2018-06-08 19:07:48.26
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:07:48.527
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:07:52.393
+[INFO] Application started | 2018-06-08 19:08:55.641
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:08:55.906
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:08:59.373
+[INFO] Application started | 2018-06-08 19:09:43.941
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:09:44.183
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:09:47.822
+[INFO] Application started | 2018-06-08 19:10:28.546
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:10:28.813
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:10:32.269
+[INFO] Application started | 2018-06-08 19:12:04.573
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-08 19:12:05.839
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 19:12:11.144
+[INFO] Application started | 2018-06-08 19:12:12.627
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:12:12.912
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:12:16.402
+[INFO] Application started | 2018-06-08 19:13:11.771
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:13:12.021
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:13:15.715
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 19:13:39.971
+[INFO] Application started | 2018-06-08 19:13:41.514
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:13:41.799
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:13:45.78
+[INFO] Application started | 2018-06-08 19:15:09.102
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:15:09.343
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:15:13.306
+[INFO] Application started | 2018-06-08 19:15:43.431
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:15:43.667
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:15:47.946
+[INFO] Application started | 2018-06-08 19:16:09.622
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:16:09.883
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:16:13.979
+[INFO] Application started | 2018-06-08 19:21:08.903
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:21:09.194
+[ERROR][root.client.controllers.LoginController] User not exist | 2018-06-08 19:21:15.357
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:21:19.24
+[INFO] Application started | 2018-06-08 19:22:20.238
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:22:20.548
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:22:24.521
+[INFO] Application started | 2018-06-08 19:24:18.842
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:24:19.125
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:24:22.818
+[INFO] Application started | 2018-06-08 19:26:28.71
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:26:28.976
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:26:32.568
+[INFO] Application started | 2018-06-08 19:29:48.959
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:29:49.202
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:29:53.612
+[INFO] Application started | 2018-06-08 19:31:01.404
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:31:01.672
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:31:05.472
+[INFO] Application started | 2018-06-08 19:31:17.069
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:31:17.341
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:31:21.606
+[INFO] Application started | 2018-06-08 19:32:35.364
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:32:35.661
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:32:40.614
+[INFO] Application started | 2018-06-08 19:33:28.944
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:33:29.221
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:33:33.475
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 19:34:47.76
+[INFO] Application started | 2018-06-08 19:34:49.377
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:34:49.67
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:35:00.108
+[INFO] Application started | 2018-06-08 19:39:41.974
+[INFO] Application started | 2018-06-08 19:39:45.809
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 19:39:55.271
+[INFO] Application started | 2018-06-08 19:39:56.425
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 19:39:56.712
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 19:40:00.84

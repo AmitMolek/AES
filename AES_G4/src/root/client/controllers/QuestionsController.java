@@ -6,52 +6,38 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Optional;
-
-import org.controlsfx.control.textfield.TextFields;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
-import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
-import root.dao.message.LoginMessage;
+import root.dao.app.UserInfo;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
-import root.dao.message.UserMessage;
+import root.dao.message.UserInfoMessage;
 import root.dao.message.UserSubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -147,6 +133,7 @@ public class QuestionsController implements Observer{
     private User user;
     private ScreensManager screenManager;
 	private ArrayList<Subject> userSubjects;
+	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name. 
 	Log log = Log.getInstance();
   
 
@@ -169,44 +156,58 @@ public class QuestionsController implements Observer{
 		}
 		
     }
-	
-	   
+   
 	@FXML
  	void searchQuestion(ActionEvent event) {
-//		tblQuestions.getItems().clear();
-//		String questionId = txtFieldId.getText();
-//		String questionName = txtFieldName.getText();
-//		String questionIns = txtFieldQuestion.getText();
-//		ObservableList<Question> queryQuestions = FXCollections.observableArrayList();
-//		if (questionId != null) {
-//			for (int i = 0; i < questions.size(); i++) {
-//				Question q = questions.get(i);
-//				if (q.getId().equals(questionId)) {
-//					queryQuestions.add(q);
+		String errorMessage = "";
+		if (txtFieldQuestion.getText().length() != 0) {
+			String questionID = txtFieldQuestion.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getQuestionId().equals(questionID) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldQuestion.clear();
+			btnSearch.setDisable(true);
+			return;
+		}
+		if (txtFieldId.getText().length() != 0) {
+			String teacherID = txtFieldId.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getTeacherAssembeld().equals(teacherID) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldId.clear();
+			btnSearch.setDisable(true);
+			return;
+		}
+		if (txtFieldName.getText().length() != 0){
+//			String teacherName = txtFieldName.getText();
+//			observabaleQuestions.clear();
+//			for(Question question: questions) {
+//				if (question.getTeacherAssembeld().equals(teacherID) ) {
+//					observabaleQuestions.add(question);
 //				}
 //			}
-//
-//		}
-//
-//		if (questionName != null) {
-//			for (int i = 0; i < questions.size(); i++) {
-//				Question q = questions.get(i);
-//				if (q.getTeacherName().equals(questionName) && (!queryQuestions.contains(q))) {
-//					queryQuestions.add(q);
-//				}
-//			}
-//
-//		}
-//
-////		if (questionIns != null) {
-////			for (int i = 0; i < questions.size(); i++) {
-////				Question q = questions.get(i);
-////				if (q.getQuestionIns().equals(questionIns) && (!queryQuestions.contains(q))) {
-////					queryQuestions.add(q);
-////				}
-////			}
-////
-////		}
+//			txtFieldName.clear();
+//			btnSearch.setDisable(true);
+//			return;
+		}else {
+            // Nothing selected.
+			errorMessage = "Please fill selected field";
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No field Selected");
+            alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
+
+            alert.showAndWait();
+            btnSearch.setDisable(true);
+            
+		}
 	}
 		
 	/**
@@ -223,7 +224,7 @@ public class QuestionsController implements Observer{
     	client.openConnection();
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
-    	
+    	teachersMap = new HashMap<String, String>();
     	// Listen for selection changes and show the person details when changed.
     	txtFieldId.setOnMouseClicked(e -> {
     		btnSearch.setDisable(false);
@@ -249,7 +250,6 @@ public class QuestionsController implements Observer{
     	initQuestionsTable();
  
     }
-
 	private void initQuestionsTable() {
 		// TODO Auto-generated method stub
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
@@ -280,7 +280,7 @@ public class QuestionsController implements Observer{
             alert.initOwner(screenManager.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
-            alert.setContentText("Please select a questionin the table.");
+            alert.setContentText("Please select a question in the table.");
 
             alert.showAndWait();
         }
@@ -311,12 +311,33 @@ public class QuestionsController implements Observer{
             alert.showAndWait();
         }
     }
-    
     /**
+     *  This method is called in order to fill theacherMap, 
+     *  for each question in the subject this teacher teaches, we need the teacher assembled name.
+     * @param questions2
+     */
+	 private void getTeachersMap(ArrayList<Question> questions2) {
+		// TODO Auto-generated method stub
+		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
+		 for (Question question: questions) {
+			//System.out.println(question);
+			teachersMap.put(question.getTeacherAssembeld(), "");
+		}
+		System.out.println(teachersMap);
+		UserInfo teachersInfo = new UserInfo(teachersMap,questions);
+		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name",teachersInfo);	// we can send the specific question because we have table "Questions"
+		try {
+			client.sendToServer(teacehrInfoMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
+	}
+     /**
      * this method called when deleting Question from DB
      * @param questionToDelete
      */
-	private void deleteQuestionFromDB(Question questionToDelete) {
+	 private void deleteQuestionFromDB(Question questionToDelete) {
 		// TODO Auto-generated method stub
 		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
     	try {
@@ -326,8 +347,6 @@ public class QuestionsController implements Observer{
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
-
-	
 	/**
 	 *  if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save&Close" 
 	 *  add newly created question to Questions in THIS, and to DB.
@@ -335,7 +354,7 @@ public class QuestionsController implements Observer{
 	 * @throws IOException
 	 */
 	 @FXML
-	 void newQuestionDialog(ActionEvent event) throws IOException {
+	void newQuestionDialog(ActionEvent event) throws IOException {
 		 runNewQuestionWizzard(null);
 	}
 	
@@ -412,29 +431,25 @@ public class QuestionsController implements Observer{
 			for (Question question: questions) {
 				observabaleQuestions.add(question);
 			}
+			getTeachersMap(questions);
 			tblQuestions.setItems(observabaleQuestions);
+			
 		}
 		
 		if(arg1 instanceof UserSubjectMessage) {
 			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
 			fillCombobox(this.userSubjects);
 			getUserQuestions(this.userSubjects);
-			System.out.println(this.userSubjects.toString());
+			
+			//System.out.println(this.userSubjects.toString());
 			
 		}
-		
+		if (arg1 instanceof UserInfoMessage) {
+			System.out.println(((UserInfoMessage) arg1).getUserInfo().getTeachersMap());
+		}
 		if(arg1 instanceof SimpleMessage) {
 			SimpleMessage simple = (SimpleMessage)arg1;
 			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
-			/*Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-				try {
-					screenManager.activate("home");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-				}
-			});*/
 		}
 	}
 	
@@ -486,40 +501,40 @@ public class QuestionsController implements Observer{
     private void setChangedQuestion(Question question) {
 		// TODO Auto-generated method stub
     	// here well prepare a message with {"set-new-Question", Question }
-    			QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
-    			try {
-    				client.sendToServer(updatedQuestionMessage);
-    			} catch (IOException e) {
-    				e.printStackTrace();
-    				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-    			}
+		QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
+		try {
+			client.sendToServer(updatedQuestionMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
 		
 	}
 	
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
-			// TODO Auto-generated method stub
-			// Here well get all question that in the same subject of the user
-			for (Subject subject: userSubjects) {
-				QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
-				try {
-					client.sendToServer(newQuestionMessage);
-				} catch (IOException e) {
-					e.printStackTrace();
-					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-				}
-			}
-		}
-	
-	private void getUserSubjects(User user) {
-			// TODO Auto-generated method stub
-			UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		// TODO Auto-generated method stub
+		// Here well get all question that in the same subject of the user
+		for (Subject subject: userSubjects) {
+			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
 			try {
-				client.sendToServer(newUserSubjectMessage);
+				client.sendToServer(newQuestionMessage);
 			} catch (IOException e) {
 				e.printStackTrace();
 				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
 		}
+	}
+	
+	private void getUserSubjects(User user) {
+		// TODO Auto-generated method stub
+		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		try {
+			client.sendToServer(newUserSubjectMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
+	}
 	
 	public ArrayList<Subject> getUserSubjects() {
 		return userSubjects;
@@ -532,7 +547,8 @@ public class QuestionsController implements Observer{
 	private void fillCombobox(ArrayList<Subject> teacherSubject) {
 		observableSubjects = FXCollections.observableArrayList(teacherSubject);
 		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for enabling to unfillter table rows
-		subjectCombobox.getItems().addAll(observableSubjects);	
+		subjectCombobox.getItems().addAll(observableSubjects);
+	
 	}
 		
 	/**

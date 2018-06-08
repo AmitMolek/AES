@@ -8,6 +8,7 @@ import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.app.UserInfo;
 import root.server.managers.dbmgr.GetFromDB;
 
 /**
@@ -117,6 +118,8 @@ public class MessageFactory {
 			return new CourseMessage((Subject)payload);
 		case "exams":
 			return new ExamMessage((String)payload);
+		case "user":
+			return  getUserRelatedMessage(msgContent,payload);
 		default:
 			break;
 		}
@@ -126,6 +129,14 @@ public class MessageFactory {
 		
 	}
 	
+	private AbstractMessage getUserRelatedMessage(String[] msgContent, Object payload) {
+		switch (msgContent[2]) {
+		case "name":
+			return new UserInfoMessage((UserInfo)payload);
+		}
+		return null;
+	}
+
 	/**
 	  * Make new login message
 	 * @param msgContent the message itself
@@ -187,9 +198,11 @@ public class MessageFactory {
 		case "courses":
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
-
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-
+		case "users":
+			if(payload instanceof UserInfo)
+				return new UserInfoMessage((UserInfo)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
 			

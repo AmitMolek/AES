@@ -1,12 +1,15 @@
 package root.server.managers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.app.UserInfo;
 import root.dao.message.AbstractMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
@@ -16,6 +19,7 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
+import root.dao.message.UserInfoMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
@@ -41,7 +45,6 @@ public class ServerMessageManager {
 		switch(msgContent[0]) {
 		case "login":
 			return handleLoginMessage(msg);	
-
 		case "usersubjects":
 			return handleUserSubjectsMessage(msg);
 		case "questions":
@@ -130,9 +133,39 @@ public class ServerMessageManager {
 				return handleQuestionsMessage(msg);
 			case "exams":
 				return handleGetExamMessage(msg);
+			case "user":
+				return handleFetUserMessage(msgContent,msg);
 		}
 		
 		return null;
+	}
+	/**
+	 * this method is called when a client need to get information about users
+	 * @param msgContent 
+	 * @param msg contain UserInfo 
+	 * @return {@link AbstractMessage} with required information
+	 */
+	private static AbstractMessage handleFetUserMessage(String[] msgContent, AbstractMessage msg) {
+		switch(msgContent[2]) {
+		case "name":
+			return getUserName(msg);
+		}
+		return null;
+	}
+
+	private static AbstractMessage getUserName(AbstractMessage msg) {
+		UserInfoMessage userInfoMessage = (UserInfoMessage)msg;
+		UserInfo userInfo = userInfoMessage.getUserInfo();
+		GetFromDB getUserName = new GetFromDB();
+		HashMap<String, String> usersMap = userInfo.getTeachersMap();
+		ArrayList<User> users = getUserName.users();			// get all users
+		for (User user: users) {
+			if (usersMap.containsKey(user.getUserID())){
+				usersMap.put(user.getUserID(),user.getUserFirstName()+" "+user.getUserLastName());
+			}
+		}
+		UserInfo UserInfo = new UserInfo(usersMap, null);
+		return message.getMessage("ok-get-users",UserInfo);
 	}
 
 	/**
