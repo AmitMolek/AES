@@ -67,10 +67,10 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 		case "exams":
 			return new ExamMessage("delete-exams",(Exam)payload);
+		case "questions":
+			return new QuestionsMessage("delete-questions",(Question)payload);
 		}
 		return null;
-		
-		
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class MessageFactory {
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
 		switch (msgContent[1]) {
 		case "questions":
-			return new QuestionsMessage((Question)payload);
+			return new QuestionsMessage("set-questions", (Question)payload);
 		default:
 			break;
 		}

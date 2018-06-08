@@ -16,6 +16,7 @@ import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
 import root.dao.message.MessageFactory;
+import root.dao.message.QuestionsMessage;
 import root.server.AES_Server;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -163,11 +164,61 @@ public class SetInDB implements DbManagerInterface {
 			newStmt = conn.prepareStatement(deleteExam+";");
 			newStmt.execute();
 			return message.getMessage("ok-delete-exams",null);
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
+	}
+	public AbstractMessage deleteTheQuestion(Question Question) {
+		String deleteQuestion = "delete from questions where question_id = " + Question.getQuestionId();
+		try {
+			newStmt = conn.prepareStatement(deleteQuestion+";");
+			newStmt.execute();
+			return message.getMessage("ok-delete-questions",null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public AbstractMessage updateExistingQuestion(Question questionMessage) {
+		String updateQuestion = "UPDATE questions SET "
+		+" `question_id` = ?,"					
+		+" `question_text` = ?,"
+		+" `question_instruction` = ?,"
+		+" `question_answer_1` = ?,"
+		+" `question_answer_2` = ?,"
+		+" `question_answer_3` = ?,"
+		+" `question_answer_4` = ?,"
+		+" `correct_question` = ?,"
+		+" `teacher_assembeld_id` = ?"
+		+" WHERE `question_id` = ?;";
+		System.out.println(questionMessage);
+		System.out.println(updateQuestion);
+		
+		//+"SELECT * FROM aes.questions;";
+		try {
+			newStmt = conn.prepareStatement(updateQuestion);
+			newStmt.setString(1,questionMessage.getQuestionId());
+			newStmt.setString(2, questionMessage.getQuestionText());
+			newStmt.setString(3, questionMessage.getIdquestionIntruction());
+			newStmt.setString(4, questionMessage.getAns1());
+			newStmt.setString(5, questionMessage.getAns2());
+			newStmt.setString(6, questionMessage.getAns3());
+			newStmt.setString(7, questionMessage.getAns4());
+			newStmt.setInt(8, questionMessage.getCorrectAns());
+			newStmt.setString(9, questionMessage.getTeacherAssembeld());
+			newStmt.setString(10, questionMessage.getQuestionId());
+			newStmt.execute();
+			return message.getMessage("ok-set-questions", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
+			
+		} catch (SQLException e) {
+			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
 		return null;
 	}
 }

@@ -110,6 +110,7 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					AddUserSpecificScreens();
 					screenManager.activate("questions");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -132,4 +133,17 @@ public class LoginController implements Observer {
 			});
 		}
 	}
+	
+	public void AddUserSpecificScreens() {
+		if(user.getUserPremission().equals("Teacher")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
+		}
+		else if(user.getUserPremission().equals("Student")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
+		}
+		else if(user.getUserPremission().equals("Principal")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
+		}
+	}
+	
 }

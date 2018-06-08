@@ -1,9 +1,7 @@
 package root.client.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-//import ch.makery.address.util.DateUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -65,7 +64,7 @@ public class AddNewQuestionController {
     private ComboBox<Integer> comboboxCorrectQuestion;
     
 	private ObservableList<Question> appMainObservableList;
-	//private ArrayList<Subject> userSubjects;
+	private ArrayList<Subject> userSubjects;
 	private User user;
 	Log log = Log.getInstance();
 
@@ -166,14 +165,12 @@ public class AddNewQuestionController {
 	 */
 	public void setUser(User user) {
 		this.user = user;
-		lblAssemblerID.setText(user.getUserFirstName()+" "+ user.getUserLastName());
 	}
-
 	/**
 	 * @param observableSubjects2 the userSubjects to set
 	 */
 	public void setUserSubjects(ArrayList<Subject> userSubjects) {
-	//	this.userSubjects = userSubjects;
+		this.userSubjects = userSubjects;
 		comboboxCorrectQuestion.getItems().addAll(1,2,3,4);
 		ObservableList<Subject> observableSubjects = FXCollections.observableArrayList(userSubjects);
 		comboboxSubjects.getItems().addAll(observableSubjects);
@@ -181,19 +178,35 @@ public class AddNewQuestionController {
 	}
 
 	private void closeStage(ActionEvent event) {
-		Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-			
+		Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)	
 				Node  source = (Node)  event.getSource(); 
 		        Stage stage  = (Stage) source.getScene().getWindow();
-		        stage.close();
-			
-		});
-		
+		        stage.close();	
+		});	
     }
 
 	public void setMainApp(Stage stage) {
 		// TODO Auto-generated method stub
 		mainApp = stage;
+	}
+
+	/**
+	 * This method is called when updating a question
+	 * @param selectedQuestionToEdit
+	 */
+	public void setQuestion(Question selectedQuestionToEdit) {
+		// TODO Auto-generated method stub
+		//String questionId = comboboxSubjects.setSelectionModel(selectedQuestionToEdit.getQuestionId());	// Only partial Question ID. will fill that back in Question window
+    	txtFieldText.setText(selectedQuestionToEdit.getQuestionText());
+    	txtFieldQuestionInfo.setText(selectedQuestionToEdit.getIdquestionIntruction());
+    	txtFieldPossibleAnswer1.setText(selectedQuestionToEdit.getAns1());
+    	txtFieldPossibleAnswer2.setText(selectedQuestionToEdit.getAns2());
+    	txtFieldPossibleAnswer3.setText(selectedQuestionToEdit.getAns3());
+    	txtFieldPossibleAnswer4.setText(selectedQuestionToEdit.getAns4());
+    	//String teacherAssembeld = user.getUserID();	
+        //Question newQuestion = new Question(questionId,questionText,questionIntruction,ans1,ans2,ans3,ans4,correctAns,teacherAssembeld);
+        //appMainObservableList.add(newQuestion);
+        //closeStage(event);
 	}
 }
 
