@@ -14,6 +14,7 @@ import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.Question;
+import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
@@ -148,6 +149,7 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<Exam> exams(String... str) {
 		ArrayList<Exam> exams= new ArrayList<Exam>();
 		ArrayList<User> newUsers = new ArrayList<User>();
+		ArrayList<QuestionInExam> questions = new ArrayList<QuestionInExam>();
 		User teacher;
 		ResultSet rs;
 		String examQuery = "SELECT * FROM exams WHERE exam_id LIKE '"+str[0]+"%'";
@@ -157,7 +159,8 @@ public class GetFromDB implements DbManagerInterface {
 					while(rs.next()) {
 						newUsers = users(rs.getString(2));
 						teacher = newUsers.get(0);
-						exams.add(new Exam(rs.getString(1), teacher,rs.getInt(3),null));
+						questions = questionInExam(str[0]);
+						exams.add(new Exam(rs.getString(1), teacher,rs.getInt(3),questions));
 					}
 					rs.close();
 					return exams;			// Return A list of all users
@@ -222,8 +225,35 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	@Override
-	public ArrayList<Question> questionInExam(String... str) {
-		// TODO Auto-generated method stub
+	public ArrayList<QuestionInExam> questionInExam(String... str) {
+		ArrayList<QuestionInExam> question = new ArrayList<QuestionInExam>();
+		ArrayList<String>ids = new ArrayList<String>();
+		ResultSet rs;
+		int i=0;
+		Question q = null;
+		String examQuery = "SELECT * FROM `questions in exam` WHERE exam_ID LIKE '"+str[0]+"%'";
+		try {
+			stmt = conn.createStatement();
+					rs = stmt.executeQuery(examQuery+";");
+					while(rs.next()) {
+						 ids.add(rs.getString(2));
+						 question.add(new QuestionInExam(null,rs.getInt(3),rs.getString(5),rs.getString(4)));
+					}
+					for(String s: ids)
+					{
+						q = returnQuestion(s);
+						QuestionInExam eq = question.get(i);
+						eq.setQuestion(q);
+						question.set(i, eq);
+						i++;
+						
+					}
+					rs.close();
+					return question;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -231,6 +261,25 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<Course> courseOfTeacher(String... str) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private Question returnQuestion(String id) {
+		String QuestionQuery = "SELECT * FROM questions WHERE question_id = "+id;
+		ResultSet qs;
+		Question q = null;
+		try {
+			qs = stmt.executeQuery(QuestionQuery+";");
+			while(qs.next()) {
+				 q = new Question(qs.getString(1),qs.getString(2),qs.getString(3),qs.getString(4),qs.getString(5),qs.getString(6),qs.getString(7),qs.getInt(8),qs.getString(9));
+			}
+			qs.close();
+			return q;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 
 }

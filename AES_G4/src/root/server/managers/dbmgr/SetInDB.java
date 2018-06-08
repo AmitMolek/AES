@@ -96,7 +96,7 @@ public class SetInDB implements DbManagerInterface {
 	}
 
 	@Override
-	public ArrayList<Question> questionInExam(String... str) {
+	public ArrayList<QuestionInExam> questionInExam(String... str) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -138,6 +138,45 @@ public class SetInDB implements DbManagerInterface {
 			newStmt = conn.prepareStatement(deleteExam+";");
 			newStmt.execute();
 			return message.getMessage("ok-delete-exams",null);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public AbstractMessage addQuestionToExam(String id, ArrayList<QuestionInExam>quest) {
+		deleteQuestionInExam(id);
+		String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)" + " values (?, ?, ?, ?, ?);";
+		try {
+			newStmt = conn.prepareStatement(insertQuestionInExam);
+			for(QuestionInExam q: quest) {
+				newStmt.setString(1, id);
+				newStmt.setString(2, q.getQuestion().getQuestionId());
+				newStmt.setInt(3 , q.getQuestionGrade());
+				newStmt.setString(4, q.getFreeTextForStudent());
+				newStmt.setString(5, q.getFreeTextForTeacher());
+				newStmt.execute();
+			}
+			return message.getMessage("ok-put-questioninexam", null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+		
+		
+	}
+	
+	public AbstractMessage deleteQuestionInExam(String id) {
+		String deleteExam = "delete from `questions in exam` where exam_ID = " + id;
+		try {
+			newStmt = conn.prepareStatement(deleteExam+";");
+			newStmt.execute();
+			return message.getMessage("ok-delete-questioninexam",null);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

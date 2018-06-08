@@ -83,13 +83,15 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 			case "exams":
 				return new ExamMessage((Exam)payload);
+			case "questioninexam":
+				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
 		}
 		return null;
 	}
 
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
 		return null;
-		
+
 		
 	}
 

@@ -5,6 +5,7 @@ import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.QuestionInExam;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.AbstractMessage;
@@ -13,6 +14,7 @@ import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
+import root.dao.message.QuestionInExamMessage;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
@@ -169,7 +171,11 @@ public class ServerMessageManager {
 		switch(msgContent[1]) {
 		case "exams":
 			return handlePutExamMessage(msg);
+		case "questioninexam":
+			return handlePutQuestionInExamMessage(msg);
+		
 		}
+		
 		return null;
 		
 	}
@@ -204,6 +210,15 @@ public class ServerMessageManager {
 		Exam deleteExam = recivedMessage.getNewExam();
 		SetInDB deletesExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) deletesExam.deleteTheExam(deleteExam);
+		return sendMessage;
+	}
+	
+	private static AbstractMessage handlePutQuestionInExamMessage(AbstractMessage msg) {
+		QuestionInExamMessage recivedMessage = (QuestionInExamMessage)msg;
+		String id = recivedMessage.getExamId();
+		ArrayList<QuestionInExam> examQuestions = recivedMessage.getQuestionInExam();
+		SetInDB putExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putExam.addQuestionToExam(id, examQuestions);
 		return sendMessage;
 	}
 	
