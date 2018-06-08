@@ -94,7 +94,11 @@ public class AES_Server extends AbstractServer {
 
 		try {
 
+<<<<<<< HEAD
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "root");
+=======
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "123456");
+>>>>>>> refs/remotes/origin/Alon
 
 			System.out.println("SQL connection succeed");
 		} catch (SQLException ex) {/* handle any errors */

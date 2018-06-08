@@ -7,13 +7,11 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 import ocsf.client.ObservableClient;
@@ -106,6 +104,7 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
+<<<<<<< HEAD
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
@@ -113,6 +112,18 @@ public class LoginController implements Observer {
 					screenManager.activate("questions");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+=======
+			DataKeepManager.getInstance().keepUser(user);
+			//DataKeepManager.getInstance().keepObject("user", user);
+			//System.out.println(user);
+			System.out.println("Logged In Users: "+ loggedInManager);
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				try {
+					AddUserSpecificScreens();
+					screenManager.activate("testGradesStats");
+			} catch (IOException e) {
+					// TODO Auto-generated catch block
+>>>>>>> refs/remotes/origin/Alon
 					e.printStackTrace();
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
@@ -121,6 +132,7 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			System.out.println(arg1);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+<<<<<<< HEAD
 				// Show the error message.
 	            Alert alert = new Alert(AlertType.ERROR);
 	            alert.initOwner(screenManager.getPrimaryStage());
@@ -132,4 +144,24 @@ public class LoginController implements Observer {
 			});
 		}
 	}
+=======
+				ErrorTxtField.setText(arg1.toString());
+				ErrorTxtField.setVisible(true);	
+			});
+		}
+	}
+	
+	public void AddUserSpecificScreens() {
+		if(user.getUserPremission().equals("Teacher")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
+		}
+		else if(user.getUserPremission().equals("Student")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
+		}
+		else if(user.getUserPremission().equals("Principal")) {
+			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
+		}
+	}
+	
+>>>>>>> refs/remotes/origin/Alon
 }
