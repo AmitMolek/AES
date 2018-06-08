@@ -14,10 +14,12 @@ import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.Question;
+import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
+import root.dao.message.ErrorMessage;
 import root.server.AES_Server;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -145,7 +147,7 @@ public class GetFromDB implements DbManagerInterface {
 
 	@Override
 	public ArrayList<Exam> exams(String... str) {
-		ArrayList<Exam> exams= new ArrayList<Exam>();
+		ArrayList<Exam> exams = new ArrayList<Exam>();
 		ArrayList<User> newUsers = new ArrayList<User>();
 		User teacher;
 		ResultSet rs;
@@ -165,6 +167,66 @@ public class GetFromDB implements DbManagerInterface {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 * @autor Naor Saadia
+	 * @param pass
+	 * @return
+	 */
+	public ArrayList<Exam> getExamByPassword(String pass)
+	{
+		String byPassword = "SELECT ex.exam_id as exid,\r\n" + 
+				"	ex.teacher_assembler_id as teacher_id,\r\n" + 
+				"    ex.exam_original_allocated_duration as duration,\r\n" + 
+				"    qie.exam_ID as exid,\r\n" + 
+				"    qie.Question_ID as qid,\r\n" + 
+				"    qie.Question_Grade as grade,\r\n" + 
+				"    qie.Question_Free_text_Student as student_notes,\r\n" + 
+				"    qie.Question_Free_text_Teacher as teacher_notes,\r\n" + 
+				"    q.question_id as qid,\r\n" + 
+				"    q.question_text as qtext,\r\n" + 
+				"    q.question_instruction as inst,\r\n" + 
+				"    q.question_answer_1 as ans1,\r\n" + 
+				"    q.question_answer_2 as ans2,\r\n" + 
+				"    q.question_answer_3 as ans3,\r\n" + 
+				"    q.question_answer_4 as ans4,\r\n" + 
+				"    q.correct_question as corAns\r\n" + 
+				"\r\n" + 
+				"FROM exams ex, `questions in exam` qie, questions q\r\n" + 
+				"				WHERE ex.fourDigit="+pass+"\r\n" + 
+				"				AND qie.exam_ID=ex.exam_Id\r\n" + 
+				"				AND q.question_id = qie.Question_ID;";
+		ResultSet rs;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(byPassword);
+			Exam exam=null;
+			if(rs.next())
+				exam= new Exam(rs.getString("exid"),rs.getString("teacher_id")
+						,rs.getInt("duration"));
+			ArrayList<Exam> exams = new ArrayList<Exam>();
+			exams.add(exam);
+			ArrayList<QuestionInExam> questionsInExam = new ArrayList<QuestionInExam>();
+			QuestionInExam q;
+			while(rs.next()) {
+					 q = new QuestionInExam(new Question(rs.getString("qid"),rs.getString("qtext"),
+							 rs.getString("inst"), rs.getString("ans1"),
+							 rs.getString("ans2"),rs.getString("ans3"),
+							 rs.getString("ans4"),
+							 rs.getInt("corAns"),rs.getString("teacher_id")),rs.getInt("grade"),rs.getString("teacher_notes"), rs.getString("student_notes"));
+				questionsInExam.add(q);
+			}
+			exam.setExamQuestions(questionsInExam);
+			return exams;
+
+		} catch (SQLException e) {
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+		
+	
 	}
 
 	/**

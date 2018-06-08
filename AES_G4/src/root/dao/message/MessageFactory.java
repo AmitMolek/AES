@@ -116,6 +116,8 @@ public class MessageFactory {
 			return new SubjectMessage((String)payload);
 		case "courses":
 			return new CourseMessage((Subject)payload);
+		case "simple":
+			return new SimpleMessage("simple");
 		case "exams":
 			return new ExamMessage((String)payload);
 		case "user":
