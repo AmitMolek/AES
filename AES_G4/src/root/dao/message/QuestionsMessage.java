@@ -44,15 +44,6 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 		this.questions.add(payload);
 		
 	}
-	/**
-	 * Constructor that send message from client
-	 * @param newExam the exam
-	 */
-	public QuestionsMessage(String message, Question payload) {
-		super(message);
-		this.questions = new ArrayList<Question>();
-		this.questions.add(payload);
-	}
 
 	@Override
 	public String getType() {

@@ -27,7 +27,7 @@
                   <TableColumn fx:id="tbcAns2" prefWidth="102.0" styleClass="tableColumn" text="Answer 2" />
                   <TableColumn fx:id="tbcAns3" prefWidth="102.0" styleClass="tableColumn" text="Answer 3" />
                   <TableColumn fx:id="tbcAns4" prefWidth="102.0" styleClass="tableColumn" text="Answer 4" />
-                  <TableColumn fx:id="tbcCorr" prefWidth="102.0" styleClass="tableColumn" text="Correct" />
+                  <TableColumn fx:id="tbcCorr" onEditCommit="#updateCorrect" prefWidth="102.0" styleClass="tableColumn" text="Correct" />
                 <TableColumn fx:id="tbcTeacherName" prefWidth="102.0" styleClass="tableColumn" text="Teacher Name" />
               </columns>
                <columnResizePolicy>
@@ -54,7 +54,7 @@
                         <TextField fx:id="txtFieldName" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="search Teacher by name" styleClass="textFields" GridPane.rowIndex="3" />
                         <Label text="select Subject:" GridPane.halignment="CENTER" />
                         <TextField fx:id="txtFieldQuestion" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="serach Question by ID" styleClass="textFields" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="subjectCombobox" onAction="#selectFromCombobox" prefHeight="26.0" prefWidth="300.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <ComboBox fx:id="subjectCombobox" onAction="#selectFromCombobox" prefWidth="150.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                       <Button fx:id="newQuestion" mnemonicParsing="false" onAction="#newQuestionDialog" text="new Question" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                           <columnConstraints>
