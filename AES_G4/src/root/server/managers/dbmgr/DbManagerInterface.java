@@ -16,6 +16,6 @@ public interface DbManagerInterface {
 	public ArrayList<Subject> subjects(String... str);
 	public ArrayList<Statistic> solvedExamStatistic(String... str);
 	public ArrayList<SolvedExams> solvedExams(String... str);
-	public ArrayList<Question> questionInExam(String... str);
+	public ArrayList<QuestionInExam> questionInExam(String... str);
 	
 }

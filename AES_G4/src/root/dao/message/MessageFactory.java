@@ -86,6 +86,8 @@ public class MessageFactory {
 				return new ExamMessage((Exam)payload);
 			case "questions":
 				return new QuestionsMessage((Question)payload);
+			case "questioninexam":
+				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
 		}
 		return null;
 	}

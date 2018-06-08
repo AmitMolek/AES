@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -62,6 +63,7 @@ public class UpdateDeleteExamController implements Observer {
     private Subject newSubject;
     private ArrayList<Course> CourseInSubject;
     private Course newCourse;
+    private DataKeepManager dbk;
     
     /**
      * Method that occurs when teacher select subject
@@ -108,7 +110,17 @@ public class UpdateDeleteExamController implements Observer {
      */
     @FXML
     void UpdateExam(ActionEvent event) {
-
+    	ObservableList<Exam> examSelected;
+    	examSelected = tblExams.getSelectionModel().getSelectedItems();
+    	Exam updateExam = examSelected.get(0);
+    	dbk.keepObject("updateExam", updateExam);
+    	try {
+			screenManager.activate("updateExam");
+	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}  	
     }
 
     /**
@@ -192,6 +204,7 @@ public class UpdateDeleteExamController implements Observer {
 	public void initialize() throws IOException{
     	messageFact = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
+    	dbk = DataKeepManager.getInstance();
     	log = Log.getInstance();
     	tbcExamId.setCellValueFactory(new PropertyValueFactory("examId"));
     	tbcTeacherId.setCellValueFactory(new PropertyValueFactory("author"));
