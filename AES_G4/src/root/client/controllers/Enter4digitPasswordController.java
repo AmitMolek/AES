@@ -62,7 +62,7 @@ public class Enter4digitPasswordController implements Observer {
 			examMessage= (ExamMessage)arg1;
 			ArrayList<Exam> examsList = examMessage.getExams();
 			
-			scrMgr.activate();
+			//scrMgr.activate();
 		
 		}
 		else if(arg1 instanceof ErrorMessage) {

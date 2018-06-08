@@ -27,7 +27,7 @@
                   <TableColumn fx:id="tbcAns2" prefWidth="102.0" styleClass="tableColumn" text="Answer 2" />
                   <TableColumn fx:id="tbcAns3" prefWidth="102.0" styleClass="tableColumn" text="Answer 3" />
                   <TableColumn fx:id="tbcAns4" prefWidth="102.0" styleClass="tableColumn" text="Answer 4" />
-                  <TableColumn fx:id="tbcCorr" onEditCommit="#updateCorrect" prefWidth="102.0" styleClass="tableColumn" text="Correct" />
+                  <TableColumn fx:id="tbcCorr" prefWidth="102.0" styleClass="tableColumn" text="Correct" />
                 <TableColumn fx:id="tbcTeacherName" prefWidth="102.0" styleClass="tableColumn" text="Teacher Name" />
               </columns>
                <columnResizePolicy>

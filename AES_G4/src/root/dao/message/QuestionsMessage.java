@@ -45,6 +45,13 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 		
 	}
 
+	public QuestionsMessage(String string, Question payload) {
+		// TODO Auto-generated constructor stub
+		super(string);
+		this.questions = new ArrayList<Question>();
+		this.questions.add(payload);
+	}
+
 	@Override
 	public String getType() {
 		return "Questions";

@@ -2875,3 +2875,25 @@
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.Exam | 2018-06-08 11:15:09.914
 [INFO][root.client.controllers.UpdateExamController] Exam updated | 2018-06-08 11:15:17.554
 >>>>>>> refs/remotes/origin/Omer
+[INFO][root.server.AES_Server] The server is connected | 2018-06-08 20:00:33.468
+[INFO] Application started | 2018-06-08 20:00:35.922
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:00:36.209
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:00:40.374
+[ERROR][root.client.controllers.LoginController] Error resolving onEditCommit='#updateCorrect', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/Questions.fxml:30
+ | 2018-06-08 20:00:40.437
+[INFO] Application started | 2018-06-08 20:01:57.942
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:01:58.207
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:02:02.218
+[INFO] Application started | 2018-06-08 20:03:17.681
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:03:17.921
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:03:22.247
+[INFO] Application started | 2018-06-08 20:06:03.37
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:06:03.613
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:06:08.064
+[INFO] Application started | 2018-06-08 20:06:39.934
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:06:40.179
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:06:44.173
+[INFO] Application started | 2018-06-08 20:07:07.408
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:07:07.656
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:07:12.417

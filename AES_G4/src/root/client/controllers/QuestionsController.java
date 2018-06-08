@@ -365,7 +365,7 @@ public class QuestionsController implements Observer{
 			    	observebaleNewQuestion = FXCollections.observableArrayList(); 
 			    	String questionId;
 			    	
-				 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/view/NewQuestionWizzard.fxml"));
+				 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/view/AddQuestionWizzard.fxml"));
 				    Parent parent = fxmlLoader.load();
 				    AddNewQuestionController dialogController = fxmlLoader.<AddNewQuestionController>getController();
 				    dialogController.setAppMainObservableList(observebaleNewQuestion);
