@@ -122,7 +122,32 @@ public class SetInDB implements DbManagerInterface {
 				newStmt.setString(5, q.getFreeTextForTeacher());
 				newStmt.execute();
 			}
-			return message.getMessage("ok-put-exams", null);
+			return message.getMessage("ok-put-exams", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
+			
+		} catch (SQLException e) {
+			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	public AbstractMessage AddNewQuestion(Question newQuestionTooAdd) {
+		String insertQuestion = "INSERT INTO `aes`.`questions`(`question_id`,`question_text`,`question_instruction`,`question_answer_1`,`question_answer_2`,`question_answer_3`,`question_answer_4`,`correct_question`,`teacher_assembeld_id`)"
+									+"VALUES(?,?,?,?,?,?,?,?,?);";
+
+		try {
+			newStmt = conn.prepareStatement(insertQuestion);
+			newStmt.setString(1,newQuestionTooAdd.getQuestionId());
+			newStmt.setString(2, newQuestionTooAdd.getQuestionText());
+			newStmt.setString(3, newQuestionTooAdd.getIdquestionIntruction());
+			newStmt.setString(4, newQuestionTooAdd.getAns1());
+			newStmt.setString(5, newQuestionTooAdd.getAns2());
+			newStmt.setString(6, newQuestionTooAdd.getAns3());
+			newStmt.setString(7, newQuestionTooAdd.getAns4());
+			newStmt.setInt(8, newQuestionTooAdd.getCorrectAns());
+			newStmt.setString(9, newQuestionTooAdd.getTeacherAssembeld());
+			newStmt.execute();
+			return message.getMessage("ok-put-questions", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
 			
 		} catch (SQLException e) {
 			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
@@ -138,7 +163,18 @@ public class SetInDB implements DbManagerInterface {
 			newStmt = conn.prepareStatement(deleteExam+";");
 			newStmt.execute();
 			return message.getMessage("ok-delete-exams",null);
-
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public AbstractMessage deleteTheQuestion(Question Question) {
+		String deleteQuestion = "delete from questions where question_id = " + Question.getQuestionId();
+		try {
+			newStmt = conn.prepareStatement(deleteQuestion+";");
+			newStmt.execute();
+			return message.getMessage("ok-delete-questions",null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

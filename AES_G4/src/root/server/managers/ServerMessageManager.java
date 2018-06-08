@@ -48,17 +48,23 @@ public class ServerMessageManager {
 			return handleQuestionsMessage(msg);
 		case "get":
 			return handleGetMessage(msg);
-		case "put":
+		case "set":															// update an already existing data
+			return handleSetMessage(msg);
+		case "put":															// insert newData
 			return handlePutMessage(msg);
 		case "delete":
 			return handleDeleteMessage(msg);
 		default:
 			return null;
-
-
 		}
 	}
 	
+
+	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * @author gal
 	 * @param msg type of QuestionMessage which contain the string "Questions" ans the subject of the questions as payload
@@ -167,6 +173,8 @@ public class ServerMessageManager {
 	private static AbstractMessage handlePutMessage(AbstractMessage msg) {
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[1]) {
+		case "questions":
+			return handlePutQuestion(msg);
 		case "exams":
 			return handlePutExamMessage(msg);
 		}
@@ -174,6 +182,15 @@ public class ServerMessageManager {
 		
 	}
 	
+	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {
+		// TODO Auto-generated method stub
+		QuestionsMessage recievedNewQuestion = (QuestionsMessage)msg;
+		Question newQuestionTooAdd = recievedNewQuestion.getQuestions().get(0); // ArrayList<Question> will contain only 1 new question
+		SetInDB putQuestion = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putQuestion.AddNewQuestion(newQuestionTooAdd);
+		return null;
+	}
+
 	private static AbstractMessage handlePutExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
 		Exam addExam = recivedMessage.getNewExam();
@@ -214,10 +231,20 @@ public class ServerMessageManager {
 		switch(msgContent[1]) {
 		case "exams":
 			return handleDeleteExamMessage(msg);
+		case "questions":
+			return handleDeleteQuestionMessage(msg);
 		}
 		return null;
 	}
 	
+	private static AbstractMessage handleDeleteQuestionMessage(AbstractMessage msg) {
+		QuestionsMessage recievedMessage = (QuestionsMessage)msg;
+		Question deleteQuestion = recievedMessage.getQuestions().get(0);
+		SetInDB deletesQuestion = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) deletesQuestion.deleteTheQuestion(deleteQuestion);
+		return sendMessage;
+	}
+
 	private static AbstractMessage handleDeleteExamMessage(AbstractMessage msg) {
 		ExamMessage recivedMessage = (ExamMessage)msg;
 		Exam deleteExam = recivedMessage.getNewExam();

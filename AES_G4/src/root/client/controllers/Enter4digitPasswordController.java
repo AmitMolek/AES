@@ -66,7 +66,7 @@ public class Enter4digitPasswordController implements Observer {
 		
 		}
 		else if(arg1 instanceof ErrorMessage) {
-			log.writeToLog(LogLine.LineType.ERROR, ErrorMessage.getMessage());
+			log.writeToLog(LogLine.LineType.ERROR, ErrorMessage.);
 
 			//Add Here handle with wrong password
 			//Add Here handle with locked exam
