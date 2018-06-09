@@ -3,6 +3,8 @@ package root.server.managers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
@@ -22,6 +24,7 @@ import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.dao.message.UserInfoMessage;
+import root.dao.message.UserIDMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
@@ -137,6 +140,8 @@ public class ServerMessageManager {
 				return handleGetExamMessage(msg);
 			case "user":
 				return handleFetUserMessage(msgContent,msg);
+			case "solvedExamByTeacherId":
+				return handleGetExamByTeacherID(msg);
 		}
 		
 		return null;
@@ -168,6 +173,20 @@ public class ServerMessageManager {
 		}
 		UserInfo UserInfo = new UserInfo(usersMap, null);
 		return message.getMessage("ok-get-users",UserInfo);
+	}
+/***
+ * @author Alon Ben-yosef
+ * @param msg of UserIDMessage type expected
+ * @return An exam message containing an arraylist of exams assembled by teacherID
+ */
+	private static AbstractMessage handleGetExamByTeacherID(AbstractMessage msg) {
+		//TODO:Convert getFromDB to singleton
+		UserIDMessage idMessage = (UserIDMessage) msg;
+		MessageFactory factory=MessageFactory.getInstance();
+		GetFromDB getExams = new GetFromDB();
+		ArrayList<Exam> examList = getExams.exams();//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
+		ExamMessage message=(ExamMessage) factory.getMessage("ok-get-solvedExamByTeacherId", examList);
+		return message;
 	}
 
 	/**
@@ -255,30 +274,11 @@ public class ServerMessageManager {
 	}
 	
 	private static AbstractMessage handleGetExamMessage(AbstractMessage msg) {
-		if(msg instanceof SimpleMessage)
-		{
-			SimpleMessage recievedMessage = (SimpleMessage) msg;
-			String strMsg =recievedMessage.getMsg();
-			String[] msgContent = msg.getMsg().toLowerCase().split("-");
-			if(msgContent[2].equals("pass")) {
-				GetFromDB getExam = new GetFromDB();
-				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
-				if(exams!=null)
-					return message.getMessage("ok-get-exams", exams);
-				else
-					return new ErrorMessage(new NullPointerException("not find exam"));
-			}
-			
-		}
-		else {
-			ExamMessage recivedMessage = (ExamMessage) msg;
-			String examId = recivedMessage.getId();
-			GetFromDB getExam = new GetFromDB();
-			ArrayList<Exam> exams = getExam.exams(examId);
-			return message.getMessage("ok-get-exams", exams);
-
-		}
-		return null;
+		ExamMessage recivedMessage = (ExamMessage) msg;
+		String examId = recivedMessage.getId();
+		GetFromDB getExam = new GetFromDB();
+		ArrayList<Exam> exams = getExam.exams(examId);
+		return message.getMessage("ok-get-exams", exams);
 	}
 	
 	private static AbstractMessage handleDeleteMessage(AbstractMessage msg) {

@@ -127,7 +127,6 @@ public class QuestionsController implements Observer{
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
     private ObservableClient client;
-//    private Map<String,Integer> newValues;
 	private ArrayList<Question> questions;
     private MessageFactory message;
     private User user;
@@ -222,6 +221,7 @@ public class QuestionsController implements Observer{
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
+    	
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
     	teachersMap = new HashMap<String, String>();
