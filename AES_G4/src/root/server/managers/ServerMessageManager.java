@@ -274,11 +274,6 @@ public class ServerMessageManager {
 	}
 	
 	private static AbstractMessage handleGetExamMessage(AbstractMessage msg) {
-		ExamMessage recivedMessage = (ExamMessage) msg;
-		String examId = recivedMessage.getId();
-		GetFromDB getExam = new GetFromDB();
-		ArrayList<Exam> exams = getExam.exams(examId);
-		return message.getMessage("ok-get-exams", exams);
 		if(msg instanceof SimpleMessage)
 		{
 			SimpleMessage recievedMessage = (SimpleMessage) msg;
