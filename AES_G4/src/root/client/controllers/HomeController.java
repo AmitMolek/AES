@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 public class HomeController {
 
     @FXML
@@ -45,7 +47,7 @@ public class HomeController {
 
     @FXML
     private Text stageOfDay_txt;
-
+    
     @FXML
     private Text comma_lbl;
 
@@ -76,12 +78,17 @@ public class HomeController {
     @FXML
     private ImageView bgImg;
     
+    DataKeepManager dkm = DataKeepManager.getInstance();
+    
+    private String pervStageOfDay;
+    private String currentStageOfDay;
+    
     @FXML
     public void initialize() {
+    	init_welcomeMsg();
     	init_Clock();
     	init_Date();
     	init_DayOfTheWeek();
-    	init_welcomeMsg();
     	init_UserNameText();
     	init_GeneralInfo();
     	init_BgImage();
@@ -107,7 +114,7 @@ public class HomeController {
     private void init_BgImage() {
     	String mainPath = "src/root/client/resources/images/bg/home/";
     	try {
-    		ArrayList<Image> images = ImageLoader.loadImagesFromFolder(mainPath + stageOfDay_txt.getText().toLowerCase());
+    		ArrayList<Image> images = ImageLoader.loadImagesFromFolder(mainPath + getStageOfDay().toLowerCase());
     		Random rnd = new Random();
     		int rndImg = rnd.nextInt(images.size());
     		bgImg.setImage(images.get(rndImg));
@@ -133,18 +140,43 @@ public class HomeController {
     	info_permission.setText(permission);
     }
     
+    private String getStageOfDay() {
+    	int hour = LocalTime.now().getHour();
+    	if (hour >= 0 && hour < 12) {
+    		return "Morning";
+    	}else if (hour == 12) {
+    		return "Noon";
+    	}else if (hour > 12 && hour < 18) {
+    		return "Afternoon";
+    	}else {
+    		return "Evening";
+    	}
+    	/*
+    	int sec = LocalTime.now().getSecond();
+    	if (sec >= 0 & sec < 10) {
+    		return "Morning";
+    	}else if (sec == 10) {
+    		return "Noon";
+    	}else if (sec > 10 && sec < 20) {
+    		return "Afternoon";
+    	}else {
+    		return "Evening";
+    	}
+    	*/
+    }
+    
     private void init_welcomeMsg() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-        	LocalTime time = LocalTime.now();
-        	int hour = time.getHour();
-        	if (hour >= 0 && hour < 12) {
-        		stageOfDay_txt.setText("Morning");
-        	}else if (hour == 12) {
-        		stageOfDay_txt.setText("Noon");
-        	}else if (hour > 12 && hour < 18) {
-        		stageOfDay_txt.setText("Afternoon");
-        	}else {
-        		stageOfDay_txt.setText("Evening");
+        	String stage = getStageOfDay();
+        	stageOfDay_txt.setText(stage);
+        	currentStageOfDay = stage;
+        	
+        	dkm.updateObject("currentStageOfDay", currentStageOfDay);
+        	
+        	if (pervStageOfDay != currentStageOfDay) {
+        		pervStageOfDay = currentStageOfDay;
+        		dkm.updateObject("pervStageOfDay", pervStageOfDay);
+        		init_BgImage();
         	}
         }),
              new KeyFrame(Duration.minutes(1))

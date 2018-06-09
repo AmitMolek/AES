@@ -11,12 +11,12 @@ import root.util.log.LogLine.LineType;
 
 public class Main extends ScreensManager {
 
-	
-	
 	public static void main(String[] args) {
-		Log.getInstance().writeToLog(LineType.INFO, "Application started", false);
+		Log log = Log.getInstance();
+		log.writeToLog(LineType.INFO, "Application started", false);
 		
-		ScreensManager.addScreen("questions","resources/view/Questions.fxml");	// questions
+		//ScreensManager.addScreen("menu","resources/view/Menu.fxml");
+		ScreensManager.addScreen("aqw","resources/view/AddQuestionWizzard.fxml");
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
 

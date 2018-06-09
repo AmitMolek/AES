@@ -68,7 +68,23 @@ public class DataKeepManager {
 	public boolean keepObject(String objKey, Object obj) {
 		if (objMap.containsKey(objKey)) return false;
 		objMap.put(objKey, obj);
-		log.writeToLog(LineType.INFO, "Keep object: " + obj.getClass());
+		if (obj != null)
+			log.writeToLog(LineType.INFO, "Keep object: Key: " + objKey + " Object: " + obj.getClass());
+		else log.writeToLog(LineType.INFO, "Keep object: Key: " + objKey); 
+		return true;
+	}
+	
+	/**
+	 * Updates the object with the objKey with the new object sent, if the object does not exist, adds it to the map
+	 * @param objKey the key of the object you want to update
+	 * @param obj the object itself
+	 * @return return true is updated
+	 */
+	public boolean updateObject(String objKey, Object obj) {
+		if (!objMap.containsKey(objKey)) {
+			return keepObject(objKey, obj);
+		}
+		objMap.put(objKey, obj);
 		return true;
 	}
 	
@@ -81,8 +97,20 @@ public class DataKeepManager {
 		if (!objMap.containsKey(objKey)) return null;
 		Object tmpObj = objMap.get(objKey);
 		objMap.remove(tmpObj);
-		log.writeToLog(LineType.INFO, "Removed object from keep: " + tmpObj.getClass());
+		if (tmpObj != null)
+			log.writeToLog(LineType.INFO, "Removed object: Key: " + objKey + " Object: " + tmpObj.getClass());
+		else log.writeToLog(LineType.INFO, "Removed object: Key: " + objKey); 
 		return tmpObj;
+	}
+	
+	/**
+	 * Returns the wanted object without removing it from the map
+	 * @param objKey the key of the object you want to get
+	 * @return
+	 */
+	public Object getObject_NoRemove(String objKey) {
+		if (!objMap.containsKey(objKey)) return null;
+		return (objMap.get(objKey));
 	}
 	
 	/**
