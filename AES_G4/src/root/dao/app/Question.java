@@ -18,6 +18,7 @@ public class Question implements java.io.Serializable {
 	private String ans4;
 	private int correctAns;
 	private String teacherAssembeld;
+	private String teacherFullName;
 
 	/**
 	 * Constructor of question class
@@ -34,6 +35,24 @@ public class Question implements java.io.Serializable {
 		this.ans4 = ans4;
 		this.correctAns = correctAns;
 		this.teacherAssembeld = teacherAssembeld;
+	}
+/**
+ * copy constractor
+ * @param question
+ */
+
+	public Question(Question question) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.questionId = question.getQuestionId();
+		this.questionText = question.getQuestionText();
+		this.idquestionIntruction = question.getIdquestionIntruction();
+		this.ans1 = question.getAns1();
+		this.ans2 = question.getAns2();
+		this.ans3 = question.getAns3();
+		this.ans4 = question.getAns4();
+		this.correctAns = question.getCorrectAns();
+		this.teacherAssembeld = question.getTeacherAssembeld();
 	}
 
 	/**
@@ -162,6 +181,18 @@ public class Question implements java.io.Serializable {
 		this.teacherAssembeld = teacherAssembeld;
 	}
 
+	/**
+	 * @return the teacherFullName
+	 */
+	public String getTeacherFullName() {
+		return teacherFullName;
+	}
+	/**
+	 * @param teacherFullName the teacherFullName to set
+	 */
+	public void setTeacherFullName(String teacherFullName) {
+		this.teacherFullName = teacherFullName;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
