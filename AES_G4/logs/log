@@ -2915,3 +2915,29 @@
 [INFO] Application started | 2018-06-09 14:15:11.925
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 14:15:12.191
 [INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:15:16.182
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 14:36:03.492
+[INFO] Application started | 2018-06-09 14:36:05.208
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 14:36:05.576
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:36:09.356
+[INFO] Application started | 2018-06-09 14:37:32.335
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 14:37:32.663
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:37:36.454
+[INFO] Application started | 2018-06-09 14:37:52.703
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 14:37:53.019
+[INFO] Application started | 2018-06-09 14:37:57.539
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 14:37:57.859
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:38:02.07
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 14:38:02.195
+[INFO] Application started | 2018-06-09 14:40:35.538
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 14:40:35.869
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:40:39.658
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 14:40:39.79
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 14:41:23.453
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-09 14:41:32.519
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-09 14:41:32.544
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-09 14:41:32.545
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 14:41:35.09
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-09 14:41:48.606
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 14:41:48.97
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-09 14:41:49.923
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 14:41:50.601

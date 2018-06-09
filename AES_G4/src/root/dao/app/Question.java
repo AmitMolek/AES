@@ -18,6 +18,7 @@ public class Question implements java.io.Serializable {
 	private String ans4;
 	private int correctAns;
 	private String teacherAssembeld;
+	private String teacherFullName;
 
 	/**
 	 * Constructor of question class
@@ -180,6 +181,18 @@ public class Question implements java.io.Serializable {
 		this.teacherAssembeld = teacherAssembeld;
 	}
 
+	/**
+	 * @return the teacherFullName
+	 */
+	public String getTeacherFullName() {
+		return teacherFullName;
+	}
+	/**
+	 * @param teacherFullName the teacherFullName to set
+	 */
+	public void setTeacherFullName(String teacherFullName) {
+		this.teacherFullName = teacherFullName;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

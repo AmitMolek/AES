@@ -127,7 +127,7 @@ public class QuestionsController implements Observer{
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
     private ObservableClient client;
-    private Map<String,Integer> newValues;
+//    private Map<String,Integer> newValues;
 	private ArrayList<Question> questions;
     private MessageFactory message;
     private User user;
@@ -185,16 +185,16 @@ public class QuestionsController implements Observer{
 			return;
 		}
 		if (txtFieldName.getText().length() != 0){
-//			String teacherName = txtFieldName.getText();
-//			observabaleQuestions.clear();
-//			for(Question question: questions) {
-//				if (question.getTeacherAssembeld().equals(teacherID) ) {
-//					observabaleQuestions.add(question);
-//				}
-//			}
-//			txtFieldName.clear();
-//			btnSearch.setDisable(true);
-//			return;
+			String teacherName = txtFieldName.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getTeacherFullName().equals(teacherName) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldName.clear();
+			btnSearch.setDisable(true);
+			return;
 		}else {
             // Nothing selected.
 			errorMessage = "Please fill selected field";
@@ -225,6 +225,7 @@ public class QuestionsController implements Observer{
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
     	teachersMap = new HashMap<String, String>();
+    	
     	// Listen for selection changes and show the person details when changed.
     	txtFieldId.setOnMouseClicked(e -> {
     		btnSearch.setDisable(false);
@@ -260,7 +261,7 @@ public class QuestionsController implements Observer{
 		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
 		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
 		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
-		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherAssembeld"));
+		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherFullName"));
 
 		}
 	
@@ -320,10 +321,8 @@ public class QuestionsController implements Observer{
 		// TODO Auto-generated method stub
 		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
 		 for (Question question: questions) {
-			//System.out.println(question);
 			teachersMap.put(question.getTeacherAssembeld(), "");
 		}
-		System.out.println(teachersMap);
 		UserInfo teachersInfo = new UserInfo(teachersMap,questions);
 		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name",teachersInfo);	// we can send the specific question because we have table "Questions"
 		try {
@@ -338,7 +337,6 @@ public class QuestionsController implements Observer{
      * @param questionToDelete
      */
 	 private void deleteQuestionFromDB(Question questionToDelete) {
-		// TODO Auto-generated method stub
 		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
     	try {
 			client.sendToServer(questionDeleteMessage);
@@ -379,7 +377,6 @@ public class QuestionsController implements Observer{
 				    Stage stage = new Stage();
 				    stage.initModality(Modality.APPLICATION_MODAL);
 				    stage.setScene(scene);
-					
 				    stage.setTitle("New question wizzard");
 				    stage.showAndWait();
 				    
@@ -406,7 +403,6 @@ public class QuestionsController implements Observer{
 						    
 						    putNewQuestion(observebaleNewQuestion.get(0));
 				    	}
-				    	//System.out.println(observebaleNewQuestion.get(0));
 				    }
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -445,6 +441,11 @@ public class QuestionsController implements Observer{
 			
 		}
 		if (arg1 instanceof UserInfoMessage) {
+			for (Question question: questions) {
+				String tempTeacherAssembeledID = question.getTeacherAssembeld();
+				if(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempTeacherAssembeledID))
+				question.setTeacherFullName(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempTeacherAssembeledID));
+			}
 			System.out.println(((UserInfoMessage) arg1).getUserInfo().getTeachersMap());
 		}
 		if(arg1 instanceof SimpleMessage) {
