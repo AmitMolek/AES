@@ -14,15 +14,12 @@ public class Main extends ScreensManager {
 		log.writeToLog(LineType.INFO, "Application started", false);
 		
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");		
-		ScreensManager.addScreen("aqw","resources/view/AddQuestionWizzard.fxml");				// Why entered here?
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
 		ScreensManager.addScreen("addExam", "resources/view/AddExamScreen.fxml");
 		ScreensManager.addScreen("updateDeleteExam", "resources/view/DeleteExamScreen.fxml");
 		ScreensManager.addScreen("executefull", "resources/view/ExecuteExamScreen.fxml");
 		ScreensManager.addScreen("Enter4digitPassword", "resources/view/Enter4digitsPasswordScreen.fxml");
-		
-
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
 		
 
