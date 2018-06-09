@@ -124,6 +124,8 @@ public class MessageFactory {
 			return new ExamMessage((String)payload);
 		case "user":
 			return  getUserRelatedMessage(msgContent,payload);
+		case "solvedExamByTeacherId":
+			return createGetSolvedExamByTeacherId((User)payload);
 		default:
 			break;
 		}
@@ -203,9 +205,12 @@ public class MessageFactory {
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
-		case "users":
-			if(payload instanceof UserInfo)
-				return new UserInfoMessage((UserInfo)payload);
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				ExamMessage examMsg = new ExamMessage((ArrayList<Exam>)payload);
+				examMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
@@ -213,6 +218,11 @@ public class MessageFactory {
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	
+	private UserIDMessage createGetSolvedExamByTeacherId(User payload) {
+		UserIDMessage message=new UserIDMessage((User)payload);
+		message.setMsg("get-solvedExamByTeacherId");
+		return message;
+	}
 	
 
 }
