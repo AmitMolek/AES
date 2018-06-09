@@ -6,41 +6,29 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import root.client.Main;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ImageLoader;
-import root.client.managers.ScreensManager;
 import root.dao.app.User;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
-import java.io.File;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+/**
+ * The controller of the home screen
+ * @author Amit Molek
+ *
+ */
 
 public class HomeController {
-
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private Text good_lbl;
@@ -95,6 +83,10 @@ public class HomeController {
     	init_setStyleClass();
     }
 
+    /**
+     * Adds a CSS class to the text objects of the screen
+     * for some reason it wont work when you add it through the .fxml file ...... really ?!
+     */
     private void init_setStyleClass() {
     	// WTF FXML ?!
     	// whyyyyyy fxml css not working ?!
@@ -111,6 +103,9 @@ public class HomeController {
     	info_permission.getStyleClass().add("brightText");
     }
     
+    /**
+     * Init the background image of the home screen
+     */
     private void init_BgImage() {
     	String mainPath = "src/root/client/resources/images/bg/home/";
     	try {
@@ -124,6 +119,9 @@ public class HomeController {
     	}
     }
     
+    /**
+     * Init the user's short info
+     */
     private void init_GeneralInfo() {
     	User user = DataKeepManager.getInstance().getUser();
     	try {
@@ -134,12 +132,22 @@ public class HomeController {
     	}
     } 
     
+    /**
+     * Sets the user's short info
+     * @param name the name you want to display
+     * @param id the id you want to display
+     * @param permission the permission you want to display
+     */
     private void setGeneralInfoText(String name, String id, String permission) {
     	info_name.setText(name);
     	info_id.setText(id);
     	info_permission.setText(permission);
     }
     
+    /**
+     * Returns the current stage of the day
+     * @return the current stage of the day (String)
+     */
     private String getStageOfDay() {
     	int hour = LocalTime.now().getHour();
     	if (hour >= 0 && hour < 12) {
@@ -165,6 +173,9 @@ public class HomeController {
     	*/
     }
     
+    /**
+     * Init the welcome message
+     */
     private void init_welcomeMsg() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
         	String stage = getStageOfDay();
@@ -185,12 +196,18 @@ public class HomeController {
         clock.play();
     }
     
+    /**
+     * Init the username firstname
+     */
     private void init_UserNameText() {
     	User user = DataKeepManager.getInstance().getUser();
     	if (user != null)
     		userName_txt.setText(user.getUserFirstName());
     }
     
+    /**
+     * Init the dispaly clock of the home screen
+     */
     private void init_Clock() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -202,6 +219,9 @@ public class HomeController {
         clock.play();
     }
     
+    /**
+     * Init the dispaly of the date
+     */
     private void init_Date() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter localizedMediumDate = DateTimeFormatter.ofPattern("dd MMM YYYY");
@@ -213,6 +233,9 @@ public class HomeController {
         clock.play();
     }
     
+    /**
+     * Init the dispaly of the current day of the week
+     */
     private void init_DayOfTheWeek() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateTimeFormatter localizedMediumDate = DateTimeFormatter.ofPattern("EEEE");

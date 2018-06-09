@@ -1,10 +1,6 @@
 package root.dao.app;
 
-import java.io.IOException;
-
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import root.client.Main;
 
 /**
  * Holds data about screens
@@ -13,54 +9,52 @@ import root.client.Main;
  */
 
 public class ScreenObject {
+
 	private String screenName;
 	private Pane screenPane;
-	private String fxmlPath;
 
-	public ScreenObject(String screenName, Pane screenPane) throws IOException {
-		this(screenName, screenPane, null);
-	}
-
-	public ScreenObject(String screenName, String fxmlPath) throws IOException {
-		this(screenName, null, fxmlPath);
-	}
-
-	public ScreenObject(String screenName, Pane screenPane, String fxmlPath) throws IOException {
+	/**
+	 * Class constructor
+	 * @param screenName the name of the screen
+	 * @param screenPane the pane of the screen
+	 */
+	public ScreenObject(String screenName, Pane screenPane) {
 		this.screenName = screenName;
 		this.screenPane = screenPane;
-		this.fxmlPath = fxmlPath;
-		//loadFxml();
 	}
 
-	private void loadFxml() throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
-    	screenPane = fxmlLoader.load();
-	}
-	
+	/**
+	 * Returns the name of the screen
+	 * @return the name of the screen
+	 */
 	public String getScreenName() {
 		return screenName;
 	}
 	
+	/**
+	 * Sets the screen's name
+	 * @param screenName the new screen name
+	 */
 	public void setScreenName(String screenName) {
 		this.screenName = screenName;
 	}
 	
+	/**
+	 * Returns the screen pane of the screen
+	 * @return
+	 */
 	public Pane getScreenPane() {
 		return screenPane;
 	}
 	
+	/**
+	 * Sets the screen's pane
+	 * @param screenPane the new screen pane
+	 */
 	public void setScreenPane(Pane screenPane) {
 		this.screenPane = screenPane;
 	}
 
-	public String getFxmlPath() {
-		return fxmlPath;
-	}
-
-	public void setFxmlPath(String fxmlPath) {
-		this.fxmlPath = fxmlPath;
-	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -70,16 +64,17 @@ public class ScreenObject {
 		if (!(obj instanceof ScreenObject))
 			return false;
 		ScreenObject other = (ScreenObject) obj;
-		if (fxmlPath == null) {
-			if (other.fxmlPath != null)
-				return false;
-		} else if (!fxmlPath.equals(other.fxmlPath))
-			return false;
 		if (screenName == null) {
 			if (other.screenName != null)
 				return false;
 		} else if (!screenName.equals(other.screenName))
 			return false;
+		if (screenPane == null) {
+			if (other.screenPane != null)
+				return false;
+		} else if (!screenPane.equals(other.screenPane))
+			return false;
 		return true;
 	}
+	
 }

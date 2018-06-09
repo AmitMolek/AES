@@ -22,6 +22,10 @@ public class DataKeepManager {
 	
 	private static DataKeepManager instace = new DataKeepManager();
 	
+	/**
+	 * Private constructor
+	 * used to init the instance
+	 */
 	private DataKeepManager() {
 		objMap = new HashMap<String, Object>();
 		log = Log.getInstance();

@@ -2,9 +2,6 @@ package root.client.managers;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.Stack;
 
 import javafx.application.Application;
@@ -13,12 +10,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,13 +21,13 @@ import root.util.log.LogLine;
 import root.util.log.LogLine.LineType;
 
 /**
+ * Manages the screens in the app, mostly the transition between them
  * @author Naor Saadia
  *
  */
 public class ScreensManager extends Application {
 	
 	private static HashMap<String, String> screenMap = new HashMap<>();
-    //private static HashMap<String, ScreenObject> screenMap = new HashMap<>();
     private static Stage primaryStage = null;
     
     private Stack<ScreenObject> screenStack = new Stack<ScreenObject>();
@@ -65,7 +56,6 @@ public class ScreensManager extends Application {
      * @throws IOException 
      */
     public static void addScreen(String name, String path) {
-        //screenMap.put(name, new ScreenObject(name, path));
     	screenMap.put(name, path);
     }
     
