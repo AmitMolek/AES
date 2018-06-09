@@ -1,6 +1,8 @@
 package root.server.managers;
 
 import java.util.ArrayList;
+
+import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
@@ -16,6 +18,7 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
+import root.dao.message.UserIDMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
@@ -108,9 +111,25 @@ public class ServerMessageManager {
 				return handleQuestionsMessage(msg);
 			case "exams":
 				return handleGetExamMessage(msg);
+			case "solvedExamByTeacherId":
+				return handleGetExamByTeacherID(msg);
 		}
 		
 		return null;
+	}
+/***
+ * @author Alon Ben-yosef
+ * @param msg of UserIDMessage type expected
+ * @return An exam message containing an arraylist of exams assembled by teacherID
+ */
+	private static AbstractMessage handleGetExamByTeacherID(AbstractMessage msg) {
+		//TODO:Convert getFromDB to singleton
+		UserIDMessage idMessage = (UserIDMessage) msg;
+		MessageFactory factory=MessageFactory.getInstance();
+		GetFromDB getExams = new GetFromDB();
+		ArrayList<Exam> examList = getExams.exams();//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
+		ExamMessage message=(ExamMessage) factory.getMessage("ok-get-solvedExamByTeacherId", examList);
+		return message;
 	}
 
 	/**

@@ -17,8 +17,8 @@ public abstract class AbstractMessage implements Serializable {
 		return msg;
 	}
 	
-	public String setMsg() {
-		return msg;
+	public void setMsg(String msg) {
+		this.msg=msg;
 	}
 	
 	//Returns the string message as an array
