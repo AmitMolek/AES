@@ -2897,3 +2897,21 @@
 [INFO] Application started | 2018-06-08 20:07:07.408
 [INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-08 20:07:07.656
 [INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-08 20:07:12.417
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 10:30:20.682
+[INFO] Application started | 2018-06-09 10:30:30.614
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 10:30:31.057
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 10:30:36.695
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-09 10:34:44.239
+[INFO] Application started | 2018-06-09 10:39:41.998
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 10:39:42.284
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 10:39:46.559
+[INFO] Application started | 2018-06-09 10:40:37.006
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 10:40:37.291
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 10:40:44.103
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 14:13:44.471
+[INFO] Application started | 2018-06-09 14:13:51.945
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 14:13:52.345
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:13:56.599
+[INFO] Application started | 2018-06-09 14:15:11.925
+[INFO][root.client.managers.DataKeepManager] Keep object: class javafx.scene.layout.AnchorPane | 2018-06-09 14:15:12.191
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 14:15:16.182
