@@ -117,8 +117,9 @@ public class ScreensManager extends Application {
      */
     public void activate(ScreenObject screenObj) throws IOException{
     	VBox sRoot = new VBox();
+    	boolean isFullscreenScreen = screenObj.getScreenName().contains("full");
     	
-    	if (screenObj.getScreenName() != "main") {
+    	if (screenObj.getScreenName() != "main" && !isFullscreenScreen) {
 	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource(menuFxmlPath));
 	    	Pane menu = menuFxml.load();
 	    	sRoot.getChildren().add(menu);
@@ -133,6 +134,10 @@ public class ScreensManager extends Application {
     	Scene scene = new Scene(sRoot, 1280, 720);
     	if (scene.getStylesheets().isEmpty())
     		scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
+    	
+    	if (isFullscreenScreen) {
+    		primaryStage.setFullScreen(true);
+    	}
     	
     	primaryStage.setScene(scene);
     	primaryStage.show();
