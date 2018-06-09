@@ -8,8 +8,11 @@ import java.util.Observer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Exam;
 import root.dao.message.ErrorMessage;
@@ -23,15 +26,18 @@ public class Enter4digitPasswordController implements Observer {
     @FXML
     private TextField txt4Digit;
     
-    private Log log;
+    private Log log = Log.getInstance();
 
     private ObservableClient client;
     
     private ScreensManager scrMgr;
     
+    private DataKeepManager dataKeeper;
+    
     
 	public void initialize() throws IOException{
 		scrMgr =ScreensManager.getInstance();
+		dataKeeper = DataKeepManager.getInstance();
     	client = new ObservableClient("localhost",8000);
     	client.addObserver(this);
     	client.openConnection();
@@ -64,12 +70,30 @@ public class Enter4digitPasswordController implements Observer {
 			
 			//scrMgr.activate();
 		
+			dataKeeper.keepObject("RunningExam", examsList.get(0));
+				Platform.runLater(() -> {				
+						try {
+							scrMgr.activate("executefull");
+						} catch (IOException e) {
+							log.writeToLog(LogLine.LineType.ERROR, "Trying to activate wrong window");
+							e.printStackTrace();
+						}
+				});
 		}
 		else if(arg1 instanceof ErrorMessage) {
 			log.writeToLog(LogLine.LineType.ERROR, ((ErrorMessage) arg1).getErrorException().getMessage());
 
 			//Add Here handle with wrong password
 			//Add Here handle with locked exam
+			Platform.runLater(() -> {
+	            Alert alert = new Alert(AlertType.ERROR);
+	            alert.initOwner(scrMgr.getPrimaryStage());
+	            alert.setTitle("Wrong 4 digits password");
+	            alert.setHeaderText("Please correct invalid fields");
+	            alert.setContentText(arg1.toString());
+	            alert.showAndWait();       
+	        	log.writeToLog(LogLine.LineType.ERROR, "Cant Find running exam");
+		});
 		}
 	}
     

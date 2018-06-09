@@ -10,8 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import root.client.Main;
+import root.dao.app.Question;
+import root.dao.app.QuestionInExam;
 
-public class QuestionInExam extends AnchorPane{
+public class QuestionInExamObject extends AnchorPane{
 	
 
  
@@ -36,31 +38,35 @@ public class QuestionInExam extends AnchorPane{
     
     @FXML
     private GridPane answersGrid;
-    
-	private static int count=0;
-	
+    	
 	private String id=null;
 	
 	private int ans =0;
 	
 	private String pressedButton = "-fx-background-color: green;";
+	
 	private String nonPressedButton; 
 	
 	public void initialize() {
 		nonPressedButton = btnAns1.getStyle();
 	}
 	
-	public QuestionInExam() {
+	public QuestionInExamObject(Question q) {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/QuestionInExamComponent.fxml"));
 		fxmlLoader.setRoot(this);
-		id = Integer.toString(count);
-		count++;
+		String questionText = q.getQuestionText();
+		
 	   fxmlLoader.setController(this);
 	   try {
 	      fxmlLoader.load();
 	   } catch (IOException exception) {
 	      throw new RuntimeException(exception);
 	      }
+		lblQuestion.setText(questionText);
+		btnAns1.setText(q.getAns1());
+		btnAns2.setText(q.getAns2());
+		btnAns3.setText(q.getAns3());
+		btnAns4.setText(q.getAns4());
 
 	}
 	
@@ -68,9 +74,6 @@ public class QuestionInExam extends AnchorPane{
 		return id;
 	}
 	
-	public void setQuestion(String question) {
-		lblQuestion.setText(question);
-	}
 	
 	   
 	    public AnchorPane getRootPane() {

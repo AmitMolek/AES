@@ -10,7 +10,10 @@
    <children>
       <BorderPane fx:id="myBorder" prefHeight="638.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="570.0" prefWidth="137.0" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="570.0" prefWidth="137.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextArea prefHeight="429.0" prefWidth="137.0" />
+               </children></VBox>
          </left>
          <center>
             <AnchorPane fx:id="answersPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
@@ -18,7 +21,7 @@
          <right>
             <ScrollPane opacity="0.52" prefHeight="270.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="vbxQuetionsTab" prefHeight="348.0" prefWidth="197.0" />
+                  <VBox fx:id="vbxQuetionsTab" prefHeight="422.0" prefWidth="197.0" />
                </content>
             </ScrollPane>
          </right>
@@ -38,6 +41,8 @@
                         <Font name="System Bold" size="53.0" />
                      </font>
                   </Label>
+                  <Label fx:id="lblInstruction" layoutX="521.0" layoutY="149.0" prefHeight="45.0" prefWidth="250.0" />
+                  <Label fx:id="lblDate" layoutX="14.0" layoutY="14.0" prefHeight="82.0" prefWidth="244.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1022.0" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
          </top>
