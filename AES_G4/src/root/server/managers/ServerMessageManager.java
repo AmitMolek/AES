@@ -211,7 +211,7 @@ public class ServerMessageManager {
 				if(exams!=null)
 					return message.getMessage("ok-get-exams", exams);
 				else
-					return new ErrorMessage(new NullPointerException("not find exam"));
+					return new ErrorMessage(new NullPointerException("Exam not found"));
 			}
 			
 		}

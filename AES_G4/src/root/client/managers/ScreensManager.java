@@ -87,8 +87,12 @@ public class ScreensManager extends Application {
 	    	Scene scene = new Scene(sRoot, 1280, 720);
 	    	if (scene.getStylesheets().isEmpty())
 	    		scene.getStylesheets().add(Main.class.getResource("resources/css/materialDesign.css").toExternalForm());
-	    	
 	    	primaryStage.setScene(scene);
+	    	if(name.contains("full"))
+	    	{
+	    		primaryStage.setFullScreen(true);
+	    		sRoot.getChildren().remove(0);
+	    	}
 	    	primaryStage.show();
 	    }
 	    

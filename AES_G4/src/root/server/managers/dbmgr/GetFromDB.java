@@ -194,7 +194,7 @@ public class GetFromDB implements DbManagerInterface {
 				"    q.correct_question as corAns\r\n" + 
 				"\r\n" + 
 				"FROM exams ex, `questions in exam` qie, questions q\r\n" + 
-				"				WHERE ex.fourDigit="+pass+"\r\n" + 
+				"				WHERE ex.four_Digit="+pass+"\r\n" + 
 				"				AND qie.exam_ID=ex.exam_Id\r\n" + 
 				"				AND q.question_id = qie.Question_ID;";
 		ResultSet rs;
@@ -202,22 +202,25 @@ public class GetFromDB implements DbManagerInterface {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(byPassword);
 			Exam exam=null;
+			ArrayList<Exam> exams = null;
 			if(rs.next())
+			{
 				exam= new Exam(rs.getString("exid"),rs.getString("teacher_id")
 						,rs.getInt("duration"));
-			ArrayList<Exam> exams = new ArrayList<Exam>();
+			exams = new ArrayList<Exam>();
 			exams.add(exam);
 			ArrayList<QuestionInExam> questionsInExam = new ArrayList<QuestionInExam>();
 			QuestionInExam q;
 			while(rs.next()) {
-					 q = new QuestionInExam(new Question(rs.getString("qid"),rs.getString("qtext"),
-							 rs.getString("inst"), rs.getString("ans1"),
-							 rs.getString("ans2"),rs.getString("ans3"),
-							 rs.getString("ans4"),
-							 rs.getInt("corAns"),rs.getString("teacher_id")),rs.getInt("grade"),rs.getString("teacher_notes"), rs.getString("student_notes"));
-				questionsInExam.add(q);
+				 q = new QuestionInExam(new Question(rs.getString("qid"),rs.getString("qtext"),
+						 rs.getString("inst"), rs.getString("ans1"),
+						 rs.getString("ans2"),rs.getString("ans3"),
+						 rs.getString("ans4"),
+						 rs.getInt("corAns"),rs.getString("teacher_id")),rs.getInt("grade"),rs.getString("teacher_notes"), rs.getString("student_notes"));
+			     questionsInExam.add(q);
 			}
 			exam.setExamQuestions(questionsInExam);
+			}
 			return exams;
 
 		} catch (SQLException e) {
