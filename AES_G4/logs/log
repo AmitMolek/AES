@@ -3476,3 +3476,23 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: class root.dao.app.Exam | 2018-06-09 19:21:47.989
 [INFO][root.client.managers.DataKeepManager] Removed object from keep: class root.dao.app.Exam | 2018-06-09 19:21:48.064
 >>>>>>> refs/remotes/origin/Naor
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 20:11:57.1
+[INFO] Application started | 2018-06-09 20:12:04.078
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 20:12:04.627
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 20:12:08.964
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 20:12:09.077
+[ERROR][root.client.controllers.Enter4digitPasswordController] Exam not found | 2018-06-09 20:12:19.688
+[ERROR][root.client.controllers.Enter4digitPasswordController] Cant Find running exam | 2018-06-09 20:12:22.244
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-09 20:12:26.645
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-09 20:12:26.687
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-09 20:12:26.687
+[INFO] Application started | 2018-06-09 20:12:44.499
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 20:12:45.006
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 20:12:49.121
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 20:12:49.307
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 20:13:08.008
+[INFO] Application started | 2018-06-09 20:13:22.385
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 20:13:22.848
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 20:13:26.769
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 20:13:26.956
+[INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 20:13:29.891
