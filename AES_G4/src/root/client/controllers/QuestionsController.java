@@ -3,7 +3,6 @@ package root.client.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -141,73 +140,7 @@ public class QuestionsController implements Observer{
 	
 	}
 
-	@FXML
-    void selectFromCombobox(ActionEvent event) {
-		Subject selectedSucjet = subjectCombobox.getSelectionModel().getSelectedItem();
-		observabaleQuestions.clear();
-		if (selectedSucjet.getSubjectID().equals("00"))observabaleQuestions.addAll(questions);
-		else {
-			for(Question question: questions) {
-				if (question.getQuestionId().substring(0, 2).equals(selectedSucjet.getSubjectID()) ) {
-					observabaleQuestions.add(question);
-				}
-			}
-		}
-		
-    }
-   
-	@FXML
- 	void searchQuestion(ActionEvent event) {
-		String errorMessage = "";
-		if (txtFieldQuestion.getText().length() != 0) {
-			String questionID = txtFieldQuestion.getText();
-			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getQuestionId().equals(questionID) ) {
-					observabaleQuestions.add(question);
-				}
-			}
-			txtFieldQuestion.clear();
-			btnSearch.setDisable(true);
-			return;
-		}
-		if (txtFieldId.getText().length() != 0) {
-			String teacherID = txtFieldId.getText();
-			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getTeacherAssembeld().equals(teacherID) ) {
-					observabaleQuestions.add(question);
-				}
-			}
-			txtFieldId.clear();
-			btnSearch.setDisable(true);
-			return;
-		}
-		if (txtFieldName.getText().length() != 0){
-			String teacherName = txtFieldName.getText();
-			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getTeacherFullName().equals(teacherName) ) {
-					observabaleQuestions.add(question);
-				}
-			}
-			txtFieldName.clear();
-			btnSearch.setDisable(true);
-			return;
-		}else {
-            // Nothing selected.
-			errorMessage = "Please fill selected field";
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No field Selected");
-            alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
-
-            alert.showAndWait();
-            btnSearch.setDisable(true);
-            
-		}
-	}
+	
 		
 	/**
      * This method occurs when the window is shown up.
@@ -245,11 +178,10 @@ public class QuestionsController implements Observer{
     	
     	editQuestion.setDisable(true);
     	btnSearch.setDisable(true);
-    	
+    
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();
- 
     }
 	private void initQuestionsTable() {
 		// TODO Auto-generated method stub
@@ -262,9 +194,79 @@ public class QuestionsController implements Observer{
 		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
 		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
 		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherFullName"));
-
 		}
 	
+	@FXML
+    void selectFromCombobox(ActionEvent event) {
+		Subject selectedSucjet = subjectCombobox.getSelectionModel().getSelectedItem();
+		observabaleQuestions.clear();
+		if (selectedSucjet.getSubjectID().equals("00"))observabaleQuestions.addAll(questions);
+		else {
+			for(Question question: questions) {
+				if (question.getQuestionId().substring(0, 2).equals(selectedSucjet.getSubjectID()) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+		}
+		
+    }
+   
+	@FXML
+ 	void searchQuestion(ActionEvent event) {
+		String errorMessage = "";
+		if (txtFieldQuestion.getText().length() != 0) {
+			String questionID = txtFieldQuestion.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getQuestionId().equals(questionID) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldQuestion.clear();
+			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
+			return;
+		}
+		if (txtFieldId.getText().length() != 0) {
+			String teacherID = txtFieldId.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getTeacherAssembeld().equals(teacherID) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldId.clear();
+			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
+			return;
+		}
+		if (txtFieldName.getText().length() != 0){
+			String teacherName = txtFieldName.getText();
+			observabaleQuestions.clear();
+			for(Question question: questions) {
+				if (question.getTeacherFullName().equals(teacherName) ) {
+					observabaleQuestions.add(question);
+				}
+			}
+			txtFieldName.clear();
+			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
+			return;
+		}else {
+            // Nothing selected.
+			errorMessage = "Please fill selected field";
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No field Selected");
+            alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
+
+            alert.showAndWait();
+            btnSearch.setDisable(true);
+            unselectSelectionFromTable();
+            
+		}
+	}
 	/**
 	 * This method will set a edit option
 	 * @param event
@@ -274,7 +276,7 @@ public class QuestionsController implements Observer{
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
-      
+        	unselectSelectionFromTable();
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -282,8 +284,10 @@ public class QuestionsController implements Observer{
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
-
             alert.showAndWait();
+            
+            editQuestion.setDisable(true);
+            unselectSelectionFromTable();
         }
     }
 	
@@ -308,8 +312,10 @@ public class QuestionsController implements Observer{
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
-
             alert.showAndWait();
+            
+            editQuestion.setDisable(true);
+            unselectSelectionFromTable();
         }
     }
     /**
@@ -317,7 +323,7 @@ public class QuestionsController implements Observer{
      *  for each question in the subject this teacher teaches, we need the teacher assembled name.
      * @param questions2
      */
-	 private void getTeachersMap(ArrayList<Question> questions2) {
+	void getTeachersMap(ArrayList<Question> questions2) {
 		// TODO Auto-generated method stub
 		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
 		 for (Question question: questions) {
@@ -336,7 +342,7 @@ public class QuestionsController implements Observer{
      * this method called when deleting Question from DB
      * @param questionToDelete
      */
-	 private void deleteQuestionFromDB(Question questionToDelete) {
+	void deleteQuestionFromDB(Question questionToDelete) {
 		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
     	try {
 			client.sendToServer(questionDeleteMessage);
@@ -354,10 +360,15 @@ public class QuestionsController implements Observer{
 	 @FXML
 	void newQuestionDialog(ActionEvent event) throws IOException {
 		 runNewQuestionWizzard(null);
-	}
-	
-	private void runNewQuestionWizzard(Question selectedQuestionToEdit) {
+		 unselectSelectionFromTable();
 
+	}
+	/**
+	 * This method is called when pressing New-Question, or Edit-Question buttons. It opens a new window
+	 * @param selectedQuestionToEdit the selected question to edit, if null - then assume "New-Question" pressed,
+	 * proceed accordingly.
+	 */
+	private void runNewQuestionWizzard(Question selectedQuestionToEdit) {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 				try {
 			    	observebaleNewQuestion = FXCollections.observableArrayList(); 
@@ -380,7 +391,7 @@ public class QuestionsController implements Observer{
 				    stage.setTitle("New question wizzard");
 				    stage.showAndWait();
 				    
-				    if (observebaleNewQuestion.isEmpty() == false) {	// if false, than no new question created, that a question was updated
+				    if (observebaleNewQuestion.isEmpty() == false) {	// if false, than no new question created, that means a question was updated
 				    	if (selectedQuestionToEdit != null) {		// if 'selectedQuestionToEdit' changed, remove old question form list's 
 				    		String tempOldQID =selectedQuestionToEdit.getQuestionId(); 
 				    		observabaleQuestions.remove(selectedQuestionToEdit);
@@ -389,18 +400,19 @@ public class QuestionsController implements Observer{
 						    observebaleNewQuestion.get(0).setQuestionId(questionId);
 						    observabaleQuestions.add(observebaleNewQuestion.get(0));
 						    questions.add(observebaleNewQuestion.get(0));
-						    if ( tempOldQID.equals(questionId.substring(0, 2)) ){	// if equal than updated quastion didnt changed its subject
+						    if ( tempOldQID.equals(questionId.substring(0, 2)) ){	// if equal, then updated question didn't changed its subject
 						    	setChangedQuestion(observebaleNewQuestion.get(0));
 						    }
 						    deleteQuestionFromDB(selectedQuestionToEdit);			// delete from DB, old question
 						    putNewQuestion(observebaleNewQuestion.get(0));			// insert updated question
+						    updateTeacherAssemblerFullName(teachersMap);
 				    	}
-				    	else {
+				    	else {	// if "selectedQuestionToEdit" == null, than it means a "NEW Question" pressed.
 						    questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
 						    observebaleNewQuestion.get(0).setQuestionId(questionId);
 						    observabaleQuestions.add(observebaleNewQuestion.get(0));
 						    questions.add(observebaleNewQuestion.get(0));
-						    
+						    updateTeacherAssemblerFullName(teachersMap);
 						    putNewQuestion(observebaleNewQuestion.get(0));
 				    	}
 				    }
@@ -410,7 +422,6 @@ public class QuestionsController implements Observer{
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
 			});
-			
 		}
 	
 	/**
@@ -418,7 +429,6 @@ public class QuestionsController implements Observer{
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
 		if (arg1 instanceof QuestionsMessage) {
 			if(this.getQuestions().size() == 0)
 				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
@@ -427,26 +437,22 @@ public class QuestionsController implements Observer{
 			for (Question question: questions) {
 				observabaleQuestions.add(question);
 			}
-			getTeachersMap(questions);
-			tblQuestions.setItems(observabaleQuestions);
-			
+			getTeachersMap(questions);												// add newly teacher's ID to teacherMap
+			tblQuestions.setItems(observabaleQuestions);							// insert newly fetched question's to tblQuestion
 		}
-		
 		if(arg1 instanceof UserSubjectMessage) {
 			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
 			fillCombobox(this.userSubjects);
 			getUserQuestions(this.userSubjects);
-			
-			//System.out.println(this.userSubjects.toString());
-			
 		}
 		if (arg1 instanceof UserInfoMessage) {
 			for (Question question: questions) {
 				String tempTeacherAssembeledID = question.getTeacherAssembeld();
 				if(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempTeacherAssembeledID))
 				question.setTeacherFullName(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempTeacherAssembeledID));
+				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap();	// update teacherMap to hold new <teacherID,teacherFullName>.
 			}
-			System.out.println(((UserInfoMessage) arg1).getUserInfo().getTeachersMap());
+			updateTeacherAssemblerFullName(teachersMap);
 		}
 		if(arg1 instanceof SimpleMessage) {
 			SimpleMessage simple = (SimpleMessage)arg1;
@@ -454,7 +460,23 @@ public class QuestionsController implements Observer{
 		}
 	}
 	
-
+	/**
+	 * This method called when we need to update in tblQuestions the TeacherName column
+	 */
+	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
+		for (Question question: questions) {	// update the questions array, to keep updated
+			String tempTeacherAssembeledID = question.getTeacherAssembeld();
+			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+				question.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
+			}
+		}
+		for (Question obsQuestion: observabaleQuestions) {	// update observableQuestion to update the tblQuestions
+			String tempTeacherAssembeledID = obsQuestion.getTeacherAssembeld();
+			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+				obsQuestion.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
+			}
+		}
+	}
 	
 	/**
 	  *  function to create a valid Question ID
@@ -482,10 +504,12 @@ public class QuestionsController implements Observer{
 		System.out.println("My tst "+newId);
 		return newId;
 	}
-	
+	/**
+	 * Here well prepare a message with {"put-new-Question", Question }
+	 * in order to insert new Question to DB.
+	 * @param question
+	 */
 	private void putNewQuestion(Question question) {
-		// TODO Auto-generated method stub
-		// here well prepare a message with {"put-new-Question", Question }
 		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
 		try {
 			client.sendToServer(newQuestionMessage);
@@ -497,11 +521,10 @@ public class QuestionsController implements Observer{
 	
 	/**
 	 * this method is called when updating existing message.
+	 * here well prepare a message with {"set-new-Question", Question }
 	 * @param question updated question needed to be inserted the DB
 	 */
     private void setChangedQuestion(Question question) {
-		// TODO Auto-generated method stub
-    	// here well prepare a message with {"set-new-Question", Question }
 		QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
 		try {
 			client.sendToServer(updatedQuestionMessage);
@@ -509,12 +532,12 @@ public class QuestionsController implements Observer{
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
-		
 	}
-	
+	/**
+	 * Here well get all question that in the same subject of the user
+	 * @param userSubjects
+	 */
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
-		// TODO Auto-generated method stub
-		// Here well get all question that in the same subject of the user
 		for (Subject subject: userSubjects) {
 			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
 			try {
@@ -525,9 +548,11 @@ public class QuestionsController implements Observer{
 			}
 		}
 	}
-	
+	/**
+	 * This method is called in order to get all user teaching subjects - nessecary to get relevant questions
+	 * @param user
+	 */
 	private void getUserSubjects(User user) {
-		// TODO Auto-generated method stub
 		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
 		try {
 			client.sendToServer(newUserSubjectMessage);
@@ -547,9 +572,8 @@ public class QuestionsController implements Observer{
 		
 	private void fillCombobox(ArrayList<Subject> teacherSubject) {
 		observableSubjects = FXCollections.observableArrayList(teacherSubject);
-		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for enabling to unfillter table rows
+		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for showing all table rows
 		subjectCombobox.getItems().addAll(observableSubjects);
-	
 	}
 		
 	/**
@@ -567,9 +591,14 @@ public class QuestionsController implements Observer{
 	}
 	public void addQuestions(ArrayList<Question> questions) {
 		this.getQuestions().addAll(questions);
-		
 	}
-	
+	/**
+	 * This method called when one want's to deSelect selection from table
+	 */
+	private void unselectSelectionFromTable() {
+		 int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
+		 tblQuestions.getSelectionModel().clearSelection(selectedIndex);
+	}
 	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
 		teacherIDLbl.setText(user.getUserID());
