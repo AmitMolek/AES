@@ -63,10 +63,21 @@ public class UpdateExamController implements Observer {
 	 */
 	@FXML
 	void UpdateQuestionInExam(ActionEvent event) {
-		
+		totalPoints = 0;
 		ArrayList<QuestionInExam> examInQuestions = new ArrayList<QuestionInExam>();
 		for (QuestionInExam q : examQuestions) {
+			totalPoints = totalPoints + q.getQuestionGrade();
 			examInQuestions.add(q);
+		}
+		if(totalPoints != 100)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText("Not 100 points");
+			alert.showAndWait();
+			return;
 		}
 		QuestionInExamMessage sendMessage = (QuestionInExamMessage) messageFact.getMessage("put-questioninexam",
 				examInQuestions);
