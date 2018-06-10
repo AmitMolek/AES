@@ -8,6 +8,7 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -15,10 +16,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -32,181 +36,256 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
+import root.server.managers.dbmgr.DbManagerInterface;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- *Class for add exam screen controller
+ * Class for add exam screen controller
+ * 
  * @author Omer Haimovich
  *
  */
 public class AddExamController implements Observer {
 
-	
-		@FXML
-    	private Button btnAddToExam;
-		
-	 	@FXML
-	    private FlowPane myFlow;
+	@FXML
+	private Button btnAddToExam;
 
-	    @FXML
-	    private ComboBox<String> cmbCourse;
+	@FXML
+	private FlowPane myFlow;
 
-	    @FXML
-	    private ComboBox<String> cmbSubject;
+	@FXML
+	private ComboBox<String> cmbCourse;
 
-	    @FXML
-	    private AnchorPane rootPane;
+	@FXML
+	private ComboBox<String> cmbSubject;
 
-	    @FXML
-	    private Button btnAddExam;
+	@FXML
+	private AnchorPane rootPane;
 
-	    @FXML
-	    private TextField txtDuration;
+	@FXML
+	private Button btnAddExam;
 
-	    @FXML
-	    private TextField txtTeacher;
+	@FXML
+	private TextField txtDuration;
 
-	    @FXML
-	    private Button btnAddQuestion;
-    
-    private User teacher;
-    private MessageFactory messageFact;
-    private ObservableClient client;
-    private ArrayList<Subject> teacherSubject;
-    private ArrayList<Course> CourseInSubject;
-    private Log log;
-    private ArrayList<QuestionInExam> examQuestions;
-    private ArrayList<Question> question;
-    private AddQuestionToExam newQuestion;
-    private static int countId = 10;
-    private Subject newSubject;
-    private Course newCourse;
-    private ScreensManager screenManager;
-    /**
-     * Method the occurs when teacher select subject
-     * @param event on action in subject combo box
-     */
-    @FXML
-    void SelectSubject(ActionEvent event) {
-    	cmbCourse.getItems().clear();
-    	String selectedVaule = cmbSubject.getValue();
-    	String[] selectedSubject = selectedVaule.toLowerCase().split("-");
-    	newSubject = new Subject(selectedSubject[0],selectedSubject[1]);
-    	CourseMessage getCourseSubject = (CourseMessage) messageFact.getMessage("get-courses", newSubject);
-    	QuestionsMessage getQuestionOfsubject = (QuestionsMessage) messageFact.getMessage("get-questions", newSubject);
-    	try {
+	@FXML
+	private TextField txtTeacher;
+
+	@FXML
+	private Button btnAddQuestion;
+
+	private User teacher;
+	private MessageFactory messageFact;
+	private ObservableClient client;
+	private ArrayList<Subject> teacherSubject;
+	private ArrayList<Course> CourseInSubject;
+	private Log log;
+	private ArrayList<QuestionInExam> examQuestions;
+	private ArrayList<Question> question;
+	private ArrayList<Exam> exams;
+	private AddQuestionToExam newQuestion;
+	private static int countId = 1;
+	private Subject newSubject;
+	private Course newCourse;
+	private ScreensManager screenManager;
+	private DataKeepManager dkm;
+	private Stage mainApp;
+	private String examId;
+	private ArrayList<String> courses;
+
+	/**
+	 * Method the occurs when teacher select subject
+	 * 
+	 * @param event
+	 *            on action in subject combo box
+	 */
+	@FXML
+	void SelectSubject(ActionEvent event) {
+		if (cmbCourse.getItems().size() != 0)
+			cmbCourse.getItems().removeAll(courses);
+		String selectedVaule = cmbSubject.getValue();
+		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
+		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
+		CourseMessage getCourseSubject = (CourseMessage) messageFact.getMessage("get-courses", newSubject);
+		QuestionsMessage getQuestionOfsubject = (QuestionsMessage) messageFact.getMessage("get-questions", newSubject);
+		try {
 			client.sendToServer(getCourseSubject);
 			client.sendToServer(getQuestionOfsubject);
 		} catch (IOException e) {
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
-    }
+	}
 
-    /**
-     * Method the occurs when teacher select course
-     * @param event on action in course combo box
-     */
-    @FXML
-    void SelectCourse(ActionEvent event) {
-    	String selectedVaule = cmbCourse.getValue();
-    	String[] selectedCourse = selectedVaule.toLowerCase().split("-");
-    	newCourse = new Course(selectedCourse[0],selectedCourse[1]);
-    	btnAddQuestion.setDisable(false);
-    }
+	/**
+	 * Method the occurs when teacher select course
+	 * 
+	 * @param event
+	 *            on action in course combo box
+	 */
+	@FXML
+	void SelectCourse(ActionEvent event) {
+		if (cmbCourse.getValue() != null) {
+			String selectedVaule = cmbCourse.getValue();
+			String[] selectedCourse = selectedVaule.toLowerCase().split("-");
+			newCourse = new Course(selectedCourse[0], selectedCourse[1]);
+			setIdToExam();
+			btnAddQuestion.setDisable(false);
+		}
 
+	}
 
-    /**
-     * Method the occurs when teacher press on the + button
-     * @param event on action in + button
-     */
+	/**
+	 * Method the occurs when teacher press on the + button
+	 * 
+	 * @param event
+	 *            on action in + button
+	 * 
+	 */
 
-    @FXML
-    void AddQuestionToExam(ActionEvent event) {
-    	newQuestion = new AddQuestionToExam();
-    	newQuestion.setQuestionCombo(question);
-    	myFlow.getChildren().add(newQuestion);
-    	btnAddToExam.setDisable(false);
-    	btnAddQuestion.setDisable(true);
-    		
-    }
-  
-    /**
-     * Method the occurs when teacher press on add exam button
-     * @param event on action in add exam button
-     */
-    @FXML
-    void AddExam(ActionEvent event) {
-    	String ExamId = newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId);
-    	countId++;
-    	String examDuration = txtDuration.getText();
-    	int duration = Integer.parseInt(examDuration); 
-    	Exam newExam = new Exam(ExamId,teacher,duration,examQuestions);
-    	ExamMessage newMessage = (ExamMessage)messageFact.getMessage("put-exams", newExam);
-    	try {
+	@FXML
+	void AddQuestionToExam(ActionEvent event) {
+		newQuestion = new AddQuestionToExam();
+		newQuestion.setQuestionCombo(question);
+		myFlow.getChildren().add(newQuestion);
+		btnAddToExam.setDisable(false);
+		btnAddQuestion.setDisable(true);
+		btnAddExam.setDisable(true);
+
+	}
+
+	/**
+	 * Method the occurs when teacher press on add exam button
+	 * 
+	 * @param event
+	 *            on action in add exam button
+	 */
+	@FXML
+	void AddExam(ActionEvent event) {
+		if (isInputValidAddExam()) {
+			String examDuration = txtDuration.getText();
+			int duration = Integer.parseInt(examDuration);
+			Exam newExam = new Exam(examId, teacher, duration, examQuestions);
+			ExamMessage newMessage = (ExamMessage) messageFact.getMessage("put-exams", newExam);
+			try {
+				client.sendToServer(newMessage);
+			} catch (IOException e) {
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	/**
+	 * 
+	 * Set new id to exam
+	 */
+	public void setIdToExam() {
+		String examId = newSubject.getSubjectID() + newCourse.getCourseId();
+		ExamMessage newMessage = (ExamMessage) messageFact.getMessage("get-exams", examId);
+		try {
 			client.sendToServer(newMessage);
 		} catch (IOException e) {
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
-    	
-    }
-    /**
-   	 * This method occurs when the window is shown up.
-     * @throws IOException if the window cannot be shown
-     */
-    @FXML
-	public void initialize() throws IOException{
-    	log = Log.getInstance();
-    	screenManager = ScreensManager.getInstance();
-    	cmbCourse.setDisable(true);
-    	client = new ObservableClient("localhost",8000);
-    	client.addObserver(this);
-    	client.openConnection();
-    	messageFact = MessageFactory.getInstance();
-    	cmbCourse.setPromptText("Choose course");
-    	cmbSubject.setPromptText("Choose subject");
-    	teacher = new User("204403257","omer","haimovich" ,"12345","teacher");
-    	txtTeacher.setText(teacher.getUserFirstName() + " " +  teacher.getUserLastName());
-    	txtTeacher.setDisable(true);
-    	btnAddToExam.setDisable(true);
-    	btnAddQuestion.setDisable(true);
-    	SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
-    	client.sendToServer(getTeacherSubject);
-    }
 
-    /**
-     * This method occurs when the server send message to the client
-     */
+	}
+
+	/**
+	 * This method occurs when the window is shown up.
+	 * 
+	 * @throws IOException
+	 *             if the window cannot be shown
+	 */
+	@FXML
+	public void initialize() throws IOException {
+		log = Log.getInstance();
+		dkm = DataKeepManager.getInstance();
+		screenManager = ScreensManager.getInstance();
+		mainApp = screenManager.getPrimaryStage();
+		client = new ObservableClient("localhost", 8000);
+		client.addObserver(this);
+		client.openConnection();
+		messageFact = MessageFactory.getInstance();
+		cmbCourse.setPromptText("Choose course");
+		cmbSubject.setPromptText("Choose subject");
+		teacher = dkm.getUser();
+		txtTeacher.setText(teacher.getUserFirstName() + " " + teacher.getUserLastName());
+		txtTeacher.setDisable(true);
+		btnAddToExam.setDisable(true);
+		btnAddQuestion.setDisable(true);
+		cmbCourse.setDisable(true);
+		SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
+		client.sendToServer(getTeacherSubject);
+	}
+
+	/**
+	 * This method occurs when the server send message to the client
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		if(arg1 instanceof SubjectMessage) {
-			SubjectMessage intialSubjectMessage = (SubjectMessage)arg1;
+		if (arg1 instanceof SubjectMessage) {
+			SubjectMessage intialSubjectMessage = (SubjectMessage) arg1;
 			teacherSubject = intialSubjectMessage.getTeacherSubject();
-			for(Subject s: teacherSubject ) {
+			for (Subject s : teacherSubject) {
 				cmbSubject.getItems().add(s.getSubjectID() + "-" + s.getSubjectName());
 			}
 		}
-		
-		if(arg1 instanceof CourseMessage) {
-			CourseMessage intialCourseMessage = (CourseMessage)arg1;
+
+		if (arg1 instanceof CourseMessage) {
+			CourseMessage intialCourseMessage = (CourseMessage) arg1;
 			CourseInSubject = intialCourseMessage.getCourses();
-			for(Course c: CourseInSubject ) {
+			courses = new ArrayList<String>();
+			for (Course c : CourseInSubject) {
 				cmbCourse.getItems().add(c.getCourseId() + "-" + c.getCourseName());
+				courses.add(c.getCourseId() + "-" + c.getCourseName());
 			}
 			cmbCourse.setDisable(false);
 		}
-		
-		if(arg1 instanceof QuestionsMessage) {
-			QuestionsMessage intialQuestionMessage = (QuestionsMessage)arg1;
+
+		if (arg1 instanceof QuestionsMessage) {
+			QuestionsMessage intialQuestionMessage = (QuestionsMessage) arg1;
 			question = intialQuestionMessage.getQuestions();
 		}
-		
-		if(arg1 instanceof SimpleMessage) {
+
+		if (arg1 instanceof ExamMessage) {
+			ExamMessage intialExamMessage = (ExamMessage) arg1;
+			exams = intialExamMessage.getExams();
+			if (countId <= 9) {
+				for (Exam exam : exams) {
+					if (!(exam.getExamId().substring(4, 6).equals("0" + Integer.toString(countId)))) {
+						examId = (newSubject.getSubjectID() + newCourse.getCourseId() + "0"
+								+ Integer.toString(countId));
+						break;
+
+					}
+					countId++;
+				}
+			} else {
+				for (Exam exam : exams) {
+					if (!(exam.getExamId().substring(0, 2).equals(Integer.toString(countId)))) {
+						examId = (newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId));
+						break;
+					}
+					countId++;
+
+				}
+			}
+		}
+
+		if (arg1 instanceof SimpleMessage) {
 			log.writeToLog(LogLine.LineType.INFO, "Exam added");
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.initOwner(mainApp);
+					alert.setTitle("Exam added");
+					alert.setHeaderText("Exam added successeful");
+					alert.setContentText("The exam was added successful");
+					alert.showAndWait();
 					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -214,22 +293,61 @@ public class AddExamController implements Observer {
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
 			});
-			
+
 		}
-		
+
 	}
-	
+
+	/**
+	 * 
+	 * @return if there is error or not!
+	 */
+	private boolean isInputValidAddExam() {
+		String errorMessage = "";
+
+		if (cmbSubject.getSelectionModel().getSelectedItem() == null) {// || firstNameField.getText().length() == 0) {
+			errorMessage += "Please Select a Subject!\n";
+		}
+		if (cmbCourse.getSelectionModel().getSelectedItem() == null) {
+			errorMessage += "Please Select a Course!\n";
+		}
+
+		if (AddQuestionToExam.getCount() == 0) {
+			errorMessage += "Please Add Question!\n";
+		}
+
+		if (txtDuration.getText() == null || txtDuration.getText().length() == 0) {
+			errorMessage += "No valid exam duration\n";
+		}
+		if (AddQuestionToExam.getTotalPoints() < 100) {
+			errorMessage += "Less than 100 points\n";
+		}
+		if (errorMessage.length() == 0) {
+			return true;
+		} else {
+			// Show the error message.
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText(errorMessage);
+			alert.showAndWait();
+			return false;
+		}
+	}
+
 	/**
 	 * This method occurs when the teacher press on the add exam form button
-	 * @param event on action when the teacher press add exam form button
+	 * 
+	 * @param event
+	 *            on action when the teacher press add exam form button
 	 */
-    @FXML
-    void AddToTheExamForm(ActionEvent event) {
-    	examQuestions = newQuestion.AddQuestion();
-    	btnAddQuestion.setDisable(false);
-    	btnAddToExam.setDisable(true);
-    	
-    }
-    
-    
+	@FXML
+	void AddToTheExamForm(ActionEvent event) {
+		examQuestions = newQuestion.AddQuestion();
+		btnAddQuestion.setDisable(false);
+		btnAddExam.setDisable(false);
+
+	}
+
 }
