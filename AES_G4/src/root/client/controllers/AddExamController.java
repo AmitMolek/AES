@@ -92,6 +92,7 @@ public class AddExamController implements Observer {
 	private DataKeepManager dkm;
 	private Stage mainApp;
 	private String examId;
+	private ArrayList<String> courses;
 
 	/**
 	 * Method the occurs when teacher select subject
@@ -101,7 +102,8 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	void SelectSubject(ActionEvent event) {
-		cmbCourse.getItems().clear();
+		if (cmbCourse.getItems().size() != 0)
+			cmbCourse.getItems().removeAll(courses);
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
@@ -124,11 +126,13 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	void SelectCourse(ActionEvent event) {
-		String selectedVaule = cmbCourse.getValue();
-		String[] selectedCourse = selectedVaule.toLowerCase().split("-");
-		newCourse = new Course(selectedCourse[0], selectedCourse[1]);
-		setIdToExam();
-		btnAddQuestion.setDisable(false);
+		if (cmbCourse.getValue() != null) {
+			String selectedVaule = cmbCourse.getValue();
+			String[] selectedCourse = selectedVaule.toLowerCase().split("-");
+			newCourse = new Course(selectedCourse[0], selectedCourse[1]);
+			setIdToExam();
+			btnAddQuestion.setDisable(false);
+		}
 
 	}
 
@@ -234,8 +238,10 @@ public class AddExamController implements Observer {
 		if (arg1 instanceof CourseMessage) {
 			CourseMessage intialCourseMessage = (CourseMessage) arg1;
 			CourseInSubject = intialCourseMessage.getCourses();
+			courses = new ArrayList<String>();
 			for (Course c : CourseInSubject) {
 				cmbCourse.getItems().add(c.getCourseId() + "-" + c.getCourseName());
+				courses.add(c.getCourseId() + "-" + c.getCourseName());
 			}
 			cmbCourse.setDisable(false);
 		}
@@ -274,6 +280,12 @@ public class AddExamController implements Observer {
 			log.writeToLog(LogLine.LineType.INFO, "Exam added");
 			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.initOwner(mainApp);
+					alert.setTitle("Exam added");
+					alert.setHeaderText("Exam added successeful");
+					alert.setContentText("The exam was added successful");
+					alert.showAndWait();
 					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

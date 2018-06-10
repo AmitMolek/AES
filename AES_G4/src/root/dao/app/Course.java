@@ -52,6 +52,11 @@ public class Course implements Serializable {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
+	
+	@Override
+	public String toString() {
+		return courseId + "-"+ courseName;
+	}
 
 	
 }

@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="rootPane" prefHeight="740.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="root.client.controllers.UpdateDeleteExamController">
+<AnchorPane fx:id="rootPane" prefHeight="740.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.UpdateDeleteExamController">
    <children>
-      <GridPane layoutX="92.0" layoutY="61.0" prefHeight="29.0" prefWidth="1111.0">
+      <GridPane fx:id="gridPane" layoutX="92.0" layoutY="61.0" prefHeight="29.0" prefWidth="1111.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
