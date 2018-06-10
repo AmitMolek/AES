@@ -171,8 +171,8 @@ public class ServerMessageManager {
 				usersMap.put(user.getUserID(),user.getUserFirstName()+" "+user.getUserLastName());
 			}
 		}
-		UserInfo UserInfo = new UserInfo(usersMap, null);
-		return message.getMessage("ok-get-users",UserInfo);
+		//UserInfo UserInfo = new UserInfo(usersMap, null);
+		return message.getMessage("ok-get-users",usersMap);
 	}
 /***
  * @author Alon Ben-yosef

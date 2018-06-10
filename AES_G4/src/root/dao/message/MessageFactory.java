@@ -1,6 +1,7 @@
 package root.dao.message;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -212,6 +213,9 @@ public class MessageFactory {
 				examMsg.setMsg("ok-get-solvedExamByTeacherId");
 			}
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+			else return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
 		}
 		
 			
