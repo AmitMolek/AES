@@ -274,7 +274,7 @@ public class QuestionsController implements Observer{
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
-        	tblQuestions.getItems().remove(selectedIndex);
+      
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
