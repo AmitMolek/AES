@@ -3847,3 +3847,129 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: updateExam Object: class root.dao.app.Exam | 2018-06-10 14:43:59.368
 [INFO][root.client.managers.DataKeepManager] Removed object: Key: updateExam Object: class root.dao.app.Exam | 2018-06-10 14:43:59.379
 [INFO][root.client.managers.ScreensManager] Added screen to stack: updateExam | 2018-06-10 14:43:59.397
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 17:57:08.795
+[INFO] Application started | 2018-06-10 17:57:10.36
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:57:10.821
+[ERROR][root.client.controllers.LoginController] socket does not exist | 2018-06-10 17:57:21.387
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 17:57:37.932
+[INFO] Application started | 2018-06-10 17:57:40.973
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:57:41.425
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 17:57:45.544
+[INFO][root.client.managers.ScreensManager] Added screen to stack: updateDeleteExam | 2018-06-10 17:57:45.632
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 17:57:49.785
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 17:57:49.832
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 17:57:49.832
+[INFO][root.client.managers.ScreensManager] Added screen to stack: updateDeleteExam | 2018-06-10 17:57:53.968
+[INFO] Application started | 2018-06-10 17:58:56.277
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:58:56.699
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 17:59:01.062
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 17:59:01.206
+[INFO] Application started | 2018-06-10 17:59:50.298
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:59:50.706
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 17:59:55.583
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 17:59:55.726
+[INFO] Application started | 2018-06-10 18:03:04.996
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:03:05.322
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:03:09.703
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:03:09.916
+[INFO] Application started | 2018-06-10 18:03:59.318
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:03:59.613
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:04:03.434
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:04:03.553
+[INFO] Application started | 2018-06-10 18:04:44.131
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:04:44.42
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:04:48.491
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:04:48.6
+[INFO] Application started | 2018-06-10 18:05:15.506
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:05:15.82
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:05:19.964
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:05:20.07
+[INFO] Application started | 2018-06-10 18:06:56.718
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:06:57.009
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:07:02.499
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:07:02.616
+[INFO] Application started | 2018-06-10 18:08:25.119
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:08:25.408
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:08:29.596
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:08:29.709
+[INFO] Application started | 2018-06-10 18:09:14.783
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:09:15.081
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:09:21.054
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:09:21.163
+[INFO] Application started | 2018-06-10 18:10:20.127
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:10:20.43
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:10:25.524
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:10:25.641
+[INFO] Application started | 2018-06-10 18:11:30.737
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:11:31.028
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:11:34.702
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:11:34.813
+[INFO] Application started | 2018-06-10 18:12:46.112
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:12:46.405
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:12:50.523
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:12:50.636
+[INFO] Application started | 2018-06-10 18:13:51.054
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:13:51.351
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:13:55.763
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:13:55.87
+[INFO] Application started | 2018-06-10 18:14:47.88
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:14:48.174
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:14:51.815
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:14:51.932
+[INFO] Application started | 2018-06-10 18:16:06.909
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:16:07.208
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:16:11.142
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:16:11.256
+[INFO] Application started | 2018-06-10 18:17:10.213
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:17:10.501
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:17:15.169
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:17:15.289
+[INFO] Application started | 2018-06-10 18:18:33.536
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:18:33.85
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:18:40.334
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:18:40.455
+[INFO] Application started | 2018-06-10 18:20:35.161
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:20:35.494
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:20:39.199
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:20:39.319
+[INFO] Application started | 2018-06-10 18:21:10.244
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:21:10.536
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:21:15.566
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:21:15.691
+[INFO] Application started | 2018-06-10 18:22:54.888
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:22:55.184
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:23:00.915
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:23:01.032
+[INFO] Application started | 2018-06-10 18:24:29.917
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:24:30.207
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:24:34.213
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:24:34.327
+[INFO] Application started | 2018-06-10 18:26:22.642
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:26:22.949
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:26:27.543
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:26:27.665
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 18:39:20.511
+[INFO] Application started | 2018-06-10 18:39:27.723
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:39:28.059
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:39:34.531
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:39:34.646
+[INFO] Application started | 2018-06-10 18:41:48.847
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:41:49.136
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:41:54.433
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:41:54.597
+[INFO] Application started | 2018-06-10 18:42:58.743
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:42:59.031
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:43:03.555
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:43:03.677
+[INFO] Application started | 2018-06-10 18:43:35.49
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:43:35.786
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:43:40.239
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:43:40.355
+[INFO] Application started | 2018-06-10 18:45:00.245
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:45:00.543
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:45:04.763
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:45:04.875
+[INFO] Application started | 2018-06-10 18:45:43.329
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:45:43.619
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:45:47.903
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:45:48.015

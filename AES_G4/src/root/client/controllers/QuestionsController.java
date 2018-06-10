@@ -175,9 +175,14 @@ public class QuestionsController implements Observer{
     	tblQuestions.setOnMouseClicked(e -> {
     		editQuestion.setDisable(false);
         });
+    	// Listen for selection changes and show the person details when changed.
+    	tblQuestions.setOnMouseClicked(e -> {
+    		deleteQuestion.setDisable(false);
+        });
     	
-    	editQuestion.setDisable(true);
+    	//editQuestion.setDisable(true);
     	btnSearch.setDisable(true);
+    	deleteQuestion.setDisable(true);
     
     	setUserDetails(user);
     	getUserSubjects(user);
@@ -223,7 +228,6 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldQuestion.clear();
-			btnSearch.setDisable(true);
 			unselectSelectionFromTable();
 			return;
 		}
@@ -236,7 +240,6 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldId.clear();
-			btnSearch.setDisable(true);
 			unselectSelectionFromTable();
 			return;
 		}
@@ -249,7 +252,6 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldName.clear();
-			btnSearch.setDisable(true);
 			unselectSelectionFromTable();
 			return;
 		}else {
@@ -262,7 +264,6 @@ public class QuestionsController implements Observer{
             alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
 
             alert.showAndWait();
-            btnSearch.setDisable(true);
             unselectSelectionFromTable();
             
 		}
@@ -276,7 +277,7 @@ public class QuestionsController implements Observer{
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
-        	unselectSelectionFromTable();
+        	//unselectSelectionFromTable();
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -286,7 +287,6 @@ public class QuestionsController implements Observer{
             alert.setContentText("Please select a question in the table.");
             alert.showAndWait();
             
-            editQuestion.setDisable(true);
             unselectSelectionFromTable();
         }
     }
@@ -304,7 +304,6 @@ public class QuestionsController implements Observer{
         	deleteQuestionFromDB(questionToDelete);				// remove question from DB
         	tblQuestions.getItems().remove(selectedIndex);		// remove question from tableview
         	questions.remove(questionToDelete);					// remove question from THIS.questions
-        	
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -314,7 +313,6 @@ public class QuestionsController implements Observer{
             alert.setContentText("Please select a question in the table.");
             alert.showAndWait();
             
-            editQuestion.setDisable(true);
             unselectSelectionFromTable();
         }
     }
@@ -360,8 +358,7 @@ public class QuestionsController implements Observer{
 	 @FXML
 	void newQuestionDialog(ActionEvent event) throws IOException {
 		 runNewQuestionWizzard(null);
-		 unselectSelectionFromTable();
-
+		 //unselectSelectionFromTable();
 	}
 	/**
 	 * This method is called when pressing New-Question, or Edit-Question buttons. It opens a new window
@@ -369,6 +366,7 @@ public class QuestionsController implements Observer{
 	 * proceed accordingly.
 	 */
 	private void runNewQuestionWizzard(Question selectedQuestionToEdit) {
+			unselectSelectionFromTable();
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 				try {
 			    	observebaleNewQuestion = FXCollections.observableArrayList(); 
@@ -598,6 +596,10 @@ public class QuestionsController implements Observer{
 	private void unselectSelectionFromTable() {
 		 int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
 		 tblQuestions.getSelectionModel().clearSelection(selectedIndex);
+		 
+		 //editQuestion.setDisable(true);
+		 btnSearch.setDisable(true);
+		 deleteQuestion.setDisable(true);
 	}
 	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
