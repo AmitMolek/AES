@@ -112,7 +112,7 @@ public class LoginController implements Observer {
 				try {
 					
 					AddUserSpecificScreens();
-					screenManager.activate("questions");
+					screenManager.activate("addExam");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 
