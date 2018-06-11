@@ -34,6 +34,9 @@ public class ServerMessageManager {
 	
 	private static ServerMessageManager instance=null;
 	 private static MessageFactory message = MessageFactory.getInstance();;
+	 
+	 private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
+	 
 	private ServerMessageManager() {
 		
 	}
@@ -202,7 +205,13 @@ public class ServerMessageManager {
 		for(User user: users) {
 			if (user.getUserID().equals(loginInformation.getUserID())) {
 				if (user.getUserPassword().equals(loginInformation.getPassword())) {
-					return message.getMessage("ok-login",user);
+					if (!usersManager.isUserLoggedIn(user.getUserID())) {
+						usersManager.addLoggedInUser(user.getUserID());
+						System.out.println(user.toString());
+						return message.getMessage("ok-login",user);
+					}else {
+						return message.getMessage("error-login",new Exception("User is logged in"));
+					}
 				}
 				else {
 					return message.getMessage("error-login",new Exception("Wrong Password"));
