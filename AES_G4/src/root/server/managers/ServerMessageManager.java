@@ -17,6 +17,7 @@ import root.dao.message.AbstractMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
+import root.dao.message.LoggedOutMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionInExamMessage;
@@ -65,12 +66,38 @@ public class ServerMessageManager {
 			return handlePutMessage(msg);
 		case "delete":
 			return handleDeleteMessage(msg);
+		case "loggedout":
+			return handleLoggedOutMessage(msg);
 		default:
 			return null;
 		}
 	}
 	
-
+	/**
+	 * Handle the logging out users
+	 * @param msg the LoggedOutMessage
+	 * @return if the user removed returns ok-loggedOut, else error-loggedOut
+	 */
+	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
+		LoggedOutMessage loggedMsg = (LoggedOutMessage) msg;
+		String user_id = loggedMsg.getUserID();
+		String error_msg = "error-loggedOut";
+		
+		if (user_id == null) {
+			return message.getMessage(error_msg, new Exception("User id is null"));
+		}
+		
+		if (usersManager.isUserLoggedIn(user_id)) {
+			if (usersManager.removeLoggedInUser(user_id)) {
+				return message.getMessage("ok-loggedOut", user_id);
+			}else {
+				return message.getMessage(error_msg, new Exception("Failed removing logged in user"));
+			}
+		}else {
+			return message.getMessage(error_msg, new Exception("User not logged in"));
+		}
+	}
+	
 	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[1]) {
@@ -207,7 +234,6 @@ public class ServerMessageManager {
 				if (user.getUserPassword().equals(loginInformation.getPassword())) {
 					if (!usersManager.isUserLoggedIn(user.getUserID())) {
 						usersManager.addLoggedInUser(user.getUserID());
-						System.out.println(user.toString());
 						return message.getMessage("ok-login",user);
 					}else {
 						return message.getMessage("error-login",new Exception("User is logged in"));

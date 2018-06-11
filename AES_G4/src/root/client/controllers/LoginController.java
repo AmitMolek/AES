@@ -90,6 +90,7 @@ public class LoginController implements Observer {
     	client = new ObservableClient("localhost", 8000);
     	client.addObserver(this);
     	client.openConnection();
+    	DataKeepManager.getInstance().keepObject("client", client);
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
