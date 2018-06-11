@@ -7,15 +7,12 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -112,7 +109,7 @@ public class LoginController implements Observer {
 				try {
 					
 					AddUserSpecificScreens();
-					screenManager.activate("questions");
+					screenManager.activate("histograms");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 
@@ -125,13 +122,13 @@ public class LoginController implements Observer {
 			System.out.println(arg1);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);
+	           /* Alert alert = new Alert(AlertType.ERROR);
 	            alert.initOwner(screenManager.getPrimaryStage());
 	            alert.setTitle("Invalid Fields");
 	            alert.setHeaderText("Please correct invalid fields");
 	            alert.setContentText(arg1.toString());
 	            alert.showAndWait();       
-	        	log.writeToLog(LogLine.LineType.ERROR, arg1.toString());
+	        	log.writeToLog(LogLine.LineType.ERROR, arg1.toString());*/
 			});
 		}
 	}

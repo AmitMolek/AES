@@ -4,31 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
-import root.dao.message.AbstractMessage;
-import root.dao.message.CourseMessage;
-import root.dao.message.ErrorMessage;
-import root.dao.message.ExamMessage;
-import root.dao.message.LoginMessage;
-import root.dao.message.MessageFactory;
-import root.dao.message.QuestionInExamMessage;
-import root.dao.message.QuestionsMessage;
-import root.dao.message.SimpleMessage;
-import root.dao.message.SubjectMessage;
-import root.dao.message.UserInfoMessage;
-import root.dao.message.UserIDMessage;
-import root.dao.message.UserMessage;
-import root.dao.message.UserSubjectMessage;
-import root.server.managers.dbmgr.GetFromDB;
-import root.server.managers.dbmgr.SetInDB;
+import root.dao.message.*;
+import root.server.managers.dbmgr.*;
+
 
 public class ServerMessageManager {
 	
@@ -177,14 +164,14 @@ public class ServerMessageManager {
 /***
  * @author Alon Ben-yosef
  * @param msg of UserIDMessage type expected
- * @return An exam message containing an arraylist of exams assembled by teacherID
+ * @return An exam message containing an arraylist of statistics assembled by teacherID
  */
 	private static AbstractMessage handleGetExamByTeacherID(AbstractMessage msg) {
 		//TODO:Convert getFromDB to singleton
 		UserIDMessage idMessage = (UserIDMessage) msg;
 		MessageFactory factory=MessageFactory.getInstance();
 		GetFromDB getExams = new GetFromDB();
-		ArrayList<Exam> examList = getExams.exams();//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
+		ArrayList<Statistic> examList = getExams.getExamStatsByTeacherID(idMessage.getId());//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
 		ExamMessage message=(ExamMessage) factory.getMessage("ok-get-solvedExamByTeacherId", examList);
 		return message;
 	}

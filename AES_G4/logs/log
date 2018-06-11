@@ -3496,3 +3496,61 @@
 [INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-09 20:13:26.769
 [INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 20:13:26.956
 [INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 20:13:29.891
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 12:24:08.86
+[INFO] Application started | 2018-06-10 17:58:24.969
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-10 17:58:26.201
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 17:59:20.666
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 17:59:45.292
+[INFO] Application started | 2018-06-10 17:59:48.151
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:59:48.363
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:00:02.485
+[ERROR][root.client.controllers.LoginController] 
+/C:/Users/User/git/AES/AES_G4/bin/root/client/resources/view/HistorgramsScreen.fxml:10
+ | 2018-06-10 18:00:02.514
+[INFO] Application started | 2018-06-10 18:01:03.159
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:01:03.371
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:01:07.996
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:01:08.056
+[INFO] Application started | 2018-06-10 18:02:01.747
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:02:01.953
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:02:08.283
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:02:08.332
+[INFO] Application started | 2018-06-10 18:04:19.638
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:04:19.851
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:04:25.971
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:04:26.017
+[INFO] Application started | 2018-06-10 18:05:07.981
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:05:08.192
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:05:14.477
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:05:14.524
+[INFO] Application started | 2018-06-10 18:07:54.483
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:07:54.697
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:08:00.116
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:08:00.165
+[INFO] Application started | 2018-06-10 18:14:17.305
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:14:17.518
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:14:23.931
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:14:24.004
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 18:14:30.915
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 18:14:30.971
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 18:14:30.971
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:14:36.554
+[INFO] Application started | 2018-06-10 18:15:31.576
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:15:31.802
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:15:37.467
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:15:37.513
+[INFO] Application started | 2018-06-10 18:16:39.221
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:16:39.426
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:16:44.779
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:16:44.827
+[INFO] Application started | 2018-06-10 18:30:32.057
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:30:32.281
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 18:30:37.461
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 18:30:37.511
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 21:23:31.938
+[INFO] Application started | 2018-06-10 21:23:34.076
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 21:23:34.294
+[INFO][root.client.managers.DataKeepManager] Keep user: 311157523 | 2018-06-10 21:23:40.608
+[INFO][root.client.managers.ScreensManager] Added screen to stack: histograms | 2018-06-10 21:23:40.657

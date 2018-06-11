@@ -6,6 +6,7 @@ import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
@@ -208,8 +209,8 @@ public class MessageFactory {
 		case "solvedExamByTeacherId":
 			if(payload instanceof ArrayList<?>)
 			{
-				ExamMessage examMsg = new ExamMessage((ArrayList<Exam>)payload);
-				examMsg.setMsg("ok-get-solvedExamByTeacherId");
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
 			}
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}

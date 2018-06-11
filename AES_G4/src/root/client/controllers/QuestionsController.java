@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -195,6 +192,7 @@ public class QuestionsController implements Observer{
 			btnSearch.setDisable(true);
 			return;
 		}else {
+			/*
             // Nothing selected.
 			errorMessage = "Please fill selected field";
             Alert alert = new Alert(AlertType.WARNING);
@@ -205,7 +203,7 @@ public class QuestionsController implements Observer{
 
             alert.showAndWait();
             btnSearch.setDisable(true);
-            
+            */
 		}
 	}
 		
@@ -277,13 +275,13 @@ public class QuestionsController implements Observer{
         	tblQuestions.getItems().remove(selectedIndex);
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
+            /*Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(screenManager.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
 
-            alert.showAndWait();
+            alert.showAndWait();*/
         }
     }
 	
@@ -303,13 +301,13 @@ public class QuestionsController implements Observer{
         	
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
+            /*Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(screenManager.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
 
-            alert.showAndWait();
+            alert.showAndWait();*/
         }
     }
     /**
