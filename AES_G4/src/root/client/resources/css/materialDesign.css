@@ -9,14 +9,18 @@
 }
 .root {
 	/* Swatch Colors - Blue*/
+	-swatch-dark: #000000;
 	-swatch-100: #BBDEFB;
 	-swatch-200: #90CAF9;
 	-swatch-300: #64BEF6;
 	-swatch-400: #42A5F5;
 	-swatch-500: #2196F3;
+	-swatch-600: #1E88E5; 
+	-swatch-light: #ffffff;
+	
 	/*default text */
-	-fx-text-base-color: #212121;
-	-fx-text-button-normal: -swatch-500;
+	-fx-text-base-color: -swatch-dark;
+	-fx-text-button-normal: -swatch-light;
 	-fx-text-button-colored: rgb(255.0, 255.0, 255.0);
 	-fx-text-button-text: rgb(100.0, 100.0, 100.0);
 	-fx-text-title-color: rgb(45.0, 45.0, 45.0);
@@ -106,7 +110,7 @@
 .button-raised {
 	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
 		1);
-	-fx-background-color: -swatch-500;
+	-fx-background-color: -swatch-400;
 }
 
 .button-flat {
@@ -115,6 +119,7 @@
 }
 
 .toggle-button, .button {
+	-fx-background-color: -swatch-600;
 	-fx-text-fill: -fx-text-button-normal;
 	-fx-font-family: 'Roboto';
 	-fx-font-weight: bold;
@@ -134,7 +139,8 @@
 }
 
 .toggle-button:focused, .button:focused, .button:default:focused {
-	-fx-background-color: -swatch-light-grey;
+	/*-fx-background-color: -swatch-light;
+	-fx-text-fill: -fx-text-base-color;*/
 }
 
 .toggle-button:focused:selected {
@@ -146,8 +152,8 @@
 
 .toggle-button:armed, .toggle-button:selected, .button:armed, .button:default:armed
 	{
-	-fx-background-color: -swatch-grey;
-	-fx-text-fill: -fx-text-button-colored;
+	-fx-background-color: -swatch-200;
+	-fx-text-fill: -fx-text-button-normal;
 }
 
 .icon-button {
@@ -639,7 +645,7 @@
 	-fx-border-style: null;
 	-fx-border-color: -swatch-grey;
 	-fx-border-width: 0 0 2 0;
-	-fx-background-color: transparent;
+	-fx-background-color: -swatch-light;
 }
 
 .table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button
@@ -660,7 +666,7 @@
 }
 
 .table-row-cell, .tree-table-row-cell {
-	-fx-cell-size: 40px;
+	
 }
 
 .table-cell {
