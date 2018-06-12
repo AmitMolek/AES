@@ -207,8 +207,10 @@ public class GetFromDB implements DbManagerInterface {
 			ArrayList<Exam> exams = null;
 			if(rs.next())
 			{
+			
 				exam= new Exam(rs.getString("exid"),rs.getString("teacher_id")
 						,rs.getInt("duration"));
+			rs.previous();
 			exams = new ArrayList<Exam>();
 			exams.add(exam);
 			ArrayList<QuestionInExam> questionsInExam = new ArrayList<QuestionInExam>();

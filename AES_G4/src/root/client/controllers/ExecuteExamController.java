@@ -1,6 +1,7 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +33,7 @@ import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Exam;
 import root.dao.app.QuestionInExam;
+import root.dao.app.SolvedExams;
 
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
@@ -84,8 +86,11 @@ public class ExecuteExamController {
 
 	private ArrayList<String> intructText = new ArrayList<String>();
 	private String userId;
-
+	private Exam exam;
 	Timeline examStopWatch;
+	private String date;
+	private SimpleDateFormat  sdf;
+	private String status;
 
 	ScreensManager scrMgr = ScreensManager.getInstance();
 
@@ -98,10 +103,12 @@ public class ExecuteExamController {
 
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
-		String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+		
+		sdf = new SimpleDateFormat("dd-MM-yyyy");
+		date = sdf.format(new Date());	
 		lblDate.setText(date);
 		displayQuestion = 0;
-		Exam exam = (Exam) dataKeeper.getObject("RunningExam");
+		exam = (Exam) dataKeeper.getObject("RunningExam");
 		ArrayList<QuestionInExam> questionsInExam = exam.getExamQuestions();
 		int i = 0;
 		for (QuestionInExam q : questionsInExam) {
@@ -118,7 +125,7 @@ public class ExecuteExamController {
 			});
 			tabsButton.add(tab);
 			vbxQuetionsTab.getChildren().add(tab);
-			QuestionInExamObject qie = new QuestionInExamObject(q.getQuestion());
+			QuestionInExamObject qie = new QuestionInExamObject(q.getQuestion(),q.getQuestionGrade());
 			questionsInExamObject.add(qie);
 		}
 
@@ -133,7 +140,10 @@ public class ExecuteExamController {
 				int seconds = stopWatch % 60;
 				lblTimer.setText("" + hours + ":" + minuts + ":" + seconds);
 				if (stopWatch == 0)
+				{
+					status = "interrupted";
 					stopExam();
+				}
 				stopWatch--;
 			}
 		}));
@@ -243,6 +253,7 @@ public class ExecuteExamController {
 			alert.setContentText("are you sure you want to submit?");
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
+				status = "submitted";
 				submitTest();
 			}
 
@@ -251,6 +262,19 @@ public class ExecuteExamController {
 	}
 
 	public void submitTest() {
-		stopExam();
+		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject);
+		int grade = checkedExams.calculateGrade();
+		Date newDate;
+		try {
+			newDate = sdf.parse(date);
+			int solvedTime  = exam.getExamDuration() - (stopWatch/60);
+			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
+			stopExam();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	
 	}
+	
+
 }
