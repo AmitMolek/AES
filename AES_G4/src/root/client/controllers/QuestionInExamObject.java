@@ -38,6 +38,9 @@ public class QuestionInExamObject extends AnchorPane{
     
     @FXML
     private GridPane answersGrid;
+    
+    @FXML
+    private Label lblPoints;
     	
 	private String id=null;
 	
@@ -52,6 +55,8 @@ public class QuestionInExamObject extends AnchorPane{
 	}
 	
 	public QuestionInExamObject(Question q) {
+    
+
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/QuestionInExamComponent.fxml"));
 		fxmlLoader.setRoot(this);
 		String questionText = q.getQuestionText();
@@ -67,7 +72,6 @@ public class QuestionInExamObject extends AnchorPane{
 		btnAns2.setText(q.getAns2());
 		btnAns3.setText(q.getAns3());
 		btnAns4.setText(q.getAns4());
-
 	}
 	
 	public String getID() {

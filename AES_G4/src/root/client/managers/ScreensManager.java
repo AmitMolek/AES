@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -34,13 +35,17 @@ import root.util.log.LogLine.LineType;
 public class ScreensManager extends Application {
 	
 	private static HashMap<String, String> screenMap = new HashMap<>();
+	
     private static Stage primaryStage = null;
     
     private Stack<ScreenObject> screenStack = new Stack<ScreenObject>();
+    
     private ScreenObject currentScreen;
-
+    
     private final String cssPath = "resources/css/materialDesign.css";
+    
     private final String menuFxmlPath = "resources/view/Menu.fxml";
+    
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
     private Log log = Log.getInstance();
@@ -140,12 +145,23 @@ public class ScreensManager extends Application {
     	Scene scene = new Scene(sRoot, 1280, 720);
     	if (scene.getStylesheets().isEmpty())
     		scene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
-    	
+    	primaryStage.setScene(scene);
     	if (isFullscreenScreen) {
+    		AnchorPane fullRoot = new AnchorPane();
+    		fullRoot.getChildren().add(screenObj.getScreenPane());
+    		screenObj.getScreenPane().prefHeightProperty().bind(fullRoot.heightProperty());
+    		screenObj.getScreenPane().prefWidthProperty().bind(fullRoot.widthProperty());
+    		Scene fullScene = new Scene(fullRoot);
+    		fullScene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
+    		primaryStage.setScene(fullScene);
+    		primaryStage.setFullScreenExitHint("");
+    		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     		primaryStage.setFullScreen(true);
+    		primaryStage.setFullScreen(true);
+    		primaryStage.setResizable(false);
+
     	}
     	
-    	primaryStage.setScene(scene);
     	primaryStage.show();
     }
     
