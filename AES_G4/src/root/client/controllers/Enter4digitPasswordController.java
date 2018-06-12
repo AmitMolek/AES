@@ -1,3 +1,8 @@
+	/**
+	 * This class implements 4 digit password screen.
+	 * The screen received from the user 4 digit password and move to execute exam windows
+	 */
+
 package root.client.controllers;
 
 
@@ -7,8 +12,14 @@ import java.util.Observable;
 import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD
+=======
+import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Alert.AlertType;
+>>>>>>> refs/remotes/origin/Naor
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -20,7 +31,13 @@ import root.dao.message.SimpleMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * @author Naor Saadia
+ * this controller is for 4 digit password screen
+ * the screen get input from user and go to execute exam screen if the pass is OK 
+ */
 public class Enter4digitPasswordController implements Observer {
+	
     @FXML
     private TextField txt4Digit;
     
@@ -33,7 +50,14 @@ public class Enter4digitPasswordController implements Observer {
     private DataKeepManager dataKeeper;
     
     
+	/**
+	 * This method happens when the screen is up
+	 * in the method we create screen manager and dataKeeper
+	 * and open connection with the server
+	 * @throws IOException
+	 */
 	public void initialize() throws IOException{
+		txt4Digit.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
 		scrMgr =ScreensManager.getInstance();
 		dataKeeper = DataKeepManager.getInstance();
     	client = new ObservableClient("localhost",8000);
@@ -41,8 +65,13 @@ public class Enter4digitPasswordController implements Observer {
     	client.openConnection();
 
 	}
-
+	/**
+	 * This method run when the user click on Start
+	 * when he start we take the input and send to server
+	 * the send message is simple message with get-exams-pass
+	 */
     public void StartExam(ActionEvent e) {
+
     		MessageFactory msgFactory = MessageFactory.getInstance();
     		String txt = txt4Digit.getText();
     		txt="'"+txt+"'";
@@ -57,17 +86,18 @@ public class Enter4digitPasswordController implements Observer {
     		
     		
     }
-
+	/**
+	 * This method calls from the server
+	 * the server return Exam message if exams found
+	 * and error message if no
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		ExamMessage examMessage=null;
 		if(arg1 instanceof ExamMessage)
 		{
 			examMessage= (ExamMessage)arg1;
-			ArrayList<Exam> examsList = examMessage.getExams();
-			
-			//scrMgr.activate();
-		
+			ArrayList<Exam> examsList = examMessage.getExams();		
 			dataKeeper.keepObject("RunningExam", examsList.get(0));
 				Platform.runLater(() -> {				
 						try {
@@ -94,6 +124,27 @@ public class Enter4digitPasswordController implements Observer {
 		});*/
 		}
 	}
+	
+	/**
+	 * This is event handler for check if the user enter more than 4 digit
+	 */
+	public EventHandler<KeyEvent> maxLength(final Integer i) {
+        return new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                TextField tx = (TextField) arg0.getSource();
+                if (tx.getText().length() >= i) {
+                    arg0.consume();
+                }
+
+            }
+
+        };
+
+    }
+
     
     
 }

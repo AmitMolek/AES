@@ -3497,6 +3497,7 @@
 [INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 20:13:26.956
 [INFO][root.client.managers.ScreensManager] Added screen to stack: aqw | 2018-06-09 20:13:29.891
 <<<<<<< HEAD
+<<<<<<< HEAD
 [INFO][root.server.AES_Server] The server is connected | 2018-06-10 09:03:21.628
 [INFO] Application started | 2018-06-10 09:03:23.921
 [INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:03:24.267
@@ -4227,3 +4228,919 @@
 [INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-12 08:50:21.176
 [INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-12 08:50:47.715
 [INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-12 08:50:51.203
+=======
+[INFO] Application started | 2018-06-09 22:51:30.823
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/Aviel%20Mines/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-09 22:51:32.084
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 22:51:39.296
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 22:52:01.303
+[INFO] Application started | 2018-06-09 22:52:04.208
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 22:52:04.498
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 22:52:09.579
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-09 22:52:09.685
+[INFO] Application started | 2018-06-09 22:53:56.91
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 22:53:57.207
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 22:54:02.214
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 22:54:02.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 22:54:04.645
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 22:54:04.664
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 22:54:04.708
+[INFO] Application started | 2018-06-09 22:58:53.978
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 22:58:54.393
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 22:58:59.716
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 22:58:59.796
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 22:59:03.215
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 22:59:03.248
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 22:59:03.329
+[INFO] Application started | 2018-06-09 23:01:25.014
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:01:25.277
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:01:30.07
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:01:30.107
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:01:32.058
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:01:32.087
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:01:32.148
+[ERROR][root.client.controllers.Enter4digitPasswordController] socket does not exist | 2018-06-09 23:01:34.419
+[INFO] Application started | 2018-06-09 23:02:24.843
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:02:25.169
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:02:37.163
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:02:37.234
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:02:44.334
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:02:44.363
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:02:44.445
+[INFO] Application started | 2018-06-09 23:04:23.177
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:04:23.575
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:04:32.206
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:04:32.278
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:04:40.202
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:04:40.247
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:04:40.328
+[INFO] Application started | 2018-06-09 23:05:59.591
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/Aviel%20Mines/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-09 23:06:00.856
+[INFO][root.server.AES_Server] The server is connected | 2018-06-09 23:06:08.025
+[INFO] Application started | 2018-06-09 23:06:09.784
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:06:10.073
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:06:14.8
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:06:14.823
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:06:19.021
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:06:19.046
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:06:19.1
+[INFO] Application started | 2018-06-09 23:07:38.363
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:07:38.73
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:07:43.228
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:07:43.279
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:07:48.223
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:07:48.251
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:07:48.303
+[INFO] Application started | 2018-06-09 23:14:21.609
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:14:21.888
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:14:26.614
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:14:26.658
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:14:32.568
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:14:32.596
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:14:32.66
+[INFO] Application started | 2018-06-09 23:20:09.356
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:20:09.61
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:20:14.187
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:20:14.213
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:20:19.303
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:20:19.34
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:20:19.4
+[INFO] Application started | 2018-06-09 23:21:57.19
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:21:57.436
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:22:02.749
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:22:02.785
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:22:11.078
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:22:11.104
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:22:11.163
+[INFO] Application started | 2018-06-09 23:22:43.404
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:22:43.66
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:22:48.631
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:22:48.674
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:22:52.623
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:22:52.651
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:22:52.721
+[INFO] Application started | 2018-06-09 23:23:32.682
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:23:32.938
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:23:38.637
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:23:38.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:23:45.801
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:23:45.831
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:23:45.888
+[INFO] Application started | 2018-06-09 23:31:07.257
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:31:07.524
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:31:12.572
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:31:12.608
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:31:16.607
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:31:16.638
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:31:16.694
+[INFO] Application started | 2018-06-09 23:33:29.431
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:33:29.946
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:33:36.385
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:33:36.418
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:33:38.681
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:33:38.713
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:33:38.781
+[INFO] Application started | 2018-06-09 23:33:56.199
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-09 23:33:56.48
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-09 23:34:00.996
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-09 23:34:01.071
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:34:21.125
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-09 23:34:21.154
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-09 23:34:21.217
+[INFO] Application started | 2018-06-10 00:05:33.643
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 00:05:34.06
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 00:05:40.746
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 00:05:40.777
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 00:05:44.122
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 00:05:44.152
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 00:05:44.197
+[INFO] Application started | 2018-06-10 01:01:41.036
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:01:41.482
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:01:47.73
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:01:47.77
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:01:51.351
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:01:51.378
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:01:51.435
+[INFO] Application started | 2018-06-10 01:04:52.693
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:04:53.087
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:04:58.37
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:04:58.412
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:05:02.185
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:05:02.225
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:05:02.338
+[INFO] Application started | 2018-06-10 01:05:58.368
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:05:58.778
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:06:03.388
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:06:03.413
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:06:07.188
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:06:07.24
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:06:07.36
+[INFO] Application started | 2018-06-10 01:06:18.993
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:06:19.389
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:06:24.82
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:06:24.845
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:06:27.9
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:06:27.936
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:06:28.128
+[INFO] Application started | 2018-06-10 01:09:52.875
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:09:53.321
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:09:57.887
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:09:57.921
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:10:01.189
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:10:01.224
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:10:01.392
+[INFO] Application started | 2018-06-10 01:13:31.07
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:13:31.333
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:13:37.661
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:13:37.698
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:13:42.13
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:13:42.167
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:13:42.232
+[INFO] Application started | 2018-06-10 01:14:29.652
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:14:30.153
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:14:35.392
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:14:35.43
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:14:39.205
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:14:39.244
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:14:39.306
+[INFO] Application started | 2018-06-10 01:15:25.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:15:25.697
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:15:30.937
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:15:30.973
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:15:39.718
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:15:39.749
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:15:39.805
+[INFO] Application started | 2018-06-10 01:23:57.016
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 01:23:57.274
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 01:24:11.0
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 01:24:11.026
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:24:15.286
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 01:24:15.314
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 01:24:15.372
+[INFO] Application started | 2018-06-10 02:08:47.08
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:08:47.35
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:08:52.139
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:08:52.18
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:08:56.414
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:08:56.44
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:08:56.505
+[INFO] Application started | 2018-06-10 02:10:18.245
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:10:18.519
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:10:23.601
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:10:23.638
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:10:27.057
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:10:27.091
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:10:27.148
+[INFO] Application started | 2018-06-10 02:11:17.521
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:11:17.781
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:11:24.603
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:11:24.627
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:11:26.769
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:11:26.809
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:11:26.891
+[INFO] Application started | 2018-06-10 02:14:36.002
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:14:36.253
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:14:41.731
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:14:41.774
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:14:46.197
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:14:46.233
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:14:46.288
+[INFO] Application started | 2018-06-10 02:15:43.295
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:15:43.712
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:15:48.564
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:15:48.6
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:15:51.188
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:15:51.216
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:15:51.258
+[INFO] Application started | 2018-06-10 02:16:29.401
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:16:29.646
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:16:40.034
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:16:40.059
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:16:42.445
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:16:42.481
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:16:42.544
+[INFO] Application started | 2018-06-10 02:17:24.037
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:17:24.308
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:17:29.44
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:17:29.48
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:17:32.133
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:17:32.158
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:17:32.21
+[INFO] Application started | 2018-06-10 02:18:43.373
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:18:43.647
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:18:48.071
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:18:48.109
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:18:50.773
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:18:50.803
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:18:50.865
+[INFO] Application started | 2018-06-10 02:20:17.923
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:20:18.192
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:20:22.61
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:20:22.644
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:20:24.921
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:20:24.958
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:20:25.016
+[INFO] Application started | 2018-06-10 02:21:19.448
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:21:19.698
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:21:23.945
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:21:23.97
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:21:27.319
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:21:27.347
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:21:27.413
+[INFO] Application started | 2018-06-10 02:21:47.921
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:21:48.175
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:21:52.295
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:21:52.341
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:21:54.175
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:21:54.211
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:21:54.253
+[INFO] Application started | 2018-06-10 02:24:11.134
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:24:11.409
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:24:15.804
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:24:15.829
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:24:17.633
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:24:17.66
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:24:17.702
+[INFO] Application started | 2018-06-10 02:28:58.118
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:28:58.375
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:29:02.968
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:29:02.992
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:29:04.359
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:29:04.406
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:29:06.659
+[INFO] Application started | 2018-06-10 02:29:17.88
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:29:18.132
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:29:22.454
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:29:22.494
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:29:23.882
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:29:23.916
+[INFO] Application started | 2018-06-10 02:30:19.253
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:30:19.509
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:30:25.584
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:30:25.635
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:30:28.74
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:30:28.777
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:30:28.857
+[INFO] Application started | 2018-06-10 02:33:55.639
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:33:55.927
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:34:00.582
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:34:00.626
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:34:02.776
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:34:02.813
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:34:02.864
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:34:04.766
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:34:04.795
+[INFO] Application started | 2018-06-10 02:34:18.919
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:34:19.176
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:34:23.971
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:34:24.015
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:34:25.599
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:34:25.629
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:34:25.671
+[INFO] Application started | 2018-06-10 02:34:43.62
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:34:43.884
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:34:54.89
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:34:54.97
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:35:04.432
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:35:04.485
+[INFO] Application started | 2018-06-10 02:36:31.456
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:36:31.708
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:36:36.231
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:36:36.274
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:36:38.527
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:36:38.556
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:36:38.593
+[INFO] Application started | 2018-06-10 02:36:54.508
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:36:54.768
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:36:59.003
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:36:59.046
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:37:00.374
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:37:00.426
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 02:37:00.523
+[INFO] Application started | 2018-06-10 02:37:07.371
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:37:07.638
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:37:20.949
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:37:21.007
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:37:30.49
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:37:30.549
+[INFO] Application started | 2018-06-10 02:38:32.252
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:38:32.532
+[INFO] Application started | 2018-06-10 02:39:22.375
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:39:22.644
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:39:33.551
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:39:33.582
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:39:35.199
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:39:35.227
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:39:35.265
+[INFO] Application started | 2018-06-10 02:40:29.544
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:40:29.838
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:40:34.412
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:40:34.462
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:40:35.957
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:40:35.986
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:40:36.029
+[INFO] Application started | 2018-06-10 02:41:15.371
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:41:15.646
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:41:20.246
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:41:20.293
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:41:22.314
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:41:22.349
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:41:22.395
+[INFO] Application started | 2018-06-10 02:44:24.288
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:44:24.587
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:44:28.784
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:44:28.813
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:44:31.572
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:44:31.6
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:44:31.656
+[INFO] Application started | 2018-06-10 02:49:24.517
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:49:24.807
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:49:29.22
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:49:29.263
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:49:31.076
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:49:31.11
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:49:31.158
+[INFO] Application started | 2018-06-10 02:50:05.368
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:50:05.657
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:50:09.974
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:50:10.003
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:50:12.924
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:50:12.963
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:50:13.033
+[INFO] Application started | 2018-06-10 02:50:38.081
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 02:50:38.339
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 02:50:44.381
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 02:50:44.424
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:50:45.896
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 02:50:45.935
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 02:50:45.993
+[INFO] Application started | 2018-06-10 09:06:30.073
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:06:30.479
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:06:35.612
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:06:35.734
+[INFO] Application started | 2018-06-10 09:08:49.413
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:08:49.702
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:08:54.199
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:08:54.264
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:08:56.479
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:08:56.511
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:08:56.602
+[INFO] Application started | 2018-06-10 09:09:28.749
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:09:29.047
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:09:34.065
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:09:34.116
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:09:36.602
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:09:36.648
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:09:36.724
+[INFO] Application started | 2018-06-10 09:11:05.562
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:11:05.969
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:11:10.509
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:11:10.553
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:11:12.355
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:11:12.387
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:11:12.442
+[INFO] Application started | 2018-06-10 09:11:50.526
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:11:50.815
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:11:56.216
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:11:56.253
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:11:58.634
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:11:58.663
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:11:58.722
+[INFO] Application started | 2018-06-10 09:12:30.871
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:12:31.227
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:12:39.237
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:12:39.315
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:12:42.955
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:12:42.987
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:12:43.055
+[INFO] Application started | 2018-06-10 09:14:55.125
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 09:14:55.465
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 09:14:59.529
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 09:14:59.588
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:15:02.345
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 09:15:02.405
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 09:15:02.491
+[INFO] Application started | 2018-06-10 11:37:03.095
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:37:03.495
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:37:10.221
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:37:10.323
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:37:13.327
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:37:13.368
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:37:13.457
+[INFO] Application started | 2018-06-10 11:37:32.263
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:37:32.806
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:37:45.304
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:37:45.455
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 11:37:51.953
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 11:37:52.039
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 11:37:52.04
+[INFO] Application started | 2018-06-10 11:38:05.427
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:38:05.899
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:38:10.659
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:38:10.83
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:38:15.294
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:38:15.37
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:38:15.474
+[INFO] Application started | 2018-06-10 11:43:13.821
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:43:14.191
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:43:28.988
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:43:29.038
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:43:30.622
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:43:30.656
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:43:30.792
+[INFO] Application started | 2018-06-10 11:47:10.429
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:47:10.881
+[ERROR][root.client.controllers.LoginController] Wrong Password | 2018-06-10 11:47:17.937
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:47:19.982
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:47:20.009
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:47:22.062
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:47:22.125
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:47:22.295
+[INFO] Application started | 2018-06-10 11:47:48.461
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:47:48.869
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:47:53.388
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:47:53.431
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:47:55.723
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:47:55.77
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:47:55.849
+[INFO] Application started | 2018-06-10 11:49:49.932
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:49:50.359
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:49:55.207
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:49:55.27
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:49:57.376
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:49:57.407
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:49:57.454
+[INFO] Application started | 2018-06-10 11:51:12.098
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:51:12.749
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:51:17.887
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:51:17.937
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:51:19.71
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:51:19.778
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:51:19.867
+[INFO] Application started | 2018-06-10 11:52:30.989
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:52:31.416
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:52:36.185
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:52:36.225
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:52:38.098
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:52:38.187
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 11:52:38.194
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:52:40.217
+[ERROR][root.client.controllers.Enter4digitPasswordController] Trying to activate wrong window | 2018-06-10 11:52:40.217
+[INFO] Application started | 2018-06-10 11:53:12.788
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:53:13.163
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:53:18.758
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:53:18.8
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:53:20.269
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:53:20.332
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:53:20.403
+[INFO] Application started | 2018-06-10 11:54:48.119
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:54:48.652
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:54:53.612
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:54:53.673
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:54:55.531
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:54:55.56
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:54:55.615
+[INFO] Application started | 2018-06-10 11:55:51.256
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:55:52.018
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:55:57.366
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:55:57.418
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:55:59.086
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:55:59.117
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:55:59.163
+[INFO] Application started | 2018-06-10 11:57:55.96
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:57:56.362
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:58:01.251
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:58:01.38
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:58:02.656
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:58:02.679
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:58:02.733
+[INFO] Application started | 2018-06-10 11:58:54.021
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:58:54.762
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:58:59.249
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:58:59.284
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:59:00.995
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:59:01.08
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:59:01.217
+[INFO] Application started | 2018-06-10 11:59:13.516
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 11:59:13.78
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 11:59:18.054
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 11:59:18.109
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:59:20.032
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 11:59:20.06
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 11:59:20.108
+[INFO] Application started | 2018-06-10 12:00:14.44
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:00:14.697
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:00:18.944
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:00:19.001
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:00:21.748
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:00:21.794
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:00:21.86
+[INFO] Application started | 2018-06-10 12:00:34.452
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:00:34.718
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:00:39.012
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:00:39.067
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:00:41.066
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:00:41.094
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:00:41.14
+[INFO] Application started | 2018-06-10 12:02:08.645
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:02:08.916
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:02:13.459
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:02:13.507
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:02:15.386
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:02:15.414
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:02:15.459
+[INFO] Application started | 2018-06-10 12:06:31.489
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:06:31.76
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:06:38.42
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:06:38.451
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:06:40.4
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:06:40.441
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:06:40.508
+[INFO] Application started | 2018-06-10 12:08:23.605
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:08:23.876
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:08:27.927
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:08:27.981
+[ERROR][root.client.controllers.Enter4digitPasswordController] Exam not found | 2018-06-10 12:08:29.196
+[ERROR][root.client.controllers.Enter4digitPasswordController] Cant Find running exam | 2018-06-10 12:08:29.915
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:08:33.89
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:08:33.918
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:08:33.999
+[INFO] Application started | 2018-06-10 12:09:12.693
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:09:12.976
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:09:16.959
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:09:17.012
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:09:19.462
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:09:19.493
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:09:19.542
+[INFO] Application started | 2018-06-10 12:10:22.548
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:10:22.853
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:10:27.096
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:10:27.151
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:10:28.851
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:10:28.879
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:10:28.923
+[INFO] Application started | 2018-06-10 12:16:38.963
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:16:39.261
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:16:45.231
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:16:45.278
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:16:46.874
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:16:46.907
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:16:46.98
+[INFO] Application started | 2018-06-10 12:17:02.162
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:17:02.461
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:17:07.584
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:17:07.625
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:17:09.151
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:17:09.178
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:17:09.237
+[INFO] Application started | 2018-06-10 12:18:08.782
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:18:09.066
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:18:15.355
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:18:15.382
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:18:16.861
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:18:16.891
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:18:16.944
+[INFO] Application started | 2018-06-10 12:19:15.213
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:19:15.504
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:19:21.65
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:19:21.697
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:19:22.894
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:19:22.951
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:19:23.028
+[INFO] Application started | 2018-06-10 12:20:05.293
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:20:05.604
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:20:09.967
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:20:10.058
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:20:12.856
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:20:12.893
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:20:12.977
+[INFO] Application started | 2018-06-10 12:21:24.168
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:21:24.434
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:21:29.61
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:21:29.667
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:21:31.014
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:21:31.068
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:21:31.126
+[INFO] Application started | 2018-06-10 12:21:59.381
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:21:59.682
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:22:04.365
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:22:04.42
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:22:05.818
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:22:05.852
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:22:05.894
+[INFO] Application started | 2018-06-10 12:27:40.879
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:27:41.166
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:27:45.276
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:27:45.33
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:27:47.317
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:27:47.347
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:27:47.388
+[INFO] Application started | 2018-06-10 12:28:10.717
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:28:10.997
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:28:15.245
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:28:15.295
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:28:17.072
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:28:17.107
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:28:17.155
+[INFO] Application started | 2018-06-10 12:31:22.522
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:31:22.834
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:31:30.503
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:31:30.562
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:31:33.038
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:31:33.077
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:31:33.159
+[INFO] Application started | 2018-06-10 12:33:07.491
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:33:07.86
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:33:13.23
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:33:13.262
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:33:14.947
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:33:14.984
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:33:15.048
+[INFO] Application started | 2018-06-10 12:33:54.771
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:33:55.092
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:33:59.766
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:33:59.82
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:34:01.297
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:34:01.377
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:34:01.472
+[INFO] Application started | 2018-06-10 12:35:05.614
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:35:05.923
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:35:10.074
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:35:10.132
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:35:12.01
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:35:12.036
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:35:12.093
+[INFO] Application started | 2018-06-10 12:38:09.54
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:38:09.829
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:38:13.776
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:38:13.843
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:38:15.144
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:38:15.176
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:38:15.227
+[INFO] Application started | 2018-06-10 12:39:21.317
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:39:21.608
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:39:28.543
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:39:28.587
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:39:30.069
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:39:30.096
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:39:30.151
+[INFO] Application started | 2018-06-10 12:43:55.318
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 12:43:55.705
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 12:44:03.143
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 12:44:03.257
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:44:04.815
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 12:44:04.854
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 12:44:04.936
+[INFO] Application started | 2018-06-10 13:03:35.204
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 13:03:35.715
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 13:03:43.318
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 13:03:43.37
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 13:03:44.897
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 13:03:44.978
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 13:03:45.063
+[INFO] Application started | 2018-06-10 13:23:42.678
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 13:23:43.245
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 13:23:51.488
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 13:23:51.542
+[INFO] Application started | 2018-06-10 13:24:43.282
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 13:24:43.719
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 13:24:48.85
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 13:24:48.902
+[INFO] Application started | 2018-06-10 13:25:03.593
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 13:25:03.976
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 13:25:08.45
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 13:25:08.591
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 13:25:26.503
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 13:25:26.573
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 13:25:26.681
+[INFO] Application started | 2018-06-10 14:35:52.836
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 14:35:53.13
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 14:35:57.32
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 14:35:57.381
+[INFO] Application started | 2018-06-10 14:46:52.484
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 14:46:52.759
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 14:46:57.683
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 14:46:57.739
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 14:47:00.741
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 14:47:00.82
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 14:47:00.994
+[INFO] Application started | 2018-06-10 15:34:01.71
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 15:34:02.072
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 15:34:14.586
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 15:34:14.674
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:34:16.152
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:34:16.181
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 15:34:16.232
+[INFO] Application started | 2018-06-10 15:34:35.926
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 15:34:36.175
+[ERROR][root.client.controllers.LoginController] Wrong Password | 2018-06-10 15:34:41.112
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 15:34:43.179
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 15:34:43.211
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:34:47.419
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:34:47.45
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 15:34:47.528
+[INFO] Application started | 2018-06-10 15:37:10.548
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 15:37:10.806
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 15:37:14.947
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 15:37:14.99
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:37:17.027
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:37:17.056
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 15:37:17.105
+[INFO] Application started | 2018-06-10 15:37:32.502
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 15:37:32.782
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 15:37:36.946
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 15:37:36.976
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:37:40.444
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 15:37:40.472
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 15:37:40.519
+[INFO] Application started | 2018-06-10 16:00:44.709
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:00:44.951
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:00:49.255
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:00:49.318
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:00:51.067
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:00:51.105
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:00:51.152
+[INFO] Application started | 2018-06-10 16:03:49.076
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:03:49.415
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:03:53.807
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:03:53.853
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:03:55.132
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:03:55.163
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:03:55.238
+[INFO] Application started | 2018-06-10 16:05:18.552
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:05:18.806
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:05:25.719
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:05:25.766
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:05:27.435
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:05:27.465
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:05:27.509
+[INFO] Application started | 2018-06-10 16:05:48.386
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:05:48.66
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:05:54.477
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:05:54.543
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:05:55.898
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:05:55.936
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:05:55.975
+[INFO] Application started | 2018-06-10 16:07:03.652
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:07:03.927
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:07:08.227
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:07:08.273
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:07:09.523
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:07:09.555
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:07:09.597
+[INFO] Application started | 2018-06-10 16:09:33.67
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:09:33.938
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:09:38.884
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:09:38.934
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:09:42.385
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:09:42.41
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:09:42.455
+[INFO] Application started | 2018-06-10 16:12:56.315
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:12:56.596
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:13:01.37
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:13:01.469
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:13:03.64
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:13:03.666
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:13:03.719
+[INFO] Application started | 2018-06-10 16:15:25.236
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:15:25.521
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:15:31.462
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:15:31.544
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:15:32.9
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:15:32.928
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:15:32.983
+[INFO] Application started | 2018-06-10 16:16:56.059
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:16:56.327
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:17:00.664
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:17:00.73
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:17:03.05
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:17:03.079
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:17:03.142
+[INFO] Application started | 2018-06-10 16:18:32.009
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:18:32.293
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:18:36.761
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:18:36.804
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:18:39.796
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:18:39.823
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:18:39.876
+[INFO] Application started | 2018-06-10 16:20:47.71
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:20:47.983
+[INFO] Application started | 2018-06-10 16:21:55.572
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:21:55.881
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:22:01.691
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:22:01.759
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:22:03.082
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:22:03.121
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:22:03.177
+[INFO] Application started | 2018-06-10 16:23:48.548
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 16:23:48.815
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 16:23:52.943
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 16:23:52.987
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:23:55.665
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 16:23:55.687
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 16:23:55.726
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 16:24:09.167
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 16:24:09.174
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 16:24:09.175
+[INFO] Application started | 2018-06-10 17:11:41.048
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:11:41.411
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 17:11:48.58
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 17:11:48.703
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:11:53.013
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:11:53.067
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 17:11:53.179
+[INFO] Application started | 2018-06-10 17:12:22.696
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:12:23.111
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 17:12:28.076
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 17:12:28.139
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:12:32.522
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:12:32.574
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 17:12:32.651
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 17:13:03.641
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 17:13:03.662
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 17:13:03.663
+[INFO] Application started | 2018-06-10 17:23:37.925
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:23:38.271
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 17:23:43.314
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 17:23:43.396
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:23:44.906
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:23:44.941
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 17:23:44.997
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 17:23:51.341
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 17:23:51.349
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 17:23:51.349
+[INFO] Application started | 2018-06-10 17:27:16.35
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:27:16.61
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 17:27:21.516
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 17:27:21.567
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:27:24.261
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:27:24.293
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 17:27:24.341
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 17:27:39.408
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 17:27:39.417
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 17:27:39.417
+[INFO] Application started | 2018-06-10 17:29:32.793
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 17:29:33.086
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-10 17:29:38.784
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-10 17:29:38.817
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:29:40.901
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-10 17:29:40.949
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-10 17:29:41.015
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-10 17:29:52.779
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 17:29:52.791
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 17:29:52.791
+[INFO][root.server.AES_Server] The server is connected | 2018-06-12 11:00:31.32
+[INFO] Application started | 2018-06-12 11:01:15.164
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-12 11:01:15.505
+[INFO][root.client.managers.DataKeepManager] Keep user: 308023381 | 2018-06-12 11:01:28.685
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-12 11:01:28.788
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-12 11:01:36.257
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: RunningExam Object: class root.dao.app.Exam | 2018-06-12 11:01:36.293
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-12 11:01:36.41
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-12 11:09:21.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-12 11:09:21.285
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-12 11:09:21.285
+>>>>>>> refs/remotes/origin/Naor
