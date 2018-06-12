@@ -145,7 +145,7 @@ public class MenuController {
     	Image img = new Image(getClass().getResource(homeIconPath).toExternalForm());
     	createMenuItem(other, img, "Other", 70, 25);
     	
-    	other.getItems().add(createMenuItem("1", getChangeScreenActionEvent("aqw")));
+    	other.getItems().add(createMenuItem("1", getChangeScreenActionEvent("questions")));
     	other.getItems().add(createMenuItem("2", getChangeScreenActionEvent("aqw")));
     	other.getItems().add(createMenuItem("3", getChangeScreenActionEvent("aqw")));
 
