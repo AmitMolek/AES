@@ -606,10 +606,10 @@ public class QuestionsController implements Observer{
 				}
 			}
 			if (identFlag == false) {
-				
+				this.getQuestions().add(question);
 			}
 		}
-		this.getQuestions().addAll(questions);
+		//this.getQuestions().addAll(questions);
 	}
 	/**
 	 * This method called when one want's to deSelect selection from table
