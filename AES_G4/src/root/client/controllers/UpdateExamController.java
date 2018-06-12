@@ -156,4 +156,6 @@ public class UpdateExamController implements Observer {
 		}
 	}
 
+	@FXML public void updatePoints() {}
+
 }
