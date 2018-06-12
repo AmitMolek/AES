@@ -4016,3 +4016,144 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-10 18:32:45.626
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-10 18:32:45.626
 >>>>>>> refs/remotes/origin/Omer
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 18:52:18.719
+[INFO] Application started | 2018-06-10 18:52:21.647
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:52:21.976
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:52:26.204
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:52:26.308
+[INFO] Application started | 2018-06-10 18:53:11.404
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/gal/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml
+ | 2018-06-10 18:53:12.709
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 18:53:15.729
+[INFO] Application started | 2018-06-10 18:53:17.657
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:53:17.988
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:53:21.997
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:53:22.105
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 18:55:14.842
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-10 18:55:14.843
+[INFO] Application started | 2018-06-10 18:55:17.093
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:55:17.38
+[INFO] Application started | 2018-06-10 18:55:27.398
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:55:27.701
+[INFO] Application started | 2018-06-10 18:55:49.151
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:55:49.455
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:55:53.687
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:55:53.805
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-10 18:56:29.698
+[INFO] Application started | 2018-06-10 18:57:11.479
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 18:57:11.766
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 18:57:15.898
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 18:57:16.015
+[INFO][root.client.controllers.QuestionsController] Question deleted | 2018-06-10 18:57:28.664
+[INFO] Application started | 2018-06-10 19:08:35.267
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:08:35.543
+[INFO] Application started | 2018-06-10 19:10:23.164
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:10:23.434
+[ERROR][root.client.controllers.LoginController] socket does not exist | 2018-06-10 19:10:27.584
+[INFO] Application started | 2018-06-10 19:11:44.833
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:11:45.121
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:11:49.366
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:11:49.366
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:11:49.474
+[INFO] Application started | 2018-06-10 19:13:59.473
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:13:59.758
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:14:06.157
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:14:06.157
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:14:06.253
+[INFO] Application started | 2018-06-10 19:14:26.085
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:14:26.409
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:14:30.524
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:14:30.524
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:15:48.971
+[INFO] Application started | 2018-06-10 19:17:05.044
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:17:17.799
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:17:23.144
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:17:23.144
+[INFO][root.server.AES_Server] The server is connected | 2018-06-10 19:18:07.787
+[INFO] Application started | 2018-06-10 19:18:09.616
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:18:09.947
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:18:13.956
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:18:13.956
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:18:14.056
+[INFO] Application started | 2018-06-10 19:20:17.249
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:20:17.521
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:20:21.324
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:20:21.324
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:20:21.435
+[INFO] Application started | 2018-06-10 19:25:00.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:25:00.731
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:25:10.859
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:25:10.859
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:25:10.974
+[INFO] Application started | 2018-06-10 19:26:25.405
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:26:25.68
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:26:55.12
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:26:55.12
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:26:55.239
+[INFO] Application started | 2018-06-10 19:27:37.442
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:27:37.713
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:27:50.732
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:27:50.733
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:27:50.843
+[INFO] Application started | 2018-06-10 19:28:45.076
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:28:45.349
+[ERROR][root.client.controllers.LoginController] gal | 2018-06-10 19:28:58.669
+[INFO] Application started | 2018-06-10 19:30:20.339
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:30:20.617
+[ERROR][root.client.controllers.LoginController] Connection timed out: connect | 2018-06-10 19:30:48.334
+[ERROR][root.client.controllers.LoginController] Connection timed out: connect | 2018-06-10 19:30:55.439
+[INFO] Application started | 2018-06-10 19:33:09.243
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-10 19:33:09.515
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-10 19:33:31.217
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-10 19:33:31.217
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-10 19:33:31.326
+[ERROR][root.server.AES_Server] Toolkit not initialized | 2018-06-11 22:04:37.719
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:22:38.767
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:24:13.026
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:24:13.028
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:24:33.996
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:24:33.999
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:25:04.09
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:25:04.091
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:25:12.616
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:25:12.617
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:26:16.85
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:29:35.796
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:30:13.757
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:30:13.758
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:34:53.317
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:37:35.025
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:37:35.037
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:38:03.66
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:38:18.132
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:38:18.147
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:39:10.486
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:40:02.056
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:43:48.413
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:44:50.232
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:44:50.245
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:45:05.789
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:47:08.796
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:49:31.796
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 22:54:52.34
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 22:54:52.351
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:15:02.398
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:17:01.039
+[ERROR][root.server.AES_Server] Address already in use: JVM_Bind | 2018-06-11 23:17:01.048
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:17:16.008
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:18:01.191
+[INFO] Application started | 2018-06-11 23:18:21.696
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-11 23:18:22.133
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:20:05.412
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:27:22.33
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:27:59.764
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:28:25.579
+[INFO][root.server.AES_Server] The server is connected | 2018-06-11 23:28:53.772
+[INFO][root.server.AES_Server] The server is connected | 2018-06-12 08:21:38.946
+[INFO][root.server.AES_Server] The server is connected | 2018-06-12 08:42:37.27
+[INFO] Application started | 2018-06-12 08:42:39.87
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-12 08:42:40.24
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-12 08:42:49.127
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-06-12 08:42:49.127
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-12 08:42:49.41

@@ -151,10 +151,9 @@ public class QuestionsController implements Observer{
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
-    	client.addObserver(this);
-    	client.openConnection();
-    	
+
+    	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+    	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
     	teachersMap = new HashMap<String, String>();
@@ -277,7 +276,6 @@ public class QuestionsController implements Observer{
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
-        	//unselectSelectionFromTable();
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -304,6 +302,7 @@ public class QuestionsController implements Observer{
         	deleteQuestionFromDB(questionToDelete);				// remove question from DB
         	tblQuestions.getItems().remove(selectedIndex);		// remove question from tableview
         	questions.remove(questionToDelete);					// remove question from THIS.questions
+        	unselectSelectionFromTable();
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);

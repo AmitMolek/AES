@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-
+import javafx.scene.layout.RowConstraints;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -53,7 +53,10 @@ public class LoginController implements Observer {
     
     @FXML
     private Label ErrorTxtField;
-    
+    @FXML
+    private RowConstraints serverServiesRow;
+    @FXML
+    private TextField serverIP;
     
     private ObservableClient client;
     private MessageFactory message;
@@ -66,15 +69,28 @@ public class LoginController implements Observer {
      */
     @FXML
     public void SignIn(ActionEvent event) {
+    	client = new ObservableClient(serverIP.getText(), 8000);				// opens a connection only if user exist.
+    	client.addObserver(this);												// --||--
+    	
     	String userId = txtId.getText();
     	String userPassword = txtPassword.getText();
     	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
     	LoginMessage newLoginMessage = (LoginMessage) message.getMessage("login",loginInformation);
     	try {
+    		client.openConnection();
 			client.sendToServer(newLoginMessage);
 		} catch (IOException e) {
 			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				// Show the error message.
+	            Alert alert = new Alert(AlertType.ERROR);
+	            alert.initOwner(screenManager.getPrimaryStage());
+	            alert.setTitle("ServerIP error");
+	            alert.setHeaderText("Please contact system administrator");
+	            alert.setContentText(e.getMessage());
+	            alert.showAndWait();       
+	        	log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			});
 		}
     }
     
@@ -87,9 +103,7 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
-    	client.addObserver(this);
-    	client.openConnection();
+    	
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
@@ -104,18 +118,18 @@ public class LoginController implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		
 		if(arg1 instanceof UserMessage) {
+			
 			UserMessage newMessasge = (UserMessage) arg1;
+			DataKeepManager.getInstance().keepObject("client", client);				// save's the client only if user exist
 			user = newMessasge.getUser();
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					
 					AddUserSpecificScreens();
 					screenManager.activate("questions");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-
 					e.printStackTrace();
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
