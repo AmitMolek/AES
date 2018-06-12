@@ -74,11 +74,7 @@ public class LoginController implements Observer {
 	PropertiesFile propertFile = PropertiesFile.getInstance();
 
 	
-	@FXML
-	private void resetServerIP(ActionEvent event) {
-		propertFile.writeToConfig("IP", null);
-		serverIPpane.setVisible(true);
-	}
+	
     /**
      * This method occurs when someone presses the sign in button
      * @param event action event when someone presses the sign in button
@@ -133,7 +129,15 @@ public class LoginController implements Observer {
         });
     	btnSignIn.setDisable(true);
     }
-    
+    /**
+     * This method in order to reset the serverIP
+     * @param event
+     */
+    @FXML
+	private void resetServerIP(ActionEvent event) {
+		propertFile.writeToConfig("IP", null);
+		serverIPpane.setVisible(true);
+	}
 	private void tryGettingServerIP() {
 		// TODO Auto-generated method stub
 		serverIP = propertFile.getFromConfig("IP");
@@ -141,6 +145,7 @@ public class LoginController implements Observer {
 			serverIPpane.setVisible(true);
 		}
 	}
+	
     /**
      * This method occurs when the server send message to the client
      */
