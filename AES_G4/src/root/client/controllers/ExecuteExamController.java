@@ -35,7 +35,7 @@ import root.dao.app.QuestionInExam;
 
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
- *         get list of questions for specific exam and answer the quesitons
+ *         get list of questions for specific exam and answer the quesitonsdsa
  */
 public class ExecuteExamController {
 
