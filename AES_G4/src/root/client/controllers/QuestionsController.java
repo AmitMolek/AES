@@ -24,6 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
@@ -43,6 +45,7 @@ import root.util.log.LogLine;
 //import tableButtonTest.Main.Record;
 //import tableButtonTest.Main.ButtonCell;
 //import tableButtonTest.Mai//n.Record;
+import root.util.properties.PropertiesFile;
 
 
 public class QuestionsController implements Observer{
@@ -122,6 +125,7 @@ public class QuestionsController implements Observer{
     @FXML
     private Button editQuestion;
     
+   
     private ObservableList<Subject> observableSubjects;
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
@@ -132,8 +136,9 @@ public class QuestionsController implements Observer{
     private ScreensManager screenManager;
 	private ArrayList<Subject> userSubjects;
 	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name. 
+	private String serverIP;
 	Log log = Log.getInstance();
-  
+	
 
 	public QuestionsController() {
 		super();
@@ -182,11 +187,15 @@ public class QuestionsController implements Observer{
     	//editQuestion.setDisable(true);
     	btnSearch.setDisable(true);
     	deleteQuestion.setDisable(true);
-    
+    	
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();
     }
+
+
+
+
 	private void initQuestionsTable() {
 		// TODO Auto-generated method stub
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));

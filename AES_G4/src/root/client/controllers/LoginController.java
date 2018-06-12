@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
@@ -27,6 +28,7 @@ import root.dao.message.MessageFactory;
 import root.dao.message.UserMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
+import root.util.properties.PropertiesFile;
 
 public class LoginController implements Observer {
 
@@ -55,23 +57,41 @@ public class LoginController implements Observer {
     private Label ErrorTxtField;
     @FXML
     private RowConstraints serverServiesRow;
+    
     @FXML
-    private TextField serverIP;
+    private Pane serverIPpane;
+
+    @FXML
+    private TextField txtFieldserverIP;
+    
     
     private ObservableClient client;
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
+    private String serverIP;
     Log log = Log.getInstance();
+	PropertiesFile propertFile = PropertiesFile.getInstance();
+
+	
+	@FXML
+	private void resetServerIP(ActionEvent event) {
+		propertFile.writeToConfig("IP", null);
+		serverIPpane.setVisible(true);
+	}
     /**
      * This method occurs when someone presses the sign in button
      * @param event action event when someone presses the sign in button
      */
     @FXML
     public void SignIn(ActionEvent event) {
-    	client = new ObservableClient(serverIP.getText(), 8000);				// opens a connection only if user exist.
-    	client.addObserver(this);												// --||--
     	
+    	if (serverIPpane.isVisible()) {
+    		serverIP = txtFieldserverIP.getText();
+    	}
+    	
+    	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.
+    	client.addObserver(this);												// --||--
     	String userId = txtId.getText();
     	String userPassword = txtPassword.getText();
     	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
@@ -79,9 +99,10 @@ public class LoginController implements Observer {
     	try {
     		client.openConnection();
 			client.sendToServer(newLoginMessage);
-		} catch (IOException e) {
+			propertFile.writeToConfig("IP", serverIP);				// if no exceptions thrown by client, than save serverIP.
+		} catch (IOException e) {	
 			e.printStackTrace();
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+			Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
 	            Alert alert = new Alert(AlertType.ERROR);
 	            alert.initOwner(screenManager.getPrimaryStage());
@@ -103,7 +124,9 @@ public class LoginController implements Observer {
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
-    	
+    	serverIPpane.setVisible(false);
+
+    	tryGettingServerIP();
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
@@ -111,6 +134,13 @@ public class LoginController implements Observer {
     	btnSignIn.setDisable(true);
     }
     
+	private void tryGettingServerIP() {
+		// TODO Auto-generated method stub
+		serverIP = propertFile.getFromConfig("IP");
+		if(serverIP == null) {
+			serverIPpane.setVisible(true);
+		}
+	}
     /**
      * This method occurs when the server send message to the client
      */
