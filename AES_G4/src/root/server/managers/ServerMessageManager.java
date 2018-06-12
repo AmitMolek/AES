@@ -1,55 +1,10 @@
-//<<<<<<< HEAD
-//package root.server.managers;
-//
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//
-//
-//import root.dao.app.Course;
-//import root.dao.app.Exam;
-//import root.dao.app.LoginInfo;
-//import root.dao.app.Question;
-//import root.dao.app.QuestionInExam;
-//import root.dao.app.Statistic;
-//import root.dao.app.Subject;
-//import root.dao.app.User;
-//import root.dao.app.UserInfo;
-//import root.dao.message.*;
-//import root.server.managers.dbmgr.*;
-//
-//
-//public class ServerMessageManager {
-//	
-//	private static ServerMessageManager instance=null;
-//	 private static MessageFactory message = MessageFactory.getInstance();;
-//	private ServerMessageManager() {
-//		
-//	}
-//	
-//	public static ServerMessageManager getInstance() {
-//		if(instance==null) {
-//			instance=new ServerMessageManager();
-//		}
-//		return instance;
-//	}
-//	
-//	public static AbstractMessage handleMessage(AbstractMessage msg) {
-//		String[] msgContent = msg.getMsg().toLowerCase().split("-");
-//		switch(msgContent[0]) {
-//		case "login":
-//			return handleLoginMessage(msg);	
-//		case "usersubjects":
-//			return handleUserSubjectsMessage(msg);
-//		case "questions":
-//			return handleQuestionsMessage(msg);
-//=======
 package root.server.managers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import root.client.controllers.TestGradesTeacherController;
+//import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
