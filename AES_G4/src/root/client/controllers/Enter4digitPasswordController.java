@@ -5,13 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -86,7 +83,7 @@ public class Enter4digitPasswordController implements Observer {
 
 			//Add Here handle with wrong password
 			//Add Here handle with locked exam
-			Platform.runLater(() -> {
+			/*Platform.runLater(() -> {
 	            Alert alert = new Alert(AlertType.ERROR);
 	            alert.initOwner(scrMgr.getPrimaryStage());
 	            alert.setTitle("Wrong 4 digits password");
@@ -94,7 +91,7 @@ public class Enter4digitPasswordController implements Observer {
 	            alert.setContentText(arg1.toString());
 	            alert.showAndWait();       
 	        	log.writeToLog(LogLine.LineType.ERROR, "Cant Find running exam");
-		});
+		});*/
 		}
 	}
     

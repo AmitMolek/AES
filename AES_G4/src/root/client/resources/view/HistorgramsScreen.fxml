@@ -5,14 +5,41 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1238.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1238.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.HistogramsScreenController">
    <children>
       <BorderPane prefHeight="694.0" prefWidth="1238.0">
-         <bottom>
-            <BarChart prefHeight="559.0" prefWidth="1238.0" BorderPane.alignment="CENTER">
+         <top>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Grades" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Text>
+               </top>
+               <center>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <right>
+                        <Text fx:id="averageText" strokeType="OUTSIDE" strokeWidth="0.0" text="Average:" textAlignment="CENTER" wrappingWidth="180.0" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Text>
+                     </right>
+                  </BorderPane>
+               </center>
+               <left>
+                  <Text fx:id="medianText" strokeType="OUTSIDE" strokeWidth="0.0" text="Median:" textAlignment="CENTER" wrappingWidth="180.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </left>
+            </BorderPane>
+         </top>
+         <center>
+            <BarChart fx:id="barChart" prefHeight="410.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -20,24 +47,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-         </bottom>
-         <top>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grades" BorderPane.alignment="CENTER" />
-               </top>
-               <center>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <left>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Median:" BorderPane.alignment="CENTER" />
-                     </left>
-                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Average:" wrappingWidth="78.93670272827148" BorderPane.alignment="CENTER" />
-                     </right>
-                  </BorderPane>
-               </center>
-            </BorderPane>
-         </top>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
