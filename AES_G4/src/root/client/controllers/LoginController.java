@@ -20,6 +20,7 @@ import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
+import root.dao.app.PrincipleNotification;
 import root.dao.app.User;
 import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
@@ -112,7 +113,7 @@ public class LoginController implements Observer {
 				try {
 					
 					AddUserSpecificScreens();
-					screenManager.activate("Enter4digitPassword");
+					screenManager.activate("check");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 
@@ -145,6 +146,8 @@ public class LoginController implements Observer {
 		}
 		else if(user.getUserPremission().equals("Principal")) {
 			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
+			client.deleteObservers();
+			client.addObserver(new WaitForPirncipleMessage());
 		}
 	}
 	

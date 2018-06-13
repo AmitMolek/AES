@@ -21,7 +21,8 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("executefull", "resources/view/ExecuteExamScreen.fxml");
 		ScreensManager.addScreen("Enter4digitPassword", "resources/view/Enter4digitsPasswordScreen.fxml");
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
-		
+		ScreensManager.addScreen("check", "resources/view/check.fxml");
+
 
 		launch(args);
 	}
