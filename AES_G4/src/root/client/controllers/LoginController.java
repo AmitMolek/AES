@@ -187,16 +187,4 @@ public class LoginController implements Observer {
 		}
 	}
 	
-	public void AddUserSpecificScreens() {
-		if(user.getUserPremission().equals("Teacher")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
-		}
-		else if(user.getUserPremission().equals("Student")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
-		}
-		else if(user.getUserPremission().equals("Principal")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
-		}
-	}
-	
 }
