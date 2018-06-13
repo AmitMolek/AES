@@ -1,5 +1,6 @@
 package root.server.managers.dbmgr;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import com.mysql.jdbc.Statement;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
@@ -193,11 +195,14 @@ public class GetFromDB implements DbManagerInterface {
 				"    q.question_answer_2 as ans2,\r\n" + 
 				"    q.question_answer_3 as ans3,\r\n" + 
 				"    q.question_answer_4 as ans4,\r\n" + 
-				"    q.correct_question as corAns\r\n" + 
+				"    q.correct_question as corAns\r\n" +
+				"    execute.exam_date_start as date\r\n" + 
+				"    execute.exam_type as type\r\n" + 
 				"\r\n" + 
-				"FROM exams ex, `questions in exam` qie, questions q\r\n" + 
-				"				WHERE ex.four_Digit="+pass+"\r\n" + 
+				"FROM exams ex, `questions in exam` qie, questions q, `execute exams` execute\r\n" + 
+				"				WHERE execute.four_Digit="+pass+"\r\n" + 
 				"				AND qie.exam_ID=ex.exam_Id\r\n" + 
+				"				AND execute.exam_id=ex.exam_Id\r\n" +
 				"				AND q.question_id = qie.Question_ID;";
 		ResultSet rs;
 		try {
@@ -210,6 +215,7 @@ public class GetFromDB implements DbManagerInterface {
 			
 				exam= new Exam(rs.getString("exid"),rs.getString("teacher_id")
 						,rs.getInt("duration"));
+			exam.setExecuteExam(new ExecuteExam(rs.getString("exid"),rs.getString("date"),pass,rs.getString("type")));	
 			rs.previous();
 			exams = new ArrayList<Exam>();
 			exams.add(exam);

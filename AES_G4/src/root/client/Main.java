@@ -22,7 +22,7 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("Enter4digitPassword", "resources/view/Enter4digitsPasswordScreen.fxml");
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
 		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
-
+		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");
 
 		launch(args);
 	}

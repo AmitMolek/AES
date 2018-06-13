@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
@@ -282,5 +283,44 @@ public class SetInDB implements DbManagerInterface {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public AbstractMessage addExecuteExam(ExecuteExam newExam) {
+		String insertExecuteExam = "insert into `execute exams` (exam_id, exam_date_start, four_Digit, exam_type)"
+				+ " values (?, ?, ?, ?);";
+		try {
+			newStmt = conn.prepareStatement(insertExecuteExam);
+			newStmt.setString(1, newExam.getExamId());
+			newStmt.setString(2, newExam.getStartTime());
+			newStmt.setString(3, newExam.getExamPassword());
+			newStmt.setString(4, newExam.getExamType());
+			newStmt.execute();
+			return message.getMessage("ok-put-executeexam", null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public AbstractMessage updateExam (Exam newExam) {
+		String updateExam = "UPDATE exams SET exams_state = ?, lock_flag = ? WHERE exam_id = ?;";
+		try {
+			newStmt = conn.prepareStatement(updateExam);
+			newStmt.setString(1, "dirty");
+			newStmt.setString(2, "unlocked");
+			newStmt.setString(3, newExam.getExamId());
+			newStmt.execute();
+			return message.getMessage("ok-set-exams", null); // because we didnt needed to get from DB theres
+																	// nothing to send back to client but the
+																	// confirmation
+
+		} catch (SQLException e) {
+			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			e.printStackTrace();
+		}
+
+		return null;
+		
 	}
 }

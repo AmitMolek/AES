@@ -163,7 +163,7 @@ public class LoginController implements Observer {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					AddUserSpecificScreens();
-					screenManager.activate("Enter4digitPassword");
+					screenManager.activate("PrepareExam");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

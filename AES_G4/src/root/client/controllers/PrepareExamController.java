@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -11,34 +12,43 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExecuteExam;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.CourseMessage;
 import root.dao.message.ExamMessage;
+import root.dao.message.ExecuteExamMessage;
 import root.dao.message.MessageFactory;
-import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
+import root.dao.message.WordMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
-public class UpdateDeleteExamController implements Observer {
+public class PrepareExamController implements Observer {
 
 	@FXML
 	private ComboBox<String> cmbCourse;
+
+	@FXML
+	private ComboBox<String> cmbExamType;
+
+	@FXML
+	private TextField txtFinish;
 
 	@FXML
 	private ComboBox<String> cmbSubject;
@@ -59,8 +69,9 @@ public class UpdateDeleteExamController implements Observer {
 	private TableView<Exam> tblExams;
 
 	@FXML
-	private GridPane gridPane;
+	private Button brtnExecuteExam;
 
+	private ArrayList<String> courses;
 	private MessageFactory messageFact;
 	private ObservableClient client;
 	private ScreensManager screenManager;
@@ -72,7 +83,8 @@ public class UpdateDeleteExamController implements Observer {
 	private Course newCourse;
 	private DataKeepManager dbk;
 	private Stage mainApp;
-	private ArrayList<String> courses;
+	private String type;
+	private Exam executeExam;
 
 	/**
 	 * Method that occurs when teacher select subject
@@ -81,7 +93,7 @@ public class UpdateDeleteExamController implements Observer {
 	 *            on action in subject combo box
 	 */
 	@FXML
-	void SelectSubject(ActionEvent event) {
+	void selectSubject(ActionEvent event) {
 		if (cmbCourse.getItems().size() != 0)
 			cmbCourse.getItems().removeAll(courses);
 		String selectedVaule = cmbSubject.getValue();
@@ -103,7 +115,7 @@ public class UpdateDeleteExamController implements Observer {
 	 *            on action in course combo box
 	 */
 	@FXML
-	void SelectCourse(ActionEvent event) {
+	void selectCourse(ActionEvent event) {
 		if (cmbCourse.getValue() != null) {
 			String selectedVaule = cmbCourse.getValue();
 			String[] selectedCourse = selectedVaule.toLowerCase().split("-");
@@ -121,64 +133,48 @@ public class UpdateDeleteExamController implements Observer {
 	}
 
 	/**
-	 * Method that occurs when teacher press update button
+	 * Method that occurs when teacher press on execute exam button
 	 * 
 	 * @param event
-	 *            on action in update button
+	 *            on action when press the execute exam button
 	 */
 	@FXML
-	void UpdateExam(ActionEvent event) {
-		Exam exam = tblExams.getSelectionModel().getSelectedItem();
-		if (exam == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.initOwner(mainApp);
-			alert.setTitle("Invalid Fields");
-			alert.setHeaderText("Please correct invalid fields");
-			alert.setContentText("You did not select any exam");
-			alert.showAndWait();
-			return;
-		}
-		ObservableList<Exam> examSelected;
-		examSelected = tblExams.getSelectionModel().getSelectedItems();
-		Exam updateExam = examSelected.get(0);
-		dbk.keepObject("updateExam", updateExam);
-		try {
-			screenManager.activate("updateExam");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+	void executeExam(ActionEvent event) {
+		if (isInputValidExecuteExam()) {
+			ObservableList<Exam> examSelected;
+			examSelected = tblExams.getSelectionModel().getSelectedItems();
+			executeExam = examSelected.get(0);
+			String pass = generatePass();
+			if (type.equals("manually")) {
+				WordMessage newMessage = (WordMessage) messageFact.getMessage("get-word", executeExam);
+				try {
+					client.sendToServer(newMessage);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			ExecuteExam newExecuteExam = new ExecuteExam(executeExam.getExamId(), txtFinish.getText(), pass, type);
+			ExecuteExamMessage addExecuteExam = (ExecuteExamMessage) messageFact.getMessage("put-executeexam",
+					newExecuteExam);
+			try {
+				client.sendToServer(addExecuteExam);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	/**
-	 * Method that occurs when teacher press Delete button
+	 * select type of exam from the options in the combo box
 	 * 
 	 * @param event
-	 *            on action in delete button
+	 *            on action select from combo box
 	 */
 	@FXML
-	void DeleteExam(ActionEvent event) {
-		Exam exam = tblExams.getSelectionModel().getSelectedItem();
-		if (exam == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.initOwner(mainApp);
-			alert.setTitle("Invalid Fields");
-			alert.setHeaderText("Please correct invalid fields");
-			alert.setContentText("You did not select any exam");
-			alert.showAndWait();
-			return;
-		}
-		ObservableList<Exam> examSelected;
-		examSelected = tblExams.getSelectionModel().getSelectedItems();
-		Exam removeExam = examSelected.get(0);
-		ExamMessage deleteExam = (ExamMessage) messageFact.getMessage("delete-exams", removeExam);
-		try {
-			client.sendToServer(deleteExam);
-		} catch (IOException e) {
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-			e.printStackTrace();
-		}
+	void selectType(ActionEvent event) {
+		type = cmbExamType.getValue();
 	}
 
 	/**
@@ -216,24 +212,35 @@ public class UpdateDeleteExamController implements Observer {
 		}
 
 		if (arg1 instanceof SimpleMessage) {
-			SimpleMessage simple = (SimpleMessage) arg1;
-			log.writeToLog(LogLine.LineType.INFO, "Exam deleted");
-			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
+			SimpleMessage intialSimpleMessage = (SimpleMessage) arg1;
+			if (intialSimpleMessage.getMsg().equals("ok-put-executeexam")) {
+				ExamMessage setExam = (ExamMessage) messageFact.getMessage("set-exams", executeExam);
 				try {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.initOwner(mainApp);
-					alert.setTitle("Exam deleted");
-					alert.setHeaderText("Exam deleted successeful");
-					alert.setContentText("The exam was deleted successful");
-					alert.showAndWait();
-					screenManager.activate("home");
+					client.sendToServer(setExam);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
-			});
+			}
+			if (intialSimpleMessage.getMsg().equals("ok-set-exams")) {
+				log.writeToLog(LogLine.LineType.INFO, "Exam executed");
+				Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
+					try {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.initOwner(mainApp);
+						alert.setTitle("Exam executed");
+						alert.setHeaderText("Exam executed created successefully");
+						alert.setContentText("The exam was created to be executed successfully");
+						alert.showAndWait();
+						screenManager.activate("home");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+					}
+				});
 
+			}
 		}
 
 	}
@@ -256,11 +263,66 @@ public class UpdateDeleteExamController implements Observer {
 		tbcDuration.setCellValueFactory(new PropertyValueFactory("examDuration"));
 		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
-		cmbCourse.setPromptText("Choose course");
-		cmbSubject.setPromptText("Choose subject");
+		cmbExamType.getItems().add("manually");
+		cmbExamType.getItems().add("auto");
 		teacher = dbk.getUser();
 		SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
 		client.sendToServer(getTeacherSubject);
+
+	}
+
+	/**
+	 * 
+	 * @return if there is error or not!
+	 */
+	private boolean isInputValidExecuteExam() {
+		String errorMessage = "";
+
+		if (cmbSubject.getSelectionModel().getSelectedItem() == null) {// || firstNameField.getText().length() == 0) {
+			errorMessage += "Please Select a Subject!\n";
+		}
+		if (cmbCourse.getSelectionModel().getSelectedItem() == null) {
+			errorMessage += "Please Select a Course!\n";
+		}
+		if (cmbExamType.getSelectionModel().getSelectedItem() == null) {
+			errorMessage += "Please Select a Type!\n";
+		}
+		Exam exam = tblExams.getSelectionModel().getSelectedItem();
+		if (exam == null) {
+			errorMessage += "Please select exam from the table\n";
+		}
+		if (txtFinish.getText() == null || txtFinish.getText().length() == 0) {
+			errorMessage += "No valid start time\n";
+		} else {
+			String[] check = txtFinish.getText().split(":");
+			if (check.length != 3 || check[0].length() != 2 || check[1].length() != 2 || check[2].length() != 2)
+				errorMessage += "No valid start time\n";
+		}
+
+		if (errorMessage.length() == 0) {
+			return true;
+		} else {
+			// Show the error message.
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText(errorMessage);
+			alert.showAndWait();
+			return false;
+		}
+	}
+
+	public String generatePass() {
+		String options = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		StringBuilder password = new StringBuilder();
+		Random rnd = new Random();
+		while (password.length() < 4) {
+			int index = (int) (rnd.nextFloat() * options.length());
+			password.append(options.charAt(index));
+		}
+		String saltStr = password.toString();
+		return saltStr;
 
 	}
 

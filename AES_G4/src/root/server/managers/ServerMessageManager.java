@@ -7,6 +7,7 @@ import java.util.HashMap;
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExecuteExam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
@@ -18,6 +19,7 @@ import root.dao.message.AbstractMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
+import root.dao.message.ExecuteExamMessage;
 import root.dao.message.LoggedOutMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
@@ -30,8 +32,10 @@ import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
 import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
+import root.dao.message.WordMessage;
 import root.server.managers.dbmgr.GetFromDB;
 import root.server.managers.dbmgr.SetInDB;
+import root.server.managers.worddocumentmgr.WordDocument;
 
 public class ServerMessageManager {
 	
@@ -361,7 +365,10 @@ public class ServerMessageManager {
 		switch(msgContent[1]) {
 		case "questions":
 			return handleSetQuestionMessage(msg);
+		case "exams":
+			return handleSetExamMessage(msg);
 		}
+		
 		return null;
 	}
 	/**
@@ -430,6 +437,8 @@ public class ServerMessageManager {
 				return handleFetUserMessage(msgContent,msg);
 			case "solvedExamByTeacherId":
 				return handleGetExamByTeacherID(msg);
+			case "word":
+				return handleGetWord(msg);
 		}
 		
 		return null;
@@ -543,6 +552,8 @@ public class ServerMessageManager {
 			return handlePutQuestionInExamMessage(msg);
 		case "solvedexams": 
 			return handlePutSolvedExamMessage(msg);
+		case "executeexam":
+			return handlePutExecuteExamMessage(msg);
 		
 		}
 		
@@ -637,5 +648,29 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) putSolvedExam.addSolvedExam(newSolvedExam);
 		return sendMessage;
 		
+	}
+	private static AbstractMessage handleGetWord(AbstractMessage msg) {
+		WordMessage recivedMessage = (WordMessage)msg;
+		Exam newExam = recivedMessage.getExam();
+		WordDocument create = new WordDocument(newExam);
+		create.createDocument();
+		SimpleMessage sendMessage = (SimpleMessage)message.getMessage("ok-get-word", null);
+		return sendMessage; 
+	}
+	
+	private static  AbstractMessage handlePutExecuteExamMessage(AbstractMessage msg) {
+		ExecuteExamMessage recivedMessage = (ExecuteExamMessage)msg;
+		ExecuteExam newExecuteExam = recivedMessage.getNewExam();
+		SetInDB putExecuteExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putExecuteExam.addExecuteExam(newExecuteExam);
+		return sendMessage;
+	}
+	
+	private static AbstractMessage handleSetExamMessage(AbstractMessage msg) {
+		ExamMessage recivedMessage = (ExamMessage)msg;
+		Exam newExam = recivedMessage.getNewExam();
+		SetInDB setExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
+		return sendMessage;
 	}
 }
