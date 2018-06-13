@@ -18,16 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import ocsf.client.ObservableClient;
-<<<<<<< HEAD
-import root.client.managers.DataKeepManager;
-import root.client.managers.ScreensManager;
-import root.dao.app.LoginInfo;
-import root.dao.app.PrincipleNotification;
-import root.dao.app.User;
-import root.dao.message.ErrorMessage;
-import root.dao.message.LoginMessage;
-import root.dao.message.MessageFactory;
-=======
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.LoginInfo;
@@ -35,103 +25,10 @@ import root.dao.app.User;
 import root.dao.message.ErrorMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
->>>>>>> refs/remotes/origin/master
 import root.dao.message.UserMessage;
 import root.util.log.Log;
-<<<<<<< HEAD
-import root.util.log.LogLine;
-
-public class LoginController implements Observer {
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private Hyperlink linkForgot;
-
-    @FXML
-    private Button btnSignIn;
-
-    @FXML
-    private Label lblId;
-
-    @FXML
-    private TextField txtId;
-
-    @FXML
-    private Label lblPassword;
-
-    @FXML
-    private PasswordField txtPassword;
-    
-    @FXML
-    private Label ErrorTxtField;
-    
-    
-    private ObservableClient client;
-    private MessageFactory message;
-    private User user;
-    private ScreensManager screenManager;
-    Log log = Log.getInstance();
-    /**
-     * This method occurs when someone presses the sign in button
-     * @param event action event when someone presses the sign in button
-     */
-    @FXML
-    public void SignIn(ActionEvent event) {
-    	String userId = txtId.getText();
-    	String userPassword = txtPassword.getText();
-    	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
-    	LoginMessage newLoginMessage = (LoginMessage) message.getMessage("login",loginInformation);
-    	try {
-			client.sendToServer(newLoginMessage);
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-		}
-    }
-    
-    /**
-     * This method occurs when the window is shown up.
-     * @throws IOException if the window cannot be shown
-     */
-    @FXML
-	public void initialize() throws IOException{
-    	Platform.runLater(() -> rootPane.requestFocus());
-    	message = MessageFactory.getInstance();
-    	screenManager = ScreensManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
-    	client.addObserver(this);
-    	client.openConnection();
-    	// Listen for selection changes and show the person details when changed.
-    	txtId.setOnMouseClicked(e -> {
-    		btnSignIn.setDisable(false);
-        });
-    	btnSignIn.setDisable(true);
-    }
-    
-    /**
-     * This method occurs when the server send message to the client
-     */
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		
-		if(arg1 instanceof UserMessage) {
-			UserMessage newMessasge = (UserMessage) arg1;
-			user = newMessasge.getUser();
-			DataKeepManager.getInstance().keepUser(user);
-			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-				try {
-					
-					AddUserSpecificScreens();
-					screenManager.activate("check");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-=======
 import root.util.log.LogLine;
 import root.util.properties.PropertiesFile;
->>>>>>> refs/remotes/origin/master
 
 public class LoginController implements Observer {
 
@@ -265,8 +162,9 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					
 					AddUserSpecificScreens();
-					screenManager.activate("home");
+					screenManager.activate("check");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
