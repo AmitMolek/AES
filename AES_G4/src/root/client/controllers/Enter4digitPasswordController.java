@@ -91,9 +91,9 @@ public class Enter4digitPasswordController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			examMessage = (ExamMessage) arg1;
 			ArrayList<Exam> examsList = examMessage.getExams();
-			Exam newExam = examsList.get(0);
+			Exam newExam = examsList.get(0);	
+			dataKeeper.keepObject("RunningExam", newExam);
 			if (newExam.getExecuteExam().getExamType().equals("auto")) {
-				dataKeeper.keepObject("RunningExam", newExam);
 				Platform.runLater(() -> {
 					try {
 						scrMgr.activate("executefull");
