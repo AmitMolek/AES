@@ -337,7 +337,7 @@ public class ServerMessageManager {
 	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
 		LoggedOutMessage loggedMsg = (LoggedOutMessage) msg;
 		String user_id = loggedMsg.getUserID();
-		String error_msg = "error-loggedOut";
+		String error_msg = "error-loggedout";
 		
 		if (user_id == null) {
 			return message.getMessage(error_msg, new Exception("User id is null"));
