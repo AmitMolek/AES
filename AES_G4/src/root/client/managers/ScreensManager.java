@@ -19,6 +19,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import ocsf.client.ObservableClient;
 import root.client.Main;
@@ -44,6 +45,8 @@ public class ScreensManager extends Application {
 
     private final String cssPath = "resources/css/materialDesign.css";
     private final String menuFxmlPath = "resources/view/Menu.fxml";
+    private final String utilityBarPath = "resources/view/UtilityBar.fxml";
+    
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
     private Log log = Log.getInstance();
@@ -84,6 +87,7 @@ public class ScreensManager extends Application {
     	primaryStage.setResizable(false);
     	primaryStage.setTitle("AES");
     	primaryStage.getIcons().add(new Image(aesIconPath));
+    	primaryStage.initStyle(StageStyle.UNDECORATED);
     }
     
     /**
@@ -128,6 +132,10 @@ public class ScreensManager extends Application {
     public void activate(ScreenObject screenObj) throws IOException{
     	VBox sRoot = new VBox();
     	boolean isFullscreenScreen = screenObj.getScreenName().contains("full");
+    	
+    	FXMLLoader utilityBarFxml = new FXMLLoader(Main.class.getResource(utilityBarPath));
+    	Pane utilityBarMenu = utilityBarFxml.load();
+    	sRoot.getChildren().add(utilityBarMenu);
     	
     	if (screenObj.getScreenName() != "main" && !isFullscreenScreen) {
 	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource(menuFxmlPath));

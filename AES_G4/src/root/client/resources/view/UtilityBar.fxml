@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.UtilityBarController">
+   <children>
+      <HBox AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="25.0">
+               <children>
+                  <Label fx:id="errorLbl" alignment="CENTER_RIGHT" textAlignment="RIGHT" textFill="#b71c1c">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fx:id="appLogoutBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#logoutBtn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons/cloud_off.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="appLogExitBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#logExitBtn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons/cancel.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="appMiniBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#minimizeBtn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons/minimize.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="appExitBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#exitBtn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons/exit.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

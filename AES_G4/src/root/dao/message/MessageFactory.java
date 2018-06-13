@@ -40,6 +40,8 @@ public class MessageFactory {
 	 */
 	public AbstractMessage getMessage(String msg,Object payload) {
 		String[] msgContent=msg.toLowerCase().split("-");
+
+		System.out.println("");
 		switch(msgContent[0]) {
 		case "ok":
 			return getOkMessage(msgContent,payload);
@@ -60,6 +62,10 @@ public class MessageFactory {
 	}
 	
 	private AbstractMessage getErrorMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+			case "loggedout":
+				return new LogoutErrorMessage((Exception)payload);
+		}
 		return new ErrorMessage((Exception)payload);
 		
 		// TODO Auto-generated method stub
@@ -175,7 +181,8 @@ public class MessageFactory {
 			return new SimpleMessage("ok-put-"+msgContent[2]);
 		case "delete":
 			return new SimpleMessage("ok-delete-"+msgContent[2]);
-
+		case "loggedout":
+			return new SimpleMessage("ok-loggedout");
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

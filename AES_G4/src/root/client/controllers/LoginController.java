@@ -172,7 +172,6 @@ public class LoginController implements Observer {
 			});
 		}
 		else if (arg1 instanceof ErrorMessage) {
-			System.out.println(arg1);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
 	            Alert alert = new Alert(AlertType.ERROR);
