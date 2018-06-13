@@ -33,6 +33,9 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </TableView>
          </center>
          <top>
@@ -53,7 +56,7 @@
                         <TextField fx:id="txtFieldId" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="search Teacher by teacherID" styleClass="textFields" GridPane.rowIndex="2" />
                         <TextField fx:id="txtFieldName" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="search Teacher by name" styleClass="textFields" GridPane.rowIndex="3" />
                         <Label text="select Subject:" GridPane.halignment="CENTER" />
-                        <TextField fx:id="txtFieldQuestion" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="serach Question by ID" styleClass="textFields" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtFieldQuestion" alignment="CENTER" prefHeight="24.0" prefWidth="246.0" promptText="search Question by ID" styleClass="textFields" GridPane.rowIndex="1" />
                         <ComboBox fx:id="subjectCombobox" onAction="#selectFromCombobox" prefWidth="150.0" promptText="select subject" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                       <Button fx:id="newQuestion" mnemonicParsing="false" onAction="#newQuestionDialog" text="new Question" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">

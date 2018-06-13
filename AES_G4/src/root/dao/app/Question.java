@@ -35,6 +35,7 @@ public class Question implements java.io.Serializable {
 		this.ans4 = ans4;
 		this.correctAns = correctAns;
 		this.teacherAssembeld = teacherAssembeld;
+		this.teacherFullName = "";
 	}
 /**
  * copy constractor

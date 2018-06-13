@@ -43,6 +43,10 @@ public class MenuController {
     private final String homeIconPath = "../resources/images/icons/home.png";
     private final String returnIconPath = "../resources/images/icons/back_arrow.png";
     private final String helpIconPath = "../resources/images/icons/help.png";
+    private final String statisticsIconPath = "../resources/images/icons/history.png";
+    private final String questionsIconPath = "../resources/images/icons/aspect_ratio.png";
+    private final String examsIconPath = "../resources/images/icons/collections.png";
+    private final String executeExamIconPath = "../resources/images/icons/play.png";
     
     private final String aboutUsNames = "Group 4\nGal Brandwine\nAlon Ben-yosef\nNaor Saadia\nAmit Molek\nOmer Haimovich";
     
@@ -63,10 +67,57 @@ public class MenuController {
     	initGoHome();
     	
     	if (user.getUserPremission().equals("Teacher")) {
-    		initGoOther();
+        	initQuestionsMenu();
+        	initExamsMenu();
+    	}else if (user.getUserPremission().equals("Student")) {
+    		initExecuteExamMenu();
+    	}else {
+    		
     	}
     	
+    	initStatisticsMenu();
     	initGoHelp();
+    }
+    
+    public void initExecuteExamMenu() {
+    	Image img = new Image(getClass().getResource(executeExamIconPath).toExternalForm());
+    	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("Enter4digitPassword");
+    	createMenuItem(new Menu(), img, "Solve exam", 100, 25, e);
+    }
+    
+    public void initExamsMenu() {
+    	Image img = new Image(getClass().getResource(examsIconPath).toExternalForm());
+    	
+    	Menu examsMenu = new Menu();
+    	createMenuItem(examsMenu, img, "Exams", 70, 25);
+    	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
+    	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateExam")));
+    	examsMenu.getItems().add(createMenuItem("Remove exam", getChangeScreenActionEvent("updateDeleteExam")));
+    }
+    
+    public void initQuestionsMenu() {
+    	Image img = new Image(getClass().getResource(questionsIconPath).toExternalForm());
+    	
+    	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("questions");
+    	createMenuItem(new Menu(), img, "Questions", 100, 25, e);
+    }
+    
+    public void initStatisticsMenu() {
+    	String per = user.getUserPremission();
+    	Image img = new Image(getClass().getResource(statisticsIconPath).toExternalForm());
+    	
+    	Menu statisticsMenu = new Menu();
+    	
+    	if (per.equals("Principal")) {
+    		
+    	}else if (per.equals("Teacher")) {
+    		
+    	}else {
+    		
+    	}
+    	
+    	createMenuItem(statisticsMenu, img, "Statistics", 90, 25);
+    	statisticsMenu.getItems().add(createMenuItem("Histograms", getChangeScreenActionEvent("histograms")));
     }
     
     /**
@@ -136,19 +187,6 @@ public class MenuController {
 		};
     	
     	help.getItems().add(createMenuItem("About Us", e));
-    }
-    
-    // Just to show how to create a menu object with multpie menu items
-    public void initGoOther() {
-    	Menu other = new Menu();
-    	
-    	Image img = new Image(getClass().getResource(homeIconPath).toExternalForm());
-    	createMenuItem(other, img, "Other", 70, 25);
-    	
-    	other.getItems().add(createMenuItem("1", getChangeScreenActionEvent("aqw")));
-    	other.getItems().add(createMenuItem("2", getChangeScreenActionEvent("aqw")));
-    	other.getItems().add(createMenuItem("3", getChangeScreenActionEvent("aqw")));
-
     }
     
     /**

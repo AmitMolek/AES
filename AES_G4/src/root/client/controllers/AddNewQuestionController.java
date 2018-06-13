@@ -8,13 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import root.dao.app.Question;
 import root.dao.app.Subject;
@@ -146,12 +144,12 @@ public class AddNewQuestionController {
             return true;
         } else {
             // Show the error message.
-            Alert alert = new Alert(AlertType.ERROR);
+            /*Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(mainApp);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
-            alert.showAndWait();
+            alert.showAndWait();*/
             return false;
         }
     }
@@ -196,66 +194,14 @@ public class AddNewQuestionController {
 	 */
 	public void setQuestion(Question selectedQuestionToEdit) {
 		// TODO Auto-generated method stub
-		//String questionId = comboboxSubjects.setSelectionModel(selectedQuestionToEdit.getQuestionId());	// Only partial Question ID. will fill that back in Question window
+
     	txtFieldText.setText(selectedQuestionToEdit.getQuestionText());
     	txtFieldQuestionInfo.setText(selectedQuestionToEdit.getIdquestionIntruction());
     	txtFieldPossibleAnswer1.setText(selectedQuestionToEdit.getAns1());
     	txtFieldPossibleAnswer2.setText(selectedQuestionToEdit.getAns2());
     	txtFieldPossibleAnswer3.setText(selectedQuestionToEdit.getAns3());
     	txtFieldPossibleAnswer4.setText(selectedQuestionToEdit.getAns4());
-    	//String teacherAssembeld = user.getUserID();	
-        //Question newQuestion = new Question(questionId,questionText,questionIntruction,ans1,ans2,ans3,ans4,correctAns,teacherAssembeld);
-        //appMainObservableList.add(newQuestion);
-        //closeStage(event);
+
 	}
 }
 
-/*
- *package customdialog;
-
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-public class AddPersonDialogController  {
-    
-    @FXML
-    private TextField tfId;
-
-    @FXML
-    private TextField tfName;
-
-    @FXML
-    private TextField tfAge;
-    
-    private ObservableList<Person> appMainObservableList;
-
-    @FXML
-    void btnAddPersonClicked(ActionEvent event) {
-        System.out.println("btnAddPersonClicked");
-        int id = Integer.valueOf(tfId.getText().trim());
-        String name = tfName.getText().trim();
-        int iAge = Integer.valueOf(tfAge.getText().trim());
-        
-        Person data = new Person(id, name, iAge);
-        appMainObservableList.add(data);
-        
-        closeStage(event);
-    }
-
-    public void setAppMainObservableList(ObservableList<Person> tvObservableList) {
-        this.appMainObservableList = tvObservableList;
-        
-    }
-
-    private void closeStage(ActionEvent event) {
-        Node  source = (Node)  event.getSource(); 
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-} 
- */

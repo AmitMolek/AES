@@ -10,11 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
@@ -50,6 +53,8 @@ public class UpdateExamController implements Observer {
 	private DataKeepManager dbk;
 	private Exam updateExam;
 	private ObservableList<root.dao.app.QuestionInExam> examQuestions;
+	private int totalPoints;
+	private Stage mainApp;
 
 	/**
 	 * Update the question in the specific exam
@@ -58,9 +63,21 @@ public class UpdateExamController implements Observer {
 	 */
 	@FXML
 	void UpdateQuestionInExam(ActionEvent event) {
+		totalPoints = 0;
 		ArrayList<QuestionInExam> examInQuestions = new ArrayList<QuestionInExam>();
 		for (QuestionInExam q : examQuestions) {
+			totalPoints = totalPoints + q.getQuestionGrade();
 			examInQuestions.add(q);
+		}
+		if(totalPoints != 100)
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText("Not 100 points");
+			alert.showAndWait();
+			return;
 		}
 		QuestionInExamMessage sendMessage = (QuestionInExamMessage) messageFact.getMessage("put-questioninexam",
 				examInQuestions);
@@ -81,6 +98,16 @@ public class UpdateExamController implements Observer {
 	 */
 	@FXML
 	void RemoveQuestionFromExam(ActionEvent event) {
+		QuestionInExam question = tblQuestion.getSelectionModel().getSelectedItem();
+		if (question == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText("You did not select any Question");
+			alert.showAndWait();
+			return;
+		}
 		ObservableList<QuestionInExam> questionSelected;
 		questionSelected = tblQuestion.getSelectionModel().getSelectedItems();
 		QuestionInExam q = questionSelected.get(0);
@@ -101,6 +128,7 @@ public class UpdateExamController implements Observer {
 		screenManager = ScreensManager.getInstance();
 		log = Log.getInstance();
 		dbk = DataKeepManager.getInstance();
+		mainApp = screenManager.getPrimaryStage();
 		client = new ObservableClient("localhost", 8000);
 		client.addObserver(this);
 		client.openConnection();
@@ -119,6 +147,10 @@ public class UpdateExamController implements Observer {
 
 	}
 	
+	/**
+	 * Edit the points of question
+	 * @param pointEditEvent
+	 */
     @FXML
     void updatePoints(TableColumn.CellEditEvent<QuestionInExam, Integer> pointEditEvent) {
     	int i =0;

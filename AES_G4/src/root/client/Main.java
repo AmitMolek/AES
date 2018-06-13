@@ -21,7 +21,11 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("executefull", "resources/view/ExecuteExamScreen.fxml");
 		ScreensManager.addScreen("Enter4digitPassword", "resources/view/Enter4digitsPasswordScreen.fxml");
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
+<<<<<<< HEAD
 		ScreensManager.addScreen("check", "resources/view/check.fxml");
+=======
+		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
+>>>>>>> refs/remotes/origin/master
 
 
 		launch(args);

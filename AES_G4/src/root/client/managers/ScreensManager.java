@@ -21,8 +21,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import ocsf.client.ObservableClient;
 import root.client.Main;
 import root.dao.app.ScreenObject;
+import root.dao.app.User;
+import root.dao.message.LoggedOutMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 import root.util.log.LogLine.LineType;
@@ -49,6 +52,7 @@ public class ScreensManager extends Application {
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
     private Log log = Log.getInstance();
+    private DataKeepManager dkm = DataKeepManager.getInstance();
     
     private static ScreensManager INSTANCE = new ScreensManager();
     
@@ -196,6 +200,17 @@ public class ScreensManager extends Application {
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			       @Override
 			       public void handle(WindowEvent e) {
+			    	   
+			    	   User user = dkm.getUser();
+			    	   if (user != null) {
+			    		   ObservableClient client = (ObservableClient)dkm.getObject_NoRemove("client");
+			    		   LoggedOutMessage msg = new LoggedOutMessage(user.getUserID());
+			    	   	   try {
+							client.sendToServer(msg);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+			    	   }
 			          Platform.exit();
 			          System.exit(0);
 			       }

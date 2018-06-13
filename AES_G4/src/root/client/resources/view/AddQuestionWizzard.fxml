@@ -27,7 +27,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Text:" />
@@ -38,16 +37,14 @@
             <Label text="Possible answer 4:" GridPane.rowIndex="5" />
             <Label text="Correct question:" GridPane.rowIndex="6" />
             <ComboBox fx:id="comboboxCorrectQuestion" prefWidth="150.0" promptText="select" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="Teacher Assembe Name:" GridPane.rowIndex="7" />
-            <Button fx:id="btnSaveAndClose" mnemonicParsing="false" onAction="#saveAndClose" text="Save &amp; Close" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancle" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <Button fx:id="btnSaveAndClose" mnemonicParsing="false" onAction="#saveAndClose" text="Save &amp; Close" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancle" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <TextArea fx:id="txtFieldText" prefHeight="200.0" prefWidth="200.0" promptText="Enter Question Text" GridPane.columnIndex="1" />
             <TextArea fx:id="txtFieldQuestionInfo" prefHeight="200.0" prefWidth="200.0" promptText="Optionaly Instruction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextArea fx:id="txtFieldPossibleAnswer1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextArea fx:id="txtFieldPossibleAnswer2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextArea fx:id="txtFieldPossibleAnswer3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextArea fx:id="txtFieldPossibleAnswer4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label fx:id="lblAssemblerID" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
    </children>

@@ -3,7 +3,6 @@ package root.client.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,6 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
@@ -44,6 +45,7 @@ import root.util.log.LogLine;
 //import tableButtonTest.Main.Record;
 //import tableButtonTest.Main.ButtonCell;
 //import tableButtonTest.Mai//n.Record;
+import root.util.properties.PropertiesFile;
 
 
 public class QuestionsController implements Observer{
@@ -123,6 +125,7 @@ public class QuestionsController implements Observer{
     @FXML
     private Button editQuestion;
     
+   
     private ObservableList<Subject> observableSubjects;
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
@@ -133,14 +136,81 @@ public class QuestionsController implements Observer{
     private ScreensManager screenManager;
 	private ArrayList<Subject> userSubjects;
 	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name. 
+	private String serverIP;
 	Log log = Log.getInstance();
-  
+	
 
 	public QuestionsController() {
 		super();
 	
 	}
 
+	
+		
+	/**
+     * This method occurs when the window is shown up.
+     * @throws IOException if the window cannot be shown
+     */
+    @FXML
+	public void initialize() throws IOException{
+    	Platform.runLater(() -> rootPane.requestFocus());
+    	message = MessageFactory.getInstance();
+    	screenManager = ScreensManager.getInstance();
+
+    	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+    	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
+    	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
+    	questions = new ArrayList<Question>();
+    	teachersMap = new HashMap<String, String>();
+    	
+    	// Listen for selection changes and show the person details when changed.
+    	txtFieldId.setOnMouseClicked(e -> {
+    		btnSearch.setDisable(false);
+        });
+    	// Listen for selection changes and show the person details when changed.
+    	txtFieldName.setOnMouseClicked(e -> {
+    		btnSearch.setDisable(false);
+        });
+    	// Listen for selection changes and show the person details when changed.
+    	txtFieldQuestion.setOnMouseClicked(e -> {
+    		btnSearch.setDisable(false);
+        });
+    	// Listen for selection changes and show the person details when changed.
+    	tblQuestions.setOnMouseClicked(e -> {
+    		editQuestion.setDisable(false);
+        });
+    	// Listen for selection changes and show the person details when changed.
+    	tblQuestions.setOnMouseClicked(e -> {
+    		deleteQuestion.setDisable(false);
+        });
+    	
+    	//editQuestion.setDisable(true);
+    	btnSearch.setDisable(true);
+    	deleteQuestion.setDisable(true);
+    	//observabaleQuestions.clear();
+    	//questions.clear();
+    	setUserDetails(user);
+    	getUserSubjects(user);
+    	initQuestionsTable();
+    	
+    }
+
+
+
+
+	private void initQuestionsTable() {
+		// TODO Auto-generated method stub
+		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
+		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
+		tbcIdInstruction.setCellValueFactory(new PropertyValueFactory<Question, String>("idquestionIntruction"));
+		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
+		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
+		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
+		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
+		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
+		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherFullName"));
+		}
+	
 	@FXML
     void selectFromCombobox(ActionEvent event) {
 		Subject selectedSucjet = subjectCombobox.getSelectionModel().getSelectedItem();
@@ -168,7 +238,7 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldQuestion.clear();
-			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
 			return;
 		}
 		if (txtFieldId.getText().length() != 0) {
@@ -180,7 +250,7 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldId.clear();
-			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
 			return;
 		}
 		if (txtFieldName.getText().length() != 0){
@@ -192,7 +262,7 @@ public class QuestionsController implements Observer{
 				}
 			}
 			txtFieldName.clear();
-			btnSearch.setDisable(true);
+			unselectSelectionFromTable();
 			return;
 		}else {
             // Nothing selected.
@@ -204,67 +274,10 @@ public class QuestionsController implements Observer{
             alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
 
             alert.showAndWait();
-            btnSearch.setDisable(true);
+            unselectSelectionFromTable();
             
 		}
 	}
-		
-	/**
-     * This method occurs when the window is shown up.
-     * @throws IOException if the window cannot be shown
-     */
-    @FXML
-	public void initialize() throws IOException{
-    	Platform.runLater(() -> rootPane.requestFocus());
-    	message = MessageFactory.getInstance();
-    	screenManager = ScreensManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
-    	client.addObserver(this);
-    	client.openConnection();
-    	
-    	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
-    	questions = new ArrayList<Question>();
-    	teachersMap = new HashMap<String, String>();
-    	
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldId.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldName.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldQuestion.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	// Listen for selection changes and show the person details when changed.
-    	tblQuestions.setOnMouseClicked(e -> {
-    		editQuestion.setDisable(false);
-        });
-    	
-    	editQuestion.setDisable(true);
-    	btnSearch.setDisable(true);
-    	
-    	setUserDetails(user);
-    	getUserSubjects(user);
-    	initQuestionsTable();
- 
-    }
-	private void initQuestionsTable() {
-		// TODO Auto-generated method stub
-		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
-		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
-		tbcIdInstruction.setCellValueFactory(new PropertyValueFactory<Question, String>("idquestionIntruction"));
-		tbcAns1.setCellValueFactory(new PropertyValueFactory<Question, String>("ans1"));
-		tbcAns2.setCellValueFactory(new PropertyValueFactory<Question, String>("ans2"));
-		tbcAns3.setCellValueFactory(new PropertyValueFactory<Question, String>("ans3"));
-		tbcAns4.setCellValueFactory(new PropertyValueFactory<Question, String>("ans4"));
-		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
-		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherFullName"));
-
-		}
-	
 	/**
 	 * This method will set a edit option
 	 * @param event
@@ -274,7 +287,6 @@ public class QuestionsController implements Observer{
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
-        	tblQuestions.getItems().remove(selectedIndex);
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -282,8 +294,9 @@ public class QuestionsController implements Observer{
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
-
             alert.showAndWait();
+            
+            unselectSelectionFromTable();
         }
     }
 	
@@ -300,7 +313,7 @@ public class QuestionsController implements Observer{
         	deleteQuestionFromDB(questionToDelete);				// remove question from DB
         	tblQuestions.getItems().remove(selectedIndex);		// remove question from tableview
         	questions.remove(questionToDelete);					// remove question from THIS.questions
-        	
+        	unselectSelectionFromTable();
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
@@ -308,8 +321,9 @@ public class QuestionsController implements Observer{
             alert.setTitle("No Selection");
             alert.setHeaderText("No question Selected");
             alert.setContentText("Please select a question in the table.");
-
             alert.showAndWait();
+            
+            unselectSelectionFromTable();
         }
     }
     /**
@@ -317,7 +331,7 @@ public class QuestionsController implements Observer{
      *  for each question in the subject this teacher teaches, we need the teacher assembled name.
      * @param questions2
      */
-	 private void getTeachersMap(ArrayList<Question> questions2) {
+	void getTeachersMap(ArrayList<Question> questions2) {
 		// TODO Auto-generated method stub
 		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
 		 for (Question question: questions) {
@@ -336,7 +350,7 @@ public class QuestionsController implements Observer{
      * this method called when deleting Question from DB
      * @param questionToDelete
      */
-	 private void deleteQuestionFromDB(Question questionToDelete) {
+	void deleteQuestionFromDB(Question questionToDelete) {
 		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
     	try {
 			client.sendToServer(questionDeleteMessage);
@@ -354,10 +368,15 @@ public class QuestionsController implements Observer{
 	 @FXML
 	void newQuestionDialog(ActionEvent event) throws IOException {
 		 runNewQuestionWizzard(null);
+		 //unselectSelectionFromTable();
 	}
-	
+	/**
+	 * This method is called when pressing New-Question, or Edit-Question buttons. It opens a new window
+	 * @param selectedQuestionToEdit the selected question to edit, if null - then assume "New-Question" pressed,
+	 * proceed accordingly.
+	 */
 	private void runNewQuestionWizzard(Question selectedQuestionToEdit) {
-
+			unselectSelectionFromTable();
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 				try {
 			    	observebaleNewQuestion = FXCollections.observableArrayList(); 
@@ -380,7 +399,7 @@ public class QuestionsController implements Observer{
 				    stage.setTitle("New question wizzard");
 				    stage.showAndWait();
 				    
-				    if (observebaleNewQuestion.isEmpty() == false) {	// if false, than no new question created, that a question was updated
+				    if (observebaleNewQuestion.isEmpty() == false) {	// if false, than no new question created, that means a question was updated
 				    	if (selectedQuestionToEdit != null) {		// if 'selectedQuestionToEdit' changed, remove old question form list's 
 				    		String tempOldQID =selectedQuestionToEdit.getQuestionId(); 
 				    		observabaleQuestions.remove(selectedQuestionToEdit);
@@ -389,18 +408,19 @@ public class QuestionsController implements Observer{
 						    observebaleNewQuestion.get(0).setQuestionId(questionId);
 						    observabaleQuestions.add(observebaleNewQuestion.get(0));
 						    questions.add(observebaleNewQuestion.get(0));
-						    if ( tempOldQID.equals(questionId.substring(0, 2)) ){	// if equal than updated quastion didnt changed its subject
+						    if ( tempOldQID.equals(questionId.substring(0, 2)) ){	// if equal, then updated question didn't changed its subject
 						    	setChangedQuestion(observebaleNewQuestion.get(0));
 						    }
 						    deleteQuestionFromDB(selectedQuestionToEdit);			// delete from DB, old question
 						    putNewQuestion(observebaleNewQuestion.get(0));			// insert updated question
+						    updateTeacherAssemblerFullName(teachersMap);
 				    	}
-				    	else {
+				    	else {	// if "selectedQuestionToEdit" == null, than it means a "NEW Question" pressed.
 						    questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
 						    observebaleNewQuestion.get(0).setQuestionId(questionId);
 						    observabaleQuestions.add(observebaleNewQuestion.get(0));
 						    questions.add(observebaleNewQuestion.get(0));
-						    
+						    updateTeacherAssemblerFullName(teachersMap);
 						    putNewQuestion(observebaleNewQuestion.get(0));
 				    	}
 				    }
@@ -410,7 +430,6 @@ public class QuestionsController implements Observer{
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
 			});
-			
 		}
 	
 	/**
@@ -418,7 +437,6 @@ public class QuestionsController implements Observer{
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
 		if (arg1 instanceof QuestionsMessage) {
 			if(this.getQuestions().size() == 0)
 				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
@@ -427,26 +445,22 @@ public class QuestionsController implements Observer{
 			for (Question question: questions) {
 				observabaleQuestions.add(question);
 			}
-			getTeachersMap(questions);
-			tblQuestions.setItems(observabaleQuestions);
-			
+			getTeachersMap(questions);												// add newly teacher's ID to teacherMap
+			tblQuestions.setItems(observabaleQuestions);							// insert newly fetched question's to tblQuestion
 		}
-		
 		if(arg1 instanceof UserSubjectMessage) {
 			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
 			fillCombobox(this.userSubjects);
 			getUserQuestions(this.userSubjects);
-			
-			//System.out.println(this.userSubjects.toString());
-			
 		}
 		if (arg1 instanceof UserInfoMessage) {
 			for (Question question: questions) {
 				String tempTeacherAssembeledID = question.getTeacherAssembeld();
 				if(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempTeacherAssembeledID))
 				question.setTeacherFullName(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempTeacherAssembeledID));
+				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap();	// update teacherMap to hold new <teacherID,teacherFullName>.
 			}
-			System.out.println(((UserInfoMessage) arg1).getUserInfo().getTeachersMap());
+			updateTeacherAssemblerFullName(teachersMap);
 		}
 		if(arg1 instanceof SimpleMessage) {
 			SimpleMessage simple = (SimpleMessage)arg1;
@@ -454,7 +468,23 @@ public class QuestionsController implements Observer{
 		}
 	}
 	
-
+	/**
+	 * This method called when we need to update in tblQuestions the TeacherName column
+	 */
+	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
+		for (Question question: questions) {	// update the questions array, to keep updated
+			String tempTeacherAssembeledID = question.getTeacherAssembeld();
+			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+				question.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
+			}
+		}
+		for (Question obsQuestion: observabaleQuestions) {	// update observableQuestion to update the tblQuestions
+			String tempTeacherAssembeledID = obsQuestion.getTeacherAssembeld();
+			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+				obsQuestion.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
+			}
+		}
+	}
 	
 	/**
 	  *  function to create a valid Question ID
@@ -482,10 +512,12 @@ public class QuestionsController implements Observer{
 		System.out.println("My tst "+newId);
 		return newId;
 	}
-	
+	/**
+	 * Here well prepare a message with {"put-new-Question", Question }
+	 * in order to insert new Question to DB.
+	 * @param question
+	 */
 	private void putNewQuestion(Question question) {
-		// TODO Auto-generated method stub
-		// here well prepare a message with {"put-new-Question", Question }
 		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
 		try {
 			client.sendToServer(newQuestionMessage);
@@ -497,11 +529,10 @@ public class QuestionsController implements Observer{
 	
 	/**
 	 * this method is called when updating existing message.
+	 * here well prepare a message with {"set-new-Question", Question }
 	 * @param question updated question needed to be inserted the DB
 	 */
     private void setChangedQuestion(Question question) {
-		// TODO Auto-generated method stub
-    	// here well prepare a message with {"set-new-Question", Question }
 		QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
 		try {
 			client.sendToServer(updatedQuestionMessage);
@@ -509,12 +540,12 @@ public class QuestionsController implements Observer{
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
-		
 	}
-	
+	/**
+	 * Here well get all question that in the same subject of the user
+	 * @param userSubjects
+	 */
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
-		// TODO Auto-generated method stub
-		// Here well get all question that in the same subject of the user
 		for (Subject subject: userSubjects) {
 			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
 			try {
@@ -525,9 +556,11 @@ public class QuestionsController implements Observer{
 			}
 		}
 	}
-	
+	/**
+	 * This method is called in order to get all user teaching subjects - nessecary to get relevant questions
+	 * @param user
+	 */
 	private void getUserSubjects(User user) {
-		// TODO Auto-generated method stub
 		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
 		try {
 			client.sendToServer(newUserSubjectMessage);
@@ -547,9 +580,8 @@ public class QuestionsController implements Observer{
 		
 	private void fillCombobox(ArrayList<Subject> teacherSubject) {
 		observableSubjects = FXCollections.observableArrayList(teacherSubject);
-		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for enabling to unfillter table rows
+		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for showing all table rows
 		subjectCombobox.getItems().addAll(observableSubjects);
-	
 	}
 		
 	/**
@@ -566,10 +598,30 @@ public class QuestionsController implements Observer{
 		this.questions = questions;
 	}
 	public void addQuestions(ArrayList<Question> questions) {
-		this.getQuestions().addAll(questions);
-		
+		Boolean identFlag = false;
+		for (Question question: questions) {
+			for (Question question2: this.questions) {
+				if (question.getQuestionId().equals(question2.getQuestionId()) ){
+					identFlag = true; 
+				}
+			}
+			if (identFlag == false) {
+				this.getQuestions().add(question);
+			}
+		}
+		//this.getQuestions().addAll(questions);
 	}
-	
+	/**
+	 * This method called when one want's to deSelect selection from table
+	 */
+	private void unselectSelectionFromTable() {
+		 int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
+		 tblQuestions.getSelectionModel().clearSelection(selectedIndex);
+		 
+		 //editQuestion.setDisable(true);
+		 btnSearch.setDisable(true);
+		 deleteQuestion.setDisable(true);
+	}
 	private void setUserDetails(User user1) {
 		// TODO Auto-generated method stub
 		teacherIDLbl.setText(user.getUserID());

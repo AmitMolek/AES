@@ -344,5 +344,30 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 		
 	}
+	
+	public ArrayList<Statistic> getExamStatsByTeacherID(String id){
+		String query=""
+				+ "SELECT * "
+				+ "FROM solved exams statistics "
+				+ "WHERE IN ("
+				+ 	"SELECT exam_id"
+				+ 	"FROM exams"
+				+ 	"WHERE assmebler_teacher = '"+id+");"; //TODO:test the query
+		ResultSet rs;
+		ArrayList<Statistic> statList=new ArrayList<Statistic>();
+		try {
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				 Statistic temp = new Statistic();
+				 temp.setExam_ID(rs.getString(0));
+			}
+			rs.close();
+			return null;//TODO
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
