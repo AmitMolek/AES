@@ -85,6 +85,7 @@ public class PrepareExamController implements Observer {
 	private Stage mainApp;
 	private String type;
 	private Exam executeExam;
+	private String pass;
 
 	/**
 	 * Method that occurs when teacher select subject
@@ -144,7 +145,7 @@ public class PrepareExamController implements Observer {
 			ObservableList<Exam> examSelected;
 			examSelected = tblExams.getSelectionModel().getSelectedItems();
 			executeExam = examSelected.get(0);
-			String pass = generatePass();
+			pass = generatePass();
 			if (type.equals("manually")) {
 				WordMessage newMessage = (WordMessage) messageFact.getMessage("get-word", executeExam);
 				try {
@@ -229,7 +230,7 @@ public class PrepareExamController implements Observer {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.initOwner(mainApp);
 						alert.setTitle("Exam executed");
-						alert.setHeaderText("Exam executed created successefully");
+						alert.setHeaderText("Exam executed created successefully and his password is:" + pass);
 						alert.setContentText("The exam was created to be executed successfully");
 						alert.showAndWait();
 						screenManager.activate("home");
@@ -314,7 +315,7 @@ public class PrepareExamController implements Observer {
 	}
 
 	public String generatePass() {
-		String options = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String options = "abcdefghijklmnopqrstuvwxyz1234567890";
 		StringBuilder password = new StringBuilder();
 		Random rnd = new Random();
 		while (password.length() < 4) {

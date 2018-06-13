@@ -195,8 +195,8 @@ public class GetFromDB implements DbManagerInterface {
 				"    q.question_answer_2 as ans2,\r\n" + 
 				"    q.question_answer_3 as ans3,\r\n" + 
 				"    q.question_answer_4 as ans4,\r\n" + 
-				"    q.correct_question as corAns\r\n" +
-				"    execute.exam_date_start as date\r\n" + 
+				"    q.correct_question as corAns,\r\n" +
+				"    execute.exam_date_start as date,\r\n" + 
 				"    execute.exam_type as type\r\n" + 
 				"\r\n" + 
 				"FROM exams ex, `questions in exam` qie, questions q, `execute exams` execute\r\n" + 
@@ -234,7 +234,7 @@ public class GetFromDB implements DbManagerInterface {
 			return exams;
 
 		} catch (SQLException e) {
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
