@@ -23,6 +23,8 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
 		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");
+		ScreensManager.addScreen("manuallyExam", "resources/view/ManuallyExamScreen.fxml");
+		ScreensManager.addScreen("endExam", "resources/view/ExamSubmitScreen.fxml");
 
 		launch(args);
 	}

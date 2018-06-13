@@ -56,7 +56,7 @@ public class AES_Server extends AbstractServer {
 		AbstractMessage msgToHandle = (AbstractMessage) msg;
 		AbstractMessage msgToReturn=smm.handleMessage(msgToHandle);
 		try {
-			client.sendToClient(msgToReturn);
+		client.sendToClient(msgToReturn);
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());

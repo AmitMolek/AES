@@ -103,6 +103,8 @@ public class MessageFactory {
 			return new SolvedExamMessage((SolvedExams) payload);
 		case "executeexam":
 			return new ExecuteExamMessage((ExecuteExam)payload);
+		case "wordexam":
+			return new WordMessage("put-wordexam",(MyFile)payload);
 		}
 		return null;
 	}
@@ -148,6 +150,8 @@ public class MessageFactory {
 			return createGetSolvedExamByTeacherId((User) payload);
 		case "word":
 			return new WordMessage((Exam) payload);
+		case "wordexam":
+			return new WordMessage((String)payload);
 		default:
 			break;
 		}
@@ -252,6 +256,9 @@ public class MessageFactory {
 				return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
 		case "word":
 			return new SimpleMessage("ok-get-" + msgContent[2]);
+		case "wordexam":
+			return new WordMessage("ok-get-" + msgContent[2],(MyFile)payload);
+			
 		}
 
 		return new ErrorMessage(new Exception("Invalid request"));

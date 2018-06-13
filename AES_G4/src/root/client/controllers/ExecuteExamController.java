@@ -294,7 +294,7 @@ public class ExecuteExamController implements Observer {
 		if (arg1 instanceof SimpleMessage) {
 			Platform.runLater(() -> {
 				try {
-					ScreensManager.getInstance().activate("home");
+					ScreensManager.getInstance().activate("endExam");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

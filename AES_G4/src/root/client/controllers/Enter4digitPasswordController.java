@@ -102,6 +102,17 @@ public class Enter4digitPasswordController implements Observer {
 						e.printStackTrace();
 					}
 				});
+				
+			}
+			else {
+				Platform.runLater(() -> {
+					try {
+						scrMgr.activate("manuallyExam");
+					} catch (IOException e) {
+						log.writeToLog(LogLine.LineType.ERROR, "Trying to activate wrong window");
+						e.printStackTrace();
+					}
+				});
 			}
 		} else if (arg1 instanceof ErrorMessage) {
 			log.writeToLog(LogLine.LineType.ERROR, ((ErrorMessage) arg1).getErrorException().getMessage());
