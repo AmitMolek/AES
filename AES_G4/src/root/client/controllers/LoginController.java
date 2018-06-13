@@ -122,6 +122,8 @@ public class LoginController implements Observer {
     	screenManager = ScreensManager.getInstance();
     	serverIPpane.setVisible(false);
 
+    	screenManager.clearStack();
+    	
     	tryGettingServerIP();
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {

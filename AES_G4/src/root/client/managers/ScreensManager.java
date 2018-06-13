@@ -112,6 +112,23 @@ public class ScreensManager extends Application {
     }
     
     /**
+     * Clears the screen stack
+     */
+    public void clearStack() {
+    	screenStack.clear();
+    }
+    
+    /**
+     * Adds a screen to the saving stack
+     * @param screenObj the screen you want to add to the stack
+     */
+    public void addToStack(ScreenObject screenObj) {
+    	String screenName = screenObj.getScreenName();
+    	if (screenName != "main")
+    		screenStack.push(screenObj);
+    }
+    
+    /**
      * Activate the screen with the key name
      * @param name the key of the screen you want to activate
      * @throws IOException
@@ -143,7 +160,7 @@ public class ScreensManager extends Application {
 	    	sRoot.getChildren().add(menu);
     	}
     	
-    	screenStack.push(screenObj);
+    	addToStack(screenObj);
     	currentScreen = screenObj;
 		log.writeToLog(LineType.INFO, "Added screen to stack: " + screenObj.getScreenName());
     	

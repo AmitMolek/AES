@@ -29,14 +29,6 @@
                   </ImageView>
                </children>
             </HBox>
-            <ImageView fx:id="appLogExitBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#logExitBtn" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons/cancel.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="15.0" />
-               </HBox.margin>
-            </ImageView>
             <ImageView fx:id="appMiniBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#minimizeBtn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons/minimize.png" />
@@ -45,7 +37,7 @@
                   <Insets left="15.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="appExitBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#exitBtn" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="appLogExitBtn" fitHeight="25.0" fitWidth="50.0" onMouseClicked="#logExitBtn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons/exit.png" />
                </image>

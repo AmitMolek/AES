@@ -116,8 +116,14 @@ public class UtilityBarController implements Observer{
      */
     @FXML
     void logExitBtn(MouseEvent event) {
+    	User user = dkm.getUser();
     	exitApp = true;
-    	sendLogoutMsg();
+    	if (user != null)
+    		sendLogoutMsg();
+    	else {
+    		Platform.exit();
+    		System.exit(0);
+    	}
     }
     
     /**
