@@ -15,7 +15,10 @@ public class Exam implements Serializable {
 	private int lock;// 0-locked, 1- unlocked
 	private ArrayList<QuestionInExam> examQuestions;
 	private String teacherId;
+	private ExecuteExam executeExam;
 	
+	
+
 	/**
 	 * Constructor for exam
 	 * @param examId the exam id
@@ -137,6 +140,22 @@ public class Exam implements Serializable {
 	 */
 	public void setExamQuestions(ArrayList<QuestionInExam> examQuestions) {
 		this.examQuestions = examQuestions;
+	}
+	
+	/**
+	 * 
+	 * @return the execute exam
+	 */
+	public ExecuteExam getExecuteExam() {
+		return executeExam;
+	}
+
+	/**
+	 * Set new execute exam
+	 * @param executeExam the new execute exam
+	 */
+	public void setExecuteExam(ExecuteExam executeExam) {
+		this.executeExam = executeExam;
 	}
 
 }

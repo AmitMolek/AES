@@ -11,11 +11,16 @@ import java.util.Map;
 import java.util.Set;
 import java.sql.PreparedStatement;
 import ocsf.server.*;
+<<<<<<< HEAD
 import root.client.controllers.WaitForPirncipleMessage;
+=======
+import root.dao.app.Exam;
+>>>>>>> refs/remotes/origin/Omer
 import root.dao.app.Question;
 import root.dao.app.User;
 import root.dao.message.*;
 import root.server.managers.*;
+import root.server.managers.worddocumentmgr.WordDocument;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
@@ -117,7 +122,11 @@ public class AES_Server extends AbstractServer {
 
 		try {
 
+<<<<<<< HEAD
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "308023");
+=======
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "204403257");
+>>>>>>> refs/remotes/origin/Omer
 
 
 			System.out.println("SQL connection succeed");
