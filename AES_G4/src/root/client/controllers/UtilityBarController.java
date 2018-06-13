@@ -5,16 +5,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.animation.PauseTransition;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,11 +19,9 @@ import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.User;
-import root.dao.message.ErrorMessage;
 import root.dao.message.LoggedOutMessage;
 import root.dao.message.LogoutErrorMessage;
 import root.dao.message.SimpleMessage;
-import root.util.log.LogLine;
 
 public class UtilityBarController implements Observer{
 
@@ -75,6 +69,9 @@ public class UtilityBarController implements Observer{
     	initDrag();
     }
     
+    /**
+     * Makes that the utility bar can move the whole stage
+     */
     private void initDrag() {
     	mainBar.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -92,6 +89,11 @@ public class UtilityBarController implements Observer{
         });
     }
     
+    /**
+     * Sets the error label text
+     * @param msg the message you want to write
+     * @param displayTime for how long the message will be displayed
+     */
     private void setErrorLabelText(String msg, int displayTime) {
 		PauseTransition delay = new PauseTransition(Duration.seconds(displayTime));
 		
@@ -108,17 +110,28 @@ public class UtilityBarController implements Observer{
 		delay.play();
     }
     
+    /**
+     * Logs out the user and exits the app
+     * @param event
+     */
     @FXML
     void logExitBtn(MouseEvent event) {
     	exitApp = true;
     	sendLogoutMsg();
     }
     
+    /**
+     * The exit button, event function
+     * @param event
+     */
     @FXML
     void exitBtn(MouseEvent event) {
     	exitApp();
     }
 
+    /**
+     * Exits the app, if the user is loggedout
+     */
     void exitApp() {
     	User user = dkm.getUser();
     	if (user == null) {
@@ -129,6 +142,9 @@ public class UtilityBarController implements Observer{
     	}
     }
     
+    /**
+     * Sends to the server the logout message
+     */
     void sendLogoutMsg() {
     	User user = dkm.getUser();
     	if (user == null) return;
@@ -143,16 +159,27 @@ public class UtilityBarController implements Observer{
     	}
     }
     
+    /**
+     * Logout the current user
+     * @param event
+     */
     @FXML
     void logoutBtn(MouseEvent event) {
     	sendLogoutMsg();
     }
 
+    /**
+     * Minimize the primary stage
+     * @param event the mouse event
+     */
     @FXML
     void minimizeBtn(MouseEvent event) {
     	primaryStage.setIconified(true);
     }
 
+    /**
+     * Observable update function
+     */
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg instanceof LogoutErrorMessage) {
