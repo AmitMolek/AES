@@ -83,8 +83,6 @@ public class ManuallyExamController implements Observer {
 		client.openConnection();
 		messageFact = MessageFactory.getInstance();
 		teacher = dkm.getUser();
-		SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
-		client.sendToServer(getTeacherSubject);
 	}
 
 	
