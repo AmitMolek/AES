@@ -35,15 +35,15 @@ public class SolvedExams implements Serializable {
 	 * @param examGrade the grade of the exam
 	 * @param durationTime the time that took the student to solve the exam
 	 * @param submittedOrNot if student submitted or not
-	 * @param date the date of the exam
+	 * @param newDate the date of the exam
 	 */
-	public SolvedExams(String userId, String examId, int examGrade, int durationTime, String submittedOrNot, Date date) {
-		this.userId = userId;
-		this.examId = examId;
+	public SolvedExams(String userId, String examId, int examGrade, int durationTime, String submittedOrNot, java.util.Date newDate) {
+		this.sovingStudentID = userId;
+		this.examID = examId;
 		this.examGrade = examGrade;
-		this.durationTime = durationTime;
-		this.submittedOrNot = submittedOrNot;
-		this.date = date;
+		this.solveDurationTime = durationTime;
+		this.submittedOrInterruptedFlag = submittedOrNot;
+		this.date = (Date) newDate;
 	}
 	/**
 	* kombina with Omer, the constructor abelow is a constructor used by gal.

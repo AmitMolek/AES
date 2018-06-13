@@ -164,18 +164,8 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-<<<<<<< HEAD
 					screenManager.activate("home");
-=======
-<<<<<<< HEAD
-					
-					AddUserSpecificScreens();
-					screenManager.activate("check");
-=======
-					AddUserSpecificScreens();
-					screenManager.activate("Enter4digitPassword");
->>>>>>> refs/remotes/origin/Omer
->>>>>>> refs/remotes/origin/Naor
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -197,21 +187,21 @@ public class LoginController implements Observer {
 		}
 	}
 	
-<<<<<<< HEAD
-=======
-	public void AddUserSpecificScreens() {
-		if(user.getUserPremission().equals("Teacher")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
-		}
-		else if(user.getUserPremission().equals("Student")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
-		}
-		else if(user.getUserPremission().equals("Principal")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
-			client.deleteObservers();
-			client.addObserver(new WaitForPirncipleMessage());
-		}
-	}
-	
->>>>>>> refs/remotes/origin/Naor
+//<<<<<<< HEAD
+//=======
+//	public void AddUserSpecificScreens() {
+//		if(user.getUserPremission().equals("Teacher")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
+//		}
+//		else if(user.getUserPremission().equals("Student")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
+//		}
+//		else if(user.getUserPremission().equals("Principal")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
+//			client.deleteObservers();
+//			client.addObserver(new WaitForPirncipleMessage());
+//		}
+//	}
+//	
+//>>>>>>> refs/remotes/origin/Naor
 }
