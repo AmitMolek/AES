@@ -91,7 +91,7 @@ public class MenuController {
     	Menu examsMenu = new Menu();
     	createMenuItem(examsMenu, img, "Exams", 70, 25);
     	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
-    	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateExam")));
+    	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateDeleteExam")));
     	examsMenu.getItems().add(createMenuItem("Remove exam", getChangeScreenActionEvent("updateDeleteExam")));
     }
     

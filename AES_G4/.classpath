@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="src/root/client/resources/lib/controlsfx-8.40.11.jar"/>
@@ -8,5 +12,18 @@
 	<classpathentry kind="lib" path="src/application/lib/commons-configuration-1.10.jar"/>
 	<classpathentry kind="lib" path="src/application/lib/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="src/application/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="src/Server/lib/word/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

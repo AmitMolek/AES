@@ -44,19 +44,24 @@ public class QuestionInExamObject extends AnchorPane{
     	
 	private String id=null;
 	
-	private int ans =0;
+	private int selectedAns =0;
 	
 	private String pressedButton = "-fx-background-color: green;";
 	
 	private String nonPressedButton; 
 	
+	private int correctAns;
+	
+	private int questionGrade;
+	
 	public void initialize() {
 		nonPressedButton = btnAns1.getStyle();
 	}
 	
-	public QuestionInExamObject(Question q) {
+	public QuestionInExamObject(Question q, int questionGrade) {
     
-
+		correctAns = q.getCorrectAns();
+		this.questionGrade = questionGrade;
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/QuestionInExamComponent.fxml"));
 		fxmlLoader.setRoot(this);
 		String questionText = q.getQuestionText();
@@ -74,6 +79,14 @@ public class QuestionInExamObject extends AnchorPane{
 		btnAns4.setText(q.getAns4());
 	}
 	
+	public int getCorrectAns() {
+		return correctAns;
+	}
+
+	public int getQuestionGrade() {
+		return questionGrade;
+	}
+
 	public String getID() {
 		return id;
 	}
@@ -92,7 +105,7 @@ public class QuestionInExamObject extends AnchorPane{
 	    		btnAns2.setStyle(nonPressedButton);
 	    		btnAns3.setStyle(nonPressedButton);
 	    		btnAns4.setStyle(nonPressedButton);
-	    		ans=1;
+	    		selectedAns=1;
 
 	    	}
 	    	if(e.getSource().equals(btnAns2))
@@ -101,7 +114,7 @@ public class QuestionInExamObject extends AnchorPane{
 	    		btnAns2.setStyle(pressedButton);
 	    		btnAns3.setStyle(nonPressedButton);
 	    		btnAns4.setStyle(nonPressedButton);
-	    		ans=2;
+	    		selectedAns=2;
 	    	}
 	    		
 	    	if(e.getSource().equals(btnAns3))
@@ -110,7 +123,7 @@ public class QuestionInExamObject extends AnchorPane{
 	    		btnAns2.setStyle(nonPressedButton);
 	    		btnAns3.setStyle(pressedButton);
 	    		btnAns4.setStyle(nonPressedButton);
-	    		ans=3;
+	    		selectedAns=3;
 	    	}
 	    		
 	    	if(e.getSource().equals(btnAns4))
@@ -119,13 +132,13 @@ public class QuestionInExamObject extends AnchorPane{
 	    		btnAns2.setStyle(nonPressedButton);
 	    		btnAns3.setStyle(nonPressedButton);
 	    		btnAns4.setStyle(pressedButton);
-	    		ans=4;
+	    		selectedAns=4;
 	    	}
 	    		
 	    }
 	    
 	    public int getSelectedAns() {
-	    	return ans;
+	    	return selectedAns;
 	    }
 }
 

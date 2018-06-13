@@ -17,18 +17,37 @@ public class SolvedExams implements Serializable {
 	private int examGrade;
 	private int solveDurationTime;
 	private String submittedOrInterruptedFlag;
-	//private String examDateTime;
 	private Timestamp examDateTime;
 	private String teacherNotes;
 	private String gradeAlturationExplanation;
 	private String approvingTeacherID;
 	private String calculatedGradeApprovalStateByTeacher;
 	private String cheatingFlag;
-	
+	private Date date;					// this is temporary field
 	private String examCourse;
 	private String approvingTeacherName;
 	private String action;				// this field is for tableView only
 	
+	/**
+	 * Constructor for solved exam
+	 * @param userId the student id
+	 * @param examId the exam id
+	 * @param examGrade the grade of the exam
+	 * @param durationTime the time that took the student to solve the exam
+	 * @param submittedOrNot if student submitted or not
+	 * @param date the date of the exam
+	 */
+	public SolvedExams(String userId, String examId, int examGrade, int durationTime, String submittedOrNot, Date date) {
+		this.userId = userId;
+		this.examId = examId;
+		this.examGrade = examGrade;
+		this.durationTime = durationTime;
+		this.submittedOrNot = submittedOrNot;
+		this.date = date;
+	}
+	/**
+	* kombina with Omer, the constructor abelow is a constructor used by gal.
+	**/
 	public SolvedExams(String examID, String sovingStudentID, int examGrade, int solveDurationTime,
 			String submittedOrInterruptedFlag, Timestamp examDateTime, String teacherNotes,
 			String gradeAlturationExplanation, String approvingTeacherID, String calculatedGradeApprovalStateByTeacher,
@@ -216,6 +235,14 @@ public class SolvedExams implements Serializable {
 	 */
 	public void setCheatingFlag(String cheatingFlag) {
 		this.cheatingFlag = cheatingFlag;
+	}
+	
+	/**
+	 * 
+	 * @return the exam date
+	 */
+	public Date getDate() {
+		return date;
 	}
 
 

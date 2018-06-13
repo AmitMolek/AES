@@ -206,8 +206,8 @@ public class UpdateDeleteExamController implements Observer {
 		}
 
 		if (arg1 instanceof ExamMessage) {
-			ExamMessage intialCourseMessage = (ExamMessage) arg1;
-			ArrayList<Exam> exams = intialCourseMessage.getExams();
+			ExamMessage intialExamMessage = (ExamMessage) arg1;
+			ArrayList<Exam> exams = intialExamMessage.getExams();
 			ObservableList<Exam> observerseExams = FXCollections.observableArrayList();
 			for (Exam e : exams)
 				observerseExams.add(e);
@@ -254,12 +254,11 @@ public class UpdateDeleteExamController implements Observer {
 		tbcExamId.setCellValueFactory(new PropertyValueFactory("examId"));
 		tbcTeacherId.setCellValueFactory(new PropertyValueFactory("author"));
 		tbcDuration.setCellValueFactory(new PropertyValueFactory("examDuration"));
-		client = new ObservableClient("localhost", 8000);
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
-		client.openConnection();
 		cmbCourse.setPromptText("Choose course");
 		cmbSubject.setPromptText("Choose subject");
-		teacher = new User("204403257", "omer", "haimovich", "12345", "teacher");
+		teacher = dbk.getUser();
 		SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
 		client.sendToServer(getTeacherSubject);
 

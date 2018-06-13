@@ -91,6 +91,10 @@ public class MessageFactory {
 				return new QuestionsMessage((Question)payload);
 			case "questioninexam":
 				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
+		case "solvedexams":
+			return new SolvedExamMessage((SolvedExams) payload);
+		case "executeexam":
+			return new ExecuteExamMessage((ExecuteExam)payload);
 		}
 		return null;
 	}
@@ -135,6 +139,8 @@ public class MessageFactory {
 			return createGetSolvedExamByTeacherId((User)payload);	
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
+		case "word":
+			return new WordMessage((Exam) payload);	
 		default:
 			break;
 		}
@@ -244,6 +250,8 @@ public class MessageFactory {
 		case "solvedexams":
 			if (payload instanceof ArrayList<?>)return new UserSolvedExamsMessage((ArrayList<SolvedExams>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "word":
+			return new SimpleMessage("ok-get-" + msgContent[2]);
 		}
 		
 			
