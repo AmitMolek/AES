@@ -148,6 +148,110 @@ public class MessageFactory {
 		case "name":
 			return new UserInfoMessage((UserInfo)payload);
 		}
+package root.dao.message;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import root.dao.app.Course;
+import root.dao.app.Exam;
+import root.dao.app.LoginInfo;
+import root.dao.app.Question;
+import root.dao.app.SolvedExams;
+import root.dao.app.Statistic;
+import root.dao.app.Subject;
+import root.dao.app.User;
+import root.dao.app.UserInfo;
+import root.server.managers.dbmgr.GetFromDB;
+
+/**
+ * Class for make new message
+ * @author Omer Haimovich
+ *
+ */
+public class MessageFactory {
+	private static MessageFactory instance=null;
+	
+	private MessageFactory(){
+		
+	}
+	
+	public static MessageFactory getInstance() {
+		if(instance==null) {
+			instance=new MessageFactory();
+		}
+		return instance;
+	}
+	
+	/**
+	 * make new message (factory for all types of messages)
+	 * @param msg the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return
+	 */
+	public AbstractMessage getMessage(String msg,Object payload) {
+		String[] msgContent=msg.toLowerCase().split("-");
+		switch(msgContent[0]) {
+		case "ok":
+			return getOkMessage(msgContent,payload);
+		case "login":
+			return getLoginMessage(msgContent,payload);
+		case "get":
+			return getGetMessage(msgContent,payload);
+		case "set":
+			return getSetMessage(msgContent,payload);
+		case "put":
+			return getPutMessage(msgContent,payload);
+		case "delete":
+			return getDelMessage(msgContent,payload);
+		case "error":
+			return getErrorMessage(msgContent,payload);
+		}
+		return new ErrorMessage(new Exception("Invalid request"));
+	}
+	
+	private AbstractMessage getErrorMessage(String[] msgContent, Object payload) {
+		return new ErrorMessage((Exception)payload);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	private AbstractMessage getDelMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "exams":
+			return new ExamMessage("delete-exams",(Exam)payload);
+		case "questions":
+			return new QuestionsMessage("delete-questions",(Question)payload);
+		}
+		return null;
+	}
+
+	/**
+	 * Make new put message
+	 * @param msgContent the message itself
+	 * @param payload the object with the message(arrayList, exam ,question , etc)
+	 * @return the relevant message
+	 */
+	private AbstractMessage getPutMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+			case "exams":
+				return new ExamMessage((Exam)payload);
+			case "questions":
+				return new QuestionsMessage((Question)payload);
+			case "questioninexam":
+				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
+		}
+		return null;
+	}
+
+	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+		case "questions":
+			return new QuestionsMessage("set-questions", (Question)payload);
+		default:
+			break;
+		}
 		return null;
 	}
 
@@ -223,7 +327,307 @@ public class MessageFactory {
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "users":
 			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
+		switch(msgContent[2]) {
+
+		case "questions":
+			if(payload instanceof ArrayList<?>)
+					return new QuestionsMessage(((ArrayList<Question>)payload));
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "usersubjects":
+			return new UserSubjectMessage((UserSubjectMessage)payload);
+		case "exams":
+			if(payload instanceof ArrayList<?>)
+				return new ExamMessage((ArrayList<Exam>) payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "subjects":
+			if(payload instanceof ArrayList<?>)
+				return new SubjectMessage((ArrayList<Subject>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
+		case "courses":
+			if(payload instanceof ArrayList<?>)
+				return new CourseMessage((ArrayList<Course>)payload);
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
+		case "solvedExamByTeacherId":
+			if(payload instanceof ArrayList<?>)
+			{
+				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
+				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+			}
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+		case "users":
+			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
 			else return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
+		case "solvedexams":
+			if (payload instanceof ArrayList<?>)return new UserSolvedExamsMessage((ArrayList<SolvedExams>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
 			

@@ -13,6 +13,7 @@ public class Main extends ScreensManager {
 		Log log = Log.getInstance();
 		log.writeToLog(LineType.INFO, "Application started", false);
 		
+		ScreensManager.addScreen("solvedExams","resources/view/ViewSolvedExams.fxml");
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");		
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
