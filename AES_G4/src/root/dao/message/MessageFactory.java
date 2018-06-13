@@ -7,6 +7,7 @@ import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
@@ -114,12 +115,16 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 		case "usersubjects":
 			return new UserSubjectMessage((User)payload);
+		case "subjectbysubjectid":
+			return new SubjectMessage("get-subjectbysubjectid",(HashMap<String, String>)payload);
 		case "questions":
 			return new QuestionsMessage((Subject)payload);
 		case "subjects":
 			return new SubjectMessage((String)payload);
 		case "courses":
 			return new CourseMessage((Subject)payload);
+		case "coursesbyid":
+			return new CourseMessage("get-coursesbyid", (HashMap<String, String>)payload);
 		case "simple":
 			return new SimpleMessage("simple");
 		case "exams":
@@ -127,7 +132,9 @@ public class MessageFactory {
 		case "user":
 			return  getUserRelatedMessage(msgContent,payload);
 		case "solvedExamByTeacherId":
-			return createGetSolvedExamByTeacherId((User)payload);
+			return createGetSolvedExamByTeacherId((User)payload);	
+		case "solvedexams":
+			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		default:
 			break;
 		}
@@ -136,7 +143,20 @@ public class MessageFactory {
 		
 		
 	}
-	
+	/**
+	 * @author gal
+	 * @param payload - User
+	 * @return {@link AbstractMessage} with arrayList<SolvedExams>
+	 */
+	private AbstractMessage getUserSolvedExams(String[] msgContent,Object payload) {
+		switch (msgContent[2]) {
+		case "user":
+			return new UserSolvedExamsMessage((User)payload);
+		}
+		return null;
+		//return new UserSolvedExamsMessage(payload);
+	}
+
 	private AbstractMessage getUserRelatedMessage(String[] msgContent, Object payload) {
 		switch (msgContent[2]) {
 		case "name":
@@ -202,11 +222,15 @@ public class MessageFactory {
 		case "subjects":
 			if(payload instanceof ArrayList<?>)
 				return new SubjectMessage((ArrayList<Subject>)payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			if(payload instanceof HashMap<?, ?>) 
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
 		case "courses":
 			if(payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>)payload);
-			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
+			if(payload instanceof HashMap<?, ?>) 
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
 		case "solvedExamByTeacherId":
 			if(payload instanceof ArrayList<?>)
 			{
@@ -217,6 +241,9 @@ public class MessageFactory {
 		case "users":
 			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
 			else return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
+		case "solvedexams":
+			if (payload instanceof ArrayList<?>)return new UserSolvedExamsMessage((ArrayList<SolvedExams>)payload);
+			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		}
 		
 			
