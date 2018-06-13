@@ -10,6 +10,7 @@ import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.dao.app.RecivedMessageForPrinciple;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
@@ -25,7 +26,6 @@ import root.dao.message.SimpleMessage;
 import root.dao.message.SubjectMessage;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
-import root.dao.message.UserMessage;
 import root.dao.message.UserSubjectMessage;
 import root.server.managers.dbmgr.GetFromDB;
 import root.server.managers.dbmgr.SetInDB;
@@ -33,7 +33,9 @@ import root.server.managers.dbmgr.SetInDB;
 public class ServerMessageManager {
 	
 	private static ServerMessageManager instance=null;
-	 private static MessageFactory message = MessageFactory.getInstance();;
+	private static MessageFactory message = MessageFactory.getInstance();
+	private static Thread waitForMessage;
+	 
 	private ServerMessageManager() {
 		
 	}
@@ -142,9 +144,9 @@ public class ServerMessageManager {
 				return handleFetUserMessage(msgContent,msg);
 			case "solvedExamByTeacherId":
 				return handleGetExamByTeacherID(msg);
+			default:
+				return null;
 		}
-		
-		return null;
 	}
 	/**
 	 * this method is called when a client need to get information about users
@@ -335,5 +337,6 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) putExam.addQuestionToExam(id, examQuestions);
 		return sendMessage;
 	}
+		
 	
 }
