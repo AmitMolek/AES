@@ -10,6 +10,7 @@ import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.dao.app.SolvedExams;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
@@ -23,6 +24,7 @@ import root.dao.message.MessageFactory;
 import root.dao.message.QuestionInExamMessage;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
+import root.dao.message.SolvedExamMessage;
 import root.dao.message.SubjectMessage;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
@@ -539,6 +541,8 @@ public class ServerMessageManager {
 			return handlePutExamMessage(msg);
 		case "questioninexam":
 			return handlePutQuestionInExamMessage(msg);
+		case "solvedexams": 
+			return handlePutSolvedExamMessage(msg);
 		
 		}
 		
@@ -624,5 +628,14 @@ public class ServerMessageManager {
 		SetInDB putExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putExam.addQuestionToExam(id, examQuestions);
 		return sendMessage;
+	}
+	
+	private static AbstractMessage handlePutSolvedExamMessage(AbstractMessage msg) {
+		SolvedExamMessage recivedMessage = (SolvedExamMessage)msg;
+		SolvedExams newSolvedExam = recivedMessage.getSolvedExam();
+		SetInDB putSolvedExam = new SetInDB();
+		AbstractMessage sendMessage = (AbstractMessage) putSolvedExam.addSolvedExam(newSolvedExam);
+		return sendMessage;
+		
 	}
 }

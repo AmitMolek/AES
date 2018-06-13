@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -29,17 +31,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Exam;
 import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
+import root.dao.message.MessageFactory;
+import root.dao.message.SimpleMessage;
+import root.dao.message.SolvedExamMessage;
 
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
  *         get list of questions for specific exam and answer the quesitonsdsa
  */
-public class ExecuteExamController {
+public class ExecuteExamController implements Observer {
 
 	@FXML
 	private Button btnBack;
@@ -89,9 +95,11 @@ public class ExecuteExamController {
 	private Exam exam;
 	Timeline examStopWatch;
 	private String date;
-	private SimpleDateFormat  sdf;
+	private Date dt;
+	private SimpleDateFormat sdf;
 	private String status;
-
+	private MessageFactory messageFact = MessageFactory.getInstance();
+	private ObservableClient client;
 	ScreensManager scrMgr = ScreensManager.getInstance();
 
 	/**
@@ -103,9 +111,16 @@ public class ExecuteExamController {
 
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
-		
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client"); // get the client from
+																								// DataKeep, but dont
+																								// remove it from there,
+																								// for later use.
+		client.addObserver(this);
 		sdf = new SimpleDateFormat("dd-MM-yyyy");
-		date = sdf.format(new Date());	
+		date = sdf.format(new Date());
+		dt = new Date();
+
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		lblDate.setText(date);
 		displayQuestion = 0;
 		exam = (Exam) dataKeeper.getObject("RunningExam");
@@ -125,7 +140,7 @@ public class ExecuteExamController {
 			});
 			tabsButton.add(tab);
 			vbxQuetionsTab.getChildren().add(tab);
-			QuestionInExamObject qie = new QuestionInExamObject(q.getQuestion(),q.getQuestionGrade());
+			QuestionInExamObject qie = new QuestionInExamObject(q.getQuestion(), q.getQuestionGrade());
 			questionsInExamObject.add(qie);
 		}
 
@@ -139,8 +154,7 @@ public class ExecuteExamController {
 				int minuts = (stopWatch / 60) % 60;
 				int seconds = stopWatch % 60;
 				lblTimer.setText("" + hours + ":" + minuts + ":" + seconds);
-				if (stopWatch == 0)
-				{
+				if (stopWatch == 0) {
 					status = "interrupted";
 					stopExam();
 				}
@@ -148,41 +162,38 @@ public class ExecuteExamController {
 			}
 		}));
 		examStopWatch.setCycleCount(Timeline.INDEFINITE);
-		
+
 		myBorder.setCenter(questionsInExamObject.get(0));
 		Platform.runLater(() -> {
 			TextInputDialog dialog = new TextInputDialog();
-	        dialog.initOwner(scrMgr.getPrimaryStage());
-	        dialog.setTitle("Enter ID");
-	        dialog.setHeaderText("Enter your id:");
+			dialog.initOwner(scrMgr.getPrimaryStage());
+			dialog.setTitle("Enter ID");
+			dialog.setHeaderText("Enter your id:");
 
-	        final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
-	        ok.addEventFilter(ActionEvent.ACTION, event ->
-	            userId = dialog.getContentText()
-	        );
+			final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+			ok.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Ok was definitely pressed"));
 
-	        final Button cancel = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
-	        cancel.addEventFilter(ActionEvent.ACTION, event ->
-	            System.out.println("Cancel was definitely pressed")
-	        );
+			final Button cancel = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
+			cancel.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Cancel was definitely pressed"));
 
-	        Optional<String> result = dialog.showAndWait();
-	        if (result.isPresent()) {
-	        	System.out.println("You can start Your exam");
-	        	examStopWatch.play();
-	        } else {
-	        	try {
+			Optional<String> result = dialog.showAndWait();
+			if (result.isPresent()) {
+				System.out.println("You can start Your exam");
+				userId = dialog.getResult();
+				examStopWatch.play();
+			} else {
+				try {
 					scrMgr.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	        }  
-			
+			}
+
 		}
 
 		);
-		
+
 	}
 
 	/**
@@ -218,11 +229,6 @@ public class ExecuteExamController {
 	 */
 	public void stopExam() {
 		examStopWatch.stop();
-		try {
-			ScreensManager.getInstance().activate("home");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 	}
 
@@ -267,14 +273,34 @@ public class ExecuteExamController {
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
-			int solvedTime  = exam.getExamDuration() - (stopWatch/60);
+			String currentTime = sdf.format(dt);
+			int solvedTime = exam.getExamDuration() - (stopWatch / 60);
 			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
+			SolvedExamMessage newMessage = (SolvedExamMessage) messageFact.getMessage("put-solvedexams", newExam);
+			try {
+				client.sendToServer(newMessage);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			stopExam();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
-	
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		if (arg1 instanceof SimpleMessage) {
+			Platform.runLater(() -> {
+				try {
+					ScreensManager.getInstance().activate("home");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+		}
+	}
 
 }

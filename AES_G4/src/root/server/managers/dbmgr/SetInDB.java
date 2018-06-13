@@ -1,6 +1,7 @@
 package root.server.managers.dbmgr;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,13 +30,14 @@ public class SetInDB implements DbManagerInterface {
 	private Connection conn;
 	private Log log;
 	private MessageFactory message;
-	public SetInDB()
-	{
+
+	public SetInDB() {
 		super();
 		conn = AES_Server.getConnection();
 		log.getInstance();
 		message = MessageFactory.getInstance();
 	}
+
 	@Override
 	public ArrayList<Question> questions(String... str) {
 		// TODO Auto-generated method stub
@@ -101,44 +103,48 @@ public class SetInDB implements DbManagerInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public AbstractMessage AddExam(Exam exam) {
-		String insertExam = "insert into exams (exam_id, teacher_assembler_id, exam_original_allocated_duration, exams_state, lock_flag)" + " values (?, ?, ?, ?, ?);";
+		String insertExam = "insert into exams (exam_id, teacher_assembler_id, exam_original_allocated_duration, exams_state, lock_flag)"
+				+ " values (?, ?, ?, ?, ?);";
 		try {
 			newStmt = conn.prepareStatement(insertExam);
-			newStmt.setString(1,exam.getExamId());
+			newStmt.setString(1, exam.getExamId());
 			newStmt.setString(2, exam.getAuthor().getUserID());
 			newStmt.setInt(3, exam.getExamDuration());
 			newStmt.setString(4, "clean");
 			newStmt.setString(5, "locked");
 			newStmt.execute();
-			String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)" + " values (?, ?, ?, ?, ?);";
+			String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)"
+					+ " values (?, ?, ?, ?, ?);";
 			newStmt = conn.prepareStatement(insertQuestionInExam);
 			ArrayList<QuestionInExam> examQuestions = exam.getExamQuestions();
-			for(QuestionInExam q: examQuestions) {
+			for (QuestionInExam q : examQuestions) {
 				newStmt.setString(1, exam.getExamId());
 				newStmt.setString(2, q.getQuestion().getQuestionId());
-				newStmt.setInt(3 , q.getQuestionGrade());
+				newStmt.setInt(3, q.getQuestionGrade());
 				newStmt.setString(4, q.getFreeTextForStudent());
 				newStmt.setString(5, q.getFreeTextForTeacher());
 				newStmt.execute();
 			}
-			return message.getMessage("ok-put-exams", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
-			
+			return message.getMessage("ok-put-exams", null); // because we didnt needed to get from DB theres nothing to
+																// send back to client but the confirmation
+
 		} catch (SQLException e) {
-			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
+
 	public AbstractMessage AddNewQuestion(Question newQuestionTooAdd) {
 		String insertQuestion = "INSERT INTO `aes`.`questions`(`question_id`,`question_text`,`question_instruction`,`question_answer_1`,`question_answer_2`,`question_answer_3`,`question_answer_4`,`correct_question`,`teacher_assembeld_id`)"
-									+"VALUES(?,?,?,?,?,?,?,?,?);";
+				+ "VALUES(?,?,?,?,?,?,?,?,?);";
 
 		try {
 			newStmt = conn.prepareStatement(insertQuestion);
-			newStmt.setString(1,newQuestionTooAdd.getQuestionId());
+			newStmt.setString(1, newQuestionTooAdd.getQuestionId());
 			newStmt.setString(2, newQuestionTooAdd.getQuestionText());
 			newStmt.setString(3, newQuestionTooAdd.getIdquestionIntruction());
 			newStmt.setString(4, newQuestionTooAdd.getAns1());
@@ -148,59 +154,56 @@ public class SetInDB implements DbManagerInterface {
 			newStmt.setInt(8, newQuestionTooAdd.getCorrectAns());
 			newStmt.setString(9, newQuestionTooAdd.getTeacherAssembeld());
 			newStmt.execute();
-			return message.getMessage("ok-put-questions", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
-			
+			return message.getMessage("ok-put-questions", null); // because we didnt needed to get from DB theres
+																	// nothing to send back to client but the
+																	// confirmation
+
 		} catch (SQLException e) {
-			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
 
 	public AbstractMessage deleteTheExam(Exam exam) {
 		String deleteExam = "delete from exams where exam_id = " + exam.getExamId();
 		try {
-			newStmt = conn.prepareStatement(deleteExam+";");
+			newStmt = conn.prepareStatement(deleteExam + ";");
 			newStmt.execute();
-			return message.getMessage("ok-delete-exams",null);
+			return message.getMessage("ok-delete-exams", null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 	public AbstractMessage deleteTheQuestion(Question Question) {
 		String deleteQuestion = "delete from questions where question_id = " + Question.getQuestionId();
 		try {
-			newStmt = conn.prepareStatement(deleteQuestion+";");
+			newStmt = conn.prepareStatement(deleteQuestion + ";");
 			newStmt.execute();
-			return message.getMessage("ok-delete-questions",null);
+			return message.getMessage("ok-delete-questions", null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 	public AbstractMessage updateExistingQuestion(Question questionMessage) {
-		String updateQuestion = "UPDATE questions SET "
-		+" `question_id` = ?,"					
-		+" `question_text` = ?,"
-		+" `question_instruction` = ?,"
-		+" `question_answer_1` = ?,"
-		+" `question_answer_2` = ?,"
-		+" `question_answer_3` = ?,"
-		+" `question_answer_4` = ?,"
-		+" `correct_question` = ?,"
-		+" `teacher_assembeld_id` = ?"
-		+" WHERE `question_id` = ?;";
+		String updateQuestion = "UPDATE questions SET " + " `question_id` = ?," + " `question_text` = ?,"
+				+ " `question_instruction` = ?," + " `question_answer_1` = ?," + " `question_answer_2` = ?,"
+				+ " `question_answer_3` = ?," + " `question_answer_4` = ?," + " `correct_question` = ?,"
+				+ " `teacher_assembeld_id` = ?" + " WHERE `question_id` = ?;";
 		System.out.println(questionMessage);
 		System.out.println(updateQuestion);
-		
-		//+"SELECT * FROM aes.questions;";
+
+		// +"SELECT * FROM aes.questions;";
 		try {
 			newStmt = conn.prepareStatement(updateQuestion);
-			newStmt.setString(1,questionMessage.getQuestionId());
+			newStmt.setString(1, questionMessage.getQuestionId());
 			newStmt.setString(2, questionMessage.getQuestionText());
 			newStmt.setString(3, questionMessage.getIdquestionIntruction());
 			newStmt.setString(4, questionMessage.getAns1());
@@ -211,27 +214,28 @@ public class SetInDB implements DbManagerInterface {
 			newStmt.setString(9, questionMessage.getTeacherAssembeld());
 			newStmt.setString(10, questionMessage.getQuestionId());
 			newStmt.execute();
-			return message.getMessage("ok-set-questions", null);			// because we didnt needed to get from DB theres nothing to send back to client but the confirmation
-			
+			return message.getMessage("ok-set-questions", null); // because we didnt needed to get from DB theres
+																	// nothing to send back to client but the
+																	// confirmation
+
 		} catch (SQLException e) {
-			//log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
-		
-		
+
 		return null;
 	}
-	
-	
-	public AbstractMessage addQuestionToExam(String id, ArrayList<QuestionInExam>quest) {
+
+	public AbstractMessage addQuestionToExam(String id, ArrayList<QuestionInExam> quest) {
 		deleteQuestionInExam(id);
-		String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)" + " values (?, ?, ?, ?, ?);";
+		String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)"
+				+ " values (?, ?, ?, ?, ?);";
 		try {
 			newStmt = conn.prepareStatement(insertQuestionInExam);
-			for(QuestionInExam q: quest) {
+			for (QuestionInExam q : quest) {
 				newStmt.setString(1, id);
 				newStmt.setString(2, q.getQuestion().getQuestionId());
-				newStmt.setInt(3 , q.getQuestionGrade());
+				newStmt.setInt(3, q.getQuestionGrade());
 				newStmt.setString(4, q.getFreeTextForStudent());
 				newStmt.setString(5, q.getFreeTextForTeacher());
 				newStmt.execute();
@@ -243,17 +247,36 @@ public class SetInDB implements DbManagerInterface {
 		}
 		return null;
 
-		
-		
 	}
-	
+
 	public AbstractMessage deleteQuestionInExam(String id) {
 		String deleteExam = "delete from `questions in exam` where exam_ID = " + id;
 		try {
-			newStmt = conn.prepareStatement(deleteExam+";");
+			newStmt = conn.prepareStatement(deleteExam + ";");
 			newStmt.execute();
-			return message.getMessage("ok-delete-questioninexam",null);
+			return message.getMessage("ok-delete-questioninexam", null);
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public AbstractMessage addSolvedExam(SolvedExams newExam) {
+		String insertSolvedExam = "insert into `solved exams` (User_ID, exam_ID, solved_exam_grade, solve_duration_timer, submitted_or_interrupted_Flag, exam_executing_Date)"
+				+ " values (?, ?, ?, ?, ?, ?);";
+		try {
+			newStmt = conn.prepareStatement(insertSolvedExam);
+			java.sql.Date dateDB = new java.sql.Date(newExam.getDate().getTime());
+			newStmt.setString(1, newExam.getUserId());
+			newStmt.setString(2, newExam.getExamId());
+			newStmt.setInt(3, newExam.getExamGrade());
+			newStmt.setInt(4, newExam.getDurationTime());
+			newStmt.setString(5, newExam.getSubmittedOrNot());
+			newStmt.setDate(6, dateDB);
+			newStmt.execute();
+			return message.getMessage("ok-put-solvedexams", null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

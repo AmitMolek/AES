@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class SolvedExams implements Serializable {
 	private String userId;
+	
 	private String examId;
 	private int examGrade;
 	private int durationTime;
@@ -73,6 +74,93 @@ public class SolvedExams implements Serializable {
 	 */
 	public void setCheatingFlag(String cheatingFlag) {
 		this.cheatingFlag = cheatingFlag;
+	}
+	/**
+	 * 
+	 * @return the student id
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * 
+	 * @return the exam id
+	 */
+	public String getExamId() {
+		return examId;
+	}
+
+	/**
+	 * 
+	 * @return the exam grade
+	 */
+	public int getExamGrade() {
+		return examGrade;
+	}
+
+	/**
+	 * 
+	 * @return the time that took to the student
+	 */
+	public int getDurationTime() {
+		return durationTime;
+	}
+	
+	/**
+	 * 
+	 * @return if the student submitted or not
+	 */
+
+	public String getSubmittedOrNot() {
+		return submittedOrNot;
+	}
+
+	/**
+	 * 
+	 * @return the exam date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * 
+	 * @return the teacher notes for this exam
+	 */
+	public String getTeacherNotes() {
+		return teacherNotes;
+	}
+
+	/**
+	 * 
+	 * @return the change in the exam grade
+	 */
+	public String getGradeChangeExplain() {
+		return gradeChangeExplain;
+	}
+
+	/**
+	 * 
+	 * @return the id of the teacher that approve the grade
+	 */
+	public String getTeacherAprroveId() {
+		return teacherAprroveId;
+	}
+
+	/**
+	 * 
+	 * @return if grade approval or not
+	 */
+	public String getGradeAprroval() {
+		return gradeAprroval;
+	}
+
+	/**
+	 * 
+	 * @return the cheating flag
+	 */
+	public String getCheatingFlag() {
+		return cheatingFlag;
 	}
 	
 }

@@ -7,6 +7,7 @@ import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
+import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
@@ -90,6 +91,8 @@ public class MessageFactory {
 				return new QuestionsMessage((Question)payload);
 			case "questioninexam":
 				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
+			case "solvedexams":
+				return new SolvedExamMessage((SolvedExams)payload);
 		}
 		return null;
 	}
