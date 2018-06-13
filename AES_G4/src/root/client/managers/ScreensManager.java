@@ -49,10 +49,8 @@ public class ScreensManager extends Application {
     private final String cssPath = "resources/css/materialDesign.css";
     
     private final String menuFxmlPath = "resources/view/Menu.fxml";
-<<<<<<< HEAD
-=======
+
     private final String utilityBarPath = "resources/view/UtilityBar.fxml";
->>>>>>> refs/remotes/origin/Amit
     
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
