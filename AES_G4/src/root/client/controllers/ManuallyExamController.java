@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +30,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ocsf.client.ObservableClient;
@@ -72,6 +75,8 @@ public class ManuallyExamController implements Observer {
 
 	@FXML
 	private Button btnSubmit;
+	
+
 
 	private User student;
 	private MessageFactory messageFact;
@@ -83,6 +88,7 @@ public class ManuallyExamController implements Observer {
 	private int stopWatch;
 	private Exam newExam;
 	private Timeline examStopWatch;
+	public static String CLIENTPATH;
 
 	/**
 	 * This method occurs when the window is shown up.
@@ -94,6 +100,10 @@ public class ManuallyExamController implements Observer {
 	public void initialize() throws IOException {
 		log = Log.getInstance();
 		int i = 0;
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		String fullPath = s+"//src//root//client//studentExam//";
+		CLIENTPATH = fullPath;
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
 		mainApp = screenManager.getPrimaryStage();
@@ -185,8 +195,7 @@ public class ManuallyExamController implements Observer {
 	void SubmitExam(ActionEvent event) {
 		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(
 				student.getUserID() + "-" + newExam.getExamId() + ".docx");
-		String LocalfilePath = "C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\"
-				+ student.getUserID() + "-" + newExam.getExamId() + ".docx";
+		String LocalfilePath = CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx";
 
 		try {
 
@@ -231,10 +240,8 @@ public class ManuallyExamController implements Observer {
 				wordFile.initArray(mybytearray.length);
 				wordFile.setSize(mybytearray.length);
 				bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
-				File Word = new File("C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\"
-						+ student.getUserID() + "-" + newExam.getExamId() + ".docx");
-				FileOutputStream fos = new FileOutputStream(
-						"C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\" + student.getUserID()
+				File Word = new File(CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx");
+				FileOutputStream fos = new FileOutputStream(CLIENTPATH + student.getUserID()
 								+ "-" + newExam.getExamId() + ".docx");
 				fos.write(wordFile.getMybytearray());
 				fos.close();
@@ -245,9 +252,7 @@ public class ManuallyExamController implements Observer {
 					alert.initOwner(mainApp);
 					alert.setTitle("Exam path");
 					alert.setHeaderText("Exam path in the computer");
-					alert.setContentText("You can start your exam\n The path is: "
-							+ "C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\"
-							+ student.getUserID() + "-" + newExam.getExamId() + ".docx\n" + "do not change the path");
+					alert.setContentText("You can start your exam\n The path is: "+ CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx\n" + "do not change the path");
 					alert.showAndWait();
 				});
 
@@ -260,6 +265,8 @@ public class ManuallyExamController implements Observer {
 		if (arg1 instanceof SimpleMessage) {
 			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					File newFile = new File(CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx" );
+					newFile.delete();
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.initOwner(mainApp);
 					alert.setTitle("Exam Finish");

@@ -2,6 +2,8 @@ package root.server.managers.worddocumentmgr;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -12,11 +14,11 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import root.dao.app.Exam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.server.managers.ServerMessageManager;
 
 public class WordDocument {
 
 	private Exam exam;
-
 	
 	public WordDocument(Exam exam) {
 		super();
@@ -27,8 +29,9 @@ public class WordDocument {
 		XWPFDocument document = new XWPFDocument();
 		int i =0;
 		try {
-			FileOutputStream out = new FileOutputStream(new File(
-					"C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\server\\executeExam\\" +exam.getExamId()+".docx"));
+			
+			File file = new File(ServerMessageManager.PATH + exam.getExamId()+ ".docx");
+			FileOutputStream out = new FileOutputStream(file);
 			// create Paragraph
 			XWPFParagraph paragraph = document.createParagraph();
 			paragraph.setAlignment(ParagraphAlignment.LEFT);

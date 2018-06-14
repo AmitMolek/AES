@@ -4,6 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,17 +47,23 @@ import root.server.managers.worddocumentmgr.WordDocument;
 public class ServerMessageManager {
 
 	private static ServerMessageManager instance = null;
-	private static MessageFactory message = MessageFactory.getInstance();;
-
+	private static MessageFactory message = MessageFactory.getInstance();
+	public static String PATH;
+	public static String PATHSOLUTION;
 	private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
 
 	private ServerMessageManager() {
-
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		String fullPath = s+"//src//root//server//executeExam//";
+		PATH = fullPath;
+		PATHSOLUTION = s+"//src//root//server//solvedExam//";
 	}
 
 	public static ServerMessageManager getInstance() {
 		if (instance == null) {
 			instance = new ServerMessageManager();
+			
 		}
 		return instance;
 	}
@@ -525,18 +533,17 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
 		return sendMessage;
 	}
-
+	
 	private static AbstractMessage handleGetWordExam(AbstractMessage msg) {
 		WordMessage recivedMessage = (WordMessage) msg;
 		String []userId = recivedMessage.getUserId().split("-");
 		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(userId[0]+"-"+userId[1] + ".docx");
-		String LocalfilePath = "C:" + "\\" + "Users" + "\\" + "omer1" + "\\" + "git" + "\\" + "AES" + "\\" + "AES_G4"
-				+ "\\" + "src" + "\\" + "root" + "\\" + "server" + "\\" + "executeExam" + "\\"+ userId[1]+ ".docx";
-
+		/*String LocalfilePath = "C:" + "\\" + "Users" + "\\" + "omer1" + "\\" + "git" + "\\" + "AES" + "\\" + "AES_G4"
+				+ "\\" + "src" + "\\" + "root" + "\\" + "server" + "\\" + "executeExam" + "\\"+ userId[1]+ ".docx";*/
+		String LocalfilePath = PATH + userId[1] + ".docx";
 		try {
 
 			File newFile = new File(LocalfilePath);
-
 			byte[] mybytearray = new byte[(int) newFile.length()];
 			FileInputStream fis = new FileInputStream(newFile);
 			BufferedInputStream bis = new BufferedInputStream(fis);
@@ -544,6 +551,8 @@ public class ServerMessageManager {
 			wordFile.setSize(mybytearray.length);
 			bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
 			wordFile.setDescription(LocalfilePath);
+			fis.close();
+			bis.close();
 			WordMessage sendMessage = (WordMessage) message.getMessage("put-wordexam", wordFile);
 			return sendMessage;
 		} catch (Exception e) {
@@ -570,11 +579,10 @@ public class ServerMessageManager {
 			wordFile.initArray(mybytearray.length);
 			wordFile.setSize(mybytearray.length);
 			bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
-			File Word = new File(
-					"C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\server\\solvedExam\\" + serverFile.getFileName());
-			FileOutputStream fos = new FileOutputStream(
-					"C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\server\\solvedExam\\" + serverFile.getFileName());
-			fos.write(wordFile.getMybytearray());
+			File Word = new File(PATH + serverFile.getFileName());
+			FileOutputStream fos = new FileOutputStream(PATHSOLUTION + serverFile.getFileName());
+			fis.close();
+			bis.close();
 			SimpleMessage sendMessage = (SimpleMessage) message.getMessage("ok-put-wordexam", null);
 			return sendMessage;
 		} catch (Exception e) {
