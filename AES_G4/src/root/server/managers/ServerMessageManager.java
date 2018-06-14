@@ -766,7 +766,6 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
 		return sendMessage;
 	}
-<<<<<<< HEAD
 	
 	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
@@ -784,6 +783,3 @@ public class ServerMessageManager {
 		
 	}
 }
-=======
-}
->>>>>>> refs/remotes/origin/master
