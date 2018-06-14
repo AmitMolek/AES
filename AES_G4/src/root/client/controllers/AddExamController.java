@@ -84,7 +84,7 @@ public class AddExamController implements Observer {
 	private ArrayList<QuestionInExam> examQuestions;
 	private ArrayList<Question> question;
 	private ArrayList<Exam> exams;
-	private AddQuestionToExam newQuestion;
+	private ArrayList<AddQuestionToExam> myComponent = new ArrayList<AddQuestionToExam>();
 	private static int countId = 1;
 	private Subject newSubject;
 	private Course newCourse;
@@ -93,7 +93,7 @@ public class AddExamController implements Observer {
 	private Stage mainApp;
 	private String examId;
 	private ArrayList<String> courses;
-
+	private AddQuestionToExam newQuestion;
 	/**
 	 * Method the occurs when teacher select subject
 	 * 
@@ -145,13 +145,14 @@ public class AddExamController implements Observer {
 	 */
 
 	@FXML
-	void AddQuestionToExam(ActionEvent event) {
+	void AddQuestionToTheExam(ActionEvent event) {
 		newQuestion = new AddQuestionToExam();
 		newQuestion.setQuestionCombo(question);
 		myFlow.getChildren().add(newQuestion);
 		btnAddToExam.setDisable(false);
 		btnAddQuestion.setDisable(true);
 		btnAddExam.setDisable(true);
+		myComponent.add(newQuestion);
 
 	}
 
@@ -164,9 +165,13 @@ public class AddExamController implements Observer {
 	@FXML
 	void AddExam(ActionEvent event) {
 		if (isInputValidAddExam()) {
+			ArrayList<QuestionInExam> theQuestions = new ArrayList<QuestionInExam>();
 			String examDuration = txtDuration.getText();
 			int duration = Integer.parseInt(examDuration);
-			Exam newExam = new Exam(examId, teacher, duration, examQuestions);
+			for(AddQuestionToExam add: myComponent) {
+				theQuestions.add(add.getExamQuestion());
+			}
+			Exam newExam = new Exam(examId, teacher, duration, theQuestions);
 			ExamMessage newMessage = (ExamMessage) messageFact.getMessage("put-exams", newExam);
 			try {
 				client.sendToServer(newMessage);
@@ -254,26 +259,15 @@ public class AddExamController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			ExamMessage intialExamMessage = (ExamMessage) arg1;
 			exams = intialExamMessage.getExams();
-			if (countId <= 9) {
-				for (Exam exam : exams) {
-					if (!(exam.getExamId().substring(4, 6).equals("0" + Integer.toString(countId)))) {
-						examId = (newSubject.getSubjectID() + newCourse.getCourseId() + "0"
-								+ Integer.toString(countId));
-						break;
-
-					}
-					countId++;
-				}
-			} else {
-				for (Exam exam : exams) {
-					if (!(exam.getExamId().substring(0, 2).equals(Integer.toString(countId)))) {
-						examId = (newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId));
-						break;
-					}
-					countId++;
-
-				}
-			}
+			Exam exam = exams.get(exams.size()-1);
+			String tempId = exam.getExamId().substring(4,6);
+			int id = Integer.parseInt(tempId) + 1;
+			countId = id;
+			if(countId<=9)
+				examId = newSubject.getSubjectID() + newCourse.getCourseId()+"0"+ Integer.toString(countId);
+			else
+				examId = newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId);
+			
 		}
 
 		if (arg1 instanceof SimpleMessage) {
@@ -344,9 +338,16 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	void AddToTheExamForm(ActionEvent event) {
-		examQuestions = newQuestion.AddQuestion();
+		if(newQuestion.AddQuestion()) {
 		btnAddQuestion.setDisable(false);
 		btnAddExam.setDisable(false);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.initOwner(mainApp);
+		alert.setTitle("Question added successful");
+		alert.setHeaderText("Question added successful");
+		alert.setContentText("The question is added");
+		alert.showAndWait();
+		}
 
 	}
 

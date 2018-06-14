@@ -54,6 +54,8 @@ public class AddQuestionToExam extends AnchorPane {
 	@FXML
 	private Label lblQuestionNumber;
 
+	private QuestionInExam examQuestion;
+
 	private static ArrayList<Question> questions = new ArrayList<Question>();
 
 	private static ArrayList<QuestionInExam> examQuestions = new ArrayList<QuestionInExam>();
@@ -61,17 +63,16 @@ public class AddQuestionToExam extends AnchorPane {
 	private Question newQuestion;
 	private Stage mainApp;
 	private ScreensManager screenManager;
-
 	/**
 	 * Constructor for add question custom component
 	 */
-	public AddQuestionToExam() {
+	public AddQuestionToExam(){
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/AddQuestionToAnExam.fxml"));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 		id = Integer.toString(count);
 		count++;
-
+		examQuestion = new QuestionInExam();
 		try {
 			fxmlLoader.load();
 			lblQuestionNumber.setText("Question number: " + count);
@@ -125,7 +126,6 @@ public class AddQuestionToExam extends AnchorPane {
 				alert.setHeaderText("Please correct invalid fields");
 				alert.setContentText("You select this question already!");
 				alert.showAndWait();
-
 			}
 		}
 	}
@@ -135,7 +135,7 @@ public class AddQuestionToExam extends AnchorPane {
 	 * 
 	 * @return list of questions in exam
 	 */
-	public ArrayList<QuestionInExam> AddQuestion() {
+	public boolean AddQuestion() {
 
 		if (isInputValidQuestion()) {
 			String scoringPoints = txtScore.getText();
@@ -149,14 +149,17 @@ public class AddQuestionToExam extends AnchorPane {
 				alert.setHeaderText("Please correct invalid fields");
 				alert.setContentText("More than 100 points change the points of the last question!");
 				alert.showAndWait();
+				return false;
 			}
 			String freeTextTeacher = txtFreeTeacher.getText();
 			String freeTextStudent = txtFreeStudent.getText();
-			QuestionInExam newQuestionExam = new QuestionInExam(newQuestion, points, freeTextTeacher, freeTextStudent);
-			examQuestions.add(newQuestionExam);
-			return examQuestions;
+			examQuestion = new QuestionInExam(newQuestion, points, freeTextTeacher, freeTextStudent);
+			examQuestions.add(examQuestion);
+			return true;
 		}
-		return null;
+		else
+			return false;
+
 	}
 
 	/**
@@ -252,6 +255,54 @@ public class AddQuestionToExam extends AnchorPane {
 	 */
 	public static int getTotalPoints() {
 		return totalPoints;
+	}
+
+	/**
+	 * mrthod that occurs when we change the text
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void changePoints(ActionEvent event) {
+
+		if (txtScore.getText() == null || txtScore.getText().length() == 0) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText("No valid Question points\n");
+			alert.showAndWait();
+			return;
+		}
+		String scoringPoints = txtScore.getText();
+		int points = Integer.parseInt(scoringPoints);
+		totalPoints = totalPoints - examQuestion.getQuestionGrade();
+		totalPoints = totalPoints + points;
+		if (totalPoints > 100) {
+			Alert alert = new Alert(AlertType.ERROR);
+			totalPoints = totalPoints - points;
+			alert.initOwner(mainApp);
+			alert.setTitle("Invalid Fields");
+			alert.setHeaderText("Please correct invalid fields");
+			alert.setContentText("More than 100 points change the points of the last question!");
+			alert.showAndWait();
+			return;
+		}
+		examQuestion.setQuestionGrade(points);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.initOwner(mainApp);
+		alert.setTitle("The points is changed");
+		alert.setHeaderText("The point changed");
+		alert.setContentText("The point changed! do not press Add  the question to the exam button\n");
+		alert.showAndWait();
+	}
+
+	/**
+	 * 
+	 * @return the question in exam
+	 */
+	public QuestionInExam getExamQuestion() {
+		return examQuestion;
 	}
 
 }
