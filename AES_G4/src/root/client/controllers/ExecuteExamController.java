@@ -43,7 +43,8 @@ import root.dao.message.SolvedExamMessage;
 
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
- *         get list of questions for specific exam and answer the quesitonsdsa
+ *         get list of questions for specific exam and answer the quesitons
+ *         
  */
 public class ExecuteExamController implements Observer {
 
@@ -111,15 +112,17 @@ public class ExecuteExamController implements Observer {
 
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
-		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client"); // get the client from
-																								// DataKeep, but dont
-																								// remove it from there,
-																								// for later use.
+    	client = new ObservableClient("localhost", 8000);
 		client.addObserver(this);
+		try {
+			client.openConnection();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		sdf = new SimpleDateFormat("dd-MM-yyyy");
 		date = sdf.format(new Date());
 		dt = new Date();
-
 		SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		lblDate.setText(date);
 		displayQuestion = 0;
@@ -145,20 +148,20 @@ public class ExecuteExamController implements Observer {
 		}
 
 		txtNotes.setText(intructText.get(displayQuestion));
-		stopWatch = exam.getExamDuration() * 60;
+		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				int hours = (stopWatch / 60) / 60;
-				int minuts = (stopWatch / 60) % 60;
-				int seconds = stopWatch % 60;
+				int hours = (ExamDuration.getTime() / 60) / 60;
+				int minuts = (ExamDuration.getTime() / 60) % 60;
+				int seconds = ExamDuration.getTime() % 60;
 				lblTimer.setText("" + hours + ":" + minuts + ":" + seconds);
-				if (stopWatch == 0) {
+				if (ExamDuration.getTime() == 0) {
 					status = "interrupted";
 					stopExam();
 				}
-				stopWatch--;
+				ExamDuration.minusOne();
 			}
 		}));
 		examStopWatch.setCycleCount(Timeline.INDEFINITE);
@@ -302,6 +305,10 @@ public class ExecuteExamController implements Observer {
 				}
 			});
 		}
+	}
+	
+	public void changeTime(int newTime) {
+		stopWatch = newTime;
 	}
 
 }

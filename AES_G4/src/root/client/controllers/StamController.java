@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import ocsf.client.ObservableClient;
-import root.dao.message.changeTimeDurationRequest;
+import root.dao.message.ChangeTimeDurationRequest;
 
 public class StamController {
 
@@ -25,7 +25,12 @@ public class StamController {
     @FXML
     void send(ActionEvent event) {
     	try {
-			client.sendToServer(new changeTimeDurationRequest());
+    		ChangeTimeDurationRequest cht = new ChangeTimeDurationRequest();
+    		cht.setMessageFromTeacher("I just want to change");
+    		cht.setExamId("010801");
+    		cht.setNewTime(60);
+
+			client.sendToServer(cht);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

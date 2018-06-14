@@ -6,6 +6,7 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;

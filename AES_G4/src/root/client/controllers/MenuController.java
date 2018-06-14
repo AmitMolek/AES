@@ -70,19 +70,28 @@ public class MenuController {
         	initQuestionsMenu();
         	initExamsMenu();
     	}else if (user.getUserPremission().equals("Student")) {
-    		initExecuteExamMenu();
+    		
     	}else {
     		
     	}
     	
+    	initExecuteExamMenu();
     	initStatisticsMenu();
     	initGoHelp();
     }
     
     public void initExecuteExamMenu() {
-    	Image img = new Image(getClass().getResource(executeExamIconPath).toExternalForm());
-    	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("Enter4digitPassword");
-    	createMenuItem(new Menu(), img, "Solve exam", 100, 25, e);
+    	if (!user.getUserPremission().equals("Principal")) {
+    		Image img = new Image(getClass().getResource(executeExamIconPath).toExternalForm());
+	    	Menu executeMenu = new Menu();
+	    	createMenuItem(executeMenu, img, "Execute Exam", 115, 25);
+	    	
+	    	if (user.getUserPremission().equals("Student")) {
+	    		executeMenu.getItems().add(createMenuItem("Solve exam", getChangeScreenActionEvent("Enter4digitPassword")));
+	    	}else if (user.getUserPremission().equals("Teacher")) {
+	    		executeMenu.getItems().add(createMenuItem("Start exam", getChangeScreenActionEvent("executeExamScreen")));
+	    	}
+    	}
     }
     
     public void initExamsMenu() {

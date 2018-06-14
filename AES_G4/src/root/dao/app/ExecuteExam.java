@@ -8,7 +8,10 @@ public class ExecuteExam implements Serializable {
 	private String startTime;
 	private String examPassword;
 	private String examType;//0- manually,1-auto
+	private int durationTime;
 	
+
+
 	/**
 	 * Constructor for execute exam
 	 * @param examId the exam id
@@ -16,6 +19,14 @@ public class ExecuteExam implements Serializable {
 	 * @param examPassword the password of the exam
 	 * @param examType the exam type
 	 */
+	public ExecuteExam(String examId, String startTime, String examPassword, String examType, int duration) {
+		super();
+		this.examId = examId;
+		this.startTime = startTime;
+		this.examPassword = examPassword;
+		this.examType = examType;
+		durationTime = duration;
+	}
 	public ExecuteExam(String examId, String startTime, String examPassword, String examType) {
 		super();
 		this.examId = examId;
@@ -59,5 +70,14 @@ public class ExecuteExam implements Serializable {
 		return examType;
 	}
 	
+	
+	public int getDurationTime() {
+		return durationTime;
+	}
+
+
+	public void setDurationTime(int durationTime) {
+		this.durationTime = durationTime;
+	}
 
 }
