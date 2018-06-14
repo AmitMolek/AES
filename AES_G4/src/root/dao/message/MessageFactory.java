@@ -102,7 +102,7 @@ public class MessageFactory {
 		case "solvedexams":
 			return new SolvedExamMessage((SolvedExams) payload);
 		case "executeexam":
-			return new ExecuteExamMessage((ExecuteExam)payload);
+			return new ExecuteExamMessage((ExecuteExam) payload);
 		case "wordexam":
 			return new WordMessage("put-wordexam",(MyFile)payload);
 		}
@@ -134,12 +134,16 @@ public class MessageFactory {
 		switch (msgContent[1]) {
 		case "usersubjects":
 			return new UserSubjectMessage((User) payload);
+		case "subjectbysubjectid":
+			return new SubjectMessage("get-subjectbysubjectid", (HashMap<String, String>) payload);
 		case "questions":
 			return new QuestionsMessage((Subject) payload);
 		case "subjects":
 			return new SubjectMessage((String) payload);
 		case "courses":
 			return new CourseMessage((Subject) payload);
+		case "coursesbyid":
+			return new CourseMessage("get-coursesbyid", (HashMap<String, String>) payload);
 		case "simple":
 			return new SimpleMessage("simple");
 		case "exams":
@@ -148,6 +152,8 @@ public class MessageFactory {
 			return getUserRelatedMessage(msgContent, payload);
 		case "solvedExamByTeacherId":
 			return createGetSolvedExamByTeacherId((User) payload);
+		case "solvedexams":
+			return getUserSolvedExams(msgContent, payload); // get message related to solvedExams Table
 		case "word":
 			return new WordMessage((Exam) payload);
 		case "wordexam":
@@ -158,6 +164,22 @@ public class MessageFactory {
 
 		return null;
 
+	}
+
+
+	/**
+	 * @author gal
+	 * @param payload
+	 *            - User
+	 * @return {@link AbstractMessage} with arrayList<SolvedExams>
+	 */
+	private AbstractMessage getUserSolvedExams(String[] msgContent, Object payload) {
+		switch (msgContent[2]) {
+		case "user":
+			return new UserSolvedExamsMessage((User) payload);
+		}
+		return null;
+		// return new UserSolvedExamsMessage(payload);
 	}
 
 	private AbstractMessage getUserRelatedMessage(String[] msgContent, Object payload) {
@@ -236,13 +258,19 @@ public class MessageFactory {
 		case "subjects":
 			if (payload instanceof ArrayList<?>)
 				return new SubjectMessage((ArrayList<Subject>) payload);
+			if (payload instanceof HashMap<?, ?>)
+				return new SubjectMessage("ok-get-subjects", (HashMap<String, String>) payload);
 			else
-				return new ErrorMessage(new Exception("Your payload is not arraylist"));
+				return new ErrorMessage(
+						new Exception("Your payload is not arraylist NOR hashMap.\nIn ok-get-subjects"));
 		case "courses":
 			if (payload instanceof ArrayList<?>)
 				return new CourseMessage((ArrayList<Course>) payload);
+			if (payload instanceof HashMap<?, ?>)
+				return new CourseMessage("ok-get-courses", (HashMap<String, String>) payload);
 			else
-				return new ErrorMessage(new Exception("Your payload is not arraylist"));
+				return new ErrorMessage(
+						new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
 		case "solvedExamByTeacherId":
 			if (payload instanceof ArrayList<?>) {
 				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>) payload);
@@ -254,11 +282,15 @@ public class MessageFactory {
 				return new UserInfoMessage((HashMap<String, String>) payload);
 			else
 				return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
+		case "solvedexams":
+			if (payload instanceof ArrayList<?>)
+				return new UserSolvedExamsMessage((ArrayList<SolvedExams>) payload);
+			else
+				return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "word":
 			return new SimpleMessage("ok-get-" + msgContent[2]);
 		case "wordexam":
 			return new WordMessage("ok-get-" + msgContent[2],(MyFile)payload);
-			
 		}
 
 		return new ErrorMessage(new Exception("Invalid request"));
@@ -269,5 +301,4 @@ public class MessageFactory {
 		message.setMsg("get-solvedExamByTeacherId");
 		return message;
 	}
-
 }

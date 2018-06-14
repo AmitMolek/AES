@@ -270,11 +270,11 @@ public class SetInDB implements DbManagerInterface {
 		try {
 			newStmt = conn.prepareStatement(insertSolvedExam);
 			java.sql.Date dateDB = new java.sql.Date(newExam.getDate().getTime());
-			newStmt.setString(1, newExam.getUserId());
-			newStmt.setString(2, newExam.getExamId());
+			newStmt.setString(1, newExam.getSovingStudentID());
+			newStmt.setString(2, newExam.getExamID());
 			newStmt.setInt(3, newExam.getExamGrade());
-			newStmt.setInt(4, newExam.getDurationTime());
-			newStmt.setString(5, newExam.getSubmittedOrNot());
+			newStmt.setInt(4, newExam.getSolveDurationTime());
+			newStmt.setString(5, newExam.getSubmittedOrInterruptedFlag());
 			newStmt.setDate(6, dateDB);
 			newStmt.execute();
 			return message.getMessage("ok-put-solvedexams", null);

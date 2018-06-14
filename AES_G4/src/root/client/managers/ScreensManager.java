@@ -20,6 +20,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import ocsf.client.ObservableClient;
 import root.client.Main;
@@ -48,6 +49,8 @@ public class ScreensManager extends Application {
     private final String cssPath = "resources/css/materialDesign.css";
     
     private final String menuFxmlPath = "resources/view/Menu.fxml";
+
+    private final String utilityBarPath = "resources/view/UtilityBar.fxml";
     
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
@@ -89,6 +92,7 @@ public class ScreensManager extends Application {
     	primaryStage.setResizable(false);
     	primaryStage.setTitle("AES");
     	primaryStage.getIcons().add(new Image(aesIconPath));
+    	primaryStage.initStyle(StageStyle.UNDECORATED);
     }
     
     /**
@@ -113,6 +117,23 @@ public class ScreensManager extends Application {
     }
     
     /**
+     * Clears the screen stack
+     */
+    public void clearStack() {
+    	screenStack.clear();
+    }
+    
+    /**
+     * Adds a screen to the saving stack
+     * @param screenObj the screen you want to add to the stack
+     */
+    public void addToStack(ScreenObject screenObj) {
+    	String screenName = screenObj.getScreenName();
+    	if (screenName != "main")
+    		screenStack.push(screenObj);
+    }
+    
+    /**
      * Activate the screen with the key name
      * @param name the key of the screen you want to activate
      * @throws IOException
@@ -134,13 +155,17 @@ public class ScreensManager extends Application {
     	VBox sRoot = new VBox();
     	boolean isFullscreenScreen = screenObj.getScreenName().contains("full");
     	
+    	FXMLLoader utilityBarFxml = new FXMLLoader(Main.class.getResource(utilityBarPath));
+    	Pane utilityBarMenu = utilityBarFxml.load();
+    	sRoot.getChildren().add(utilityBarMenu);
+    	
     	if (screenObj.getScreenName() != "main" && !isFullscreenScreen) {
 	    	FXMLLoader menuFxml = new FXMLLoader(Main.class.getResource(menuFxmlPath));
 	    	Pane menu = menuFxml.load();
 	    	sRoot.getChildren().add(menu);
     	}
     	
-    	screenStack.push(screenObj);
+    	addToStack(screenObj);
     	currentScreen = screenObj;
 		log.writeToLog(LineType.INFO, "Added screen to stack: " + screenObj.getScreenName());
     	

@@ -6,6 +6,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import root.client.managers.DataKeepManager;
 import root.dao.app.Statistic;
 
 public class HistogramsScreenController {
@@ -28,7 +29,10 @@ public class HistogramsScreenController {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
     
-	public void initialize() {	
+    public static final String HISTOGRAM_CONTROLLER_NAME="HistogramController";
+    
+	public void initialize() {
+		DataKeepManager.getInstance().keepObject(HISTOGRAM_CONTROLLER_NAME, this);
 		XYChart.Series dataSeries=new XYChart.Series();
 		dataSeries.setName("No Data");
 		averageText.setText("null");

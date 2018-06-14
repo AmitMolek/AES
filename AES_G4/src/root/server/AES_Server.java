@@ -11,8 +11,10 @@ import java.util.Map;
 import java.util.Set;
 import java.sql.PreparedStatement;
 import ocsf.server.*;
+import root.client.controllers.WaitForPirncipleMessage;
 import root.dao.app.Exam;
 import root.dao.app.Question;
+import root.dao.app.User;
 import root.dao.message.*;
 import root.server.managers.*;
 import root.server.managers.worddocumentmgr.WordDocument;
@@ -34,6 +36,7 @@ public class AES_Server extends AbstractServer {
 	private ArrayList<Question> dataBase;
 	private static Connection conn;
 	private static Log log;
+	private ArrayList<ConnectionToClient> principleArry = new ArrayList<ConnectionToClient>();
 	
 	public AES_Server(int port) {
 		super(port);
@@ -53,13 +56,23 @@ public class AES_Server extends AbstractServer {
 	 * This method handles any messages received from the client.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		AbstractMessage msgToHandle = (AbstractMessage) msg;
-		AbstractMessage msgToReturn=smm.handleMessage(msgToHandle);
-		try {
-		client.sendToClient(msgToReturn);
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+
+		if(msg instanceof AbstractMessage) {
+			AbstractMessage msgToHandle = (AbstractMessage) msg;
+			AbstractMessage msgToReturn=smm.handleMessage(msgToHandle);
+			if(msgToReturn instanceof UserMessage){
+				UserMessage usmg = (UserMessage) msgToReturn;
+				User user = usmg.getUser();
+				if(user.getUserPremission().equals("Principal"))
+					principleArry.add(client);
+				
+			}
+			try {
+				client.sendToClient(msgToReturn);
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			}
 		}
 	}
 
@@ -96,7 +109,9 @@ public class AES_Server extends AbstractServer {
 
 		try {
 
+
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "204403257");
+
 
 
 			System.out.println("SQL connection succeed");

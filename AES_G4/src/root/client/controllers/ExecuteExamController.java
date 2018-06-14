@@ -275,6 +275,7 @@ public class ExecuteExamController implements Observer {
 			newDate = sdf.parse(date);
 			String currentTime = sdf.format(dt);
 			int solvedTime = exam.getExamDuration() - (stopWatch / 60);
+			//SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExamMessage newMessage = (SolvedExamMessage) messageFact.getMessage("put-solvedexams", newExam);
 			try {

@@ -12,6 +12,7 @@ public class UserInfo implements Serializable{
 	 */
 	private HashMap<String, String> teachersMap;	// key = user ID, value = User fullName
 	private ArrayList<Question> questions;
+	private ArrayList<SolvedExams> solvedExams;
 	private User userInfo;
 	/**
 	 * this constructor is called when we have users ID (e.g in questions) and we want to get their names;
@@ -19,7 +20,7 @@ public class UserInfo implements Serializable{
 	 * @param questions
 	 */
 	public UserInfo(HashMap<String, String> teachersMap, ArrayList<Question> questions) {
-		super();
+		super();	
 		this.teachersMap = teachersMap;
 		this.questions = questions;
 	}
@@ -46,6 +47,18 @@ public class UserInfo implements Serializable{
 	 */
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
+	}
+	/**
+	 * @return the solvedExams
+	 */
+	public ArrayList<SolvedExams> getSolvedExams() {
+		return solvedExams;
+	}
+	/**
+	 * @param solvedExams the solvedExams to set
+	 */
+	public void setSolvedExams(ArrayList<SolvedExams> solvedExams) {
+		this.solvedExams = solvedExams;
 	}
 	
 	

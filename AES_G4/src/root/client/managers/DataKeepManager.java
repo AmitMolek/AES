@@ -1,3 +1,4 @@
+
 package root.client.managers;
 
 import java.util.HashMap;
@@ -58,8 +59,9 @@ public class DataKeepManager {
 	 */
 	public boolean removeUser() {
 		if (user == null) return false;
+		String userid = user.getUserID();
 		user = null;
-		log.writeToLog(LineType.INFO, "Removed user from keep: " + user.getUserID());
+		log.writeToLog(LineType.INFO, "Removed user from keep: " + userid);
 		return true;
 	}
 	

@@ -1,7 +1,9 @@
 package root.dao.message;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import root.dao.app.SolvedExams;
 import root.dao.app.Subject;
 
 /**
@@ -11,9 +13,20 @@ import root.dao.app.Subject;
  */
 public class SubjectMessage extends AbstractMessage {
 
+	private HashMap<String, String> subjectsMap;			// key = subjectID, value = subject name
 	private ArrayList<Subject> teacherSubject;
+	//private ArrayList<String> subjectsID;
 	private String teacherId;
 	
+	/**
+	 * @author gal
+	 * Use this constructor when you have map with subjects ID' and want to fill map value's with subject names.
+	 * @param subjectsMap
+	 */
+	public SubjectMessage(String message, HashMap<String, String> subjectsMap) {
+		super(message);
+		this.subjectsMap = subjectsMap;
+	}
 	/**
 	 * Constructor for message get-subject from client
 	 * @param teacherId the teacher id
@@ -62,6 +75,18 @@ public class SubjectMessage extends AbstractMessage {
 		this.teacherSubject = teacherSubject;
 	}
 
+	/**
+	 * @return the subjectsMap
+	 */
+	public HashMap<String, String> getSubjectsMap() {
+		return subjectsMap;
+	}
+	/**
+	 * @param subjectsMap the subjectsMap to set
+	 */
+	public void setSubjectsMap(HashMap<String, String> subjectsMap) {
+		this.subjectsMap = subjectsMap;
+	}
 	/**
 	 * Returns subject as type
 	 */

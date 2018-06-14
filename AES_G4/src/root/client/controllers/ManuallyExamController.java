@@ -83,6 +83,7 @@ public class ManuallyExamController implements Observer {
 	private int stopWatch;
 	private Exam newExam;
 	private Timeline examStopWatch;
+
 	/**
 	 * This method occurs when the window is shown up.
 	 * 
@@ -152,7 +153,6 @@ public class ManuallyExamController implements Observer {
 
 		);
 
-
 	}
 
 	/**
@@ -163,8 +163,10 @@ public class ManuallyExamController implements Observer {
 	 */
 	@FXML
 	void getExamDocument(ActionEvent event) {
-		WordMessage newMessage = (WordMessage) messageFact.getMessage("get-wordexam", student.getUserID()+"-"+newExam.getExamId());
+		WordMessage newMessage = (WordMessage) messageFact.getMessage("get-wordexam",
+				student.getUserID() + "-" + newExam.getExamId());
 		btnSubmit.setDisable(false);
+		btnGetExam.setDisable(true);
 		try {
 			client.sendToServer(newMessage);
 		} catch (IOException e) {
@@ -178,10 +180,13 @@ public class ManuallyExamController implements Observer {
 	 * 
 	 * @param event
 	 */
+
 	@FXML
 	void SubmitExam(ActionEvent event) {
-		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(student.getUserID() + "-" + newExam.getExamId() + ".docx");
-		String LocalfilePath = "C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\" +student.getUserID() + "-" + newExam.getExamId() + ".docx";
+		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(
+				student.getUserID() + "-" + newExam.getExamId() + ".docx");
+		String LocalfilePath = "C:\\Users\\omer1\\git\\AES\\AES_G4\\src\\root\\client\\studentExam\\"
+				+ student.getUserID() + "-" + newExam.getExamId() + ".docx";
 
 		try {
 
@@ -234,7 +239,8 @@ public class ManuallyExamController implements Observer {
 				fos.write(wordFile.getMybytearray());
 				fos.close();
 				bis.close();
-				fis.close();				Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
+				fis.close();
+				Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.initOwner(mainApp);
 					alert.setTitle("Exam path");
