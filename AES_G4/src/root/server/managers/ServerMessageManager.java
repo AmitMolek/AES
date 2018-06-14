@@ -17,6 +17,7 @@ import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.AbstractMessage;
 import root.dao.message.CheatingExamsTestMessage;
+import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
@@ -35,16 +36,19 @@ import root.dao.message.UserMessage;
 import root.dao.message.UserSolvedExamsMessage;
 import root.dao.message.UserSubjectMessage;
 import root.dao.message.WordMessage;
+import root.server.AES_Server;
 import root.server.managers.dbmgr.GetFromDB;
 import root.server.managers.dbmgr.SetInDB;
+import root.server.managers.usersmgr.ExecuteStudentManager;
+import root.server.managers.usersmgr.PrincipleManager;
 import root.server.managers.worddocumentmgr.WordDocument;
 
 public class ServerMessageManager {
-	
+	private static ExecuteStudentManager examinees = new ExecuteStudentManager();
+	private static PrincipleManager principles=new PrincipleManager();
 	private static ServerMessageManager instance=null;
-	 private static MessageFactory message = MessageFactory.getInstance();;
-	 
-	 private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
+	private static MessageFactory message = MessageFactory.getInstance();;
+	private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
 	 
 	private ServerMessageManager() {
 		
@@ -76,6 +80,10 @@ public class ServerMessageManager {
 			return handleDeleteMessage(msg);
 		case "loggedout":
 			return handleLoggedOutMessage(msg);
+		case "changetimeduration":
+			return handleChangeTimeDurationRequest(msg);
+		case "confirmchangeduration":
+			return handleChangeTimeConfirm(msg);
 		default:
 			return null;
 		}
@@ -584,6 +592,10 @@ public class ServerMessageManager {
 				if (user.getUserPassword().equals(loginInformation.getPassword())) {
 					if (!usersManager.isUserLoggedIn(user.getUserID())) {
 						usersManager.addLoggedInUser(user.getUserID());
+						if(user.getUserPremission().equals("Principal"))
+						{
+							principles.addPrinciple(AES_Server.CLIENT);
+						}
 						return message.getMessage("ok-login",user);
 					}else {
 						return message.getMessage("error-login",new Exception("User is logged in"));
@@ -672,7 +684,12 @@ public class ServerMessageManager {
 				GetFromDB getExam = new GetFromDB();
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
 				if(exams!=null)
+				{
+					Exam e = exams.get(0);
+					examinees.addStudent(e.getExamId(),AES_Server.CLIENT);
 					return message.getMessage("ok-get-exams", exams);
+					
+				}
 				else
 					return new ErrorMessage(new NullPointerException("Exam not found"));
 			}
