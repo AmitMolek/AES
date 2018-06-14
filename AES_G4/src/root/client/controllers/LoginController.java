@@ -164,7 +164,7 @@ public class LoginController implements Observer {
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					screenManager.activate("questions");
+					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

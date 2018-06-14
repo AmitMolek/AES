@@ -6,43 +6,48 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootExecute" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.ExecuteExamController">
+<AnchorPane fx:id="rootExecute" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.ExecuteExamController">
    <children>
-      <BorderPane fx:id="myBorder" prefHeight="638.0" prefWidth="910.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="myBorder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="570.0" prefWidth="137.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="497.0" prefWidth="186.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea prefHeight="429.0" prefWidth="137.0" />
-               </children></VBox>
+                  <TextArea fx:id="txtNotes" editable="false" prefHeight="498.0" prefWidth="186.0" />
+               </children>
+            </VBox>
          </left>
          <center>
-            <AnchorPane fx:id="answersPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="answersPane" BorderPane.alignment="CENTER" />
          </center>
          <right>
-            <ScrollPane opacity="0.52" prefHeight="270.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane opacity="0.52" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="vbxQuetionsTab" prefHeight="422.0" prefWidth="197.0" />
+                  <VBox fx:id="vbxQuetionsTab" />
                </content>
             </ScrollPane>
          </right>
          <bottom>
-            <AnchorPane prefHeight="57.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="buttomPane" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="575.0" mnemonicParsing="false" text="submit" />
+                  <Button fx:id="btnSubmit" layoutX="575.0" mnemonicParsing="false" onAction="#submitPress" text="submit" />
                   <Button fx:id="btnNext" layoutX="974.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+                  <Button fx:id="btnBack" layoutX="189.0" mnemonicParsing="false" onAction="#prevQuestion" text="Back" />
                </children>
             </AnchorPane>
          </bottom>
          <top>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblTimer" alignment="CENTER" layoutX="761.0" layoutY="14.0" prefHeight="107.0" prefWidth="505.0" textAlignment="RIGHT">
+                  <Label fx:id="lblTimer" alignment="CENTER" layoutX="761.0" layoutY="14.0" textAlignment="RIGHT" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="53.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblInstruction" layoutX="521.0" layoutY="149.0" prefHeight="45.0" prefWidth="250.0" />
-                  <Label fx:id="lblDate" layoutX="14.0" layoutY="14.0" prefHeight="82.0" prefWidth="244.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1022.0" AnchorPane.topAnchor="14.0" />
+                  <Label fx:id="lblDate" layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="53.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </top>

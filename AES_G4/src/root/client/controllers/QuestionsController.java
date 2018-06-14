@@ -187,10 +187,12 @@ public class QuestionsController implements Observer{
     	//editQuestion.setDisable(true);
     	btnSearch.setDisable(true);
     	deleteQuestion.setDisable(true);
-    	
+    	//observabaleQuestions.clear();
+    	//questions.clear();
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();
+    	
     }
 
 
@@ -596,7 +598,18 @@ public class QuestionsController implements Observer{
 		this.questions = questions;
 	}
 	public void addQuestions(ArrayList<Question> questions) {
-		this.getQuestions().addAll(questions);
+		Boolean identFlag = false;
+		for (Question question: questions) {
+			for (Question question2: this.questions) {
+				if (question.getQuestionId().equals(question2.getQuestionId()) ){
+					identFlag = true; 
+				}
+			}
+			if (identFlag == false) {
+				this.getQuestions().add(question);
+			}
+		}
+		//this.getQuestions().addAll(questions);
 	}
 	/**
 	 * This method called when one want's to deSelect selection from table

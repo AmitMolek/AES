@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root fx:id="rootPane" prefHeight="400.0" prefWidth="881.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">  
+<fx:root fx:id="rootPane" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">  
  <children>
       <Label fx:id="lblQuestion" alignment="CENTER" prefHeight="45.0" prefWidth="981.0" text="Question">
          <font>
             <Font size="37.0" />
          </font></Label>
-      <GridPane fx:id="answersGrid" layoutX="36.0" layoutY="72.0" prefHeight="291.0" prefWidth="931.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="72.0">
+      <GridPane fx:id="answersGrid" layoutX="36.0" layoutY="72.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="72.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,5 +46,6 @@
             </Label>
          </children>
       </GridPane>
+      <Label fx:id="lblPoints" layoutX="597.0" layoutY="5.0" />
    </children>
 </fx:root>
