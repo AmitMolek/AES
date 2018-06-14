@@ -24,15 +24,15 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
 		ScreensManager.addScreen("check", "resources/view/check.fxml");
 		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
-<<<<<<< HEAD
+
 		ScreensManager.addScreen("executeExamScreen", "resources/view/ExecuteExamScreen.fxml");
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");		
 		ScreensManager.addScreen("manuallyExam", "resources/view/ManuallyExamScreen.fxml");
 		ScreensManager.addScreen("endExam", "resources/view/ExamSubmitScreen.fxml");	
-=======
+
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");
 		ScreensManager.addScreen("changeDurations", "resources/view/ChangeDurationTimeScreen.fxml");	
->>>>>>> refs/remotes/origin/Naor
+
 		ScreensManager.addScreen("testTeacherGradesStats", "resources/view/TestGradesTeacher.fxml");
 		ScreensManager.addScreen("testStudentGradesStats", "resources/view/TestGradesStudent.fxml");
 		ScreensManager.addScreen("testPrincipalGradesStats", "resources/view/TestGradesPrincipal.fxml");
