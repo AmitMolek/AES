@@ -180,7 +180,7 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);
+	            Alert alert = new Alert(AlertType.ERROR);//cs
 	            alert.initOwner(screenManager.getPrimaryStage());
 	            alert.setTitle("Invalid Fields");
 	            alert.setHeaderText("Please correct invalid fields");
