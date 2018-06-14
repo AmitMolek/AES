@@ -68,7 +68,7 @@ public class CheatingChecker {
 	 * Gets the exams from the database
 	 */
 	public void getExamsFromDB() {
-		exams = new GetFromDB().solvedExamCheatingTest(exam_id);
+		//exams = new GetFromDB().solvedExamCheatingTest(exam_id);
 	}
 	
 	/**

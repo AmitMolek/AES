@@ -9,12 +9,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-<<<<<<< HEAD
 import root.dao.app.CheatingExamTest;
-=======
 import com.sun.javafx.geom.transform.GeneralTransform3D;
-
->>>>>>> refs/remotes/origin/Naor
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -110,16 +106,6 @@ public class ServerMessageManager {
 
 
 
-	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
-		String[] msgContent = msg.getMsg().toLowerCase().split("-");
-		switch(msgContent[1]) {
-		case "questions":
-			return handleSetQuestionMessage(msg);
-		case "exams":
-			return handleSetExamMessage(msg);
-		}
-		return null;
-	}
 	
 
 	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
@@ -142,6 +128,17 @@ public class ServerMessageManager {
 		}
 	}
 	
+//	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
+//	String[] msgContent = msg.getMsg().toLowerCase().split("-");
+//	switch(msgContent[1]) {
+//	case "questions":
+//		return handleSetQuestionMessage(msg);
+//	case "exams":
+//		return handleSetExamMessage(msg);
+//	}
+//	return null;
+//}
+
 	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[1]) {
@@ -202,9 +199,9 @@ public class ServerMessageManager {
 	private static AbstractMessage handleGetCheatingExamsTest(AbstractMessage msg) {
 		CheatingExamsTestMessage examsMsg = (CheatingExamsTestMessage)msg;
 		GetFromDB getExams = new GetFromDB();
-		ArrayList<CheatingExamTest> dbExams = getExams.solvedExamCheatingTest(examsMsg.getExam_id());
+		//ArrayList<CheatingExamTest> dbExams = getExams.solvedExamCheatingTest(examsMsg.getExam_id());
 		
-		examsMsg.setExams(dbExams);
+		//examsMsg.setExams(dbExams);
 		return message.getOkGetMessage("ok-get-cheatingexamstest".split("-"), examsMsg);
 	}
 	
@@ -237,13 +234,10 @@ public class ServerMessageManager {
 				return handleGetSolvedExams(msgContent,msg);		// this methos handeles all Get requests from solvedExams table
 			case "word":
 				return handleGetWord(msg);
-<<<<<<< HEAD
 			case "wordexam":
-			return handleGetWordExam(msg);
-=======
+				//return handleGetWordExam(msg);
 			case "executed":
 				return handleGetExecutedExams(msg);
->>>>>>> refs/remotes/origin/Naor
 		}
 		
 		return null;
@@ -430,7 +424,7 @@ public class ServerMessageManager {
 		case "executeexam":
 			return handlePutExecuteExamMessage(msg);
 		case "wordexam":
-			return handlePutwordExamMessage(msg);
+			//return handlePutwordExamMessage(msg);
 		}
 		
 		return null;
@@ -554,10 +548,7 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
 		return sendMessage;
 	}
-<<<<<<< HEAD
-}
-=======
-	
+
 	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
 		principles.sendAll((ChangeTimeDurationRequest) msg);
@@ -579,4 +570,3 @@ public class ServerMessageManager {
 		
 	}
 }
->>>>>>> refs/remotes/origin/Naor
