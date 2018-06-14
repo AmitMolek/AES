@@ -102,6 +102,25 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 	
+	public boolean updateSolvedExamCheatingFlag(String user_id, String exam_id, boolean cheated) {
+		String cheatedStr = "no";
+		if (cheated) cheatedStr = "yes";
+		String updateQuery = "UPDATE `solved exams` SET cheating_flag = ? WHERE User_ID = ? AND exam_ID = ?;";
+		
+		try {
+			newStmt = conn.prepareStatement(updateQuery);
+			newStmt.setString(1, cheatedStr);
+			newStmt.setString(2, user_id);
+			newStmt.setString(3, exam_id);
+			newStmt.execute();
+			
+			return true;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public AbstractMessage AddExam(Exam exam) {
 		String insertExam = "insert into exams (exam_id, teacher_assembler_id, exam_original_allocated_duration, exams_state, lock_flag)" + " values (?, ?, ?, ?, ?);";
 		try {

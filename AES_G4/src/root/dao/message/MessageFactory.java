@@ -224,6 +224,8 @@ public class MessageFactory {
 		case "users":
 			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
 			else return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
+		case "cheatingexamstest":
+			return (CheatingExamsTestMessage)payload;
 		}
 		
 			

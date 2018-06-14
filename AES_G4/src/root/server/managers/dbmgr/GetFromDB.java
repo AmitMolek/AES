@@ -1,6 +1,7 @@
 package root.server.managers.dbmgr;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.Set;
 import com.mysql.jdbc.Statement;
 
 import root.dao.app.AlterDuration;
+import root.dao.app.CheatingExamTest;
 import root.dao.app.Course;
 import root.dao.app.Exam;
 import root.dao.app.Question;
@@ -281,9 +283,39 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id){
+		ArrayList<CheatingExamTest> exams = new ArrayList<>();
+		ResultSet rs;
+		
+		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id + "%'";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(solvedExamsSqlQuery + ";");
+			
+			while (rs.next()) {
+				String temp_user_id = rs.getString(1);
+				String temp_exam_id = rs.getString(2);
+				boolean cheating_flag = false;
+				
+				String temp_cheating_flag_str = rs.getString(11);
+				
+				if (temp_cheating_flag_str == "yes") cheating_flag = true;
+				
+				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, cheating_flag));
+			}
+			
+			rs.close();
+			return exams;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public ArrayList<SolvedExams> solvedExams(String... str) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
