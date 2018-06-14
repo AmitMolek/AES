@@ -165,7 +165,6 @@ public class LoginController implements Observer {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					screenManager.activate("home");
-
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

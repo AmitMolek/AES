@@ -91,6 +91,7 @@ public class AES_Server extends AbstractServer {
 	 * starts listening for connections.
 	 */
 	protected void serverStarted() {
+		(new CheatingChecker("010801")).setUserCheatingFlag("123456789", true);
 		System.out.println("Server listening for connections on port " + getPort());
 	}
 

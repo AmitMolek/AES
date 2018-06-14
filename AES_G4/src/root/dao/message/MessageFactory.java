@@ -62,6 +62,10 @@ public class MessageFactory {
 	}
 	
 	private AbstractMessage getErrorMessage(String[] msgContent, Object payload) {
+		switch (msgContent[1]) {
+			case "loggedout":
+				return new LogoutErrorMessage((Exception)payload);
+		}
 		return new ErrorMessage((Exception)payload);
 		
 		// TODO Auto-generated method stub
@@ -202,7 +206,8 @@ public class MessageFactory {
 			return new SimpleMessage("ok-put-"+msgContent[2]);
 		case "delete":
 			return new SimpleMessage("ok-delete-"+msgContent[2]);
-
+		case "loggedout":
+			return new SimpleMessage("ok-loggedout");
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
@@ -248,6 +253,8 @@ public class MessageFactory {
 		case "users":
 			if (payload instanceof HashMap<?, ?>)return new UserInfoMessage((HashMap<String,String>)payload);
 			else return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
+		case "cheatingexamstest":
+			return (CheatingExamsTestMessage)payload;
 		case "solvedexams":
 			if (payload instanceof ArrayList<?>)return new UserSolvedExamsMessage((ArrayList<SolvedExams>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));

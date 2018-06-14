@@ -39,19 +39,12 @@ import root.util.log.LogLine.LineType;
 public class ScreensManager extends Application {
 	
 	private static HashMap<String, String> screenMap = new HashMap<>();
-	
     private static Stage primaryStage = null;
-    
     private Stack<ScreenObject> screenStack = new Stack<ScreenObject>();
-    
     private ScreenObject currentScreen;
-    
     private final String cssPath = "resources/css/materialDesign.css";
-    
     private final String menuFxmlPath = "resources/view/Menu.fxml";
-
     private final String utilityBarPath = "resources/view/UtilityBar.fxml";
-    
     private final String aesIconPath = "/root/client/resources/images/icons/book.png";
     
     private Log log = Log.getInstance();

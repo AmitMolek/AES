@@ -3,7 +3,7 @@ package root.server.managers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+import root.dao.app.CheatingExamTest;
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -16,6 +16,7 @@ import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.AbstractMessage;
+import root.dao.message.CheatingExamsTestMessage;
 import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
@@ -418,6 +419,15 @@ public class ServerMessageManager {
 	}
 
 
+	private static AbstractMessage handleGetCheatingExamsTest(AbstractMessage msg) {
+		CheatingExamsTestMessage examsMsg = (CheatingExamsTestMessage)msg;
+		GetFromDB getExams = new GetFromDB();
+		ArrayList<CheatingExamTest> dbExams = getExams.solvedExamCheatingTest(examsMsg.getExam_id());
+		
+		examsMsg.setExams(dbExams);
+		return message.getOkGetMessage("ok-get-cheatingexamstest".split("-"), examsMsg);
+	}
+	
 	 /** 
 	 * @param msg type of get message
 	 * @return new message for client
@@ -441,6 +451,8 @@ public class ServerMessageManager {
 				return handleFetUserMessage(msgContent,msg);
 			case "solvedExamByTeacherId":
 				return handleGetExamByTeacherID(msg);
+			case "cheatingexamstest":
+				return handleGetCheatingExamsTest(msg);
 			case "solvedexams":
 				return handleGetSolvedExams(msgContent,msg);		// this methos handeles all Get requests from solvedExams table
 			case "word":
