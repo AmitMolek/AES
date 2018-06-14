@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="517.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.ChangeDurationTimeCntroller">
+   <children>
+      <TableView fx:id="exeTable" layoutX="84.0" layoutY="109.0" prefHeight="299.0" prefWidth="821.0">
+        <columns>
+          <TableColumn fx:id="examId" prefWidth="133.0" text="exan_id" />
+          <TableColumn fx:id="startTime" prefWidth="165.0" text="Time" />
+            <TableColumn fx:id="examPassword" prefWidth="159.0" text="Password" />
+            <TableColumn fx:id="examType" prefWidth="153.0" text="Type" />
+            <TableColumn fx:id="durationTime" onEditCommit="#updateTime" prefWidth="207.0" text="Duration" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

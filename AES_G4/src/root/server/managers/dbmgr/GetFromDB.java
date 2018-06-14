@@ -284,6 +284,31 @@ public class GetFromDB implements DbManagerInterface {
 		
 	
 	}
+	
+	public ArrayList<ExecuteExam> getExecutedExams() {
+		ArrayList<ExecuteExam> arr = new ArrayList<ExecuteExam>();
+		String getExecuted = "select exe.exam_id as id,\r\n" + 
+				"exe.exam_date_start as start_date,\r\n" + 
+				"exe.four_Digit as pass,\r\n" + 
+				"exe.exam_type as examType,\r\n" + 
+				"ex.exam_original_allocated_duration as duration\r\n" + 
+				"from `execute exams` exe,exams ex\r\n" + 
+				"where exe.exam_id=ex.exam_id;";
+		ResultSet rs;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(getExecuted);
+			while(rs.next()) {
+				ExecuteExam ex = new ExecuteExam(rs.getString("id"),rs.getDate("start_date").toString(), rs.getString("pass"), rs.getString("examType"), rs.getInt("duration"));
+				arr.add(ex);
+			}
+			return arr;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arr;		
+	}
 
 	/**
 	 * @author Omer Haimovich

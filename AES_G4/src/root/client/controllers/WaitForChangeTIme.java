@@ -14,14 +14,8 @@ public class WaitForChangeTIme implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Platform.runLater(()->{
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.initOwner(screenManager.getPrimaryStage());
-			alert.setTitle("Change request");
-			alert.setHeaderText("Change exam duration time");
-			alert.setContentText("asdasd");
-            alert.showAndWait();       
-		});
+		int time = (int)arg1;
+		ExamDuration.setTime(time);
 	}
 
 }

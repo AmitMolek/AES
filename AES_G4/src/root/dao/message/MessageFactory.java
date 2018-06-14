@@ -142,6 +142,8 @@ public class MessageFactory {
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
 			return new WordMessage((Exam) payload);	
+		case "executed":
+			return new ExecutedExamsMessage();
 		default:
 			break;
 		}

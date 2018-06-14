@@ -26,12 +26,12 @@ public class ExecuteStudentManager {
 		studentInExecute.remove(examId, client);
 	}
 	
-	public void sendAll(String examID) {
+	public void sendAll(String examID, int newTime) {
 		ArrayList<ConnectionToClient> ar = studentInExecute.get(examID);
 		if(ar!=null) {
 			for(ConnectionToClient c:ar) {
 				try {
-					c.sendToClient(new SimpleMessage("stam bdika"));
+					c.sendToClient(newTime);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -165,10 +165,10 @@ public class LoginController implements Observer {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					if(user.getUserPremission().equals("Principal")) {
-						client.deleteObservers();//Cham
+						client.deleteObservers();
 						client.addObserver(new WaitForPirncipleMessage());
 					}
-					screenManager.activate("home");
+					screenManager.activate("changeDurations");
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

@@ -3,6 +3,7 @@ package root.server.managers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.sun.javafx.geom.transform.GeneralTransform3D;
 
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
@@ -21,6 +22,7 @@ import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExecuteExamMessage;
+import root.dao.message.ExecutedExamsMessage;
 import root.dao.message.LoggedOutMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
@@ -457,6 +459,8 @@ public class ServerMessageManager {
 				return handleGetSolvedExams(msgContent,msg);		// this methos handeles all Get requests from solvedExams table
 			case "word":
 				return handleGetWord(msg);
+			case "executed":
+				return handleGetExecutedExams(msg);
 		}
 		
 		return null;
@@ -769,17 +773,22 @@ public class ServerMessageManager {
 	
 	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
-		cht.setMessageFromTeacher("I just want to change");
-		cht.setExamId("010801");
 		principles.sendAll((ChangeTimeDurationRequest) msg);
 		return message.getMessage("SimpleMessage", null) ;
 	}
 	
 	private static AbstractMessage handleChangeTimeConfirm(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
-		examinees.sendAll(cht.getExamId());
-		return message.getMessage("SimpleMessage", null) ;
-
+		examinees.sendAll(cht.getExamId(),cht.getNewTime());
+		return message.getMessage("SimpleMessage", null) ;		
+	}
+	
+	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
+		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
+		GetFromDB get = new GetFromDB();
+		ArrayList<ExecuteExam> arr = get.getExecutedExams();
+		executedMsg.addExams(arr);
+		return msg;
 		
 	}
 }
