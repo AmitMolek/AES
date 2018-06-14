@@ -151,35 +151,7 @@ public class UpdateDeleteExamController implements Observer {
 		}
 	}
 
-	/**
-	 * Method that occurs when teacher press Delete button
-	 * 
-	 * @param event
-	 *            on action in delete button
-	 */
-	@FXML
-	void DeleteExam(ActionEvent event) {
-		Exam exam = tblExams.getSelectionModel().getSelectedItem();
-		if (exam == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.initOwner(mainApp);
-			alert.setTitle("Invalid Fields");
-			alert.setHeaderText("Please correct invalid fields");
-			alert.setContentText("You did not select any exam");
-			alert.showAndWait();
-			return;
-		}
-		ObservableList<Exam> examSelected;
-		examSelected = tblExams.getSelectionModel().getSelectedItems();
-		Exam removeExam = examSelected.get(0);
-		ExamMessage deleteExam = (ExamMessage) messageFact.getMessage("delete-exams", removeExam);
-		try {
-			client.sendToServer(deleteExam);
-		} catch (IOException e) {
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * This method occurs when the server send message to the client
