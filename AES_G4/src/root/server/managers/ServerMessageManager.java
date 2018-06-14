@@ -4,15 +4,20 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.opencsv.CSVWriter;
 
+import root.client.controllers.QuestionInExamObject;
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
+import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
 import root.dao.app.ExecuteExam;
 import root.dao.app.LoginInfo;
@@ -26,6 +31,7 @@ import root.dao.message.AbstractMessage;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CheatingExamsTestMessage;
 import root.dao.message.CourseMessage;
+import root.dao.message.CsvMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExecuteExamMessage;
@@ -58,6 +64,7 @@ public class ServerMessageManager {
 	private static MessageFactory message = MessageFactory.getInstance();
 	public static String PATH;
 	public static String PATHSOLUTION;
+	public static String PATHCSV;
 	private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
 
 	private ServerMessageManager() {
@@ -66,6 +73,7 @@ public class ServerMessageManager {
 		String fullPath = s + "//src//root//server//executeExam//";
 		PATH = fullPath;
 		PATHSOLUTION = s + "//src//root//server//solvedExam//";
+		PATHCSV = s+ "//src//root//server//csvExam//";
 	}
 
 	public static ServerMessageManager getInstance() {
@@ -236,6 +244,8 @@ public class ServerMessageManager {
 			return handleGetWord(msg);
 		case "wordexam":
 			return handleGetWordExam(msg);
+		case "csv":
+			return handleGetCsv(msg);
 		}
 		return null;
 	}
@@ -621,5 +631,46 @@ public class ServerMessageManager {
 			System.out.println("Error send (Files)msg) to Server");
 		}
 		return null;
+	}
+	
+	private static AbstractMessage handleGetCsv(AbstractMessage msg) {
+		int i = 0;
+		SimpleMessage sendMessage;
+		CSVWriter csvWriter = null;
+		CsvMessage newMessage = (CsvMessage)msg;
+		CsvDetails csv = newMessage.getCsv();
+		Exam exam = csv.getExamId();
+		User student = csv.getUserId();
+		String points = null;
+		ArrayList<QuestionInExam> examQuestions = exam.getExamQuestions();
+		ArrayList<QuestionInExamObject> question = csv.getQuestionsInExamObject();
+		try {
+			csvWriter = new CSVWriter(new FileWriter(PATHCSV + student.getUserID() + "-"+exam.getExamId()+".csv"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String[]>toCsv = new ArrayList<String[]>();
+		toCsv.add(new String[] {"examID","userID","QuestionID","The question","answer1","answer2","answer3","answer4","Selected answer","CorrectAnswer","Points"});
+		for(QuestionInExamObject q: question) {
+			Question newQuestion = examQuestions.get(i).getQuestion();
+			if(q.getCorrectAns() == q.getSelectedAns())
+				points = Integer.toString(q.getQuestionGrade());
+			else
+				points = "0";
+			toCsv.add(new String[] {exam.getExamId(),student.getUserID(),newQuestion.getQuestionId(),newQuestion.getQuestionText(),newQuestion.getAns1(),newQuestion.getAns2(),newQuestion.getAns3(),newQuestion.getAns4(),Integer.toString(q.getSelectedAns()),Integer.toString(newQuestion.getCorrectAns()),points});
+		}
+		
+		csvWriter.writeAll(toCsv);
+        try {
+			csvWriter.close();
+			sendMessage = (SimpleMessage)message.getMessage("ok-get-csv", null);
+			return sendMessage;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 }

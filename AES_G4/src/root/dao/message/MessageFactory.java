@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import root.dao.app.Course;
+import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
 import root.dao.app.ExecuteExam;
 import root.dao.app.LoginInfo;
@@ -154,6 +155,8 @@ public class MessageFactory {
 			return new WordMessage((String)payload);	
 		case "executed":
 			return new ExecutedExamsMessage();
+		case "csv":
+			return new CsvMessage((CsvDetails)payload);
 		default:
 			break;
 		}
@@ -270,6 +273,8 @@ public class MessageFactory {
 			return new SimpleMessage("ok-get-" + msgContent[2]);
 		case "wordexam":
 			return new WordMessage("ok-get-" + msgContent[2],(MyFile)payload);
+		case "csv":
+			return new SimpleMessage("ok-get-" + msgContent[2]);
 		}	
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
