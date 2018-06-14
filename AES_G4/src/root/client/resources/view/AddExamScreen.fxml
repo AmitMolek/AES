@@ -45,7 +45,7 @@
                   <FlowPane fx:id="myFlow" prefHeight="168.0" prefWidth="894.0" />
                </content>
             </ScrollPane>
-            <Button fx:id="btnAddQuestion" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddQuestionToExam" text="Add Question" />
+            <Button fx:id="btnAddQuestion" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddQuestionToTheExam" text="Add Question" />
             <Button fx:id="btnAddToExam" layoutX="549.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddToTheExamForm" text="Add the question to the exam" />
          </children>
       </AnchorPane>

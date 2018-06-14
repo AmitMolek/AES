@@ -10,8 +10,12 @@ import root.dao.app.Exam;
 public class WordMessage extends AbstractMessage  {
 
 	private Exam exam;
+	private MyFile file;
+	private String userId;
+	private MyFile newFile;
 	
-	
+
+
 	
 	/**
 	 * Constructor for client message
@@ -20,6 +24,16 @@ public class WordMessage extends AbstractMessage  {
 	public WordMessage(Exam exam) {
 		super("get-word");
 		this.exam = exam;
+	}
+	
+	public WordMessage(String userId) {
+		super("get-wordexam");
+		this.userId = userId;
+	}
+	
+	public WordMessage(String message,MyFile newFile) {
+		super(message);
+		this.newFile = newFile;
 	}
 
 	/**
@@ -38,7 +52,13 @@ public class WordMessage extends AbstractMessage  {
 		this.exam = exam;
 	}
 
-
+	/**
+	 * 
+	 * @return the user id
+	 */
+	public String getUserId() {
+		return userId;
+	}
 
 	/**
 	 * Returns type word
@@ -47,5 +67,13 @@ public class WordMessage extends AbstractMessage  {
 	public String getType() {
 		return "word";
 	}
+	/**
+	 * 
+	 * @return the new file
+	 */
+	public MyFile getNewFile() {
+		return newFile;
+	}
+
 
 }

@@ -57,9 +57,9 @@ public class Enter4digitPasswordController implements Observer {
 		txt4Digit.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
 		scrMgr = ScreensManager.getInstance();
 		dataKeeper = DataKeepManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
+		client = (ObservableClient) (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
-		client.openConnection();
+
 	}
 
 	/**
@@ -92,14 +92,23 @@ public class Enter4digitPasswordController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			examMessage = (ExamMessage) arg1;
 			ArrayList<Exam> examsList = examMessage.getExams();
-			Exam newExam = examsList.get(0);
+			Exam newExam = examsList.get(0);	
+			dataKeeper.keepObject("RunningExam", newExam);
 			if (newExam.getExecuteExam().getExamType().equals("auto")) {
-				dataKeeper.keepObject("RunningExam", newExam);
-				client.deleteObservers();
-				client.addObserver(new WaitForChangeTIme());
 				Platform.runLater(() -> {
 					try {
 						scrMgr.activate("executefull");
+					} catch (IOException e) {
+						log.writeToLog(LogLine.LineType.ERROR, "Trying to activate wrong window");
+						e.printStackTrace();
+					}
+				});
+				
+			}
+			else {
+				Platform.runLater(() -> {
+					try {
+						scrMgr.activate("manuallyExam");
 					} catch (IOException e) {
 						log.writeToLog(LogLine.LineType.ERROR, "Trying to activate wrong window");
 						e.printStackTrace();

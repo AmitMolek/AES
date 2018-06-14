@@ -99,7 +99,9 @@ public class MessageFactory {
 		case "solvedexams":
 			return new SolvedExamMessage((SolvedExams) payload);
 		case "executeexam":
-			return new ExecuteExamMessage((ExecuteExam)payload);
+			return new ExecuteExamMessage((ExecuteExam) payload);
+		case "wordexam":
+			return new WordMessage("put-wordexam",(MyFile)payload);
 		}
 		return null;
 	}
@@ -107,7 +109,9 @@ public class MessageFactory {
 	private AbstractMessage getSetMessage(String[] msgContent, Object payload) {
 		switch (msgContent[1]) {
 		case "questions":
-			return new QuestionsMessage("set-questions", (Question)payload);
+			return new QuestionsMessage("set-questions", (Question) payload);
+		case "exams":
+			return new ExamMessage("set-exams",(Exam)payload);
 		default:
 			break;
 		}
@@ -145,7 +149,9 @@ public class MessageFactory {
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
-			return new WordMessage((Exam) payload);	
+			return new WordMessage((Exam) payload);
+		case "wordexam":
+			return new WordMessage((String)payload);
 		default:
 			break;
 		}
@@ -271,6 +277,4 @@ public class MessageFactory {
 		message.setMsg("get-solvedExamByTeacherId");
 		return message;
 	}
-	
-
 }
