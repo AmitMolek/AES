@@ -151,9 +151,7 @@ public class MessageFactory {
 		case "word":
 			return new WordMessage((Exam) payload);
 		case "wordexam":
-			return new WordMessage((String)payload);
-
-		//	return new WordMessage((Exam) payload);	
+			return new WordMessage((String)payload);	
 		case "executed":
 			return new ExecutedExamsMessage();
 		default:
@@ -270,9 +268,9 @@ public class MessageFactory {
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "word":
 			return new SimpleMessage("ok-get-" + msgContent[2]);
-		}
-		
-			
+		case "wordexam":
+			return new WordMessage("ok-get-" + msgContent[2],(MyFile)payload);
+		}	
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	

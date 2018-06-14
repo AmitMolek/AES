@@ -127,17 +127,6 @@ public class ServerMessageManager {
 			return message.getMessage(error_msg, new Exception("User not logged in"));
 		}
 	}
-	
-//	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
-//	String[] msgContent = msg.getMsg().toLowerCase().split("-");
-//	switch(msgContent[1]) {
-//	case "questions":
-//		return handleSetQuestionMessage(msg);
-//	case "exams":
-//		return handleSetExamMessage(msg);
-//	}
-//	return null;
-//}
 
 	private static AbstractMessage handleSetMessage(AbstractMessage msg) {	// when wanting to change data in the DB change existing data
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
