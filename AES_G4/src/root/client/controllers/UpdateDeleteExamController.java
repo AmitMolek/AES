@@ -60,7 +60,6 @@ public class UpdateDeleteExamController implements Observer {
 
 	@FXML
 	private GridPane gridPane;
-
 	private MessageFactory messageFact;
 	private ObservableClient client;
 	private ScreensManager screenManager;

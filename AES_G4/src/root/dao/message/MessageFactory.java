@@ -149,9 +149,15 @@ public class MessageFactory {
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
+<<<<<<< HEAD
 			return new WordMessage((Exam) payload);
 		case "wordexam":
 			return new WordMessage((String)payload);
+=======
+			return new WordMessage((Exam) payload);	
+		case "executed":
+			return new ExecutedExamsMessage();
+>>>>>>> refs/remotes/origin/Naor
 		default:
 			break;
 		}

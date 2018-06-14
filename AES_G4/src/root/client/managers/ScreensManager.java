@@ -171,8 +171,8 @@ public class ScreensManager extends Application {
     	if (isFullscreenScreen) {
     		AnchorPane fullRoot = new AnchorPane();
     		fullRoot.getChildren().add(screenObj.getScreenPane());
-    		screenObj.getScreenPane().prefHeightProperty().bind(fullRoot.heightProperty());
-    		screenObj.getScreenPane().prefWidthProperty().bind(fullRoot.widthProperty());
+    		//screenObj.getScreenPane().prefHeightProperty().bind(fullRoot.heightProperty());
+    		//screenObj.getScreenPane().prefWidthProperty().bind(fullRoot.widthProperty());
     		Scene fullScene = new Scene(fullRoot);
     		fullScene.getStylesheets().add(Main.class.getResource(cssPath).toExternalForm());
     		primaryStage.setScene(fullScene);

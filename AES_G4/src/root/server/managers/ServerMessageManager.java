@@ -9,7 +9,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+<<<<<<< HEAD
 import root.dao.app.CheatingExamTest;
+=======
+import com.sun.javafx.geom.transform.GeneralTransform3D;
+
+>>>>>>> refs/remotes/origin/Naor
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.Exam;
@@ -28,6 +33,7 @@ import root.dao.message.CourseMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExecuteExamMessage;
+import root.dao.message.ExecutedExamsMessage;
 import root.dao.message.LoggedOutMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
@@ -231,8 +237,13 @@ public class ServerMessageManager {
 				return handleGetSolvedExams(msgContent,msg);		// this methos handeles all Get requests from solvedExams table
 			case "word":
 				return handleGetWord(msg);
+<<<<<<< HEAD
 			case "wordexam":
 			return handleGetWordExam(msg);
+=======
+			case "executed":
+				return handleGetExecutedExams(msg);
+>>>>>>> refs/remotes/origin/Naor
 		}
 		
 		return null;
@@ -543,4 +554,29 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
 		return sendMessage;
 	}
+<<<<<<< HEAD
 }
+=======
+	
+	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
+		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
+		principles.sendAll((ChangeTimeDurationRequest) msg);
+		return message.getMessage("SimpleMessage", null) ;
+	}
+	
+	private static AbstractMessage handleChangeTimeConfirm(AbstractMessage msg) {
+		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
+		examinees.sendAll(cht.getExamId(),cht.getNewTime());
+		return message.getMessage("SimpleMessage", null) ;		
+	}
+	
+	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
+		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
+		GetFromDB get = new GetFromDB();
+		ArrayList<ExecuteExam> arr = get.getExecutedExams();
+		executedMsg.addExams(arr);
+		return msg;
+		
+	}
+}
+>>>>>>> refs/remotes/origin/Naor

@@ -148,20 +148,20 @@ public class ExecuteExamController implements Observer {
 		}
 
 		txtNotes.setText(intructText.get(displayQuestion));
-		stopWatch = exam.getExamDuration() * 60;
+		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				int hours = (stopWatch / 60) / 60;
-				int minuts = (stopWatch / 60) % 60;
-				int seconds = stopWatch % 60;
+				int hours = (ExamDuration.getTime() / 60) / 60;
+				int minuts = (ExamDuration.getTime() / 60) % 60;
+				int seconds = ExamDuration.getTime() % 60;
 				lblTimer.setText("" + hours + ":" + minuts + ":" + seconds);
-				if (stopWatch == 0) {
+				if (ExamDuration.getTime() == 0) {
 					status = "interrupted";
 					stopExam();
 				}
-				stopWatch--;
+				ExamDuration.minusOne();
 			}
 		}));
 		examStopWatch.setCycleCount(Timeline.INDEFINITE);
@@ -305,6 +305,10 @@ public class ExecuteExamController implements Observer {
 				}
 			});
 		}
+	}
+	
+	public void changeTime(int newTime) {
+		stopWatch = newTime;
 	}
 
 }

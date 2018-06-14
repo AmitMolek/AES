@@ -163,17 +163,21 @@ public class LoginController implements Observer {
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-<<<<<<< HEAD
-				try {	
-					AddUserSpecificScreens();
-					screenManager.activate("check");
-=======
 				try {
+<<<<<<< HEAD
 					screenManager.activate("home");
 <<<<<<< HEAD
 =======
 
 >>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/Naor
+=======
+					if(user.getUserPremission().equals("Principal")) {
+						client.deleteObservers();
+						client.addObserver(new WaitForPirncipleMessage());
+					}
+					screenManager.activate("changeDurations");
+					
 >>>>>>> refs/remotes/origin/Naor
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -185,7 +189,7 @@ public class LoginController implements Observer {
 		else if (arg1 instanceof ErrorMessage) {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);
+	            Alert alert = new Alert(AlertType.ERROR);//cs
 	            alert.initOwner(screenManager.getPrimaryStage());
 	            alert.setTitle("Invalid Fields");
 	            alert.setHeaderText("Please correct invalid fields");
@@ -195,22 +199,4 @@ public class LoginController implements Observer {
 			});
 		}
 	}
-	
-//<<<<<<< HEAD
-//=======
-//	public void AddUserSpecificScreens() {
-//		if(user.getUserPremission().equals("Teacher")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
-//		}
-//		else if(user.getUserPremission().equals("Student")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
-//		}
-//		else if(user.getUserPremission().equals("Principal")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
-//			client.deleteObservers();
-//			client.addObserver(new WaitForPirncipleMessage());
-//		}
-//	}
-//	
-//>>>>>>> refs/remotes/origin/Naor
 }

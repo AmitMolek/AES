@@ -12,6 +12,16 @@ public class ChangeTimeDurationRequest extends AbstractMessage{
 	
 	private String examId;
 	
+	private int newTime;
+	
+	public int getNewTime() {
+		return newTime;
+	}
+
+	public void setNewTime(int newTime) {
+		this.newTime = newTime;
+	}
+
 	public ChangeTimeDurationRequest() {
 		super.setMsg("changetimeduration");
 	}
