@@ -165,7 +165,7 @@ public class LoginController implements Observer {
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					if(user.getUserPremission().equals("Principal")) {
-						client.deleteObservers();
+						client.deleteObservers();//Cham
 						client.addObserver(new WaitForPirncipleMessage());
 					}
 					screenManager.activate("home");
@@ -190,22 +190,4 @@ public class LoginController implements Observer {
 			});
 		}
 	}
-	
-//<<<<<<< HEAD
-//=======
-//	public void AddUserSpecificScreens() {
-//		if(user.getUserPremission().equals("Teacher")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
-//		}
-//		else if(user.getUserPremission().equals("Student")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
-//		}
-//		else if(user.getUserPremission().equals("Principal")) {
-//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
-//			client.deleteObservers();
-//			client.addObserver(new WaitForPirncipleMessage());
-//		}
-//	}
-//	
-//>>>>>>> refs/remotes/origin/Naor
 }
