@@ -13,6 +13,7 @@ public class Main extends ScreensManager {
 		Log log = Log.getInstance();
 		log.writeToLog(LineType.INFO, "Application started", false);
 		
+		ScreensManager.addScreen("solvedExams","resources/view/ViewSolvedExams.fxml");
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");		
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");
@@ -24,7 +25,10 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("check", "resources/view/check.fxml");
 		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");
-
+		
+		ScreensManager.addScreen("testTeacherGradesStats", "resources/view/TestGradesTeacher.fxml");
+		ScreensManager.addScreen("testStudentGradesStats", "resources/view/TestGradesStudent.fxml");
+		ScreensManager.addScreen("testPrincipalGradesStats", "resources/view/TestGradesPrincipal.fxml");
 		launch(args);
 	}
 	

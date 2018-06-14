@@ -142,7 +142,6 @@ public class QuestionsController implements Observer{
 
 	public QuestionsController() {
 		super();
-	
 	}
 
 	

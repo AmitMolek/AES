@@ -108,9 +108,52 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 */
+	/**
+	 * @author gal
+	 * @param str, if null, get all courses, else: get the course relevat to the desired condition.
+	 */
 	@Override
 	public ArrayList<Course> courses(String... str) {
-		// TODO Auto-generated method stub
+		ArrayList<Course> courses = new ArrayList<Course>();
+		ResultSet rs;
+		String selectAllCourses = "SELECT * FROM " + " `courses`";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(selectAllCourses);	// dumb initialize rs
+			switch(str.length){
+			case 0:
+				//courseInSubjectQuery = courseInSubjectQuery + ";";
+				rs = stmt.executeQuery(selectAllCourses+";");
+				// by now, rs filled with result from wanted query.
+				while(rs.next()) {
+					courses.add(new Course(rs.getString(1),rs.getString(2)));
+				}
+				rs.close();
+				return courses;
+
+			// from here you can build any condition you want, relevant to any course related query, 
+			// just enter string representing tables you want to want to involve. 
+			// example:
+			case 1:
+				// in this case we have str with one string in it, let say we want to bring all courses for a specific subject:
+				switch(str[0].length()) {
+				case 2:// the length of subject ID
+					String getSpecificUser =  ", `courses in subject`" + " WHERE `courses in subject`.subject_id = "+"\'"+str[0]+"\'" + " And  courses.course_id = `courses in subject`.course_id";
+					//String courseInSubjectQuery = selectAllCourses+ getSpecificUser;
+					rs = stmt.executeQuery(selectAllCourses+ getSpecificUser + ";");
+					// by now, rs filled with result from wanted query.
+					while(rs.next()) {
+						courses.add(new Course(rs.getString(1),rs.getString(2)));
+					}
+					rs.close();
+					return courses;
+				}
+				break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
 		return null;
 	}
 
@@ -289,9 +332,73 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * @author gal
+	 * @param str - size== 0: retreive all solved exams, if size == 9, retrieve all solvedExams of this userID, if size==6, retrieve all solved exams of this specific
+	 */
 	@Override
 	public ArrayList<SolvedExams> solvedExams(String... str) {
-		// TODO Auto-generated method stub
+		ArrayList<SolvedExams> solvedExams = new ArrayList<SolvedExams>();
+		ResultSet rs;
+		String SubjectsQuery =  "SELECT * FROM `solved exams`";// fetch all subjects
+		try {
+			stmt = conn.createStatement();
+			switch(str.length) {
+				case 0: // if str empty retrieve all solvedExams
+					rs = stmt.executeQuery(SubjectsQuery+";");
+					while(rs.next()) {
+//						1private String examID;
+//						2private String sovingStudentID;
+//						3private int examGrade;
+//						4private int solveDurationTime;
+//						5private String submittedOrInterruptedFlag;
+//						6private timeStamp examDateTime;
+//						7private String teacherNotes;
+//						8private String gradeAlturationExplanation;
+//						9private String approvingTeacherID;
+//						10private String calculatedGradeApprovalStateByTeacher;
+//						11private String cheatingFlag;
+						
+						
+						solvedExams.add(new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11)) );
+					}
+					rs.close();
+					return solvedExams;				// Return A list of all solved exams
+				case (1):		// if str.length == 1, check if its userID or examID
+					switch (str[0].length()) {
+						case(9):// if str.length==9, str contain user id retrieve only his SolvedExams
+							/**
+							 * @author gal
+							 * given a student id, this query will return all his solved exams.
+							 */
+							String userSolvedExamsQuery = " WHERE `solved exams`.`User_ID` in (SELECT `solved exams`.`User_ID` FROM `solved exams` WHERE  `solved exams`.`User_ID` = "+str[0]+");";
+							rs = stmt.executeQuery(SubjectsQuery+userSolvedExamsQuery);
+							while(rs.next()) {
+								solvedExams.add(new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11)) );
+							}
+							rs.close();
+							return solvedExams;			// Return A list of all solved Exams of this USERID
+						case (6):	// if str.length==6, str contain Exams ID. retrieve ll solved exams of this Exam's ID
+							/**
+							 * @author gal
+							 * given a Exam id, this query will return all solved exams relevant for this exam's ID.
+							 */
+							String examsSolvedExamsQuery = " WHERE `solved exams`.`exam_ID` in (SELECT `solved exams`.`exam_ID` FROM `solved exams` WHERE  `solved exams`.`exam_ID` = "+str[0]+");";
+							rs = stmt.executeQuery(SubjectsQuery+examsSolvedExamsQuery);
+							while(rs.next()) {
+								solvedExams.add(new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11)) );
+							}
+							rs.close();
+							return solvedExams;			// Return A list of all subjects a teacher teach	
+						default:
+							break;
+					}// end inner switch
+				}// end switch			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
 		return null;
 	}
 

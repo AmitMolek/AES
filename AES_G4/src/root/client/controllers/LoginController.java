@@ -122,6 +122,8 @@ public class LoginController implements Observer {
     	screenManager = ScreensManager.getInstance();
     	serverIPpane.setVisible(false);
 
+    	screenManager.clearStack();
+    	
     	tryGettingServerIP();
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
@@ -161,9 +163,15 @@ public class LoginController implements Observer {
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+<<<<<<< HEAD
 				try {	
 					AddUserSpecificScreens();
 					screenManager.activate("check");
+=======
+				try {
+					screenManager.activate("home");
+
+>>>>>>> refs/remotes/origin/master
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -172,7 +180,6 @@ public class LoginController implements Observer {
 			});
 		}
 		else if (arg1 instanceof ErrorMessage) {
-			System.out.println(arg1);
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
 				// Show the error message.
 	            Alert alert = new Alert(AlertType.ERROR);
@@ -186,18 +193,21 @@ public class LoginController implements Observer {
 		}
 	}
 	
-	public void AddUserSpecificScreens() {
-		if(user.getUserPremission().equals("Teacher")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
-		}
-		else if(user.getUserPremission().equals("Student")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
-		}
-		else if(user.getUserPremission().equals("Principal")) {
-			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
-			client.deleteObservers();
-			client.addObserver(new WaitForPirncipleMessage());
-		}
-	}
-	
+//<<<<<<< HEAD
+//=======
+//	public void AddUserSpecificScreens() {
+//		if(user.getUserPremission().equals("Teacher")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesTeacher.fxml");
+//		}
+//		else if(user.getUserPremission().equals("Student")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesStudent.fxml");
+//		}
+//		else if(user.getUserPremission().equals("Principal")) {
+//			screenManager.addScreen("testGradesStats", "resources/view/TestGradesPrincipal.fxml");
+//			client.deleteObservers();
+//			client.addObserver(new WaitForPirncipleMessage());
+//		}
+//	}
+//	
+//>>>>>>> refs/remotes/origin/Naor
 }

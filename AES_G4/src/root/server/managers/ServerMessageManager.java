@@ -32,6 +32,7 @@ import root.dao.message.SubjectMessage;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
 import root.dao.message.UserMessage;
+import root.dao.message.UserSolvedExamsMessage;
 import root.dao.message.UserSubjectMessage;
 import root.dao.message.WordMessage;
 import root.server.AES_Server;
@@ -355,7 +356,7 @@ public class ServerMessageManager {
 	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
 		LoggedOutMessage loggedMsg = (LoggedOutMessage) msg;
 		String user_id = loggedMsg.getUserID();
-		String error_msg = "error-loggedOut";
+		String error_msg = "error-loggedout";
 		
 		if (user_id == null) {
 			return message.getMessage(error_msg, new Exception("User id is null"));
@@ -380,7 +381,6 @@ public class ServerMessageManager {
 		case "exams":
 			return handleSetExamMessage(msg);
 		}
-		
 		return null;
 	}
 	/**
@@ -430,7 +430,7 @@ public class ServerMessageManager {
 	}
 
 
-	 /* 
+	 /** 
 	 * @param msg type of get message
 	 * @return new message for client
 	 */
@@ -439,8 +439,12 @@ public class ServerMessageManager {
 		switch(msgContent[1]) {
 			case "subjects":
 				return handleSubjectMessage(msg);
+			case "subjectbysubjectid":
+				return handleGetSubjectBySubjectIDMessage(msg);
 			case "courses":
 				return handleCourseMessage(msg);
+			case "coursesbyid":
+				return handleGetCourseByCourseIDMessage(msg);
 			case "questions":
 				return handleQuestionsMessage(msg);
 			case "exams":
@@ -449,14 +453,82 @@ public class ServerMessageManager {
 				return handleFetUserMessage(msgContent,msg);
 			case "solvedExamByTeacherId":
 				return handleGetExamByTeacherID(msg);
+			case "solvedexams":
+				return handleGetSolvedExams(msgContent,msg);		// this methos handeles all Get requests from solvedExams table
 			case "word":
 				return handleGetWord(msg);
 		}
 		
 		return null;
 	}
+	
+	/**
+	 * @author gal
+	 * this method called when have map<courseID,courseName> and want to fill it with course names.
+	 * @param msg
+	 * @return
+	 */
+	private static AbstractMessage handleGetCourseByCourseIDMessage(AbstractMessage msg) {
+		CourseMessage recivedMessage = (CourseMessage) msg;
+		//String teacherId = recivedMessage.getTeacherId();
+		GetFromDB getCourse = new GetFromDB();
+		ArrayList<Course> courses = getCourse.courses();	// fetch all subjects from DB/
+		HashMap<String, String> courseMap = recivedMessage.getCourseMap();
+		for (Course course: courses) {
+			if (courseMap.containsKey(course.getCourseId())){
+				courseMap.put(course.getCourseId(), course.getCourseName());
+			}
+		}
+		return message.getMessage("ok-get-courses", courseMap);
+	}
+
+	/**
+	 * @author gal
+	 * this method called when have map<subjectID,subectName> and want to fill it with subject names.
+	 * @param msg
+	 * @return
+	 */
+	private static AbstractMessage handleGetSubjectBySubjectIDMessage(AbstractMessage msg) {
+		SubjectMessage recivedMessage = (SubjectMessage) msg;
+		//String teacherId = recivedMessage.getTeacherId();
+		GetFromDB getSubject = new GetFromDB();
+		ArrayList<Subject> subjects = getSubject.subjects();	// fetch all subjects from DB/
+		HashMap<String, String> subjectMap = recivedMessage.getSubjectsMap();
+		for (Subject subject: subjects) {
+			if (subjectMap.containsKey(subject.getSubjectID())){
+				subjectMap.put(subject.getSubjectID(), subject.getSubjectName());
+			}
+		}
+		return message.getMessage("ok-get-subjects", subjectMap);
+	}
+
+	/**
+	 * @author gal
+	 * this methos called when a client need to get his solved exams
+	 * @param msg
+	 * @return
+	 */
+	private static AbstractMessage handleGetSolvedExams(String[] msgContent,AbstractMessage msg) {
+		switch (msgContent[2]) {
+		case "user":
+			return getUserSolvedExambyUserID(msg);
+//		case "exam":
+//			return getUserSolvedExambyExamID(msg);
+		}
+
+		return null;
+	}
+
+	private static AbstractMessage getUserSolvedExambyUserID(AbstractMessage msg) {
+		UserSolvedExamsMessage userSolvedExamsMessage = (UserSolvedExamsMessage)msg;
+		GetFromDB getUserSolvedExams = new GetFromDB();
+		ArrayList<SolvedExams> userSolvedExams = getUserSolvedExams.solvedExams(userSolvedExamsMessage.getUser().getUserID());			// get all solvedExams of specific userID
+		return message.getMessage("ok-get-solvedExams",userSolvedExams);
+	}
+
 	/**
 	 * this method is called when a client need to get information about users
+	 * @author gal
 	 * @param msgContent 
 	 * @param msg contain UserInfo 
 	 * @return {@link AbstractMessage} with required information
@@ -694,6 +766,7 @@ public class ServerMessageManager {
 		AbstractMessage sendMessage = (AbstractMessage) setExam.updateExam(newExam);
 		return sendMessage;
 	}
+<<<<<<< HEAD
 	
 	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
@@ -711,3 +784,6 @@ public class ServerMessageManager {
 		
 	}
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master
