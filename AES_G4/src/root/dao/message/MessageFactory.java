@@ -96,13 +96,13 @@ public class MessageFactory {
 				return new QuestionsMessage((Question)payload);
 			case "questioninexam":
 				return new QuestionInExamMessage((ArrayList<root.dao.app.QuestionInExam>)payload);
-		case "solvedexams":
-			return new SolvedExamMessage((SolvedExams) payload);
-		case "executeexam":
-			return new ExecuteExamMessage((ExecuteExam) payload);
-		case "wordexam":
-			return new WordMessage("put-wordexam",(MyFile)payload);
-		}
+			case "solvedexams":
+				return new SolvedExamMessage((SolvedExams) payload);
+			case "executeexam":
+				return new ExecuteExamMessage((ExecuteExam) payload);
+			case "wordexam":
+				return new WordMessage("put-wordexam",(MyFile)payload);
+			}
 		return null;
 	}
 
@@ -149,15 +149,13 @@ public class MessageFactory {
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
-<<<<<<< HEAD
 			return new WordMessage((Exam) payload);
 		case "wordexam":
 			return new WordMessage((String)payload);
-=======
-			return new WordMessage((Exam) payload);	
+
+		//	return new WordMessage((Exam) payload);	
 		case "executed":
 			return new ExecutedExamsMessage();
->>>>>>> refs/remotes/origin/Naor
 		default:
 			break;
 		}
