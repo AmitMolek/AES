@@ -271,7 +271,7 @@ public class ExecuteExamController implements Observer {
 	}
 
 	public void submitTest() {
-		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject);
+		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject,exam);
 		int grade = checkedExams.calculateGrade();
 		Date newDate;
 		try {
