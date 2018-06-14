@@ -6,6 +6,7 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -56,9 +57,9 @@ public class Enter4digitPasswordController implements Observer {
 		txt4Digit.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
 		scrMgr = ScreensManager.getInstance();
 		dataKeeper = DataKeepManager.getInstance();
-		client = (ObservableClient) (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
+    	client = new ObservableClient("localhost", 8000);
 		client.addObserver(this);
-
+		client.openConnection();
 	}
 
 	/**
@@ -94,6 +95,8 @@ public class Enter4digitPasswordController implements Observer {
 			Exam newExam = examsList.get(0);
 			if (newExam.getExecuteExam().getExamType().equals("auto")) {
 				dataKeeper.keepObject("RunningExam", newExam);
+				client.deleteObservers();
+				client.addObserver(new WaitForChangeTIme());
 				Platform.runLater(() -> {
 					try {
 						scrMgr.activate("executefull");

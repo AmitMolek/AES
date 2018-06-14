@@ -11,16 +11,11 @@ import java.util.Map;
 import java.util.Set;
 import java.sql.PreparedStatement;
 import ocsf.server.*;
-<<<<<<< HEAD
 import root.client.controllers.WaitForPirncipleMessage;
-=======
-import root.dao.app.Exam;
->>>>>>> refs/remotes/origin/Omer
 import root.dao.app.Question;
 import root.dao.app.User;
 import root.dao.message.*;
 import root.server.managers.*;
-import root.server.managers.worddocumentmgr.WordDocument;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
@@ -39,7 +34,7 @@ public class AES_Server extends AbstractServer {
 	private ArrayList<Question> dataBase;
 	private static Connection conn;
 	private static Log log;
-	private ArrayList<ConnectionToClient> principleArry = new ArrayList<ConnectionToClient>();
+	public static ConnectionToClient CLIENT;
 	
 	public AES_Server(int port) {
 		super(port);
@@ -59,26 +54,10 @@ public class AES_Server extends AbstractServer {
 	 * This method handles any messages received from the client.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		if(msg instanceof changeTimeDurationRequest){
-			for(ConnectionToClient c:principleArry) {
-				try {
-					c.sendToClient(new SimpleMessage("stam bdika"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+		this.CLIENT = client;
 		if(msg instanceof AbstractMessage) {
 			AbstractMessage msgToHandle = (AbstractMessage) msg;
 			AbstractMessage msgToReturn=smm.handleMessage(msgToHandle);
-			if(msgToReturn instanceof UserMessage){
-				UserMessage usmg = (UserMessage) msgToReturn;
-				User user = usmg.getUser();
-				if(user.getUserPremission().equals("Principal"))
-					principleArry.add(client);
-				
-			}
 			try {
 				client.sendToClient(msgToReturn);
 			} catch (IOException e) {
@@ -122,11 +101,7 @@ public class AES_Server extends AbstractServer {
 
 		try {
 
-<<<<<<< HEAD
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "308023");
-=======
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "204403257");
->>>>>>> refs/remotes/origin/Omer
 
 
 			System.out.println("SQL connection succeed");
