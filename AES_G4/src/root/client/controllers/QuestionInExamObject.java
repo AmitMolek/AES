@@ -41,11 +41,12 @@ public class QuestionInExamObject extends AnchorPane{
     
     @FXML
     private Label lblPoints;
-    	
+   	
 	private String id=null;
 	
 	private int selectedAns =0;
-	
+	 
+	private String questionId;
 	private String pressedButton = "-fx-background-color: green;";
 	
 	private String nonPressedButton; 
@@ -60,6 +61,7 @@ public class QuestionInExamObject extends AnchorPane{
 	
 	public QuestionInExamObject(Question q, int questionGrade) {
     
+		questionId = q.getQuestionId();
 		correctAns = q.getCorrectAns();
 		this.questionGrade = questionGrade;
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/QuestionInExamComponent.fxml"));
@@ -79,6 +81,10 @@ public class QuestionInExamObject extends AnchorPane{
 		btnAns4.setText(q.getAns4());
 	}
 	
+	public String getQuestionId() {
+		return questionId;
+	}
+
 	public int getCorrectAns() {
 		return correctAns;
 	}

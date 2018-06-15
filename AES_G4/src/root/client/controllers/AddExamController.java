@@ -74,7 +74,6 @@ public class AddExamController implements Observer {
 
 	@FXML
 	private Button btnAddQuestion;
-
 	private int count;
 	private User teacher;
 	private MessageFactory messageFact;
@@ -237,7 +236,7 @@ public class AddExamController implements Observer {
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
 		mainApp = screenManager.getPrimaryStage();
-		client = new ObservableClient("localhost", 8000);
+		client = new ObservableClient((String)dkm.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		client.openConnection();
 		messageFact = MessageFactory.getInstance();

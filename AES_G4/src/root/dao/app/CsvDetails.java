@@ -2,9 +2,9 @@ package root.dao.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 import root.client.controllers.QuestionInExamObject;
-
 
 /**
  * Class for create csv
@@ -14,7 +14,7 @@ import root.client.controllers.QuestionInExamObject;
 public class CsvDetails implements Serializable{
 	private Exam examId;
 	private User userId;
-	private ArrayList<QuestionInExamObject> questionsInExamObject;
+	private Map<String,Integer> questionInExam;
 	
 	/**
 	 * Constructor for csv
@@ -22,12 +22,13 @@ public class CsvDetails implements Serializable{
 	 * @param userId the user
 	 * @param questionsInExamObject the exam question
 	 */
-	public CsvDetails(Exam examId, User userId, ArrayList<QuestionInExamObject> questionsInExamObject) {
+	public CsvDetails(Exam examId, User userId, Map<String,Integer> questionInExam) {
 		super();
 		this.examId = examId;
 		this.userId = userId;
-		this.questionsInExamObject = questionsInExamObject;
+		this.questionInExam = questionInExam;
 	}
+
 	/**
 	 * 
 	 * @return the exam 
@@ -44,12 +45,8 @@ public class CsvDetails implements Serializable{
 		return userId;
 	}
 	
-	/**
-	 * 
-	 * @return the exam question
-	 */
-	public ArrayList<QuestionInExamObject> getQuestionsInExamObject() {
-		return questionsInExamObject;
+	public Map<String, Integer> getQuestionInExam() {
+		return questionInExam;
 	}
 
 

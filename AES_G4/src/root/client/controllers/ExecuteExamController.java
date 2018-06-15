@@ -44,10 +44,9 @@ import root.dao.message.SolvedExamMessage;
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
  *         get list of questions for specific exam and answer the quesitons
- *         
+ * 
  */
 public class ExecuteExamController implements Observer {
-
 	@FXML
 	private Button btnBack;
 
@@ -92,9 +91,9 @@ public class ExecuteExamController implements Observer {
 	private ArrayList<Button> tabsButton = new ArrayList<Button>();
 
 	private ArrayList<String> intructText = new ArrayList<String>();
-	
+
 	private ArrayList<Integer> points = new ArrayList<Integer>();
-	
+
 	private String userId;
 	private Exam exam;
 	Timeline examStopWatch;
@@ -110,12 +109,11 @@ public class ExecuteExamController implements Observer {
 	 * this method happens when the window shown
 	 * 
 	 */
-
 	public void initialize() {
 
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
-    	client = new ObservableClient((String)dataKeeper.getObject_NoRemove("ip"), 8000);
+		client = new ObservableClient((String) dataKeeper.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		try {
 			client.openConnection();
@@ -151,9 +149,8 @@ public class ExecuteExamController implements Observer {
 			questionsInExamObject.add(qie);
 		}
 
-		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
-				+"("+points.get(displayQuestion)+")");
-		
+		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
+
 		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -212,8 +209,7 @@ public class ExecuteExamController implements Observer {
 	@FXML
 	public void nextQuestion(ActionEvent event) {
 		displayQuestion++;
-		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
-				+"("+points.get(displayQuestion)+")");
+		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
 		if (displayQuestion == tabsButton.size() - 1)
 			btnNext.setDisable(true);
 		btnBack.setDisable(false);
@@ -228,8 +224,7 @@ public class ExecuteExamController implements Observer {
 		displayQuestion--;
 		if (displayQuestion == 0)
 			btnBack.setDisable(true);
-		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
-				+"("+points.get(displayQuestion)+")");
+		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
 
 		if (!(displayQuestion == tabsButton.size() - 1))
 			btnNext.setDisable(false);
@@ -250,8 +245,7 @@ public class ExecuteExamController implements Observer {
 	public void changeTab(ActionEvent e) {
 		Button tabButton = (Button) e.getSource();
 		displayQuestion = tabsButton.indexOf(tabButton);
-		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
-				+"("+points.get(displayQuestion)+")");
+		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
 		myBorder.setCenter(questionsInExamObject.get(displayQuestion));
 		if (displayQuestion == tabsButton.size() - 1)
 			btnNext.setDisable(true);
@@ -281,14 +275,15 @@ public class ExecuteExamController implements Observer {
 	}
 
 	public void submitTest() {
-		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject,exam);
+		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject, exam);
 		int grade = checkedExams.calculateGrade();
+		checkedExams.createCsv();
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
 			String currentTime = sdf.format(dt);
 			int solvedTime = exam.getExamDuration() - (stopWatch / 60);
-			//SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
+			// SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExamMessage newMessage = (SolvedExamMessage) messageFact.getMessage("put-solvedexams", newExam);
 			try {
@@ -306,17 +301,21 @@ public class ExecuteExamController implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof SimpleMessage) {
-			Platform.runLater(() -> {
-				try {
-					ScreensManager.getInstance().activate("endExam");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
+			SimpleMessage s = (SimpleMessage) arg1;
+			if (!s.getMsg().equals("ok-get-csv")) {
+				Platform.runLater(() -> {
+					try {
+						ScreensManager.getInstance().activate("endExam");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+			}
 		}
+
 	}
-	
+
 	public void changeTime(int newTime) {
 		stopWatch = newTime;
 	}
