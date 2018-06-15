@@ -45,7 +45,7 @@ public class CheckedExamsAuto implements Observer {
 		for(QuestionInExamObject q: questionsInExamObject ) {
 			if(q.getCorrectAns() == q.getSelectedAns())
 				totalGrade = totalGrade + q.getQuestionGrade();
-			questionInExam.put(q.getQuestionId(), q.getCorrectAns());
+			questionInExam.put(q.getQuestionId(), q.getSelectedAns());
 		}
 		
 		return totalGrade;
