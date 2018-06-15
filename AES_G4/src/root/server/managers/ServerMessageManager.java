@@ -83,7 +83,7 @@ public class ServerMessageManager {
 		}
 		return instance;
 	}
-	
+
 	public static AbstractMessage handleMessage(AbstractMessage msg) {
 		String[] msgContent = msg.getMsg().toLowerCase().split("-");
 		switch(msgContent[0]) {
