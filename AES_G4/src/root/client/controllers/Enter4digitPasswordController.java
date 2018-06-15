@@ -57,7 +57,7 @@ public class Enter4digitPasswordController implements Observer {
 		txt4Digit.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
 		scrMgr = ScreensManager.getInstance();
 		dataKeeper = DataKeepManager.getInstance();
-    	client = new ObservableClient("localhost", 8000);
+    	client = new ObservableClient((String)dataKeeper.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		client.openConnection();
 	}

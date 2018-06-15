@@ -84,6 +84,7 @@ public class LoginController implements Observer {
     	
     	if (serverIPpane.isVisible()) {
     		serverIP = txtFieldserverIP.getText();
+    		DataKeepManager.getInstance().keepObject("ip", serverIP);
     	}
     	
     	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.

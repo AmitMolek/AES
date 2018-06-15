@@ -10,8 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
@@ -24,7 +26,10 @@ import root.dao.message.MessageFactory;
 
 public class ChangeDurationTimeCntroller implements Observer{
 	ObservableClient client;
-	
+		
+	@FXML
+	private TextArea  txtNotes;
+
     @FXML
     private TableColumn<ExecuteExam, Integer> durationTime;
 
@@ -48,7 +53,7 @@ public class ChangeDurationTimeCntroller implements Observer{
     
     
     @FXML
-	public void initialize() {
+	public void initialize() {  	
     	exeTable.setEditable(true);
     	messageFact = MessageFactory.getInstance();
     	durationTime.setCellValueFactory(new PropertyValueFactory("durationTime"));
@@ -97,9 +102,10 @@ public class ChangeDurationTimeCntroller implements Observer{
 		ChangeTimeDurationRequest cht = new ChangeTimeDurationRequest();
 		Integer newValue = durationEditEvent.getNewValue();
 		executed.setDurationTime(newValue);
-		cht.setMessageFromTeacher("I just want to change");
+		cht.setMessageFromTeacher(txtNotes.getText());
 		cht.setExamId(executed.getExamId());
 		cht.setNewTime(newValue);
+		
 		SendRequests se = new SendRequests();
 		try {
 			se.send(cht);
