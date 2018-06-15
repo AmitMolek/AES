@@ -1,4 +1,7 @@
 package root.client.controllers;
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -9,7 +12,7 @@ import javafx.scene.text.Text;
 import root.client.managers.DataKeepManager;
 import root.dao.app.Statistic;
 
-public class HistogramsScreenController {
+public class HistogramsScreenController implements Observer {
 
     @FXML
     private AnchorPane anchorPane;
@@ -32,7 +35,6 @@ public class HistogramsScreenController {
     public static final String HISTOGRAM_CONTROLLER_NAME="HistogramController";
     
 	public void initialize() {
-		DataKeepManager.getInstance().keepObject(HISTOGRAM_CONTROLLER_NAME, this);
 		XYChart.Series dataSeries=new XYChart.Series();
 		dataSeries.setName("No Data");
 		averageText.setText("null");
@@ -48,6 +50,7 @@ public class HistogramsScreenController {
 		dataSeries.getData().add(new XYChart.Data("81-90",0));
 		dataSeries.getData().add(new XYChart.Data("91-100",0));
 		barChart.getData().add(dataSeries);
+		
 	}
 	
 	public void updateHistograms(String title,Statistic stat) {
@@ -66,5 +69,11 @@ public class HistogramsScreenController {
 		dataSeries.getData().add(new XYChart.Data("81-90",stat.getGrade_derivative_81_90()));
 		dataSeries.getData().add(new XYChart.Data("91-100",stat.getGrade_derivative_91_100()));
 		barChart.getData().add(dataSeries);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

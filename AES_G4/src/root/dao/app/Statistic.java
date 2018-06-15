@@ -3,6 +3,10 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Statistic implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String exam_ID;
 	private Date date;
 	private String real_time_duration;
@@ -10,7 +14,7 @@ public class Statistic implements Serializable {
 	private int interrupted_students_counter;
 	private int students_started_counter;
 	private double exams_avg;
-	private double exams_median;
+	private int exams_median;
 	private int grade_derivative_0_10;
 	private int grade_derivative_11_20;
 	private int grade_derivative_21_30;
