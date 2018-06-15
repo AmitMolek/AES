@@ -283,6 +283,7 @@ public class ExecuteExamController implements Observer {
 	public void submitTest() {
 		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject,exam);
 		int grade = checkedExams.calculateGrade();
+		checkedExams.createCsv();
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
@@ -306,14 +307,18 @@ public class ExecuteExamController implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof SimpleMessage) {
-			Platform.runLater(() -> {
-				try {
-					ScreensManager.getInstance().activate("endExam");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
+			SimpleMessage s= (SimpleMessage)arg1;
+			if(!s.getMsg().equals("ok-get-csv")){
+				Platform.runLater(() -> {
+					try {
+						ScreensManager.getInstance().activate("endExam");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+			}
+			
 		}
 	}
 	
