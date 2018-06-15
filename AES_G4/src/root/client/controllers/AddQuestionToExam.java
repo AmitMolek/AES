@@ -46,7 +46,7 @@ public class AddQuestionToExam extends AnchorPane {
 	private AnchorPane rootPane;
 
 	@FXML
-	private ComboBox<String> cmbQuestion;
+	private  ComboBox<String> cmbQuestion;
 
 	@FXML
 	private TextArea txtFreeStudent;
@@ -60,6 +60,7 @@ public class AddQuestionToExam extends AnchorPane {
 
 	private static ArrayList<QuestionInExam> examQuestions = new ArrayList<QuestionInExam>();
 
+	private static ArrayList<String>combobox = new ArrayList<String>();
 	private Question newQuestion;
 	private Stage mainApp;
 	private ScreensManager screenManager;
@@ -166,7 +167,20 @@ public class AddQuestionToExam extends AnchorPane {
 	 * Clears the question exam list
 	 */
 	public static void clearQuestionInExam() {
-		examQuestions.clear();
+		int i = 0;
+		while(i<questions.size()) {
+			questions.remove(0);
+			i++;
+		}
+		i = 0;
+		while(i<examQuestions.size()) {
+			examQuestions.remove(0);
+			i++;
+		}
+		
+		
+		count = 0;
+		totalPoints = 0;
 	}
 
 	/**
@@ -189,7 +203,6 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 		this.questions = question;
 	}
-
 	/**
 	 * 
 	 * @return the question list
@@ -198,6 +211,15 @@ public class AddQuestionToExam extends AnchorPane {
 		return questions;
 	}
 
+	public void clearComboBox() {
+		int i=0;
+		if (cmbQuestion.getItems().size() != 0)
+			cmbQuestion.getItems().removeAll(combobox);
+		while(i<combobox.size()) {
+			combobox.remove(0);
+			i++;
+		}
+	}
 	/**
 	 * Sets new value to the count
 	 * 

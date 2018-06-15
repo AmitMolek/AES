@@ -4,15 +4,20 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
+import com.opencsv.CSVWriter;
+import root.client.controllers.QuestionInExamObject;
 import root.dao.app.CheatingExamTest;
 import com.sun.javafx.geom.transform.GeneralTransform3D;
 //import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
+import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
 import root.dao.app.ExecuteExam;
 import root.dao.app.LoginInfo;
@@ -26,6 +31,7 @@ import root.dao.message.AbstractMessage;
 import root.dao.message.CheatingExamsTestMessage;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
+import root.dao.message.CsvMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExecuteExamMessage;
@@ -60,6 +66,7 @@ public class ServerMessageManager {
 	private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
 	public static String PATH;
 	public static String PATHSOLUTION;
+	public static String PATHCSV;
 	
 	private ServerMessageManager() {
 		Path currentRelativePath = Paths.get("");
@@ -67,6 +74,7 @@ public class ServerMessageManager {
 		String fullPath = s+"//src//root//server//executeExam//";
 		PATH = fullPath;
 		PATHSOLUTION = s+"//src//root//server//solvedExam//";
+		PATHCSV = s+ "//src//root//server//csvExam//";
 	}
 	
 	public static ServerMessageManager getInstance() {
@@ -220,9 +228,11 @@ public class ServerMessageManager {
 			case "word":
 				return handleGetWord(msg);
 			case "wordexam":
-				//return handleGetWordExam(msg);
+				return handleGetWordExam(msg);
 			case "executed":
 				return handleGetExecutedExams(msg);
+					case "csv":
+			return handleGetCsv(msg);
 		}
 		
 		return null;
@@ -409,7 +419,7 @@ public class ServerMessageManager {
 		case "executeexam":
 			return handlePutExecuteExamMessage(msg);
 		case "wordexam":
-			//return handlePutwordExamMessage(msg);
+			return handlePutwordExamMessage(msg);
 		}
 		
 		return null;
@@ -545,7 +555,109 @@ public class ServerMessageManager {
 		examinees.sendAll(cht.getExamId(),cht.getNewTime());
 		return message.getMessage("SimpleMessage", null) ;		
 	}
+
+	private static AbstractMessage handlePutwordExamMessage(AbstractMessage msg) {
+		WordMessage newMessage = (WordMessage) msg;
+		MyFile serverFile = newMessage.getNewFile();
+		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(serverFile.getFileName());
+		String LocalfilePath = serverFile.getDescription();
+
+		try {
+
+			File newFile = new File(LocalfilePath);
+
+			byte[] mybytearray = new byte[(int) newFile.length()];
+			FileInputStream fis = new FileInputStream(newFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			wordFile.initArray(mybytearray.length);
+			wordFile.setSize(mybytearray.length);
+			bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
+			File Word = new File(PATH + serverFile.getFileName());
+			FileOutputStream fos = new FileOutputStream(PATHSOLUTION + serverFile.getFileName());
+			fos.write(wordFile.getMybytearray());
+			fis.close();
+			bis.close();
+			SimpleMessage sendMessage = (SimpleMessage) message.getMessage("ok-put-wordexam", null);
+			return sendMessage;
+		} catch (Exception e) {
+			System.out.println("Error send (Files)msg) to Server");
+		}
+		return null;
+	}
 	
+	private static AbstractMessage handleGetWordExam(AbstractMessage msg) {
+		WordMessage recivedMessage = (WordMessage) msg;
+		String[] userId = recivedMessage.getUserId().split("-");
+		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(userId[0] + "-" + userId[1] + ".docx");
+		/*
+		 * String LocalfilePath = "C:" +
+		 * "\\" + "Users" + "\\" + "omer1" + "\\" + "git" + "\\" + "AES" + "\\" + "
+		 * AES_G4" +
+		 * "\\" + "src" + "\\" + "root" + "\\" + "server" + "\\" + "executeExam" + "
+		 * \\"+ userId[1]+ ".docx";
+		 */
+		String LocalfilePath = PATH + userId[1] + ".docx";
+		try {
+
+			File newFile = new File(LocalfilePath);
+			byte[] mybytearray = new byte[(int) newFile.length()];
+			FileInputStream fis = new FileInputStream(newFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			wordFile.initArray(mybytearray.length);
+			wordFile.setSize(mybytearray.length);
+			bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
+			wordFile.setDescription(LocalfilePath);
+			fis.close();
+			bis.close();
+			WordMessage sendMessage = (WordMessage) message.getMessage("put-wordexam", wordFile);
+			return sendMessage;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error send (Files)msg) to Server");
+		}
+		return null;
+
+	}
+		private static AbstractMessage handleGetCsv(AbstractMessage msg) {
+		int i = 0;
+		SimpleMessage sendMessage;
+		CSVWriter csvWriter = null;
+		CsvMessage newMessage = (CsvMessage)msg;
+		CsvDetails csv = newMessage.getCsv();
+		Exam exam = csv.getExamId();
+		User student = csv.getUserId();
+		String points = null;
+		ArrayList<QuestionInExam> examQuestions = exam.getExamQuestions();
+		ArrayList<QuestionInExamObject> question = csv.getQuestionsInExamObject();
+		try {
+			csvWriter = new CSVWriter(new FileWriter(PATHCSV + student.getUserID() + "-"+exam.getExamId()+".csv"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String[]>toCsv = new ArrayList<String[]>();
+		toCsv.add(new String[] {"examID","userID","QuestionID","The question","answer1","answer2","answer3","answer4","Selected answer","CorrectAnswer","Points"});
+		for(QuestionInExamObject q: question) {
+			Question newQuestion = examQuestions.get(i).getQuestion();
+			if(q.getCorrectAns() == q.getSelectedAns())
+				points = Integer.toString(q.getQuestionGrade());
+			else
+				points = "0";
+			toCsv.add(new String[] {exam.getExamId(),student.getUserID(),newQuestion.getQuestionId(),newQuestion.getQuestionText(),newQuestion.getAns1(),newQuestion.getAns2(),newQuestion.getAns3(),newQuestion.getAns4(),Integer.toString(q.getSelectedAns()),Integer.toString(newQuestion.getCorrectAns()),points});
+		}
+		
+		csvWriter.writeAll(toCsv);
+        try {
+			csvWriter.close();
+			sendMessage = (SimpleMessage)message.getMessage("ok-get-csv", null);
+			return sendMessage;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
 		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
 		GetFromDB get = new GetFromDB();
@@ -554,4 +666,5 @@ public class ServerMessageManager {
 		return msg;
 		
 	}
+	
 }

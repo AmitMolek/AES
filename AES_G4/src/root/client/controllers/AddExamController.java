@@ -75,13 +75,13 @@ public class AddExamController implements Observer {
 	@FXML
 	private Button btnAddQuestion;
 
+	private int count;
 	private User teacher;
 	private MessageFactory messageFact;
 	private ObservableClient client;
 	private ArrayList<Subject> teacherSubject;
 	private ArrayList<Course> CourseInSubject;
 	private Log log;
-	private ArrayList<QuestionInExam> examQuestions;
 	private ArrayList<Question> question;
 	private ArrayList<Exam> exams;
 	private ArrayList<AddQuestionToExam> myComponent = new ArrayList<AddQuestionToExam>();
@@ -92,8 +92,8 @@ public class AddExamController implements Observer {
 	private DataKeepManager dkm;
 	private Stage mainApp;
 	private String examId;
-	private ArrayList<String> courses;
 	private AddQuestionToExam newQuestion;
+
 	/**
 	 * Method the occurs when teacher select subject
 	 * 
@@ -102,11 +102,36 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	void SelectSubject(ActionEvent event) {
-		if (cmbCourse.getItems().size() != 0)
-			cmbCourse.getItems().removeAll(courses);
+		int i = 0;
+		count++;
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
+		if (count > 1) {
+			while(i < cmbCourse.getItems().size()) {
+				cmbCourse.getItems().remove(0);
+				i++;
+			}
+			i = 0;		
+			while (i < myComponent.size()) {
+				myFlow.getChildren().remove(0);
+				i++;
+			}
+			i = 0;
+			/*while (i < examQuestions.size()) {
+				question.remove(0);
+				i++;
+			}*/
+			i = 0;
+			while (i < question.size()) {
+				question.remove(0);
+				i++;
+			}
+			i = 0;
+			newQuestion.clearQuestionInExam();
+			newQuestion.clearComboBox();
+		}
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
+
 		CourseMessage getCourseSubject = (CourseMessage) messageFact.getMessage("get-courses", newSubject);
 		QuestionsMessage getQuestionOfsubject = (QuestionsMessage) messageFact.getMessage("get-questions", newSubject);
 		try {
@@ -168,7 +193,7 @@ public class AddExamController implements Observer {
 			ArrayList<QuestionInExam> theQuestions = new ArrayList<QuestionInExam>();
 			String examDuration = txtDuration.getText();
 			int duration = Integer.parseInt(examDuration);
-			for(AddQuestionToExam add: myComponent) {
+			for (AddQuestionToExam add : myComponent) {
 				theQuestions.add(add.getExamQuestion());
 			}
 			Exam newExam = new Exam(examId, teacher, duration, theQuestions);
@@ -207,6 +232,7 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	public void initialize() throws IOException {
+		count = 0;
 		log = Log.getInstance();
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
@@ -243,10 +269,8 @@ public class AddExamController implements Observer {
 		if (arg1 instanceof CourseMessage) {
 			CourseMessage intialCourseMessage = (CourseMessage) arg1;
 			CourseInSubject = intialCourseMessage.getCourses();
-			courses = new ArrayList<String>();
 			for (Course c : CourseInSubject) {
 				cmbCourse.getItems().add(c.getCourseId() + "-" + c.getCourseName());
-				courses.add(c.getCourseId() + "-" + c.getCourseName());
 			}
 			cmbCourse.setDisable(false);
 		}
@@ -259,19 +283,28 @@ public class AddExamController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			ExamMessage intialExamMessage = (ExamMessage) arg1;
 			exams = intialExamMessage.getExams();
-			Exam exam = exams.get(exams.size()-1);
-			String tempId = exam.getExamId().substring(4,6);
+			if(exams.size()>0)
+			{
+			Exam exam = exams.get(exams.size() - 1);
+			String tempId = exam.getExamId().substring(4, 6);
 			int id = Integer.parseInt(tempId) + 1;
 			countId = id;
-			if(countId<=9)
-				examId = newSubject.getSubjectID() + newCourse.getCourseId()+"0"+ Integer.toString(countId);
+			if (countId <= 9)
+				examId = newSubject.getSubjectID() + newCourse.getCourseId() + "0" + Integer.toString(countId);
 			else
 				examId = newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId);
-			
+			}
+			else {
+				countId = 1;
+				examId = newSubject.getSubjectID() + newCourse.getCourseId() + "0" + Integer.toString(countId);
+			}
+
 		}
 
 		if (arg1 instanceof SimpleMessage) {
 			log.writeToLog(LogLine.LineType.INFO, "Exam added");
+			newQuestion.clearQuestionInExam();
+			newQuestion.clearComboBox();
 			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
 					Alert alert = new Alert(AlertType.INFORMATION);
@@ -338,15 +371,15 @@ public class AddExamController implements Observer {
 	 */
 	@FXML
 	void AddToTheExamForm(ActionEvent event) {
-		if(newQuestion.AddQuestion()) {
-		btnAddQuestion.setDisable(false);
-		btnAddExam.setDisable(false);
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.initOwner(mainApp);
-		alert.setTitle("Question added successful");
-		alert.setHeaderText("Question added successful");
-		alert.setContentText("The question is added");
-		alert.showAndWait();
+		if (newQuestion.AddQuestion()) {
+			btnAddQuestion.setDisable(false);
+			btnAddExam.setDisable(false);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initOwner(mainApp);
+			alert.setTitle("Question added successful");
+			alert.setHeaderText("Question added successful");
+			alert.setContentText("The question is added");
+			alert.showAndWait();
 		}
 
 	}

@@ -32,7 +32,6 @@
             <TableColumn fx:id="tbcDuration" maxWidth="370.0" minWidth="370.0" prefWidth="370.0" text="Duration" />
         </columns>
       </TableView>
-      <Button layoutX="279.0" layoutY="591.0" mnemonicParsing="false" onAction="#UpdateExam" text="Update" />
-      <Button layoutX="916.0" layoutY="591.0" mnemonicParsing="false" onAction="#DeleteExam" text="Delete" />
+      <Button layoutX="626.0" layoutY="594.0" mnemonicParsing="false" onAction="#UpdateExam" text="Update" />
    </children>
 </AnchorPane>

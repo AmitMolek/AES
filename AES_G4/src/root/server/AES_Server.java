@@ -35,7 +35,6 @@ public class AES_Server extends AbstractServer {
 	private static Connection conn;
 	private static Log log;
 	public static ConnectionToClient CLIENT;
-	
 	public AES_Server(int port) {
 		super(port);
 		smm=ServerMessageManager.getInstance();
@@ -101,7 +100,7 @@ public class AES_Server extends AbstractServer {
 
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "204403257");
 
 
 			System.out.println("SQL connection succeed");

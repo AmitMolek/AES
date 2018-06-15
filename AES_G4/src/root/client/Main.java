@@ -6,7 +6,6 @@ import root.client.managers.ScreensManager;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
-
 public class Main extends ScreensManager {
 
 	public static void main(String[] args) {
