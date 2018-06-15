@@ -9261,3 +9261,38 @@
 [INFO][root.client.managers.ScreensManager] Added screen to stack: solvedExams | 2018-06-15 08:59:04.79
 [INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-15 08:59:06.514
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-15 08:59:11.202
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:17:45.597
+[INFO] Application started | 2018-06-15 09:17:51.07
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-15 09:17:51.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-15 09:17:51.466
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-15 09:18:01.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-15 09:18:01.675
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-15 09:18:01.675
+[INFO][root.client.managers.ScreensManager] Added screen to stack: solvedExams | 2018-06-15 09:18:01.764
+[ERROR][root.client.managers.ScreensManager] Failed switching screens, Screen name: executeExamScreen | 2018-06-15 09:18:07.523
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:20:58.92
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:21:00.77
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-15 09:21:00.773
+[INFO] Application started | 2018-06-15 09:21:06.545
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-15 09:21:06.918
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-15 09:21:06.938
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-15 09:21:13.431
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-15 09:21:13.438
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-15 09:21:13.438
+[INFO][root.client.managers.ScreensManager] Added screen to stack: solvedExams | 2018-06-15 09:21:13.546
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-15 09:21:17.557
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:22:34.89
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:22:37.713
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-15 09:22:37.714
+[INFO] Application started | 2018-06-15 09:22:46.725
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-15 09:22:47.112
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-15 09:22:47.136
+[INFO][root.server.AES_Server] The server is connected | 2018-06-15 09:22:55.616
+[INFO] Application started | 2018-06-15 09:22:58.742
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-15 09:22:59.106
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-15 09:22:59.127
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-15 09:23:05.86
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-15 09:23:05.866
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-15 09:23:05.866
+[INFO][root.client.managers.ScreensManager] Added screen to stack: solvedExams | 2018-06-15 09:23:05.954
+[INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-06-15 09:23:08.039

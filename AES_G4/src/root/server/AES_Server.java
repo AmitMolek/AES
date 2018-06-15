@@ -35,7 +35,6 @@ public class AES_Server extends AbstractServer {
 	private static Connection conn;
 	private static Log log;
 	public static ConnectionToClient CLIENT;
-	
 	public AES_Server(int port) {
 		super(port);
 		smm=ServerMessageManager.getInstance();

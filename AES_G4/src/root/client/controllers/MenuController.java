@@ -39,7 +39,7 @@ public class MenuController {
     
     private ScreensManager screensMgr;
     private Log log;
-    
+  
     private final String homeIconPath = "../resources/images/icons/home.png";
     private final String returnIconPath = "../resources/images/icons/back_arrow.png";
     private final String helpIconPath = "../resources/images/icons/help.png";
@@ -89,7 +89,7 @@ public class MenuController {
 	    	if (user.getUserPremission().equals("Student")) {
 	    		executeMenu.getItems().add(createMenuItem("Solve exam", getChangeScreenActionEvent("Enter4digitPassword")));
 	    	}else if (user.getUserPremission().equals("Teacher")) {
-	    		executeMenu.getItems().add(createMenuItem("Start exam", getChangeScreenActionEvent("executeExamScreen")));
+	    		executeMenu.getItems().add(createMenuItem("Start exam", getChangeScreenActionEvent("PrepareExam")));
 	    	}
     	}
     }
@@ -163,7 +163,7 @@ public class MenuController {
     	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("home");
     	createMenuItem(new Menu(), img, "Home", 70, 25, e);
     }
-    
+  
     /**
      * Init the help menu object, with about us
      */
