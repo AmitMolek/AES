@@ -8,9 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.opencsv.CSVWriter;
 import root.client.controllers.QuestionInExamObject;
 import root.dao.app.CheatingExamTest;
@@ -626,26 +631,34 @@ public class ServerMessageManager {
 		CsvDetails csv = newMessage.getCsv();
 		Exam exam = csv.getExamId();
 		User student = csv.getUserId();
-		String points = null;
 		ArrayList<QuestionInExam> examQuestions = exam.getExamQuestions();
-		ArrayList<QuestionInExamObject> question = csv.getQuestionsInExamObject();
+		Map<String,Integer> question = csv.getQuestionInExam();
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(new Date());
+		date = sdf.format(new Date());
+		QuestionInExam que = null;
+		String path = PATHCSV +exam.getExamId() + "-" + date;
+		new File(path).mkdirs();
+		String s = path + "//";
 		try {
-			csvWriter = new CSVWriter(new FileWriter(PATHCSV + student.getUserID() + "-"+exam.getExamId()+".csv"));
+			csvWriter = new CSVWriter(new FileWriter(s + student.getUserID()+".csv"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<String[]>toCsv = new ArrayList<String[]>();
-		toCsv.add(new String[] {"examID","userID","QuestionID","The question","answer1","answer2","answer3","answer4","Selected answer","CorrectAnswer","Points"});
-		for(QuestionInExamObject q: question) {
-			Question newQuestion = examQuestions.get(i).getQuestion();
-			if(q.getCorrectAns() == q.getSelectedAns())
-				points = Integer.toString(q.getQuestionGrade());
-			else
-				points = "0";
-			toCsv.add(new String[] {exam.getExamId(),student.getUserID(),newQuestion.getQuestionId(),newQuestion.getQuestionText(),newQuestion.getAns1(),newQuestion.getAns2(),newQuestion.getAns3(),newQuestion.getAns4(),Integer.toString(q.getSelectedAns()),Integer.toString(newQuestion.getCorrectAns()),points});
+		toCsv.add(new String[] {"QuestionID","Selected answer","Question grade"});
+		Set<String> keys = question.keySet();
+		for(String q: keys) {
+			for(QuestionInExam eq: examQuestions) {
+				if(eq.getQuestion().getQuestionId().equals(q)) {
+					que = eq;
+					break;
+				}			
+			}
+			toCsv.add(new String[] {q,Integer.toString(question.get(q)),Integer.toString(que.getQuestionGrade())});
 		}
-		
+	
 		csvWriter.writeAll(toCsv);
         try {
 			csvWriter.close();

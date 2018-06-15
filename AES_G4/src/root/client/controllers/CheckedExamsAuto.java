@@ -2,6 +2,8 @@ package root.client.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,12 +16,14 @@ import root.dao.message.CsvMessage;
 import root.dao.message.MessageFactory;
 
 
-
 public class CheckedExamsAuto implements Observer {
 	private ArrayList<QuestionInExamObject> questionsInExamObject;
 	private Exam exam;
 	private ObservableClient client;
 	private User student;
+	private Map<String, Integer> questionInExam;
+	
+
 	private MessageFactory messageFact;
 	public CheckedExamsAuto(ArrayList<QuestionInExamObject> questionsInExamObject,Exam exam) {
 		super();
@@ -29,6 +33,7 @@ public class CheckedExamsAuto implements Observer {
     	client.addObserver(this);		
     	student = DataKeepManager.getInstance().getUser();
     	messageFact = MessageFactory.getInstance();
+    	questionInExam = new HashMap<String, Integer>();
 		
 	}
 /**
@@ -40,6 +45,7 @@ public class CheckedExamsAuto implements Observer {
 		for(QuestionInExamObject q: questionsInExamObject ) {
 			if(q.getCorrectAns() == q.getSelectedAns())
 				totalGrade = totalGrade + q.getQuestionGrade();
+			questionInExam.put(q.getQuestionId(), q.getCorrectAns());
 		}
 		
 		return totalGrade;
@@ -49,7 +55,8 @@ public class CheckedExamsAuto implements Observer {
 	 * Creates new csv
 	 */
 	public void createCsv() {
-		CsvDetails csv = new CsvDetails(exam, student, questionsInExamObject);
+		
+		CsvDetails csv = new CsvDetails(exam, student, questionInExam);
 		CsvMessage newMessage = (CsvMessage) messageFact.getMessage("get-csv", csv);
 		try {
 			client.sendToServer(newMessage);
@@ -59,6 +66,7 @@ public class CheckedExamsAuto implements Observer {
 		}
 		
 	}
+	
 	/**
 	 * Method that occurs when server sends message
 	 */
@@ -66,6 +74,10 @@ public class CheckedExamsAuto implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Map<String, Integer> getQuestionInExam() {
+		return questionInExam;
 	}
 
 	
