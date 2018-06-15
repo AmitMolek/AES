@@ -11,7 +11,7 @@
  <children>
       <Label fx:id="lblQuestion" alignment="CENTER" prefHeight="45.0" prefWidth="981.0" text="Question">
          <font>
-            <Font size="37.0" />
+            <Font size="35.0" />
          </font></Label>
       <GridPane fx:id="answersGrid" layoutX="36.0" layoutY="72.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="72.0">
         <columnConstraints>

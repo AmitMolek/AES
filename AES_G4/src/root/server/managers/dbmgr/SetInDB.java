@@ -294,7 +294,7 @@ public class SetInDB implements DbManagerInterface {
 			newStmt.setInt(3, newExam.getExamGrade());
 			newStmt.setInt(4, newExam.getSolveDurationTime());
 			newStmt.setString(5, newExam.getSubmittedOrInterruptedFlag());
-			newStmt.setDate(6, dateDB);
+			newStmt.setDate(6, newExam.getDate());
 			newStmt.execute();
 			return message.getMessage("ok-put-solvedexams", null);
 		} catch (SQLException e) {

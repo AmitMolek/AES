@@ -104,10 +104,6 @@ public class ServerMessageManager {
 		}
 	}
 
-
-
-	
-
 	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
 		LoggedOutMessage loggedMsg = (LoggedOutMessage) msg;
 		String user_id = loggedMsg.getUserID();

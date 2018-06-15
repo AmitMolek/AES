@@ -84,6 +84,7 @@ public class LoginController implements Observer {
     	
     	if (serverIPpane.isVisible()) {
     		serverIP = txtFieldserverIP.getText();
+    		DataKeepManager.getInstance().keepObject("ip", serverIP);
     	}
     	
     	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.
@@ -168,7 +169,7 @@ public class LoginController implements Observer {
 						client.deleteObservers();
 						client.addObserver(new WaitForPirncipleMessage());
 					}
-					screenManager.activate("solvedExams");
+					screenManager.activate("changeDurations");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

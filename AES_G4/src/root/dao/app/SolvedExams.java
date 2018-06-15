@@ -43,7 +43,7 @@ public class SolvedExams implements Serializable {
 		this.examGrade = examGrade;
 		this.solveDurationTime = durationTime;
 		this.submittedOrInterruptedFlag = submittedOrNot;
-		this.date = (Date) newDate;
+		this.date = new java.sql.Date(newDate.getTime());
 	}
 	/**
 	* kombina with Omer, the constructor abelow is a constructor used by gal.

@@ -92,6 +92,9 @@ public class ExecuteExamController implements Observer {
 	private ArrayList<Button> tabsButton = new ArrayList<Button>();
 
 	private ArrayList<String> intructText = new ArrayList<String>();
+	
+	private ArrayList<Integer> points = new ArrayList<Integer>();
+	
 	private String userId;
 	private Exam exam;
 	Timeline examStopWatch;
@@ -112,7 +115,7 @@ public class ExecuteExamController implements Observer {
 
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
-    	client = new ObservableClient("localhost", 8000);
+    	client = new ObservableClient((String)dataKeeper.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		try {
 			client.openConnection();
@@ -132,6 +135,7 @@ public class ExecuteExamController implements Observer {
 		for (QuestionInExam q : questionsInExam) {
 			i++;
 			intructText.add(q.getQuestion().getIdquestionIntruction());
+			points.add(q.getQuestionGrade());
 			Button tab = new Button("question " + i);
 			tab.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -147,7 +151,9 @@ public class ExecuteExamController implements Observer {
 			questionsInExamObject.add(qie);
 		}
 
-		txtNotes.setText(intructText.get(displayQuestion));
+		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
+				+"("+points.get(displayQuestion)+")");
+		
 		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -206,7 +212,8 @@ public class ExecuteExamController implements Observer {
 	@FXML
 	public void nextQuestion(ActionEvent event) {
 		displayQuestion++;
-		txtNotes.setText(intructText.get(displayQuestion));
+		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
+				+"("+points.get(displayQuestion)+")");
 		if (displayQuestion == tabsButton.size() - 1)
 			btnNext.setDisable(true);
 		btnBack.setDisable(false);
@@ -221,7 +228,9 @@ public class ExecuteExamController implements Observer {
 		displayQuestion--;
 		if (displayQuestion == 0)
 			btnBack.setDisable(true);
-		txtNotes.setText(intructText.get(displayQuestion));
+		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
+				+"("+points.get(displayQuestion)+")");
+
 		if (!(displayQuestion == tabsButton.size() - 1))
 			btnNext.setDisable(false);
 		myBorder.setCenter(questionsInExamObject.get(displayQuestion));
@@ -241,7 +250,8 @@ public class ExecuteExamController implements Observer {
 	public void changeTab(ActionEvent e) {
 		Button tabButton = (Button) e.getSource();
 		displayQuestion = tabsButton.indexOf(tabButton);
-		txtNotes.setText(intructText.get(displayQuestion));
+		txtNotes.setText(intructText.get(displayQuestion)+"\r\n"
+				+"("+points.get(displayQuestion)+")");
 		myBorder.setCenter(questionsInExamObject.get(displayQuestion));
 		if (displayQuestion == tabsButton.size() - 1)
 			btnNext.setDisable(true);
@@ -310,5 +320,4 @@ public class ExecuteExamController implements Observer {
 	public void changeTime(int newTime) {
 		stopWatch = newTime;
 	}
-
 }
