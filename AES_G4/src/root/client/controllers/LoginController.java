@@ -1,5 +1,6 @@
 package root.client.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -7,16 +8,23 @@ import java.util.Observer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -111,7 +119,63 @@ public class LoginController implements Observer {
 			});
 		}
     }
-    
+    /**
+     * EasterEgg
+     */
+    @FXML
+    void forgotPass(ActionEvent event) {
+    	/*************/
+    	   
+    	        // All of our necessary variables
+    	        File imageFile;
+    	        File audioFile;
+    	        Image image;
+    	        ImageView imageView;
+    	        Media audio;
+    	        MediaPlayer audioPlayer;
+    	        BorderPane pane;
+    	        Scene scene;
+    	        Stage stage;
+    	        
+    	        // The path to your image can be a URL,
+    	        // or it can be a directory on your computer.
+    	        // If the picture is on your computer, type the path
+    	        // likes so:
+    	        //     C:\\Path\\To\\Image.jpg
+    	        // If you have a Mac, it's like this:
+    	        //     /Path/To/Image.jpg
+    	        // Replace the path with the one on your computer
+    	        imageFile = new File("/Users/bryce/NetBeansProjects/Graphics_PM/src/edu/govschool/scrub.jpg");
+    	        image = new Image(imageFile.toURI().toString());
+    	        imageView = new ImageView(image);
+
+//    	        // The same thing applies with audio files. Replace
+//    	        // this with the path to your audio file
+//    	        audioFile = new File("/Users/bryce/NetBeansProjects/Graphics_PM/src/edu/govschool/dangerzone.mp3");
+//    	        audio = new Media(audioFile.toURI().toString());
+//    	        audioPlayer = new MediaPlayer(audio);
+//    	        audioPlayer.setAutoPlay(true);
+
+    	        // Our image will sit in the middle of our popup.
+    	        pane = new BorderPane();
+    	        pane.setCenter(imageView);
+    	        scene = new Scene(pane);
+
+    	        // Create the actual window and display it.
+    	        stage = new Stage();
+    	        stage.setScene(scene);
+    	        // Without this, the audio won't stop!
+    	        stage.setOnCloseRequest(
+    	            e -> {
+    	                e.consume();
+    	              //  audioPlayer.stop();
+    	                stage.close();
+    	            }
+    	        );
+    	        stage.showAndWait();
+    	    
+    	/*************/
+    }
     /**
      * This method occurs when the window is shown up.
      * @throws IOException if the window cannot be shown

@@ -50,7 +50,7 @@
             </GridPane>
             <BorderPane layoutX="200.0" layoutY="192.0" prefHeight="124.0" prefWidth="126.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="190.0">
                <bottom>
-                  <Hyperlink fx:id="linkForgot" text="Forgot Details?" BorderPane.alignment="CENTER">
+                  <Hyperlink fx:id="linkForgot" onAction="#forgotPass" text="Forgot Details?" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
