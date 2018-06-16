@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -95,15 +96,35 @@ public class ExecuteExamController implements Observer {
 	private ArrayList<Integer> points = new ArrayList<Integer>();
 
 	private String userId;
+	
+	
 	private Exam exam;
-	Timeline examStopWatch;
+	
+	
+	private Timeline examStopWatch;
+	
+	
 	private String date;
+	
+	
 	private Date dt;
+	
+	
 	private SimpleDateFormat sdf;
+	
+	
 	private String status;
+	
+	
 	private MessageFactory messageFact = MessageFactory.getInstance();
+	
+	
 	private ObservableClient client;
+	
+	
 	ScreensManager scrMgr = ScreensManager.getInstance();
+	
+	
 
 	/**
 	 * this method happens when the window shown
@@ -151,6 +172,7 @@ public class ExecuteExamController implements Observer {
 
 		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
 
+
 		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -175,7 +197,8 @@ public class ExecuteExamController implements Observer {
 			dialog.initOwner(scrMgr.getPrimaryStage());
 			dialog.setTitle("Enter ID");
 			dialog.setHeaderText("Enter your id:");
-
+			TextField txt =dialog.getEditor();
+			txt.setText(dataKeeper.getUser().getUserID());
 			final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
 			ok.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Ok was definitely pressed"));
 
@@ -312,6 +335,7 @@ public class ExecuteExamController implements Observer {
 					}
 				});
 			}
+			
 		}
 
 	}

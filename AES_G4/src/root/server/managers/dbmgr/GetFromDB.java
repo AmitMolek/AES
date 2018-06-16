@@ -5,14 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
-import java.util.Map;
-import java.util.Set;
-
 import com.mysql.jdbc.Statement;
 
 import root.dao.app.CheatingExamTest;
@@ -93,7 +92,6 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 	}
-	
 	
 /**
  * @author gal
@@ -258,7 +256,7 @@ public class GetFromDB implements DbManagerInterface {
 		
 		return null;
 	}
-	
+
 	@Override
 	public ArrayList<Exam> exams(String... str) {
 		ArrayList<Exam> exams = new ArrayList<Exam>();
@@ -434,7 +432,7 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<SolvedExams> solvedExams(String... str) {
 		ArrayList<SolvedExams> solvedExams = new ArrayList<SolvedExams>();
 		ResultSet rs;
-		String SubjectsQuery =  "SELECT * FROM `solved exams`";// fetch all subjects
+		String SubjectsQuery =  "SELECT * FROM `solved exams`";// fetch all solvedExams
 		try {
 			stmt = conn.createStatement();
 			switch(str.length) {
@@ -578,5 +576,4 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 	}
-
 }

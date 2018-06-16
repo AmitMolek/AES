@@ -59,6 +59,7 @@ import root.dao.message.WordMessage;
 import root.server.AES_Server;
 import root.server.managers.dbmgr.GetFromDB;
 import root.server.managers.dbmgr.SetInDB;
+import root.server.managers.usersmgr.ExamExecutedManager;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 import root.server.managers.usersmgr.PrincipleManager;
 import root.server.managers.worddocumentmgr.WordDocument;
@@ -73,6 +74,7 @@ public class ServerMessageManager {
 	public static String PATH;
 	public static String PATHSOLUTION;
 	public static String PATHCSV;
+	public static ExamExecutedManager executedUsersManager = new ExamExecutedManager();
 	
 	private ServerMessageManager() {
 		Path currentRelativePath = Paths.get("");
@@ -237,8 +239,6 @@ public class ServerMessageManager {
 				return handleGetExamMessage(msg);
 			case "user":
 				return handleFetUserMessage(msgContent,msg);
-			case "solvedExamByTeacherId":
-				return handleGetExamByTeacherID(msg);
 			case "cheatingexamstest":
 				return handleGetCheatingExamsTest(msg);
 			case "solvedexams":
@@ -350,20 +350,6 @@ public class ServerMessageManager {
 		}
 		return message.getMessage("ok-get-users",usersMap);
 	}
-/***
- * @author Alon Ben-yosef
- * @param msg of UserIDMessage type expected
- * @return An exam message containing an arraylist of exams assembled by teacherID
- */
-	private static AbstractMessage handleGetExamByTeacherID(AbstractMessage msg) {
-		//TODO:Convert getFromDB to singleton
-		UserIDMessage idMessage = (UserIDMessage) msg;
-		MessageFactory factory=MessageFactory.getInstance();
-		GetFromDB getExams = new GetFromDB();
-		ArrayList<Exam> examList = getExams.exams();//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
-		ExamMessage message=(ExamMessage) factory.getMessage("ok-get-solvedExamByTeacherId", examList);
-		return message;
-	}
 
 	/**
 	 * 
@@ -474,10 +460,13 @@ public class ServerMessageManager {
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
 				if(exams!=null)
 				{
+					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
+						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
+					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
 					Exam e = exams.get(0);
 					examinees.addStudent(e.getExamId(),AES_Server.CLIENT);
-					return message.getMessage("ok-get-exams", exams);
-					
+					ExamMessage examMsg = (ExamMessage) message.getMessage("ok-get-exams", exams);
+					return examMsg;
 				}
 				else
 					return new ErrorMessage(new NullPointerException("Exam not found"));
@@ -502,6 +491,9 @@ public class ServerMessageManager {
 			return handleDeleteExamMessage(msg);
 		case "questions":
 			return handleDeleteQuestionMessage(msg);
+		case "solvedexams":
+			return handleSolvedExams(msg);
+
 		}
 		return null;
 	}
@@ -715,4 +707,13 @@ public class ServerMessageManager {
 		
 	}
 	
+	public static AbstractMessage handleSolvedExams(AbstractMessage msg) {
+		SimpleMessage simpleMsg = (SimpleMessage)msg;
+		SetInDB set = new SetInDB();
+		String simp = simpleMsg.getMsg().split("-")[2];
+		set.deleteSolvedExam(simp);
+		
+		return msg;
+		
+	}
 }
