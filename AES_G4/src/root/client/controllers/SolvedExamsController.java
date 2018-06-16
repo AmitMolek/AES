@@ -1,10 +1,16 @@
 package root.client.controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -307,29 +313,49 @@ public class SolvedExamsController  implements Observer{
 	/**
 	 * this method create the solvedExam's PDF. 
 	 */
-	private void createPDF() {
-		/** PDF formation:
+	private void createWord() {
+		/** Word formation:
 		 * 
 		*	SolvingDate
 		*	Exam ID
 		*	StudentID
 		*	Approving teacher full name
-		*
-		*	
-		*	question (from Questions)
-		*	Question weight
-		*	selected answer
-		*
-		*	question (from Questions)
-		*	Question weight
-		*	selected answer
-		*	
-		*		*
-		*		*
-		*		*
-		*
 		*	Exam Grade
+		*
+		*	question (from Questions)
+		*	Question weight
+		*	selected answer
+		*
+		*	question (from Questions)
+		*	Question weight
+		*	selected answer
+		*	
+		*		*
+		*		*
+		*		*
+		*
 		*/
+		try {
+			for (String line : lines) {
+	            //Blank Document
+	            XWPFDocument document = new XWPFDocument();
+	            //Write the Document in file system
+	            FileOutputStream out = new FileOutputStream(
+	                    new File("createdWord" + "_" + line + ".docx"));
+	 
+	            //create Paragraph
+	            XWPFParagraph paragraph = document.createParagraph();
+	            XWPFRun run = paragraph.createRun();
+	            run.setText("VK Number (Parameter): " + line + " here you type your text...\n");
+	            document.write(out);
+	           
+	            //Close document
+	            out.close();
+	            System.out.println("createdWord" + "_" + line + ".docx" + " written successfully");
+	        }
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	/**
@@ -454,7 +480,7 @@ public class SolvedExamsController  implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof QuestionsMessage) {
 			this.solvedExamQuestions = ((QuestionsMessage) arg1).getQuestions();
-			createPDF();
+			createWord();
 		}
 		if (arg1 instanceof CsvMessage) {
 			this.csvData = ((CsvMessage) arg1).getCsvDetailofSolvedExam();
