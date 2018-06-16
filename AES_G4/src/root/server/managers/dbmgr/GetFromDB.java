@@ -15,6 +15,7 @@ import root.dao.app.CheatingExamTest;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExamTableDataLine;
 import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
@@ -380,13 +381,6 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 		
-
-	@Override
-	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	/**
 	 * @author gal
 	 * @param str - size== 0: retreive all solved exams, if size == 9, retrieve all solvedExams of this userID, if size==6, retrieve all solved exams of this specific
@@ -513,5 +507,35 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 		
+	}
+
+	public ArrayList<ExamTableDataLine> getLinesByTeacherID(String id) {
+		String query1="SELECT e.exam_id, st.exam_date,c.course_name,sub.subject_name" + 
+				"FROM aes.exams e, aes.exams_stats st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis" + 
+				"WHERE e.teacher_assembler_id='"+id+"' AND e.exam_id=st.exam_id" + 
+				"AND SUBSTR(e.exam_id,1,2)=cis.subject_id AND substr(e.exam_id,3,2)=cis.course_id" + 
+				"AND cis.subject_id=sub.subject_id AND cis.course_id=c.course_id;";
+		ResultSet rs;
+		ArrayList<ExamTableDataLine> dataList=new ArrayList<ExamTableDataLine>();
+		try {
+			rs= stmt.executeQuery(query1);
+			rs.close();
+			while(rs.next()) {
+				dataList.add(new ExamTableDataLine(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return null;
+	}
+	
+
+	@Override
+	public ArrayList<Statistic> solvedExamStatistic(String... str) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
