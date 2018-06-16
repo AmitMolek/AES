@@ -1,4 +1,4 @@
-package root.server.managers.worddocumentmgr;
+package root.util.worddocumentmgr;
 
 import java.io.File;
 import java.io.FileOutputStream;

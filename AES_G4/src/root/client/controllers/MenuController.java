@@ -127,8 +127,6 @@ public class MenuController {
     		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testPrincipalGradesStats")));
     	}else if (per.equals("Teacher")) {
     		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testTeacherGradesStats")));
-    	}else {
-    		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testStudentGradesStats")));
     	}
     	
     	createMenuItem(statisticsMenu, img, "Statistics", 90, 25);
