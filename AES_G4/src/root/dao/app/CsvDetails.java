@@ -15,7 +15,19 @@ public class CsvDetails implements Serializable{
 	private Exam examId;
 	private User userId;
 	private Map<String,Integer> questionInExam;
+	// Gal addition:
+	private SolvedExams solvedExam;
+	private String examSolverID;
 	
+	/**
+	 * constructor for getting a CSV from server to client
+	 */
+
+	public CsvDetails(SolvedExams solvedExam, String examSolverID) {
+		super();
+		this.solvedExam = solvedExam;
+		this.examSolverID = examSolverID;
+	}
 	/**
 	 * Constructor for csv
 	 * @param examId the exam
@@ -48,8 +60,29 @@ public class CsvDetails implements Serializable{
 	public Map<String, Integer> getQuestionInExam() {
 		return questionInExam;
 	}
+	/**
+	 * @return the solvedExam
+	 */
+	public SolvedExams getSolvedExam() {
+		return solvedExam;
+	}
+	/**
+	 * @param solvedExam the solvedExam to set
+	 */
+	public void setSolvedExam(SolvedExams solvedExam) {
+		this.solvedExam = solvedExam;
+	}
+	/**
+	 * @return the examSolverID
+	 */
+	public String getExamSolverID() {
+		return examSolverID;
+	}
+	/**
+	 * @param examSolverID the examSolverID to set
+	 */
+	public void setExamSolverID(String examSolverID) {
+		this.examSolverID = examSolverID;
+	}
 
-
-
-	
 }

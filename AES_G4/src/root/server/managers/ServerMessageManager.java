@@ -62,6 +62,7 @@ import root.server.managers.dbmgr.SetInDB;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 import root.server.managers.usersmgr.PrincipleManager;
 import root.server.managers.worddocumentmgr.WordDocument;
+import root.util.CSVReader;
 
 public class ServerMessageManager {
 	private static ExecuteStudentManager examinees = new ExecuteStudentManager();
@@ -170,9 +171,21 @@ public class ServerMessageManager {
 	private static AbstractMessage handleQuestionsMessage(AbstractMessage msg) {
 		// TODO Auto-generated method stub
 		QuestionsMessage questionMessage = (QuestionsMessage)msg;
+		String questionMgs = questionMessage.getMsg();
 		GetFromDB getQuestions = new GetFromDB();
-		ArrayList<Question> questions = getQuestions.questions(questionMessage.getThisQuestionsSubject().getSubjectID());
-		
+		ArrayList<Question> questions = new ArrayList<Question>();
+		if (questionMgs.split("-").length == 3) {	// here well be getting questions by question ID, optionaly to add other parameters to this switch/case
+			switch (questionMgs.split("-")[2]) {
+			case "questionid":
+				questions = getQuestions.questions(questionMessage.getQuestionID());
+				break;
+			default:
+				break;
+			}
+		}
+		else {	// get questions by a subjectID.
+			questions = getQuestions.questions(questionMessage.getThisQuestionsSubject().getSubjectID());
+		}
 		if (questions.size() ==0) return message.getMessage("error-Qeustions",new Exception("No Questions in this subject"));	// return Exception
 		else if (questions.size() >= 1) return message.getOkGetMessage("ok-get-questions".split("-"),questions);	// found questions for this subject, return them
 		return message.getMessage("error-Qesutions",new Exception("Error in finding Qesutions"));
@@ -237,7 +250,9 @@ public class ServerMessageManager {
 			case "executed":
 				return handleGetExecutedExams(msg);
 					case "csv":
-			return handleGetCsv(msg);
+				return handleGetCsv(msg);
+			case "csvfromserver":
+				return handleGetCSVfromServer(msg);
 		}
 		
 		return null;
@@ -623,7 +638,27 @@ public class ServerMessageManager {
 		return null;
 
 	}
-		private static AbstractMessage handleGetCsv(AbstractMessage msg) {
+	/**
+	 * call this message to get a specific solvedExam's CSV from server 
+	 * @author gal
+	 * @param msg
+	 * @return
+	 */
+	private static AbstractMessage handleGetCSVfromServer(AbstractMessage msg) {
+		SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("yyyy-MM-dd");
+		CSVReader instace = CSVReader.getInstace();
+		CsvMessage newMessage = (CsvMessage)msg;
+		CsvDetails csv = newMessage.getCsv();
+		SolvedExams solvedExam = csv.getSolvedExam();
+		String date = monthDayYearformatter.format((java.util.Date) solvedExam.getExamDateTime());
+		String path = PATHCSV +solvedExam.getExamID() + "-" + date;
+		String pathInsideSolvedExamFolder = path + "//" + solvedExam.getSovingStudentID()+ ".csv";
+		instace.setCsvFile(pathInsideSolvedExamFolder);
+		ArrayList<String[]> csvDATA = instace.readCSV();		// "readCSV" return ArrayList<String[]>, than save it inside newMessage.
+		return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
+	}
+	
+	private static AbstractMessage handleGetCsv(AbstractMessage msg) {
 		int i = 0;
 		SimpleMessage sendMessage;
 		CSVWriter csvWriter = null;
@@ -668,9 +703,9 @@ public class ServerMessageManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
-		
+	return null;	
 	}
+	
 	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
 		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
 		GetFromDB get = new GetFromDB();
