@@ -2,6 +2,12 @@ package root.dao.app;
 
 import java.util.Date;
 
+/**
+ * Data storage class for the cheating chcker
+ * @author Amit Molek
+ *
+ */
+
 public class CheatingExamTest {
 
 	String user_id;
