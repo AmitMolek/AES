@@ -131,6 +131,7 @@ public class AddExamController implements Observer {
 			{
 			newQuestion.clearQuestionInExam();
 			newQuestion.clearComboBox();
+
 			}
 		}
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
