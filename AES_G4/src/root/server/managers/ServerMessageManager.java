@@ -62,7 +62,7 @@ import root.server.managers.dbmgr.SetInDB;
 import root.server.managers.usersmgr.ExamExecutedManager;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 import root.server.managers.usersmgr.PrincipleManager;
-import root.server.managers.worddocumentmgr.WordDocument;
+import root.util.worddocumentmgr.WordDocument;
 import root.util.CSVReader;
 
 public class ServerMessageManager {
@@ -706,14 +706,12 @@ public class ServerMessageManager {
 		return msg;
 		
 	}
-	
+
 	public static AbstractMessage handleSolvedExams(AbstractMessage msg) {
 		SimpleMessage simpleMsg = (SimpleMessage)msg;
 		SetInDB set = new SetInDB();
 		String simp = simpleMsg.getMsg().split("-")[2];
 		set.deleteSolvedExam(simp);
-		
-		return msg;
-		
+		return msg;	
 	}
 }

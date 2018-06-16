@@ -3,12 +3,14 @@ package root.client.controllers;
 import java.io.IOException;
 
 import ocsf.client.ObservableClient;
+import root.client.managers.DataKeepManager;
 import root.dao.message.ChangeTimeDurationRequest;
 
 public class SendRequests {
 	ObservableClient client;
+	private DataKeepManager dbk;
 	public SendRequests() {
-		client = new ObservableClient("localhost", 8000);
+		client = new ObservableClient((String)dbk.getInstance().getObject_NoRemove("ip"), 8000);
     	try {
 			client.openConnection();
 		} catch (IOException e) {

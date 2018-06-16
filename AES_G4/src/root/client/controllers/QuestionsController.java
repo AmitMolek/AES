@@ -144,8 +144,6 @@ public class QuestionsController implements Observer{
 		super();
 	}
 
-	
-		
 	/**
      * This method occurs when the window is shown up.
      * @throws IOException if the window cannot be shown
@@ -183,19 +181,12 @@ public class QuestionsController implements Observer{
     		deleteQuestion.setDisable(false);
         });
     	
-    	//editQuestion.setDisable(true);
     	btnSearch.setDisable(true);
     	deleteQuestion.setDisable(true);
-    	//observabaleQuestions.clear();
-    	//questions.clear();
     	setUserDetails(user);
     	getUserSubjects(user);
-    	initQuestionsTable();
-    	
+    	initQuestionsTable();   	
     }
-
-
-
 
 	private void initQuestionsTable() {
 		// TODO Auto-generated method stub

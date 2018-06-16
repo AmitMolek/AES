@@ -233,7 +233,7 @@ public class LoginController implements Observer {
 						client.deleteObservers();
 						client.addObserver(new WaitForPirncipleMessage());
 					}
-					screenManager.activate("solvedExams");
+					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

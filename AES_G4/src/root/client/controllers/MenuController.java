@@ -25,7 +25,7 @@ import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
 /**
- * The controller class of the menu screen
+ * The controller class of the menu screen b
  * @author Amit Molek
  *
  */
@@ -65,10 +65,10 @@ public class MenuController {
     public void initMenuBtn() {
     	initReturnMenu();
     	initGoHome();
-    	
+    	initExamsMenu();
     	if (user.getUserPremission().equals("Teacher")) {
         	initQuestionsMenu();
-        	initExamsMenu();
+        	
     	}else if (user.getUserPremission().equals("Student")) {
     		
     	}else {
@@ -105,8 +105,7 @@ public class MenuController {
     		examsMenu.getItems().add(createMenuItem("View exams", getChangeScreenActionEvent("solvedExams")));
     	}else if (user.getUserPremission().equals("Teacher")) {
         	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
-        	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateExam")));
-        	examsMenu.getItems().add(createMenuItem("Remove exam", getChangeScreenActionEvent("updateDeleteExam")));
+        	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateDeleteExam")));
     	}
     }
     
@@ -128,8 +127,6 @@ public class MenuController {
     		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testPrincipalGradesStats")));
     	}else if (per.equals("Teacher")) {
     		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testTeacherGradesStats")));
-    	}else {
-    		statisticsMenu.getItems().add(createMenuItem(name, getChangeScreenActionEvent("testStudentGradesStats")));
     	}
     	
     	createMenuItem(statisticsMenu, img, "Statistics", 90, 25);
