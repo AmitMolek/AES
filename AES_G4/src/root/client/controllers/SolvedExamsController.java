@@ -3,11 +3,13 @@ package root.client.controllers;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -40,6 +42,7 @@ import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.CourseMessage;
 import root.dao.message.CsvMessage;
+import root.dao.message.ErrorMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
@@ -128,9 +131,10 @@ public class SolvedExamsController  implements Observer{
     private User user;
     private ScreensManager screenManager;
     private HashMap<String, String> courseMap;			// key = subjectID, value = subject name
-	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name. 
-	private ArrayList<String[]> csvData;
+	private HashMap<String, String> teachersMap;		// key = teacherID, value = teacher full name. 
+	private ArrayList<String[]> csvData;				// csvData contains per solvedExam questions: {questionID, selectedQuestion, question Weight}
 	private ArrayList<Question> solvedExamQuestions;
+	private SolvedExams solvedExam;
 	Log log = Log.getInstance();
 	
 	
@@ -249,7 +253,7 @@ public class SolvedExamsController  implements Observer{
                             setText(null);
                         } else {
                             btn.setOnAction(event -> {
-                            	SolvedExams solvedExam = getTableView().getItems().get(getIndex());
+                            	solvedExam = getTableView().getItems().get(getIndex());
                             	perapeDownload(solvedExam);
                             });
                             setGraphic(btn);
@@ -288,6 +292,7 @@ public class SolvedExamsController  implements Observer{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 		
 	}
@@ -315,7 +320,7 @@ public class SolvedExamsController  implements Observer{
 	 */
 	private void createWord() {
 		/** Word formation:
-		 * 
+		* 
 		*	SolvingDate
 		*	Exam ID
 		*	StudentID
@@ -336,27 +341,102 @@ public class SolvedExamsController  implements Observer{
 		*
 		*/
 		try {
-			for (String line : lines) {
-	            //Blank Document
-	            XWPFDocument document = new XWPFDocument();
-	            //Write the Document in file system
-	            FileOutputStream out = new FileOutputStream(
-	                    new File("createdWord" + "_" + line + ".docx"));
-	 
+			//Blank Document
+            XWPFDocument document = new XWPFDocument();
+            //Write the Document in file system
+            FileOutputStream out = new FileOutputStream(
+                    new File(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx"));
+            /**
+             * Printing:
+             *	SolvingDate
+			 *	Exam ID
+			 *	StudentID
+			 *	Approving teacher full name
+			 *	Exam Grade
+             */
+            // solving date
+            XWPFParagraph dateParagraph = document.createParagraph();
+            XWPFRun runDate = dateParagraph.createRun();
+            runDate.setBold(true);
+            runDate.setItalic(true);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
+            runDate.setText(solvedExsamDate);
+            // Exam ID + Exam course
+            XWPFParagraph titleParagraph = document.createParagraph();
+            titleParagraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun runTitle = titleParagraph.createRun();
+            runTitle.setBold(true);
+            runTitle.setItalic(true);
+            runTitle.setText("ExamID: "+ solvedExam.getExamID());
+            runTitle.addBreak();
+            runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
+            runTitle.addBreak();
+            runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
+            runTitle.addBreak();
+            runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
+            runTitle.addBreak();
+            runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
+            runTitle.addBreak();
+            /**
+             * printing Questions and selected answeres
+             */
+            for (Question question: solvedExamQuestions) {
 	            //create Paragraph
-	            XWPFParagraph paragraph = document.createParagraph();
-	            XWPFRun run = paragraph.createRun();
-	            run.setText("VK Number (Parameter): " + line + " here you type your text...\n");
-	            document.write(out);
-	           
-	            //Close document
-	            out.close();
-	            System.out.println("createdWord" + "_" + line + ".docx" + " written successfully");
-	        }
+	            XWPFParagraph questionParagraph = document.createParagraph();
+	            XWPFRun runQuestions = questionParagraph.createRun();
+	            runQuestions.setText(question.getQuestionText()+"\n");
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText(question.getIdquestionIntruction()+"\n");
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("Possible answeres:");
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("1) "+question.getAns1());
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("2) "+question.getAns2());
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("3) "+question.getAns3());
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("4) "+question.getAns4());
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            runQuestions.setText("Correct answer: " + question.getCorrectAns());
+	            runQuestions.addBreak();
+	            runQuestions.addTab();
+	            // getting the selected answer from csvData.
+	            for (String[] csvLine: csvData) {
+	    			String slectedQuestionID = csvLine[0];
+	    			String questionID = question.getQuestionId();
+	    			int correctAnswer = question.getCorrectAns();
+	    			if (slectedQuestionID.equals(questionID) ) {
+	    				runQuestions.setText("Your selected answer: "+ csvLine[1]);
+	    				runQuestions.addBreak();
+	    				if (Integer.parseInt(csvLine[1]) == correctAnswer)runQuestions.setText("Question points: "+ csvLine[2] +"/"+csvLine[2]);
+	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2]);
+	    			}
+	    		}
+	            runQuestions.addBreak();
+			}// end of printing questions
+            document.enforceReadonlyProtection();
+            document.write(out);
+
+            //Close document
+            out.close();
+            System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
+	      
 		}catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}catch (Exception e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}	
 	}
 	/**
 	 * This method called when we need to update in tblQuestions the TeacherName column
@@ -515,7 +595,19 @@ public class SolvedExamsController  implements Observer{
 			updateTeacherAssemblerFullName(teachersMap);
 		}
 		if(arg1 instanceof SimpleMessage) {
-			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
+			log.writeToLog(LogLine.LineType.INFO, "simpleMessage Recieved in SolvedExamController,  what the Fuck ?!");
+		}
+		else if (arg1 instanceof ErrorMessage) {
+			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				// Show the error message.
+	            Alert alert = new Alert(AlertType.ERROR);//cs
+	            alert.initOwner(screenManager.getPrimaryStage());
+	            alert.setTitle("Invalid Fields");
+	            alert.setHeaderText("Please correct invalid fields");
+	            alert.setContentText(arg1.toString());
+	            alert.showAndWait();       
+	        	log.writeToLog(LogLine.LineType.ERROR, arg1.toString());
+			});
 		}
 	}
 }
