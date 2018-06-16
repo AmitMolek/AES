@@ -43,6 +43,15 @@ public class UtilityBarController implements Observer{
     @FXML
     private ImageView appExitBtn;
 
+    @FXML
+    private ImageView username_img;
+    
+    @FXML
+    private Label username_lbl;
+    
+    @FXML
+    private Label fullName_lbl;
+    
     private Stage primaryStage;
     
     private DataKeepManager dkm;
@@ -64,6 +73,15 @@ public class UtilityBarController implements Observer{
     	if (dkm.getUser() == null) {
     		appLogoutBtn.setOpacity(0);
     		appLogoutBtn.setDisable(true);
+    		
+    		username_lbl.setOpacity(0);
+    		username_lbl.setDisable(true);
+    		
+    		username_img.setOpacity(0);
+    		username_img.setDisable(true);
+    	}else {
+    		username_lbl.setText(dkm.getUser().getUserID());
+    		fullName_lbl.setText(dkm.getUser().getUserFirstName() + " " + dkm.getUser().getUserLastName());
     	}
     	
     	initDrag();

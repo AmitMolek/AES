@@ -3,6 +3,8 @@ package root.util.properties;
 import java.io.IOException;
 
 import org.apache.commons.configuration.ConfigurationException;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
@@ -27,6 +29,7 @@ public class PropertiesFile {
 	 * Private singleton constructor
 	 */
 	private PropertiesFile() {
+		Logger.getRootLogger().setLevel(Level.OFF);
 		try {
 			writer = new PropertiesWriter();
 			reader = new PropertiesReader();

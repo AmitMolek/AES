@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.Map;
 import java.util.Set;
 
@@ -191,6 +195,40 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
+	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Date date){
+		ArrayList<CheatingExamTest> exams = new ArrayList<>();
+		ResultSet rs;
+		
+		String examDate = String.format("%d-%02d-%d", date.getYear(), date.getMonth(), date.getDate());
+		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id + "%' AND exam_executing_Date LIKE '" + examDate + "%'";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(solvedExamsSqlQuery + ";");
+			
+			while (rs.next()) {
+				String temp_user_id = rs.getString(1);
+				String temp_exam_id = rs.getString(2);
+				Date temp_date = rs.getDate(6);
+				boolean cheating_flag = false;
+				
+				String temp_cheating_flag_str = rs.getString(11);
+				
+				if (temp_cheating_flag_str == "yes") cheating_flag = true;
+				
+				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, temp_date, cheating_flag));
+			}
+			
+			rs.close();
+			return exams;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public ArrayList<Exam> exams(String... str) {
 		ArrayList<Exam> exams = new ArrayList<Exam>();
@@ -467,7 +505,7 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 	
-	private Question returnQuestion(String id) {
+	public Question returnQuestion(String id) {
 		String QuestionQuery = "SELECT * FROM questions WHERE question_id = "+id;
 		ResultSet qs;
 		Question q = null;

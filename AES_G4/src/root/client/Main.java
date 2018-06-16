@@ -1,7 +1,5 @@
 package root.client;
-	
 
-import javafx.scene.text.Font;
 import root.client.managers.ScreensManager;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
