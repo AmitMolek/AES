@@ -1,4 +1,3 @@
-
 package root.client.managers;
 
 import java.util.HashMap;
@@ -72,11 +71,12 @@ public class DataKeepManager {
 	 * @return returns true if the object is saved
 	 */
 	public boolean keepObject(String objKey, Object obj) {
-		if (objMap.containsKey(objKey)) return false;
-		objMap.put(objKey, obj);
+		String objLower = objKey.toLowerCase();
+		if (objMap.containsKey(objLower)) return false;
+		objMap.put(objLower, obj);
 		if (obj != null)
-			log.writeToLog(LineType.INFO, "Keep object: Key: " + objKey + " Object: " + obj.getClass());
-		else log.writeToLog(LineType.INFO, "Keep object: Key: " + objKey); 
+			log.writeToLog(LineType.INFO, "Keep object: Key: " + objLower + " Object: " + obj.getClass());
+		else log.writeToLog(LineType.INFO, "Keep object: Key: " + objLower); 
 		return true;
 	}
 	
@@ -87,10 +87,11 @@ public class DataKeepManager {
 	 * @return return true is updated
 	 */
 	public boolean updateObject(String objKey, Object obj) {
-		if (!objMap.containsKey(objKey)) {
-			return keepObject(objKey, obj);
+		String objLower = objKey.toLowerCase();
+		if (!objMap.containsKey(objLower)) {
+			return keepObject(objLower, obj);
 		}
-		objMap.put(objKey, obj);
+		objMap.put(objLower, obj);
 		return true;
 	}
 	
@@ -100,12 +101,13 @@ public class DataKeepManager {
 	 * @return returns the object that is associated with objKey, null if there is no object with this key
 	 */
 	public Object getObject(String objKey) {
-		if (!objMap.containsKey(objKey)) return null;
-		Object tmpObj = objMap.get(objKey);
+		String objLower = objKey.toLowerCase();
+		if (!objMap.containsKey(objLower)) return null;
+		Object tmpObj = objMap.get(objLower);
 		objMap.remove(tmpObj);
 		if (tmpObj != null)
-			log.writeToLog(LineType.INFO, "Removed object: Key: " + objKey + " Object: " + tmpObj.getClass());
-		else log.writeToLog(LineType.INFO, "Removed object: Key: " + objKey); 
+			log.writeToLog(LineType.INFO, "Removed object: Key: " + objLower + " Object: " + tmpObj.getClass());
+		else log.writeToLog(LineType.INFO, "Removed object: Key: " + objLower); 
 		return tmpObj;
 	}
 	
@@ -115,8 +117,9 @@ public class DataKeepManager {
 	 * @return
 	 */
 	public Object getObject_NoRemove(String objKey) {
-		if (!objMap.containsKey(objKey)) return null;
-		return (objMap.get(objKey));
+		String objLower = objKey.toLowerCase();
+		if (!objMap.containsKey(objLower)) return null;
+		return (objMap.get(objLower));
 	}
 	
 	/**
