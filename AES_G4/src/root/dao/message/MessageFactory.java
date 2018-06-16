@@ -132,6 +132,7 @@ public class MessageFactory {
 		case "subjectbysubjectid":
 			return new SubjectMessage("get-subjectbysubjectid",(HashMap<String, String>)payload);
 		case "questions":
+			if (payload instanceof ArrayList<?>) return new QuestionsMessage("get-questions-questionid", (ArrayList<String>)payload);
 			return new QuestionsMessage((Subject)payload);
 		case "subjects":
 			return new SubjectMessage((String)payload);
@@ -157,6 +158,8 @@ public class MessageFactory {
 			return new ExecutedExamsMessage();
 		case "csv":
 			return new CsvMessage((CsvDetails)payload);
+		case "csvfromserver":
+			return new CsvMessage("get-csvfromserver", (CsvDetails)payload);
 		default:
 			break;
 		}
@@ -274,8 +277,9 @@ public class MessageFactory {
 		case "wordexam":
 			return new WordMessage("ok-get-" + msgContent[2],(MyFile)payload);
 		case "csv":
+			if (payload instanceof ArrayList<?>)return new CsvMessage("ok-get-"+msgContent[2],(ArrayList<String[]>)payload);
 			return new SimpleMessage("ok-get-" + msgContent[2]);
-		}	
+		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	

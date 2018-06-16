@@ -26,11 +26,16 @@ import javafx.util.Callback;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
+import root.dao.app.CsvDetails;
+import root.dao.app.Question;
 import root.dao.app.SolvedExams;
+import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.CourseMessage;
+import root.dao.message.CsvMessage;
 import root.dao.message.MessageFactory;
+import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserSolvedExamsMessage;
@@ -118,6 +123,8 @@ public class SolvedExamsController  implements Observer{
     private ScreensManager screenManager;
     private HashMap<String, String> courseMap;			// key = subjectID, value = subject name
 	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name. 
+	private ArrayList<String[]> csvData;
+	private ArrayList<Question> solvedExamQuestions;
 	Log log = Log.getInstance();
 	
 	
@@ -155,6 +162,8 @@ public class SolvedExamsController  implements Observer{
     	solvedExams = new ArrayList<SolvedExams>();
     	teachersMap = new HashMap<String, String>();
     	courseMap = new HashMap<String, String>();
+    	csvData = new ArrayList<String[]>();
+    	solvedExamQuestions = new ArrayList<Question>();
     	
     	// Listen for selection changes and show the person details when changed.
     	txtFieldId.setOnMouseClicked(e -> {
@@ -235,19 +244,19 @@ public class SolvedExamsController  implements Observer{
                         } else {
                             btn.setOnAction(event -> {
                             	SolvedExams solvedExam = getTableView().getItems().get(getIndex());
-                                System.out.println(solvedExam);
+                            	perapeDownload(solvedExam);
                             });
                             setGraphic(btn);
                             setText(null);
                         }
                     }
+
                 };
                 return cell;
             }
-        };
+        	};
         tbcGetCopy.setCellFactory(cellFactory);
-        /***************************/
-		}
+	}
 	
 	private void setUserDetails(User user1) {
 		teacherIDLbl.setText(user.getUserID());
@@ -256,6 +265,73 @@ public class SolvedExamsController  implements Observer{
 		TeacherPremissionLbl.setText(user.getUserPremission());
 	}
 
+	
+	/**
+	 * this method is called when student pressed the "Download copy" button.
+	 * @param solvedExam
+	 */
+	private void perapeDownload(SolvedExams solvedExam) {
+        System.out.println(solvedExam);
+		/**
+		 * get CSV of this solved exam, from server 
+		 */
+		CsvDetails csv = new CsvDetails(solvedExam, solvedExam.getSovingStudentID());
+		CsvMessage newMessage = (CsvMessage) message.getMessage("get-csvFromServer", csv);
+		try {
+			client.sendToServer(newMessage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * this method get all solvedExam's questions
+	 */
+	private void getExamQuestions() {
+		ArrayList<String> questionIDList = new ArrayList<String>();
+		for (String[] csvLine: csvData) {
+			String questionID = csvLine[0];
+			if (questionID.length() == 5) {// do this check to pass the first line of the csvData file.
+				questionIDList.add(questionID);
+			}
+		}
+		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",questionIDList);
+		try {
+			client.sendToServer(newQuestionMessage);
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}
+	}
+	/**
+	 * this method create the solvedExam's PDF. 
+	 */
+	private void createPDF() {
+		/** PDF formation:
+		 * 
+		*	SolvingDate
+		*	Exam ID
+		*	StudentID
+		*	Approving teacher full name
+		*
+		*	
+		*	question (from Questions)
+		*	Question weight
+		*	selected answer
+		*
+		*	question (from Questions)
+		*	Question weight
+		*	selected answer
+		*	
+		*		*
+		*		*
+		*		*
+		*
+		*	Exam Grade
+		*/
+		
+	}
 	/**
 	 * This method called when we need to update in tblQuestions the TeacherName column
 	 */
@@ -376,7 +452,14 @@ public class SolvedExamsController  implements Observer{
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		if (arg1 instanceof QuestionsMessage) {
+			this.solvedExamQuestions = ((QuestionsMessage) arg1).getQuestions();
+			createPDF();
+		}
+		if (arg1 instanceof CsvMessage) {
+			this.csvData = ((CsvMessage) arg1).getCsvDetailofSolvedExam();
+			getExamQuestions();
+		}
 		if (arg1 instanceof UserSolvedExamsMessage) {
 			if(this.solvedExams.size() == 0)
 				this.solvedExams = ((UserSolvedExamsMessage) arg1).getUserSolvedExams();		// only when there no solvedExams - at first load or a new solvedExam.
@@ -395,7 +478,6 @@ public class SolvedExamsController  implements Observer{
 			this.courseMap = ((CourseMessage) arg1).getCourseMap();
 			fillCombobox(this.courseMap);
 			updateSolvedExamsCourse();
-			//getUserQuestions(this.userSubjects);
 		}
 		if (arg1 instanceof UserInfoMessage) {
 			for (SolvedExams solvedExam: solvedExams) {
@@ -410,5 +492,4 @@ public class SolvedExamsController  implements Observer{
 			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
 		}
 	}
-
 }
