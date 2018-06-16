@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 
 import com.opencsv.CSVWriter;
+
+import root.client.controllers.ExamSubmitContorller;
 import root.client.controllers.QuestionInExamObject;
 import root.dao.app.CheatingExamTest;
 import com.sun.javafx.geom.transform.GeneralTransform3D;
@@ -59,6 +61,7 @@ import root.dao.message.WordMessage;
 import root.server.AES_Server;
 import root.server.managers.dbmgr.GetFromDB;
 import root.server.managers.dbmgr.SetInDB;
+import root.server.managers.usersmgr.ExamExecutedManager;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 import root.server.managers.usersmgr.PrincipleManager;
 import root.server.managers.worddocumentmgr.WordDocument;
@@ -73,6 +76,7 @@ public class ServerMessageManager {
 	public static String PATH;
 	public static String PATHSOLUTION;
 	public static String PATHCSV;
+	public static ExamExecutedManager executedUsersManager = new ExamExecutedManager();
 	
 	private ServerMessageManager() {
 		Path currentRelativePath = Paths.get("");
@@ -456,12 +460,16 @@ public class ServerMessageManager {
 			if(msgContent[2].equals("pass")) {
 				GetFromDB getExam = new GetFromDB();
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
+
 				if(exams!=null)
 				{
+					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
+						return new ErrorMessage(new NullPointerException("user done it"));
+					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
 					Exam e = exams.get(0);
 					examinees.addStudent(e.getExamId(),AES_Server.CLIENT);
-					return message.getMessage("ok-get-exams", exams);
-					
+					ExamMessage examMsg = (ExamMessage) message.getMessage("ok-get-exams", exams);
+					return examMsg;
 				}
 				else
 					return new ErrorMessage(new NullPointerException("Exam not found"));
@@ -486,7 +494,11 @@ public class ServerMessageManager {
 			return handleDeleteExamMessage(msg);
 		case "questions":
 			return handleDeleteQuestionMessage(msg);
+		case "solvedexams":
+			return handleSolvedExams(msg);
+
 		}
+		
 		return null;
 	}
 	
@@ -689,12 +701,26 @@ public class ServerMessageManager {
 		}
 	return null;	
 	}
+<<<<<<< HEAD
 	
+=======
+		
+>>>>>>> refs/remotes/origin/Naor
 	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
 		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
 		GetFromDB get = new GetFromDB();
 		ArrayList<ExecuteExam> arr = get.getExecutedExams();
 		executedMsg.addExams(arr);
+		return msg;
+		
+	}
+	
+	public static AbstractMessage handleSolvedExams(AbstractMessage msg) {
+		SimpleMessage simpleMsg = (SimpleMessage)msg;
+		SetInDB set = new SetInDB();
+		String simp = simpleMsg.getMsg().split("-")[2];
+		set.deleteSolvedExam(simp);
+		
 		return msg;
 		
 	}
