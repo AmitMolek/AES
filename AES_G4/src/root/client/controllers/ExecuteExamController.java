@@ -130,8 +130,11 @@ public class ExecuteExamController implements Observer {
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
     	client = new ObservableClient((String)dataKeeper.getObject_NoRemove("ip"), 8000);
+    	SimpleMessage simpleMessage = (SimpleMessage) MessageFactory.getInstance().getMessage("simple", null);
+    	simpleMessage.setMessage("startExam-"+exam.getExamId());
 		client.addObserver(this);
 		try {
+	    	client.sendToServer(simpleMessage);
 			client.openConnection();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

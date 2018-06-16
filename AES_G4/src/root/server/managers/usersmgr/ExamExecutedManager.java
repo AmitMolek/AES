@@ -5,36 +5,43 @@ import java.util.HashMap;
 import java.util.List;
 
 import root.dao.message.UserSolvedExamsMessage;
+import root.server.managers.dbmgr.GetFromDB;
 
 public class ExamExecutedManager {
 	
-	private HashMap<String,ArrayList<String>> exams = new HashMap<String, ArrayList<String>>();
-	private boolean containsFlag; 
+	private HashMap<String,String> examsTime = new HashMap<String,String>();
+	private HashMap <String,Boolean> lockedExams = new HashMap<String,Boolean>();
+	
+	private boolean lock=false;	
 	
 	public boolean isContains(String examId,String userId){
-		if(exams.containsKey(examId)) {
-			
-			ArrayList<String> users = exams.get(examId);
-			return users.contains(userId);
-		}
-		return false;
+		GetFromDB get = new GetFromDB();
+		return get.getSolvedExamByID(examId, userId);
+		
 	}
 	
-	public void add(String examId,String userId) {
-	    ArrayList<String> usersList = exams.get(examId);
-
-	    // if list does not exist create it
-	    if(usersList == null) {
-	    	usersList = new ArrayList<String>();
-	    	usersList.add(userId);
-	    	exams.put(examId, usersList);
-	    } else {
-	        // add if item is not already in list
-	        if(!usersList.contains(examId))
-	        	usersList.add(userId);
-	    }
-
-
+	public void add(String examId,String time) {
+		boolean value =false;
+		examsTime.put(examId, time);
+		lockedExams.put(examId, new Boolean(value));
 	}
+	
+	public boolean isExist(String examId) {
+		return examsTime.containsKey(examId);
+	}
+
+	public void endTime(String examId) {
+		
+		
+	}
+	
+	public boolean isLock(String exmamId) {
+		return lockedExams.get(exmamId).booleanValue();
+	}
+	
+	public void lockExam(String examId) {
+		
+	}
+	
 	
 }
