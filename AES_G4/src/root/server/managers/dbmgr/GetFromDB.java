@@ -552,6 +552,29 @@ public class GetFromDB implements DbManagerInterface {
 		
 	}
 	
+	public ArrayList<ExamTableDataLine> getLinesByTeacherID(String id) {
+		String query1="SELECT e.exam_id, st.exam_date,c.course_name,sub.subject_name" + 
+				"FROM aes.exams e, aes.exams_stats st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis" + 
+				"WHERE e.teacher_assembler_id='"+id+"' AND e.exam_id=st.exam_id" + 
+				"AND SUBSTR(e.exam_id,1,2)=cis.subject_id AND substr(e.exam_id,3,2)=cis.course_id" + 
+				"AND cis.subject_id=sub.subject_id AND cis.course_id=c.course_id;";
+		ResultSet rs;
+		ArrayList<ExamTableDataLine> dataList=new ArrayList<ExamTableDataLine>();
+		try {
+			rs= stmt.executeQuery(query1);
+			rs.close();
+			while(rs.next()) {
+				dataList.add(new ExamTableDataLine(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+			}
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return null;
+	}
+	
 	public ArrayList<Statistic> getExamStatsByTeacherID(String id){
 		String query=""
 				+ "SELECT * "

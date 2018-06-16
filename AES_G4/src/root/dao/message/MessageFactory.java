@@ -3,6 +3,7 @@ package root.dao.message;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import junit.framework.Test;
 import root.dao.app.Course;
 import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
@@ -14,6 +15,7 @@ import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
+import root.dao.app.ExamTableDataLine;
 import root.server.managers.dbmgr.GetFromDB;
 
 /**
@@ -149,8 +151,8 @@ public class MessageFactory {
 			return new ExamMessage((String)payload);
 		case "user":
 			return  getUserRelatedMessage(msgContent,payload);
-		case "solvedExamByTeacherId":
-			return createGetSolvedExamByTeacherId((User)payload);	
+		case "examTableDataLine":
+			return createGetStatisticsByAssemblingTeacherId((User)payload);
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
@@ -171,6 +173,17 @@ public class MessageFactory {
 		
 		
 	}
+	/**
+	 * @author Alon Ben-yosef
+	 * @param payload to get relevant statistics for teacher
+	 * @return a userID message for teacher
+	 */
+	private AbstractMessage createGetStatisticsByAssemblingTeacherId(User payload) {
+		UserIDMessage msg=new UserIDMessage(payload);
+		msg.setMsg("get-examTableDataLine");
+		return msg;
+	}
+
 	/**
 	 * @author gal
 	 * @param payload - User
@@ -260,11 +273,12 @@ public class MessageFactory {
 			if(payload instanceof HashMap<?, ?>) 
 				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
-		case "solvedExamByTeacherId":
+		case "examTableDataLines":
 			if(payload instanceof ArrayList<?>)
 			{
-				StatsMessage statsMsg = new StatsMessage((ArrayList<Statistic>)payload);
-				statsMsg.setMsg("ok-get-solvedExamByTeacherId");
+				ExamDataLinesMessage linesMsg = new ExamDataLinesMessage((ArrayList<ExamTableDataLine>)payload);
+				linesMsg.setMsg("ok-get-examTableDataLine");
+				return linesMsg;
 			}
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
 		case "users":
@@ -286,9 +300,4 @@ public class MessageFactory {
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 	
-	private UserIDMessage createGetSolvedExamByTeacherId(User payload) {
-		UserIDMessage message=new UserIDMessage((User)payload);
-		message.setMsg("get-solvedExamByTeacherId");
-		return message;
-	}
 }

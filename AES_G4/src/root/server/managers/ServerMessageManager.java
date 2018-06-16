@@ -24,6 +24,7 @@ import com.sun.javafx.geom.transform.GeneralTransform3D;
 import root.dao.app.Course;
 import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
+import root.dao.app.ExamTableDataLine;
 import root.dao.app.ExecuteExam;
 import root.dao.app.LoginInfo;
 import root.dao.app.Question;
@@ -38,6 +39,7 @@ import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
 import root.dao.message.CsvMessage;
 import root.dao.message.ErrorMessage;
+import root.dao.message.ExamDataLinesMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExecuteExamMessage;
 import root.dao.message.ExecutedExamsMessage;
@@ -263,11 +265,24 @@ public class ServerMessageManager {
 				return handleGetCsv(msg);
 			case "csvfromserver":
 				return handleGetCSVfromServer(msg);
+			case "examTableDataLines":
+				return handleExamTableDataLine(msg);
 		}
 		
 		return null;
 	}
-	
+	/**
+	 * @author Alon Ben-yosef
+	 * Handles request for exam table data lines, which is used to fill statistics table
+	 * @param msg user message with teacher ID
+	 * @return an ok-get-examTableDataLine with datalines in case of success, null in case of failures
+	 */
+	private static AbstractMessage handleExamTableDataLine(AbstractMessage msg) {
+		GetFromDB getLines = new GetFromDB();
+		ArrayList<ExamTableDataLine> data=getLines.getLinesByTeacherID(((UserIDMessage)msg).getId());
+		return message.getMessage("ok-get-examTableDataLine", data);
+	}
+
 	/**
 	 * @author gal
 	 * this method called when have map<courseID,courseName> and want to fill it with course names.

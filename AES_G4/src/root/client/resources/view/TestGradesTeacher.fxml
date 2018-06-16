@@ -10,15 +10,16 @@
   <children>
     <BorderPane layoutX="57.0" layoutY="89.0" prefHeight="590.0" prefWidth="445.0">
       <left>
-        <TableView fx:id="table" prefHeight="590.0" prefWidth="738.0" BorderPane.alignment="CENTER">
+        <TableView fx:id="table" prefHeight="590.0" prefWidth="978.0" BorderPane.alignment="CENTER">
           <columns>
             <TableColumn fx:id="examNumCol" prefWidth="233.5999870300293" text="Exam Number" />
             <TableColumn fx:id="dateCol" prefWidth="240.00006103515625" text="Date" />
-            <TableColumn fx:id="subjectCol" editable="false" prefWidth="263.9998779296875" text="Subject" />
+            <TableColumn fx:id="subjectCol" editable="false" prefWidth="250.0" text="Subject" />
+                  <TableColumn fx:id="courseColumn" prefWidth="250.0" text="Course" />
           </columns>
         </TableView>
       </left>
     </BorderPane>
-      <Button fx:id="viewReportButton" layoutX="973.0" layoutY="371.0" mnemonicParsing="false" text="View Report" />
+      <Button fx:id="viewReportButton" layoutX="1098.0" layoutY="371.0" mnemonicParsing="false" text="View Report" />
   </children>
 </AnchorPane>
