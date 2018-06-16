@@ -10,7 +10,30 @@ import root.dao.message.SimpleMessage;
 public class ExecuteStudentManager {
 
 	private HashMap<String,ArrayList<ConnectionToClient>> studentInExecute = new HashMap();
-	
+	private HashMap<String,ArrayList<ConnectionToClient>> waitForChangeDuration = new HashMap();
+
+	public void addDuration(String examId, ConnectionToClient client) {
+		if(studentInExecute.containsKey(examId)){
+			studentInExecute.get(examId).add(client);
+		}
+		else {
+			ArrayList<ConnectionToClient> ar = new ArrayList<ConnectionToClient>();
+			ar.add(client);
+			waitForChangeDuration.put(examId, ar);
+		}
+	}
+	public void sendAllDurations(String examID, int newTime) {
+		ArrayList<ConnectionToClient> ar = waitForChangeDuration.get(examID);
+		if(ar!=null) {
+			for(ConnectionToClient c:ar) {
+				try {
+					c.sendToClient(newTime);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	public void addStudent(String examId, ConnectionToClient client) {
 		if(studentInExecute.containsKey(examId)){
 			studentInExecute.get(examId).add(client);
@@ -26,6 +49,11 @@ public class ExecuteStudentManager {
 		studentInExecute.remove(examId, client);
 	}
 	
+	public void removeDuration(String examId,ConnectionToClient client) {
+		waitForChangeDuration.remove(examId, client);
+	}
+
+	
 	public void sendAll(String examID, int newTime) {
 		ArrayList<ConnectionToClient> ar = studentInExecute.get(examID);
 		if(ar!=null) {
@@ -38,5 +66,7 @@ public class ExecuteStudentManager {
 				}
 			}
 		}
+		
 	}
+	
 }

@@ -118,7 +118,7 @@ public class ServerMessageManager {
 		case "confirmchangeduration":
 			return handleChangeTimeConfirm(msg);
 			
-		case "startExam":
+		case "startexam":
 			return handlStartExam(msg);
 		default:
 			return null;
@@ -485,15 +485,13 @@ public class ServerMessageManager {
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
 				if(exams!=null)
 				{
-					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
-						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
-					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
 					Exam e = exams.get(0);
+					examinees.addDuration(e.getExamId(), AES_Server.CLIENT);
 					if(executedUsersManager.isContains(e.getExamId(), msgContent[4]))
-						return new ErrorMessage(new NullPointerException("user done it"));
-					if(executedUsersManager.isLock(e.getExamId()))
+						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
+					executedUsersManager.add(e.getExamId(), e.getExecuteExam().getStartTime()); //Send time to executedManager
+					if(!executedUsersManager.checkTime(e.getExamId()))
 						return new ErrorMessage(new NullPointerException("The entrey is locked"));
-					executedUsersManager.add(e.getExamId(), msgContent[4]);
 					ExamMessage examMsg = (ExamMessage) message.getMessage("ok-get-exams", exams);
 					return examMsg;
 				}
@@ -554,8 +552,10 @@ public class ServerMessageManager {
 	
 	private static AbstractMessage handlePutSolvedExamMessage(AbstractMessage msg) {
 		SolvedExamMessage recivedMessage = (SolvedExamMessage)msg;
-		if(executedUsersManager.isLock(recivedMessage.getSolvedExam().getExamID()))
-			examinees.removeStudent(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
+		examinees.removeDuration(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
+		examinees.removeStudent(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
+		executedUsersManager.remove(recivedMessage.getSolvedExam().getExamID());
+		
 		SolvedExams newSolvedExam = recivedMessage.getSolvedExam();
 		SetInDB putSolvedExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putSolvedExam.addSolvedExam(newSolvedExam);
@@ -595,7 +595,7 @@ public class ServerMessageManager {
 	
 	private static AbstractMessage handleChangeTimeConfirm(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht=(ChangeTimeDurationRequest) msg;
-		examinees.sendAll(cht.getExamId(),cht.getNewTime());
+		examinees.sendAllDurations(cht.getExamId(),cht.getNewTime());
 		return message.getMessage("SimpleMessage", null) ;		
 	}
 

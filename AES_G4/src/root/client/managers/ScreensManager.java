@@ -179,7 +179,6 @@ public class ScreensManager extends Application {
     		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
     		primaryStage.setFullScreen(true);
     		primaryStage.setResizable(false);
-
     	}
     	
     	primaryStage.show();

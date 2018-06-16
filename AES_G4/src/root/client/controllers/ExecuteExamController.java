@@ -93,8 +93,10 @@ public class ExecuteExamController implements Observer {
 
 	private ArrayList<String> intructText = new ArrayList<String>();
 
+	
 	private ArrayList<Integer> points = new ArrayList<Integer>();
 
+	
 	private String userId;
 	
 	
@@ -131,7 +133,7 @@ public class ExecuteExamController implements Observer {
 	 * 
 	 */
 	public void initialize() {
-
+		exam = (Exam) dataKeeper.getObject("RunningExam");
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
 		client = new ObservableClient((String) dataKeeper.getObject_NoRemove("ip"), 8000);
@@ -139,8 +141,8 @@ public class ExecuteExamController implements Observer {
     	simpleMessage.setMessage("startExam-"+exam.getExamId());
 		client.addObserver(this);
 		try {
-	    	client.sendToServer(simpleMessage);
 			client.openConnection();
+	    	//client.sendToServer(simpleMessage);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -151,7 +153,6 @@ public class ExecuteExamController implements Observer {
 		SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		lblDate.setText(date);
 		displayQuestion = 0;
-		exam = (Exam) dataKeeper.getObject("RunningExam");
 		ArrayList<QuestionInExam> questionsInExam = exam.getExamQuestions();
 		int i = 0;
 		for (QuestionInExam q : questionsInExam) {

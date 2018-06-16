@@ -343,8 +343,8 @@ public class SetInDB implements DbManagerInterface {
 		
 	}
 
-	public void deleteSolvedExam(String simp) {
-		String deleteExam = "delete from `solved exams` where exam_id = " + simp;
+	public void deleteSolvedExam(String examId) {
+		String deleteExam = "delete from `solved exams` where exam_id = " + examId;
 		try {
 			newStmt = conn.prepareStatement(deleteExam);
 			newStmt.execute();
@@ -353,5 +353,30 @@ public class SetInDB implements DbManagerInterface {
 		}
 		
 		
+	}
+
+	public void deleteExecutedExam(String examId) {
+		String deleteExam = "delete from `execute exams` where exam_id = " + examId;
+		try {
+			newStmt = conn.prepareStatement(deleteExam);
+			newStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void lockExam(String examId) {
+		String updateExam = "UPDATE exams SET lock_flag = ? WHERE exam_id = ?;";
+	
+		try {
+			newStmt = conn.prepareStatement(updateExam);
+			newStmt.setString(1, "locked");
+			newStmt.setString(2, examId);
+			newStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

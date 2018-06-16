@@ -46,7 +46,7 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<Question> questions(String... str) {
 		// TODO Auto-generated method stub
 		// str contain a subject id
-		ArrayList<Question> questions= new ArrayList<Question>();
+		ArrayList<Question> questions = new ArrayList<Question>();
 		ResultSet rs;
 		String QuestionQuery = "SELECT * FROM questions WHERE question_id LIKE '"+str[0]+"%'";
 		try {
