@@ -63,6 +63,36 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 	}
+	/**
+	 * question overLoading. in order to get questions by quesiton's ID
+	 *  -> a result of a bad code solution in early staged of the project.
+	 * @param questionsID
+	 * @return
+	 */
+	public ArrayList<Question> questions(ArrayList<String> questionsID) {
+		// TODO Auto-generated method stub
+		// str contain a subject id
+		ArrayList<Question> questions= new ArrayList<Question>();
+		ResultSet rs;
+		String QuestionQuery;
+		try {
+			stmt = conn.createStatement();
+			for (String questionID: questionsID) {
+				QuestionQuery = "SELECT * FROM questions WHERE question_id = "+questionID;
+				rs = stmt.executeQuery(QuestionQuery+";");
+				while(rs.next()) {
+					questions.add(new Question(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7), rs.getInt(8),rs.getString(9)));
+				}
+				rs.close();
+			}
+			
+			return questions;			// Return A list of all users
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 /**
@@ -505,7 +535,7 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 	
-	public Question returnQuestion(String id) {
+	private Question returnQuestion(String id) {
 		String QuestionQuery = "SELECT * FROM questions WHERE question_id = "+id;
 		ResultSet qs;
 		Question q = null;

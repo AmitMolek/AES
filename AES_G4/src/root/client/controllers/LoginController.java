@@ -145,7 +145,7 @@ public class LoginController implements Observer {
     	        // If you have a Mac, it's like this:
     	        //     /Path/To/Image.jpg
     	        // Replace the path with the one on your computer
-    	        imageFile = new File("/Users/bryce/NetBeansProjects/Graphics_PM/src/edu/govschool/scrub.jpg");
+    	        imageFile = new File("src/root/client/resources/images/MRV_20180318_17_54_46.jpg");
     	        image = new Image(imageFile.toURI().toString());
     	        imageView = new ImageView(image);
 
@@ -233,7 +233,7 @@ public class LoginController implements Observer {
 						client.deleteObservers();
 						client.addObserver(new WaitForPirncipleMessage());
 					}
-					screenManager.activate("changeDurations");
+					screenManager.activate("solvedExams");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
