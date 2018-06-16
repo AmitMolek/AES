@@ -18,6 +18,7 @@ import root.dao.app.CheatingExamTest;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.Exam;
+import root.dao.app.ExamTableDataLine;
 import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
