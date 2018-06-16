@@ -461,7 +461,7 @@ public class ServerMessageManager {
 				if(exams!=null)
 				{
 					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
-						return new ErrorMessage(new NullPointerException("user done it"));
+						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
 					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
 					Exam e = exams.get(0);
 					examinees.addStudent(e.getExamId(),AES_Server.CLIENT);
