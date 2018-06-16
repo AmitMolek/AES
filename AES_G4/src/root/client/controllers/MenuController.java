@@ -90,6 +90,7 @@ public class MenuController {
 	    		executeMenu.getItems().add(createMenuItem("Solve exam", getChangeScreenActionEvent("Enter4digitPassword")));
 	    	}else if (user.getUserPremission().equals("Teacher")) {
 	    		executeMenu.getItems().add(createMenuItem("Start exam", getChangeScreenActionEvent("PrepareExam")));
+	    		executeMenu.getItems().add(createMenuItem("Change exam's duration", getChangeScreenActionEvent("changeDurations")));
 	    	}
     	}
     }
@@ -99,9 +100,14 @@ public class MenuController {
     	
     	Menu examsMenu = new Menu();
     	createMenuItem(examsMenu, img, "Exams", 70, 25);
-    	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
-    	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateDeleteExam")));
-    	examsMenu.getItems().add(createMenuItem("Remove exam", getChangeScreenActionEvent("updateDeleteExam")));
+    	
+    	if (user.getUserPremission().equals("Student")) {
+    		examsMenu.getItems().add(createMenuItem("View exams", getChangeScreenActionEvent("solvedExams")));
+    	}else if (user.getUserPremission().equals("Teacher")) {
+        	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
+        	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateExam")));
+        	examsMenu.getItems().add(createMenuItem("Remove exam", getChangeScreenActionEvent("updateDeleteExam")));
+    	}
     }
     
     public void initQuestionsMenu() {

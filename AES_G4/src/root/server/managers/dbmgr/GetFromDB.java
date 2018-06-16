@@ -8,7 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
 import com.mysql.jdbc.Statement;
 
 import root.dao.app.CheatingExamTest;
@@ -217,6 +220,40 @@ public class GetFromDB implements DbManagerInterface {
 			e.printStackTrace();
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
+		return null;
+	}
+
+	@SuppressWarnings("deprecation")
+	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Date date){
+		ArrayList<CheatingExamTest> exams = new ArrayList<>();
+		ResultSet rs;
+		
+		String examDate = String.format("%d-%02d-%d", date.getYear(), date.getMonth(), date.getDate());
+		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id + "%' AND exam_executing_Date LIKE '" + examDate + "%'";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(solvedExamsSqlQuery + ";");
+			
+			while (rs.next()) {
+				String temp_user_id = rs.getString(1);
+				String temp_exam_id = rs.getString(2);
+				Date temp_date = rs.getDate(6);
+				boolean cheating_flag = false;
+				
+				String temp_cheating_flag_str = rs.getString(11);
+				
+				if (temp_cheating_flag_str == "yes") cheating_flag = true;
+				
+				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, temp_date, cheating_flag));
+			}
+			
+			rs.close();
+			return exams;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
@@ -513,5 +550,30 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 		
+	}
+	
+	public ArrayList<Statistic> getExamStatsByTeacherID(String id){
+		String query=""
+				+ "SELECT * "
+				+ "FROM solved exams statistics "
+				+ "WHERE IN ("
+				+ 	"SELECT exam_id"
+				+ 	"FROM exams"
+				+ 	"WHERE assmebler_teacher = '"+id+");"; //TODO:test the query
+		ResultSet rs;
+		ArrayList<Statistic> statList=new ArrayList<Statistic>();
+		try {
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				 Statistic temp = new Statistic();
+				 temp.setExam_ID(rs.getString(0));
+			}
+			rs.close();
+			return null;//TODO
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

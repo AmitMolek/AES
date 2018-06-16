@@ -47,5 +47,33 @@
             </ImageView>
          </children>
       </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="25.0" AnchorPane.leftAnchor="0.0">
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+         <children>
+            <ImageView fx:id="username_img" fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons/account.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label fx:id="username_lbl">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fullName_lbl">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
