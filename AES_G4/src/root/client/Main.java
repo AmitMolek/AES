@@ -11,7 +11,6 @@ public class Main extends ScreensManager {
 	public static void main(String[] args) {
 		Log log = Log.getInstance();
 		log.writeToLog(LineType.INFO, "Application started", false);
-		
 		ScreensManager.addScreen("solvedExams","resources/view/ViewSolvedExams.fxml");
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");		
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
@@ -23,15 +22,12 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("updateExam", "resources/view/UpdateExamScreen.fxml");
 		ScreensManager.addScreen("check", "resources/view/check.fxml");
 		ScreensManager.addScreen("histograms", "resources/view/HistorgramsScreen.fxml");
-
 		ScreensManager.addScreen("executeExamScreen", "resources/view/ExecuteExamScreen.fxml");
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");		
 		ScreensManager.addScreen("manuallyExam", "resources/view/ManuallyExamScreen.fxml");
 		ScreensManager.addScreen("endExam", "resources/view/ExamSubmitScreen.fxml");	
-
 		ScreensManager.addScreen("PrepareExam", "resources/view/PerpareExamScreen.fxml");
 		ScreensManager.addScreen("changeDurations", "resources/view/ChangeDurationTimeScreen.fxml");	
-
 		ScreensManager.addScreen("testTeacherGradesStats", "resources/view/TestGradesTeacher.fxml");
 		ScreensManager.addScreen("testStudentGradesStats", "resources/view/TestGradesStudent.fxml");
 		ScreensManager.addScreen("testPrincipalGradesStats", "resources/view/TestGradesPrincipal.fxml");

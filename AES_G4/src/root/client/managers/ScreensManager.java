@@ -3,7 +3,6 @@ package root.client.managers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Stack;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;

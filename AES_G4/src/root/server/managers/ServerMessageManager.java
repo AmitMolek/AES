@@ -237,8 +237,6 @@ public class ServerMessageManager {
 				return handleGetExamMessage(msg);
 			case "user":
 				return handleFetUserMessage(msgContent,msg);
-			case "solvedExamByTeacherId":
-				return handleGetExamByTeacherID(msg);
 			case "cheatingexamstest":
 				return handleGetCheatingExamsTest(msg);
 			case "solvedexams":
@@ -349,20 +347,6 @@ public class ServerMessageManager {
 			}
 		}
 		return message.getMessage("ok-get-users",usersMap);
-	}
-/***
- * @author Alon Ben-yosef
- * @param msg of UserIDMessage type expected
- * @return An exam message containing an arraylist of exams assembled by teacherID
- */
-	private static AbstractMessage handleGetExamByTeacherID(AbstractMessage msg) {
-		//TODO:Convert getFromDB to singleton
-		UserIDMessage idMessage = (UserIDMessage) msg;
-		MessageFactory factory=MessageFactory.getInstance();
-		GetFromDB getExams = new GetFromDB();
-		ArrayList<Exam> examList = getExams.exams();//TODO:Make a query in getManager to handle getting all the exams assembled by a single teacher
-		ExamMessage message=(ExamMessage) factory.getMessage("ok-get-solvedExamByTeacherId", examList);
-		return message;
 	}
 
 	/**
