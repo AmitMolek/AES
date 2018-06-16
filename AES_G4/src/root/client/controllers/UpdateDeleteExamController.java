@@ -199,28 +199,6 @@ public class UpdateDeleteExamController implements Observer {
 			tblExams.setItems(observerseExams);
 
 		}
-
-		if (arg1 instanceof SimpleMessage) {
-			SimpleMessage simple = (SimpleMessage) arg1;
-			log.writeToLog(LogLine.LineType.INFO, "Exam deleted");
-			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
-				try {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.initOwner(mainApp);
-					alert.setTitle("Exam deleted");
-					alert.setHeaderText("Exam deleted successeful");
-					alert.setContentText("The exam was deleted successful");
-					alert.showAndWait();
-					screenManager.activate("home");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-				}
-			});
-
-		}
-
 	}
 
 	/**
