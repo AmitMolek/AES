@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -144,12 +146,12 @@ public class AddNewQuestionController {
             return true;
         } else {
             // Show the error message.
-            /*Alert alert = new Alert(AlertType.ERROR);
+            Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(mainApp);
             alert.setTitle("Invalid Fields");
             alert.setHeaderText("Please correct invalid fields");
             alert.setContentText(errorMessage);
-            alert.showAndWait();*/
+            alert.showAndWait();
             return false;
         }
     }
