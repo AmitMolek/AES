@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.opencsv.CSVWriter;
-
-import root.client.controllers.ExamSubmitContorller;
 import root.client.controllers.QuestionInExamObject;
 import root.dao.app.CheatingExamTest;
 import com.sun.javafx.geom.transform.GeneralTransform3D;
@@ -460,7 +458,6 @@ public class ServerMessageManager {
 			if(msgContent[2].equals("pass")) {
 				GetFromDB getExam = new GetFromDB();
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
-
 				if(exams!=null)
 				{
 					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
@@ -498,7 +495,6 @@ public class ServerMessageManager {
 			return handleSolvedExams(msg);
 
 		}
-		
 		return null;
 	}
 	
@@ -701,26 +697,12 @@ public class ServerMessageManager {
 		}
 	return null;	
 	}
-<<<<<<< HEAD
 	
-=======
-		
->>>>>>> refs/remotes/origin/Naor
 	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
 		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
 		GetFromDB get = new GetFromDB();
 		ArrayList<ExecuteExam> arr = get.getExecutedExams();
 		executedMsg.addExams(arr);
-		return msg;
-		
-	}
-	
-	public static AbstractMessage handleSolvedExams(AbstractMessage msg) {
-		SimpleMessage simpleMsg = (SimpleMessage)msg;
-		SetInDB set = new SetInDB();
-		String simp = simpleMsg.getMsg().split("-")[2];
-		set.deleteSolvedExam(simp);
-		
 		return msg;
 		
 	}

@@ -8,9 +8,15 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
+
+import javax.naming.spi.DirStateFactory.Result;
+
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -95,7 +101,7 @@ public class ExecuteExamController implements Observer {
 	private Exam exam;
 	
 	
-	Timeline examStopWatch;
+	private Timeline examStopWatch;
 	
 	
 	private String date;
@@ -117,6 +123,7 @@ public class ExecuteExamController implements Observer {
 	
 	
 	ScreensManager scrMgr = ScreensManager.getInstance();
+	
 	
 
 	/**
@@ -165,6 +172,7 @@ public class ExecuteExamController implements Observer {
 
 		txtNotes.setText(intructText.get(displayQuestion) + "\r\n" + "(" + points.get(displayQuestion) + ")");
 
+
 		ExamDuration.setTime(exam.getExamDuration());
 		examStopWatch = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
@@ -193,8 +201,10 @@ public class ExecuteExamController implements Observer {
 			txt.setText(dataKeeper.getUser().getUserID());
 			final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
 			ok.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Ok was definitely pressed"));
+
 			final Button cancel = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
 			cancel.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Cancel was definitely pressed"));
+
 			Optional<String> result = dialog.showAndWait();
 			if (result.isPresent()) {
 				System.out.println("You can start Your exam");
@@ -290,6 +300,7 @@ public class ExecuteExamController implements Observer {
 	public void submitTest() {
 		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject, exam);
 		int grade = checkedExams.calculateGrade();
+		checkedExams.createCsv();
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
@@ -324,24 +335,10 @@ public class ExecuteExamController implements Observer {
 					}
 				});
 			}
+			
 		}
 
 	}
-<<<<<<< HEAD
-=======
-	
-	private void deleteSolvedExam() {
-		SimpleMessage simpleMsg = (SimpleMessage) messageFact.getMessage("simple",null);
-		simpleMsg.setMsg("delete-solvedexams-"+exam.getExamId());
-		try {
-			client.sendToServer(simpleMsg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
->>>>>>> refs/remotes/origin/Naor
 
 	public void changeTime(int newTime) {
 		stopWatch = newTime;
