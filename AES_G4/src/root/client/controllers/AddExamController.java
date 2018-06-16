@@ -107,7 +107,7 @@ public class AddExamController implements Observer {
 		count++;
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
-		if (count > 1) {
+		if (count > 1 ) {
 			size = cmbCourse.getItems().size();
 			while (i < size) {
 				cmbCourse.getItems().remove(0);
@@ -127,8 +127,11 @@ public class AddExamController implements Observer {
 				i++;
 			}
 			i = 0;
+			if(newQuestion!=null)
+			{
 			newQuestion.clearQuestionInExam();
 			newQuestion.clearComboBox();
+			}
 		}
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
 
