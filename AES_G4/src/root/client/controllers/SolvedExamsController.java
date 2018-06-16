@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
@@ -334,109 +335,118 @@ public class SolvedExamsController  implements Observer{
 		*	question (from Questions)
 		*	Question weight
 		*	selected answer
-		*	
 		*		*
 		*		*
 		*		*
 		*
 		*/
-		try {
-			//Blank Document
-            XWPFDocument document = new XWPFDocument();
-            //Write the Document in file system
-            FileOutputStream out = new FileOutputStream(
-                    new File(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx"));
-            /**
-             * Printing:
-             *	SolvingDate
-			 *	Exam ID
-			 *	StudentID
-			 *	Approving teacher full name
-			 *	Exam Grade
-             */
-            // solving date
-            XWPFParagraph dateParagraph = document.createParagraph();
-            XWPFRun runDate = dateParagraph.createRun();
-            runDate.setBold(true);
-            runDate.setItalic(true);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
-            runDate.setText(solvedExsamDate);
-            // Exam ID + Exam course
-            XWPFParagraph titleParagraph = document.createParagraph();
-            titleParagraph.setAlignment(ParagraphAlignment.CENTER);
-            XWPFRun runTitle = titleParagraph.createRun();
-            runTitle.setBold(true);
-            runTitle.setItalic(true);
-            runTitle.setText("ExamID: "+ solvedExam.getExamID());
-            runTitle.addBreak();
-            runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
-            runTitle.addBreak();
-            runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
-            runTitle.addBreak();
-            runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
-            runTitle.addBreak();
-            runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
-            runTitle.addBreak();
-            /**
-             * printing Questions and selected answeres
-             */
-            for (Question question: solvedExamQuestions) {
-	            //create Paragraph
-	            XWPFParagraph questionParagraph = document.createParagraph();
-	            XWPFRun runQuestions = questionParagraph.createRun();
-	            runQuestions.setText(question.getQuestionText()+"\n");
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText(question.getIdquestionIntruction()+"\n");
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("Possible answeres:");
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("1) "+question.getAns1());
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("2) "+question.getAns2());
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("3) "+question.getAns3());
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("4) "+question.getAns4());
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            runQuestions.setText("Correct answer: " + question.getCorrectAns());
-	            runQuestions.addBreak();
-	            runQuestions.addTab();
-	            // getting the selected answer from csvData.
-	            for (String[] csvLine: csvData) {
-	    			String slectedQuestionID = csvLine[0];
-	    			String questionID = question.getQuestionId();
-	    			int correctAnswer = question.getCorrectAns();
-	    			if (slectedQuestionID.equals(questionID) ) {
-	    				runQuestions.setText("Your selected answer: "+ csvLine[1]);
-	    				runQuestions.addBreak();
-	    				if (Integer.parseInt(csvLine[1]) == correctAnswer)runQuestions.setText("Question points: "+ csvLine[2] +"/"+csvLine[2]);
-	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2]);
-	    			}
+		Platform.runLater(() -> {
+			FileChooser fileChooser = new FileChooser();
+	        fileChooser.setTitle("Save solvedExam"); 
+	        fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");
+	        File file = fileChooser.showSaveDialog(screenManager.getPrimaryStage());
+	        if (file != null) {
+	        	try {
+	    			//Blank Document
+	                XWPFDocument document = new XWPFDocument();
+	                //Write the Document in file system
+	                FileOutputStream out = new FileOutputStream(
+	                		file);//new File(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx"));
+	                /**
+	                 * Printing:
+	                 *	SolvingDate
+	    			 *	Exam ID
+	    			 *	StudentID
+	    			 *	Approving teacher full name
+	    			 *	Exam Grade
+	                 */
+	                // solving date
+	                XWPFParagraph dateParagraph = document.createParagraph();
+	                XWPFRun runDate = dateParagraph.createRun();
+	                runDate.setBold(true);
+	                runDate.setItalic(true);
+	                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	                String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
+	                runDate.setText(solvedExsamDate);
+	                // Exam ID + Exam course
+	                XWPFParagraph titleParagraph = document.createParagraph();
+	                titleParagraph.setAlignment(ParagraphAlignment.CENTER);
+	                XWPFRun runTitle = titleParagraph.createRun();
+	                runTitle.setBold(true);
+	                runTitle.setItalic(true);
+	                runTitle.setText("ExamID: "+ solvedExam.getExamID());
+	                runTitle.addBreak();
+	                runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
+	                runTitle.addBreak();
+	                runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
+	                runTitle.addBreak();
+	                runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
+	                runTitle.addBreak();
+	                runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
+	                runTitle.addBreak();
+	                /**
+	                 * printing Questions and selected answeres
+	                 */
+	                for (Question question: solvedExamQuestions) {
+	    	            //create Paragraph
+	    	            XWPFParagraph questionParagraph = document.createParagraph();
+	    	            XWPFRun runQuestions = questionParagraph.createRun();
+	    	            runQuestions.setText(question.getQuestionText()+"\n");
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            if(question.getIdquestionIntruction() != null) {
+		    	            runQuestions.setText(question.getIdquestionIntruction()+"\n");
+		    	            runQuestions.addBreak();
+		    	            runQuestions.addTab();
+	    	            }
+	    	            runQuestions.setText("Possible answeres:");
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            runQuestions.setText("1) "+question.getAns1());
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            runQuestions.setText("2) "+question.getAns2());
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            runQuestions.setText("3) "+question.getAns3());
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            runQuestions.setText("4) "+question.getAns4());
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            runQuestions.setText("Correct answer: " + question.getCorrectAns());
+	    	            runQuestions.addBreak();
+	    	            runQuestions.addTab();
+	    	            // getting the selected answer from csvData.
+	    	            for (String[] csvLine: csvData) {
+	    	    			String slectedQuestionID = csvLine[0];
+	    	    			String questionID = question.getQuestionId();
+	    	    			int correctAnswer = question.getCorrectAns();
+	    	    			if (slectedQuestionID.equals(questionID) ) {
+	    	    				runQuestions.setText("Your selected answer: "+ csvLine[1]);
+	    	    				runQuestions.addBreak();
+	    	    				if (Integer.parseInt(csvLine[1]) == correctAnswer)runQuestions.setText("Question points: "+ csvLine[2] +"/"+csvLine[2]);
+	    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2]);
+	    	    			}
+	    	    		}
+	    	            runQuestions.addBreak();
+	    			}// end of printing questions
+	                document.enforceReadonlyProtection();
+	                document.write(out);
+	
+	                //Close document
+	                out.close();
+	                System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
+	    	      
+	    		}catch (IOException e) {
+	    			e.printStackTrace();
+	    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+	    		}catch (Exception e) {
+	    			e.printStackTrace();
+	    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 	    		}
-	            runQuestions.addBreak();
-			}// end of printing questions
-            document.enforceReadonlyProtection();
-            document.write(out);
-
-            //Close document
-            out.close();
-            System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
-	      
-		}catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-		}catch (Exception e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-		}	
+	        }
+		});
 	}
 	/**
 	 * This method called when we need to update in tblQuestions the TeacherName column
