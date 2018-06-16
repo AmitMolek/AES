@@ -707,4 +707,13 @@ public class ServerMessageManager {
 		
 	}
 	
+	public static AbstractMessage handleSolvedExams(AbstractMessage msg) {
+		SimpleMessage simpleMsg = (SimpleMessage)msg;
+		SetInDB set = new SetInDB();
+		String simp = simpleMsg.getMsg().split("-")[2];
+		set.deleteSolvedExam(simp);
+		
+		return msg;
+		
+	}
 }
