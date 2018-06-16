@@ -14,12 +14,21 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Question> questions;
 	private Subject thisQuestionsSubject;
+	private ArrayList<String> questionID;
 	
 	public QuestionsMessage(Subject payload) {
 		super("get-questions");
 		this.thisQuestionsSubject=payload;
 	}
-
+	
+	/**
+	 * use this constructor, if client sends server questions ID's and want to get the full information for each question ID. 
+	 * @param questionID
+	 */
+	public QuestionsMessage(String message, ArrayList<String> questionID) {
+		super(message);
+		this.questionID = questionID;
+	}
 	public QuestionsMessage(ArrayList<Question> payload) {
 		// TODO Auto-generated constructor stub
 		super("Questions");
@@ -71,6 +80,20 @@ public class QuestionsMessage extends AbstractMessage implements Serializable {
 
 	public void setThisQuestionsSubject(Subject thisQuestionsSubject) {
 		this.thisQuestionsSubject = thisQuestionsSubject;
+	}
+
+	/**
+	 * @return the questionID
+	 */
+	public ArrayList<String> getQuestionID() {
+		return questionID;
+	}
+
+	/**
+	 * @param questionID the questionID to set
+	 */
+	public void setQuestionID(ArrayList<String> questionID) {
+		this.questionID = questionID;
 	}
 
 	/* (non-Javadoc)
