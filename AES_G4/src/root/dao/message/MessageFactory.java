@@ -58,6 +58,9 @@ public class MessageFactory {
 			return getDelMessage(msgContent,payload);
 		case "error":
 			return getErrorMessage(msgContent,payload);
+		case "simple":
+			return new SimpleMessage("simple");
+
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

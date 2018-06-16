@@ -72,7 +72,8 @@ public class Enter4digitPasswordController implements Observer {
 		String txt = txt4Digit.getText();
 		txt = "'" + txt + "'";
 		SimpleMessage getExamMessage = (SimpleMessage) msgFactory.getMessage("get-simple", new Object());
-		getExamMessage.setMessage("get-exams-pass-" + txt);
+		getExamMessage.setMessage("get-exams-pass-" + txt
+				+"-"+dataKeeper.getUser().getUserID());
 		try {
 			client.sendToServer(getExamMessage);
 		} catch (IOException e1) {

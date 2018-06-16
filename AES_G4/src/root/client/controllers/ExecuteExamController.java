@@ -8,15 +8,9 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
-
-import javax.naming.spi.DirStateFactory.Result;
-
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -96,15 +91,34 @@ public class ExecuteExamController implements Observer {
 	private ArrayList<Integer> points = new ArrayList<Integer>();
 	
 	private String userId;
+	
+	
 	private Exam exam;
+	
+	
 	Timeline examStopWatch;
+	
+	
 	private String date;
+	
+	
 	private Date dt;
+	
+	
 	private SimpleDateFormat sdf;
+	
+	
 	private String status;
+	
+	
 	private MessageFactory messageFact = MessageFactory.getInstance();
+	
+	
 	private ObservableClient client;
+	
+	
 	ScreensManager scrMgr = ScreensManager.getInstance();
+	
 
 	/**
 	 * this method happens when the window shown
@@ -178,13 +192,12 @@ public class ExecuteExamController implements Observer {
 			dialog.initOwner(scrMgr.getPrimaryStage());
 			dialog.setTitle("Enter ID");
 			dialog.setHeaderText("Enter your id:");
-
+			TextField txt =dialog.getEditor();
+			txt.setText(dataKeeper.getUser().getUserID());
 			final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
 			ok.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Ok was definitely pressed"));
-
 			final Button cancel = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
 			cancel.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Cancel was definitely pressed"));
-
 			Optional<String> result = dialog.showAndWait();
 			if (result.isPresent()) {
 				System.out.println("You can start Your exam");
@@ -283,7 +296,6 @@ public class ExecuteExamController implements Observer {
 	public void submitTest() {
 		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject,exam);
 		int grade = checkedExams.calculateGrade();
-		checkedExams.createCsv();
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
@@ -322,6 +334,18 @@ public class ExecuteExamController implements Observer {
 		}
 	}
 	
+	private void deleteSolvedExam() {
+		SimpleMessage simpleMsg = (SimpleMessage) messageFact.getMessage("simple",null);
+		simpleMsg.setMsg("delete-solvedexams-"+exam.getExamId());
+		try {
+			client.sendToServer(simpleMsg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void changeTime(int newTime) {
 		stopWatch = newTime;
 	}

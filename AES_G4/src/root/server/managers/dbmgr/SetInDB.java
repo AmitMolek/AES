@@ -342,4 +342,16 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 		
 	}
+
+	public void deleteSolvedExam(String simp) {
+		String deleteExam = "delete from `solved exams` where exam_id = " + simp;
+		try {
+			newStmt = conn.prepareStatement(deleteExam);
+			newStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }

@@ -20,7 +20,6 @@ public class ExamMessage extends AbstractMessage {
 	private String id;
 	
 
-
 	/**
 	 * Constructor that send message from server
 	 * @param exams the list of exams
