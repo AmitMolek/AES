@@ -432,7 +432,7 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<SolvedExams> solvedExams(String... str) {
 		ArrayList<SolvedExams> solvedExams = new ArrayList<SolvedExams>();
 		ResultSet rs;
-		String SubjectsQuery =  "SELECT * FROM `solved exams`";// fetch all subjects
+		String SubjectsQuery =  "SELECT * FROM `solved exams`";// fetch all solvedExams
 		try {
 			stmt = conn.createStatement();
 			switch(str.length) {

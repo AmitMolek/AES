@@ -577,10 +577,14 @@ public class SolvedExamsController  implements Observer{
 			getExamQuestions();
 		}
 		if (arg1 instanceof UserSolvedExamsMessage) {
-			if(this.solvedExams.size() == 0)
-				this.solvedExams = ((UserSolvedExamsMessage) arg1).getUserSolvedExams();		// only when there no solvedExams - at first load or a new solvedExam.
-			else {
-				solvedExams.addAll(((UserSolvedExamsMessage) arg1).getUserSolvedExams());			// add new solvedExams to a UserSolvedExams.
+//			if(this.solvedExams.size() == 0)
+//				this.solvedExams = ((UserSolvedExamsMessage) arg1).getUserSolvedExams();		// only when there no solvedExams - at first load or a new solvedExam.
+//			else {
+//				solvedExams.addAll(((UserSolvedExamsMessage) arg1).getUserSolvedExams());			// add new solvedExams to a UserSolvedExams.
+//			}
+			ArrayList<SolvedExams> tempSolvedExams =  ((UserSolvedExamsMessage) arg1).getUserSolvedExams();
+			for (SolvedExams solvedExam: tempSolvedExams) {
+				if (solvedExam.getCalculatedGradeApprovalStateByTeacher().equals("approved"))this.solvedExams.add(solvedExam);
 			}
 			observabaleSolvedExams = FXCollections.observableArrayList(); 			// add new solvedExams to ObservebaleList
 			for (SolvedExams solvedExam: solvedExams) {
