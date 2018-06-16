@@ -25,7 +25,7 @@ import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
 /**
- * The controller class of the menu screen
+ * The controller class of the menu screen b
  * @author Amit Molek
  *
  */
