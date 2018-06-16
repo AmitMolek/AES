@@ -71,7 +71,7 @@ public class PrepareExamController implements Observer {
 	@FXML
 	private Button brtnExecuteExam;
 
-	private ArrayList<String> courses;
+	private int count;
 	private MessageFactory messageFact;
 	private ObservableClient client;
 	private ScreensManager screenManager;
@@ -95,8 +95,24 @@ public class PrepareExamController implements Observer {
 	 */
 	@FXML
 	void selectSubject(ActionEvent event) {
-		if (cmbCourse.getItems().size() != 0)
-			cmbCourse.getItems().removeAll(courses);
+
+		count++;
+		int i = 0;
+		int size;
+		if (count > 1) {
+			size = cmbCourse.getItems().size();
+			while (i < size) {
+				cmbCourse.getItems().remove(0);
+				i++;
+			}
+			i = 0;
+			size = tblExams.getItems().size();
+			while (i < size) {
+				tblExams.getItems().remove(0);
+				i++;
+			}
+		}
+
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
@@ -194,10 +210,8 @@ public class PrepareExamController implements Observer {
 		if (arg1 instanceof CourseMessage) {
 			CourseMessage intialCourseMessage = (CourseMessage) arg1;
 			CourseInSubject = intialCourseMessage.getCourses();
-			courses = new ArrayList<String>();
 			for (Course c : CourseInSubject) {
 				cmbCourse.getItems().add(c.getCourseId() + "-" + c.getCourseName());
-				courses.add(c.getCourseId() + "-" + c.getCourseName());
 			}
 			cmbCourse.setDisable(false);
 		}
@@ -293,11 +307,11 @@ public class PrepareExamController implements Observer {
 			errorMessage += "Please select exam from the table\n";
 		}
 		if (txtFinish.getText() == null || txtFinish.getText().length() == 0) {
-			errorMessage += "No valid start time\n";
+			errorMessage += "start time is empty\n";
 		} else {
 			String[] check = txtFinish.getText().split(":");
 			if (check.length != 3 || check[0].length() != 2 || check[1].length() != 2 || check[2].length() != 2)
-				errorMessage += "No valid start time\n";
+				errorMessage += "No valid start time please enter(hh:mm:ss) like: 14:00:00\n";
 		}
 
 		if (errorMessage.length() == 0) {

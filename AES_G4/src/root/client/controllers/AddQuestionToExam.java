@@ -46,7 +46,7 @@ public class AddQuestionToExam extends AnchorPane {
 	private AnchorPane rootPane;
 
 	@FXML
-	private  ComboBox<String> cmbQuestion;
+	private ComboBox<String> cmbQuestion;
 
 	@FXML
 	private TextArea txtFreeStudent;
@@ -60,14 +60,15 @@ public class AddQuestionToExam extends AnchorPane {
 
 	private static ArrayList<QuestionInExam> examQuestions = new ArrayList<QuestionInExam>();
 
-	private static ArrayList<String>combobox = new ArrayList<String>();
+	private static ArrayList<String> combobox = new ArrayList<String>();
 	private Question newQuestion;
 	private Stage mainApp;
 	private ScreensManager screenManager;
+
 	/**
 	 * Constructor for add question custom component
 	 */
-	public AddQuestionToExam(){
+	public AddQuestionToExam() {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/AddQuestionToAnExam.fxml"));
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
@@ -157,8 +158,7 @@ public class AddQuestionToExam extends AnchorPane {
 			examQuestion = new QuestionInExam(newQuestion, points, freeTextTeacher, freeTextStudent);
 			examQuestions.add(examQuestion);
 			return true;
-		}
-		else
+		} else
 			return false;
 
 	}
@@ -168,17 +168,19 @@ public class AddQuestionToExam extends AnchorPane {
 	 */
 	public static void clearQuestionInExam() {
 		int i = 0;
-		while(i<questions.size()) {
+		int size;
+		size = questions.size();
+		while (i < size) {
 			questions.remove(0);
 			i++;
 		}
 		i = 0;
-		while(i<examQuestions.size()) {
+		size = examQuestions.size();
+		while (i < size ) {
 			examQuestions.remove(0);
 			i++;
 		}
-		
-		
+
 		count = 0;
 		totalPoints = 0;
 	}
@@ -203,6 +205,7 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 		this.questions = question;
 	}
+
 	/**
 	 * 
 	 * @return the question list
@@ -212,14 +215,17 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	public void clearComboBox() {
-		int i=0;
+		int i = 0;
+		int size;
 		if (cmbQuestion.getItems().size() != 0)
 			cmbQuestion.getItems().removeAll(combobox);
-		while(i<combobox.size()) {
+		size = combobox.size();
+		while (i < size) {
 			combobox.remove(0);
 			i++;
 		}
 	}
+
 	/**
 	 * Sets new value to the count
 	 * 

@@ -74,6 +74,7 @@ public class AddExamController implements Observer {
 
 	@FXML
 	private Button btnAddQuestion;
+
 	private int count;
 	private User teacher;
 	private MessageFactory messageFact;
@@ -102,26 +103,26 @@ public class AddExamController implements Observer {
 	@FXML
 	void SelectSubject(ActionEvent event) {
 		int i = 0;
+		int size;
 		count++;
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
 		if (count > 1) {
-			while(i < cmbCourse.getItems().size()) {
+			size = cmbCourse.getItems().size();
+			while (i < size) {
 				cmbCourse.getItems().remove(0);
 				i++;
 			}
-			i = 0;		
-			while (i < myComponent.size()) {
+			i = 0;
+			size = myComponent.size();
+			while (i < size) {
 				myFlow.getChildren().remove(0);
+				myComponent.remove(0);
 				i++;
 			}
 			i = 0;
-			/*while (i < examQuestions.size()) {
-				question.remove(0);
-				i++;
-			}*/
-			i = 0;
-			while (i < question.size()) {
+			size = question.size();
+			while (i < size) {
 				question.remove(0);
 				i++;
 			}
@@ -236,7 +237,7 @@ public class AddExamController implements Observer {
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
 		mainApp = screenManager.getPrimaryStage();
-		client = new ObservableClient((String)dkm.getObject_NoRemove("ip"), 8000);
+		client = new ObservableClient((String) dkm.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		client.openConnection();
 		messageFact = MessageFactory.getInstance();
@@ -282,18 +283,16 @@ public class AddExamController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			ExamMessage intialExamMessage = (ExamMessage) arg1;
 			exams = intialExamMessage.getExams();
-			if(exams.size()>0)
-			{
-			Exam exam = exams.get(exams.size() - 1);
-			String tempId = exam.getExamId().substring(4, 6);
-			int id = Integer.parseInt(tempId) + 1;
-			countId = id;
-			if (countId <= 9)
-				examId = newSubject.getSubjectID() + newCourse.getCourseId() + "0" + Integer.toString(countId);
-			else
-				examId = newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId);
-			}
-			else {
+			if (exams.size() > 0) {
+				Exam exam = exams.get(exams.size() - 1);
+				String tempId = exam.getExamId().substring(4, 6);
+				int id = Integer.parseInt(tempId) + 1;
+				countId = id;
+				if (countId <= 9)
+					examId = newSubject.getSubjectID() + newCourse.getCourseId() + "0" + Integer.toString(countId);
+				else
+					examId = newSubject.getSubjectID() + newCourse.getCourseId() + Integer.toString(countId);
+			} else {
 				countId = 1;
 				examId = newSubject.getSubjectID() + newCourse.getCourseId() + "0" + Integer.toString(countId);
 			}
