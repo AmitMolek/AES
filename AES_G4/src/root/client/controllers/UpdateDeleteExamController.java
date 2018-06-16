@@ -61,6 +61,7 @@ public class UpdateDeleteExamController implements Observer {
 	@FXML
 	private GridPane gridPane;
 
+	private int count;
 	private MessageFactory messageFact;
 	private ObservableClient client;
 	private ScreensManager screenManager;
@@ -82,8 +83,22 @@ public class UpdateDeleteExamController implements Observer {
 	 */
 	@FXML
 	void SelectSubject(ActionEvent event) {
-		if (cmbCourse.getItems().size() != 0)
-			cmbCourse.getItems().removeAll(courses);
+		int i = 0;
+		int size;
+		count++;
+		if (count > 1) {
+			size = cmbCourse.getItems().size();
+			while (i < size) {
+				cmbCourse.getItems().remove(0);
+				i++;
+			}
+			i = 0;
+			size = tblExams.getItems().size();
+			while (i < size) {
+				tblExams.getItems().remove(0);
+				i++;
+			}
+		}
 		String selectedVaule = cmbSubject.getValue();
 		String[] selectedSubject = selectedVaule.toLowerCase().split("-");
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
@@ -150,8 +165,6 @@ public class UpdateDeleteExamController implements Observer {
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
-
-	
 
 	/**
 	 * This method occurs when the server send message to the client
