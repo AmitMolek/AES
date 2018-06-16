@@ -135,8 +135,11 @@ public class ExecuteExamController implements Observer {
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
 		client = new ObservableClient((String) dataKeeper.getObject_NoRemove("ip"), 8000);
+    	SimpleMessage simpleMessage = (SimpleMessage) MessageFactory.getInstance().getMessage("simple", null);
+    	simpleMessage.setMessage("startExam-"+exam.getExamId());
 		client.addObserver(this);
 		try {
+	    	client.sendToServer(simpleMessage);
 			client.openConnection();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -336,6 +339,17 @@ public class ExecuteExamController implements Observer {
 				});
 			}
 			
+		}
+	}
+	
+	private void deleteSolvedExam() {
+		SimpleMessage simpleMsg = (SimpleMessage) messageFact.getMessage("simple",null);
+		simpleMsg.setMsg("delete-solvedexams-"+exam.getExamId());
+		try {
+			client.sendToServer(simpleMsg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

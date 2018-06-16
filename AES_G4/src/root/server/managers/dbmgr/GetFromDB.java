@@ -576,4 +576,27 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 	}
+	
+	public boolean getSolvedExamByID(String examId, String userId) {
+		ResultSet rs;
+		
+		String query = "SELECT *\r\n"
+				+ "FROM `solved exams`\r\n"
+				+ "WHERE exam_ID = "+examId+"\r\n"
+						+ "AND User_ID = "+userId+";";
+		try {
+			stmt = conn.createStatement();
+			rs=stmt.executeQuery(query);
+			if(rs.next())
+				return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+			
+	}
+	
+	
+
 }

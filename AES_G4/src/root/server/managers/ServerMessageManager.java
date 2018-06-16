@@ -115,9 +115,19 @@ public class ServerMessageManager {
 			return handleChangeTimeDurationRequest(msg);
 		case "confirmchangeduration":
 			return handleChangeTimeConfirm(msg);
+			
+		case "startExam":
+			return handlStartExam(msg);
 		default:
 			return null;
 		}
+	}
+
+	private static AbstractMessage handlStartExam(AbstractMessage msg) {
+		SimpleMessage newMsg = (SimpleMessage) msg;
+		String examId =newMsg.getMsg().split("-")[1];
+		examinees.addStudent(examId, AES_Server.CLIENT);
+		return null;
 	}
 
 	private static AbstractMessage handleLoggedOutMessage(AbstractMessage msg) {
@@ -460,11 +470,18 @@ public class ServerMessageManager {
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
 				if(exams!=null)
 				{
+<<<<<<< HEAD
 					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
 						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
 					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
+=======
+>>>>>>> refs/remotes/origin/Naor
 					Exam e = exams.get(0);
-					examinees.addStudent(e.getExamId(),AES_Server.CLIENT);
+					if(executedUsersManager.isContains(e.getExamId(), msgContent[4]))
+						return new ErrorMessage(new NullPointerException("user done it"));
+					if(executedUsersManager.isLock(e.getExamId()))
+						return new ErrorMessage(new NullPointerException("The entrey is locked"));
+					executedUsersManager.add(e.getExamId(), msgContent[4]);
 					ExamMessage examMsg = (ExamMessage) message.getMessage("ok-get-exams", exams);
 					return examMsg;
 				}
@@ -525,6 +542,8 @@ public class ServerMessageManager {
 	
 	private static AbstractMessage handlePutSolvedExamMessage(AbstractMessage msg) {
 		SolvedExamMessage recivedMessage = (SolvedExamMessage)msg;
+		if(executedUsersManager.isLock(recivedMessage.getSolvedExam().getExamID()))
+			examinees.removeStudent(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
 		SolvedExams newSolvedExam = recivedMessage.getSolvedExam();
 		SetInDB putSolvedExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putSolvedExam.addSolvedExam(newSolvedExam);
