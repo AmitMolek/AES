@@ -11539,3 +11539,24 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:38:19.681
 [INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:38:21.918
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 20:38:27.73
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 21:14:15.65
+[INFO] Application started | 2018-06-16 21:14:18.144
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 21:14:18.513
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 21:14:18.537
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 21:14:27.831
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 21:14:27.834
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 21:14:27.834
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:14:27.974
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-16 21:14:28.073
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-16 21:14:28.073
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 21:14:37.805
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 21:14:44.414
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 21:14:44.426
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 21:14:44.439
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 21:14:50.992
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 21:14:50.993
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:14:51.112
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 21:14:53.051
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-16 21:15:13.797
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:15:14.688
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 21:15:29.236
