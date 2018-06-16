@@ -147,7 +147,7 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher select course
+	 * Method the occurs when teacher select courses
 	 * 
 	 * @param event
 	 *            on action in course combo box
