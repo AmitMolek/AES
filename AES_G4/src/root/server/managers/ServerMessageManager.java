@@ -470,12 +470,9 @@ public class ServerMessageManager {
 				ArrayList<Exam> exams= getExam.getExamByPassword(msgContent[3]);
 				if(exams!=null)
 				{
-<<<<<<< HEAD
 					if(executedUsersManager.isContains(exams.get(0).getExamId(), msgContent[4]))
 						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
 					executedUsersManager.add(exams.get(0).getExamId(), msgContent[4]);
-=======
->>>>>>> refs/remotes/origin/Naor
 					Exam e = exams.get(0);
 					if(executedUsersManager.isContains(e.getExamId(), msgContent[4]))
 						return new ErrorMessage(new NullPointerException("user done it"));
