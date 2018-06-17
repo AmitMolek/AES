@@ -406,7 +406,7 @@ public class AddExamController implements Observer {
 		for (AddQuestionToExam add : myComponent) {
 			if (add.checkRemove.isSelected()) {
 				add.removeTheQuestion(add);
-				myFlow.getChildren().remove(i);
+				myFlow.getChildren().remove(add);
 				deleted.add(add.getID());
 			}
 			i++;
