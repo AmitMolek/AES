@@ -137,7 +137,7 @@ public class ExecuteExamController implements Observer {
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
 		client = new ObservableClient((String) dataKeeper.getObject_NoRemove("ip"), 8000);
-    	SimpleMessage simpleMessage = (SimpleMessage) MessageFactory.getInstance().getMessage("simple", null);
+    	SimpleMessage simpleMessage = (SimpleMessage)messageFact.getMessage("simple", null);
     	simpleMessage.setMessage("startExam-"+exam.getExamId());
 		client.addObserver(this);
 		try {
@@ -149,8 +149,6 @@ public class ExecuteExamController implements Observer {
 		}
 		sdf = new SimpleDateFormat("dd-MM-yyyy");
 		date = sdf.format(new Date());
-		dt = new Date();
-		SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		lblDate.setText(date);
 		displayQuestion = 0;
 		ArrayList<QuestionInExam> questionsInExam = exam.getExamQuestions();
@@ -262,8 +260,9 @@ public class ExecuteExamController implements Observer {
 	 * This method stop the exams
 	 */
 	public void stopExam() {
+    	SimpleMessage simpleMessage = (SimpleMessage)messageFact.getMessage("simple", null);
+    	simpleMessage.setMsg("closeexam");
 		examStopWatch.stop();
-
 	}
 
 	/**

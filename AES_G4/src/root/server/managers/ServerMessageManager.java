@@ -117,12 +117,22 @@ public class ServerMessageManager {
 			return handleChangeTimeDurationRequest(msg);
 		case "confirmchangeduration":
 			return handleChangeTimeConfirm(msg);
-			
 		case "startexam":
 			return handlStartExam(msg);
+		case "closeexam":
+			return handlCloseExam(msg);
 		default:
 			return null;
 		}
+	}
+
+	private static AbstractMessage handlCloseExam(AbstractMessage msg) {
+		SimpleMessage newMsg = (SimpleMessage) msg;
+		String examId =newMsg.getMsg().split("-")[1];
+		SetInDB set = new SetInDB();
+		set.deleteExecutedExam(examId);
+		set.lockExam(examId);
+		return null;
 	}
 
 	private static AbstractMessage handlStartExam(AbstractMessage msg) {
