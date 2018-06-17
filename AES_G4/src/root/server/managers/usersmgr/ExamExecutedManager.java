@@ -46,11 +46,12 @@ public class ExamExecutedManager {
 	}
 
 	public boolean checkTime(String examId) {
-		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		try {
 			System.out.println(examsTime.get(examId));
 			Date examDate = sdf.parse(examsTime.get(examId));
-			Date nowDate = new Date();
+			Date nowDate = sdf.parse(sdf.format(new Date()));
+			
 			if(nowDate.compareTo(examDate)<=0)
 				return true;
 		} catch (ParseException e) {
