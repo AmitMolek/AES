@@ -254,6 +254,10 @@ public class AddQuestionToExam extends AnchorPane {
 		if (txtScore.getText() == null || txtScore.getText().length() == 0) {
 			errorMessage += "No valid Question points\n";
 		}
+		
+		if((!(txtScore.getText().matches("[0-9]+")))) {
+			errorMessage += "No valid Question points\n";
+		}
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
@@ -297,7 +301,7 @@ public class AddQuestionToExam extends AnchorPane {
 	@FXML
 	void changePoints(ActionEvent event) {
 
-		if (txtScore.getText() == null || txtScore.getText().length() == 0) {
+		if (txtScore.getText() == null || txtScore.getText().length() == 0 || (!(txtScore.getText().matches("[0-9]+")))) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.initOwner(mainApp);
 			alert.setTitle("Invalid Fields");
