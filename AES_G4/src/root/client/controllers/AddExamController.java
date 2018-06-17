@@ -41,8 +41,8 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for add exam screen controller
- *  fuck
+ * Class for add exam screen controller fuck
+ * 
  * @author Omer Haimovich
  *
  */
@@ -127,8 +127,11 @@ public class AddExamController implements Observer {
 				i++;
 			}
 			i = 0;
-			newQuestion.clearQuestionInExam();
-			newQuestion.clearComboBox();
+			if (newQuestion != null) {
+				newQuestion.clearQuestionInExam();
+				newQuestion.clearComboBox();
+
+			}
 		}
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
 
@@ -144,7 +147,7 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher select course
+	 * Method the occurs when teacher select courses
 	 * 
 	 * @param event
 	 *            on action in course combo box
@@ -344,8 +347,10 @@ public class AddExamController implements Observer {
 		if (txtDuration.getText() == null || txtDuration.getText().length() == 0) {
 			errorMessage += "No valid exam duration\n";
 		}
+		
+		if(!(txtDuration.getText().matches("[0-9]+")))
 		if (AddQuestionToExam.getTotalPoints() < 100) {
-			errorMessage += "Less than 100 points\n";
+			errorMessage += "can not enter letters in duration\n";
 		}
 		if (errorMessage.length() == 0) {
 			return true;

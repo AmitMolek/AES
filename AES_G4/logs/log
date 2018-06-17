@@ -11443,6 +11443,7 @@
 [ERROR][root.client.controllers.Enter4digitPasswordController] user done it | 2018-06-16 12:38:16.555
 [ERROR][root.client.controllers.Enter4digitPasswordController] Cant Find running exam | 2018-06-16 12:38:18.214
 >>>>>>> refs/remotes/origin/Naor
+<<<<<<< HEAD
 [INFO][root.server.AES_Server] The server is connected | 2018-06-16 21:15:30.706
 [INFO][root.server.AES_Server] The server is connected | 2018-06-16 21:15:56.696
 [INFO] Application started | 2018-06-16 21:15:59.114
@@ -12340,3 +12341,122 @@
 [INFO] Application started | 2018-06-17 16:33:23.776
 [INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-17 16:33:24.261
 [INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-17 16:33:24.297
+=======
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:17:08.431
+[INFO] Application started | 2018-06-16 20:17:10.05
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:17:10.678
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:17:10.721
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:17:20.157
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:17:22.939
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:17:27.034
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:17:33.001
+[INFO] Application started | 2018-06-16 20:18:01.848
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:18:02.294
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:18:02.318
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:18:08.786
+[INFO] Application started | 2018-06-16 20:18:10.536
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:18:10.919
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:18:10.952
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:18:19.821
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:18:19.828
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:18:19.828
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:18:19.987
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:18:20.088
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:18:20.089
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-06-16 20:18:21.733
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:18:23.85
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:18:32.206
+[INFO] Application started | 2018-06-16 20:18:33.853
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:18:34.428
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:18:34.459
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:18:40.686
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:18:40.686
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:18:40.688
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:18:40.844
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:18:40.932
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:18:40.932
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:18:43.367
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:24:26.234
+[INFO] Application started | 2018-06-16 20:24:29.128
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:24:29.698
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:24:29.728
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:24:36.205
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:24:36.211
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:24:36.211
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:24:36.366
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:24:36.462
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:24:36.462
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:24:40.893
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:25:12.299
+[INFO] Application started | 2018-06-16 20:25:15.907
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:25:16.487
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:25:16.52
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:25:22.942
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:25:22.95
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:25:22.95
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:25:23.107
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:25:23.208
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:25:23.208
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:25:24.978
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:26:53.481
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-06-16 20:26:53.483
+[INFO] Application started | 2018-06-16 20:26:57.42
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:26:57.792
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:26:57.815
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:27:03.617
+[INFO] Application started | 2018-06-16 20:27:05.319
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:27:05.877
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:27:05.902
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:27:11.956
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:27:11.963
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:27:11.963
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:27:12.117
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:27:12.218
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:27:12.219
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:27:32.796
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:36:17.142
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:37:06.397
+[INFO] Application started | 2018-06-16 20:37:08.412
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:37:08.825
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:37:08.859
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:37:15.604
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:37:15.604
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:37:15.61
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:37:15.764
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:37:15.864
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:37:15.864
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:37:18.11
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 20:38:10.97
+[INFO] Application started | 2018-06-16 20:38:12.128
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 20:38:12.522
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 20:38:12.546
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 20:38:19.437
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 20:38:19.444
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 20:38:19.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 20:38:19.586
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentStageOfDay Object: class java.lang.String | 2018-06-16 20:38:19.681
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervStageOfDay Object: class java.lang.String | 2018-06-16 20:38:19.681
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 20:38:21.918
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 20:38:27.73
+[INFO][root.server.AES_Server] The server is connected | 2018-06-16 21:14:15.65
+[INFO] Application started | 2018-06-16 21:14:18.144
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 21:14:18.513
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 21:14:18.537
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 21:14:27.831
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-16 21:14:27.834
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 21:14:27.834
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:14:27.974
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-16 21:14:28.073
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-16 21:14:28.073
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 21:14:37.805
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 21:14:44.414
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ ] | 2018-06-16 21:14:44.426
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-16 21:14:44.439
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-16 21:14:50.992
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ ] | 2018-06-16 21:14:50.993
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:14:51.112
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-06-16 21:14:53.051
+[INFO][root.client.controllers.AddExamController] Exam added | 2018-06-16 21:15:13.797
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-16 21:15:14.688
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-16 21:15:29.236
+>>>>>>> refs/remotes/origin/Omer
