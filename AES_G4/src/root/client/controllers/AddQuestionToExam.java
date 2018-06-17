@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -53,6 +54,9 @@ public class AddQuestionToExam extends AnchorPane {
 
 	@FXML
 	private Label lblQuestionNumber;
+
+	@FXML
+	public CheckBox checkRemove;
 
 	private QuestionInExam examQuestion;
 
@@ -176,7 +180,7 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 		i = 0;
 		size = examQuestions.size();
-		while (i < size ) {
+		while (i < size) {
 			examQuestions.remove(0);
 			i++;
 		}
@@ -331,6 +335,22 @@ public class AddQuestionToExam extends AnchorPane {
 	 */
 	public QuestionInExam getExamQuestion() {
 		return examQuestion;
+	}
+
+	public void removeTheQuestion(AddQuestionToExam add) {
+		int i = 0;
+		if (cmbQuestion.getSelectionModel().getSelectedItem() != null)
+		{
+
+			if(add.getExamQuestion().getQuestionGrade()>=0 || add.getExamQuestion().getQuestionGrade()<=100)
+				totalPoints = totalPoints - add.getExamQuestion().getQuestionGrade();
+			for (QuestionInExam q : examQuestions) {
+				if (add.getExamQuestion().getQuestion().getQuestionId().equals(q.getQuestion().getQuestionId())) {
+					examQuestions.remove(q);
+					break;
+				}
+			}
+		}
 	}
 
 }

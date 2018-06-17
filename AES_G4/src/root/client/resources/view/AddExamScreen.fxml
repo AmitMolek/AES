@@ -46,7 +46,8 @@
                </content>
             </ScrollPane>
             <Button fx:id="btnAddQuestion" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddQuestionToTheExam" text="Add Question" />
-            <Button fx:id="btnAddToExam" layoutX="549.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddToTheExamForm" text="Add the question to the exam" />
+            <Button fx:id="btnAddToExam" layoutX="416.0" layoutY="170.0" mnemonicParsing="false" onAction="#AddToTheExamForm" text="Add the question to the exam" />
+            <Button fx:id="btnRemove" layoutX="719.0" layoutY="170.0" mnemonicParsing="false" onAction="#removeQuestion" text="Remove question from exam" />
          </children>
       </AnchorPane>
       <Label layoutX="566.0" layoutY="55.0" prefHeight="35.0" prefWidth="183.0" styleClass="label-header" text="Add Exam">
