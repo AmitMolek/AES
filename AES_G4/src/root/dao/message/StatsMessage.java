@@ -5,8 +5,9 @@ import root.dao.app.Statistic;
 @SuppressWarnings("serial")
 public class StatsMessage extends AbstractMessage {
 
-	private ArrayList<Statistic> stats;
-	public StatsMessage(ArrayList<Statistic> payload) {
+	private Statistic stats;
+	public StatsMessage(String msg, Statistic payload) {
+		this.setMsg(msg);;
 		this.setStats(payload);
 	}
 
@@ -15,11 +16,11 @@ public class StatsMessage extends AbstractMessage {
 		return "Stats";
 	}
 
-	public ArrayList<Statistic> getStats() {
+	public Statistic getStats() {
 		return stats;
 	}
 
-	public void setStats(ArrayList<Statistic> stats) {
+	public void setStats(Statistic stats) {
 		this.stats = stats;
 	}
 

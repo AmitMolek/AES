@@ -1,14 +1,14 @@
 package root.dao.app;
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Statistic implements Serializable {
 	/**
-	 * 
+	 * @author Alon Ben-yosef
+	 * Repersents a statistics item as described in the AES DB, used to show histograms
 	 */
 	private static final long serialVersionUID = 1L;
 	private String exam_ID;
-	private Date date;
+	private String date;
 	private String real_time_duration;
 	private int submitted_students_counter;
 	private int interrupted_students_counter;
@@ -25,17 +25,47 @@ public class Statistic implements Serializable {
 	private int grade_derivative_71_80;
 	private int grade_derivative_81_90;
 	private int grade_derivative_91_100;
+	
+	public Statistic(String exam_ID, String date, String real_time_duration, int submitted_students_counter,
+			int interrupted_students_counter, int students_started_counter, double exams_avg, int exams_median,
+			int grade_derivative_0_10, int grade_derivative_11_20, int grade_derivative_21_30,
+			int grade_derivative_31_40, int grade_derivative_41_50, int grade_derivative_51_60,
+			int grade_derivative_61_70, int grade_derivative_71_80, int grade_derivative_81_90,
+			int grade_derivative_91_100) {
+		super();
+		this.exam_ID = exam_ID;
+		this.date = date;
+		this.real_time_duration = real_time_duration;
+		this.submitted_students_counter = submitted_students_counter;
+		this.interrupted_students_counter = interrupted_students_counter;
+		this.students_started_counter = students_started_counter;
+		this.exams_avg = exams_avg;
+		this.exams_median = exams_median;
+		this.grade_derivative_0_10 = grade_derivative_0_10;
+		this.grade_derivative_11_20 = grade_derivative_11_20;
+		this.grade_derivative_21_30 = grade_derivative_21_30;
+		this.grade_derivative_31_40 = grade_derivative_31_40;
+		this.grade_derivative_41_50 = grade_derivative_41_50;
+		this.grade_derivative_51_60 = grade_derivative_51_60;
+		this.grade_derivative_61_70 = grade_derivative_61_70;
+		this.grade_derivative_71_80 = grade_derivative_71_80;
+		this.grade_derivative_81_90 = grade_derivative_81_90;
+		this.grade_derivative_91_100 = grade_derivative_91_100;
+	}
+	public Statistic() {
+		
+	}
 	public String getExam_ID() {
 		return exam_ID;
 	}
 	public void setExam_ID(String exam_ID) {
 		this.exam_ID = exam_ID;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(String string) {
+		this.date = string;
 	}
 	public String getReal_time_duration() {
 		return real_time_duration;
@@ -64,8 +94,8 @@ public class Statistic implements Serializable {
 	public double getExams_avg() {
 		return exams_avg;
 	}
-	public void setExams_avg(int exams_avg) {
-		this.exams_avg = exams_avg;
+	public void setExams_avg(double d) {
+		this.exams_avg = d;
 	}
 	public double getExams_median() {
 		return exams_median;
