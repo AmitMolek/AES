@@ -48,9 +48,12 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblTime" layoutX="370.0" layoutY="23.0" />
+                  <Label fx:id="lblTime" layoutX="370.0" layoutY="23.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   <Button fx:id="btnSubmit" layoutX="337.0" layoutY="211.0" mnemonicParsing="false" onAction="#SubmitExam" prefHeight="25.0" prefWidth="137.0" text="Submit Exam" />
-                  <Button fx:id="btnGetExam" layoutX="337.0" layoutY="90.0" mnemonicParsing="false" onAction="#getExamDocument" prefHeight="25.0" prefWidth="138.0" text="Get Exam" />
+                  <Button fx:id="btnGetExam" layoutX="336.0" layoutY="90.0" mnemonicParsing="false" onAction="#getExamDocument" prefHeight="25.0" prefWidth="138.0" text="Get Exam" />
                </children>
             </Pane>
          </center>
