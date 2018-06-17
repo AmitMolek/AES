@@ -129,9 +129,8 @@ public class UpdateExamController implements Observer {
 		log = Log.getInstance();
 		dbk = DataKeepManager.getInstance();
 		mainApp = screenManager.getPrimaryStage();
-		client = new ObservableClient("localhost", 8000);
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
-		client.openConnection();
 		tbcPoints.setCellValueFactory(new PropertyValueFactory("questionGrade"));
 		tbcQuestion.setCellValueFactory(new PropertyValueFactory("question"));
 		tblQuestion.setEditable(true);
@@ -178,6 +177,12 @@ public class UpdateExamController implements Observer {
 			log.writeToLog(LogLine.LineType.INFO, "Exam updated");
 			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.initOwner(mainApp);
+					alert.setTitle("Exam updated");
+					alert.setHeaderText("Exam updated successefully");
+					alert.setContentText("The exam was updated successful");
+					alert.showAndWait();
 					screenManager.activate("home");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

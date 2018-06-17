@@ -49,6 +49,9 @@ import root.util.log.LogLine;
 public class AddExamController implements Observer {
 
 	@FXML
+	private Button btnRemove;
+
+	@FXML
 	private Button btnAddToExam;
 
 	@FXML
@@ -132,6 +135,7 @@ public class AddExamController implements Observer {
 				newQuestion.clearComboBox();
 
 			}
+			btnRemove.setDisable(true);
 		}
 		newSubject = new Subject(selectedSubject[0], selectedSubject[1]);
 
@@ -175,6 +179,7 @@ public class AddExamController implements Observer {
 	@FXML
 	void AddQuestionToTheExam(ActionEvent event) {
 		newQuestion = new AddQuestionToExam();
+		btnRemove.setDisable(false);
 		newQuestion.setQuestionCombo(question);
 		myFlow.getChildren().add(newQuestion);
 		btnAddToExam.setDisable(false);
@@ -251,6 +256,7 @@ public class AddExamController implements Observer {
 		txtTeacher.setDisable(true);
 		btnAddToExam.setDisable(true);
 		btnAddQuestion.setDisable(true);
+		btnRemove.setDisable(true);
 		cmbCourse.setDisable(true);
 		SubjectMessage getTeacherSubject = (SubjectMessage) messageFact.getMessage("get-subjects", teacher.getUserID());
 		client.sendToServer(getTeacherSubject);
@@ -347,11 +353,11 @@ public class AddExamController implements Observer {
 		if (txtDuration.getText() == null || txtDuration.getText().length() == 0) {
 			errorMessage += "No valid exam duration\n";
 		}
-		
-		if(!(txtDuration.getText().matches("[0-9]+")))
-		if (AddQuestionToExam.getTotalPoints() < 100) {
-			errorMessage += "can not enter letters in duration\n";
-		}
+
+		if (!(txtDuration.getText().matches("[0-9]+")))
+			if (AddQuestionToExam.getTotalPoints() < 100) {
+				errorMessage += "can not enter letters in duration\n";
+			}
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
@@ -385,6 +391,36 @@ public class AddExamController implements Observer {
 			alert.showAndWait();
 		}
 
+	}
+
+	/**
+	 * Method the occurs when teacher press remove button
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void removeQuestion(ActionEvent event) {
+		int i = 0;
+		btnAddQuestion.setDisable(false);
+		ArrayList<String> deleted = new ArrayList<String>();
+		for (AddQuestionToExam add : myComponent) {
+			if (add.checkRemove.isSelected()) {
+				add.removeTheQuestion(add);
+				myFlow.getChildren().remove(add);
+				deleted.add(add.getID());
+			}
+			i++;
+		}
+		i = 0;
+		for (String s : deleted) {
+			for (AddQuestionToExam add : myComponent) {
+				if (add.getID().equals(s)) {
+					myComponent.remove(i);
+					break;
+				}
+				i++;
+			}
+		}
 	}
 
 }

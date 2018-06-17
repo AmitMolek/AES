@@ -107,9 +107,8 @@ public class ManuallyExamController implements Observer {
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
 		mainApp = screenManager.getPrimaryStage();
-		client = new ObservableClient("localhost", 8000);
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
-		client.openConnection();
 		messageFact = MessageFactory.getInstance();
 		student = dkm.getUser();
 		lblFirstName.setText(student.getUserFirstName());
@@ -129,6 +128,21 @@ public class ManuallyExamController implements Observer {
 				lblTime.setText("" + hours + ":" + minuts + ":" + seconds);
 				if (stopWatch == 0) {
 					btnSubmit.setDisable(true);
+					Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.initOwner(mainApp);
+						alert.setTitle("Time finished");
+						alert.setHeaderText("The time of the exam finish");
+						alert.setContentText("You can not submit anymore");
+						alert.showAndWait();
+						try {
+							screenManager.activate("home");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					});
+					
 				}
 				stopWatch--;
 			}
