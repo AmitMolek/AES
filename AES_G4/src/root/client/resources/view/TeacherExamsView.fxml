@@ -36,7 +36,7 @@
          <top>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="submit_btn" minHeight="35.0" mnemonicParsing="false" onMousePressed="#btn_SubmitChanges" prefWidth="1820.0" text="Submit" />
+                  <Button fx:id="submit_btn" minHeight="35.0" mnemonicParsing="false" onMousePressed="#btn_SubmitChanges" prefWidth="1820.0" text="Approve changed exams" />
                   <Text fx:id="errorTxt" fill="#b71c1c" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font size="24.0" />
