@@ -68,7 +68,7 @@ import root.util.worddocumentmgr.WordDocument;
 import root.util.CSVReader;
 
 public class ServerMessageManager {
-	private static ExecuteStudentManager examinees = new ExecuteStudentManager();
+	private static ExecuteStudentManager examinees = ExecuteStudentManager.getInstance();
 	private static PrincipleManager principles=new PrincipleManager();
 	private static ServerMessageManager instance=null;
 	private static MessageFactory message = MessageFactory.getInstance();;
@@ -499,7 +499,6 @@ public class ServerMessageManager {
 					examinees.addDuration(e.getExamId(), AES_Server.CLIENT);
 					if(executedUsersManager.isContains(e.getExamId(), msgContent[4]))
 						return new ErrorMessage(new NullPointerException("Sorry, this exam has already been submitted"));
-					executedUsersManager.add(e.getExamId(), e.getExecuteExam().getStartTime()); //Send time to executedManager
 					if(!executedUsersManager.checkTime(e.getExamId()))
 						return new ErrorMessage(new NullPointerException("The entrey is locked"));
 					ExamMessage examMsg = (ExamMessage) message.getMessage("ok-get-exams", exams);
@@ -585,6 +584,7 @@ public class ServerMessageManager {
 		ExecuteExamMessage recivedMessage = (ExecuteExamMessage)msg;
 		ExecuteExam newExecuteExam = recivedMessage.getNewExam();
 		SetInDB putExecuteExam = new SetInDB();
+		executedUsersManager.add(newExecuteExam.getExamId(), newExecuteExam.getStartTime()); //Send time to executedManager
 		AbstractMessage sendMessage = (AbstractMessage) putExecuteExam.addExecuteExam(newExecuteExam);
 		return sendMessage;
 	}
