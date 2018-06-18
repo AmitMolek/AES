@@ -347,7 +347,7 @@ public class SolvedExamsController  implements Observer{
 		*/
 
 		Platform.runLater(() -> {
-			System.out.println(screenManager.getPrimaryStage().getOwner());
+			System.out.println("opening fileChooser");
 			FileChooser fileChooser = new FileChooser();
 	        fileChooser.setTitle("Save solvedExam"); 
 	        fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");

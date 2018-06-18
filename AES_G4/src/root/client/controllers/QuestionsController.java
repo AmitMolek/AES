@@ -155,6 +155,7 @@ public class QuestionsController implements Observer{
     	screenManager = ScreensManager.getInstance();
 
     	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+    	client.deleteObservers();
     	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	questions = new ArrayList<Question>();
