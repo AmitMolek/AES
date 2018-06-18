@@ -50,8 +50,10 @@ import root.dao.message.MyFile;
 import root.dao.message.QuestionInExamMessage;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
+import root.dao.message.SolvedExamBySubjectCourseMessage;
 import root.dao.message.SolvedExamMessage;
 import root.dao.message.SubjectMessage;
+import root.dao.message.UpdateSolvedExam;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
 import root.dao.message.UserMessage;
@@ -277,10 +279,22 @@ public class ServerMessageManager {
 				return handleGetCSVfromServer(msg);
 			case "examTableDataLines":
 				return handleExamTableDataLine(msg);
+			case "solvedbysubjectcourse":
+				return handleGetSolvedExamsBySubjectIDCourseID(msg);
 		}
 		
 		return null;
 	}
+	
+	private static AbstractMessage handleGetSolvedExamsBySubjectIDCourseID(AbstractMessage msg) {
+		SolvedExamBySubjectCourseMessage sebsc = (SolvedExamBySubjectCourseMessage) msg;
+		GetFromDB getSolved = new GetFromDB();
+		
+		sebsc.setSolvedExams(getSolved.getSolvedExamsByCourseId(sebsc.getCourse().getCourseId()));
+		
+		return sebsc;
+	}
+	
 	/**
 	 * @author Alon Ben-yosef
 	 * Handles request for exam table data lines, which is used to fill statistics table
@@ -461,10 +475,20 @@ public class ServerMessageManager {
 			return handlePutExecuteExamMessage(msg);
 		case "wordexam":
 			return handlePutwordExamMessage(msg);
+		case "updatesolvedexam":
+			return handleUpdateSolvedExam(msg);
 		}
 		
 		return null;
 		
+	}
+	
+	private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
+		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
+		SetInDB setDb = new SetInDB();
+		SolvedExams solved = exam.getExam();
+		setDb.updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(solved.getExamGrade(), solved.getGradeAlturationExplanation(), exam.getTeacher_id(), solved);
+		return null;
 	}
 	
 	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {

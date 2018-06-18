@@ -108,6 +108,8 @@ public class MessageFactory {
 				return new ExecuteExamMessage((ExecuteExam) payload);
 			case "wordexam":
 				return new WordMessage("put-wordexam",(MyFile)payload);
+			case "updatesolvedexam":
+				return (UpdateSolvedExam) payload;
 			}
 		return null;
 	}
@@ -165,6 +167,8 @@ public class MessageFactory {
 			return new CsvMessage((CsvDetails)payload);
 		case "csvfromserver":
 			return new CsvMessage("get-csvfromserver", (CsvDetails)payload);
+		case "solvedbysubjectcourse":
+			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		default:
 			break;
 		}
@@ -296,6 +300,8 @@ public class MessageFactory {
 		case "csv":
 			if (payload instanceof ArrayList<?>)return new CsvMessage("ok-get-"+msgContent[2],(ArrayList<String[]>)payload);
 			return new SimpleMessage("ok-get-" + msgContent[2]);
+		case "solvedbysubjectcourse":
+			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

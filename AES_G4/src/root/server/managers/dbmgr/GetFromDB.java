@@ -1,5 +1,6 @@
 package root.server.managers.dbmgr;
 
+import java.lang.reflect.Array;
 import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -190,7 +191,7 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * @author Omer Haimovich
 	 * @param str can be null, and then all courses in subject will return, or str can contain a specific user ID
@@ -425,6 +426,27 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	public ArrayList<SolvedExams> getSolvedExamsByCourseId(String course_id){
+		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
+		ResultSet rs;
+		String query = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '_%_%" + course_id + "_%_%';";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				SolvedExams se = new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11));
+				solvedExams.add(se);
+			}
+			
+			return solvedExams;
+		} catch (SQLException s) {
+			s.printStackTrace();
+			return null;
+		}
+	}
+	
 	/**
 	 * @author gal
 	 * @param str - size== 0: retreive all solved exams, if size == 9, retrieve all solvedExams of this userID, if size==6, retrieve all solved exams of this specific

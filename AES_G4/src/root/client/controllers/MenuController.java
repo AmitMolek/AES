@@ -106,6 +106,7 @@ public class MenuController {
     	}else if (user.getUserPremission().equals("Teacher")) {
         	examsMenu.getItems().add(createMenuItem("Add exam", getChangeScreenActionEvent("addExam")));
         	examsMenu.getItems().add(createMenuItem("Update exam", getChangeScreenActionEvent("updateDeleteExam")));
+        	examsMenu.getItems().add(createMenuItem("View solved exams", getChangeScreenActionEvent("teacherExamsView")));
     	}
     }
     
