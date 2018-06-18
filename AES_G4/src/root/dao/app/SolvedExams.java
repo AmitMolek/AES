@@ -26,7 +26,10 @@ public class SolvedExams implements Serializable {
 	private Date date;					// this is temporary field
 	private String examCourse;
 	private String approvingTeacherName;
-	private String action;				// this field is for tableView only
+	/* Vars for table use inly */
+	private String action;
+	private String strGrade;
+	private String courseName;
 	
 	/**
 	 * Constructor for solved exam
@@ -44,7 +47,9 @@ public class SolvedExams implements Serializable {
 		this.solveDurationTime = durationTime;
 		this.submittedOrInterruptedFlag = submittedOrNot;
 		this.date = new java.sql.Date(newDate.getTime());
+		this.strGrade = String.valueOf(this.examGrade);
 	}
+
 	/**
 	* kombina with Omer, the constructor abelow is a constructor used by gal.
 	**/
@@ -66,9 +71,22 @@ public class SolvedExams implements Serializable {
 		this.cheatingFlag = cheatingFlag;
 		this.examCourse = "";
 		this.approvingTeacherName = "";
+		this.strGrade = String.valueOf(this.examGrade);
 	}
 	
+	public String getStrGrade() {
+		return strGrade;
+	}
+	public void setStrGrade(String strGrade) {
+		this.strGrade = strGrade;
+	}
 	
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 	/**
 	 * @return the approvingTeacherName
 	 */
@@ -135,6 +153,7 @@ public class SolvedExams implements Serializable {
 	 * @param examGrade the examGrade to set
 	 */
 	public void setExamGrade(int examGrade) {
+		this.strGrade = String.valueOf(examGrade);
 		this.examGrade = examGrade;
 	}
 	/**

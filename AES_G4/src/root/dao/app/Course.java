@@ -58,5 +58,18 @@ public class Course implements Serializable {
 		return courseId + "-"+ courseName;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (!(obj instanceof Course)) return false;
+		
+		Course other = (Course) obj;
+		if (courseId == null) {
+			if (other.courseId != null) return false;
+		}else if (!courseId.equals(other.courseId)) return false;
+		return true;
+	}
+
 	
 }

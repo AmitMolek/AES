@@ -108,6 +108,8 @@ public class MessageFactory {
 				return new ExecuteExamMessage((ExecuteExam) payload);
 			case "wordexam":
 				return new WordMessage("put-wordexam",(MyFile)payload);
+			case "updatesolvedexam":
+				return (UpdateSolvedExam) payload;
 			}
 		return null;
 	}
@@ -167,6 +169,8 @@ public class MessageFactory {
 			return new ExamStatsByIdDateMessage("get-examstatsbyiddate",(String[])payload);
 		case "examtabledataline":
 			return createGetStatisticsByAssemblingTeacherId((User)payload);
+		case "solvedbysubjectcourse":
+			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		default:
 			break;
 		}
@@ -300,6 +304,8 @@ public class MessageFactory {
 			return new SimpleMessage("ok-get-" + msgContent[2]);
 		case "examstatsbyiddate":
 			if(payload instanceof Statistic) return new StatsMessage("ok-get-examstatsbyiddate",(Statistic) payload);
+		case "solvedbysubjectcourse":
+			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
