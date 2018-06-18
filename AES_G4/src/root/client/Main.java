@@ -1,15 +1,24 @@
 package root.client;
 
+import java.util.Observer;
+
+import root.client.controllers.SolvedExamsController;
+import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
 public class Main extends ScreensManager {
-
+    
+   
+    
 	public static void main(String[] args) {
 		Log log = Log.getInstance();
+		DataKeepManager dkm = DataKeepManager.getInstance();
 		log.writeToLog(LineType.INFO, "Application started", false);
 		ScreensManager.addScreen("solvedExams","resources/view/ViewSolvedExams.fxml");
+		
+		dkm.keepObject("solvedExams Observer", new SolvedExamsController());
 		ScreensManager.addScreen("questions","resources/view/Questions.fxml");		
 		ScreensManager.addScreen("main","resources/view/LoginScreen.fxml");
 		ScreensManager.addScreen("home","resources/view/Home.fxml");

@@ -125,7 +125,7 @@ public class QuestionsController implements Observer{
     @FXML
     private Button editQuestion;
     
-   
+    private DataKeepManager dkm = DataKeepManager.getInstance();
     private ObservableList<Subject> observableSubjects;
     private ObservableList<Question> observabaleQuestions;
     private ObservableList<Question> observebaleNewQuestion;
@@ -154,12 +154,10 @@ public class QuestionsController implements Observer{
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
 
-    	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+    	client = (ObservableClient)dkm.getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
     	client.deleteObservers();
     	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
-    	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
-    	questions = new ArrayList<Question>();
-    	teachersMap = new HashMap<String, String>();
+    	user = (User) dkm.getUser();//loggedInManager.getUser();
     	
     	// Listen for selection changes and show the person details when changed.
     	txtFieldId.setOnMouseClicked(e -> {
@@ -188,7 +186,7 @@ public class QuestionsController implements Observer{
     	getUserSubjects(user);
     	initQuestionsTable();   	
     }
-
+    
 	private void initQuestionsTable() {
 		// TODO Auto-generated method stub
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
