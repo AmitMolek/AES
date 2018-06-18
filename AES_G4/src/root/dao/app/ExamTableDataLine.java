@@ -1,8 +1,9 @@
 package root.dao.app;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ExamTableDataLine {
+public class ExamTableDataLine implements Serializable {
 	private String examID;
 	private String date;
 	private String courseName;

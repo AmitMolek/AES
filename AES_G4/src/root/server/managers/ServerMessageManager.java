@@ -30,6 +30,7 @@ import root.dao.app.LoginInfo;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
 import root.dao.app.SolvedExams;
+import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
@@ -41,6 +42,7 @@ import root.dao.message.CsvMessage;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamDataLinesMessage;
 import root.dao.message.ExamMessage;
+import root.dao.message.ExamStatsByIdDateMessage;
 import root.dao.message.ExecuteExamMessage;
 import root.dao.message.ExecutedExamsMessage;
 import root.dao.message.LoggedOutMessage;
@@ -275,22 +277,13 @@ public class ServerMessageManager {
 				return handleGetCsv(msg);
 			case "csvfromserver":
 				return handleGetCSVfromServer(msg);
-			case "examTableDataLines":
+			case "examtabledataline":
 				return handleExamTableDataLine(msg);
+			case "examstatsbyiddate":
+				return handleExamStatsByIdDate(msg);
 		}
 		
 		return null;
-	}
-	/**
-	 * @author Alon Ben-yosef
-	 * Handles request for exam table data lines, which is used to fill statistics table
-	 * @param msg user message with teacher ID
-	 * @return an ok-get-examTableDataLine with datalines in case of success, null in case of failures
-	 */
-	private static AbstractMessage handleExamTableDataLine(AbstractMessage msg) {
-		GetFromDB getLines = new GetFromDB();
-		ArrayList<ExamTableDataLine> data=getLines.getLinesByTeacherID(((UserIDMessage)msg).getId());
-		return message.getMessage("ok-get-examTableDataLine", data);
 	}
 
 	/**
@@ -755,4 +748,23 @@ public class ServerMessageManager {
 		set.deleteSolvedExam(simp);
 		return msg;	
 	}
+	
+	private static AbstractMessage handleExamStatsByIdDate(AbstractMessage msg) {
+		GetFromDB getLines = new GetFromDB();
+		Statistic data=getLines.getExamStatsByIdDate((ExamStatsByIdDateMessage)msg);
+		return message.getMessage("ok-get-examstatsbyiddate", data);
+	}
+
+	/**
+	 * @author Alon Ben-yosef
+	 * Handles request for exam table data lines, which is used to fill statistics table
+	 * @param msg user message with teacher ID
+	 * @return an ok-get-examTableDataLine with datalines in case of success, null in case of failures
+	 */
+	private static AbstractMessage handleExamTableDataLine(AbstractMessage msg) {
+		GetFromDB getLines = new GetFromDB();
+		ArrayList<ExamTableDataLine> data=getLines.getLinesByTeacherID(((UserIDMessage)msg).getId());
+		return message.getMessage("ok-get-examtabledataline", data);
+	}
+
 }

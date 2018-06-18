@@ -27,6 +27,7 @@ import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.message.ErrorMessage;
+import root.dao.message.ExamStatsByIdDateMessage;
 import root.server.AES_Server;
 import root.util.log.Log;
 import root.util.log.LogLine;
@@ -555,46 +556,59 @@ public class GetFromDB implements DbManagerInterface {
 	
 	public ArrayList<ExamTableDataLine> getLinesByTeacherID(String id) {
 		String query1="SELECT e.exam_id, st.exam_date,c.course_name,sub.subject_name" + 
-				"FROM aes.exams e, aes.exams_stats st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis" + 
-				"WHERE e.teacher_assembler_id='"+id+"' AND e.exam_id=st.exam_id" + 
-				"AND SUBSTR(e.exam_id,1,2)=cis.subject_id AND substr(e.exam_id,3,2)=cis.course_id" + 
-				"AND cis.subject_id=sub.subject_id AND cis.course_id=c.course_id;";
+				" FROM aes.exams e, aes.exams_stats st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis" + 
+				" WHERE e.teacher_assembler_id='"+id+"' AND e.exam_id=st.exam_id" + 
+				" AND SUBSTR(e.exam_id,1,2)=cis.subject_id AND substr(e.exam_id,3,2)=cis.course_id" + 
+				" AND cis.subject_id=sub.subject_id AND cis.course_id=c.course_id;";
 		ResultSet rs;
 		ArrayList<ExamTableDataLine> dataList=new ArrayList<ExamTableDataLine>();
 		try {
+			stmt = conn.createStatement();
 			rs= stmt.executeQuery(query1);
-			rs.close();
 			while(rs.next()) {
 				dataList.add(new ExamTableDataLine(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
 			}
+			rs.close();
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-				
-		return null;
+		}		
+		return dataList;
 	}
 	
-	public ArrayList<Statistic> getExamStatsByTeacherID(String id){
-		String query=""
-				+ "SELECT * "
-				+ "FROM solved exams statistics "
-				+ "WHERE IN ("
-				+ 	"SELECT exam_id"
-				+ 	"FROM exams"
-				+ 	"WHERE assmebler_teacher = '"+id+");"; //TODO:test the query
+	public Statistic getExamStatsByIdDate(ExamStatsByIdDateMessage msg) {
+		String query1="SELECT * FROM aes.exams_stats s" + 
+				" WHERE s.exam_id = '"+msg.getId()+"' AND s.exam_date='"+msg.getDate()+"';";
 		ResultSet rs;
-		ArrayList<Statistic> statList=new ArrayList<Statistic>();
+		Statistic stat;
 		try {
-			rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				 Statistic temp = new Statistic();
-				 temp.setExam_ID(rs.getString(0));
-			}
+			stmt = conn.createStatement();
+			rs= stmt.executeQuery(query1);
+			rs.next();
+			stat=new Statistic();
+			stat.setExam_ID(rs.getString(1));
+			stat.setDate(rs.getString(2));
+			stat.setReal_time_duration(rs.getString(3));
+			stat.setStudents_started_counter(rs.getInt(4));
+			stat.setSubmitted_students_counter(rs.getInt(5));
+			stat.setInterrupted_students_counter(rs.getInt(6));
+			stat.setExams_avg(rs.getDouble(7));
+			stat.setExams_median(rs.getInt(8));
+			stat.setGrade_derivative_0_10(rs.getInt(9));
+			stat.setGrade_derivative_11_20(rs.getInt(10));
+			stat.setGrade_derivative_21_30(rs.getInt(11));
+			stat.setGrade_derivative_31_40(rs.getInt(12));
+			stat.setGrade_derivative_41_50(rs.getInt(13));
+			stat.setGrade_derivative_51_60(rs.getInt(14));
+			stat.setGrade_derivative_61_70(rs.getInt(15));
+			stat.setGrade_derivative_71_80(rs.getInt(16));
+			stat.setGrade_derivative_81_90(rs.getInt(17));
+			stat.setGrade_derivative_91_100(rs.getInt(18));
 			rs.close();
-			return null;//TODO
-		} catch (SQLException e) {
+			return stat;
+		}
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

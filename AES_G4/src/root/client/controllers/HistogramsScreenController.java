@@ -1,4 +1,5 @@
 package root.client.controllers;
+import java.text.DecimalFormat;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,7 +13,7 @@ import javafx.scene.text.Text;
 import root.client.managers.DataKeepManager;
 import root.dao.app.Statistic;
 
-public class HistogramsScreenController implements Observer {
+public class HistogramsScreenController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -31,10 +32,11 @@ public class HistogramsScreenController implements Observer {
 
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
-    
-    public static final String HISTOGRAM_CONTROLLER_NAME="HistogramController";
-    
+        
 	public void initialize() {
+		Statistic stat=(Statistic) DataKeepManager.getInstance().getObject("statsForHistogram");
+		String title=(String) DataKeepManager.getInstance().getObject("titleForHistogram");
+		if(stat==null||title==null) {
 		XYChart.Series dataSeries=new XYChart.Series();
 		dataSeries.setName("No Data");
 		averageText.setText("null");
@@ -50,13 +52,17 @@ public class HistogramsScreenController implements Observer {
 		dataSeries.getData().add(new XYChart.Data("81-90",0));
 		dataSeries.getData().add(new XYChart.Data("91-100",0));
 		barChart.getData().add(dataSeries);
-		
+		}
+		else {
+			updateHistograms(title, stat);
+		}
 	}
 	
 	public void updateHistograms(String title,Statistic stat) {
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
 		barChart.getData().removeAll();
-		titleText.setText(title);
 		XYChart.Series dataSeries=new XYChart.Series();
+		barChart.setTitle(title);
 		dataSeries.setName("Student Grades");
 		dataSeries.getData().add(new XYChart.Data("0-10",stat.getGrade_derivative_0_10()));
 		dataSeries.getData().add(new XYChart.Data("11-20",stat.getGrade_derivative_11_20()));
@@ -68,12 +74,9 @@ public class HistogramsScreenController implements Observer {
 		dataSeries.getData().add(new XYChart.Data("71-80",stat.getGrade_derivative_71_80()));
 		dataSeries.getData().add(new XYChart.Data("81-90",stat.getGrade_derivative_81_90()));
 		dataSeries.getData().add(new XYChart.Data("91-100",stat.getGrade_derivative_91_100()));
+		medianText.setText("Median: "+(int)stat.getExams_median());
+		averageText.setText("Average: "+numberFormat.format(stat.getExams_avg()));
 		barChart.getData().add(dataSeries);
 	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

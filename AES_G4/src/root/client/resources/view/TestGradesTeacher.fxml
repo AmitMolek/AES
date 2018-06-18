@@ -15,11 +15,11 @@
             <TableColumn fx:id="examNumCol" prefWidth="233.5999870300293" text="Exam Number" />
             <TableColumn fx:id="dateCol" prefWidth="240.00006103515625" text="Date" />
             <TableColumn fx:id="subjectCol" editable="false" prefWidth="250.0" text="Subject" />
-                  <TableColumn fx:id="courseColumn" prefWidth="250.0" text="Course" />
+                  <TableColumn fx:id="courseCol" prefWidth="250.0" text="Course" />
           </columns>
         </TableView>
       </left>
     </BorderPane>
-      <Button fx:id="viewReportButton" layoutX="1098.0" layoutY="371.0" mnemonicParsing="false" text="View Report" />
+      <Button fx:id="viewReportButton" layoutX="1098.0" layoutY="371.0" mnemonicParsing="false" onAction="#viewReport" text="View Report" />
   </children>
 </AnchorPane>

@@ -151,8 +151,6 @@ public class MessageFactory {
 			return new ExamMessage((String)payload);
 		case "user":
 			return  getUserRelatedMessage(msgContent,payload);
-		case "examTableDataLine":
-			return createGetStatisticsByAssemblingTeacherId((User)payload);
 		case "solvedexams":
 			return getUserSolvedExams(msgContent,payload);				// get message related to solvedExams Table
 		case "word":
@@ -165,6 +163,10 @@ public class MessageFactory {
 			return new CsvMessage((CsvDetails)payload);
 		case "csvfromserver":
 			return new CsvMessage("get-csvfromserver", (CsvDetails)payload);
+		case "examstatsbyiddate":
+			return new ExamStatsByIdDateMessage("get-examstatsbyiddate",(String[])payload);
+		case "examtabledataline":
+			return createGetStatisticsByAssemblingTeacherId((User)payload);
 		default:
 			break;
 		}
@@ -273,11 +275,11 @@ public class MessageFactory {
 			if(payload instanceof HashMap<?, ?>) 
 				return new CourseMessage("ok-get-courses", (HashMap<String, String>)payload);
 			else return new ErrorMessage(new Exception("Your payload is not arraylist NOR hashMap.\\nIn ok-get-courses"));
-		case "examTableDataLines":
+		case "examtabledataline":
 			if(payload instanceof ArrayList<?>)
 			{
 				ExamDataLinesMessage linesMsg = new ExamDataLinesMessage((ArrayList<ExamTableDataLine>)payload);
-				linesMsg.setMsg("ok-get-examTableDataLine");
+				linesMsg.setMsg("ok-get-examtabledataline");
 				return linesMsg;
 			}
 			else return new ErrorMessage(new Exception("Your payload is not arraylist"));
@@ -296,6 +298,8 @@ public class MessageFactory {
 		case "csv":
 			if (payload instanceof ArrayList<?>)return new CsvMessage("ok-get-"+msgContent[2],(ArrayList<String[]>)payload);
 			return new SimpleMessage("ok-get-" + msgContent[2]);
+		case "examstatsbyiddate":
+			if(payload instanceof Statistic) return new StatsMessage("ok-get-examstatsbyiddate",(Statistic) payload);
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
