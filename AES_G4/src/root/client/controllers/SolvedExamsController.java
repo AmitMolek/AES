@@ -1,5 +1,6 @@
 package root.client.controllers;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -168,7 +169,9 @@ public class SolvedExamsController  implements Observer{
     	screenManager = ScreensManager.getInstance();
 
     	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+    	client.deleteObservers();
     	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
+    	
     	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
     	solvedExams = new ArrayList<SolvedExams>();
     	teachersMap = new HashMap<String, String>();
@@ -196,7 +199,7 @@ public class SolvedExamsController  implements Observer{
     	initSolvedExamTable();
     }
     /**
-     * this methos is called when need to fill courseMap, first get all solvedExams course ID, from examID. Than get all course names 
+     * this method is called when need to fill courseMap, first get all solvedExams course ID, from examID. Than get all course names 
      * @param solvedExams2
      */
 	private void getSolvedExamsCourse(ArrayList<SolvedExams> solvedExams2) {
@@ -215,6 +218,7 @@ public class SolvedExamsController  implements Observer{
 	
 
 	private void getUserSolvedExamsByUserID() {
+		if (solvedExams.isEmpty() != true)return;	// if solvedExams has been loaded already, do nothing
 		UserSolvedExamsMessage userSolvedExamMessage =(UserSolvedExamsMessage) message.getMessage("get-solvedExams-user",user);
 		try {
 			client.sendToServer(userSolvedExamMessage);
@@ -236,35 +240,36 @@ public class SolvedExamsController  implements Observer{
 		 *  all this, is pre-settings for adding a button into the column
 		 */
 		tbcGetCopy.setCellValueFactory(new PropertyValueFactory<SolvedExams,String>("action"));
-
+		
         Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
                 = //
                 new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
-            @Override
-            public TableCell call(final TableColumn<SolvedExams, String> param) {
-                final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
+	            @Override
+	            public TableCell call(final TableColumn<SolvedExams, String> param) {
+	            	
+	                final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
+	
+	                    final Button btn = new Button("Download copy");
 
-                    final Button btn = new Button("Download copy");
-
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            btn.setOnAction(event -> {
-                            	solvedExam = getTableView().getItems().get(getIndex());
-                            	perapeDownload(solvedExam);
-                            });
-                            setGraphic(btn);
-                            setText(null);
-                        }
-                    }
-
-                };
-                return cell;
-            }
+	                    @Override
+	                    public void updateItem(String item, boolean empty) {
+	                        super.updateItem(item, empty);
+	                        if (empty) {
+	                            setGraphic(null);
+	                            setText(null);
+	                        } else {
+	                            btn.setOnAction(event -> {
+	                            	solvedExam = getTableView().getItems().get(getIndex());
+	                            	perapeDownload(solvedExam);
+	                            });
+	                            setGraphic(btn);
+	                            setText(null);
+	                        }
+	                    }
+	
+	                };
+	                return cell;
+	            }
         	};
         tbcGetCopy.setCellFactory(cellFactory);
 	}
@@ -340,7 +345,9 @@ public class SolvedExamsController  implements Observer{
 		*		*
 		*
 		*/
+
 		Platform.runLater(() -> {
+			System.out.println(screenManager.getPrimaryStage().getOwner());
 			FileChooser fileChooser = new FileChooser();
 	        fileChooser.setTitle("Save solvedExam"); 
 	        fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");
@@ -488,10 +495,25 @@ public class SolvedExamsController  implements Observer{
 	}
 	
 	private void fillCombobox(HashMap<String, String> subjectMap) {
-		observableCourses = FXCollections.observableArrayList(subjectMap.values());
-		courseCombobox.getItems().add("show all exams");
-		courseCombobox.getItems().addAll(observableCourses);
-		
+//		ObservableList<String> tempCourseObservabale = courseCombobox.getItems();
+	//if (tempCourseObservabale.isEmpty()) {
+//			observableCourses = FXCollections.observableArrayList("show all exams");
+//			courseCombobox.getItems().addAll(observableCourses);
+//		}
+//		for (String courseName: tempCourseObservabale) {
+//			for (String courseMapName: subjectMap.values()) {
+//			 if (courseMapName.equals(courseName) == false) {
+//				 //observableCourses = FXCollections.observableArrayList(courseMapName);
+//				 //courseCombobox.getItems().addAll(observableCourses);
+//				 courseCombobox.getItems().add(courseMapName);
+//			 }
+//			}
+//		}
+		if (courseCombobox.getItems().isEmpty()) {
+			observableCourses = FXCollections.observableArrayList(subjectMap.values());
+			courseCombobox.getItems().add("show all exams");
+			courseCombobox.getItems().addAll(observableCourses);
+		}
 	}
 	
 	/**
@@ -595,7 +617,8 @@ public class SolvedExamsController  implements Observer{
 			tblSolvedExams.setItems(observabaleSolvedExams);							// insert newly fetched question's to tblQuestion
 		}
 		if(arg1 instanceof CourseMessage) {
-			this.courseMap = ((CourseMessage) arg1).getCourseMap();
+			if (this.courseMap.isEmpty())this.courseMap = ((CourseMessage) arg1).getCourseMap();
+			this.courseMap.putAll(((CourseMessage) arg1).getCourseMap());
 			fillCombobox(this.courseMap);
 			updateSolvedExamsCourse();
 		}
