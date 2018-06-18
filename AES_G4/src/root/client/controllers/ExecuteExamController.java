@@ -131,8 +131,10 @@ public class ExecuteExamController implements Observer {
 	/**
 	 * this method happens when the window shown
 	 * 
+	 * 
 	 */
 	public void initialize() {
+		dt = new Date();
 		exam = (Exam) dataKeeper.getObject("RunningExam");
 		txtNotes.setEditable(false);
 		btnBack.setDisable(true);
@@ -240,7 +242,6 @@ public class ExecuteExamController implements Observer {
 		btnBack.setDisable(false);
 		myBorder.setCenter(questionsInExamObject.get(displayQuestion));
 	}
-
 	/**
 	 * This method happens when the user click on back button the method check if
 	 * the back should disabled the method always make next button to enable
@@ -258,11 +259,11 @@ public class ExecuteExamController implements Observer {
 
 	/**
 	 * This method stop the exams
-	 */
+	 */ 
 	public void stopExam() {
-    	SimpleMessage simpleMessage = (SimpleMessage)messageFact.getMessage("simple", null);
-    	simpleMessage.setMsg("closeexam");
+    	//SimpleMessage simpleMessage = (SimpleMessage)messageFact.getMessage("simple", null);
 		examStopWatch.stop();
+		submitTest();
 	}
 
 	/**
@@ -309,7 +310,6 @@ public class ExecuteExamController implements Observer {
 			newDate = sdf.parse(date);
 			String currentTime = sdf.format(dt);
 			int solvedTime = exam.getExamDuration() - (stopWatch / 60);
-			// SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExamMessage newMessage = (SolvedExamMessage) messageFact.getMessage("put-solvedexams", newExam);
 			try {
@@ -317,7 +317,6 @@ public class ExecuteExamController implements Observer {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			stopExam();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

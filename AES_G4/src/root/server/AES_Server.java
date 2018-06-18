@@ -100,7 +100,7 @@ public class AES_Server extends AbstractServer {
 			/* handle the error */}
 		// fuck
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "308023");
 
 
 

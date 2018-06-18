@@ -11,6 +11,11 @@ public class ExecuteStudentManager {
 
 	private HashMap<String,ArrayList<ConnectionToClient>> studentInExecute = new HashMap();
 	private HashMap<String,ArrayList<ConnectionToClient>> waitForChangeDuration = new HashMap();
+	private static ExecuteStudentManager INSTANCE = new ExecuteStudentManager();
+	
+	public static ExecuteStudentManager getInstance() {
+		return INSTANCE;
+	}
 
 	public void addDuration(String examId, ConnectionToClient client) {
 		if(studentInExecute.containsKey(examId)){
@@ -34,6 +39,15 @@ public class ExecuteStudentManager {
 			}
 		}
 	}
+	
+	public int getNumOfStudents(String examId) {
+		if(studentInExecute.get(examId)==null) {
+			return 0;
+		}
+		return studentInExecute.get(examId).size();
+	}
+	
+	
 	public void addStudent(String examId, ConnectionToClient client) {
 		if(studentInExecute.containsKey(examId)){
 			studentInExecute.get(examId).add(client);
