@@ -401,6 +401,7 @@ public class AddExamController implements Observer {
 	@FXML
 	void removeQuestion(ActionEvent event) {
 		int i = 0;
+		btnAddToExam.setDisable(true);
 		btnAddQuestion.setDisable(false);
 		ArrayList<String> deleted = new ArrayList<String>();
 		for (AddQuestionToExam add : myComponent) {

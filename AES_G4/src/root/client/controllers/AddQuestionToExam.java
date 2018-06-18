@@ -254,7 +254,9 @@ public class AddQuestionToExam extends AnchorPane {
 		if (txtScore.getText() == null || txtScore.getText().length() == 0) {
 			errorMessage += "No valid Question points\n";
 		}
-		
+		if(Integer.parseInt(txtScore.getText()) == 0 ) {
+			errorMessage += "No valid Question points\n";
+		}
 		if((!(txtScore.getText().matches("[0-9]+")))) {
 			errorMessage += "No valid Question points\n";
 		}
