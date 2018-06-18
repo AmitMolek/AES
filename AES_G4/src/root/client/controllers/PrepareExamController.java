@@ -170,7 +170,7 @@ public class PrepareExamController implements Observer {
 					e.printStackTrace();
 				}
 			}
-			ExecuteExam newExecuteExam = new ExecuteExam(executeExam.getExamId(), txtFinish.getText(), pass, type, 0);
+			ExecuteExam newExecuteExam = new ExecuteExam(executeExam.getExamId(), txtFinish.getText(), pass, type, teacher.getUserID());
 			ExecuteExamMessage addExecuteExam = (ExecuteExamMessage) messageFact.getMessage("put-executeexam",
 					newExecuteExam);
 			try {

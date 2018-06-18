@@ -305,14 +305,15 @@ public class SetInDB implements DbManagerInterface {
 	}
 	
 	public AbstractMessage addExecuteExam(ExecuteExam newExam) {
-		String insertExecuteExam = "insert into `execute exams` (exam_id, exam_date_start, four_Digit, exam_type)"
-				+ " values (?, ?, ?, ?);";
+		String insertExecuteExam = "insert into `execute exams` (exam_id, exam_date_start, four_Digit, exam_type,executining_teacher_ID)"
+				+ " values (?, ?, ?, ?, ?);";
 		try {
 			newStmt = conn.prepareStatement(insertExecuteExam);
 			newStmt.setString(1, newExam.getExamId());
 			newStmt.setString(2, newExam.getStartTime());
 			newStmt.setString(3, newExam.getExamPassword());
 			newStmt.setString(4, newExam.getExamType());
+			newStmt.setString(5, newExam.getTeacherId());
 			newStmt.execute();
 			return message.getMessage("ok-put-executeexam", null);
 		} catch (SQLException e) {
