@@ -62,7 +62,7 @@
                      <children>
                         <CheckBox fx:id="checkBox3" mnemonicParsing="false" text="Value 3:" visible="false" />
                         <Pane prefHeight="100.0" prefWidth="14.0" />
-                        <TextField fx:id="value3Field" visible="false" />
+                        <TextField fx:id="value3Field" onAction="#set3Editable" visible="false" />
                      </children>
                   </HBox>
                </children>
