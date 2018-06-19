@@ -469,10 +469,20 @@ public class ServerMessageManager {
 			return handlePutExecuteExamMessage(msg);
 		case "wordexam":
 			return handlePutwordExamMessage(msg);
+		case "updatesolvedexam":
+			return handleUpdateSolvedExam(msg);
 		}
 		
 		return null;
 		
+	}
+	
+	private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
+		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
+		SetInDB setDb = new SetInDB();
+		SolvedExams solved = exam.getExam();
+		setDb.updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(solved.getExamGrade(), solved.getGradeAlturationExplanation(), exam.getTeacher_id(), solved);
+		return null;
 	}
 	
 	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {

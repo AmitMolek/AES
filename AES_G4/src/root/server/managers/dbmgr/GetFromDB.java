@@ -438,7 +438,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
 		ResultSet rs;
 		String query = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '_%_%" + course_id + "_%_%';";
-
+		
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
