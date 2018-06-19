@@ -1,4 +1,4 @@
-package root.server.managers.usersmgr;
+package root.server.managers.dbmgr;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
-import root.server.managers.dbmgr.GetFromDB;
-import root.server.managers.dbmgr.SetInDB;
+
+import root.server.managers.usersmgr.ExecuteStudentManager;
 
 public class ExamExecutedManager {
 	

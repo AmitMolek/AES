@@ -41,7 +41,6 @@ import root.dao.app.SolvedExams;
 import root.dao.message.MessageFactory;
 import root.dao.message.SimpleMessage;
 import root.dao.message.SolvedExamMessage;
-import root.server.managers.CheatingChecker;
 
 /**
  * @author Naor Saadia This controller implements execute exam screen the user
@@ -147,6 +146,7 @@ public class ExecuteExamController implements Observer {
 			client.openConnection();
 	    	client.sendToServer(simpleMessage);
 		} catch (IOException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -303,10 +303,10 @@ public class ExecuteExamController implements Observer {
 		Date newDate;
 		try {
 			newDate = sdf.parse(date);
+			String currentTime = sdf.format(dt);
 			int solvedTime = exam.getExamDuration() - (stopWatch / 60);
 			SolvedExams newExam = new SolvedExams(userId, exam.getExamId(), grade, solvedTime, status, newDate);
 			SolvedExamMessage newMessage = (SolvedExamMessage) messageFact.getMessage("put-solvedexams", newExam);
-			new CheatingChecker(exam.getExamId(), newDate);
 			try {
 				client.sendToServer(newMessage);
 			} catch (IOException e) {

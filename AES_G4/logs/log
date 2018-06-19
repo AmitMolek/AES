@@ -15105,3 +15105,123 @@
 [INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-06-20 00:05:05.326
 [INFO][root.client.managers.ScreensManager] Added screen to stack: changeDurations | 2018-06-20 00:05:06.308
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-20 00:05:25.643
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:17:43.64
+[INFO] Application started | 2018-06-20 00:17:58.67
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:17:58.69
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:17:59.151
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:17:59.178
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:18:09.336
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-20 00:18:09.367
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:18:09.412
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:18:09.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:18:09.775
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:18:09.776
+[INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-06-20 00:18:15.857
+[INFO][root.client.managers.ScreensManager] Added screen to stack: changeDurations | 2018-06-20 00:18:20.846
+[INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-06-20 00:18:22.565
+[INFO][root.client.controllers.PrepareExamController] Exam executed | 2018-06-20 00:18:41.148
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:18:42.718
+[INFO] Application started | 2018-06-20 00:18:53.189
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:18:53.205
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:18:53.563
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:18:53.593
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:18:59.064
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:18:59.068
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:18:59.104
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:18:59.305
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:18:59.444
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:18:59.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:19:12.881
+[ERROR][root.client.controllers.Enter4digitPasswordController] Sorry, this exam has already been submitted | 2018-06-20 00:19:14.494
+[ERROR][root.client.controllers.Enter4digitPasswordController] Cant Find running exam | 2018-06-20 00:19:16.633
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: runningexam Object: class root.dao.app.Exam | 2018-06-20 00:19:28.643
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: runningexam Object: class root.dao.app.Exam | 2018-06-20 00:19:28.679
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-20 00:19:28.746
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:22:13.392
+[INFO] Application started | 2018-06-20 00:24:59.793
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:24:59.81
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:25:00.178
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:25:00.252
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:25:43.594
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:25:43.613
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:25:43.648
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:25:43.846
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:25:43.927
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:25:43.928
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:25:46.722
+[ERROR][root.client.controllers.Enter4digitPasswordController] socket does not exist | 2018-06-20 00:25:57.477
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:26:08.096
+[INFO] Application started | 2018-06-20 00:26:09.618
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:26:09.633
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:26:09.935
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:26:09.974
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:26:13.024
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:26:13.046
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:26:13.072
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:26:13.257
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:26:13.347
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:26:13.347
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:26:17.16
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 111 | 2018-06-20 00:26:31.176
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:26:45.322
+[INFO] Application started | 2018-06-20 00:26:46.887
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:26:46.903
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:26:47.23
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:26:47.259
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:26:50.343
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:26:50.37
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:26:50.395
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:26:50.579
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:26:50.676
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:26:50.677
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:26:53.734
+[ERROR][root.client.controllers.Enter4digitPasswordController] socket does not exist | 2018-06-20 00:26:58.213
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:27:42.065
+[INFO] Application started | 2018-06-20 00:27:43.553
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:27:43.568
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:27:43.877
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:27:43.904
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:27:46.501
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:27:46.514
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:27:46.563
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:27:46.753
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:27:46.841
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:27:46.841
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:27:49.642
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 111 | 2018-06-20 00:28:08.983
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:28:08.998
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:28:09.021
+[INFO][root.server.AES_Server] The server is connected | 2018-06-20 00:28:31.442
+[INFO] Application started | 2018-06-20 00:28:32.375
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:28:32.392
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:28:32.75
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:28:32.779
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:28:43.394
+[ERROR][root.client.controllers.LoginController] User not exist | 2018-06-20 00:28:44.437
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:28:49.56
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-06-20 00:28:49.563
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:28:49.585
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:28:49.792
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:28:49.9
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:28:49.901
+[INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-06-20 00:28:52.763
+[INFO][root.client.controllers.PrepareExamController] Exam executed | 2018-06-20 00:29:05.809
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:29:06.976
+[INFO] Application started | 2018-06-20 00:29:21.011
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: solvedexams observer Object: class root.client.controllers.SolvedExamsController | 2018-06-20 00:29:21.027
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-20 00:29:21.486
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-20 00:29:21.524
+[INFO][root.client.managers.DataKeepManager] Keep user: 111 | 2018-06-20 00:29:27.64
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-06-20 00:29:27.644
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-06-20 00:29:27.69
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-06-20 00:29:27.876
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-06-20 00:29:27.966
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-06-20 00:29:27.966
+[INFO][root.client.managers.ScreensManager] Added screen to stack: Enter4digitPassword | 2018-06-20 00:29:30.945
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: runningexam Object: class root.dao.app.Exam | 2018-06-20 00:29:40.088
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: runningexam Object: class root.dao.app.Exam | 2018-06-20 00:29:40.114
+[INFO][root.client.managers.ScreensManager] Added screen to stack: executefull | 2018-06-20 00:29:40.182
+[INFO][root.client.managers.ScreensManager] Added screen to stack: endExam | 2018-06-20 00:29:54.822
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: view solved exams observer Object: class root.client.controllers.TeacherExamsViewController$Updater | 2018-06-20 00:30:08.008
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: view solved exams observer Object: class root.client.controllers.TeacherExamsViewController$Updater | 2018-06-20 00:30:08.008
+[INFO][root.client.managers.ScreensManager] Added screen to stack: teacherExamsView | 2018-06-20 00:30:08.065
