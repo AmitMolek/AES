@@ -1,10 +1,13 @@
 package root.server.managers.dbmgr;
 
 import java.util.ArrayList;
-import java.util.Map;
-
 import root.dao.app.*;
-
+/**
+ * The DbManagerInterface is an interface that 
+ * Which is responsible for managing communications between the server and the database
+ * @author Omer Haimovich
+ *
+ */
 public interface DbManagerInterface {
 	public ArrayList<Question> questions(String... str);
 	public ArrayList<User> users(String... str);
