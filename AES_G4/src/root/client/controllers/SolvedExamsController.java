@@ -211,8 +211,10 @@ public class SolvedExamsController  implements Observer{
 		try {
 			client.sendToServer(newCourseMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In SolvedExamsController, getSolvedExamsCourse()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	
@@ -297,8 +299,10 @@ public class SolvedExamsController  implements Observer{
 			client.sendToServer(newMessage);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In SolvedExamsController, perapeDownload()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 		
 	}
@@ -317,8 +321,10 @@ public class SolvedExamsController  implements Observer{
 		try {
 			client.sendToServer(newQuestionMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In SolvedExamsController, getExamQuestions()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	/**
@@ -448,11 +454,15 @@ public class SolvedExamsController  implements Observer{
 	                System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
 	    	      
 	    		}catch (IOException e) {
-	    			e.printStackTrace();
-	    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+	    			String setTitle = "IOException";
+	    			String errorHeader = "In SolvedExamsController, createWord()";
+	    			String errorText = e.getMessage();
+	    			showErrorDialog(setTitle,errorHeader,errorText);
 	    		}catch (Exception e) {
-	    			e.printStackTrace();
-	    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+	    			String setTitle = "Exception";
+	    			String errorHeader = "In SolvedExamsController, createWord()";
+	    			String errorText = e.getMessage();
+	    			showErrorDialog(setTitle,errorHeader,errorText);
 	    		}
 	        }
 		});
@@ -581,14 +591,10 @@ public class SolvedExamsController  implements Observer{
 			return;
 		}else {
             // Nothing selected.
-			errorMessage = "Please fill selected field";
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No field Selected");
-            alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
-
-            alert.showAndWait();
+			String setTitle = "No selection";
+			String errorHeader = "No field Selected";
+			String errorText = "Please fill selected field";
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
     

@@ -35,6 +35,7 @@ import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
+import root.dao.message.ErrorMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
@@ -257,18 +258,35 @@ public class QuestionsController implements Observer{
 			return;
 		}else {
             // Nothing selected.
-			errorMessage = "Please fill selected field";
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No field Selected");
-            alert.setContentText(errorMessage);//"Please select a field and fill with proper imformation.");
-
-            alert.showAndWait();
+			String setTitle = "No selection";
+			String errorHeader = "No field Selected";
+			String errorText = "Please fill selected field";
+			showErrorDialog(setTitle,errorHeader,errorText);
             unselectSelectionFromTable();
             
 		}
 	}
+	
+
+    /**
+     * This method is called when theres a need to ErrrorDialog
+     * @param HeaderTitle
+     * @param HeaderText
+     * @param Errormessage
+     */
+    private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
+    	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+			// Show the error message.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle(HeaderTitle);//"ServerIP error");
+            alert.setHeaderText(HeaderText);//"Please contact system administrator");
+            alert.setContentText(Errormessage);
+            alert.showAndWait();       
+        	log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+		});
+    }
+    
 	/**
 	 * This method will set a edit option
 	 * @param event
@@ -280,13 +298,10 @@ public class QuestionsController implements Observer{
         	runNewQuestionWizzard(tblQuestions.getSelectionModel().getSelectedItem());
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No question Selected");
-            alert.setContentText("Please select a question in the table.");
-            alert.showAndWait();
-            
+			String setTitle = "No selection";
+			String errorHeader = "No field Selected";
+			String errorText = "Please fill selected field";
+			showErrorDialog(setTitle,errorHeader,errorText);
             unselectSelectionFromTable();
         }
     }
@@ -307,13 +322,10 @@ public class QuestionsController implements Observer{
         	unselectSelectionFromTable();
         } else {
             // Nothing selected.
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No question Selected");
-            alert.setContentText("Please select a question in the table.");
-            alert.showAndWait();
-            
+			String setTitle = "No selection";
+			String errorHeader = "No question Selected";
+			String errorText = "Please select a question in the table.";
+			showErrorDialog(setTitle,errorHeader,errorText);
             unselectSelectionFromTable();
         }
     }
@@ -333,8 +345,10 @@ public class QuestionsController implements Observer{
 		try {
 			client.sendToServer(teacehrInfoMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In QuestionsController, getTeachersMap()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
      /**
@@ -346,8 +360,10 @@ public class QuestionsController implements Observer{
     	try {
 			client.sendToServer(questionDeleteMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In QuestionsController, deleteQuestionFromDB()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	/**
@@ -359,7 +375,6 @@ public class QuestionsController implements Observer{
 	 @FXML
 	void newQuestionDialog(ActionEvent event) throws IOException {
 		 runNewQuestionWizzard(null);
-		 //unselectSelectionFromTable();
 	}
 	/**
 	 * This method is called when pressing New-Question, or Edit-Question buttons. It opens a new window
@@ -417,8 +432,10 @@ public class QuestionsController implements Observer{
 				    }
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+					String setTitle = "IOException";
+					String errorHeader = "In QuestionsController, runNewQuestionWizzard()";
+					String errorText = e.getMessage();
+					showErrorDialog(setTitle,errorHeader,errorText);
 				}
 			});
 		}
@@ -456,6 +473,12 @@ public class QuestionsController implements Observer{
 		if(arg1 instanceof SimpleMessage) {
 			SimpleMessage simple = (SimpleMessage)arg1;
 			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
+		}
+		if (arg1 instanceof ErrorMessage) {
+			String setTitle = "Server error";
+			String errorHeader = ((ErrorMessage) arg1).getMsg();
+			String errorText = arg1.toString();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	
@@ -528,8 +551,10 @@ public class QuestionsController implements Observer{
 		try {
 			client.sendToServer(updatedQuestionMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In QuestionsController, setChangedQuestion()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	/**
@@ -542,8 +567,10 @@ public class QuestionsController implements Observer{
 			try {
 				client.sendToServer(newQuestionMessage);
 			} catch (IOException e) {
-				e.printStackTrace();
-				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				String setTitle = "IOException";
+				String errorHeader = "In QuestionsController, getUserQuestions()";
+				String errorText = e.getMessage();
+				showErrorDialog(setTitle,errorHeader,errorText);
 			}
 		}
 	}
@@ -556,8 +583,10 @@ public class QuestionsController implements Observer{
 		try {
 			client.sendToServer(newUserSubjectMessage);
 		} catch (IOException e) {
-			e.printStackTrace();
-			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+			String setTitle = "IOException";
+			String errorHeader = "In QuestionsController, getUserSubjects()";
+			String errorText = e.getMessage();
+			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
 	
@@ -600,7 +629,6 @@ public class QuestionsController implements Observer{
 				this.getQuestions().add(question);
 			}
 		}
-		//this.getQuestions().addAll(questions);
 	}
 	/**
 	 * This method called when one want's to deSelect selection from table
@@ -608,13 +636,10 @@ public class QuestionsController implements Observer{
 	private void unselectSelectionFromTable() {
 		 int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
 		 tblQuestions.getSelectionModel().clearSelection(selectedIndex);
-		 
-		 //editQuestion.setDisable(true);
 		 btnSearch.setDisable(true);
 		 deleteQuestion.setDisable(true);
 	}
 	private void setUserDetails(User user1) {
-		// TODO Auto-generated method stub
 		teacherIDLbl.setText(user.getUserID());
 		fstNameLbl.setText(user.getUserFirstName());
 		lstNamelbl.setText(user.getUserLastName());
