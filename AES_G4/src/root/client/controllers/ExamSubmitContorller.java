@@ -26,29 +26,37 @@ import root.dao.message.SubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for exam submit
+ * 
+ * @author Omer Haimovich
+ *
+ */
 public class ExamSubmitContorller {
 
-    @FXML
-    private Label lblThankYou;
+	@FXML
+	private Label lblThankYou;
 
-    @FXML
-    private Button btnHomePage;
+	@FXML
+	private Button btnHomePage;
 
-    @FXML
-    private AnchorPane rootPane;
+	@FXML
+	private AnchorPane rootPane;
 	private User student;
 	private Log log;
 	private AddQuestionToExam newQuestion;
 	private ScreensManager screenManager;
 	private DataKeepManager dkm;
 
-/**
- * Method that occurs when student press home button
- * @param event on action when press home button
- */
-    @FXML
-    void backToHomePage(ActionEvent event) {
-    	Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
+	/**
+	 * Method that occurs when student press home button
+	 * 
+	 * @param event
+	 *            on action when press home button
+	 */
+	@FXML
+	void backToHomePage(ActionEvent event) {
+		Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 			try {
 				screenManager.activate("home");
 			} catch (IOException e) {
@@ -58,12 +66,9 @@ public class ExamSubmitContorller {
 			}
 		});
 
-    }
-    
+	}
 
-
-
-    /**
+	/**
 	 * This method occurs when the window is shown up.
 	 * 
 	 * @throws IOException
@@ -75,9 +80,8 @@ public class ExamSubmitContorller {
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
 		student = dkm.getUser();
-		lblThankYou.setText("Thank You! " + student.getUserFirstName() + " "+ student.getUserLastName());
+		lblThankYou.setText("Thank You! " + student.getUserFirstName() + " " + student.getUserLastName());
 
 	}
 
 }
-
