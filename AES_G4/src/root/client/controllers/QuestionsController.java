@@ -182,6 +182,9 @@ public class QuestionsController implements Observer{
     	
     	btnSearch.setDisable(true);
     	deleteQuestion.setDisable(true);
+    	questions = new ArrayList<Question>();
+    	userSubjects = new ArrayList<Subject>();
+    	teachersMap = new HashMap<String, String>();
     	setUserDetails(user);
     	getUserSubjects(user);
     	initQuestionsTable();   	
