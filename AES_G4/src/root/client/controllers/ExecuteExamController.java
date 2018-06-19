@@ -194,7 +194,6 @@ public class ExecuteExamController implements Observer {
 			}
 		}));
 		examStopWatch.setCycleCount(Timeline.INDEFINITE);
-
 		myBorder.setCenter(questionsInExamObject.get(0));
 		Platform.runLater(() -> {
 			TextInputDialog dialog = new TextInputDialog();
@@ -205,10 +204,8 @@ public class ExecuteExamController implements Observer {
 			txt.setText(dataKeeper.getUser().getUserID());
 			final Button ok = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
 			ok.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Ok was definitely pressed"));
-
 			final Button cancel = (Button) dialog.getDialogPane().lookupButton(ButtonType.CANCEL);
 			cancel.addEventFilter(ActionEvent.ACTION, event -> System.out.println("Cancel was definitely pressed"));
-
 			Optional<String> result = dialog.showAndWait();
 			if (result.isPresent()) {
 				System.out.println("You can start Your exam");
@@ -222,11 +219,9 @@ public class ExecuteExamController implements Observer {
 					e.printStackTrace();
 				}
 			}
-
 		}
 
 		);
-
 	}
 
 	/**
