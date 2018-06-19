@@ -17,6 +17,5 @@
             <TableColumn fx:id="durationTime" onEditCommit="#updateTime" prefWidth="177.0" text="Duration" />
         </columns>
       </TableView>
-      <TextArea fx:id="txtNotes" layoutX="175.0" layoutY="35.0" prefHeight="58.0" prefWidth="657.0" text="Enter notes here" />
    </children>
 </AnchorPane>
