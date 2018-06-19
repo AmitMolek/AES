@@ -67,9 +67,9 @@ public void setUserPremission(String userPremission) {
 public String toString() {
 	return "userID = "+userID+";\r\n" + 
 			"userFirstName = "+userFirstName+";\r\n" + 
-			"userLastName = "+userLastName+";\r\n" + 
-			"userPassword = "+userPassword+";\r\n" + 
-			"userPremission = "+userPremission;
+			"userLastName = "+userLastName; 
+//			"userPassword = "+userPassword+";\r\n" + 
+//			"userPremission = "+userPremission;
 }
 
 }

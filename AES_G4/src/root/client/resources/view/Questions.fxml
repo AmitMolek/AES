@@ -73,7 +73,7 @@
                            <children>
                               <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchQuestion" styleClass="buttonStyleSearch" text="Search" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                               <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#editSelectedQuestion" prefHeight="26.0" prefWidth="90.0" text="Edit selected" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Button fx:id="deleteQuestion" mnemonicParsing="false" onAction="#deleteSelectedQuestion" text="Delet selected" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Button fx:id="deleteQuestion" mnemonicParsing="false" onAction="#deleteSelectedQuestion" text="Delete selected" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
