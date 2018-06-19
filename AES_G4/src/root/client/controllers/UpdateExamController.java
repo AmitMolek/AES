@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
@@ -51,6 +52,12 @@ public class UpdateExamController implements Observer {
 
 	@FXML
 	private TableView<root.dao.app.QuestionInExam> tblQuestion;
+
+	@FXML
+	private Button btnUpdate;
+
+	@FXML
+	private Button btnRemove;
 
 	private MessageFactory messageFact;
 	private ObservableClient client;
@@ -148,6 +155,9 @@ public class UpdateExamController implements Observer {
 			examQuestions.add(q);
 		}
 		tblQuestion.setItems(examQuestions);
+		if (updateExam.getExamQuestions().size() <= 1) {
+			btnRemove.setDisable(true);
+		}
 
 	}
 
