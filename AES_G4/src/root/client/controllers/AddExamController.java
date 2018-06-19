@@ -1,7 +1,11 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -198,6 +202,7 @@ public class AddExamController implements Observer {
 	@FXML
 	void AddExam(ActionEvent event) {
 		if (isInputValidAddExam()) {
+			
 			ArrayList<QuestionInExam> theQuestions = new ArrayList<QuestionInExam>();
 			String examDuration = txtDuration.getText();
 			int duration = Integer.parseInt(examDuration);
