@@ -43,6 +43,11 @@ import root.dao.message.WordMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for teacher prepare executed exam
+ * @author Omer Haimovich
+ *
+ */
 public class PrepareExamController implements Observer {
 
 	@FXML
@@ -352,6 +357,10 @@ public class PrepareExamController implements Observer {
 		}
 	}
 
+	/**
+	 * 
+	 * @return the exam executed code
+	 */
 	public String generatePass() {
 		String options = "abcdefghijklmnopqrstuvwxyz1234567890";
 		StringBuilder password = new StringBuilder();

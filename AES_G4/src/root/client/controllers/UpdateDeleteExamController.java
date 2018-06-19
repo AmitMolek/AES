@@ -35,6 +35,12 @@ import root.dao.message.SubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for update the exam
+ * 
+ * @author Omer Haimovich
+ *
+ */
 public class UpdateDeleteExamController implements Observer {
 
 	@FXML
@@ -199,7 +205,6 @@ public class UpdateDeleteExamController implements Observer {
 			tblExams.setItems(observerseExams);
 
 		}
-
 
 	}
 

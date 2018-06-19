@@ -53,11 +53,17 @@ public class Course implements Serializable {
 		this.courseName = courseName;
 	}
 	
+	/**
+	 * Prints courses info
+	 */
 	@Override
 	public String toString() {
 		return courseId + "-"+ courseName;
 	}
 
+	/**
+	 * Check if courses equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;

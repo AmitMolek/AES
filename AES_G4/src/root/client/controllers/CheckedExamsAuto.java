@@ -15,39 +15,56 @@ import root.dao.app.User;
 import root.dao.message.CsvMessage;
 import root.dao.message.MessageFactory;
 
-
+/**
+ * Class for auto checked exam
+ * 
+ * @author Omer Haimovich
+ *
+ */
 public class CheckedExamsAuto implements Observer {
 	private ArrayList<QuestionInExamObject> questionsInExamObject;
 	private Exam exam;
 	private ObservableClient client;
 	private User student;
 	private Map<String, Integer> questionInExam;
-	
 
 	private MessageFactory messageFact;
-	public CheckedExamsAuto(ArrayList<QuestionInExamObject> questionsInExamObject,Exam exam) {
+
+	/**
+	 * Constructor for auto check exam
+	 * 
+	 * @param questionsInExamObject
+	 *            the list of question in exam object(what the student answered)
+	 * @param exam
+	 *            the exam that executed
+	 */
+	public CheckedExamsAuto(ArrayList<QuestionInExamObject> questionsInExamObject, Exam exam) {
 		super();
 		this.questionsInExamObject = questionsInExamObject;
 		this.exam = exam;
-		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from DataKeep, but dont remove it from there, for later use.
-    	client.addObserver(this);		
-    	student = DataKeepManager.getInstance().getUser();
-    	messageFact = MessageFactory.getInstance();
-    	questionInExam = new HashMap<String, Integer>();
-		
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from
+																								// DataKeep, but dont
+																								// remove it from there,
+																								// for later use.
+		client.addObserver(this);
+		student = DataKeepManager.getInstance().getUser();
+		messageFact = MessageFactory.getInstance();
+		questionInExam = new HashMap<String, Integer>();
+
 	}
-/**
- * 
- * @return the student grade
- */
+
+	/**
+	 * 
+	 * @return the student grade
+	 */
 	public int calculateGrade() {
 		int totalGrade = 0;
-		for(QuestionInExamObject q: questionsInExamObject ) {
-			if(q.getCorrectAns() == q.getSelectedAns())
+		for (QuestionInExamObject q : questionsInExamObject) {
+			if (q.getCorrectAns() == q.getSelectedAns())
 				totalGrade = totalGrade + q.getQuestionGrade();
 			questionInExam.put(q.getQuestionId(), q.getSelectedAns());
 		}
-		
+
 		return totalGrade;
 	}
 
@@ -55,7 +72,7 @@ public class CheckedExamsAuto implements Observer {
 	 * Creates new csv
 	 */
 	public void createCsv() {
-		
+
 		CsvDetails csv = new CsvDetails(exam, student, questionInExam);
 		CsvMessage newMessage = (CsvMessage) messageFact.getMessage("get-csv", csv);
 		try {
@@ -64,22 +81,20 @@ public class CheckedExamsAuto implements Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Method that occurs when server sends message
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public Map<String, Integer> getQuestionInExam() {
 		return questionInExam;
 	}
 
-	
-	
 }

@@ -348,6 +348,10 @@ public class AddQuestionToExam extends AnchorPane {
 		return examQuestion;
 	}
 
+	/**
+	 * Remove question from exam
+	 * @param add the add question to exam component
+	 */
 	public void removeTheQuestion(AddQuestionToExam add) {
 		int i = 0;
 		if (cmbQuestion.getSelectionModel().getSelectedItem() != null) {

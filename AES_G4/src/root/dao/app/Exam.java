@@ -35,6 +35,13 @@ public class Exam implements Serializable {
 		this.teacherId = teacherId;
 	}
 	
+	/**
+	 * Constructor for exam
+	 * @param examId the exam id
+	 * @param author the teacher that wrote the id
+	 * @param examDuration the exam duration
+	 * @param examQuestions the exam questions
+	 */
 	public Exam(String examId, User author, int examDuration,
 			ArrayList<QuestionInExam> examQuestions) {
 		super();
