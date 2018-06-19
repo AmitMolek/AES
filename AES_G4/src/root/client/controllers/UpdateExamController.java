@@ -32,6 +32,12 @@ import root.dao.message.SimpleMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for Update exam
+ * 
+ * @author Omer Haimovich
+ *
+ */
 public class UpdateExamController implements Observer {
 
 	@FXML
@@ -69,8 +75,7 @@ public class UpdateExamController implements Observer {
 			totalPoints = totalPoints + q.getQuestionGrade();
 			examInQuestions.add(q);
 		}
-		if(totalPoints != 100)
-		{
+		if (totalPoints != 100) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.initOwner(mainApp);
 			alert.setTitle("Invalid Fields");
@@ -145,27 +150,27 @@ public class UpdateExamController implements Observer {
 		tblQuestion.setItems(examQuestions);
 
 	}
-	
+
 	/**
 	 * Edit the points of question
+	 * 
 	 * @param pointEditEvent
 	 */
-    @FXML
-    void updatePoints(TableColumn.CellEditEvent<QuestionInExam, Integer> pointEditEvent) {
-    	int i =0;
-    	QuestionInExam question = tblQuestion.getSelectionModel().getSelectedItem();
+	@FXML
+	void updatePoints(TableColumn.CellEditEvent<QuestionInExam, Integer> pointEditEvent) {
+		int i = 0;
+		QuestionInExam question = tblQuestion.getSelectionModel().getSelectedItem();
 		Integer newValue = pointEditEvent.getNewValue();
 		question.setQuestionGrade(newValue);
-		for(QuestionInExam q: examQuestions){
-			if(q.getQuestion().getQuestionId().equals(question.getQuestion().getQuestionId()))
-			{
+		for (QuestionInExam q : examQuestions) {
+			if (q.getQuestion().getQuestionId().equals(question.getQuestion().getQuestionId())) {
 				examQuestions.set(i, question);
 				break;
 			}
 			i++;
 		}
-		
-    }
+
+	}
 
 	/**
 	 * This method occurs when the server send message to the client
@@ -193,6 +198,8 @@ public class UpdateExamController implements Observer {
 		}
 	}
 
-	@FXML public void updatePoints() {}
+	@FXML
+	public void updatePoints() {
+	}
 
 }

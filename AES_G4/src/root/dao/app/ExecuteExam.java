@@ -3,6 +3,12 @@ package root.dao.app;
 import java.io.Serializable;
 import java.security.Timestamp;
 
+/**
+ * Class for executed exams
+ * 
+ * @author Omer Hiamovich
+ *
+ */
 public class ExecuteExam implements Serializable {
 	private String examId;
 	private String startTime;
@@ -32,6 +38,18 @@ public class ExecuteExam implements Serializable {
 		durationTime = duration;
 	}
 
+	/**
+	 * Constructor for execute exam
+	 * 
+	 * @param examId
+	 *            the exam id
+	 * @param startTime
+	 *            the start time of the exam
+	 * @param examPassword
+	 *            the exam password
+	 * @param examType
+	 *            the exam type
+	 */
 	public ExecuteExam(String examId, String startTime, String examPassword, String examType) {
 		super();
 		this.examId = examId;
@@ -39,8 +57,23 @@ public class ExecuteExam implements Serializable {
 		this.examPassword = examPassword;
 		this.examType = examType;
 	}
-	
-	public ExecuteExam(String examId, String startTime, String examPassword, String examType,String teacherId) {
+
+	/**
+	 * Constructor for executed exam
+	 * 
+	 * @param examId
+	 *            the exam id
+	 * @param startTime
+	 *            the start time of the exam
+	 * @param examPassword
+	 *            the exam password
+	 * @param examType
+	 *            the exam type
+	 * @param teacherId
+	 *            the executed teacher id
+	 */
+
+	public ExecuteExam(String examId, String startTime, String examPassword, String examType, String teacherId) {
 		super();
 		this.examId = examId;
 		this.startTime = startTime;
@@ -99,10 +132,20 @@ public class ExecuteExam implements Serializable {
 		return examType;
 	}
 
+	/**
+	 * 
+	 * @return the duration time
+	 */
 	public int getDurationTime() {
 		return durationTime;
 	}
 
+	/**
+	 * Set new duration time
+	 * 
+	 * @param durationTime
+	 *            the new duration value
+	 */
 	public void setDurationTime(int durationTime) {
 		this.durationTime = durationTime;
 	}

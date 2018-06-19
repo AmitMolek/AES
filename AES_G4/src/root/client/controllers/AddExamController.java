@@ -1,7 +1,11 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -198,6 +202,7 @@ public class AddExamController implements Observer {
 	@FXML
 	void AddExam(ActionEvent event) {
 		if (isInputValidAddExam()) {
+
 			ArrayList<QuestionInExam> theQuestions = new ArrayList<QuestionInExam>();
 			String examDuration = txtDuration.getText();
 			int duration = Integer.parseInt(examDuration);
@@ -354,10 +359,18 @@ public class AddExamController implements Observer {
 			errorMessage += "No valid exam duration\n";
 		}
 
-		if (!(txtDuration.getText().matches("[0-9]+")))
-			if (AddQuestionToExam.getTotalPoints() < 100) {
-				errorMessage += "can not enter letters in duration\n";
-			}
+		if (!(txtDuration.getText().matches("[0-9]+"))) {
+			errorMessage += "can not enter letters in duration\n";
+		}
+
+		if (txtDuration.getText().matches("[0-9]+")) {
+			if (Integer.parseInt(txtDuration.getText()) <= 0)
+				errorMessage += "Duration must be more than 0\n";
+		}
+
+		if (AddQuestionToExam.getTotalPoints() < 100) {
+			errorMessage += "can not enter letters in duration\n";
+		}
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {

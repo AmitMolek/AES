@@ -1,7 +1,11 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -39,6 +43,11 @@ import root.dao.message.WordMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for teacher prepare executed exam
+ * @author Omer Haimovich
+ *
+ */
 public class PrepareExamController implements Observer {
 
 	@FXML
@@ -158,6 +167,25 @@ public class PrepareExamController implements Observer {
 	@FXML
 	void executeExam(ActionEvent event) {
 		if (isInputValidExecuteExam()) {
+
+			DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			try {
+				Date examDate = sdf.parse(txtFinish.getText());
+				Date nowDate = sdf.parse(sdf.format(new Date()));
+
+				if (nowDate.compareTo(examDate) >= 0) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.initOwner(mainApp);
+					alert.setTitle("Invalid Fields");
+					alert.setHeaderText("Please correct invalid fields");
+					alert.setContentText("Time is invalid");
+					alert.showAndWait();
+					return;
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
 			ObservableList<Exam> examSelected;
 			examSelected = tblExams.getSelectionModel().getSelectedItems();
 			executeExam = examSelected.get(0);
@@ -170,7 +198,8 @@ public class PrepareExamController implements Observer {
 					e.printStackTrace();
 				}
 			}
-			ExecuteExam newExecuteExam = new ExecuteExam(executeExam.getExamId(), txtFinish.getText(), pass, type, teacher.getUserID());
+			ExecuteExam newExecuteExam = new ExecuteExam(executeExam.getExamId(), txtFinish.getText(), pass, type,
+					teacher.getUserID());
 			ExecuteExamMessage addExecuteExam = (ExecuteExamMessage) messageFact.getMessage("put-executeexam",
 					newExecuteExam);
 			try {
@@ -328,6 +357,10 @@ public class PrepareExamController implements Observer {
 		}
 	}
 
+	/**
+	 * 
+	 * @return the exam executed code
+	 */
 	public String generatePass() {
 		String options = "abcdefghijklmnopqrstuvwxyz1234567890";
 		StringBuilder password = new StringBuilder();

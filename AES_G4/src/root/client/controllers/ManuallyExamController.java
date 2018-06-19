@@ -50,6 +50,11 @@ import root.dao.message.WordMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * Class for manually exam
+ * @author Omer Haimovich
+ *
+ */
 public class ManuallyExamController implements Observer {
 
 	@FXML
