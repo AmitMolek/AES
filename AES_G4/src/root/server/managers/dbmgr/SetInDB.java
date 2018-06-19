@@ -24,14 +24,47 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 import root.util.log.LogLine.LineType;
 
-public class SetInDB implements DbManagerInterface {
+/**
+ * The SetInDB is a class that responsible for modify, or add data to the
+ * database
+ * 
+ * @author Omer Haimovich
+ *
+ */
+public class SetInDB {
+	// Instance variables **********************************************
 
+	/**
+	 * A sentence designed for queries
+	 */
 	private java.sql.Statement stmt;
+
+	/**
+	 * A sentence designed for queries and has dynamic variables
+	 */
 	private PreparedStatement newStmt;
+	/**
+	 * 
+	 * Connection between the database and the server
+	 */
 	private Connection conn;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
 	private Log log;
+	/**
+	 * 
+	 * Generates new messages that link the server to the client
+	 */
 	private MessageFactory message;
 
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the SetInDB
+	 */
 	public SetInDB() {
 		super();
 		conn = AES_Server.getConnection();
@@ -39,91 +72,51 @@ public class SetInDB implements DbManagerInterface {
 		message = MessageFactory.getInstance();
 	}
 
-	@Override
-	public ArrayList<Question> questions(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	// OVERRIDDEN METHODS *************************************************
 
-	@Override
-	public ArrayList<User> users(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<AlterDuration> alterDuration(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> courseOfTeacher(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> courses(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Course> coursesInSubject(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Exam> exams(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Subject> subjects(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<SolvedExams> solvedExams(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+	/**
+	 * 
+	 * A method that update in the database in the solved exam table the cheating
+	 * flag column
+	 * 
+	 * @author Amit Molek
+	 * @param user_id
+	 *            the id of the teacher who executed the exam
+	 * @param exam_id
+	 *            the exam id
+	 * @param cheated
+	 *            true if the student cheated or false if not cheated
+	 * @return true if the updated successful and false otherwise
+	 */
 	public boolean updateSolvedExamCheatingFlag(String user_id, String exam_id, boolean cheated) {
 		String cheatedStr = "no";
-		if (cheated) cheatedStr = "yes";
+		if (cheated)
+			cheatedStr = "yes";
 		String updateQuery = "UPDATE `solved exams` SET cheating_flag = ? WHERE User_ID = ? AND exam_ID = ?;";
-		
+
 		try {
 			newStmt = conn.prepareStatement(updateQuery);
 			newStmt.setString(1, cheatedStr);
 			newStmt.setString(2, user_id);
 			newStmt.setString(3, exam_id);
 			newStmt.execute();
-			
+
 			return true;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
-	@Override
-	public ArrayList<QuestionInExam> questionInExam(String... str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	/**
+	 * A method that adds a exam to the database to the exam table
+	 * 
+	 * @author Omer Haimovich
+	 * 
+	 * @param exam
+	 *            the exam that should be added
+	 * @return abstract message if the exam added successful
+	 */
 	public AbstractMessage AddExam(Exam exam) {
 		String insertExam = "insert into exams (exam_id, teacher_assembler_id, exam_original_allocated_duration, exams_state, lock_flag)"
 				+ " values (?, ?, ?, ?, ?);";
@@ -158,6 +151,14 @@ public class SetInDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * A method that adds a question to the database to the question table
+	 * 
+	 * @author gal
+	 * @param newQuestionTooAdd
+	 *            the question that should be added
+	 * @return abstract message if the question added successful
+	 */
 	public AbstractMessage AddNewQuestion(Question newQuestionTooAdd) {
 		String insertQuestion = "INSERT INTO `aes`.`questions`(`question_id`,`question_text`,`question_instruction`,`question_answer_1`,`question_answer_2`,`question_answer_3`,`question_answer_4`,`correct_question`,`teacher_assembeld_id`)"
 				+ "VALUES(?,?,?,?,?,?,?,?,?);";
@@ -186,6 +187,14 @@ public class SetInDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * A method that deletes an exam from a database
+	 * 
+	 * @author Omer Haimovich
+	 * @param exam
+	 *            the exam that should be deleted
+	 * @return abstract message if the exam deleted successful
+	 */
 	public AbstractMessage deleteTheExam(Exam exam) {
 		String deleteExam = "delete from exams where exam_id = " + exam.getExamId();
 		try {
@@ -199,6 +208,14 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * A method that deletes a question from a database
+	 * 
+	 * @author gal
+	 * @param Question
+	 *            the question that should be deleted
+	 * @return abstract message if the question deleted successful
+	 */
 	public AbstractMessage deleteTheQuestion(Question Question) {
 		String deleteQuestion = "delete from questions where question_id = " + Question.getQuestionId();
 		try {
@@ -212,6 +229,14 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * A method that update in the database in the question table
+	 * 
+	 * @author gal
+	 * @param questionMessage
+	 *            the question that should be updated
+	 * @return abstract message if the question updated successful
+	 */
 	public AbstractMessage updateExistingQuestion(Question questionMessage) {
 		String updateQuestion = "UPDATE questions SET " + " `question_id` = ?," + " `question_text` = ?,"
 				+ " `question_instruction` = ?," + " `question_answer_1` = ?," + " `question_answer_2` = ?,"
@@ -246,6 +271,16 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * A method that add to the database in a question in exam table
+	 * 
+	 * @author Omer Haimovich
+	 * @param id
+	 *            the exam id
+	 * @param quest
+	 *            list of all question in the exam
+	 * @return abstract message if the question added successful
+	 */
 	public AbstractMessage addQuestionToExam(String id, ArrayList<QuestionInExam> quest) {
 		deleteQuestionInExam(id);
 		String insertQuestionInExam = "insert into `questions in exam` (exam_ID, Question_ID, Question_Grade, Question_Free_text_Student, Question_Free_text_Teacher)"
@@ -269,6 +304,14 @@ public class SetInDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * A method that deletes from the database in a question in exam table
+	 * 
+	 * @author Omer Haimovich
+	 * @param id
+	 *            the exam id
+	 * @return abstract message if the question deleted successful
+	 */
 	public AbstractMessage deleteQuestionInExam(String id) {
 		String deleteExam = "delete from `questions in exam` where exam_ID = " + id;
 		try {
@@ -283,6 +326,14 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * A method that add to the database in a solved exams table
+	 * 
+	 * @autor Naor Saadia
+	 * @param newExam
+	 *            the solved exam
+	 * @return abstract message if the solved exam added successful
+	 */
 	public AbstractMessage addSolvedExam(SolvedExams newExam) {
 		String insertSolvedExam = "insert into `solved exams` (User_ID, exam_ID, solved_exam_grade, solve_duration_timer, submitted_or_interrupted_Flag, exam_executing_Date)"
 				+ " values (?, ?, ?, ?, ?, ?);";
@@ -303,7 +354,15 @@ public class SetInDB implements DbManagerInterface {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * A method that add to the database in a execute exams table
+	 * 
+	 * @autor Naor Saadia
+	 * @param newExam
+	 *            the execute exam
+	 * @return abstract message if the execute exam added successful
+	 */
 	public AbstractMessage addExecuteExam(ExecuteExam newExam) {
 		String insertExecuteExam = "insert into `execute exams` (exam_id, exam_date_start, four_Digit, exam_type,executining_teacher_ID)"
 				+ " values (?, ?, ?, ?, ?);";
@@ -322,8 +381,16 @@ public class SetInDB implements DbManagerInterface {
 		}
 		return null;
 	}
-	
-	public AbstractMessage updateExam (Exam newExam) {
+
+	/**
+	 * A method that update in the database in the exams table the lock flag column
+	 * and the exam state column
+	 * 
+	 * @param newExam
+	 *            the exam that should be updated
+	 * @return abstract message if the exam updated successful
+	 */
+	public AbstractMessage updateExam(Exam newExam) {
 		String updateExam = "UPDATE exams SET exams_state = ?, lock_flag = ? WHERE exam_id = ?;";
 		try {
 			newStmt = conn.prepareStatement(updateExam);
@@ -332,8 +399,8 @@ public class SetInDB implements DbManagerInterface {
 			newStmt.setString(3, newExam.getExamId());
 			newStmt.execute();
 			return message.getMessage("ok-set-exams", null); // because we didnt needed to get from DB theres
-																	// nothing to send back to client but the
-																	// confirmation
+																// nothing to send back to client but the
+																// confirmation
 
 		} catch (SQLException e) {
 			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
@@ -341,9 +408,16 @@ public class SetInDB implements DbManagerInterface {
 		}
 
 		return null;
-		
+
 	}
 
+	/**
+	 * A method that deletes from the database in a solved exam table
+	 * 
+	 * @autor Naor Saadia
+	 * @param examId
+	 *            the solved exam id
+	 */
 	public void deleteSolvedExam(String examId) {
 		String deleteExam = "delete from `solved exams` where exam_id = " + examId;
 		try {
@@ -352,10 +426,16 @@ public class SetInDB implements DbManagerInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
+	/**
+	 * A method that deletes from the database in a execute exams table
+	 * 
+	 * @autor Naor Saadia
+	 * @param examId
+	 *            the execute exam id
+	 */
 	public void deleteExecutedExam(String examId) {
 		String deleteExam = "delete from `execute exams` where exam_id = " + examId;
 		try {
@@ -367,9 +447,15 @@ public class SetInDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * A method that update in the database in the exams table the lock flag column
+	 * 
+	 * @param examId
+	 *            the id of the exam that should be updated
+	 */
 	public void lockExam(String examId) {
 		String updateExam = "UPDATE exams SET lock_flag = ? WHERE exam_id = ?;";
-	
+
 		try {
 			newStmt = conn.prepareStatement(updateExam);
 			newStmt.setString(1, "locked");
