@@ -309,7 +309,7 @@ public class SolvedExamsController  implements Observer{
 		ArrayList<String> questionIDList = new ArrayList<String>();
 		for (String[] csvLine: csvData) {
 			String questionID = csvLine[0];
-			if (questionID.length() == 5) {// do this check to pass the first line of the csvData file.
+			if (questionID.equals("QuestionID") == false) {// do this check to pass the first line of the csvData file.
 				questionIDList.add(questionID);
 			}
 		}
@@ -426,14 +426,16 @@ public class SolvedExamsController  implements Observer{
 	    	            runQuestions.addTab();
 	    	            // getting the selected answer from csvData.
 	    	            for (String[] csvLine: csvData) {
-	    	    			String slectedQuestionID = csvLine[0];
+	    	    			String slectedQuestionID = csvLine[0].replaceAll("\"", "");
 	    	    			String questionID = question.getQuestionId();
 	    	    			int correctAnswer = question.getCorrectAns();
 	    	    			if (slectedQuestionID.equals(questionID) ) {
-	    	    				runQuestions.setText("Your selected answer: "+ csvLine[1]);
+	    	    				runQuestions.setText("Your selected answer: "+ csvLine[1].replaceAll("\"", ""));
 	    	    				runQuestions.addBreak();
-	    	    				if (Integer.parseInt(csvLine[1]) == correctAnswer)runQuestions.setText("Question points: "+ csvLine[2] +"/"+csvLine[2]);
-	    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2]);
+	    	    				if (Integer.parseInt(csvLine[1].replaceAll("\"", "")) == correctAnswer) {
+	    	    					runQuestions.setText("Question points: "+ csvLine[2].replaceAll("\"", "") +"/"+csvLine[2].replaceAll("\"", ""));
+	    	    				}
+	    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2].replaceAll("\"", ""));
 	    	    			}
 	    	    		}
 	    	            runQuestions.addBreak();
@@ -495,26 +497,32 @@ public class SolvedExamsController  implements Observer{
 	}
 	
 	private void fillCombobox(HashMap<String, String> subjectMap) {
-//		ObservableList<String> tempCourseObservabale = courseCombobox.getItems();
-	//if (tempCourseObservabale.isEmpty()) {
-//			observableCourses = FXCollections.observableArrayList("show all exams");
-//			courseCombobox.getItems().addAll(observableCourses);
-//		}
-//		for (String courseName: tempCourseObservabale) {
-//			for (String courseMapName: subjectMap.values()) {
-//			 if (courseMapName.equals(courseName) == false) {
-//				 //observableCourses = FXCollections.observableArrayList(courseMapName);
-//				 //courseCombobox.getItems().addAll(observableCourses);
-//				 courseCombobox.getItems().add(courseMapName);
-//			 }
-//			}
-//		}
 		if (courseCombobox.getItems().isEmpty()) {
 			observableCourses = FXCollections.observableArrayList(subjectMap.values());
 			courseCombobox.getItems().add("show all exams");
 			courseCombobox.getItems().addAll(observableCourses);
 		}
 	}
+	
+
+    /**
+     * This method is called when theres a need to ErrrorDialog
+     * @param HeaderTitle
+     * @param HeaderText
+     * @param Errormessage
+     */
+    private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
+    	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+			// Show the error message.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle(HeaderTitle);//"ServerIP error");
+            alert.setHeaderText(HeaderText);//"Please contact system administrator");
+            alert.setContentText(Errormessage);
+            alert.showAndWait();       
+        	log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+		});
+    }
 	
 	/**
 	 * after getting all courses relevant for these solved exams, i want to update solvedExam.examcourse field, for further use
@@ -595,7 +603,8 @@ public class SolvedExamsController  implements Observer{
 			createWord();
 		}
 		if (arg1 instanceof CsvMessage) {
-			this.csvData = ((CsvMessage) arg1).getCsvDetailofSolvedExam();
+			ArrayList<String[]> tempCsv =((CsvMessage) arg1).getCsvDetailofSolvedExam();
+			this.csvData = tempCsv;
 			getExamQuestions();
 		}
 		if (arg1 instanceof UserSolvedExamsMessage) {
@@ -635,16 +644,9 @@ public class SolvedExamsController  implements Observer{
 			log.writeToLog(LogLine.LineType.INFO, "simpleMessage Recieved in SolvedExamController,  what the Fuck ?!");
 		}
 		else if (arg1 instanceof ErrorMessage) {
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);//cs
-	            alert.initOwner(screenManager.getPrimaryStage());
-	            alert.setTitle("Invalid Fields");
-	            alert.setHeaderText("Please correct invalid fields");
-	            alert.setContentText(arg1.toString());
-	            alert.showAndWait();       
-	        	log.writeToLog(LogLine.LineType.ERROR, arg1.toString());
-			});
+			String errorHeader = ((ErrorMessage) arg1).getMsg();
+			String errorText = arg1.toString();
+			showErrorDialog("Server error",errorHeader,errorText);
 		}
 	}
 }

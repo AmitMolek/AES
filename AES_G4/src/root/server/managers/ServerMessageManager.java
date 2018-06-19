@@ -685,7 +685,8 @@ public class ServerMessageManager {
 		String pathInsideSolvedExamFolder = path + "//" + solvedExam.getSovingStudentID()+ ".csv";
 		instace.setCsvFile(pathInsideSolvedExamFolder);
 		ArrayList<String[]> csvDATA = instace.readCSV();		// "readCSV" return ArrayList<String[]>, than save it inside newMessage.
-		return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
+		if (csvDATA != null)return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
+		return new ErrorMessage(new Exception("Error,\nnot a valid csv path,\nplease check in:"+path+ ",\nthat csv name: "+solvedExam.getSovingStudentID()+",\nexist."));
 	}
 	
 	private static AbstractMessage handleGetCsv(AbstractMessage msg) {

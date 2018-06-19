@@ -115,6 +115,12 @@ public class LoginController implements Observer {
 		}
     }
     
+    /**
+     * This method is called when theres a need to ErrrorDialog
+     * @param HeaderTitle
+     * @param HeaderText
+     * @param Errormessage
+     */
     private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
     	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
 			// Show the error message.
@@ -248,16 +254,7 @@ public class LoginController implements Observer {
 			});
 		}
 		else if (arg1 instanceof ErrorMessage) {
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
-				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);//cs
-	            alert.initOwner(screenManager.getPrimaryStage());
-	            alert.setTitle("Invalid Fields");
-	            alert.setHeaderText("Please correct invalid fields");
-	            alert.setContentText(arg1.toString());
-	            alert.showAndWait();       
-	        	log.writeToLog(LogLine.LineType.ERROR, arg1.toString());
-			});
+			showErrorDialog("Invalid Fields","Please correct invalid fields",arg1.toString());
 		}
 	}
 }
