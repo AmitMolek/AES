@@ -283,11 +283,22 @@ public class ServerMessageManager {
 				return handleExamTableDataLine(msg);
 			case "examstatsbyiddate":
 				return handleExamStatsByIdDate(msg);
+			case "solvedbysubjectcourse":
+				return handleGetSolvedExamsBySubjectIDCourseID(msg);
 		}
 		
 		return null;
 	}
 
+	private static AbstractMessage handleGetSolvedExamsBySubjectIDCourseID(AbstractMessage msg) {
+		SolvedExamBySubjectCourseMessage sebsc = (SolvedExamBySubjectCourseMessage) msg;
+		GetFromDB getSolved = new GetFromDB();
+		
+		sebsc.setSolvedExams(getSolved.getSolvedExamsByCourseId(sebsc.getCourse().getCourseId()));
+		
+		return sebsc;
+	}
+	
 	/**
 	 * @author gal
 	 * this method called when have map<courseID,courseName> and want to fill it with course names.
@@ -458,10 +469,20 @@ public class ServerMessageManager {
 			return handlePutExecuteExamMessage(msg);
 		case "wordexam":
 			return handlePutwordExamMessage(msg);
+		case "updatesolvedexam":
+			return handleUpdateSolvedExam(msg);
 		}
 		
 		return null;
 		
+	}
+	
+	private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
+		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
+		SetInDB setDb = new SetInDB();
+		SolvedExams solved = exam.getExam();
+		setDb.updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(solved.getExamGrade(), solved.getGradeAlturationExplanation(), exam.getTeacher_id(), solved);
+		return null;
 	}
 	
 	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {

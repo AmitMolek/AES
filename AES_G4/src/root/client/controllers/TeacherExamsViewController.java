@@ -262,7 +262,7 @@ public class TeacherExamsViewController {
 		private void getSolvedExams() {
 			for (Course c : teacherCourses) {
 				SolvedExamBySubjectCourseMessage cMsg = new SolvedExamBySubjectCourseMessage(null, c);
-				
+
 				try {
 					client.sendToServer(cMsg);
 				} catch (IOException e) {
@@ -413,7 +413,7 @@ public class TeacherExamsViewController {
 		private boolean isChangedExamExistAlready(SolvedExams se) {
 			for (SolvedExams exam : changedExams) {
 				if (exam == se) return true;
-				if (exam.getExamID().equals(se.getExamID()) && exam.getSovingStudentID().equals(se.getSovingStudentID()) && exam.getExamDateTime().equals(se.getDate()))
+				if (exam.getExamID().equals(se.getExamID()) && exam.getSovingStudentID().equals(se.getSovingStudentID()) && exam.getExamDateTime().equals(se.getExamDateTime()))
 					return true;
 			}
 			return false;
@@ -615,7 +615,6 @@ public class TeacherExamsViewController {
 			try {
 				client.sendToServer(newMessage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
