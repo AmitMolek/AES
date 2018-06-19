@@ -222,8 +222,6 @@ public class LoginController implements Observer {
 		if(arg1 instanceof UserMessage) {
 			
 			UserMessage newMessasge = (UserMessage) arg1;
-			DataKeepManager.getInstance().keepObject("client", client);				// save's the client only if user exist
-
 			user = newMessasge.getUser();
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());

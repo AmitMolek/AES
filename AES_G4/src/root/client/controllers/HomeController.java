@@ -9,17 +9,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ImageLoader;
 import root.dao.app.User;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 /**
@@ -28,7 +32,7 @@ import java.util.Random;
  *
  */
 
-public class HomeController {
+public class HomeController  implements Observer{
 
     @FXML
     private Text good_lbl;
@@ -70,9 +74,25 @@ public class HomeController {
     
     private String pervStageOfDay;
     private String currentStageOfDay;
+
+	private ObservableClient client;
     
     @FXML
     public void initialize() {
+    	String serverIP = (String) dkm.getObject_NoRemove("ip");
+    	 
+    	if (dkm.getObject_NoRemove("client")== null) {
+    	   	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.
+        	//client.addObserver(this);												// --||--
+        	try {
+    			client.openConnection();
+    			dkm.keepObject("client", client);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	
     	init_welcomeMsg();
     	init_Clock();
     	init_Date();
@@ -246,4 +266,10 @@ public class HomeController {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
 }

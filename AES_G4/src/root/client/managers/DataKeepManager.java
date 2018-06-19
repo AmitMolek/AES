@@ -3,6 +3,7 @@ package root.client.managers;
 import java.util.HashMap;
 import java.util.Map;
 
+import ocsf.client.ObservableClient;
 import root.dao.app.User;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
@@ -117,8 +118,13 @@ public class DataKeepManager {
 	 * @return
 	 */
 	public Object getObject_NoRemove(String objKey) {
-		String objLower = objKey.toLowerCase();
+		String objLower = objKey.toLowerCase();		
 		if (!objMap.containsKey(objLower)) return null;
+		if (objLower.equals("client")) {
+			ObservableClient tempClient = (ObservableClient) this.objMap.get("client");
+			tempClient.deleteObservers();
+			return tempClient;
+		}
 		return (objMap.get(objLower));
 	}
 	
