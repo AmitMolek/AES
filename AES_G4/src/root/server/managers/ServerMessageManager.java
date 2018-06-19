@@ -49,6 +49,7 @@ import root.dao.message.LoggedOutMessage;
 import root.dao.message.LoginMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.MyFile;
+import root.dao.message.QueryMessage;
 import root.dao.message.QuestionInExamMessage;
 import root.dao.message.QuestionsMessage;
 import root.dao.message.SimpleMessage;
@@ -283,9 +284,31 @@ public class ServerMessageManager {
 				return handleExamTableDataLine(msg);
 			case "examstatsbyiddate":
 				return handleExamStatsByIdDate(msg);
+			case "query":
+				return handleGetQuery(msg);
 		}
 		
 		return null;
+	}
+
+	/**
+	 * @author Alon Ben-yosef
+	 * @param msg Assuming QueryMessage, runs the query and returns statistics
+	 * @return a StatMessage with query results
+	 */
+	private static AbstractMessage handleGetQuery(AbstractMessage msg) {
+		GetFromDB getGrades = new GetFromDB();
+		ArrayList<Integer> list=getGrades.getGradesQuery(((QueryMessage)msg).getQuery());
+		Statistic data = new Statistic(list);
+		return message.getMessage("ok-get-query", data);
+//		if(list.isEmpty()) {
+//			return message.getMessage("err-get-query",new Exception("No Valid Results"));
+//		}
+//		else {
+//		Statistic data = new Statistic(list);
+//		return message.getMessage("ok-get-query", data);
+//		}
+		
 	}
 
 	/**
@@ -750,7 +773,11 @@ public class ServerMessageManager {
 		set.deleteSolvedExam(simp);
 		return msg;	
 	}
-	
+	/**
+	 * 
+	 * @param msg Assuming ExamStatsByIdDateMessage, countaining id and date for a statistics
+	 * @return Message countaining the stats for that exam
+	 */
 	private static AbstractMessage handleExamStatsByIdDate(AbstractMessage msg) {
 		GetFromDB getLines = new GetFromDB();
 		Statistic data=getLines.getExamStatsByIdDate((ExamStatsByIdDateMessage)msg);

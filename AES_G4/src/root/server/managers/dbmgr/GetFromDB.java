@@ -14,7 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import com.mysql.jdbc.Statement;
-
 import root.dao.app.CheatingExamTest;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
@@ -41,7 +40,7 @@ public class GetFromDB implements DbManagerInterface {
 	public GetFromDB() {
 		super();
 		conn = AES_Server.getConnection();
-		log.getInstance();
+		log = Log.getInstance();
 	}
 
 	@Override
@@ -613,9 +612,9 @@ public class GetFromDB implements DbManagerInterface {
 			stat.setExam_ID(rs.getString(1));
 			stat.setDate(rs.getString(2));
 			stat.setReal_time_duration(rs.getString(3));
-			stat.setStudents_started_counter(rs.getInt(4));
-			stat.setSubmitted_students_counter(rs.getInt(5));
-			stat.setInterrupted_students_counter(rs.getInt(6));
+			stat.setSubmitted_students_counter(rs.getInt(4));
+			stat.setInterrupted_students_counter(rs.getInt(5));
+			stat.setStudents_started_counter(rs.getInt(6));
 			stat.setExams_avg(rs.getDouble(7));
 			stat.setExams_median(rs.getInt(8));
 			stat.setGrade_derivative_0_10(rs.getInt(9));
@@ -656,6 +655,26 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return false;
 			
+	}
+
+	public ArrayList<Integer> getGradesQuery(String query) {
+		String query1=query;
+		ResultSet rs;
+		Statistic stat;
+		ArrayList<Integer> list=new ArrayList<Integer>();
+		try {
+			stmt = conn.createStatement();
+			rs= stmt.executeQuery(query1);
+			while(rs.next()){
+				list.add(rs.getInt(1));
+			}
+			return list;
+		}
+		catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		return null;
 	}
 	
 	
