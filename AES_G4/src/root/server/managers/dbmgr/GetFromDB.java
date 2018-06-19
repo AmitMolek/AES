@@ -355,7 +355,7 @@ public class GetFromDB implements DbManagerInterface {
 	
 	}
 	
-	public ArrayList<ExecuteExam> getExecutedExams() {
+	public ArrayList<ExecuteExam> getExecutedExams(String teacherId) {
 		ArrayList<ExecuteExam> arr = new ArrayList<ExecuteExam>();
 		String getExecuted = "select exe.exam_id as id,\r\n" + 
 				"exe.exam_date_start as start_date,\r\n" + 
@@ -363,7 +363,8 @@ public class GetFromDB implements DbManagerInterface {
 				"exe.exam_type as examType,\r\n" + 
 				"ex.exam_original_allocated_duration as duration\r\n" + 
 				"from `execute exams` exe,exams ex\r\n" + 
-				"where exe.exam_id=ex.exam_id;";
+				"where exe.exam_id=ex.exam_id AND\r\n"
+				+"exe.executining_teacher_ID = "+"'"+teacherId+"'";
 		ResultSet rs;
 		try {
 			stmt = conn.createStatement();

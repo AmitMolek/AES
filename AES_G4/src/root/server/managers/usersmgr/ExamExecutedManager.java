@@ -19,7 +19,6 @@ public class ExamExecutedManager {
 		examinees= ExecuteStudentManager.getInstance() ;
 		examsTime = new HashMap<String,String>();
 		timerCheckThread.start();
-
 	}
 	
 	

@@ -144,7 +144,7 @@ public class ExecuteExamController implements Observer {
 		client.addObserver(this);
 		try {
 			client.openConnection();
-	    	//client.sendToServer(simpleMessage);
+	    	client.sendToServer(simpleMessage);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

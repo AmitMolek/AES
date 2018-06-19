@@ -737,7 +737,7 @@ public class ServerMessageManager {
 	private static AbstractMessage handleGetExecutedExams(AbstractMessage msg) {
 		ExecutedExamsMessage executedMsg = (ExecutedExamsMessage)msg;
 		GetFromDB get = new GetFromDB();
-		ArrayList<ExecuteExam> arr = get.getExecutedExams();
+		ArrayList<ExecuteExam> arr = get.getExecutedExams(executedMsg.getTeacher());
 		executedMsg.addExams(arr);
 		return msg;
 		
