@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -298,16 +299,20 @@ public class ServerMessageManager {
 	 */
 	private static AbstractMessage handleGetQuery(AbstractMessage msg) {
 		GetFromDB getGrades = new GetFromDB();
-		ArrayList<Integer> list=getGrades.getGradesQuery(((QueryMessage)msg).getQuery());
-		Statistic data = new Statistic(list);
-		return message.getMessage("ok-get-query", data);
-//		if(list.isEmpty()) {
-//			return message.getMessage("err-get-query",new Exception("No Valid Results"));
-//		}
-//		else {
-//		Statistic data = new Statistic(list);
-//		return message.getMessage("ok-get-query", data);
-//		}
+		ArrayList<Integer> list;
+		try {
+			list = getGrades.getGradesQuery(((QueryMessage)msg).getQuery());
+			if(list.isEmpty()) {
+				return message.getMessage("error-get-query",new Exception("No valid results"));
+			}
+			else {
+				Statistic data = new Statistic(list);
+				return message.getMessage("ok-get-query", data);
+			}
+		} catch (SQLException e) {
+			return message.getMessage("error-get-query",new Exception("SQL error in server"));
+		}
+	
 		
 	}
 

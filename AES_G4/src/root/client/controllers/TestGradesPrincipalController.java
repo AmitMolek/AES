@@ -15,11 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.message.AbstractMessage;
+import root.dao.message.ErrorMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.StatsMessage;
 import javafx.scene.control.CheckBox;
@@ -45,7 +47,9 @@ public class TestGradesPrincipalController implements Observer{
 	private CheckBox checkBox3;
 	@FXML
 	private TextField value3Field;
-	
+	 @FXML
+	private Text errorText;
+
 	private ObservableClient client;	
 
 	public void initialize() {
@@ -59,83 +63,78 @@ public class TestGradesPrincipalController implements Observer{
     @FXML
     void executeQuery(ActionEvent event) {
     	String query="";
-    	switch(queriesComboBox.getValue()) {
-		case "Exams By Approving Teacher":
-			query=examsByTeacherQueryBuilder();
-			break;
-		case "Exams By Student":
-			query=examsByStudentQueryBuilder();
-    		break;
-		case "Exams By Course":
-			query=examsByCourseQueryBuilder();
-    		break;
-    	default:
-    		return;
-    	}
-    	if(query!=null) {
+    	try {
+	    	switch(queriesComboBox.getValue()) {
+			case "Exams By Approving Teacher":
+				query=examsByTeacherQueryBuilder();
+				break;
+			case "Exams By Student":
+				query=examsByStudentQueryBuilder();
+	    		break;
+			case "Exams By Course":
+				query=examsByCourseQueryBuilder();
+	    		break;
+	    	default:
+	    		return;
+	    	}
 	    	System.out.println(query);
 	    	AbstractMessage msg= MessageFactory.getInstance().getMessage("get-query", query);
-	    	try {
-				client.sendToServer(msg);
-			} catch (IOException e) {
-				showAlert("I/O Exception","Error Communicating With AES Sever","Please contact system administrator");
+			client.sendToServer(msg);
+    	}
+	    catch (IOException e) {
+				showAlert("Error Communicating With AES Sever","Please contact system administrator");
 			}
-    	}
-    	else {
-    		showAlert("Empty Field","Empty Field In Query","Please fill in value in selected field");
-    	}
+    	catch (Exception e) {
+    		showAlert("Query Error",e.getMessage());
+			}
+    	
     }
     
-    private void showAlert(String title,String header,String errorMessage) {
-    	Stage mainApp=ScreensManager.getInstance().getPrimaryStage();
-    	Alert alert = new Alert(AlertType.WARNING);
-        alert.initOwner(mainApp);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(errorMessage);
-        alert.showAndWait();
+    private void showAlert(String header,String errorMessage) {
+    	errorText.setText(header+" - "+errorMessage);
+    	errorText.setVisible(true);
     }
 
-    private String examsByStudentQueryBuilder() {
+    private String examsByStudentQueryBuilder() throws Exception {
 		String query=null;
-		if(checkBox1.isSelected() && !value1Field.getText().isEmpty()) {
+		if(checkBox1.isSelected()) {
+    		if(value1Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
 			query="SELECT se.solved_exam_grade \r\n" + 
 					"FROM aes.`solved exams` se \r\n" + 
 					"WHERE se.User_ID='"+value1Field.getText()+"' AND se.grade_approval_by_teacher='approved';";
 		}
-		else if(checkBox2.isSelected() && !value2Field.getText().isEmpty()) {
-			Scanner s=new Scanner(value2Field.getText());
-			String firstName = s.next();
-			String lastName = s.next();
-			firstName=toStandardNameConvention(firstName);
-			lastName=toStandardNameConvention(lastName);
-			s.close();
+		else if(checkBox2.isSelected()) {
+			if(value2Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
+			String[] name=value2Field.getText().split(" ");
+			if(name.length!=2) throw new Exception("A full name is required");
+			name[0]=toStandardNameConvention(name[0]);
+			name[1]=toStandardNameConvention(name[1]);
 			query="SELECT se.solved_exam_grade \r\n" + 
 					"FROM aes.`solved exams` se, aes.`users` u " + 
-					"WHERE se.User_ID=u.Users_ID AND u.User_FIrst_Name='"+firstName+"' "+
-					"AND u.User_Last_Name='"+lastName+"' AND se.grade_approval_by_teacher='approved';";
+					"WHERE se.User_ID=u.Users_ID AND u.User_FIrst_Name='"+name[0]+"' "+
+					"AND u.User_Last_Name='"+name[1]+"' AND se.grade_approval_by_teacher='approved';";
 		}
 		return query;
 	}
 
-	private String examsByTeacherQueryBuilder() {
+	private String examsByTeacherQueryBuilder() throws Exception {
     	String query=null;
-    	if(checkBox1.isSelected() && !value1Field.getText().isEmpty()) {
+    	if(checkBox1.isSelected()) {
+    		if(value1Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
 			query="SELECT se.solved_exam_grade " + 
 					"FROM aes.`solved exams` se, aes.exams e "+
 					"WHERE se.exam_ID=e.exam_id AND se.approving_teacher_id='"+value1Field.getText()+"' "+
 					"AND se.grade_approval_by_teacher='approved';";
 		}
-		else if(checkBox2.isSelected() && !value2Field.getText().isEmpty()) {
-			Scanner s=new Scanner(value2Field.getText());
-			String firstName = s.next();
-			String lastName = s.next();
-			firstName=toStandardNameConvention(firstName);
-			lastName=toStandardNameConvention(lastName);
-			s.close();
+		else if(checkBox2.isSelected()) {
+			if(value2Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
+			String[] name=value2Field.getText().split(" ");
+			if(name.length!=2) throw new Exception("A full name is required");
+			name[0]=toStandardNameConvention(name[0]);
+			name[1]=toStandardNameConvention(name[1]);
 			query="SELECT se.solved_exam_grade \r\n" + 
 					"FROM aes.`solved exams` se, aes.`users` u \r\n" + 
-					"WHERE se.approving_teacher_id=u.Users_ID AND User_FIrst_Name='"+firstName+"' AND User_Last_Name='"+lastName+"' AND se.grade_approval_by_teacher='approved';";
+					"WHERE se.approving_teacher_id=u.Users_ID AND User_FIrst_Name='"+name[0]+"' AND User_Last_Name='"+name[1]+"' AND se.grade_approval_by_teacher='approved';";
 		}
     	return query;
 	}
@@ -143,13 +142,16 @@ public class TestGradesPrincipalController implements Observer{
 	private String examsByCourseQueryBuilder() {
 		return null;
 	}
+	
 	private String toStandardNameConvention(String name) {
     	String fullname=name.toLowerCase();
 		String prefix=fullname.substring(0, 1);
 		prefix=prefix.toUpperCase();
 		return prefix+fullname.substring(1);
 	}
+	
 	/***
+	 * @author Alon Ben-yosef
  	* Calls perparePageForQuery()
  	* @param event thrown by JavaFX
  	*/
@@ -190,12 +192,13 @@ public class TestGradesPrincipalController implements Observer{
     	}
     	resetCheckBoxes();
 	}
-    
+
     /***
      * @author Alon Ben-yosef
      * Resets the checkboxs states to default
      */
 	private void resetCheckBoxes() {
+		errorText.setVisible(false);
 		value1Field.setEditable(true);
 		value1Field.setText("");
     	value2Field.setEditable(false);
@@ -220,6 +223,7 @@ public class TestGradesPrincipalController implements Observer{
      */
     @FXML
     void set1Editable(ActionEvent event) {
+    	errorText.setVisible(false);
     	if(checkBox1.isSelected()) {
     		value1Field.setEditable(true);
         	value2Field.setEditable(false);
@@ -241,6 +245,7 @@ public class TestGradesPrincipalController implements Observer{
      */
     @FXML
     void set2Editable(ActionEvent event) {
+    	errorText.setVisible(false);
     	if(checkBox2.isSelected()) {
     		value2Field.setEditable(true);
         	value1Field.setEditable(false);
@@ -261,6 +266,7 @@ public class TestGradesPrincipalController implements Observer{
      */
     @FXML
     void set3Editable(ActionEvent event) {
+    	errorText.setVisible(false);
     	if(checkBox3.isSelected()) {
     		value3Field.setEditable(true);
         	value2Field.setEditable(false);
@@ -291,6 +297,10 @@ public class TestGradesPrincipalController implements Observer{
 						}
 					});
 			}
+			if(((AbstractMessage) msg).getMsg().equals("error")) {
+				ErrorMessage errmsg=(ErrorMessage)msg;
+				showAlert("Error occurred in AES server", errmsg.getErrorException().getMessage());
+			}
 		}		
 	}
 
@@ -315,29 +325,28 @@ public class TestGradesPrincipalController implements Observer{
 	private String getStudentTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
 		else if (checkBox2.isSelected()) {
-			Scanner s=new Scanner(value2Field.getText());
-			String firstName = s.next();
-			String lastName = s.next();
-			firstName=toStandardNameConvention(firstName);
-			lastName=toStandardNameConvention(lastName);
-			s.close();
-			return "Name = '"+firstName+" "+lastName+"'";
+			String[] name=value2Field.getText().split(" ");
+			name[0]=toStandardNameConvention(name[0]);
+			name[1]=toStandardNameConvention(name[1]);
+			return "Name = '"+name[0]+" "+name[1]+"'";
 		}
 		else return "";
 	}
 
+	/**
+	 * @author Alon Ben-yosef
+	 * 
+	 * @return
+	 */
 	private String getTeacherTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
 		else if (checkBox2.isSelected()) {
-			Scanner s=new Scanner(value2Field.getText());
-			String firstName = s.next();
-			String lastName = s.next();
-			firstName=toStandardNameConvention(firstName);
-			lastName=toStandardNameConvention(lastName);
-			s.close();
-			return "Name = '"+firstName+" "+lastName+"'";
+			String[] name=value2Field.getText().split(" ");
+			name[0]=toStandardNameConvention(name[0]);
+			name[1]=toStandardNameConvention(name[1]);
+			return "Name = '"+name[0]+" "+name[1]+"'";
 		}
 		else return "";
 	}
-    
+
 }

@@ -657,24 +657,16 @@ public class GetFromDB implements DbManagerInterface {
 			
 	}
 
-	public ArrayList<Integer> getGradesQuery(String query) {
+	public ArrayList<Integer> getGradesQuery(String query) throws SQLException {
 		String query1=query;
 		ResultSet rs;
-		Statistic stat;
 		ArrayList<Integer> list=new ArrayList<Integer>();
-		try {
-			stmt = conn.createStatement();
-			rs= stmt.executeQuery(query1);
-			while(rs.next()){
-				list.add(rs.getInt(1));
-			}
-			return list;
+		stmt = conn.createStatement();
+		rs= stmt.executeQuery(query1);
+		while(rs.next()){
+			list.add(rs.getInt(1));
 		}
-		catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
-		return null;
+		return list;
 	}
 	
 	

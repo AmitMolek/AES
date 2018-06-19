@@ -72,10 +72,7 @@ public class MessageFactory {
 			case "loggedout":
 				return new LogoutErrorMessage((Exception)payload);
 		}
-		return new ErrorMessage((Exception)payload);
-		
-		// TODO Auto-generated method stub
-		
+		return new ErrorMessage((Exception)payload);		
 	}
 
 	private AbstractMessage getDelMessage(String[] msgContent, Object payload) {
