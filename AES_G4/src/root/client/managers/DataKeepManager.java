@@ -104,7 +104,7 @@ public class DataKeepManager {
 		String objLower = objKey.toLowerCase();
 		if (!objMap.containsKey(objLower)) return null;
 		Object tmpObj = objMap.get(objLower);
-		objMap.remove(tmpObj);
+		objMap.remove(objLower);
 		if (tmpObj != null)
 			log.writeToLog(LineType.INFO, "Removed object: Key: " + objLower + " Object: " + tmpObj.getClass());
 		else log.writeToLog(LineType.INFO, "Removed object: Key: " + objLower); 
