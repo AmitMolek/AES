@@ -68,8 +68,8 @@ import root.server.managers.dbmgr.SetInDB;
 import root.server.managers.usersmgr.ExamExecutedManager;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 import root.server.managers.usersmgr.PrincipleManager;
+import root.util.csvReader.CSVReader;
 import root.util.worddocumentmgr.WordDocument;
-import root.util.CSVReader;
 
 public class ServerMessageManager {
 	private static ExecuteStudentManager examinees = ExecuteStudentManager.getInstance();
