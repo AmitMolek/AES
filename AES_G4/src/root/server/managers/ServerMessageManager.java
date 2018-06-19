@@ -283,11 +283,22 @@ public class ServerMessageManager {
 				return handleExamTableDataLine(msg);
 			case "examstatsbyiddate":
 				return handleExamStatsByIdDate(msg);
+			case "solvedbysubjectcourse":
+				return handleGetSolvedExamsBySubjectIDCourseID(msg);
 		}
 		
 		return null;
 	}
 
+	private static AbstractMessage handleGetSolvedExamsBySubjectIDCourseID(AbstractMessage msg) {
+		SolvedExamBySubjectCourseMessage sebsc = (SolvedExamBySubjectCourseMessage) msg;
+		GetFromDB getSolved = new GetFromDB();
+		
+		sebsc.setSolvedExams(getSolved.getSolvedExamsByCourseId(sebsc.getCourse().getCourseId()));
+		
+		return sebsc;
+	}
+	
 	/**
 	 * @author gal
 	 * this method called when have map<courseID,courseName> and want to fill it with course names.
