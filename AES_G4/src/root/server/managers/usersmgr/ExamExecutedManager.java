@@ -36,10 +36,8 @@ public class ExamExecutedManager {
 			SetInDB set = new SetInDB();
 			set.deleteExecutedExam(examId);
 			set.lockExam(examId);
-			
+			examsTime.remove(examId);
 		}
-			
-		examsTime.remove(examId);
 	}
 		
 	public boolean isExist(String examId) {
@@ -56,7 +54,7 @@ public class ExamExecutedManager {
 				return true;
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
+		}  
 		return false;	
 	}
 	
