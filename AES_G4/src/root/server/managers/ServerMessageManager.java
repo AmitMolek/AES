@@ -391,22 +391,24 @@ public class ServerMessageManager {
 		GetFromDB getLogin = new GetFromDB();
 		ArrayList<User> users = getLogin.users(login.getUser().getUserID());
 		LoginInfo loginInformation = login.getUser();
-		for(User user: users) {
-			if (user.getUserID().equals(loginInformation.getUserID())) {
-				if (user.getUserPassword().equals(loginInformation.getPassword())) {
-					if (!usersManager.isUserLoggedIn(user.getUserID())) {
-						usersManager.addLoggedInUser(user.getUserID());
-						if(user.getUserPremission().equals("Principal"))
-						{
-							principles.addPrinciple(AES_Server.CLIENT);
+		if (users.isEmpty() == false) {
+			for(User user: users) {
+				if (user.getUserID().equals(loginInformation.getUserID())) {
+					if (user.getUserPassword().equals(loginInformation.getPassword())) {
+						if (!usersManager.isUserLoggedIn(user.getUserID())) {
+							usersManager.addLoggedInUser(user.getUserID());
+							if(user.getUserPremission().equals("Principal"))
+							{
+								principles.addPrinciple(AES_Server.CLIENT);
+							}
+							return message.getMessage("ok-login",user);
+						}else {
+							return message.getMessage("error-login",new Exception("User is logged in"));
 						}
-						return message.getMessage("ok-login",user);
-					}else {
-						return message.getMessage("error-login",new Exception("User is logged in"));
 					}
-				}
-				else {
-					return message.getMessage("error-login",new Exception("Wrong Password"));
+					else {
+						return message.getMessage("error-login",new Exception("Wrong Password"));
+					}
 				}
 			}
 		}

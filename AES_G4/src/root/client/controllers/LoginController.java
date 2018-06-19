@@ -91,6 +91,10 @@ public class LoginController implements Observer {
     public void SignIn(ActionEvent event) {
     	
     	if (serverIPpane.isVisible()) {
+    		if (txtFieldserverIP.getText().isEmpty()) {
+    			showErrorDialog("ServerIP error","Please contact system administrator","Please enter serverIP");
+    			return;
+    		}
     		serverIP = txtFieldserverIP.getText();
     		DataKeepManager.getInstance().keepObject("ip", serverIP);
     	}
@@ -106,18 +110,22 @@ public class LoginController implements Observer {
 			client.sendToServer(newLoginMessage);
 			propertFile.writeToConfig("IP", serverIP);				// if no exceptions thrown by client, than save serverIP.
 		} catch (IOException e) {	
-			e.printStackTrace();
-			Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
-				// Show the error message.
-	            Alert alert = new Alert(AlertType.ERROR);
-	            alert.initOwner(screenManager.getPrimaryStage());
-	            alert.setTitle("ServerIP error");
-	            alert.setHeaderText("Please contact system administrator");
-	            alert.setContentText(e.getMessage());
-	            alert.showAndWait();       
-	        	log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
-			});
+			//e.printStackTrace();
+			showErrorDialog("ServerIP error","Please contact system administrator",e.getMessage());
 		}
+    }
+    
+    private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
+    	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+			// Show the error message.
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.initOwner(screenManager.getPrimaryStage());
+            alert.setTitle(HeaderTitle);//"ServerIP error");
+            alert.setHeaderText(HeaderText);//"Please contact system administrator");
+            alert.setContentText(Errormessage);
+            alert.showAndWait();       
+        	log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+		});
     }
     /**
      * EasterEgg

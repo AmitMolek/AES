@@ -127,8 +127,10 @@ public class GetFromDB implements DbManagerInterface {
 			}
 		} catch (SQLException e) {
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		}finally {
+			return users;
 		}
-		return null;
+		
 	}
 
 	
