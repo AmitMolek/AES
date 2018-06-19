@@ -27,6 +27,7 @@ public class ExecuteStudentManager {
 			waitForChangeDuration.put(examId, ar);
 		}
 	}
+	
 	public void sendAllDurations(String examID, int newTime) {
 		ArrayList<ConnectionToClient> ar = waitForChangeDuration.get(examID);
 		if(ar!=null) {
@@ -44,7 +45,6 @@ public class ExecuteStudentManager {
 		if(studentInExecute.get(examId)==null) {
 			return 0;
 		}
-		System.out.println(studentInExecute.get(examId).size());
 		return studentInExecute.get(examId).size();
 	}
 	
@@ -63,7 +63,6 @@ public class ExecuteStudentManager {
 	public void removeStudent(String examId,ConnectionToClient client) {
 		ArrayList<ConnectionToClient> c= studentInExecute.get(examId);
 		c.remove(c.indexOf(client));
-		
 		studentInExecute.remove(examId, client);
 	}
 	

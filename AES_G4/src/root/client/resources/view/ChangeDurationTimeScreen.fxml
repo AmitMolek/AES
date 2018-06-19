@@ -17,5 +17,6 @@
             <TableColumn fx:id="durationTime" onEditCommit="#updateTime" prefWidth="177.0" text="Duration" />
         </columns>
       </TableView>
+      <Button fx:id="btnLock" layoutX="365.0" layoutY="23.0" mnemonicParsing="false" onAction="#LockExam" prefHeight="65.0" prefWidth="237.0" text="Lock Exam" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="365.0" AnchorPane.rightAnchor="353.0" AnchorPane.topAnchor="23.0" />
    </children>
 </AnchorPane>
