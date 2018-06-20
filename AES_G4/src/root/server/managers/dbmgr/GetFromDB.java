@@ -106,8 +106,7 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	/**
-	 * question overLoading. in order to get questions by quesiton's ID -> a result
-	 * of a bad code solution in early staged of the project.
+	 * A method that returns all questions from the database when given question id
 	 * 
 	 * @param questionsID
 	 * @return A list of all the questions
