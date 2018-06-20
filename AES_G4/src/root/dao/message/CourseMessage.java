@@ -7,49 +7,77 @@ import root.dao.app.Course;
 import root.dao.app.Subject;
 
 /**
- * Class for course message
+ * A class that transmits messages between the server and the client with regard
+ * to course information
+ * 
  * @author Omer Haimovich
  *
  */
 public class CourseMessage extends AbstractMessage {
 
-	private HashMap<String, String> courseMap;			// key = courseID, value = course name.
-	private Subject courseSubject;
-	private ArrayList<Course> courses;
-	
+	// Instance variables **********************************************
+
 	/**
-	 * @author gal
-	 * Use this constructor when you have courseMap filled with courseID's as key, 
-	 * and you want to sent it from client to server, in order to fill it with values.
-	 * @param message "get-courses"
+	 * Map<String,String> for send course from server to client : key = courseID,
+	 * value = course name.
+	 */
+	private HashMap<String, String> courseMap;
+	/**
 	 * 
-	 * Also: Use this constructor when you have courseMap filled with courseID's as key and values,
-	 * and you want to send it from server back to client.
-	 * @param message "ok-get-course"
+	 * The subject of the course
 	 * 
+	 */
+	private Subject courseSubject;
+
+	/**
+	 * 
+	 * List of courses
+	 */
+	private ArrayList<Course> courses;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the CourseMessage
+	 * 
+	 * @param message
+	 *            The message that you want to transmit to the server or client
 	 * @param courseMap
+	 *            Map<String,String> for send course from server to client : key =
+	 *            courseID, value = course name.
+	 * 
 	 */
 	public CourseMessage(String message, HashMap<String, String> courseMap) {
 		super(message);
 		this.courseMap = courseMap;
 	}
+
 	/**
-	 * Constructor for message get-courses from client
-	 * @param courseSubject the subject of the course
+	 * Constructs the CourseMessage
+	 * 
+	 * @param courseSubject
+	 *            the subject of the course
 	 */
-	public CourseMessage (Subject courseSubject){
+	public CourseMessage(Subject courseSubject) {
 		super("get-courses");
 		this.courseSubject = courseSubject;
 	}
-	 /**
-	  * Constructor for message ok-courses form server
-	  * @param subjectCourses the list of the subject courses
-	  */
-	public CourseMessage ( ArrayList<Course> subjectCourses) {
+
+	/**
+	 * Constructs the CourseMessage
+	 * 
+	 * @param subjectCourses
+	 *            the list of courses from the database
+	 */
+	public CourseMessage(ArrayList<Course> subjectCourses) {
 		super("ok-get-courses");
 		this.courses = subjectCourses;
 	}
+
+	// CLASS METHODS *************************************************
+
 	/**
+	 * A method that returns the subject of the course
 	 * 
 	 * @return the subject of the course
 	 */
@@ -57,45 +85,57 @@ public class CourseMessage extends AbstractMessage {
 		return courseSubject;
 	}
 
-	
 	/**
-	 * Sets new value for subject of a course
-	 * @param courseSubject the new subject for the course
+	 * A method that set the subject of the course
+	 * 
+	 * @param courseSubject
+	 *            the subject for the course
 	 */
 	public void setCourseSubject(Subject courseSubject) {
 		this.courseSubject = courseSubject;
 	}
 
 	/**
+	 * A method that returns the list of courses
 	 * 
-	 * @return the list of the courses
+	 * @return the list of courses
 	 */
 	public ArrayList<Course> getCourses() {
 		return courses;
 	}
 
 	/**
-	 * Sets new list courses
-	 * @param subjectCourses the new list courses
+	 * A method that set the list of courses
+	 * 
+	 * @param subjectCourses
+	 *            the list of courses
 	 */
 	public void setCourses(ArrayList<Course> subjectCourses) {
 		this.courses = subjectCourses;
 	}
 
 	/**
+	 * A method that returns the map<String,String>
+	 * 
 	 * @return the courseMap
 	 */
 	public HashMap<String, String> getCourseMap() {
 		return courseMap;
 	}
+
 	/**
-	 * @param courseMap the courseMap to set
+	 * A method that set the map<String,String>
+	 * 
+	 * @param courseMap
+	 *            the courseMap
 	 */
 	public void setCourseMap(HashMap<String, String> courseMap) {
 		this.courseMap = courseMap;
 	}
+
 	/**
-	 * Returns the course as type of the message
+	 * 
+	 * Returns the type of message
 	 */
 	@Override
 	public String getType() {

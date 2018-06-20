@@ -7,150 +7,190 @@ import root.dao.app.Exam;
 import root.dao.app.Subject;
 
 /**
- * Class for exam
+ * A class that transmits messages between the server and the client with regard
+ * to exam information
+ * 
  * @author Omer Haimovich
  *
  */
 public class ExamMessage extends AbstractMessage {
+
+	// Instance variables **********************************************
+
 	private static final long serialVersionUID = 1L;
+	/**
+	 * List of exams
+	 */
 	private ArrayList<Exam> exams;
+	/**
+	 * A specific exam that will transmit between the server and the client
+	 */
 	private Exam newExam;
+	/**
+	 * The subject of the exam
+	 */
 	private Subject examSubject;
+	/**
+	 * The course of the exam
+	 */
 	private Course examCourse;
+	/**
+	 * The id of the exam
+	 */
 	private String id;
-	
+
+	// CONSTRUCTORS *****************************************************
 
 	/**
-	 * Constructor that send message from server
-	 * @param exams the list of exams
+	 * Constructs the ExamMessage
+	 * 
+	 * @param exams
+	 *            the list of exams
 	 */
 	public ExamMessage(ArrayList<Exam> exams) {
 		super("ok-get-exams");
-		this.exams=exams;
+		this.exams = exams;
 	}
-	
+
 	/**
-	 * Constructor that send message from client
-	 * @param newExam the exam
+	 * Constructs the ExamMessage
+	 * 
+	 * @param newExam
+	 *            the exam that will transmit between the server and the client
 	 */
-	public ExamMessage(Exam newExam){
+	public ExamMessage(Exam newExam) {
 		super("put-exams");
 		this.newExam = newExam;
 	}
-	
+
 	/**
-	 * Constructor that send message from client
-	 * @param newExam the exam
+	 * Constructs the ExamMessage
+	 * 
+	 * @param message
+	 *            The message that you want to transmit to the server or client
+	 * @param newExam
+	 *            the exam that will transmit between the server and the client
 	 */
-	public ExamMessage(String message,Exam newExam){
+	public ExamMessage(String message, Exam newExam) {
 		super(message);
 		this.newExam = newExam;
 	}
-	
+
 	/**
-	 * Constructor that send get message from client
-	 * @param examSubject the exam subject
-	 * @param examCourse the exam course
+	 * Constructs the ExamMessage
+	 * 
+	 * @param examSubject
+	 *            the subject of the exam
+	 * @param examCourse
+	 *            the course of the exam
 	 */
 	public ExamMessage(Subject examSubject, Course examCourse) {
 		super("get-exams");
 		this.examSubject = examSubject;
 		this.examCourse = examCourse;
 	}
-	
+
 	/**
-	 * Constructor that send get message from client
-	 * @param id the id
+	 * Constructs the ExamMessage
+	 * 
+	 * @param id
+	 *            the id of the exam
 	 */
 	public ExamMessage(String id) {
 		super("get-exams");
 		this.id = id;
-		
-	}
-	
-	
-	
-	
 
+	}
+
+	
+	// CLASS METHODS *************************************************
+	
 	/**
-	 * Return type of exam
+	 *  Returns the type of message
 	 */
 	@Override
 	public String getType() {
 		return "exam";
 	}
-	
+
 	/**
-	 * 
-	 * @return list of exams
+	 * A method that returns the list of exams
+	 * @return the list of exams
 	 */
 	public ArrayList<Exam> getExams() {
 		return exams;
 	}
 
 	/**
-	 * Set new list of exams
-	 * @param exams the new exams list
+	 * A method that set the list of exams
+	 * 
+	 * @param exams
+	 *            the list of exams
 	 */
 	public void setExams(ArrayList<Exam> exams) {
 		this.exams = exams;
 	}
 
 	/**
-	 * 
-	 * @return the exam
+	 *  A method that returns the specific exam
+	 * @return the specific exam
 	 */
 	public Exam getNewExam() {
 		return newExam;
 	}
 
 	/**
-	 * Set new exam
-	 * @param newExam the new exam
+	 * A method that set the specific exam
+	 * 
+	 * @param newExam
+	 *           the specific exam
 	 */
 	public void setNewExam(Exam newExam) {
 		this.newExam = newExam;
 	}
-	
+
 	/**
-	 * 
-	 * @return the exam subject
+	 * A method that returns the subject of the exam
+	 * @return the subject of the exam
 	 */
 	public Subject getExamSubject() {
 		return examSubject;
 	}
 
 	/**
-	 * Set new subject to exam
-	 * @param examSubject the new subject
+	 * A method that set the subject of the exam
+	 * 
+	 * @param examSubject
+	 *            the subject of the exam
 	 */
 	public void setExamSubject(Subject examSubject) {
 		this.examSubject = examSubject;
 	}
 
 	/**
-	 * 
-	 * @return the exam course
+	 * A method that returns the course of the exam
+	 * @return the  course of the exam
 	 */
 	public Course getExamCourse() {
 		return examCourse;
 	}
 
 	/**
-	 * Set new course to exam
-	 * @param examCourse the new course
+	 * A method that set the course of the exam
+	 * 
+	 * @param examCourse
+	 *            the  course of the exam
 	 */
 	public void setExamCourse(Course examCourse) {
 		this.examCourse = examCourse;
 	}
 
 	/**
-	 * 
-	 * @return the id
+	 * A method that returns the id of the exam
+	 * @return the id of the exam
 	 */
 	public String getId() {
 		return id;
 	}
-
 
 }

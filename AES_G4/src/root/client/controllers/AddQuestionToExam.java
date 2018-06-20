@@ -22,17 +22,16 @@ import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
 
 /**
- * Class for add question custom component
+ * 
+ * A class that is responsible for adding a component of a question to a exam
+ * form
  * 
  * @author Omer Haimovich
  *
  */
 public class AddQuestionToExam extends AnchorPane {
-	private static int count = 0;
 
-	private static int totalPoints = 0;
-
-	private String id;
+	// FXML variables **********************************************
 
 	@FXML
 	private TextArea txtFreeTeacher;
@@ -58,19 +57,55 @@ public class AddQuestionToExam extends AnchorPane {
 	@FXML
 	public CheckBox checkRemove;
 
-	private QuestionInExam examQuestion;
-
-	private static ArrayList<Question> questions = new ArrayList<Question>();
-
-	private static ArrayList<QuestionInExam> examQuestions = new ArrayList<QuestionInExam>();
-
-	private static ArrayList<String> combobox = new ArrayList<String>();
-	private Question newQuestion;
-	private Stage mainApp;
-	private ScreensManager screenManager;
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for add question custom component
+	 * Counter that counts how many component we added to the form exam
+	 */
+	private static int count = 0;
+	/**
+	 * The number of points you have until now in the exam
+	 */
+	private static int totalPoints = 0;
+	/**
+	 * The id of the component
+	 */
+	private String id;
+	/**
+	 * A specific question that belongs to the exam
+	 */
+	private QuestionInExam examQuestion;
+	/**
+	 * List of questions of the chosen course and subjects
+	 */
+	private static ArrayList<Question> questions = new ArrayList<Question>();
+	/**
+	 * 
+	 * List of questions that are currently belong to the exam
+	 */
+	private static ArrayList<QuestionInExam> examQuestions = new ArrayList<QuestionInExam>();
+	/**
+	 * 
+	 * List of data found in ComboBox
+	 */
+	private static ArrayList<String> combobox = new ArrayList<String>();
+	/**
+	 * A specific question
+	 */
+	private Question newQuestion;
+	/**
+	 * The main window of the application
+	 */
+	private Stage mainApp;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
+	private ScreensManager screenManager;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the AddQuestionToExam
 	 */
 	public AddQuestionToExam() {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/view/AddQuestionToAnExam.fxml"));
@@ -87,15 +122,20 @@ public class AddQuestionToExam extends AnchorPane {
 		}
 	}
 
+	// CLASS METHODS *************************************************
+
 	/**
+	 * A method that returns the component id
 	 * 
-	 * @return component id
+	 * @return the component id
 	 */
 	public String getID() {
 		return id;
 	}
 
 	/**
+	 * A method that returns the number of components that added to the add exam
+	 * form
 	 * 
 	 * @return number of components
 	 */
@@ -104,10 +144,14 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
-	 * Method that occurs when teacher select question
+	 * 
+	 * A method that allows the teacher to select a question from the pool of
+	 * questions
 	 * 
 	 * @param event
-	 *            when teacher select from question combo box
+	 * 
+	 *            An event that happens when a teacher select from question combo
+	 *            box
 	 */
 	@FXML
 	void SelectQuestion(ActionEvent event) {
@@ -137,9 +181,10 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
-	 * Add question to an exam
 	 * 
-	 * @return list of questions in exam
+	 * A method that adds a question to the list of exam questions
+	 * 
+	 * @return true if it is added successful or false otherwise
 	 */
 	public boolean AddQuestion() {
 
@@ -168,7 +213,7 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
-	 * Clears the question exam list
+	 * Clears the list of questions belonging to the exam
 	 */
 	public static void clearQuestionInExam() {
 		int i = 0;
@@ -190,18 +235,21 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
+	 * A method that returns the question that belong to the exam
 	 * 
-	 * @return the question in exam list
+	 * @return the list of the question in exam
 	 */
 	public static ArrayList<QuestionInExam> getExamQuestions() {
 		return examQuestions;
 	}
 
 	/**
-	 * Sets the question in the combo box
+	 * 
+	 * Fills the Combo Box with questions belong to the course and the subject
+	 * chosen
 	 * 
 	 * @param question
-	 *            the question list
+	 *            the list of the questions
 	 */
 	public void setQuestionCombo(ArrayList<Question> question) {
 		for (Question q : question) {
@@ -211,13 +259,17 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
+	 * A method that returns the question of the course and the subject chosen
 	 * 
-	 * @return the question list
+	 * @return the list of the questions
 	 */
 	public static ArrayList<Question> getQuestions() {
 		return questions;
 	}
 
+	/**
+	 * Clears all the information in ComboBox
+	 */
 	public void clearComboBox() {
 		int i = 0;
 		int size;
@@ -231,16 +283,17 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
-	 * Sets new value to the count
+	 * A method that set new number of components
 	 * 
 	 * @param count
-	 *            the new count value
+	 *            the number of components
 	 */
 	public static void setCount(int count) {
 		AddQuestionToExam.count = count;
 	}
 
 	/**
+	 * Checks whether all fields are valid
 	 * 
 	 * @return true if all inputs valid and false if not
 	 */
@@ -280,7 +333,8 @@ public class AddQuestionToExam extends AnchorPane {
 
 	/**
 	 * 
-	 * This method occurs when the window is shown up.
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown
@@ -292,17 +346,21 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
+	 * A method that returns the number of points you have until now in the exam
 	 * 
-	 * @return the total points of the exam
+	 * @return the number of points you have until now in the exam
 	 */
 	public static int getTotalPoints() {
 		return totalPoints;
 	}
 
 	/**
-	 * mrthod that occurs when we change the text
+	 * A method that is responsible for changing the text field of a number of
+	 * points to a question
 	 * 
 	 * @param event
+	 *            An event that happens when a teacher change points in the text
+	 *            field of a number of points to a question
 	 */
 	@FXML
 	void changePoints(ActionEvent event) {
@@ -341,16 +399,20 @@ public class AddQuestionToExam extends AnchorPane {
 	}
 
 	/**
+	 * A method that returns the list of questions that are currently belong to the
+	 * exam
 	 * 
-	 * @return the question in exam
+	 * @return the list of questions that are currently belong to the exam
 	 */
 	public QuestionInExam getExamQuestion() {
 		return examQuestion;
 	}
 
 	/**
-	 * Remove question from exam
-	 * @param add the add question to exam component
+	 * Remove question from the exam
+	 * 
+	 * @param add
+	 *            the add question to exam component
 	 */
 	public void removeTheQuestion(AddQuestionToExam add) {
 		int i = 0;

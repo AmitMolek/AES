@@ -8,7 +8,7 @@ import root.dao.app.Subject;
 
 /**
  * Class for subject message
- * @author Omer Haaimovich
+ * @author Omer Haimovich
  *
  */
 public class SubjectMessage extends AbstractMessage {

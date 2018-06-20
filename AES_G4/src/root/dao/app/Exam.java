@@ -116,7 +116,7 @@ public class Exam implements Serializable {
 	}
 
 	/**
-	 * * A method that returns the teacher who wrote the exam
+	 * A method that returns the teacher who wrote the exam
 	 * 
 	 * @return the teacher who wrote the exam
 	 */
