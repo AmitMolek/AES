@@ -36,6 +36,8 @@ public class Main extends ScreensManager {
 		ScreensManager.addScreen("testTeacherGradesStats", "resources/view/TestGradesTeacher.fxml");
 		ScreensManager.addScreen("testPrincipalGradesStats", "resources/view/TestGradesPrincipal.fxml");
 		ScreensManager.addScreen("teacherExamsView", "resources/view/TeacherExamsView.fxml");
+		ScreensManager.addScreen("rawDataView", "resources/view/RawDataView.fxml");
+
 		launch(args);
 	}
 	

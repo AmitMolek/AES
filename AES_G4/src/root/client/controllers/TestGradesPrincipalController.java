@@ -250,7 +250,13 @@ public class TestGradesPrincipalController implements Observer{
 
 	@FXML
     void showRawData(ActionEvent event) {
-
+		Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+			try {
+				ScreensManager.getInstance().activate("rawDataView");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
     }
 	
 	/***
