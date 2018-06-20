@@ -48,89 +48,167 @@ import root.dao.message.SolvedExamMessage;
  * 
  */
 public class ExecuteExamController implements Observer {
+	
+	// Instance variables **********************************************
+
+	
+	/**
+	 * Button for previous page
+	 */
 	@FXML
 	private Button btnBack;
 
+	/**
+	 * VBox in the right side of the screen.
+	 * for jump between questions
+	 */
 	@FXML
 	private VBox vbxQuetionsTab;
 
+	/**
+	 * The second layer in the screen
+	 */
 	@FXML
 	private BorderPane myBorder;
 
+	/**
+	 * The first layer of the screen
+	 */
 	@FXML
 	private AnchorPane rootExecute;
 
+	/**
+	 * Pane in the middle of the screen. 
+	 * QuestionInExam Object locate in this pane
+	 */
 	@FXML
 	private AnchorPane answersPane;
 
+	/**
+	 * Button that move to the next question 
+	 */
 	@FXML
 	private Button btnNext;
 
+	/**
+	 * the timer label
+	 */
 	@FXML
 	private Label lblTimer;
 
+	/**
+	 * The teacher instruction label
+	 */
 	@FXML
 	private Label lblInstruction;
 
+	/**
+	 * teacher notes text area 	 
+	 */
 	@FXML
 	private TextArea txtNotes;
 
+	/**
+	 * label for date
+	 */
 	@FXML
 	private Label lblDate;
 
+	/**
+	 * the pane in the buttom, the button located here
+	 */
 	@FXML
 	private AnchorPane buttomPane;
-
+	
+	/**
+	 * ArrayList of questionIn exam object
+	 */
 	private ArrayList<QuestionInExamObject> questionsInExamObject = new ArrayList<QuestionInExamObject>();
 
+	/**
+	 * the index of the question that need to be displayed
+	 */
 	private int displayQuestion;
 
+	/**
+	 * the exam duration time in seconds. this taken from DurationTime class
+	 */
 	private int stopWatch;
 
+	/**
+	 * instance of dataKeeper
+	 */
 	private DataKeepManager dataKeeper = DataKeepManager.getInstance();;
 
+	/**
+	 * ArrayList of tabs buttons to jump between questions
+	 */
 	private ArrayList<Button> tabsButton = new ArrayList<Button>();
-
+	
+	/**
+	 * ArrayList for teacher instructions
+	 */
 	private ArrayList<String> intructText = new ArrayList<String>();
 
-	
+	/**
+	 * ArrayList for exam points
+	 */
 	private ArrayList<Integer> points = new ArrayList<Integer>();
 
-	
+	/**
+	 * the user id
+	 */
 	private String userId;
 	
-	
+	/**
+	 * the exam that executed
+	 */
 	private Exam exam;
 	
-	
+	/**
+	 * the stopwatch
+	 */	
 	private Timeline examStopWatch;
 	
-	
+	/**
+	 * the execution date
+	 */
 	private String date;
 	
-	
+	/**
+	 * temp date
+	 */
 	private Date dt;
 	
-	
+	/**
+	 * simple date format
+	 */
 	private SimpleDateFormat sdf;
 	
-	
+	/**
+	 * the status of the exam
+	 */
 	private String status;
 	
-	
+	/**
+	 * instance of MessageFactory
+	 */
 	private MessageFactory messageFact = MessageFactory.getInstance();
 	
-	
+	/**
+	 * instance of the client
+	 */
 	private ObservableClient client;
 	
-	
+	/**
+	 * instance of Screen Manager
+	 */
 	ScreensManager scrMgr = ScreensManager.getInstance();
 	
 	
 
 	/**
-	 * this method happens when the window shown
-	 * 
+	 * this method happens when the screen is display
 	 * 
 	 */
 	public void initialize() {
@@ -279,6 +357,9 @@ public class ExecuteExamController implements Observer {
 			btnBack.setDisable(false);
 	}
 
+	/**
+	 * this Action happen when the user press on submit button
+	 */
 	public void submitPress(ActionEvent e) {
 		Platform.runLater(() -> {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -296,6 +377,11 @@ public class ExecuteExamController implements Observer {
 
 	}
 
+	/**
+	 * This method call to submit exam, 
+	 * or when the time is end 
+	 * or when the user press on submit
+	 */
 	public void submitTest() {
 		CheckedExamsAuto checkedExams = new CheckedExamsAuto(questionsInExamObject, exam);
 		int grade = checkedExams.calculateGrade();
@@ -318,6 +404,10 @@ public class ExecuteExamController implements Observer {
 
 	}
 
+	/**
+	 * this method happens when the server send back message
+	 * it should recived ok message for recived csv
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof SimpleMessage) {
@@ -336,6 +426,9 @@ public class ExecuteExamController implements Observer {
 		}
 	}
 	
+	/**
+	 * This method is implement by false
+	 */	
 	private void deleteSolvedExam() {
 		SimpleMessage simpleMsg = (SimpleMessage) messageFact.getMessage("simple",null);
 		simpleMsg.setMsg("delete-solvedexams-"+exam.getExamId());
@@ -347,7 +440,10 @@ public class ExecuteExamController implements Observer {
 		}
 
 	}
-
+	
+	/**
+	 * this method called when need to change the exam time
+	 */
 	public void changeTime(int newTime) {
 		stopWatch = newTime;
 	}

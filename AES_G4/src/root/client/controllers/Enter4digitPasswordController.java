@@ -84,8 +84,9 @@ public class Enter4digitPasswordController implements Observer {
 	}
 
 	/**
-	 * This method calls from the server the server return Exam message if exams
-	 * found and error message if no
+	 * This method calls from the server
+	 *  the server return or exam message
+	 *  or error message if had any problem
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {

@@ -9,28 +9,60 @@ import java.util.Set;
 
 import root.server.managers.usersmgr.ExecuteStudentManager;
 
+/**
+ * @author Naor Saadia
+ * this class take care about the execute exams
+ * about the duration time
+ */
 public class ExamExecutedManager {
 	
-	private HashMap<String,String> examsTime;		
+	/**
+	 * HashMap that have the exams id 
+	 * and the time of the exam
+	 */
+	private HashMap<String,String> examsTime;
+	
+	/**
+	 * Execute Student manager instance
+	 */
 	private ExecuteStudentManager examinees;
 	
-	int sem;
+	/**
+	 * The constructor
+	 */
 	public ExamExecutedManager() {
 		examinees= ExecuteStudentManager.getInstance() ;
 		examsTime = new HashMap<String,String>();
 		timerCheckThread.start();
 	}
 	
-	
+	/**
+	 * isContains method check if the exam is 
+	 * already solved by the student
+	 * by check it in the solved exams db
+	 * @param examId
+	 * @param userId
+	 * @return
+	 */
 	public boolean isContains(String examId,String userId){
 		GetFromDB get = new GetFromDB();
 		return get.getSolvedExamByID(examId, userId);
 	}
 	
+	/**
+	 * add new exam and his time
+	 * @param examId
+	 * @param time
+	 */
 	public void add(String examId,String time) {
 		examsTime.put(examId, time);
 	}
 	
+	/**
+	 * if the time already pass the execute exam lock 
+	 * and removed from the execute exams table
+	 * @param examId
+	 */
 	public void remove(String examId) {
 		if(!checkTime(examId)){
 			SetInDB set = new SetInDB();
@@ -39,11 +71,22 @@ public class ExamExecutedManager {
 			examsTime.remove(examId);
 		}
 	}
-		
+	
+	/**
+	 * check if the exam exist in the hash map
+	 * @param examId
+	 * @return
+	 */
 	public boolean isExist(String examId) {
 		return examsTime.containsKey(examId);
 	}
 
+	/**
+	 * check if the time of the recived exam is pass
+	 * if yes return false
+	 * @param examId
+	 * @return
+	 */
 	public boolean checkTime(String examId) {
 		DateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		try {
@@ -58,6 +101,10 @@ public class ExamExecutedManager {
 		return false;	
 	}
 	
+	/**
+	 * Thread that run always 
+	 * and check for all exams if the time is pass
+	 */
     Thread timerCheckThread = new Thread()
     {
         @Override

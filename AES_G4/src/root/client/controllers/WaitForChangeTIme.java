@@ -8,10 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import root.client.managers.ScreensManager;
 
+/**
+ * @author Naor Saadia
+ * This class waiting for change time confirmation. 
+ */
 public class WaitForChangeTIme implements Observer{
 
-	private ScreensManager screenManager = ScreensManager.getInstance();
-
+	/**
+	 * The method change the duration time
+	**/
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		int time = (int)arg1;

@@ -15,10 +15,23 @@ import root.client.managers.ScreensManager;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.SimpleMessage;
 
+/**
+ * @author Naor Saadia
+ * This class is observer that wait
+ * for teacher that change the time duration
+ */
 public class WaitForPirncipleMessage implements Observer{
 	
+	/**
+	 * instance of screen manager
+	 **/
 	private ScreensManager screenManager = ScreensManager.getInstance();
 	
+	/**
+	 * this method called when
+	 * the server get change time request
+	 * the method fire alert for change request
+	**/
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg instanceof ChangeTimeDurationRequest)

@@ -6,6 +6,11 @@ import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.dao.message.ChangeTimeDurationRequest;
 
+/**
+ * @author Naor Saadia
+ * this class send change time request
+ *
+ */
 public class SendRequests {
 	ObservableClient client;
 	private DataKeepManager dbk;
@@ -21,6 +26,7 @@ public class SendRequests {
 	
 	public void send(ChangeTimeDurationRequest cht) throws IOException {
 		client.sendToServer(cht);
+		client.closeConnection();
 	}
 
 }
