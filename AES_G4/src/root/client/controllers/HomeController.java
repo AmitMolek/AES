@@ -127,12 +127,14 @@ public class HomeController  implements Observer{
      * Init the background image of the home screen
      */
     private void init_BgImage() {
-    	String mainPath = "src/root/client/resources/images/bg/home/";
+    	String mainPath = "root/client/resources/images/bg/home/";
     	try {
     		ArrayList<Image> images = ImageLoader.loadImagesFromFolder(mainPath + getStageOfDay().toLowerCase());
     		Random rnd = new Random();
-    		int rndImg = rnd.nextInt(images.size());
-    		bgImg.setImage(images.get(rndImg));
+    		if (images.size() != 0) {
+    			int rndImg = rnd.nextInt(images.size());
+    			bgImg.setImage(images.get(rndImg));
+    		}
     	}catch (Exception e) {
     		Log.getInstance().writeToLog(LineType.ERROR, "Tried loading background images.");
     		e.printStackTrace();

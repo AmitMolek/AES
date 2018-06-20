@@ -40,13 +40,14 @@ public class MenuController {
     private ScreensManager screensMgr;
     private Log log;
   
-    private final String homeIconPath = "../resources/images/icons/home.png";
-    private final String returnIconPath = "../resources/images/icons/back_arrow.png";
-    private final String helpIconPath = "../resources/images/icons/help.png";
-    private final String statisticsIconPath = "../resources/images/icons/history.png";
-    private final String questionsIconPath = "../resources/images/icons/aspect_ratio.png";
-    private final String examsIconPath = "../resources/images/icons/collections.png";
-    private final String executeExamIconPath = "../resources/images/icons/play.png";
+    private final String mainPath = "/root/client";
+    private final String homeIconPath = mainPath + "/resources/images/icons/home.png";
+    private final String returnIconPath = mainPath + "/resources/images/icons/back_arrow.png";
+    private final String helpIconPath = mainPath + "/resources/images/icons/help.png";
+    private final String statisticsIconPath = mainPath + "/resources/images/icons/history.png";
+    private final String questionsIconPath = mainPath + "/resources/images/icons/aspect_ratio.png";
+    private final String examsIconPath = mainPath + "/resources/images/icons/collections.png";
+    private final String executeExamIconPath = mainPath + "/resources/images/icons/play.png";
     
     private final String aboutUsNames = "Group 4\nGal Brandwine\nAlon Ben-yosef\nNaor Saadia\nAmit Molek\nOmer Haimovich";
     
@@ -82,7 +83,7 @@ public class MenuController {
     
     public void initExecuteExamMenu() {
     	if (!user.getUserPremission().equals("Principal")) {
-    		Image img = new Image(getClass().getResource(executeExamIconPath).toExternalForm());
+    		Image img = new Image(getClass().getResourceAsStream(executeExamIconPath));
 	    	Menu executeMenu = new Menu();
 	    	createMenuItem(executeMenu, img, "Execute Exam", 115, 25);
 	    	
@@ -96,7 +97,7 @@ public class MenuController {
     }
     
     public void initExamsMenu() {
-    	Image img = new Image(getClass().getResource(examsIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(examsIconPath));
     	
     	Menu examsMenu = new Menu();
     	createMenuItem(examsMenu, img, "Exams", 70, 25);
@@ -111,7 +112,7 @@ public class MenuController {
     }
     
     public void initQuestionsMenu() {
-    	Image img = new Image(getClass().getResource(questionsIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(questionsIconPath));
     	
     	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("questions");
     	createMenuItem(new Menu(), img, "Questions", 100, 25, e);
@@ -119,7 +120,7 @@ public class MenuController {
     
     public void initStatisticsMenu() {
     	String per = user.getUserPremission();
-    	Image img = new Image(getClass().getResource(statisticsIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(statisticsIconPath));
     	
     	Menu statisticsMenu = new Menu();
     	
@@ -138,7 +139,7 @@ public class MenuController {
      * Creates the return menu object
      */
     public void initReturnMenu() {
-    	Image img = new Image(getClass().getResource(returnIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(returnIconPath));
     	
     	EventHandler<MouseEvent> e = new EventHandler<MouseEvent>() {
     		@Override
@@ -163,7 +164,7 @@ public class MenuController {
      * Creates the home menu object
      */
     public void initGoHome() {
-    	Image img = new Image(getClass().getResource(homeIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(homeIconPath));
     	EventHandler<MouseEvent> e = getChangeScreenMouseEvent("home");
     	createMenuItem(new Menu(), img, "Home", 70, 25, e);
     }
@@ -174,7 +175,7 @@ public class MenuController {
     public void initGoHelp() {
     	Menu help = new Menu();
     	
-    	Image img = new Image(getClass().getResource(helpIconPath).toExternalForm());
+    	Image img = new Image(getClass().getResourceAsStream(helpIconPath));
     	createMenuItem(help, img, "Help", 70, 25);
     	
     	EventHandler<ActionEvent> e = new EventHandler<ActionEvent>() {
@@ -183,7 +184,7 @@ public class MenuController {
     			Stage aboutStage = new Stage();
     			VBox comp = new VBox();
     			
-    			Image img = new Image(getClass().getResource(helpIconPath).toExternalForm());
+    			Image img = new Image(getClass().getResourceAsStream(helpIconPath));
     			
     			Label aboutGroup = new Label();
     			aboutGroup.setText(aboutUsNames);
