@@ -46,6 +46,8 @@ public class WordDocument {
 		this.exam = exam;
 	}
 
+	// CLASS METHODS *************************************************
+
 	/**
 	 * 
 	 * Method that is responsible for creating a new Word file that will contain all
