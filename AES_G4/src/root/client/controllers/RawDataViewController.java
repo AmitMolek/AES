@@ -172,6 +172,9 @@ public class RawDataViewController implements Observer {
     private TableColumn<Question, String> questions_questionId;
 
     @FXML
+    private TableColumn<Question, String> questions_question_text;
+    
+    @FXML
     private TableColumn<Question, String> questions_question_instruction;
 
     @FXML
@@ -308,14 +311,24 @@ public class RawDataViewController implements Observer {
 	}
 
 	private void initQuestions() {
+		questions_questionId.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("questionId"));
 		questions_teacherId.setCellValueFactory(
     		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
+		questions_question_text.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("questionText"));
 		questions_question_instruction.setCellValueFactory(
-    		    new PropertyValueFactory<Question,String>("question_instruction"));
-		questions_teacherId.setCellValueFactory(
-    		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
-		questions_teacherId.setCellValueFactory(
-    		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
+    		    new PropertyValueFactory<Question,String>("idquestionIntruction"));
+		questions_answer1.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("ans1"));
+		questions_answer2.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("ans2"));
+		questions_answer3.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("ans3"));
+		questions_answer4.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("ans4"));
+		questions_correct_answer.setCellValueFactory(
+    		    new PropertyValueFactory<Question,Integer>("correctAns"));
 	}
 
 	private void initExecuteExams() {
@@ -414,7 +427,6 @@ public class RawDataViewController implements Observer {
 				new PropertyValueFactory<AlterDuration,Integer>("original_duration"));
 		alter_duration_changed.setCellValueFactory(
 				new PropertyValueFactory<AlterDuration,Integer>("after_change_duration"));
-    	
 	}
 
 	@Override
@@ -435,6 +447,14 @@ public class RawDataViewController implements Observer {
 		updateExamTable(allMessage.getExamList());
 		updateStatsTable(allMessage.getStatList());
 		updateExecuteExamTable(allMessage.getExecuteList());
+		updateQuestionsTable(allMessage.getQuestionList());
+	}
+
+
+	private void updateQuestionsTable(ArrayList<Question> questionList) {
+		ObservableList<Question> myList=FXCollections.observableArrayList();
+		myList.addAll(questionList);
+		questions_table.setItems(myList);
 	}
 
 	private void updateExecuteExamTable(ArrayList<ExecuteExam> executeList) {

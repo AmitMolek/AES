@@ -306,6 +306,7 @@ public class ServerMessageManager {
 		allMessage.setExamList(getDB.getExams());
 		allMessage.setStatList(getDB.solvedExamStatistic((String[])null));
 		allMessage.setExecuteList(getDB.getExecutedExams());
+		allMessage.setQuestionList(getDB.questions(""));
 
 		return allMessage;
 	}

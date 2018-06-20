@@ -151,6 +151,7 @@
                                     <TableView fx:id="questions_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <columns>
                                           <TableColumn fx:id="questions_questionId" editable="false" minWidth="20.0" prefWidth="98.40002137422562" text="Question ID" />
+                                          <TableColumn fx:id="questions_question_text" prefWidth="300.0" text="Question Text" />
                                           <TableColumn fx:id="questions_question_instruction" editable="false" minWidth="49.5999755859375" prefWidth="137.5999984741211" text="Question Instruction" />
                                           <TableColumn fx:id="questions_answer1" editable="false" minWidth="20.0" prefWidth="143.19998168945312" text="Answer 1" />
                                           <TableColumn fx:id="questions_answer2" editable="false" minWidth="20.0" prefWidth="110.4000244140625" text="Answer 2" />
