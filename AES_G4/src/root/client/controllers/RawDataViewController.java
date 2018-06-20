@@ -20,6 +20,7 @@ import root.dao.app.Course;
 import root.dao.app.CourseInSubject;
 import root.dao.app.Exam;
 import root.dao.app.ExamTableDataLine;
+import root.dao.app.Statistic;
 import root.dao.message.AbstractMessage;
 import root.dao.message.AllTablesMessage;
 import root.dao.message.MessageFactory;
@@ -88,61 +89,61 @@ public class RawDataViewController implements Observer {
     private TableColumn<Exam, Integer> exams_lock_flag;
 
     @FXML
-    private TableView<?> exam_stats_table;
+    private TableView<Statistic> exam_stats_table;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_examID;
+    private TableColumn<Statistic, String> exam_stats_examID;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_date;
+    private TableColumn<Statistic, String> exam_stats_date;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_realTime;
+    private TableColumn<Statistic, String> exam_stats_realTime;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_submitted;
+    private TableColumn<Statistic, Integer> exam_stats_submitted;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_interrupted;
+    private TableColumn<Statistic, Integer> exam_stats_interrupted;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_total;
+    private TableColumn<Statistic, Integer> exam_stats_total;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_average;
+    private TableColumn<Statistic, Double> exam_stats_average;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_median;
+    private TableColumn<Statistic, Integer> exam_stats_median;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_0_10;
+    private TableColumn<Statistic, Integer> exam_stats_0_10;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_11_20;
+    private TableColumn<Statistic, Integer> exam_stats_11_20;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_21_30;
+    private TableColumn<Statistic, Integer> exam_stats_21_30;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_31_40;
+    private TableColumn<Statistic, Integer> exam_stats_31_40;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_41_50;
+    private TableColumn<Statistic, Integer> exam_stats_41_50;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_51_60;
+    private TableColumn<Statistic, Integer> exam_stats_51_60;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_61_70;
+    private TableColumn<Statistic, Integer> exam_stats_61_70;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_71_80;
+    private TableColumn<Statistic, Integer> exam_stats_71_80;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_81_90;
+    private TableColumn<Statistic, Integer> exam_stats_81_90;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_91_100;
+    private TableColumn<Statistic, Integer> exam_stats_91_100;
 
     @FXML
     private TableView<?> execute_exams_table;
@@ -299,6 +300,44 @@ public class RawDataViewController implements Observer {
 		initCoursesTable();
 		initCourseInSubjectTable();
 		initExamTable();
+		initStatisticsTable();
+	}
+
+	private void initStatisticsTable() {
+		exam_stats_examID.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,String>("exam_ID"));
+		exam_stats_date.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,String>("date"));
+		exam_stats_realTime.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,String>("real_time_duration"));
+		exam_stats_submitted.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("submitted_students_counter"));
+		exam_stats_interrupted.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("interrupted_students_counter"));
+		exam_stats_average.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Double>("exams_avg"));
+		exam_stats_median.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("exams_median"));
+		exam_stats_0_10.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_0_10"));
+		exam_stats_11_20.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_11_20"));
+		exam_stats_21_30.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_21_30"));
+		exam_stats_31_40.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_31_40"));
+		exam_stats_41_50.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_41_50"));
+		exam_stats_51_60.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_51_60"));
+		exam_stats_61_70.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_61_70"));
+		exam_stats_71_80.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_71_80"));
+		exam_stats_81_90.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_81_90"));
+		exam_stats_91_100.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_91_100"));
 	}
 
 	private void initExamTable() {
@@ -364,6 +403,13 @@ public class RawDataViewController implements Observer {
 		updateCourseTable(allMessage.getCourseList());
 		updateCourseInSubjectTable(allMessage.getCourseInSubList());
 		updateExamTable(allMessage.getExamList());
+		updateStatsTable(allMessage.getStatList());
+	}
+
+	private void updateStatsTable(ArrayList<Statistic> statList) {
+		ObservableList<Statistic> myList=FXCollections.observableArrayList();
+		myList.addAll(statList);
+		exam_stats_table.setItems(myList);		
 	}
 
 	private void updateExamTable(ArrayList<Exam> examList) {

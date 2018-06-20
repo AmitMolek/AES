@@ -544,7 +544,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * 
 	 * A method that returns all exams statistics from the database
 	 * 
-	 * @author Alon Ben Yossef
+	 * @author Alon Ben Yosef
 	 * @param str
 	 *            can be null, and then all subjects of teacher wil return, or str
 	 *            can contain a specific exam ID
@@ -552,8 +552,44 @@ public class GetFromDB implements DbManagerInterface {
 	 */
 	@Override
 	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-
-		return null;
+		if(str==null) {
+			String query1 = "SELECT * FROM aes.`exams stats`";
+		ResultSet rs;
+		Statistic stat;
+		try {
+			ArrayList<Statistic> stats=new ArrayList<Statistic>();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query1);
+			while(rs.next()) {
+				stat = new Statistic();
+				stat.setExam_ID(rs.getString(1));
+				stat.setDate(rs.getString(2));
+				stat.setReal_time_duration(rs.getString(3));
+				stat.setSubmitted_students_counter(rs.getInt(4));
+				stat.setInterrupted_students_counter(rs.getInt(5));
+				stat.setStudents_started_counter(rs.getInt(6));
+				stat.setExams_avg(rs.getDouble(7));
+				stat.setExams_median(rs.getInt(8));
+				stat.setGrade_derivative_0_10(rs.getInt(9));
+				stat.setGrade_derivative_11_20(rs.getInt(10));
+				stat.setGrade_derivative_21_30(rs.getInt(11));
+				stat.setGrade_derivative_31_40(rs.getInt(12));
+				stat.setGrade_derivative_41_50(rs.getInt(13));
+				stat.setGrade_derivative_51_60(rs.getInt(14));
+				stat.setGrade_derivative_61_70(rs.getInt(15));
+				stat.setGrade_derivative_71_80(rs.getInt(16));
+				stat.setGrade_derivative_81_90(rs.getInt(17));
+				stat.setGrade_derivative_91_100(rs.getInt(18));
+				stats.add(stat);
+			}
+			rs.close();
+			return stats;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}
+	return null;
 	}
 
 	/**
@@ -561,7 +597,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * 
 	 * A method that returns all the solved exams in a particular course
 	 * 
-	 * @author Alon Ben Yossef
+	 * @author Alon Ben Yosef
 	 * @param course_id
 	 *            the id of the course
 	 * @return list of all solved exams in a particular course
@@ -802,9 +838,9 @@ public class GetFromDB implements DbManagerInterface {
 			stat.setExam_ID(rs.getString(1));
 			stat.setDate(rs.getString(2));
 			stat.setReal_time_duration(rs.getString(3));
-			stat.setStudents_started_counter(rs.getInt(4));
-			stat.setSubmitted_students_counter(rs.getInt(5));
-			stat.setInterrupted_students_counter(rs.getInt(6));
+			stat.setSubmitted_students_counter(rs.getInt(4));
+			stat.setInterrupted_students_counter(rs.getInt(5));
+			stat.setStudents_started_counter(rs.getInt(6));
 			stat.setExams_avg(rs.getDouble(7));
 			stat.setExams_median(rs.getInt(8));
 			stat.setGrade_derivative_0_10(rs.getInt(9));
