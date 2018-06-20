@@ -949,5 +949,25 @@ public class GetFromDB implements DbManagerInterface {
 			}
 		return list;
 	}
+	/**
+	 * @author Alon Ben-yosef
+	 * @return a list of all executed exams from DB
+	 */
+	public ArrayList<ExecuteExam> getExecutedExams() {
+		ArrayList<ExecuteExam> list = new ArrayList<ExecuteExam>();
+		ResultSet rs;
+		String query = "SELECT * FROM aes.`execute exams`;";
+		try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					list.add(new ExecuteExam(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+				}
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
+	}
 
 }

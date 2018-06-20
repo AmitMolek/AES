@@ -20,6 +20,8 @@ import root.dao.app.Course;
 import root.dao.app.CourseInSubject;
 import root.dao.app.Exam;
 import root.dao.app.ExamTableDataLine;
+import root.dao.app.ExecuteExam;
+import root.dao.app.Question;
 import root.dao.app.Statistic;
 import root.dao.message.AbstractMessage;
 import root.dao.message.AllTablesMessage;
@@ -146,49 +148,49 @@ public class RawDataViewController implements Observer {
     private TableColumn<Statistic, Integer> exam_stats_91_100;
 
     @FXML
-    private TableView<?> execute_exams_table;
+    private TableView<ExecuteExam> execute_exams_table;
 
     @FXML
-    private TableColumn<?, ?> execute_exams_examId;
+    private TableColumn<ExecuteExam, String> execute_exams_examId;
 
     @FXML
-    private TableColumn<?, ?> execute_exams_startDate;
+    private TableColumn<ExecuteExam, String> execute_exams_startDate;
 
     @FXML
-    private TableColumn<?, ?> execute_exams_code;
+    private TableColumn<ExecuteExam, String> execute_exams_code;
 
     @FXML
-    private TableColumn<?, ?> execute_exams_exam_type;
+    private TableColumn<ExecuteExam, String> execute_exams_exam_type;
 
     @FXML
-    private TableColumn<?, ?> execute_exams_executing_teacher_ID;
+    private TableColumn<ExecuteExam, String> execute_exams_executing_teacher_ID;
 
     @FXML
-    private TableView<?> questions_table;
+    private TableView<Question> questions_table;
 
     @FXML
-    private TableColumn<?, ?> questions_questionId;
+    private TableColumn<Question, String> questions_questionId;
 
     @FXML
-    private TableColumn<?, ?> questions_question_instruction;
+    private TableColumn<Question, String> questions_question_instruction;
 
     @FXML
-    private TableColumn<?, ?> questions_answer1;
+    private TableColumn<Question, String> questions_answer1;
 
     @FXML
-    private TableColumn<?, ?> questions_answer2;
+    private TableColumn<Question, String> questions_answer2;
 
     @FXML
-    private TableColumn<?, ?> questions_answer3;
+    private TableColumn<Question, String> questions_answer3;
 
     @FXML
-    private TableColumn<?, ?> questions_answer4;
+    private TableColumn<Question, String> questions_answer4;
 
     @FXML
-    private TableColumn<?, ?> questions_correct_answer;
+    private TableColumn<Question, Integer> questions_correct_answer;
 
     @FXML
-    private TableColumn<?, ?> questions_teacherId;
+    private TableColumn<Question, String> questions_teacherId;
 
     @FXML
     private TableView<?> questions_in_exam_table;
@@ -301,8 +303,34 @@ public class RawDataViewController implements Observer {
 		initCourseInSubjectTable();
 		initExamTable();
 		initStatisticsTable();
+		initExecuteExams();
+		initQuestions();
 	}
 
+	private void initQuestions() {
+		questions_teacherId.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
+		questions_question_instruction.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("question_instruction"));
+		questions_teacherId.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
+		questions_teacherId.setCellValueFactory(
+    		    new PropertyValueFactory<Question,String>("teacherAssembeld"));
+	}
+
+	private void initExecuteExams() {
+		execute_exams_code.setCellValueFactory(
+    		    new PropertyValueFactory<ExecuteExam,String>("examPassword"));
+		execute_exams_exam_type.setCellValueFactory(
+    		    new PropertyValueFactory<ExecuteExam,String>("examType"));
+		execute_exams_executing_teacher_ID.setCellValueFactory(
+    		    new PropertyValueFactory<ExecuteExam,String>("teacherId"));
+		execute_exams_startDate.setCellValueFactory(
+    		    new PropertyValueFactory<ExecuteExam,String>("startTime"));
+		execute_exams_examId.setCellValueFactory(
+    		    new PropertyValueFactory<ExecuteExam,String>("examId"));
+	}
+	
 	private void initStatisticsTable() {
 		exam_stats_examID.setCellValueFactory(
     		    new PropertyValueFactory<Statistic,String>("exam_ID"));
@@ -314,6 +342,8 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Statistic,Integer>("submitted_students_counter"));
 		exam_stats_interrupted.setCellValueFactory(
     		    new PropertyValueFactory<Statistic,Integer>("interrupted_students_counter"));
+		exam_stats_total.setCellValueFactory(
+    		    new PropertyValueFactory<Statistic,Integer>("students_started_counter"));
 		exam_stats_average.setCellValueFactory(
     		    new PropertyValueFactory<Statistic,Double>("exams_avg"));
 		exam_stats_median.setCellValueFactory(
@@ -404,6 +434,13 @@ public class RawDataViewController implements Observer {
 		updateCourseInSubjectTable(allMessage.getCourseInSubList());
 		updateExamTable(allMessage.getExamList());
 		updateStatsTable(allMessage.getStatList());
+		updateExecuteExamTable(allMessage.getExecuteList());
+	}
+
+	private void updateExecuteExamTable(ArrayList<ExecuteExam> executeList) {
+		ObservableList<ExecuteExam> myList=FXCollections.observableArrayList();
+		myList.addAll(executeList);
+		execute_exams_table.setItems(myList);
 	}
 
 	private void updateStatsTable(ArrayList<Statistic> statList) {

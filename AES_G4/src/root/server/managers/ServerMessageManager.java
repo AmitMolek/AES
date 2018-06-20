@@ -305,7 +305,8 @@ public class ServerMessageManager {
 		allMessage.setCourseInSubList(getDB.getCoursesInSubject());
 		allMessage.setExamList(getDB.getExams());
 		allMessage.setStatList(getDB.solvedExamStatistic((String[])null));
-		
+		allMessage.setExecuteList(getDB.getExecutedExams());
+
 		return allMessage;
 	}
 
