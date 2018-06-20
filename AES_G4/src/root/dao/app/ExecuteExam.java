@@ -4,30 +4,58 @@ import java.io.Serializable;
 import java.security.Timestamp;
 
 /**
- * Class for executed exams
+ * A class that is responsible for keeping data about execute exam
  * 
- * @author Omer Hiamovich
+ * @author Omer Haimovich
  *
  */
 public class ExecuteExam implements Serializable {
-	private String examId;
-	private String startTime;
-	private String examPassword;
-	private String examType;// 0- manually,1-auto
-	private int durationTime;
-	private String teacherId;
+
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for execute exam
+	 * 
+	 * The id of the exam
+	 */
+	private String examId;
+	/**
+	 * 
+	 * The time when a student can not enter and do an exam
+	 */
+	private String startTime;
+	/**
+	 * The code of the exam
+	 */
+	private String examPassword;
+	/**
+	 * The type of the exam : 0- manually,1-auto
+	 */
+	private String examType;
+	/**
+	 * The duration time of the exam
+	 */
+	private int durationTime;
+	/**
+	 * The id of the teacher who execute the exam
+	 */
+	private String teacherId;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the ExecuteExam
 	 * 
 	 * @param examId
-	 *            the exam id
+	 *            the id of the exam
 	 * @param startTime
-	 *            the start time of the exam
+	 *            the time when a student can not enter and do an exam
 	 * @param examPassword
-	 *            the password of the exam
+	 *            the code of the exam
 	 * @param examType
-	 *            the exam type
+	 *            the type of the exam
+	 * @param duration
+	 *            the duration time of the exam
+	 * 
 	 */
 	public ExecuteExam(String examId, String startTime, String examPassword, String examType, int duration) {
 		super();
@@ -39,16 +67,16 @@ public class ExecuteExam implements Serializable {
 	}
 
 	/**
-	 * Constructor for execute exam
+	 * Constructs the ExecuteExam
 	 * 
 	 * @param examId
-	 *            the exam id
+	 *            the id of the exam
 	 * @param startTime
-	 *            the start time of the exam
+	 *            the time when a student can not enter and do an exam
 	 * @param examPassword
-	 *            the exam password
+	 *            the code of the exam
 	 * @param examType
-	 *            the exam type
+	 *            the type of the exam
 	 */
 	public ExecuteExam(String examId, String startTime, String examPassword, String examType) {
 		super();
@@ -59,18 +87,18 @@ public class ExecuteExam implements Serializable {
 	}
 
 	/**
-	 * Constructor for executed exam
+	 * Constructs the ExecuteExam
 	 * 
 	 * @param examId
-	 *            the exam id
+	 *            the id of the exam
 	 * @param startTime
-	 *            the start time of the exam
+	 *            the time when a student can not enter and do an exam
 	 * @param examPassword
-	 *            the exam password
+	 *            the code of the exam
 	 * @param examType
-	 *            the exam type
+	 *            the type of the exam
 	 * @param teacherId
-	 *            the executed teacher id
+	 *            the id of the teacher who execute the exam
 	 */
 
 	public ExecuteExam(String examId, String startTime, String examPassword, String examType, String teacherId) {
@@ -83,68 +111,74 @@ public class ExecuteExam implements Serializable {
 	}
 
 	/**
+	 * A method that set the id of the teacher who execute the exam
 	 * 
-	 * @return the teacher id
+	 * @return the id of the teacher who execute the exam
 	 */
 	public String getTeacherId() {
 		return teacherId;
 	}
 
 	/**
-	 * Set new teacher id
+	 * A method that set the id of the teacher who execute the exam
 	 * 
 	 * @param teacherId
-	 *            the teacher id
+	 *            id of the teacher who execute the exam
 	 */
 	public void setTeacherId(String teacherId) {
 		this.teacherId = teacherId;
 	}
 
 	/**
+	 * A method that returns the id of the exam
 	 * 
-	 * @return the exam id
+	 * @return the id of the exam
 	 */
 	public String getExamId() {
 		return examId;
 	}
 
 	/**
+	 * A method that returns the time when a student can not enter and do an exam
 	 * 
-	 * @return the exam start time
+	 * @return the time when a student can not enter and do an exam
 	 */
 	public String getStartTime() {
 		return startTime;
 	}
 
 	/**
+	 * A method that returns the code of the exam
 	 * 
-	 * @return the exam password
+	 * @return the code of the exam
 	 */
 	public String getExamPassword() {
 		return examPassword;
 	}
 
 	/**
+	 * A method that returns the type of the exam
 	 * 
-	 * @return return the exam type
+	 * @return return the type of the exam
 	 */
 	public String getExamType() {
 		return examType;
 	}
 
 	/**
+	 * A method that returns the duration time of the exam
 	 * 
-	 * @return the duration time
+	 * @return the duration time of the exam
 	 */
 	public int getDurationTime() {
 		return durationTime;
 	}
 
 	/**
-	 * Set new duration time
+	 * A method that set the duration time of the exam
 	 * 
 	 * @param durationTime
-	 *            the new duration value
+	 *            the the duration time of the exam
 	 */
 	public void setDurationTime(int durationTime) {
 		this.durationTime = durationTime;
