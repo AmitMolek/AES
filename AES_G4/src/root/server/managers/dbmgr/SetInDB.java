@@ -99,6 +99,28 @@ public class SetInDB implements DbManagerInterface {
 		return null;
 	}
 	
+	public boolean updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(int grade, String expl, String teacher_id, SolvedExams se) {
+		String updateQuery = "UPDATE `solved exams` SET solved_exam_grade = ?, grade_alteration_explanation = ?,"
+				+ "approving_teacher_id = ?, grade_approval_by_teacher = ? WHERE User_ID = ? AND exam_ID = ? AND exam_executing_Date = ?;";
+		
+		try {
+			newStmt = conn.prepareStatement(updateQuery);
+			newStmt.setInt(1, grade);
+			newStmt.setString(2, expl);
+			newStmt.setString(3, teacher_id);
+			newStmt.setString(4, "approved");
+			newStmt.setString(5, se.getSovingStudentID());
+			newStmt.setString(6, se.getExamID());
+			newStmt.setTimestamp(7, se.getExamDateTime());
+			newStmt.execute();
+			
+			return true;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean updateSolvedExamCheatingFlag(String user_id, String exam_id, boolean cheated) {
 		String cheatedStr = "no";
 		if (cheated) cheatedStr = "yes";
