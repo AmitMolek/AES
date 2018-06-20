@@ -6,32 +6,36 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import org.apache.log4j.DailyRollingFileAppender;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
-import root.dao.app.Exam;
 import root.dao.app.ExecuteExam;
-import root.dao.app.QuestionInExam;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.ExecutedExamsMessage;
 import root.dao.message.MessageFactory;
+import root.dao.message.SimpleMessage;
 
+/**
+ * @author Naor Saadia
+ * This controller response for change duration screen
+ *
+ */
 public class ChangeDurationTimeCntroller implements Observer{
 	ObservableClient client;
 		
@@ -55,6 +59,9 @@ public class ChangeDurationTimeCntroller implements Observer{
     
     @FXML
     private TableView<ExecuteExam> exeTable;
+    
+    @FXML
+    private Button btnLock;
     
     MessageFactory messageFact;
     
@@ -142,5 +149,25 @@ public class ChangeDurationTimeCntroller implements Observer{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
+    }
+    
+    @FXML
+    void LockExam(ActionEvent event) {
+    	ExecuteExam executed = exeTable.getSelectionModel().getSelectedItem();
+    	SimpleMessage simple = (SimpleMessage)messageFact.getMessage("simple", null);
+    	simple.setMessage("closeexam-"+executed.getExamId());
+    	Platform.runLater(()-> {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("Information Dialog");
+    		alert.setHeaderText("Lock exam done");
+    		alert.setContentText("You choose to lock this exam");
+    		alert.showAndWait();
+    	});
+    	try {
+			client.sendToServer(simple);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
     }
 }
