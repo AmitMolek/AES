@@ -72,10 +72,7 @@ public class MessageFactory {
 			case "loggedout":
 				return new LogoutErrorMessage((Exception)payload);
 		}
-		return new ErrorMessage((Exception)payload);
-		
-		// TODO Auto-generated method stub
-		
+		return new ErrorMessage((Exception)payload);		
 	}
 
 	private AbstractMessage getDelMessage(String[] msgContent, Object payload) {
@@ -171,6 +168,8 @@ public class MessageFactory {
 			return createGetStatisticsByAssemblingTeacherId((User)payload);
 		case "solvedbysubjectcourse":
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
+		case "query":
+			return new QueryMessage("get-query",(String)payload);
 		default:
 			break;
 		}
@@ -306,6 +305,8 @@ public class MessageFactory {
 			if(payload instanceof Statistic) return new StatsMessage("ok-get-examstatsbyiddate",(Statistic) payload);
 		case "solvedbysubjectcourse":
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
+		case "query":
+			return new StatsMessage("ok-get-query", (Statistic)payload);
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

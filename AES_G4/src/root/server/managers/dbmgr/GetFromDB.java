@@ -567,7 +567,25 @@ public class GetFromDB implements DbManagerInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	private Question returnQuestion(String id) {
+		String QuestionQuery = "SELECT * FROM questions WHERE question_id = "+id;
+		ResultSet qs;
+		Question q = null;
+		try {
+			qs = stmt.executeQuery(QuestionQuery+";");
+			while(qs.next()) {
+				 q = new Question(qs.getString(1),qs.getString(2),qs.getString(3),qs.getString(4),qs.getString(5),qs.getString(6),qs.getString(7),qs.getInt(8),qs.getString(9));
+			}
+			qs.close();
+			return q;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	
+	}
+	
 	public ArrayList<ExamTableDataLine> getLinesByTeacherID(String id) {
 		String query1 = "SELECT e.exam_id, st.exam_date,c.course_name,sub.subject_name"
 				+ " FROM aes.exams e, aes.`exams stats` st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis"
@@ -645,4 +663,15 @@ public class GetFromDB implements DbManagerInterface {
 
 	}
 
+	public ArrayList<Integer> getGradesQuery(String query) throws SQLException {
+		String query1=query;
+		ResultSet rs;
+		ArrayList<Integer> list=new ArrayList<Integer>();
+		stmt = conn.createStatement();
+		rs= stmt.executeQuery(query1);
+		while(rs.next()){
+			list.add(rs.getInt(1));
+		}
+		return list;
+	}
 }

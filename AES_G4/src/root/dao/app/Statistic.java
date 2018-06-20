@@ -1,5 +1,7 @@
 package root.dao.app;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 public class Statistic implements Serializable {
 	/**
@@ -32,7 +34,6 @@ public class Statistic implements Serializable {
 			int grade_derivative_31_40, int grade_derivative_41_50, int grade_derivative_51_60,
 			int grade_derivative_61_70, int grade_derivative_71_80, int grade_derivative_81_90,
 			int grade_derivative_91_100) {
-		super();
 		this.exam_ID = exam_ID;
 		this.date = date;
 		this.real_time_duration = real_time_duration;
@@ -53,7 +54,53 @@ public class Statistic implements Serializable {
 		this.grade_derivative_91_100 = grade_derivative_91_100;
 	}
 	public Statistic() {
+		this.exam_ID ="";
+		this.date = "";
+		this.real_time_duration = "";
+		this.submitted_students_counter = 0;
+		this.interrupted_students_counter = 0;
+		this.students_started_counter = 0;
+		this.exams_avg = 0;
+		this.exams_median = 0;
+		this.grade_derivative_0_10 = 0;
+		this.grade_derivative_11_20 = 0;
+		this.grade_derivative_21_30 = 0;
+		this.grade_derivative_31_40 = 0;
+		this.grade_derivative_41_50 = 0;
+		this.grade_derivative_51_60 = 0;
+		this.grade_derivative_61_70 = 0;
+		this.grade_derivative_71_80 = 0;
+		this.grade_derivative_81_90 = 0;
+		this.grade_derivative_91_100 = 0;
+	}
+	
+	/**
+	 * Generate statistics by a list of grades
+	 * @param grades
+	 */
+	public Statistic(List<Integer> grades) {
+		super();
+		//To division by 0
+		if(grades==null||grades.isEmpty()) return;
 		
+		int counter = 0;
+		//Not proud of this solution
+		for(Integer grade:grades) {
+			counter+=grade.intValue();
+			if(grade.intValue()>=0 && grade.intValue()<=10) this.grade_derivative_0_10++;
+			if(grade.intValue()>=11 && grade.intValue()<=20) this.grade_derivative_11_20++;
+			if(grade.intValue()>=21 && grade.intValue()<=30) this.grade_derivative_21_30++;
+			if(grade.intValue()>=31 && grade.intValue()<=40) this.grade_derivative_31_40++;
+			if(grade.intValue()>=41 && grade.intValue()<=50) this.grade_derivative_41_50++;
+			if(grade.intValue()>=51 && grade.intValue()<=60) this.grade_derivative_51_60++;
+			if(grade.intValue()>=61 && grade.intValue()<=70) this.grade_derivative_61_70++;
+			if(grade.intValue()>=71 && grade.intValue()<=80) this.grade_derivative_71_80++;
+			if(grade.intValue()>=81 && grade.intValue()<=90) this.grade_derivative_81_90++;
+			if(grade.intValue()>=91 && grade.intValue()<=100) this.grade_derivative_91_100++;
+		}
+		Collections.sort(grades);
+		exams_median=grades.get(grades.size()/2);
+		exams_avg=(double)counter/grades.size();
 	}
 	public String getExam_ID() {
 		return exam_ID;
