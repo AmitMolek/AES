@@ -36,6 +36,7 @@ import root.dao.app.Subject;
 import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.AbstractMessage;
+import root.dao.message.AllTablesMessage;
 import root.dao.message.CheatingExamsTestMessage;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
@@ -289,9 +290,23 @@ public class ServerMessageManager {
 				return handleGetSolvedExamsBySubjectIDCourseID(msg);
 			case "query":
 				return handleGetQuery(msg);
+			case "alltables":
+				return handleGetAllTables(msg);
 		}
 		
 		return null;
+	}
+
+	private static AbstractMessage handleGetAllTables(AbstractMessage msg) {
+		GetFromDB getDB = new GetFromDB();
+		AllTablesMessage allMessage=(AllTablesMessage)message.getMessage("ok-get-alltables", null);
+		allMessage.setAlterDurList(getDB.alterDuration((String[])null));
+		allMessage.setCourseList(getDB.courses(new String[0]));
+		allMessage.setCourseInSubList(getDB.getCoursesInSubject());
+		allMessage.setExamList(getDB.getExams());
+
+		
+		return allMessage;
 	}
 
 	private static AbstractMessage handleGetSolvedExamsBySubjectIDCourseID(AbstractMessage msg) {

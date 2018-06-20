@@ -1,16 +1,25 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
+import root.dao.app.AlterDuration;
+import root.dao.app.Course;
+import root.dao.app.CourseInSubject;
+import root.dao.app.Exam;
+import root.dao.app.ExamTableDataLine;
 import root.dao.message.AbstractMessage;
 import root.dao.message.AllTablesMessage;
 import root.dao.message.MessageFactory;
@@ -19,64 +28,64 @@ import root.dao.message.StatsMessage;
 public class RawDataViewController implements Observer {
 
     @FXML
-    private TableView<?> alter_duration_table;
+    private TableView<AlterDuration> alter_duration_table;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_userID;
+    private TableColumn<AlterDuration, String> alter_duration_userID;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_examID;
+    private TableColumn<AlterDuration, String> alter_duration_examID;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_date;
+    private TableColumn<AlterDuration, String> alter_duration_date;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_teacherExp;
+    private TableColumn<AlterDuration, String> alter_duration_teacherExp;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_prinAns;
+    private TableColumn<AlterDuration, String> alter_duration_prinAns;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_originalDur;
+    private TableColumn<AlterDuration, Integer> alter_duration_originalDur;
 
     @FXML
-    private TableColumn<?, ?> alter_duration_changed;
+    private TableColumn<AlterDuration, Integer> alter_duration_changed;
 
     @FXML
-    private TableView<?> courses_table;
+    private TableView<Course> courses_table;
 
     @FXML
-    private TableColumn<?, ?> course_id;
+    private TableColumn<Course, String> course_id;
 
     @FXML
-    private TableColumn<?, ?> course_name;
+    private TableColumn<Course, String> course_name;
 
     @FXML
-    private TableView<?> course_in_subject_table;
+    private TableView<CourseInSubject> course_in_subject_table;
 
     @FXML
-    private TableColumn<?, ?> course_in_subject_subject_id;
+    private TableColumn<CourseInSubject, String> course_in_subject_subject_id;
 
     @FXML
-    private TableColumn<?, ?> course_in_subject_course_id;
+    private TableColumn<CourseInSubject, String> course_in_subject_course_id;
 
     @FXML
-    private TableView<?> exams_table;
+    private TableView<Exam> exams_table;
 
     @FXML
-    private TableColumn<?, ?> exams_userId;
+    private TableColumn<Exam, String> exams_examId;
 
     @FXML
-    private TableColumn<?, ?> exams_teacherAssembler;
+    private TableColumn<Exam, String> exams_teacherAssembler;
 
     @FXML
-    private TableColumn<?, ?> exams_exam_original_allocated_duration;
+    private TableColumn<Exam, Integer> exams_exam_original_allocated_duration;
 
     @FXML
-    private TableColumn<?, ?> exams_exams_state;
+    private TableColumn<Exam, Integer> exams_exams_state;
 
     @FXML
-    private TableColumn<?, ?> exams_lock_flag;
+    private TableColumn<Exam, Integer> exams_lock_flag;
 
     @FXML
     private TableView<?> exam_stats_table;
@@ -112,7 +121,7 @@ public class RawDataViewController implements Observer {
     private TableColumn<?, ?> exam_stats_11_20;
 
     @FXML
-    private TableColumn<?, ?> exam_stats_21_30col;
+    private TableColumn<?, ?> exam_stats_21_30;
 
     @FXML
     private TableColumn<?, ?> exam_stats_31_40;
@@ -275,17 +284,111 @@ public class RawDataViewController implements Observer {
     public void initialize() {
     	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from DataKeep, but dont remove it from there, for later use.
     	client.addObserver(this);
-    	MessageFactory.getInstance().getMessage("get-alltables", null);
+    	initTables();
+    	AbstractMessage msg=MessageFactory.getInstance().getMessage("get-alltables", null);
+    	try {
+			client.sendToServer(msg);
+		} catch (IOException e) {
+			// TODO Deal with failure
+			e.printStackTrace();
+		}
     }
+
+	private void initTables() {
+		initAlterDurationTable();
+		initCoursesTable();
+		initCourseInSubjectTable();
+		initExamTable();
+	}
+
+	private void initExamTable() {
+		exams_lock_flag.setCellValueFactory(
+    		    new PropertyValueFactory<Exam,Integer>("lock"));
+		exams_exams_state.setCellValueFactory(
+    		    new PropertyValueFactory<Exam,Integer>("ExamState"));
+		exams_teacherAssembler.setCellValueFactory(
+    		    new PropertyValueFactory<Exam,String>("teacherId"));
+		exams_exam_original_allocated_duration.setCellValueFactory(
+    		    new PropertyValueFactory<Exam,Integer>("examDuration"));
+		exams_examId.setCellValueFactory(
+    		    new PropertyValueFactory<Exam,String>("examId"));
+		
+	}
+
+	private void initCourseInSubjectTable() {
+		course_in_subject_course_id.setCellValueFactory(
+    		    new PropertyValueFactory<CourseInSubject,String>("course_id"));
+		course_in_subject_subject_id.setCellValueFactory(
+    		    new PropertyValueFactory<CourseInSubject,String>("subject_id"));
+	}
+
+	private void initCoursesTable() {
+		course_id.setCellValueFactory(
+    		    new PropertyValueFactory<Course,String>("courseId"));
+		course_name.setCellValueFactory(
+    		    new PropertyValueFactory<Course,String>("courseName"));
+	}
+
+	private void initAlterDurationTable() {
+		
+		alter_duration_userID.setCellValueFactory(
+    		    new PropertyValueFactory<AlterDuration,String>("userID"));
+		alter_duration_examID.setCellValueFactory(
+    		    new PropertyValueFactory<AlterDuration,String>("examID"));
+		alter_duration_date.setCellValueFactory(
+				new PropertyValueFactory<AlterDuration,String>("date"));
+		alter_duration_teacherExp.setCellValueFactory(
+				new PropertyValueFactory<AlterDuration,String>("teacherExp"));
+		alter_duration_prinAns.setCellValueFactory(
+    		    new PropertyValueFactory<AlterDuration,String>("principalAns"));
+		alter_duration_originalDur.setCellValueFactory(
+				new PropertyValueFactory<AlterDuration,Integer>("original_duration"));
+		alter_duration_changed.setCellValueFactory(
+				new PropertyValueFactory<AlterDuration,Integer>("after_change_duration"));
+    	
+	}
 
 	@Override
 	public void update(Observable o, Object msg) {
 		if(msg instanceof AbstractMessage) {
 			if(((AbstractMessage) msg).getMsg().equals("ok-get-alltables")) {
 				AllTablesMessage allMessage=(AllTablesMessage)msg;
-				//TODO
+				updateTables(allMessage);
 				
 			}
 		}
+	}
+
+	private void updateTables(AllTablesMessage allMessage) {
+		updateAlterDurationTable(allMessage.getAlterDurList());
+		updateCourseTable(allMessage.getCourseList());
+		updateCourseInSubjectTable(allMessage.getCourseInSubList());
+		updateExamTable(allMessage.getExamList());
+	}
+
+	private void updateExamTable(ArrayList<Exam> examList) {
+		ObservableList<Exam> myList=FXCollections.observableArrayList();
+		myList.addAll(examList);
+		exams_table.setItems(myList);
+	}
+
+	private void updateCourseInSubjectTable(ArrayList<CourseInSubject> courseInSubList) {
+		ObservableList<CourseInSubject> myList=FXCollections.observableArrayList();
+		myList.addAll(courseInSubList);
+		course_in_subject_table.setItems(myList);
+		
+	}
+
+	private void updateCourseTable(ArrayList<Course> courseList) {
+		ObservableList<Course> myList=FXCollections.observableArrayList();
+		myList.addAll(courseList);
+		courses_table.setItems(myList);
+		
+	}
+
+	private void updateAlterDurationTable(ArrayList<AlterDuration> alterDurList) {
+		ObservableList<AlterDuration> myList=FXCollections.observableArrayList();
+		myList.addAll(alterDurList);
+		alter_duration_table.setItems(myList);
 	}
 }

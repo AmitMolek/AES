@@ -73,7 +73,6 @@ public class TestGradesPrincipalController implements Observer{
 	    	default:
 	    		return;
 	    	}
-	    	System.out.println(query);
 	    	AbstractMessage msg= MessageFactory.getInstance().getMessage("get-query", query);
 			client.sendToServer(msg);
     	}

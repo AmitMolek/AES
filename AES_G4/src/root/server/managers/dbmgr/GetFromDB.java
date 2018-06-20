@@ -18,6 +18,7 @@ import com.mysql.jdbc.Statement;
 import root.dao.app.CheatingExamTest;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
+import root.dao.app.CourseInSubject;
 import root.dao.app.Exam;
 import root.dao.app.ExamTableDataLine;
 import root.dao.app.ExecuteExam;
@@ -197,8 +198,22 @@ public class GetFromDB implements DbManagerInterface {
 	 */
 	@Override
 	public ArrayList<AlterDuration> alterDuration(String... str) {
-
-		return null;
+		ArrayList<AlterDuration> list = new ArrayList<AlterDuration>();
+		ResultSet rs;
+		if(str==null) {
+			String query = "SELECT * FROM aes.`alter duration request`;";
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					list.add(new AlterDuration(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7)));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 
 	/**
@@ -851,4 +866,52 @@ public class GetFromDB implements DbManagerInterface {
 		}
 		return list;
 	}
+
+	/**
+	 * @author Alon Ben-yosef
+	 * Get all courses in subject rows from DB
+	 * @return arraylist of CourseInSubject from DB
+	 */
+	public ArrayList<CourseInSubject> getCoursesInSubject() {
+		ArrayList<CourseInSubject> list = new ArrayList<CourseInSubject>();
+		ResultSet rs;
+		String query = "SELECT * FROM aes.`courses in subject`;";
+		try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					list.add(new CourseInSubject(rs.getString(1), rs.getString(2)));
+				}
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
+	}
+	/**
+	 * @author Alon Ben-yosef
+	 * Get all exams as written in the DB
+	 * @return list of all exams
+	 */
+	public ArrayList<Exam> getExams(){
+		ArrayList<Exam> list = new ArrayList<Exam>();
+		ResultSet rs;
+		String query = "SELECT * FROM aes.`exams`;";
+		try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					int clean=0;
+					int locked=0;
+					if(rs.getString(4).equals("dirty")) clean=1;
+					if(rs.getString(5).equals("unlocked")) locked=1;
+					list.add(new Exam(rs.getString(1), rs.getInt(3),clean, locked, rs.getString(2)));
+				}
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
+	}
+
 }

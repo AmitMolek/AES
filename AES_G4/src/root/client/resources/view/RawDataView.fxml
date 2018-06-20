@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RawDataViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.RawDataViewController">
    <children>
       <BorderPane prefHeight="720.0" prefWidth="1280.0">
          <center>
@@ -77,11 +77,11 @@
                                  <center>
                                     <TableView fx:id="exams_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <columns>
-                                          <TableColumn fx:id="exams_userId" editable="false" minWidth="20.0" prefWidth="100.0" text="User ID" />
+                                          <TableColumn fx:id="exams_examId" editable="false" minWidth="20.0" prefWidth="100.0" text="Exam ID" />
                                           <TableColumn fx:id="exams_teacherAssembler" editable="false" minWidth="200.0" prefWidth="100.0" text="Teacher Assembler ID" />
                                           <TableColumn fx:id="exams_exam_original_allocated_duration" editable="false" minWidth="20.0" prefWidth="300.0" text="Original Time Allocation" />
-                                          <TableColumn fx:id="exams_exams_state" editable="false" minWidth="20.0" prefWidth="300.0" text="Exam State" />
-                                          <TableColumn fx:id="exams_lock_flag" editable="false" minWidth="20.0" prefWidth="300.0" text="Principal Answer" />
+                                          <TableColumn fx:id="exams_exams_state" editable="false" minWidth="20.0" prefWidth="300.0" text="Exam Dirty" />
+                                          <TableColumn fx:id="exams_lock_flag" editable="false" minWidth="20.0" prefWidth="300.0" text="Exam Locked" />
                                        </columns>
                                     </TableView>
                                  </center>
@@ -107,7 +107,7 @@
                                           <TableColumn fx:id="exam_stats_median" editable="false" minWidth="20.0" prefWidth="50.39996337890625" text="Median" />
                                           <TableColumn fx:id="exam_stats_0_10" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="0-10" />
                                           <TableColumn fx:id="exam_stats_11_20" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="11-20" />
-                                          <TableColumn fx:id="exam_stats_21_30col" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="21-30" />
+                                          <TableColumn fx:id="exam_stats_21_30" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="21-30" />
                                           <TableColumn fx:id="exam_stats_31_40" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="31-40" />
                                           <TableColumn fx:id="exam_stats_41_50" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="41-50" />
                                           <TableColumn fx:id="exam_stats_51_60" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="51-60" />

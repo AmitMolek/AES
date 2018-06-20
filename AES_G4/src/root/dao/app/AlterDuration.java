@@ -8,6 +8,10 @@ public class AlterDuration implements Serializable {
 	private String userID;
 	private String examID;
 	private String date;
+	private String teacherExp;
+	private String principalAns;
+	private int original_duration;
+	private int after_change_duration;
 	
 	public AlterDuration(String userID, String examID, String date, String teacherExp, String principalAns,
 			int original_duration, int after_change_duration) {
@@ -20,11 +24,6 @@ public class AlterDuration implements Serializable {
 		this.original_duration = original_duration;
 		this.after_change_duration = after_change_duration;
 	}
-	
-	private String teacherExp;
-	private String principalAns;
-	private int original_duration;
-	private int after_change_duration;
 	
 	public String getUserID() {
 		return userID;

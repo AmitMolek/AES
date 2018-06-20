@@ -8,6 +8,7 @@ import java.util.ArrayList;
  *
  */
 public class Exam implements Serializable {
+
 	private String examId;
 	private User author;
 	private int examDuration;
@@ -17,7 +18,23 @@ public class Exam implements Serializable {
 	private String teacherId;
 	private ExecuteExam executeExam;
 	
-	
+	/**
+	 * @author Alon Ben-yosef
+	 * Constructor for exam for DB pulling
+	 * @param examId
+	 * @param examDuration
+	 * @param examState
+	 * @param lock
+	 * @param teacherId
+	 */
+	public Exam(String examId, int examDuration, int examState, int lock, String teacherId) {
+		super();
+		this.examId = examId;
+		this.examDuration = examDuration;
+		ExamState = examState;
+		this.lock = lock;
+		this.setTeacherId(teacherId);
+	}
 
 	/**
 	 * Constructor for exam
@@ -32,7 +49,7 @@ public class Exam implements Serializable {
 		this.examDuration = examDuration;
 		ExamState = 1;
 		this.lock = 1;
-		this.teacherId = teacherId;
+		this.setTeacherId(teacherId);
 	}
 	
 	/**
@@ -51,7 +68,7 @@ public class Exam implements Serializable {
 		ExamState = 0;
 		this.lock = 0;
 		this.examQuestions = examQuestions;
-		teacherId = author.getUserID();
+		setTeacherId(author.getUserID());
 	}
 
 	/**
@@ -163,6 +180,14 @@ public class Exam implements Serializable {
 	 */
 	public void setExecuteExam(ExecuteExam executeExam) {
 		this.executeExam = executeExam;
+	}
+
+	public String getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
 	}
 
 }

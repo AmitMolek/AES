@@ -309,8 +309,8 @@ public class MessageFactory {
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		case "query":
 			return new StatsMessage("ok-get-query", (Statistic)payload);
-		case "allTables":
-			return new AllTablesMessage("ok-get-query");
+		case "alltables":
+			return new AllTablesMessage("ok-get-alltables");
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
