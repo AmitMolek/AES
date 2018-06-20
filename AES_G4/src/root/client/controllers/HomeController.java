@@ -4,14 +4,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
-import root.client.managers.ImageLoader;
+import root.client.managers.HomeScreenBGLoader;
+import root.client.managers.HomeScreenBGLoader.HomeScreenStages;
 import root.dao.app.User;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
@@ -20,12 +20,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
-
 /**
  * The controller of the home screen
  * @author Amit Molek
@@ -127,6 +124,8 @@ public class HomeController  implements Observer{
      * Init the background image of the home screen
      */
     private void init_BgImage() {
+    	bgImg.setImage(HomeScreenBGLoader.getInstance().getRandomImage(getStageOfDay()));
+    	/*
     	String mainPath = "root/client/resources/images/bg/home/";
     	try {
     		ArrayList<Image> images = ImageLoader.loadImagesFromFolder(mainPath + getStageOfDay().toLowerCase());
@@ -139,6 +138,7 @@ public class HomeController  implements Observer{
     		Log.getInstance().writeToLog(LineType.ERROR, "Tried loading background images.");
     		e.printStackTrace();
     	}
+    	*/
     }
     
     /**
@@ -170,16 +170,16 @@ public class HomeController  implements Observer{
      * Returns the current stage of the day
      * @return the current stage of the day (String)
      */
-    private String getStageOfDay() {
+    private HomeScreenStages getStageOfDay() {
     	int hour = LocalTime.now().getHour();
     	if (hour >= 0 && hour < 12) {
-    		return "Morning";
+    		return HomeScreenStages.MORNING;
     	}else if (hour == 12) {
-    		return "Noon";
+    		return HomeScreenStages.NOON;
     	}else if (hour > 12 && hour < 18) {
-    		return "Afternoon";
+    		return HomeScreenStages.AFTERNOON;
     	}else {
-    		return "Evening";
+    		return HomeScreenStages.EVENING;
     	}
     	/*
     	int sec = LocalTime.now().getSecond();
@@ -200,7 +200,7 @@ public class HomeController  implements Observer{
      */
     private void init_welcomeMsg() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-        	String stage = getStageOfDay();
+        	String stage = getStageOfDay().toString();
         	stageOfDay_txt.setText(stage);
         	currentStageOfDay = stage;
         	

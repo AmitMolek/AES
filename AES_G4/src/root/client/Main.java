@@ -1,7 +1,5 @@
 package root.client;
 
-import java.util.Observer;
-
 import root.client.controllers.SolvedExamsController;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -15,6 +13,7 @@ public class Main extends ScreensManager {
 	public static void main(String[] args) {
 		Log log = Log.getInstance();
 		DataKeepManager dkm = DataKeepManager.getInstance();
+		
 		log.writeToLog(LineType.INFO, "Application started", false);
 		ScreensManager.addScreen("solvedExams","resources/view/ViewSolvedExams.fxml");
 		
