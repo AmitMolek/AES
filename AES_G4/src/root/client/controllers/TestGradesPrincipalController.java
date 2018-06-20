@@ -3,20 +3,16 @@ package root.client.controllers;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Scanner;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
@@ -98,15 +94,18 @@ public class TestGradesPrincipalController implements Observer{
     private String examsByStudentQueryBuilder() throws Exception {
 		String query=null;
 		if(checkBox1.isSelected()) {
-    		if(value1Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
+			String text=value1Field.getText().trim();
+    		if(text.isEmpty()) throw new Exception("Fields cannot be empty");
+			if(!isNumber(text)) throw new Exception("Enter numeric values only"); 
 			query="SELECT se.solved_exam_grade \r\n" + 
 					"FROM aes.`solved exams` se \r\n" + 
-					"WHERE se.User_ID='"+value1Field.getText()+"' AND se.grade_approval_by_teacher='approved';";
+					"WHERE se.User_ID='"+text+"' AND se.grade_approval_by_teacher='approved';";
 		}
 		else if(checkBox2.isSelected()) {
-			if(value2Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
-			String[] name=value2Field.getText().split(" ");
-			if(name.length!=2) throw new Exception("A full name is required");
+			String text=value2Field.getText().trim();
+			if(text.isEmpty()) throw new Exception("Fields cannot be empty");
+			String[] name=text.split(" ", 2);
+			if(name.length<2) throw new Exception("A full name is required");
 			name[0]=toStandardNameConvention(name[0]);
 			name[1]=toStandardNameConvention(name[1]);
 			query="SELECT se.solved_exam_grade \r\n" + 
@@ -120,16 +119,18 @@ public class TestGradesPrincipalController implements Observer{
 	private String examsByTeacherQueryBuilder() throws Exception {
     	String query=null;
     	if(checkBox1.isSelected()) {
-    		if(value1Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
+    		String text=value1Field.getText().trim();
+    		if(text.isEmpty()) throw new Exception("Fields cannot be empty");
+			if(!isNumber(text)) throw new Exception("Enter numeric values only"); 
 			query="SELECT se.solved_exam_grade " + 
 					"FROM aes.`solved exams` se, aes.exams e "+
 					"WHERE se.exam_ID=e.exam_id AND se.approving_teacher_id='"+value1Field.getText()+"' "+
 					"AND se.grade_approval_by_teacher='approved';";
 		}
 		else if(checkBox2.isSelected()) {
-			if(value2Field.getText().isEmpty()) throw new Exception("Fields cannot be empty");
-			String[] name=value2Field.getText().split(" ");
-			if(name.length!=2) throw new Exception("A full name is required");
+			String[] name=value2Field.getText().trim().split(" ",2);
+    		if(name.length==0) throw new Exception("Fields cannot be empty");
+			if(name.length<2) throw new Exception("A full name is required");
 			name[0]=toStandardNameConvention(name[0]);
 			name[1]=toStandardNameConvention(name[1]);
 			query="SELECT se.solved_exam_grade \r\n" + 
@@ -139,8 +140,44 @@ public class TestGradesPrincipalController implements Observer{
     	return query;
 	}
 
-	private String examsByCourseQueryBuilder() {
-		return null;
+	private boolean isNumber(String s) {
+		try {
+			Integer.parseInt(s);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
+	
+	private String examsByCourseQueryBuilder() throws Exception {
+		String query=null;
+		if(checkBox1.isSelected()) {
+			String text=value1Field.getText().trim();
+    		if(text.isEmpty()) throw new Exception("Fields cannot be empty");
+			if(text.length()!=4) throw new Exception("Enter subject code and course code only");
+			if(!isNumber(text)) throw new Exception("Enter numeric values only"); 
+			String subjectId, courseId;
+			subjectId=text.substring(0,2);
+			courseId=text.substring(2,4);
+			query="SELECT se.solved_exam_grade " + 
+					"FROM aes.`solved exams` se, aes.`courses` c, aes.`subjects` s, aes.`courses in subject` cis " + 
+					"WHERE s.subject_id=SUBSTR(se.exam_ID,1,2) AND c.course_id=SUBSTR(se.exam_ID,3,2) AND cis.course_id=c.course_id " + 
+					"AND cis.subject_id=s.subject_id AND s.subject_id = '"+subjectId+"' AND c.course_id='"+courseId+"' AND se.grade_approval_by_teacher='approved';";
+		}
+		else if(checkBox2.isSelected()) {
+			String text=value2Field.getText().trim();
+    		if(text.isEmpty()) throw new Exception("Fields cannot be empty");
+			String[] splitInp=text.split(" ", 2);
+			if(splitInp.length!=2) throw new Exception("Enter course subject and course name");
+			String subject=toStandardNameConvention(splitInp[0]);
+			String course=toStandardNameConvention(splitInp[1]);
+			query="SELECT se.solved_exam_grade\r\n" + 
+					"FROM aes.`solved exams` se, aes.`courses` c, aes.`subjects` s, aes.`courses in subject` cis\r\n" + 
+					"WHERE s.subject_id=SUBSTR(se.exam_ID,1,2) AND c.course_id=SUBSTR(se.exam_ID,3,2) AND cis.course_id=c.course_id\r\n" + 
+					"AND cis.subject_id=s.subject_id AND s.subject_name = '"+subject+"' AND c.course_name='"+course+"';";
+		}
+		return query;
 	}
 	
 	private String toStandardNameConvention(String name) {
@@ -182,10 +219,10 @@ public class TestGradesPrincipalController implements Observer{
 					value2Field.setVisible(true);
         		break;
     		case "Exams By Course":
-	    			checkBox1.setText("Course ID");
+	    			checkBox1.setText("SubjectID + Course ID");
 					checkBox1.setVisible(true);
 					value1Field.setVisible(true);
-					checkBox2.setText("Course Name");
+					checkBox2.setText("Subject Name + Course Name");
 					checkBox2.setVisible(true);
 					value2Field.setVisible(true);
         		break;
@@ -318,14 +355,26 @@ public class TestGradesPrincipalController implements Observer{
 	}
 
 	private String getCourseTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		if(checkBox1.isSelected()) {
+			String text=value1Field.getText().trim();
+			String subjectId, courseId;
+			subjectId=text.substring(0,2);
+			courseId=text.substring(2,4);
+			return "Subject ID='"+subjectId+"', Course ID='"+courseId+"'";
+		}
+		else if(checkBox2.isSelected()) {
+			String text=value2Field.getText().trim();
+			String[] splitInp=text.split(" ", 2);
+			String course=toStandardNameConvention(splitInp[1]);
+			return "Course Name='"+course+"'";
+		}
+		return "";
 	}
 
 	private String getStudentTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
 		else if (checkBox2.isSelected()) {
-			String[] name=value2Field.getText().split(" ");
+			String[] name=value2Field.getText().split(" ",2);
 			name[0]=toStandardNameConvention(name[0]);
 			name[1]=toStandardNameConvention(name[1]);
 			return "Name = '"+name[0]+" "+name[1]+"'";
@@ -341,7 +390,7 @@ public class TestGradesPrincipalController implements Observer{
 	private String getTeacherTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
 		else if (checkBox2.isSelected()) {
-			String[] name=value2Field.getText().split(" ");
+			String[] name=value2Field.getText().split(" ",2);
 			name[0]=toStandardNameConvention(name[0]);
 			name[1]=toStandardNameConvention(name[1]);
 			return "Name = '"+name[0]+" "+name[1]+"'";
