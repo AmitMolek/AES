@@ -45,7 +45,8 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for add exam screen controller fuck
+ * 
+ * A class that controls the Add exam window
  * 
  * @author Omer Haimovich
  *
@@ -81,6 +82,7 @@ public class AddExamController implements Observer {
 
 	@FXML
 	private Button btnAddQuestion;
+	// Instance variables **********************************************
 
 	private int count;
 	private User teacher;

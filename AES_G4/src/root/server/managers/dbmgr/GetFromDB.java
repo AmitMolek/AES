@@ -33,20 +33,58 @@ import root.server.AES_Server;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * The GetFromDB is a class that implements the DbManagerInterface interface
+ * This class responsible for receiving information from the database
+ * 
+ * @author Omer Haimovich
+ *
+ */
 public class GetFromDB implements DbManagerInterface {
+
+	// Instance variables **********************************************
+
+	/**
+	 * A sentence designed for queries
+	 */
 	private java.sql.Statement stmt;
+	/**
+	 * 
+	 * Connection between the database and the server
+	 */
 	private Connection conn;
+
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
 	private Log log;
 
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the GetFromDB
+	 */
 	public GetFromDB() {
 		super();
 		conn = AES_Server.getConnection();
 		log.getInstance();
 	}
 
+	// OVERRIDDEN METHODS *************************************************
+
+	/**
+	 * A method that returns all questions from the database when given question id
+	 * 
+	 * @author gal
+	 * @param str
+	 *            can be null, and then all users will return, or str can contain a
+	 *            specific user ID
+	 * @return A list of all questions
+	 */
 	@Override
 	public ArrayList<Question> questions(String... str) {
-		// TODO Auto-generated method stub
 		// str contain a subject id
 		ArrayList<Question> questions = new ArrayList<Question>();
 		ResultSet rs;
@@ -72,10 +110,9 @@ public class GetFromDB implements DbManagerInterface {
 	 * of a bad code solution in early staged of the project.
 	 * 
 	 * @param questionsID
-	 * @return
+	 * @return A list of all the questions
 	 */
 	public ArrayList<Question> questions(ArrayList<String> questionsID) {
-		// TODO Auto-generated method stub
 		// str contain a subject id
 		ArrayList<Question> questions = new ArrayList<Question>();
 		ResultSet rs;
@@ -101,10 +138,15 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	/**
+	 * 
+	 * A method that returns all users from the database or only one specific user
+	 * (when user id is given)
+	 * 
 	 * @author gal
 	 * @param str
 	 *            can be null, and then all users will return, or str can contain a
 	 *            specific user ID
+	 * @return A list of all users
 	 */
 	@Override
 	public ArrayList<User> users(String... str) {
@@ -143,21 +185,30 @@ public class GetFromDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * A method that returns all the time changes made in the exams from the
+	 * database
+	 * 
+	 * @author Omer Haimovich
+	 * @param str
+	 *            can be null, and then all users will return, or str can contain a
+	 *            specific user ID or every or any other condition
+	 * @return A list of all the time changes made in the exams
+	 */
 	@Override
 	public ArrayList<AlterDuration> alterDuration(String... str) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	/*
-	 * @Override public ArrayList<Course> subjectOfTeacher(String... str) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
 	/**
+	 * A method that returns courses from the database
+	 * 
 	 * @author gal
 	 * @param str,
-	 *            if null, get all courses, else: get the course relevat to the
+	 *            if null, get all courses, else: get the course relevant to the
 	 *            desired condition.
+	 * @return A list of all courses
 	 */
 	@Override
 	public ArrayList<Course> courses(String... str) {
@@ -208,10 +259,15 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	/**
+	 * A method that returns all courses that belong to a particular subject
+	 * 
 	 * @author Omer Haimovich
 	 * @param str
 	 *            can be null, and then all courses in subject will return, or str
-	 *            can contain a specific user ID
+	 *            can contain a specific subject id
+	 * 
+	 * 
+	 * @return A list of all courses that belong to a particular subject
 	 */
 	@Override
 	public ArrayList<Course> coursesInSubject(String... str) {
@@ -243,6 +299,19 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 
+	 * A method that returns solved exams belonging to a specific exam id held on a
+	 * specific date from the database
+	 * 
+	 * @param exam_id
+	 *            the exam id
+	 * @param date
+	 *            the date of the exam
+	 * @return A list of all the exams of a particular exam on a given date
+	 * @author Amit Molek
+	 */
 	@SuppressWarnings("deprecation")
 	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Date date) {
 		ArrayList<CheatingExamTest> exams = new ArrayList<>();
@@ -279,6 +348,18 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * A method that returns all exams from the database
+	 * 
+	 * @param str
+	 *            can be null, and then all courses in subject will return, or str
+	 *            can contain a specific exam id
+	 * @return A list of all the exams
+	 * @author Omer Haimovich
+	 */
 	@Override
 	public ArrayList<Exam> exams(String... str) {
 		ArrayList<Exam> exams = new ArrayList<Exam>();
@@ -299,16 +380,19 @@ public class GetFromDB implements DbManagerInterface {
 			rs.close();
 			return exams; // Return A list of all users
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	/**
+	 * 
+	 * A method that returns all exams when given the exam code
+	 * 
 	 * @autor Naor Saadia
 	 * @param pass
-	 * @return
+	 *            the exam code
+	 * @return list of all exams that have this specific code
 	 */
 	public ArrayList<Exam> getExamByPassword(String pass) {
 		String byPassword = "SELECT ex.exam_id as exid,\r\n" + "	ex.teacher_assembler_id as teacher_id,\r\n"
@@ -361,6 +445,15 @@ public class GetFromDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * 
+	 * A method that returns all executed exams when given the teacher id
+	 * 
+	 * @autor Naor Saadia
+	 * @param teacherId
+	 *            the id of the teacher who executed the exam
+	 * @return list of all executed exams that the specific teacher executed
+	 */
 	public ArrayList<ExecuteExam> getExecutedExams(String teacherId) {
 		ArrayList<ExecuteExam> arr = new ArrayList<ExecuteExam>();
 		String getExecuted = "select exe.exam_id as id,\r\n" + "exe.exam_date_start as start_date,\r\n"
@@ -385,10 +478,14 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	/**
+	 * 
+	 * A method that returns all subjects from the database
+	 * 
 	 * @author Omer Haimovich
 	 * @param str
 	 *            can be null, and then all subjects of teacher wil return, or str
-	 *            can contain a specific user ID
+	 *            can contain a specific subject ID
+	 * @return list of all executed exams that the specific teacher executed
 	 */
 	@Override
 	public ArrayList<Subject> subjects(String... str) {
@@ -428,12 +525,32 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * A method that returns all exams statistics from the database
+	 * 
+	 * @author Alon Ben Yossef
+	 * @param str
+	 *            can be null, and then all subjects of teacher wil return, or str
+	 *            can contain a specific exam ID
+	 * @return list of all exam statistics
+	 */
 	@Override
 	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
+	/**
+	 * 
+	 * 
+	 * A method that returns all the solved exams in a particular course
+	 * 
+	 * @author Alon Ben Yossef
+	 * @param course_id
+	 *            the id of the course
+	 * @return list of all solved exams in a particular course
+	 */
 	public ArrayList<SolvedExams> getSolvedExamsByCourseId(String course_id) {
 		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
 		ResultSet rs;
@@ -458,11 +575,16 @@ public class GetFromDB implements DbManagerInterface {
 	}
 
 	/**
+	 * 
+	 * 
+	 * A method that returns all the solved exams
+	 * 
 	 * @author gal
 	 * @param str
 	 *            - size== 0: retreive all solved exams, if size == 9, retrieve all
 	 *            solvedExams of this userID, if size==6, retrieve all solved exams
 	 *            of this specific
+	 * @return list of all solved exams
 	 */
 	@Override
 	public ArrayList<SolvedExams> solvedExams(String... str) {
@@ -537,6 +659,18 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 
+	 * A method that returns all the questions that appear in a particular exam from
+	 * the database
+	 * 
+	 * @author Omer Haimovich
+	 * @param str
+	 *            can be null, and then all subjects of teacher wil return, or str
+	 *            can contain a specific exam ID
+	 * @return list of all question in specific exam
+	 */
 	@Override
 	public ArrayList<QuestionInExam> questionInExam(String... str) {
 		ArrayList<QuestionInExam> question = new ArrayList<QuestionInExam>();
@@ -562,9 +696,21 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * A method that returns all courses a specific teacher teaches from the
+	 * database
+	 * 
+	 * @author Amit Molek
+	 * @param str
+	 *            can be null, and then all subjects of teacher wil return, or str
+	 *            can contain a specific teacher ID
+	 * @return list of all courses of specific teacher
+	 */
 	@Override
 	public ArrayList<Course> courseOfTeacher(String... str) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -586,6 +732,16 @@ public class GetFromDB implements DbManagerInterface {
 		return null;	
 	}
 	
+	/**
+	 * 
+	 * A method that returns all exam table data line when given the teacher id from
+	 * the data base
+	 * 
+	 * @autor Naor Saadia
+	 * @param id
+	 *            the id of the teacher
+	 * @return list of all exam table data lined
+	 */
 	public ArrayList<ExamTableDataLine> getLinesByTeacherID(String id) {
 		String query1 = "SELECT e.exam_id, st.exam_date,c.course_name,sub.subject_name"
 				+ " FROM aes.exams e, aes.`exams stats` st, aes.courses c,aes.subjects sub, aes.`courses in subject` cis"
@@ -608,6 +764,16 @@ public class GetFromDB implements DbManagerInterface {
 		return dataList;
 	}
 
+	/**
+	 * 
+	 * A method that returns all solved exams statistics when given exam id and exam
+	 * executed date
+	 * 
+	 * @author Alon Ben Yossef
+	 * @param msg
+	 *            A message containing a date and exam id
+	 * @return solved exams statistic
+	 */
 	public Statistic getExamStatsByIdDate(ExamStatsByIdDateMessage msg) {
 		String query1 = "SELECT * FROM aes.`exams stats` s" + " WHERE s.exam_id = '" + msg.getId()
 				+ "' AND s.exam_date='" + msg.getDate() + "';";
@@ -645,6 +811,17 @@ public class GetFromDB implements DbManagerInterface {
 		return null;
 	}
 
+	/**
+	 * 
+	 * A method that returns all solved exams when given exam id and teacher id
+	 * 
+	 * @author Alon Ben Yossef
+	 * @param examId
+	 *            the exam id
+	 * @param userId
+	 *            the id of teacher who executed this exam
+	 * @return true if there is row in the solved exam table and else returns false
+	 */
 	public boolean getSolvedExamByID(String examId, String userId) {
 		ResultSet rs;
 

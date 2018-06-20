@@ -13,7 +13,7 @@
           <TableColumn fx:id="tbcPoints" maxWidth="561.0" minWidth="561.0" onEditCommit="#updatePoints" prefWidth="75.0" text="Points" />
         </columns>
       </TableView>
-      <Button layoutX="302.0" layoutY="590.0" mnemonicParsing="false" onAction="#UpdateQuestionInExam" text="Update" />
-      <Button layoutX="944.0" layoutY="590.0" mnemonicParsing="false" onAction="#RemoveQuestionFromExam" text="Remove question" />
+      <Button fx:id="btnUpdate" layoutX="302.0" layoutY="590.0" mnemonicParsing="false" onAction="#UpdateQuestionInExam" text="Update" />
+      <Button fx:id="btnRemove" layoutX="944.0" layoutY="590.0" mnemonicParsing="false" onAction="#RemoveQuestionFromExam" text="Remove question" />
    </children>
 </AnchorPane>
