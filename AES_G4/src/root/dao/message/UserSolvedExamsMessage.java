@@ -6,6 +6,11 @@ import root.dao.app.Exam;
 import root.dao.app.SolvedExams;
 import root.dao.app.User;
 
+/**
+ * 
+ * @author gal
+ *	this dao message class is used to send and recieve from server all user solved exams
+ */
 public class UserSolvedExamsMessage extends AbstractMessage{
 	private ArrayList<SolvedExams> userSolvedExams;
 	private SolvedExams solvedExam;
@@ -45,7 +50,6 @@ public class UserSolvedExamsMessage extends AbstractMessage{
 	
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
 		return "solved Exams";
 	}
 	/**

@@ -1,11 +1,13 @@
 package root.dao.app;
 
 import java.io.Serializable;
-
-public class User implements Serializable{
 /**
-	 * 
-	 */
+ * 
+ * @author gal & omer
+ *	this dao class contain user information
+ */
+public class User implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 private String userID;
 private String userFirstName;
@@ -68,8 +70,6 @@ public String toString() {
 	return "userID = "+userID+";\r\n" + 
 			"userFirstName = "+userFirstName+";\r\n" + 
 			"userLastName = "+userLastName; 
-//			"userPassword = "+userPassword+";\r\n" + 
-//			"userPremission = "+userPremission;
 }
 
 }

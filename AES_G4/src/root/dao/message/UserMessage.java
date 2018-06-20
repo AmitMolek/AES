@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import root.dao.app.User;
 
+
+/**
+ * @author gal brandwine
+ * this dao message class used when theres a need to get a user from DB 
+ */
 public class UserMessage extends AbstractMessage implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private User user;
 	

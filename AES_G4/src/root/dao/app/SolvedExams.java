@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 /**
  * 
  * @author gal
- *
+ * this dao class contain solvedExam information
  */
 public class SolvedExams implements Serializable {
 	

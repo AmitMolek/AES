@@ -2,6 +2,7 @@ package root.client.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -159,8 +160,9 @@ public class LoginController implements Observer {
     	        // If you have a Mac, it's like this:
     	        //     /Path/To/Image.jpg
     	        // Replace the path with the one on your computer
-    	        imageFile = new File("src/root/client/resources/images/MRV_20180318_17_54_46.jpg");
-    	        image = new Image(imageFile.toURI().toString());
+    	        InputStream jarPath = this.getClass().getResourceAsStream("/root/client/resources/images/MRV_20180318_17_54_46.jpg");		// jar way to open inner files.
+    	        //imageFile = new File("src/root/client/resources/images/MRV_20180318_17_54_46.jpg");									// Original, Eclipse way to run java
+    	        image = new Image(jarPath);
     	        imageView = new ImageView(image);
 
 //    	        // The same thing applies with audio files. Replace
@@ -220,7 +222,6 @@ public class LoginController implements Observer {
 		serverIPpane.setVisible(true);
 	}
 	private void tryGettingServerIP() {
-		// TODO Auto-generated method stub
 		serverIP = propertFile.getFromConfig("IP");
 		if(serverIP == null) {
 			serverIPpane.setVisible(true);

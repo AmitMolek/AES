@@ -7,22 +7,22 @@ import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
 
+
+/**
+ * @author gal
+ * this dao message class used when need to get all teaching subjects of a specific user (Teacher)
+ */
 public class UserSubjectMessage  extends AbstractMessage implements Serializable{
-	
-	/**
-	 * @author gal
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Subject> subjects;
 	private User user;
 	
 	public UserSubjectMessage(User payload) {
-		// TODO Auto-generated constructor stub
 		super("UserSubjects");
 		this.user = payload;
 	}
 	public UserSubjectMessage(UserSubjectMessage payload) {
-		// TODO Auto-generated constructor stub
 		super("UserSubjects");
 		this.user = payload.getUser();
 		this.subjects = payload.getSubjects();

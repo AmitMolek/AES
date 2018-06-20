@@ -1,13 +1,10 @@
 package root.dao.app;
 
+/**
+ * @author gal, alon, naor, omer, amit 
+ * Class that responsible for saving question details
+ */
 public class Question implements java.io.Serializable {
-
-	/**
-	 * Class that responsible for saving question details
-	 */
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String questionId;
 	private String questionText;

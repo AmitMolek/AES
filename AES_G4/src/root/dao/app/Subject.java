@@ -1,17 +1,14 @@
 package root.dao.app;
 
 import java.io.Serializable;
-
+/**
+ * @author gal
+ *  this dao class contain subject information
+ */
 public class Subject implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * @author gal
-	 * 
-	 */
+
 	private String subjectID;
 	private String subjectName;
 	

@@ -25,14 +25,16 @@ public class UserInfoMessage extends AbstractMessage{
 		super("get-user-name");
 		this.userInfo = teacherInfo;
 	}
-	
+	/**
+	 * this constructor is called when server sends back to client a filled teacherMap
+	 * @param usersMap
+	 */
 	public UserInfoMessage(HashMap<String, String> usersMap) {
 		super("ok-get-users");
 		this.userInfo = new UserInfo(usersMap, null);
 	}
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

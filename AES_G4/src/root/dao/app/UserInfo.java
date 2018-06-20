@@ -3,7 +3,11 @@ package root.dao.app;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * 
+ * @author gal brandwine
+ *
+ */
 public class UserInfo implements Serializable{
 	/**
 	 * @author gal

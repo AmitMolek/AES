@@ -144,6 +144,10 @@ public class SolvedExamsController  implements Observer{
 		super();
 	}
 	
+	/**
+	 * This method fires when theres a selection from combobox
+	 * @param event
+	 */
 	@FXML
     void selectFromCombobox(ActionEvent event) {
 		String selectedCourse = courseCombobox.getSelectionModel().getSelectedItem();
@@ -172,7 +176,7 @@ public class SolvedExamsController  implements Observer{
     	client.deleteObservers();
     	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
     	
-    	user = (User) DataKeepManager.getInstance().getUser();//loggedInManager.getUser();
+    	user = (User) DataKeepManager.getInstance().getUser();
     	solvedExams = new ArrayList<SolvedExams>();
     	teachersMap = new HashMap<String, String>();
     	courseMap = new HashMap<String, String>();
@@ -206,7 +210,6 @@ public class SolvedExamsController  implements Observer{
 		for(SolvedExams solvedExam: solvedExams) {
 			courseMap.put(solvedExam.getExamID().substring(2, 4), "");
 		}
-		
 		CourseMessage newCourseMessage = (CourseMessage) message.getMessage("get-coursesbyid",courseMap);
 		try {
 			client.sendToServer(newCourseMessage);
@@ -218,7 +221,6 @@ public class SolvedExamsController  implements Observer{
 		}
 	}
 	
-
 	private void getUserSolvedExamsByUserID() {
 		if (solvedExams.isEmpty() != true)return;	// if solvedExams has been loaded already, do nothing
 		UserSolvedExamsMessage userSolvedExamMessage =(UserSolvedExamsMessage) message.getMessage("get-solvedExams-user",user);
@@ -229,7 +231,9 @@ public class SolvedExamsController  implements Observer{
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
-
+	/**
+	 * this method fires when SolvedExamsController is initialized
+	 */
 	private void initSolvedExamTable() {
 		tbcId.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("examID"));
 		tbcCourse.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("examCourse"));
@@ -283,7 +287,6 @@ public class SolvedExamsController  implements Observer{
 		TeacherPremissionLbl.setText(user.getUserPremission());
 	}
 
-	
 	/**
 	 * this method is called when student pressed the "Download copy" button.
 	 * @param solvedExam
@@ -363,8 +366,7 @@ public class SolvedExamsController  implements Observer{
 	    			//Blank Document
 	                XWPFDocument document = new XWPFDocument();
 	                //Write the Document in file system
-	                FileOutputStream out = new FileOutputStream(
-	                		file);//new File(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx"));
+	                FileOutputStream out = new FileOutputStream(file);
 	                /**
 	                 * Printing:
 	                 *	SolvingDate
@@ -471,7 +473,7 @@ public class SolvedExamsController  implements Observer{
 	 * This method called when we need to update in tblQuestions the TeacherName column
 	 */
 	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
-		for (SolvedExams solvedExam: solvedExams) {	// update the questions array, to keep updated
+		for (SolvedExams solvedExam: solvedExams) {					// update the questions array, to keep updated
 			String tempTeacherAssembeledID = solvedExam.getApprovingTeacherID();
 			if(userInfo.containsKey(tempTeacherAssembeledID)) {
 				solvedExam.setApprovingTeacherName(userInfo.get(tempTeacherAssembeledID));
@@ -485,7 +487,7 @@ public class SolvedExamsController  implements Observer{
 		}
 	}
 	
-	  /**
+	/**
      *  This method is called in order to fill theacherMap, 
      *  for each solvedExam in the subject this teacher teaches, we need the teacher assembled name.
      * @param questions2
@@ -516,7 +518,7 @@ public class SolvedExamsController  implements Observer{
 	
 
     /**
-     * This method is called when theres a need to ErrrorDialog
+     * This method is called when there's a need to ErrorDialog
      * @param HeaderTitle
      * @param HeaderText
      * @param Errormessage
@@ -553,7 +555,10 @@ public class SolvedExamsController  implements Observer{
 			}
 		}
 	}
-
+	/**
+	 * this method fires when pressing the search button
+	 * @param event
+	 */
     @FXML
  	void searchQuestion(ActionEvent event) {
 		String errorMessage = "";
@@ -614,11 +619,6 @@ public class SolvedExamsController  implements Observer{
 			getExamQuestions();
 		}
 		if (arg1 instanceof UserSolvedExamsMessage) {
-//			if(this.solvedExams.size() == 0)
-//				this.solvedExams = ((UserSolvedExamsMessage) arg1).getUserSolvedExams();		// only when there no solvedExams - at first load or a new solvedExam.
-//			else {
-//				solvedExams.addAll(((UserSolvedExamsMessage) arg1).getUserSolvedExams());			// add new solvedExams to a UserSolvedExams.
-//			}
 			ArrayList<SolvedExams> tempSolvedExams =  ((UserSolvedExamsMessage) arg1).getUserSolvedExams();
 			for (SolvedExams solvedExam: tempSolvedExams) {
 				if (solvedExam.getCalculatedGradeApprovalStateByTeacher().equals("approved"))this.solvedExams.add(solvedExam);

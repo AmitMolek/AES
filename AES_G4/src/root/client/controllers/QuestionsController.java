@@ -48,13 +48,13 @@ import root.util.log.LogLine;
 //import tableButtonTest.Mai//n.Record;
 import root.util.properties.PropertiesFile;
 
-
+/**
+ * This class handle with questions window
+ * @author gal
+ */
 public class QuestionsController implements Observer{
 	
-	/**
-	 * This class handle with questions window
-	 * @author gal
-	 */
+
 
     @FXML // fx:id="rootPane"
     private AnchorPane rootPane; // Value injected by FXMLLoader
@@ -191,7 +191,6 @@ public class QuestionsController implements Observer{
     }
     
 	private void initQuestionsTable() {
-		// TODO Auto-generated method stub
 		tbcId.setCellValueFactory(new PropertyValueFactory<Question, String>("questionId"));
 		tbcIdText.setCellValueFactory(new PropertyValueFactory<Question, String>("questionText"));
 		tbcIdInstruction.setCellValueFactory(new PropertyValueFactory<Question, String>("idquestionIntruction"));
@@ -335,7 +334,6 @@ public class QuestionsController implements Observer{
      * @param questions2
      */
 	void getTeachersMap(ArrayList<Question> questions2) {
-		// TODO Auto-generated method stub
 		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
 		 for (Question question: questions) {
 			teachersMap.put(question.getTeacherAssembeld(), "");
@@ -486,7 +484,7 @@ public class QuestionsController implements Observer{
 	 * This method called when we need to update in tblQuestions the TeacherName column
 	 */
 	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
-		for (Question question: questions) {	// update the questions array, to keep updated
+		for (Question question: questions) {				// update the questions array, to keep updated
 			String tempTeacherAssembeledID = question.getTeacherAssembeld();
 			if(userInfo.containsKey(tempTeacherAssembeledID)) {
 				question.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
@@ -506,7 +504,6 @@ public class QuestionsController implements Observer{
 	  * @return String a Question valid ID
 	  */
 	private String prepareQuestionID(String subjectID) {
-		// TODO Auto-generated method stub
 		String newId = subjectID;
 		int newQuestionID = 0;
 		for (Question question: this.getQuestions()) {

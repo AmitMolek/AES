@@ -1,5 +1,10 @@
 package root.dao.message;
 
+/**
+ * 
+ * @author gal
+ *	this dao message class used by the server, when there's a problem in client's request. 
+ */
 public class ErrorMessage extends AbstractMessage {
 	private Exception errorException;
 	
