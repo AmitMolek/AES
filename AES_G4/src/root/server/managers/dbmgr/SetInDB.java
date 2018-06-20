@@ -72,7 +72,7 @@ public class SetInDB {
 		message = MessageFactory.getInstance();
 	}
 
-	// OVERRIDDEN METHODS *************************************************
+	// CLASS METHODS *************************************************
 
 	/**
 	 * 
