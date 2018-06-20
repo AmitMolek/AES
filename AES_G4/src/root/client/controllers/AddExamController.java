@@ -46,12 +46,16 @@ import root.util.log.LogLine;
 
 /**
  * 
- * A class that controls the Add exam window
+ * 
+ * 
+ * A class that is responsible for adding an exam window
  * 
  * @author Omer Haimovich
  *
  */
 public class AddExamController implements Observer {
+
+	// FXML variables **********************************************
 
 	@FXML
 	private Button btnRemove;
@@ -82,32 +86,96 @@ public class AddExamController implements Observer {
 
 	@FXML
 	private Button btnAddQuestion;
+
 	// Instance variables **********************************************
 
+	/**
+	 * Counter that counts how many time teacher select subject from the subject
+	 * combo box
+	 */
 	private int count;
+	/**
+	 * The login teacher
+	 */
 	private User teacher;
+	/**
+	 * Generates new communications between server and client
+	 */
 	private MessageFactory messageFact;
+	/**
+	 * 
+	 * Keeps our client in order to communicate with the server
+	 */
 	private ObservableClient client;
+	/**
+	 * 
+	 * A list of all the subjects taught by the teacher
+	 */
 	private ArrayList<Subject> teacherSubject;
+	/**
+	 * A list of all the courses taught by the teacher
+	 */
 	private ArrayList<Course> CourseInSubject;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
 	private Log log;
+	/**
+	 * A list of all questions belonging to the chosen course and subject
+	 */
 	private ArrayList<Question> question;
+	/**
+	 * A list of all exams belonging to the chosen course and subject
+	 */
 	private ArrayList<Exam> exams;
+	/**
+	 * list of the custom component
+	 */
 	private ArrayList<AddQuestionToExam> myComponent = new ArrayList<AddQuestionToExam>();
+	/**
+	 * The number of exams
+	 */
 	private static int countId = 1;
+	/**
+	 * The chosen subject
+	 */
 	private Subject newSubject;
+	/**
+	 * The chosen course
+	 */
 	private Course newCourse;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
 	private ScreensManager screenManager;
+	/**
+	 * The manager that responsible for transmit data between windows in the system
+	 */
 	private DataKeepManager dkm;
+	/**
+	 * The main window of the application
+	 */
 	private Stage mainApp;
+	/**
+	 * The id of the exam
+	 */
 	private String examId;
+	/**
+	 * The custom component
+	 */
 	private AddQuestionToExam newQuestion;
 
+	// CLASS METHODS *************************************************
+
 	/**
-	 * Method the occurs when teacher select subject
+	 * 
+	 * A method that allows the teacher to select a subject
 	 * 
 	 * @param event
-	 *            on action in subject combo box
+	 * 
+	 *            An event that happens when a teacher select from subject combo box
 	 */
 	@FXML
 	void SelectSubject(ActionEvent event) {
@@ -157,10 +225,12 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher select courses
+	 * 
+	 * A method that allows the teacher to select a course
 	 * 
 	 * @param event
-	 *            on action in course combo box
+	 * 
+	 *            An event that happens when a teacher select from course combo box
 	 */
 	@FXML
 	void SelectCourse(ActionEvent event) {
@@ -175,10 +245,10 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher press on the + button
+	 * A method that allows the teacher to add a component to the exam form
 	 * 
 	 * @param event
-	 *            on action in + button
+	 *            An event occurs when the teacher presses a `add question` button
 	 * 
 	 */
 
@@ -196,10 +266,11 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher press on add exam button
+	 * A method that allows the teacher to add exam to exams pool
 	 * 
 	 * @param event
-	 *            on action in add exam button
+	 *            An event occurs when the teacher presses a `add exam` button
+	 * 
 	 */
 	@FXML
 	void AddExam(ActionEvent event) {
@@ -225,7 +296,8 @@ public class AddExamController implements Observer {
 
 	/**
 	 * 
-	 * Set new id to exam
+	 * 
+	 * A method that sets a new id to the exam
 	 */
 	public void setIdToExam() {
 		String examId = newSubject.getSubjectID() + newCourse.getCourseId();
@@ -240,7 +312,9 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the window is shown up.
+	 * 
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown
@@ -270,7 +344,8 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the server send message to the client
+	 *
+	 * A method that is responsible for handling messages sent from the server
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -340,8 +415,9 @@ public class AddExamController implements Observer {
 	}
 
 	/**
+	 * Checks whether all fields are valid
 	 * 
-	 * @return if there is error or not!
+	 * @return true if all inputs valid and false if not
 	 */
 	private boolean isInputValidAddExam() {
 		String errorMessage = "";
@@ -388,10 +464,12 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the teacher press on the add exam form button
+	 * A method that allows the teacher to add question to the exam
 	 * 
 	 * @param event
-	 *            on action when the teacher press add exam form button
+	 *            An event occurs when the teacher presses a `add question to exam`
+	 *            button
+	 * 
 	 */
 	@FXML
 	void AddToTheExamForm(ActionEvent event) {
@@ -409,9 +487,12 @@ public class AddExamController implements Observer {
 	}
 
 	/**
-	 * Method the occurs when teacher press remove button
+	 * A method that allows the teacher to remove question from exam
 	 * 
 	 * @param event
+	 *            An event occurs when the teacher presses a `remove question`
+	 *            button
+	 * 
 	 */
 	@FXML
 	void removeQuestion(ActionEvent event) {

@@ -27,12 +27,14 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for exam submit
+ * A class that is responsible for exam submit window
  * 
  * @author Omer Haimovich
  *
  */
 public class ExamSubmitContorller {
+
+	// FXML variables **********************************************
 
 	@FXML
 	private Label lblThankYou;
@@ -42,17 +44,36 @@ public class ExamSubmitContorller {
 
 	@FXML
 	private AnchorPane rootPane;
-	private User student;
-	private Log log;
-	private AddQuestionToExam newQuestion;
-	private ScreensManager screenManager;
-	private DataKeepManager dkm;
+
+	// Instance variables **********************************************
 
 	/**
-	 * Method that occurs when student press home button
+	 * The login student
+	 */
+	private User student;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
+	private Log log;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
+	private ScreensManager screenManager;
+	/**
+	 * The manager that responsible for transmit data between windows in the system
+	 */
+	private DataKeepManager dkm;
+
+	// CLASS METHODS *************************************************
+
+	/**
+	 * A method that allows the student to go back to the home screen
 	 * 
 	 * @param event
-	 *            on action when press home button
+	 *            An event occurs when the student presses a `go home` button
+	 * 
 	 */
 	@FXML
 	void backToHomePage(ActionEvent event) {
@@ -60,7 +81,6 @@ public class ExamSubmitContorller {
 			try {
 				screenManager.activate("home");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			}
@@ -69,7 +89,9 @@ public class ExamSubmitContorller {
 	}
 
 	/**
-	 * This method occurs when the window is shown up.
+	 * 
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown
