@@ -155,7 +155,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<User> users = new ArrayList<User>(); // needed fixing, add switch case: empty-all users, 1- specific
 														// user,2 only these users...
 		ResultSet rs;
-		String usersQuery = "SELECT users.* FROM aes.`users` users";// fetch all users
+		String usersQuery = "SELECT users.* FROM aes.`users`";// fetch all users
 		try {
 			stmt = conn.createStatement();
 			switch (str.length) {
@@ -168,9 +168,7 @@ public class GetFromDB implements DbManagerInterface {
 				rs.close();
 				return users; // Return A list of all users
 			case 1:
-				String getSpecificUser = " WHERE users.Users_ID = " + str[0] + ";";
-				// System.out.println(usersQuery+getSpecificUser); // for debug - print the
-				// query
+				String getSpecificUser = " WHERE users.Users_ID = '" + str[0] + "';";
 				rs = stmt.executeQuery(usersQuery + getSpecificUser);
 				while (rs.next()) {
 					users.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
