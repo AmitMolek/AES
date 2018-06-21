@@ -441,9 +441,9 @@ public class ServerMessageManager {
 			return handleGetSolvedExamsBySubjectIDCourseID(msg);
 		case "query":
 			return handleGetQuery(msg);
-		}
 		case "alltables":
 			return handleGetAllTables(msg);
+		}
 		return null;
 	}
 
