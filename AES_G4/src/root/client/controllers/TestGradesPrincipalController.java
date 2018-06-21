@@ -21,6 +21,12 @@ import root.dao.message.ErrorMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.StatsMessage;
 import javafx.scene.control.CheckBox;
+/**
+ * 
+ * @author Alon Ben-yosef
+ * TestGradesPrincipalController is a controller class for TestGradesPrincipal which allows the prinicipal to view customized reports
+ * and queries.
+ */
 
 public class TestGradesPrincipalController implements Observer{
 	@FXML
@@ -48,6 +54,10 @@ public class TestGradesPrincipalController implements Observer{
 
 	private ObservableClient client;	
 
+    
+    /**
+     * Is called as JavaFX loads the scene, this will define the queries in the combobox.
+     */
 	public void initialize() {
 		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from DataKeep, but dont remove it from there, for later use.
     	client.addObserver(this);
@@ -57,6 +67,10 @@ public class TestGradesPrincipalController implements Observer{
 	}
 	
     @FXML
+    /**
+     * Is called once the user clicks 'Execute Query'
+     * @param event thrown by JavaFX on click on the 'Execute Query' and call the relevant QueryBuilder.
+     */
     void executeQuery(ActionEvent event) {
     	String query="";
     	try {
@@ -82,14 +96,23 @@ public class TestGradesPrincipalController implements Observer{
     	catch (Exception e) {
     		showAlert("Query Error",e.getMessage());
 			}
-    	
     }
     
+    /**
+     * This will show a temporary warning text for invalid queries or server errors
+     * @param header the head of the warning
+     * @param errorMessage the content of thrown exception
+     */
     private void showAlert(String header,String errorMessage) {
     	errorText.setText(header+" - "+errorMessage);
     	errorText.setVisible(true);
     }
 
+    /**
+     * Builds a query for student
+     * @return a query to run in the server
+     * @throws Exception on case of invalid input
+     */
     private String examsByStudentQueryBuilder() throws Exception {
 		String query=null;
 		if(checkBox1.isSelected()) {
@@ -388,7 +411,6 @@ public class TestGradesPrincipalController implements Observer{
 	}
 
 	/**
-	 * @author Alon Ben-yosef
 	 * 
 	 * @return
 	 */

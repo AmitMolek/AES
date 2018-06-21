@@ -27,8 +27,12 @@ import root.dao.app.User;
 import root.dao.message.AbstractMessage;
 import root.dao.message.AllTablesMessage;
 import root.dao.message.MessageFactory;
-import root.dao.message.UpdateSolvedExam;
 
+/**
+ * 
+ * @author Alon Ben-yosef
+ * RawDataViewController is a controller class for RawDataView and is managing a full database view for the principal
+ */
 public class RawDataViewController implements Observer {
 
     @FXML
@@ -288,6 +292,11 @@ public class RawDataViewController implements Observer {
     
     private ObservableClient client;
     
+    /**
+     * Is called as JavaFX loads the scene, this will define the factories for the table columns and send a
+     * request to the sever to get the data tables. This method will also register RawDataViewController as a listener
+     * for the client (in the order to get server's reply).
+     */
     public void initialize() {
     	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from DataKeep, but dont remove it from there, for later use.
     	client.addObserver(this);
@@ -300,7 +309,9 @@ public class RawDataViewController implements Observer {
 			e.printStackTrace();
 		}
     }
-
+	/**
+	 * Is called from initialize() to define property factory for each column.
+	 */
 	private void initTables() {
 		initAlterDurationTable();
 		initCoursesTable();
@@ -316,6 +327,9 @@ public class RawDataViewController implements Observer {
 		initUsers();
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Users table
+	 */
 	private void initUsers() {
 		users_userId.setCellValueFactory(
     		    new PropertyValueFactory<User,String>("userID"));
@@ -330,6 +344,9 @@ public class RawDataViewController implements Observer {
 		
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Subjects table
+	 */
 	private void initSubject() {
 		subjects_subject_Id.setCellValueFactory(
     		    new PropertyValueFactory<Subject,String>("subjectID"));
@@ -337,6 +354,9 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Subject,String>("subjectName"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Subjects for teachers table
+	 */
 	private void initSubjectATeacherTeach() {
 		subject_a_teacher_teach_subjectId.setCellValueFactory(
     		    new PropertyValueFactory<SubjectATeacherTeach,String>("subjectID"));
@@ -345,6 +365,9 @@ public class RawDataViewController implements Observer {
 		
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Solved exams table
+	 */
 	private void initSolvedExam() {
 			 solved_exams_userId.setCellValueFactory(
 	    		    new PropertyValueFactory<SolvedExams,String>("sovingStudentID"));
@@ -370,6 +393,9 @@ public class RawDataViewController implements Observer {
 		    		    new PropertyValueFactory<SolvedExams,String>("cheatingFlag"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Question in exam table
+	 */
 	private void initQuestionInExam() {
 		questions_in_exam_examId.setCellValueFactory(
     		    new PropertyValueFactory<QuestionInExamData,String>("examId"));
@@ -381,9 +407,11 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<QuestionInExamData,String>("teacherText"));
 		questions_in_exam_studentText.setCellValueFactory(
     		    new PropertyValueFactory<QuestionInExamData,String>("studentText"));
-		
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Questions table
+	 */
 	private void initQuestions() {
 		questions_questionId.setCellValueFactory(
     		    new PropertyValueFactory<Question,String>("questionId"));
@@ -405,6 +433,9 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Question,Integer>("correctAns"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Execute exam table
+	 */
 	private void initExecuteExams() {
 		execute_exams_code.setCellValueFactory(
     		    new PropertyValueFactory<ExecuteExam,String>("examPassword"));
@@ -418,6 +449,9 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<ExecuteExam,String>("examId"));
 	}
 	
+	/**
+	 * Defines a PropertyValueFactory for each column in the Statistics exam table
+	 */
 	private void initStatisticsTable() {
 		exam_stats_examID.setCellValueFactory(
     		    new PropertyValueFactory<Statistic,String>("exam_ID"));
@@ -457,6 +491,9 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Statistic,Integer>("grade_derivative_91_100"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Exams table
+	 */
 	private void initExamTable() {
 		exams_lock_flag.setCellValueFactory(
     		    new PropertyValueFactory<Exam,Integer>("lock"));
@@ -468,9 +505,11 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Exam,Integer>("examDuration"));
 		exams_examId.setCellValueFactory(
     		    new PropertyValueFactory<Exam,String>("examId"));
-		
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Course in subject table
+	 */
 	private void initCourseInSubjectTable() {
 		course_in_subject_course_id.setCellValueFactory(
     		    new PropertyValueFactory<CourseInSubject,String>("course_id"));
@@ -478,6 +517,9 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<CourseInSubject,String>("subject_id"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Courses table
+	 */
 	private void initCoursesTable() {
 		course_id.setCellValueFactory(
     		    new PropertyValueFactory<Course,String>("courseId"));
@@ -485,8 +527,10 @@ public class RawDataViewController implements Observer {
     		    new PropertyValueFactory<Course,String>("courseName"));
 	}
 
+	/**
+	 * Defines a PropertyValueFactory for each column in the Alter duration table
+	 */
 	private void initAlterDurationTable() {
-		
 		alter_duration_userID.setCellValueFactory(
     		    new PropertyValueFactory<AlterDuration,String>("userID"));
 		alter_duration_examID.setCellValueFactory(
@@ -503,6 +547,9 @@ public class RawDataViewController implements Observer {
 				new PropertyValueFactory<AlterDuration,Integer>("after_change_duration"));
 	}
 
+	/**
+	 * An override of update in Observer, will be called once ObservableClient calls it
+	 */
 	@Override
 	public void update(Observable o, Object msg) {
 		if(msg instanceof AbstractMessage) {
@@ -514,6 +561,10 @@ public class RawDataViewController implements Observer {
 		}
 	}
 
+	/**
+	 * Updates all tables with data from the server
+	 * @param allMessage a message containing all the db tables from the server
+	 */
 	private void updateTables(AllTablesMessage allMessage) {
 		updateAlterDurationTable(allMessage.getAlterDurList());
 		updateCourseTable(allMessage.getCourseList());
@@ -529,61 +580,100 @@ public class RawDataViewController implements Observer {
 		updateUsers(allMessage.getUserList());
 	}
 
-
+	/**
+	 * Updates the Users table
+	 * @param userList a list of Users from the server
+	 */
 	private void updateUsers(ArrayList<User> userList) {
 		ObservableList<User> myList=FXCollections.observableArrayList();
 		myList.addAll(userList);
 		users_table.setItems(myList);	
 	}
 
+	/**
+	 * Updates the Subjects table
+	 * @param subjectList a list of Subjects from the server
+	 */
 	private void updateSubject(ArrayList<Subject> subjectList) {
 		ObservableList<Subject> myList=FXCollections.observableArrayList();
 		myList.addAll(subjectList);
 		subjects_table.setItems(myList);			
 	}
 
+	/**
+	 * Updates the Subject a teacher teach table
+	 * @param SubjectTeacherList a list of SubjectATeacherTeach from the server
+	 */
 	private void updateSubjectATeacherTeach(ArrayList<SubjectATeacherTeach> SubjectTeacherList) {
 		ObservableList<SubjectATeacherTeach> myList=FXCollections.observableArrayList();
 		myList.addAll(SubjectTeacherList);
 		subject_a_teacher_teach_table.setItems(myList);			
 	}
 
+	/**
+	 * Updates the Solved exams table
+	 * @param solvedExamList a list of SolvedExams from the server
+	 */
 	private void updateSolvedExam(ArrayList<SolvedExams> solvedExamList) {
 		ObservableList<SolvedExams> myList=FXCollections.observableArrayList();
 		myList.addAll(solvedExamList);
 		solved_exams_table.setItems(myList);			
 	}
 
+	/**
+	 * Updates the Questions in exam table
+ 	 * @param questionInExamList a list of QuestionsInExamData from the server
+	 */
 	private void updateQuestionsInExamTable(ArrayList<QuestionInExamData> questionInExamList) {
 		ObservableList<QuestionInExamData> myList=FXCollections.observableArrayList();
 		myList.addAll(questionInExamList);
 		questions_in_exam_table.setItems(myList);		
 	}
 
+	/**
+	 * Updates the Questions table
+	 * @param questionList a list of Questions from the server
+	 */
 	private void updateQuestionsTable(ArrayList<Question> questionList) {
 		ObservableList<Question> myList=FXCollections.observableArrayList();
 		myList.addAll(questionList);
 		questions_table.setItems(myList);
 	}
 
+	/**
+	 * Updates the Exam executions table
+	 * @param executeList a list of ExecuteExam from the server
+	 */
 	private void updateExecuteExamTable(ArrayList<ExecuteExam> executeList) {
 		ObservableList<ExecuteExam> myList=FXCollections.observableArrayList();
 		myList.addAll(executeList);
 		execute_exams_table.setItems(myList);
 	}
 
+	/**
+	 * Updates the Statistics table
+	 * @param statList a list of Statistics from the server
+	 */
 	private void updateStatsTable(ArrayList<Statistic> statList) {
 		ObservableList<Statistic> myList=FXCollections.observableArrayList();
 		myList.addAll(statList);
 		exam_stats_table.setItems(myList);		
 	}
-
+	
+	/**
+	 * Updates the Exam table
+	 * @param examList a list of exams from the server
+	 */
 	private void updateExamTable(ArrayList<Exam> examList) {
 		ObservableList<Exam> myList=FXCollections.observableArrayList();
 		myList.addAll(examList);
 		exams_table.setItems(myList);
 	}
-
+	
+	/**
+	 * Updates the Course in subject table
+	 * @param courseInSubList a list of CourseInSubject from the server
+	 */
 	private void updateCourseInSubjectTable(ArrayList<CourseInSubject> courseInSubList) {
 		ObservableList<CourseInSubject> myList=FXCollections.observableArrayList();
 		myList.addAll(courseInSubList);
@@ -591,6 +681,10 @@ public class RawDataViewController implements Observer {
 		
 	}
 
+	/**
+	 * Updates the Course table
+	 * @param courseList a list of Courses from the server
+	 */
 	private void updateCourseTable(ArrayList<Course> courseList) {
 		ObservableList<Course> myList=FXCollections.observableArrayList();
 		myList.addAll(courseList);
@@ -598,6 +692,10 @@ public class RawDataViewController implements Observer {
 		
 	}
 
+	/**
+	 * Updates the Alter duration table
+	 * @param alterDurList a list of AlterDurations from the server
+	 */
 	private void updateAlterDurationTable(ArrayList<AlterDuration> alterDurList) {
 		ObservableList<AlterDuration> myList=FXCollections.observableArrayList();
 		myList.addAll(alterDurList);
