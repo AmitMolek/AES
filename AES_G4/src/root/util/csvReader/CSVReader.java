@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import root.client.managers.DataKeepManager;
@@ -30,8 +32,10 @@ public class CSVReader {
     
     public ArrayList<String[]> readCSV(){
 	    try {
-	    	ArrayList<String[]> solvedExamFromCSV = new ArrayList<String[]>();
-	        	br = new BufferedReader(new FileReader(csvFile));
+	    		ArrayList<String[]> solvedExamFromCSV = new ArrayList<String[]>();
+	    		InputStream is = getClass().getResourceAsStream(csvFile);
+	    	    InputStreamReader isr = new InputStreamReader(is);
+	        	br = new BufferedReader(isr);
 	        	while ((line = br.readLine()) != null) {
 	
 	            // use comma as separator
@@ -42,7 +46,7 @@ public class CSVReader {
 	        
 	
 	    } catch (FileNotFoundException e) {
-	       //e.printStackTrace();
+	       e.printStackTrace();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    } finally {

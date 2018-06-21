@@ -1,11 +1,14 @@
 package root.server.managers;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -16,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.log4j.chainsaw.Main;
 
 import com.opencsv.CSVWriter;
 import root.client.controllers.QuestionInExamObject;
@@ -87,10 +92,10 @@ public class ServerMessageManager {
 	private ServerMessageManager() {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		String fullPath = s+"//src//root//server//executeExam//";
+		String fullPath = "/root/server/executeExam/";
 		PATH = fullPath;
-		PATHSOLUTION = s+"//src//root//server//solvedExam//";
-		PATHCSV = s+ "//src//root//server//csvExam//";
+		PATHSOLUTION = "/root/server/solvedExam/";
+		PATHCSV = "/root/server/csvExam/";
 	}
 	
 	public static ServerMessageManager getInstance() {
@@ -723,16 +728,19 @@ public class ServerMessageManager {
 	 * @return
 	 */
 	private static AbstractMessage handleGetCSVfromServer(AbstractMessage msg) {
+		System.out.println("\nentering handleGetCSVfromServer\n");
 		SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("yyyy-MM-dd");
 		CSVReader instace = CSVReader.getInstace();
 		CsvMessage newMessage = (CsvMessage)msg;
 		CsvDetails csv = newMessage.getCsv();
 		SolvedExams solvedExam = csv.getSolvedExam();
 		String date = monthDayYearformatter.format((java.util.Date) solvedExam.getExamDateTime());
-		String path = PATHCSV +solvedExam.getExamID() + "-" + date;
-		String pathInsideSolvedExamFolder = path + "//" + solvedExam.getSovingStudentID()+ ".csv";
+		String path = PATHCSV + solvedExam.getExamID() + "-" + date; // "//src//root//server//csvExam//"
+		String pathInsideSolvedExamFolder = path + "/" + solvedExam.getSovingStudentID()+ ".csv";
 		instace.setCsvFile(pathInsideSolvedExamFolder);
+		System.out.println("Path: "+pathInsideSolvedExamFolder);
 		ArrayList<String[]> csvDATA = instace.readCSV();		// "readCSV" return ArrayList<String[]>, than save it inside newMessage.
+		System.out.println("after reading CSV");
 		if (csvDATA != null)return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
 		return new ErrorMessage(new Exception("Error,\nnot a valid csv path,\nplease check in:"+path+ ",\nthat csv name: "+solvedExam.getSovingStudentID()+",\nexist."));
 	}
@@ -752,9 +760,11 @@ public class ServerMessageManager {
 		date = sdf.format(new Date());
 		QuestionInExam que = null;
 		String path = PATHCSV +exam.getExamId() + "-" + date;
+    	
 		new File(path).mkdirs();
-		String s = path + "//";
+		String s = path + "/";
 		try {
+			System.out.println(s);
 			csvWriter = new CSVWriter(new FileWriter(s + student.getUserID()+".csv"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
