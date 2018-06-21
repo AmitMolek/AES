@@ -145,7 +145,7 @@ public class ServerMessageManager {
 		String fullPath = s+"//word//";
 		PATH = fullPath;
 		PATHSOLUTION = s+"//solution//";
-		PATHCSV = s+ "//CSV//";
+		PATHCSV = s+ "\\CSV\\";
 	}
 
 	// CLASS METHODS *************************************************
@@ -1117,19 +1117,17 @@ public class ServerMessageManager {
 	 *         otherwise
 	 */
 	private static AbstractMessage handleGetCSVfromServer(AbstractMessage msg) {
-		System.out.println("\nentering handleGetCSVfromServer\n");
 		SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("yyyy-MM-dd");
 		CSVReader instace = CSVReader.getInstace();
 		CsvMessage newMessage = (CsvMessage)msg;
 		CsvDetails csv = newMessage.getCsv();
 		SolvedExams solvedExam = csv.getSolvedExam();
 		String date = monthDayYearformatter.format((java.util.Date) solvedExam.getExamDateTime());
-		String path = PATHCSV + solvedExam.getExamID() + "-" + date; // "//src//root//server//csvExam//"
-		String pathInsideSolvedExamFolder = path + "/" + solvedExam.getSovingStudentID()+ ".csv";
+		String path = PATHCSV + solvedExam.getExamID() + "-" + date;
+		String pathInsideSolvedExamFolder = path + "\\" + solvedExam.getSovingStudentID()+ ".csv";
 		instace.setCsvFile(pathInsideSolvedExamFolder);
-		System.out.println("Path: "+pathInsideSolvedExamFolder);
-		ArrayList<String[]> csvDATA = instace.readCSV();		// "readCSV" return ArrayList<String[]>, than save it inside newMessage.
-		System.out.println("after reading CSV");
+		System.out.println("Path to csv: "+pathInsideSolvedExamFolder);
+		ArrayList<String[]> csvDATA = instace.readCSV();
 		if (csvDATA != null)return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
 		return new ErrorMessage(new Exception("Error,\nnot a valid csv path,\nplease check in:"+path+ ",\nthat csv name: "+solvedExam.getSovingStudentID()+",\nexist."));
 	}

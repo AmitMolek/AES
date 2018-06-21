@@ -33,20 +33,14 @@ public class CSVReader {
     public ArrayList<String[]> readCSV(){
 	    try {
 	    		ArrayList<String[]> solvedExamFromCSV = new ArrayList<String[]>();
-	    		InputStream is = getClass().getResourceAsStream(csvFile);
-	    	    InputStreamReader isr = new InputStreamReader(is);
-	        	br = new BufferedReader(isr);
-	        	while ((line = br.readLine()) != null) {
-	
-	            // use comma as separator
-	            solvedExamFromCSV.add(line.split(csvSplitBy));
+	    		br = new BufferedReader(new FileReader(csvFile));
+	    		while ((line = br.readLine()) != null) {
+	    			// use comma as separator
+	    			solvedExamFromCSV.add(line.split(csvSplitBy));
 	        	}
-	            //System.out.println(solvedExamFromCSV[4]);
 	            return solvedExamFromCSV;
-	        
-	
 	    } catch (FileNotFoundException e) {
-	       e.printStackTrace();
+	       
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    } finally {
