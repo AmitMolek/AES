@@ -51,7 +51,23 @@ public class Exam implements Serializable {
 	private ExecuteExam executeExam;
 
 	// CONSTRUCTORS *****************************************************
-
+	/**
+	 * @author Alon Ben-yosef
+	 * Constructor for exam for DB pulling
+	 * @param examId
+	 * @param examDuration
+	 * @param examState
+	 * @param lock
+	 * @param teacherId
+	 */
+	public Exam(String examId, int examDuration, int examState, int lock, String teacherId) {
+		super();
+		this.examId = examId;
+		this.examDuration = examDuration;
+		ExamState = examState;
+		this.lock = lock;
+		this.setTeacherId(teacherId);
+	}
 	/**
 	 * Constructs the Exam
 	 * 
