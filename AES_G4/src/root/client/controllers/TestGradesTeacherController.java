@@ -78,13 +78,7 @@ public class TestGradesTeacherController implements Observer {
 			else if(((AbstractMessage) arg).getMsg().equals("ok-get-examstatsbyiddate")) {
 				StatsMessage statsMessage=(StatsMessage)arg;
 				DataKeepManager.getInstance().updateObject("statsForHistogram", statsMessage.getStats());
-				Platform.runLater(() -> {
-						try {
-							ScreensManager.getInstance().activate("histograms");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
+				ScreensManager.getInstance().switchScreen("histograms");
 			}
 		}
 	}

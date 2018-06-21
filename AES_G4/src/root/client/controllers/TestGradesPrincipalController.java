@@ -378,14 +378,7 @@ public class TestGradesPrincipalController implements Observer{
 				StatsMessage statsMessage=(StatsMessage)msg;
 				DataKeepManager.getInstance().updateObject("statsForHistogram", statsMessage.getStats());
 				DataKeepManager.getInstance().updateObject("titleForHistogram", buildTitleForHistogram());
-				Platform.runLater(() -> {			
-						try {
-							ScreensManager.getInstance().activate("histograms");
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					});
+				ScreensManager.getInstance().switchScreen("histograms");
 			}
 			if(((AbstractMessage) msg).getMsg().equals("error")) {
 				ErrorMessage errmsg=(ErrorMessage)msg;

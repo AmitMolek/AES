@@ -1,8 +1,5 @@
 package root.client.controllers;
 import java.text.DecimalFormat;
-import java.util.Observable;
-import java.util.Observer;
-
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
