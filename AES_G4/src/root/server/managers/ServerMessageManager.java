@@ -146,7 +146,7 @@ public class ServerMessageManager {
 		String fullPath = s+"//word//";
 		PATH = fullPath;
 		PATHSOLUTION = s+"//solution//";
-		PATHCSV = s+ "\\CSV\\";
+		PATHCSV = s+ "//CSV//";
 	}
 
 	// CLASS METHODS *************************************************
@@ -1126,7 +1126,7 @@ private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
 		SolvedExams solvedExam = csv.getSolvedExam();
 		String date = monthDayYearformatter.format((java.util.Date) solvedExam.getExamDateTime());
 		String path = PATHCSV + solvedExam.getExamID() + "-" + date;
-		String pathInsideSolvedExamFolder = path + "\\" + solvedExam.getSovingStudentID()+ ".csv";
+		String pathInsideSolvedExamFolder = path + "/" + solvedExam.getSovingStudentID()+ ".csv";
 		instace.setCsvFile(pathInsideSolvedExamFolder);
 		System.out.println("Path to csv: "+pathInsideSolvedExamFolder);
 		ArrayList<String[]> csvDATA = instace.readCSV();

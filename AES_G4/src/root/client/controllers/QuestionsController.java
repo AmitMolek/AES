@@ -1,6 +1,9 @@
 package root.client.controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -29,6 +32,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
+import root.client.Main;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
 import root.dao.app.Question;
@@ -384,9 +388,22 @@ public class QuestionsController implements Observer{
 			Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
 				try {
 			    	observebaleNewQuestion = FXCollections.observableArrayList(); 
+			    	FXMLLoader fxmlLoader;
 			    	String questionId;
+			    	String addNewQuestionfxmlPath;// = "../resources/view/AddQuestionWizzard.fxml";
+			    	CodeSource src = Main.class.getProtectionDomain().getCodeSource();
+			    	URL jarLocation = src.getLocation();
+			    	//InputStream jarPath;
+					if (jarLocation.toString().startsWith("jar") || jarLocation.toString().endsWith("jar")) {
+						fxmlLoader = new FXMLLoader(getClass().getResource("/root/client/resources/view/AddQuestionWizzard.fxml"));
+						System.out.println("loading jar's FXML");
+
+					} else {
+						/* SHOULD ONLY BE HERE IF IN IDE */
+						addNewQuestionfxmlPath = "../resources/view/AddQuestionWizzard.fxml";
+						fxmlLoader = new FXMLLoader(getClass().getResource(addNewQuestionfxmlPath));
+					}
 			    	
-				 	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resources/view/AddQuestionWizzard.fxml"));
 				    Parent parent = fxmlLoader.load();
 				    AddNewQuestionController dialogController = fxmlLoader.<AddNewQuestionController>getController();
 				    dialogController.setAppMainObservableList(observebaleNewQuestion);
