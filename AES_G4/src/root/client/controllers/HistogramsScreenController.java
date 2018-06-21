@@ -12,7 +12,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import root.client.managers.DataKeepManager;
 import root.dao.app.Statistic;
-
+/**
+ * 
+ * @author Alon Ben-yosef
+ * A controller for histogram screen, the controller pulls relevant data from DataKeepManager and presents it as graphs
+ */
 public class HistogramsScreenController {
 
     @FXML
@@ -32,7 +36,10 @@ public class HistogramsScreenController {
 
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
-        
+    
+    /**
+     * Is called as JavaFX loads the scene, it will pull the data from DataKeepManager if available or it will present an epty graph otherwise
+     */
 	public void initialize() {
 		Statistic stat=(Statistic) DataKeepManager.getInstance().getObject("statsForHistogram");
 		String title=(String) DataKeepManager.getInstance().getObject("titleForHistogram");
@@ -57,7 +64,11 @@ public class HistogramsScreenController {
 			updateHistograms(title, stat);
 		}
 	}
-	
+	/**
+	 * Will update the histograms with data from DataKeepManager
+	 * @param title the title for the graph
+	 * @param stat the statisitic to show
+	 */
 	public void updateHistograms(String title,Statistic stat) {
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
 		barChart.getData().removeAll();

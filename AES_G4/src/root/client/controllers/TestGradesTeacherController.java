@@ -22,7 +22,11 @@ import root.dao.message.StatsMessage;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
-
+/**
+ * 
+ * @author Alon Ben-yosef
+ * This is the controller for TestGradesTeacherView which allows the teacher to view statistics for his own exams.
+ */
 public class TestGradesTeacherController implements Observer {
 	@FXML
 	private AnchorPane anchorPane;
@@ -41,10 +45,13 @@ public class TestGradesTeacherController implements Observer {
 	
 	private ObservableClient client;	
 
-	
+	/**
+     * Is called as JavaFX loads the scene, this will define the factories for the table view
+	 * @throws IOException
+	 */
 	@FXML
 	public void initialize() throws IOException {
-		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from DataKeep, but dont remove it from there, for later use.
+		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");
     	client.addObserver(this);
     	examNumCol.setCellValueFactory(
     		    new PropertyValueFactory<ExamTableDataLine,String>("examID"));
@@ -71,11 +78,10 @@ public class TestGradesTeacherController implements Observer {
 			else if(((AbstractMessage) arg).getMsg().equals("ok-get-examstatsbyiddate")) {
 				StatsMessage statsMessage=(StatsMessage)arg;
 				DataKeepManager.getInstance().updateObject("statsForHistogram", statsMessage.getStats());
-				Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				Platform.runLater(() -> {
 						try {
 							ScreensManager.getInstance().activate("histograms");
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					});
@@ -83,6 +89,10 @@ public class TestGradesTeacherController implements Observer {
 		}
 	}
 	
+	/**
+	 * Will be called on button pressed, will request the relevant statistics for that exams
+	 * @param event the button press
+	 */
 	@FXML
     void viewReport(ActionEvent event) {
 		ExamTableDataLine line=table.getSelectionModel().getSelectedItem();

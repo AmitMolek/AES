@@ -11,12 +11,18 @@ import java.io.Serializable;
 public class QuestionInExam implements Serializable {
 
 
+<<<<<<< Upstream, based on origin/master
 	// Instance variables **********************************************
 
 
 
+=======
+>>>>>>> 4545290 Something broke rawDataView
 	private static final long serialVersionUID = 1L;
+<<<<<<< Upstream, based on origin/master
 	
+=======
+>>>>>>> 4545290 Something broke rawDataView
 
 	/**
 	 * 

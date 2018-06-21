@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ocsf.client.ObservableClient;
 import root.client.managers.DataKeepManager;
+import root.client.managers.ScreensManager;
 import root.dao.app.AlterDuration;
 import root.dao.app.Course;
 import root.dao.app.CourseInSubject;
@@ -305,8 +310,7 @@ public class RawDataViewController implements Observer {
     	try {
 			client.sendToServer(msg);
 		} catch (IOException e) {
-			// TODO Deal with failure
-			e.printStackTrace();
+			showAlert("Error Communicating With AES Sever","Please contact system administrator");
 		}
     }
 	/**
@@ -701,4 +705,20 @@ public class RawDataViewController implements Observer {
 		myList.addAll(alterDurList);
 		alter_duration_table.setItems(myList);
 	}
+	
+	  /**
+     * This will show a temporary warning text for invalid queries or server errors
+     * @param header the head of the warning
+     * @param errorMessage the content of thrown exception
+     */
+    private void showAlert(String header,String errorMessage) {
+        	Platform.runLater(() -> {								
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(ScreensManager.getInstance().getPrimaryStage());
+                alert.setTitle("Error");
+                alert.setHeaderText(header);
+                alert.setContentText(errorMessage);
+                alert.showAndWait();       
+    		});
+    }
 }

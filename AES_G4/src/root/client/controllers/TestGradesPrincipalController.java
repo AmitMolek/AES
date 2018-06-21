@@ -8,8 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -24,7 +26,7 @@ import javafx.scene.control.CheckBox;
 /**
  * 
  * @author Alon Ben-yosef
- * TestGradesPrincipalController is a controller class for TestGradesPrincipal which allows the prinicipal to view customized reports
+ * TestGradesPrincipalController is a controller class for TestGradesPrincipal which allows the principal to view customized reports
  * and queries.
  */
 
@@ -91,6 +93,7 @@ public class TestGradesPrincipalController implements Observer{
 			client.sendToServer(msg);
     	}
 	    catch (IOException e) {
+	    		System.out.println("ERROR");
 				showAlert("Error Communicating With AES Sever","Please contact system administrator");
 			}
     	catch (Exception e) {
@@ -104,8 +107,14 @@ public class TestGradesPrincipalController implements Observer{
      * @param errorMessage the content of thrown exception
      */
     private void showAlert(String header,String errorMessage) {
-    	errorText.setText(header+" - "+errorMessage);
-    	errorText.setVisible(true);
+        	Platform.runLater(() -> {								
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(ScreensManager.getInstance().getPrimaryStage());
+                alert.setTitle("Error");
+                alert.setHeaderText(header);
+                alert.setContentText(errorMessage);
+                alert.showAndWait();       
+    		});
     }
 
     /**
@@ -119,8 +128,8 @@ public class TestGradesPrincipalController implements Observer{
 			String text=value1Field.getText().trim();
     		if(text.isEmpty()) throw new Exception("Fields cannot be empty");
 			if(!isNumber(text)) throw new Exception("Enter numeric values only"); 
-			query="SELECT se.solved_exam_grade \r\n" + 
-					"FROM aes.`solved exams` se \r\n" + 
+			query="SELECT se.solved_exam_grade " + 
+					"FROM aes.`solved exams` se " + 
 					"WHERE se.User_ID='"+text+"' AND se.grade_approval_by_teacher='approved';";
 		}
 		else if(checkBox2.isSelected()) {
@@ -138,6 +147,11 @@ public class TestGradesPrincipalController implements Observer{
 		return query;
 	}
 
+    /**
+     * Builds a query for teacher
+     * @return a query to run in the server
+     * @throws Exception on case of invalid input
+     */
 	private String examsByTeacherQueryBuilder() throws Exception {
     	String query=null;
     	if(checkBox1.isSelected()) {
@@ -162,6 +176,11 @@ public class TestGradesPrincipalController implements Observer{
     	return query;
 	}
 
+	/**
+	 * Checks is a string is a number
+	 * @param s a String
+	 * @return true if s is a number, false otherwise
+	 */
 	private boolean isNumber(String s) {
 		try {
 			Integer.parseInt(s);
@@ -172,6 +191,11 @@ public class TestGradesPrincipalController implements Observer{
 		}
 	}
 	
+	/**
+     * Builds a query for course
+     * @return a query to run in the server
+     * @throws Exception on case of invalid input
+     */
 	private String examsByCourseQueryBuilder() throws Exception {
 		String query=null;
 		if(checkBox1.isSelected()) {
@@ -195,9 +219,9 @@ public class TestGradesPrincipalController implements Observer{
 			String subject=toStandardNameConvention(splitInp[0]);
 			String course=toStandardNameConvention(splitInp[1]);
 			query="SELECT se.solved_exam_grade\r\n" + 
-					"FROM aes.`solved exams` se, aes.`courses` c, aes.`subjects` s, aes.`courses in subject` cis\r\n" + 
-					"WHERE s.subject_id=SUBSTR(se.exam_ID,1,2) AND c.course_id=SUBSTR(se.exam_ID,3,2) AND cis.course_id=c.course_id\r\n" + 
-					"AND cis.subject_id=s.subject_id AND s.subject_name = '"+subject+"' AND c.course_name='"+course+"';";
+					"FROM aes.`solved exams` se, aes.`courses` c, aes.`subjects` s, aes.`courses in subject` cis " + 
+					"WHERE s.subject_id=SUBSTR(se.exam_ID,1,2) AND c.course_id=SUBSTR(se.exam_ID,3,2) AND cis.course_id=c.course_id " + 
+					"AND cis.subject_id=s.subject_id AND s.subject_name = '"+subject+"' AND c.course_name='"+course+"' AND se.grade_approval_by_teacher='approved';";
 		}
 		return query;
 	}
@@ -209,8 +233,8 @@ public class TestGradesPrincipalController implements Observer{
 		return prefix+fullname.substring(1);
 	}
 	
-	/***
-	 * @author Alon Ben-yosef
+	/**
+	* @author Alon Ben-yosef
  	* Calls perparePageForQuery()
  	* @param event thrown by JavaFX
  	*/
@@ -218,6 +242,7 @@ public class TestGradesPrincipalController implements Observer{
     void queryChosen(ActionEvent event) {
     	preparePageForQuery();
     }
+	
 	/***
      * @author Alon Ben-yosef
      * Changes the field names for the relevant query
@@ -252,7 +277,7 @@ public class TestGradesPrincipalController implements Observer{
     	resetCheckBoxes();
 	}
 
-    /***
+    /**
      * @author Alon Ben-yosef
      * Resets the checkboxs states to default
      */
@@ -281,7 +306,7 @@ public class TestGradesPrincipalController implements Observer{
 		});
     }
 	
-	/***
+	/**
      * @author Alon Ben-yosef
      * Makes only the first text field editable and cleans the rest if first checkbox is selected, otherwise disables it
      * @param event thrown by JavaFX
@@ -303,7 +328,7 @@ public class TestGradesPrincipalController implements Observer{
     	}
     }
     
-    /***
+    /**
      * @author Alon Ben-yosef
      * Makes only the second text field editable and cleans the rest if second checkbox is selected, otherwise disables it
      * @param event thrown by JavaFX
@@ -324,7 +349,7 @@ public class TestGradesPrincipalController implements Observer{
     		value2Field.setEditable(false);   
     	}
     }
-    /***
+    /**
      * @author Alon Ben-yosef
      * Makes only the third text field editable and cleans the rest if third checkbox is selected, otherwise disables it
      * @param event thrown by JavaFX
@@ -345,7 +370,7 @@ public class TestGradesPrincipalController implements Observer{
     		value3Field.setEditable(false);   
     	}
     }
-
+    
 	@Override
 	public void update(Observable arg0, Object msg) {
 		if(msg instanceof AbstractMessage) {
@@ -353,7 +378,7 @@ public class TestGradesPrincipalController implements Observer{
 				StatsMessage statsMessage=(StatsMessage)msg;
 				DataKeepManager.getInstance().updateObject("statsForHistogram", statsMessage.getStats());
 				DataKeepManager.getInstance().updateObject("titleForHistogram", buildTitleForHistogram());
-				Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+				Platform.runLater(() -> {			
 						try {
 							ScreensManager.getInstance().activate("histograms");
 						} catch (IOException e) {
@@ -368,7 +393,11 @@ public class TestGradesPrincipalController implements Observer{
 			}
 		}		
 	}
-
+	
+	/**
+	 * Builds a title for graphs depends on chosen query
+	 * @return a relevant title for the histogram
+	 */
 	private String buildTitleForHistogram() {
 		String queryName=queriesComboBox.getValue();
 		switch (queryName) {
@@ -382,6 +411,10 @@ public class TestGradesPrincipalController implements Observer{
 		return "";
 	}
 
+	/**
+	 * Builds a title for course queries
+	 * @return an appropriate title
+	 */
 	private String getCourseTitle() {
 		if(checkBox1.isSelected()) {
 			String text=value1Field.getText().trim();
@@ -399,6 +432,10 @@ public class TestGradesPrincipalController implements Observer{
 		return "";
 	}
 
+	/**
+	 * Builds a title for student queries
+	 * @return an appropriate title
+	 */
 	private String getStudentTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
 		else if (checkBox2.isSelected()) {
@@ -411,8 +448,8 @@ public class TestGradesPrincipalController implements Observer{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Builds a title for teacher queries
+	 * @return an appropriate title
 	 */
 	private String getTeacherTitle() {
 		if(checkBox1.isSelected())	return "ID = '"+value1Field.getText()+"'";
