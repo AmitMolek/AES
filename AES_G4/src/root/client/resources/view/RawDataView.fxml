@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.client.controllers.RawDataViewController">
+   <children>
+      <BorderPane prefHeight="720.0" prefWidth="1280.0">
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Alter Duration Request">
+                 <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="alter_duration_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="alter_duration_userID" editable="false" minWidth="20.0" prefWidth="100.0" text="User ID" />
+                                        <TableColumn fx:id="alter_duration_examID" editable="false" minWidth="20.0" prefWidth="100.0" text="Exam ID" />
+                                          <TableColumn fx:id="alter_duration_date" editable="false" minWidth="20.0" prefWidth="150.0" text="Date" />
+                                          <TableColumn fx:id="alter_duration_teacherExp" editable="false" minWidth="20.0" prefWidth="300.0" text="Teacher Explanation" />
+                                          <TableColumn fx:id="alter_duration_prinAns" editable="false" minWidth="20.0" prefWidth="300.0" text="Principal Answer" />
+                                          <TableColumn fx:id="alter_duration_originalDur" editable="false" minWidth="20.0" prefWidth="150.0" text="Original Duration" />
+                                          <TableColumn fx:id="alter_duration_changed" editable="false" minWidth="20.0" prefWidth="150.0" text="After Change Duration" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Courses">
+                 <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="courses_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="course_id" editable="false" minWidth="20.0" prefWidth="200.0" text="Course ID" />
+                                          <TableColumn fx:id="course_name" editable="false" minWidth="20.0" prefWidth="1079.1999816894531" text="Course Name" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Courses in Subject">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="course_in_subject_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="course_in_subject_subject_id" editable="false" minWidth="20.0" prefWidth="750.0" text="Subject ID" />
+                                          <TableColumn fx:id="course_in_subject_course_id" editable="false" minWidth="20.0" prefWidth="750.0" text="Course ID" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Exams">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="exams_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="exams_examId" editable="false" minWidth="20.0" prefWidth="100.0" text="Exam ID" />
+                                          <TableColumn fx:id="exams_teacherAssembler" editable="false" minWidth="200.0" prefWidth="100.0" text="Teacher Assembler ID" />
+                                          <TableColumn fx:id="exams_exam_original_allocated_duration" editable="false" minWidth="20.0" prefWidth="300.0" text="Original Time Allocation" />
+                                          <TableColumn fx:id="exams_exams_state" editable="false" minWidth="20.0" prefWidth="300.0" text="Exam Dirty" />
+                                          <TableColumn fx:id="exams_lock_flag" editable="false" minWidth="20.0" prefWidth="300.0" text="Exam Locked" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Exams Stats">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="exam_stats_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="exam_stats_examID" editable="false" minWidth="20.0" prefWidth="64.00000077486038" text="Exam ID" />
+                                          <TableColumn fx:id="exam_stats_date" editable="false" minWidth="83.199951171875" prefWidth="83.199951171875" text="Exam Date" />
+                                          <TableColumn fx:id="exam_stats_realTime" editable="false" minWidth="20.0" prefWidth="97.60000610351562" text="Time Allocation" />
+                                          <TableColumn fx:id="exam_stats_submitted" editable="false" minWidth="20.0" prefWidth="131.19996643066406" text="Submitted Students" />
+                                          <TableColumn fx:id="exam_stats_interrupted" editable="false" minWidth="20.0" prefWidth="126.39996337890625" text="Interrupted Students" />
+                                          <TableColumn fx:id="exam_stats_total" editable="false" minWidth="20.0" prefWidth="91.99996948242188" text="Total Students" />
+                                          <TableColumn fx:id="exam_stats_average" editable="false" minWidth="20.0" prefWidth="59.20001220703125" text="Average" />
+                                          <TableColumn fx:id="exam_stats_median" editable="false" minWidth="20.0" prefWidth="50.39996337890625" text="Median" />
+                                          <TableColumn fx:id="exam_stats_0_10" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="0-10" />
+                                          <TableColumn fx:id="exam_stats_11_20" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="11-20" />
+                                          <TableColumn fx:id="exam_stats_21_30" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="21-30" />
+                                          <TableColumn fx:id="exam_stats_31_40" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="31-40" />
+                                          <TableColumn fx:id="exam_stats_41_50" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="41-50" />
+                                          <TableColumn fx:id="exam_stats_51_60" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="51-60" />
+                                          <TableColumn fx:id="exam_stats_61_70" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="61-70" />
+                                          <TableColumn fx:id="exam_stats_71_80" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="71-80" />
+                                          <TableColumn fx:id="exam_stats_81_90" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="81-90" />
+                                          <TableColumn fx:id="exam_stats_91_100" editable="false" minWidth="20.0" prefWidth="54.4000244140625" text="91-100" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Execute Exams">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="execute_exams_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="execute_exams_examId" editable="false" minWidth="20.0" prefWidth="64.00000077486038" text="Exam ID" />
+                                          <TableColumn fx:id="execute_exams_startDate" editable="false" minWidth="83.199951171875" prefWidth="83.199951171875" text="Start Date" />
+                                          <TableColumn fx:id="execute_exams_code" editable="false" minWidth="20.0" prefWidth="97.60000610351562" text="Four Digit Code" />
+                                          <TableColumn fx:id="execute_exams_exam_type" editable="false" minWidth="20.0" prefWidth="131.19996643066406" text="Exam Type" />
+                                          <TableColumn fx:id="execute_exams_executing_teacher_ID" editable="false" minWidth="20.0" prefWidth="222.4000244140625" text="Executing Teacher ID" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Questions">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="questions_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="questions_questionId" editable="false" minWidth="20.0" prefWidth="98.40002137422562" text="Question ID" />
+                                          <TableColumn fx:id="questions_question_text" prefWidth="300.0" text="Question Text" />
+                                          <TableColumn fx:id="questions_question_instruction" editable="false" minWidth="49.5999755859375" prefWidth="137.5999984741211" text="Question Instruction" />
+                                          <TableColumn fx:id="questions_answer1" editable="false" minWidth="20.0" prefWidth="143.19998168945312" text="Answer 1" />
+                                          <TableColumn fx:id="questions_answer2" editable="false" minWidth="20.0" prefWidth="110.4000244140625" text="Answer 2" />
+                                          <TableColumn fx:id="questions_answer3" editable="false" minWidth="20.0" prefWidth="113.60000610351562" text="Answer 3" />
+                                          <TableColumn fx:id="questions_answer4" editable="false" minWidth="83.199951171875" prefWidth="83.199951171875" text="Answer 4" />
+                                          <TableColumn fx:id="questions_correct_answer" editable="false" minWidth="20.0" prefWidth="108.800048828125" text="Correct Answer" />
+                                          <TableColumn fx:id="questions_teacherId" editable="false" minWidth="20.0" prefWidth="148.0" text="Assembling Teacher ID" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Questions in Exam">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="questions_in_exam_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="questions_in_exam_questionId" editable="false" minWidth="20.0" prefWidth="98.40002137422562" text="Question ID" />
+                                          <TableColumn fx:id="questions_in_exam_examId" editable="false" minWidth="49.5999755859375" prefWidth="137.5999984741211" text="Exam ID" />
+                                          <TableColumn fx:id="questions_in_exam_grade" editable="false" minWidth="20.0" prefWidth="143.19998168945312" text="Question Grade" />
+                                          <TableColumn fx:id="questions_in_exam_studentText" editable="false" minWidth="20.0" prefWidth="400.0" text="Student Free Text" />
+                                          <TableColumn fx:id="questions_in_exam_teacherText" editable="false" minWidth="20.0" prefWidth="400.0" text="Teacher Free Text" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Solved Exams">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="solved_exams_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="solved_exams_userId" editable="false" minWidth="20.0" prefWidth="98.40002137422562" text="User ID" />
+                                          <TableColumn fx:id="solved_exams_examId" editable="false" minWidth="49.5999755859375" prefWidth="90.39995574951172" text="Exam ID" />
+                                          <TableColumn fx:id="solved_exams_grade" editable="false" minWidth="20.0" prefWidth="81.60003662109375" text="Grade" />
+                                          <TableColumn fx:id="solved_exams_duration" editable="false" minWidth="20.0" prefWidth="87.20004272460938" text="Duration" />
+                                          <TableColumn fx:id="solved_exams_submitInterrupt" editable="false" minWidth="20.0" prefWidth="140.0" text="Submitted/Interrupted" />
+                                          <TableColumn fx:id="solved_exams_date" editable="false" minWidth="20.0" prefWidth="108.80001831054688" text="Execution Date" />
+                                          <TableColumn fx:id="solved_exams_teacherNotes" editable="false" minWidth="49.5999755859375" prefWidth="97.5999755859375" text="Teacher Notes" />
+                                          <TableColumn fx:id="solved_exams_alteration" editable="false" minWidth="20.0" prefWidth="203.2000732421875" text="Grade Alteration Explaination" />
+                                          <TableColumn fx:id="solved_exams_teacherId" editable="false" minWidth="20.0" prefWidth="159.199951171875" text="Approving Teacher ID" />
+                                          <TableColumn fx:id="solved_exams_approval" editable="false" minWidth="20.0" prefWidth="100.0" text="Grade Approval" />
+                                          <TableColumn fx:id="solved_exams_cheatingFlag" editable="false" minWidth="20.0" prefWidth="100.0" text="Cheating Flag" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Subject a Teacher Teach">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="subject_a_teacher_teach_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="subject_a_teacher_teach_teacherId" editable="false" minWidth="20.0" prefWidth="400.0" text="Teacher ID" />
+                                          <TableColumn fx:id="subject_a_teacher_teach_subjectId" editable="false" minWidth="20.0" prefWidth="400.0" text="Subject ID" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Subjects">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="subjects_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="subjects_subject_Id" editable="false" minWidth="20.0" prefWidth="400.0" text="Subject ID" />
+                                          <TableColumn fx:id="subject_name" editable="false" minWidth="20.0" prefWidth="400.0" text="Subject ID" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                 <Tab text="Users">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="690.0" prefWidth="1280.0">
+                                 <center>
+                                    <TableView fx:id="users_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="users_userId" editable="false" minWidth="20.0" prefWidth="300.0" text="Users ID" />
+                                          <TableColumn fx:id="users_firstName" editable="false" minWidth="20.0" prefWidth="200.0" text="First Name" />
+                                          <TableColumn fx:id="users_lastName" editable="false" minWidth="20.0" prefWidth="300.0" text="Last Name" />
+                                          <TableColumn fx:id="users_password" editable="false" minWidth="20.0" prefWidth="200.0" text="Password" />
+                                          <TableColumn fx:id="users_permissions" editable="false" minWidth="20.0" prefWidth="300.0" text="Permissions" />
+                                       </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

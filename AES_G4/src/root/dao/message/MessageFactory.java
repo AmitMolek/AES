@@ -243,6 +243,8 @@ public class MessageFactory {
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		case "query":
 			return new QueryMessage("get-query",(String)payload);
+		case "alltables":
+			return new SimpleMessage("get-alltables");
 		default:
 			break;
 		}
@@ -429,6 +431,8 @@ public class MessageFactory {
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		case "query":
 			return new StatsMessage("ok-get-query", (Statistic)payload);
+		case "alltables":
+			return new AllTablesMessage("ok-get-alltables");
 		}
 		return new ErrorMessage(new Exception("Invalid request"));
 	}

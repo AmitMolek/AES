@@ -228,5 +228,12 @@ public class Exam implements Serializable {
 	public void setExecuteExam(ExecuteExam executeExam) {
 		this.executeExam = executeExam;
 	}
+	
+	public String getTeacherId() {
+		return teacherId;
+	}
 
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
+	}
 }
