@@ -16,6 +16,10 @@ public class Course implements Serializable {
 	/**
 	 * The id of the course
 	 */
+
+
+	private static final long serialVersionUID = 1L;
+
 	private String courseId;
 	/**
 	 * The name of the course

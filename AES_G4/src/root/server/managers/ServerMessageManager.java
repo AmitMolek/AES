@@ -755,7 +755,7 @@ public class ServerMessageManager {
 	 * @return simple message with ok if the server handle it or error message
 	 *         otherwise
 	 */
-	private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
+private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
 		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
 		SetInDB setDb = new SetInDB();
 		SolvedExams solved = exam.getExam();

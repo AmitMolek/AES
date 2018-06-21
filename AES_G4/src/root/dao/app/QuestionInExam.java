@@ -14,6 +14,10 @@ public class QuestionInExam implements Serializable {
 	// Instance variables **********************************************
 
 
+
+	private static final long serialVersionUID = 1L;
+	
+
 	/**
 	 * 
 	 * The question that we want to add to the exam

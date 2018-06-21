@@ -2,11 +2,14 @@ package root.dao.app;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
 /**
  *  @author gal & omer
  *  this dao class is the payload of userInfoMessage, after inserting login information, this payload is sent to server
  */
 
+=======
+>>>>>>> refs/remotes/origin/Omer
 public class LoginInfo implements Serializable{
 
 	private static final long serialVersionUID = 1L;

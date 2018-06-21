@@ -124,21 +124,22 @@ public class SetInDB {
 	 * @param cheated
 	 *            true if the student cheated or false if not cheated
 	 * @return true if the updated successful and false otherwise
-	 */	
+	 */
 	public boolean updateSolvedExamCheatingFlag(String user_id, String exam_id, boolean cheated) {
 		String cheatedStr = "no";
-		if (cheated) cheatedStr = "yes";
+		if (cheated)
+			cheatedStr = "yes";
 		String updateQuery = "UPDATE `solved exams` SET cheating_flag = ? WHERE User_ID = ? AND exam_ID = ?;";
-		
+
 		try {
 			newStmt = conn.prepareStatement(updateQuery);
 			newStmt.setString(1, cheatedStr);
 			newStmt.setString(2, user_id);
 			newStmt.setString(3, exam_id);
 			newStmt.execute();
-			
+
 			return true;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -243,7 +244,7 @@ public class SetInDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * A method that deletes a question from a database
 	 * 
@@ -264,7 +265,7 @@ public class SetInDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * A method that update in the database in the question table
 	 * 
@@ -298,13 +299,15 @@ public class SetInDB {
 			return message.getMessage("ok-set-questions", null); // because we didnt needed to get from DB theres
 																	// nothing to send back to client but the
 																	// confirmation
+
 		} catch (SQLException e) {
 			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 			e.printStackTrace();
 		}
-	return null;
+
+		return null;
 	}
-	
+
 	/**
 	 * A method that add to the database in a question in exam table
 	 * 
@@ -337,8 +340,8 @@ public class SetInDB {
 		return null;
 
 	}
-	
-		/**
+
+	/**
 	 * A method that deletes from the database in a question in exam table
 	 * 
 	 * @author Omer Haimovich
@@ -388,8 +391,8 @@ public class SetInDB {
 		}
 		return null;
 	}
-	
-		/**
+
+	/**
 	 * A method that add to the database in a execute exams table
 	 * 
 	 * @autor Naor Saadia
@@ -415,7 +418,7 @@ public class SetInDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * A method that update in the database in the exams table the lock flag column
 	 * and the exam state column
@@ -424,7 +427,7 @@ public class SetInDB {
 	 *            the exam that should be updated
 	 * @return abstract message if the exam updated successful
 	 */
-	public AbstractMessage updateExam (Exam newExam) {
+	public AbstractMessage updateExam(Exam newExam) {
 		String updateExam = "UPDATE exams SET exams_state = ?, lock_flag = ? WHERE exam_id = ?;";
 		try {
 			newStmt = conn.prepareStatement(updateExam);
@@ -433,8 +436,8 @@ public class SetInDB {
 			newStmt.setString(3, newExam.getExamId());
 			newStmt.execute();
 			return message.getMessage("ok-set-exams", null); // because we didnt needed to get from DB theres
-																	// nothing to send back to client but the
-																	// confirmation
+																// nothing to send back to client but the
+																// confirmation
 
 		} catch (SQLException e) {
 			// log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
@@ -442,7 +445,7 @@ public class SetInDB {
 		}
 
 		return null;
-		
+
 	}
 
 	/**
@@ -460,6 +463,7 @@ public class SetInDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -477,8 +481,9 @@ public class SetInDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
-	
+
 	/**
 	 * A method that update in the database in the exams table the lock flag column
 	 * 
@@ -487,7 +492,7 @@ public class SetInDB {
 	 */
 	public void lockExam(String examId) {
 		String updateExam = "UPDATE exams SET lock_flag = ? WHERE exam_id = ?;";
-	
+
 		try {
 			newStmt = conn.prepareStatement(updateExam);
 			newStmt.setString(1, "locked");
