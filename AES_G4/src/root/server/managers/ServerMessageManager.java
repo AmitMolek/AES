@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -219,6 +220,7 @@ public class ServerMessageManager {
 		SetInDB set = new SetInDB();
 		set.deleteExecutedExam(examId);
 		set.lockExam(examId);
+		new CheatingChecker(examId, new Date(Calendar.getInstance().getTime().getYear(),Calendar.getInstance().getTime().getMonth(),Calendar.getInstance().getTime().getDate()));
 		return null;
 	}
 
