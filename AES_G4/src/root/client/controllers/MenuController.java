@@ -132,7 +132,6 @@ public class MenuController {
     	}
     	
     	createMenuItem(statisticsMenu, img, "Statistics", 90, 25);
-    	statisticsMenu.getItems().add(createMenuItem("Histograms", getChangeScreenActionEvent("histograms")));
     }
     
     /**

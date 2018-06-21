@@ -16,6 +16,8 @@ import java.util.zip.ZipInputStream;
 
 import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
 
+import org.apache.commons.collections4.map.HashedMap;
+
 import com.sun.javafx.iio.ImageStorage;
 
 import javafx.scene.image.Image;
@@ -25,12 +27,47 @@ import root.util.log.LogLine.LineType;
 
 /**
  * Loads images from files
+ * For the home screen
  * @author Amit Molek
  *
  */
 
 public class ImageLoader {
 
+	enum HomeScreenStages{
+		MORNING("Morning");
+		
+		private final String text;
+		
+		HomeScreenStages(final String text) {
+			this.text = text;
+		}
+				
+		@Override
+		public String toString() {
+			return text;
+		}
+	}
+	
+	private HashedMap<String, ArrayList<Image>> images;
+	
+	private static ImageLoader instance = new ImageLoader();
+	
+	private ImageLoader() {
+		images = new HashedMap<>();
+		instance.init_HomeBGImages();
+
+	}
+	
+	private void init_HomeBGImages() {
+		System.out.println("FUCKKKKKKKKKKKKKKKKKKKK");
+		System.out.println(HomeScreenStages.MORNING);
+	}
+	
+	private void loadHomeBGImages() {
+		String imgPath = "root/client/resources/images/bg/home/";
+	}
+	
 	/**
 	 * Loads and returns image from file
 	 * @param filePath the path of the image file
@@ -101,7 +138,7 @@ public class ImageLoader {
 
 		} 
 		else {
-			InputStream is = Main.class.getResourceAsStream("/root/client/resources/view");
+			InputStream is = Main.class.getResourceAsStream(path);
 	        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
 	        BufferedReader br = new BufferedReader(isr);
 	        
@@ -117,5 +154,9 @@ public class ImageLoader {
 	private static void logError(String msg) throws Exception{
 		Log.getInstance().writeToLog(LineType.ERROR, msg);
 		throw (new Exception(msg));
+	}
+	
+	public static ImageLoader getInstance() {
+		return instance;
 	}
 }
