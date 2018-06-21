@@ -10,16 +10,13 @@ import java.io.Serializable;
  */
 public class QuestionInExam implements Serializable {
 
-<<<<<<< HEAD
+
 	// Instance variables **********************************************
-=======
+
 	private static final long serialVersionUID = 1L;
 	
-	private Question question;
-	private int questionGrade;
-	private String freeTextForTeacher;
-	private String freeTextForStudent;
->>>>>>> refs/remotes/origin/AlonNew
+
+
 
 	/**
 	 * 
