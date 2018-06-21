@@ -181,7 +181,6 @@ public class GetFromDB implements DbManagerInterface {
 		} finally {
 			return users;
 		}
-
 	}
 
 	/**

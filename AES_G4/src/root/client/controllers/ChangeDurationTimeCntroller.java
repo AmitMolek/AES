@@ -34,7 +34,6 @@ import root.dao.message.SimpleMessage;
 /**
  * @author Naor Saadia
  * This controller response for change duration screen
- *
  */
 public class ChangeDurationTimeCntroller implements Observer{
 	ObservableClient client;
