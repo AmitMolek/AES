@@ -8,6 +8,7 @@ import root.dao.app.Exam;
 import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.dao.app.QuestionInExamData;
 import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
@@ -25,7 +26,7 @@ public class AllTablesMessage extends AbstractMessage{
 	private ArrayList<Statistic> statList;
 	private ArrayList<ExecuteExam> executeList;
 	private ArrayList<Question> questionList;
-	private ArrayList<QuestionInExam> questionInExamList;
+	private ArrayList<QuestionInExamData> questionInExamList;
 	private ArrayList<SolvedExams> solvedExamList;
 	private ArrayList<SubjectATeacherTeach> subjectTeacherList;
 	private ArrayList<Subject> subjectList;
@@ -109,12 +110,12 @@ public class AllTablesMessage extends AbstractMessage{
 	}
 
 
-	public ArrayList<QuestionInExam> getQuestionInExamList() {
+	public ArrayList<QuestionInExamData> getQuestionInExamList() {
 		return questionInExamList;
 	}
 
 
-	public void setQuestionInExamList(ArrayList<QuestionInExam> questionInExamList) {
+	public void setQuestionInExamList(ArrayList<QuestionInExamData> questionInExamList) {
 		this.questionInExamList = questionInExamList;
 	}
 

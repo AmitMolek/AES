@@ -16,12 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import com.opencsv.CSVWriter;
-import root.client.controllers.QuestionInExamObject;
-import root.dao.app.CheatingExamTest;
-import com.sun.javafx.geom.transform.GeneralTransform3D;
-//import root.client.controllers.TestGradesTeacherController;
 import root.dao.app.Course;
 import root.dao.app.CsvDetails;
 import root.dao.app.Exam;
@@ -42,7 +37,6 @@ import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
 import root.dao.message.CsvMessage;
 import root.dao.message.ErrorMessage;
-import root.dao.message.ExamDataLinesMessage;
 import root.dao.message.ExamMessage;
 import root.dao.message.ExamStatsByIdDateMessage;
 import root.dao.message.ExecuteExamMessage;
@@ -61,7 +55,6 @@ import root.dao.message.SubjectMessage;
 import root.dao.message.UpdateSolvedExam;
 import root.dao.message.UserInfoMessage;
 import root.dao.message.UserIDMessage;
-import root.dao.message.UserMessage;
 import root.dao.message.UserSolvedExamsMessage;
 import root.dao.message.UserSubjectMessage;
 import root.dao.message.WordMessage;
@@ -300,13 +293,18 @@ public class ServerMessageManager {
 	private static AbstractMessage handleGetAllTables(AbstractMessage msg) {
 		GetFromDB getDB = new GetFromDB();
 		AllTablesMessage allMessage=(AllTablesMessage)message.getMessage("ok-get-alltables", null);
-		allMessage.setAlterDurList(getDB.alterDuration((String[])null));
-		allMessage.setCourseList(getDB.courses(new String[0]));
+		allMessage.setAlterDurList(getDB.alterDuration());
+		allMessage.setCourseList(getDB.courses());
 		allMessage.setCourseInSubList(getDB.getCoursesInSubject());
 		allMessage.setExamList(getDB.getExams());
-		allMessage.setStatList(getDB.solvedExamStatistic((String[])null));
+		allMessage.setStatList(getDB.solvedExamStatistic());
 		allMessage.setExecuteList(getDB.getExecutedExams());
 		allMessage.setQuestionList(getDB.questions(""));
+		allMessage.setQuestionInExamList(getDB.getQuestionsInExam());
+		allMessage.setSolvedExamList(getDB.solvedExams());
+		allMessage.setSubjectTeacherList(getDB.getSubjectsATeacherTeach());
+		allMessage.setSubjectList(getDB.subjects());
+		allMessage.setUserList(getDB.users());
 
 		return allMessage;
 	}

@@ -24,9 +24,11 @@ import root.dao.app.ExamTableDataLine;
 import root.dao.app.ExecuteExam;
 import root.dao.app.Question;
 import root.dao.app.QuestionInExam;
+import root.dao.app.QuestionInExamData;
 import root.dao.app.SolvedExams;
 import root.dao.app.Statistic;
 import root.dao.app.Subject;
+import root.dao.app.SubjectATeacherTeach;
 import root.dao.app.User;
 import root.dao.message.ErrorMessage;
 import root.dao.message.ExamStatsByIdDateMessage;
@@ -154,7 +156,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<User> users = new ArrayList<User>(); // needed fixing, add switch case: empty-all users, 1- specific
 														// user,2 only these users...
 		ResultSet rs;
-		String usersQuery = "SELECT users.* FROM users";// fetch all users
+		String usersQuery = "SELECT users.* FROM aes.`users` users";// fetch all users
 		try {
 			stmt = conn.createStatement();
 			switch (str.length) {
@@ -200,7 +202,7 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<AlterDuration> alterDuration(String... str) {
 		ArrayList<AlterDuration> list = new ArrayList<AlterDuration>();
 		ResultSet rs;
-		if(str==null) {
+		if(str.length==0) {
 			String query = "SELECT * FROM aes.`alter duration request`;";
 			try {
 				stmt = conn.createStatement();
@@ -552,36 +554,36 @@ public class GetFromDB implements DbManagerInterface {
 	 */
 	@Override
 	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-		if(str==null) {
+		if(str.length==0) {
 			String query1 = "SELECT * FROM aes.`exams stats`";
-		ResultSet rs;
-		Statistic stat;
-		try {
-			ArrayList<Statistic> stats=new ArrayList<Statistic>();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(query1);
-			while(rs.next()) {
-				stat = new Statistic();
-				stat.setExam_ID(rs.getString(1));
-				stat.setDate(rs.getString(2));
-				stat.setReal_time_duration(rs.getString(3));
-				stat.setSubmitted_students_counter(rs.getInt(4));
-				stat.setInterrupted_students_counter(rs.getInt(5));
-				stat.setStudents_started_counter(rs.getInt(6));
-				stat.setExams_avg(rs.getDouble(7));
-				stat.setExams_median(rs.getInt(8));
-				stat.setGrade_derivative_0_10(rs.getInt(9));
-				stat.setGrade_derivative_11_20(rs.getInt(10));
-				stat.setGrade_derivative_21_30(rs.getInt(11));
-				stat.setGrade_derivative_31_40(rs.getInt(12));
-				stat.setGrade_derivative_41_50(rs.getInt(13));
-				stat.setGrade_derivative_51_60(rs.getInt(14));
-				stat.setGrade_derivative_61_70(rs.getInt(15));
-				stat.setGrade_derivative_71_80(rs.getInt(16));
-				stat.setGrade_derivative_81_90(rs.getInt(17));
-				stat.setGrade_derivative_91_100(rs.getInt(18));
-				stats.add(stat);
-			}
+			ResultSet rs;
+			Statistic stat;
+			try {
+				ArrayList<Statistic> stats=new ArrayList<Statistic>();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query1);
+				while(rs.next()) {
+					stat = new Statistic();
+					stat.setExam_ID(rs.getString(1));
+					stat.setDate(rs.getString(2));
+					stat.setReal_time_duration(rs.getString(3));
+					stat.setSubmitted_students_counter(rs.getInt(4));
+					stat.setInterrupted_students_counter(rs.getInt(5));
+					stat.setStudents_started_counter(rs.getInt(6));
+					stat.setExams_avg(rs.getDouble(7));
+					stat.setExams_median(rs.getInt(8));
+					stat.setGrade_derivative_0_10(rs.getInt(9));
+					stat.setGrade_derivative_11_20(rs.getInt(10));
+					stat.setGrade_derivative_21_30(rs.getInt(11));
+					stat.setGrade_derivative_31_40(rs.getInt(12));
+					stat.setGrade_derivative_41_50(rs.getInt(13));
+					stat.setGrade_derivative_51_60(rs.getInt(14));
+					stat.setGrade_derivative_61_70(rs.getInt(15));
+					stat.setGrade_derivative_71_80(rs.getInt(16));
+					stat.setGrade_derivative_81_90(rs.getInt(17));
+					stat.setGrade_derivative_91_100(rs.getInt(18));
+					stats.add(stat);
+				}
 			rs.close();
 			return stats;
 		} catch (SQLException e) {
@@ -962,6 +964,40 @@ public class GetFromDB implements DbManagerInterface {
 				rs = stmt.executeQuery(query);
 				while(rs.next()) {
 					list.add(new ExecuteExam(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+				}
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
+	}
+
+	public ArrayList<QuestionInExamData> getQuestionsInExam() {
+		ArrayList<QuestionInExamData> list = new ArrayList<QuestionInExamData>();
+		ResultSet rs;
+		String query = "SELECT * FROM aes.`questions in exam`;";
+		try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					list.add(new QuestionInExamData(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+				}
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
+	}
+
+	public ArrayList<SubjectATeacherTeach> getSubjectsATeacherTeach() {
+		ArrayList<SubjectATeacherTeach> list = new ArrayList<SubjectATeacherTeach>();
+		ResultSet rs;
+		String query = "SELECT * FROM aes.`subject a teacher teach`;";
+		try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(query);
+				while(rs.next()) {
+					list.add(new SubjectATeacherTeach(rs.getString(1), rs.getString(2)));
 				}
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -9,6 +9,9 @@ import java.io.Serializable;
  *
  */
 public class QuestionInExam implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Question question;
 	private int questionGrade;
 	private String freeTextForTeacher;
