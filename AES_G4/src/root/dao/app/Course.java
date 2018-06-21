@@ -10,16 +10,12 @@ import java.io.Serializable;
  */
 public class Course implements Serializable {
 
-<<<<<<< HEAD
+
 	// Instance variables **********************************************
 
 	/**
 	 * The id of the course
 	 */
-=======
-	private static final long serialVersionUID = 1L;
-	
->>>>>>> refs/remotes/origin/AlonNew
 	private String courseId;
 	/**
 	 * The name of the course
