@@ -138,12 +138,14 @@ public class ServerMessageManager {
 	 * Constructs the ServerMessageManager
 	 */
 	private ServerMessageManager() {
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		String fullPath = "/root/server/executeExam/";
+		String s = System.getProperty("user.home");
+		new File(s+"//CSV").mkdir();
+		new File(s+"//word").mkdir();
+		new File(s+"//solution").mkdir();
+		String fullPath = s+"//word//";
 		PATH = fullPath;
-		PATHSOLUTION = "/root/server/solvedExam/";
-		PATHCSV = "/root/server/csvExam/";
+		PATHSOLUTION = s+"//solution//";
+		PATHCSV = s+ "//CSV//";
 	}
 
 	// CLASS METHODS *************************************************

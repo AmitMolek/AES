@@ -151,9 +151,9 @@ public class ManuallyExamController implements Observer {
 	public void initialize() throws IOException {
 		log = Log.getInstance();
 		int i = 0;
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		String fullPath = s + "//src//root//client//studentExam//";
+		String s = System.getProperty("user.home");
+		new File(s+"//exams").mkdir();
+		String fullPath = s+"//exams//";
 		CLIENTPATH = fullPath;
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();

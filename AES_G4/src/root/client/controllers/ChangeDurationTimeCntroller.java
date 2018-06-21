@@ -126,7 +126,9 @@ public class ChangeDurationTimeCntroller implements Observer{
         		if (result.isPresent()){
         			enterNotes=true;
         			cht.setMessageFromTeacher(result.get());
-        			sendMessage(cht, durationEditEvent);
+        	    	ExecuteExam executed = exeTable.getSelectionModel().getSelectedItem();
+        			Integer newValue = durationEditEvent.getNewValue();
+        			sendMessage(cht, newValue,executed.getExamId());
         		}
     		}
     	});
@@ -134,18 +136,13 @@ public class ChangeDurationTimeCntroller implements Observer{
 }
     
     
-    public void sendMessage(ChangeTimeDurationRequest cht, TableColumn.CellEditEvent<ExecuteExam, Integer> durationEditEvent) {
-    	ExecuteExam executed = exeTable.getSelectionModel().getSelectedItem();
-		Integer newValue = durationEditEvent.getNewValue();
-		executed.setDurationTime(newValue);
-		cht.setExamId(executed.getExamId());
-		cht.setNewTime(newValue);
-		
+    public void sendMessage(ChangeTimeDurationRequest cht, int newTime, String examID) {
+		cht.setExamId(examID);
+		cht.setNewTime(newTime);
 		SendRequests se = new SendRequests();
 		try {
 			se.send(cht);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();	
 		}
     }
@@ -153,6 +150,9 @@ public class ChangeDurationTimeCntroller implements Observer{
     @FXML
     void LockExam(ActionEvent event) {
     	ExecuteExam executed = exeTable.getSelectionModel().getSelectedItem();
+		ChangeTimeDurationRequest cht = new ChangeTimeDurationRequest();
+		cht.confirm();
+		sendMessage(cht, 0, executed.getExamId());
     	SimpleMessage simple = (SimpleMessage)messageFact.getMessage("simple", null);
     	simple.setMessage("closeexam-"+executed.getExamId());
     	Platform.runLater(()-> {
