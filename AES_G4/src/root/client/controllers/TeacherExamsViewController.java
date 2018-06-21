@@ -23,10 +23,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -279,7 +281,7 @@ public class TeacherExamsViewController {
 			ArrayList<String> questionIDList = new ArrayList<String>();
 			for (String[] csvLine: csvData) {
 				String questionID = csvLine[0];
-				if (questionID.length() == 5) {// do this check to pass the first line of the csvData file.
+				if (questionID.replace("\"", "").length() == 5) {// do this check to pass the first line of the csvData file.
 					questionIDList.add(questionID);
 				}
 			}
@@ -347,34 +349,36 @@ public class TeacherExamsViewController {
 
 			
 	        Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
-	                = //
-	                new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
-	            @Override
-	            public TableCell call(final TableColumn<SolvedExams, String> param) {
-	                final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
+            = //
+            new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
+            @SuppressWarnings("rawtypes")
+			@Override
+            public TableCell call(final TableColumn<SolvedExams, String> param) {
+            	
+                final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
 
-	                    final Button btn = new Button("Download copy");
+                    final Button btn = new Button("Download copy");
 
-	                    @Override
-	                    public void updateItem(String item, boolean empty) {
-	                        super.updateItem(item, empty);
-	                        if (empty) {
-	                            setGraphic(null);
-	                            setText(null);
-	                        } else {
-	                            btn.setOnAction(event -> {
-	                            	solvedExam = getTableView().getItems().get(getIndex());
-	                            	perapeDownload(solvedExam);
-	                            });
-	                            setGraphic(btn);
-	                            setText(null);
-	                        }
-	                    }
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            btn.setOnAction(event -> {
+                            	solvedExam = getTableView().getItems().get(getIndex());
+                            	perapeDownload(solvedExam);
+                            });
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
 
-	                };
-	                return cell;
-	            }
-	        	};
+                };
+                return cell;
+            }
+    	};
 	        tb_download.setCellFactory(cellFactory);
 	        
 		}
@@ -471,6 +475,7 @@ public class TeacherExamsViewController {
 		/**
 		 * this method create the solvedExam's PDF. 
 		 */
+		@SuppressWarnings("resource")
 		private void createWord() {
 			/** Word formation:
 			* 
@@ -492,6 +497,7 @@ public class TeacherExamsViewController {
 			*		*
 			*
 			*/
+
 			Platform.runLater(() -> {
 				FileChooser fileChooser = new FileChooser();
 		        fileChooser.setTitle("Save solvedExam"); 
@@ -571,14 +577,16 @@ public class TeacherExamsViewController {
 		    	            runQuestions.addTab();
 		    	            // getting the selected answer from csvData.
 		    	            for (String[] csvLine: csvData) {
-		    	    			String slectedQuestionID = csvLine[0];
+		    	    			String slectedQuestionID = csvLine[0].replaceAll("\"", "");
 		    	    			String questionID = question.getQuestionId();
 		    	    			int correctAnswer = question.getCorrectAns();
 		    	    			if (slectedQuestionID.equals(questionID) ) {
-		    	    				runQuestions.setText("Your selected answer: "+ csvLine[1]);
+		    	    				runQuestions.setText("Your selected answer: "+ csvLine[1].replaceAll("\"", ""));
 		    	    				runQuestions.addBreak();
-		    	    				if (Integer.parseInt(csvLine[1]) == correctAnswer)runQuestions.setText("Question points: "+ csvLine[2] +"/"+csvLine[2]);
-		    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2]);
+		    	    				if (Integer.parseInt(csvLine[1].replaceAll("\"", "")) == correctAnswer) {
+		    	    					runQuestions.setText("Question points: "+ csvLine[2].replaceAll("\"", "") +"/"+csvLine[2].replaceAll("\"", ""));
+		    	    				}
+		    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2].replaceAll("\"", ""));
 		    	    			}
 		    	    		}
 		    	            runQuestions.addBreak();
@@ -588,14 +596,17 @@ public class TeacherExamsViewController {
 		
 		                //Close document
 		                out.close();
-		                System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
 		    	      
 		    		}catch (IOException e) {
-		    			e.printStackTrace();
-		    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		    			String setTitle = "IOException";
+		    			String errorHeader = "In TeacherExamView, createWord()";
+		    			String errorText = e.getMessage();
+		    			showErrorDialog(setTitle,errorHeader,errorText);
 		    		}catch (Exception e) {
-		    			e.printStackTrace();
-		    			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+		    			String setTitle = "Exception";
+		    			String errorHeader = "In TeacherExamView, createWord()";
+		    			String errorText = e.getMessage();
+		    			showErrorDialog(setTitle,errorHeader,errorText);
 		    		}
 		        }
 			});
@@ -606,7 +617,6 @@ public class TeacherExamsViewController {
 		 * @param solvedExam
 		 */
 		private void perapeDownload(SolvedExams solvedExam) {
-	        System.out.println(solvedExam);
 			/**
 			 * get CSV of this solved exam, from server 
 			 */
@@ -615,11 +625,33 @@ public class TeacherExamsViewController {
 			try {
 				client.sendToServer(newMessage);
 			} catch (IOException e) {
-				e.printStackTrace();
-				log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
+				// TODO Auto-generated catch block
+				String setTitle = "IOException";
+				String errorHeader = "In TeacherExamView, perapeDownload()";
+				String errorText = e.getMessage();
+				showErrorDialog(setTitle,errorHeader,errorText);
 			}
 			
 		}
+		
+	    /**
+	     * This method is called when theres a need to ErrrorDialog
+	     * @param HeaderTitle
+	     * @param HeaderText
+	     * @param Errormessage
+	     */
+	    private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
+	    	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+				// Show the error message.
+	            Alert alert = new Alert(AlertType.ERROR);
+	            alert.initOwner(screenManager.getPrimaryStage());
+	            alert.setTitle(HeaderTitle);//"ServerIP error");
+	            alert.setHeaderText(HeaderText);//"Please contact system administrator");
+	            alert.setContentText(Errormessage);
+	            alert.showAndWait();       
+	        	log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+			});
+	    }
 		
 		/**
 		 * The Main function of the Updater class

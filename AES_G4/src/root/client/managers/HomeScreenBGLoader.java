@@ -124,8 +124,55 @@ public class HomeScreenBGLoader {
 	}
 	
 	/**
+	 * Loads the images if the environment is IDE
+	 * @throws Exception if could'nt find the folder or open the file
+	 */
+	private void loadBGs_IDE() throws Exception{
+		for (Entry<String, ArrayList<Image>> entry : images.entrySet()) {
+			String stage = entry.getKey();
+			File imgFolder = new File(Main.class.getResource("/" + imgsPath + stage).toURI());
+			if (!imgFolder.isDirectory()) {
+				logError("Folder could not be found");
+			}else {
+				ArrayList<Image> folderImages = new ArrayList<>();
+				File[] filesInFolder = imgFolder.listFiles();
+				for (File f : filesInFolder) {
+					if (f.exists()) {
+						folderImages.add(new Image(f.toURI().toString()));
+					}
+				}
+				entry.setValue(folderImages);
+			}
+		}
+	}
+	
+	/**
+	 * Loads the images if the environment is jar
+	 * @param jarLocation the URL location of the jar
+	 * @throws Exception if couldn't open stream
+	 */
+	private void loadBGs_Jar(URL jarLocation) throws Exception{
+		for(Entry<String, ArrayList<Image>> entry : images.entrySet()) {
+			ZipInputStream zippedJar = new ZipInputStream(jarLocation.openStream());
+			ArrayList<URL> urls = new ArrayList<>();
+			boolean breakLoop = false;
+			for (ZipEntry zEntry = zippedJar.getNextEntry(); zEntry != null; zEntry = zippedJar.getNextEntry()) {
+				String zeName = zEntry.getName();
+				if (zeName.startsWith(imgsPath + entry.getKey().toLowerCase())) {
+					URL imgUrl = Main.class.getResource("/" + zeName);
+					urls.add(imgUrl);
+					breakLoop = true;
+				}else {
+					if (breakLoop) break;
+				}
+			}
+			loadImagesFromURL(entry.getKey(), urls);
+		}
+	}
+	
+	/**
 	 * Loads the background images for the home screen
-	 * If you are in the ide (eclipse, net-beans...) it will load with the File system
+	 * If you are in the IDE (eclipse, net-beans...) it will load with the File system
 	 * If you are running a jar it will iterate through the jar to find the images .... (thanks java -_-)
 	 * @throws Exception if the files could not be found
 	 */
@@ -134,41 +181,11 @@ public class HomeScreenBGLoader {
 		
 		URL jarLocation = src.getLocation();
 		if (jarLocation.toString().startsWith("jar") || jarLocation.toString().endsWith("jar")) {
-			
-			for(Entry<String, ArrayList<Image>> entry : images.entrySet()) {
-				ZipInputStream zippedJar = new ZipInputStream(jarLocation.openStream());
-				ArrayList<URL> urls = new ArrayList<>();
-				boolean breakLoop = false;
-				for (ZipEntry zEntry = zippedJar.getNextEntry(); zEntry != null; zEntry = zippedJar.getNextEntry()) {
-					String zeName = zEntry.getName();
-					if (zeName.startsWith(imgsPath + entry.getKey().toLowerCase())) {
-						URL imgUrl = Main.class.getResource("/" + zeName);
-						urls.add(imgUrl);
-						breakLoop = true;
-					}else {
-						if (breakLoop) break;
-					}
-				}
-				loadImagesFromURL(entry.getKey(), urls);
-			}
+			loadBGs_Jar(jarLocation);
+
 		} else {
 			/* SHOULD ONLY BE HERE IF IN IDE */
-			for (Entry<String, ArrayList<Image>> entry : images.entrySet()) {
-				String stage = entry.getKey();
-				File imgFolder = new File(Main.class.getResource("/" + imgsPath + stage).toURI());
-				if (!imgFolder.isDirectory()) {
-					logError("Folder could not be found");
-				}else {
-					ArrayList<Image> folderImages = new ArrayList<>();
-					File[] filesInFolder = imgFolder.listFiles();
-					for (File f : filesInFolder) {
-						if (f.exists()) {
-							folderImages.add(new Image(f.toURI().toString()));
-						}
-					}
-					entry.setValue(folderImages);
-				}
-			}
+			loadBGs_IDE();
 		}
 	}
 	
