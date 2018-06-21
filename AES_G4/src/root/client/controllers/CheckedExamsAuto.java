@@ -16,36 +16,63 @@ import root.dao.message.CsvMessage;
 import root.dao.message.MessageFactory;
 
 /**
- * Class for auto checked exam
+ * 
+ * A class that is responsible for automatically checking a auto exam and
+ * preparing a CSV file for this exam and adding it to the appropriate
+ * place(database and the CSV in the appropriate folder)
  * 
  * @author Omer Haimovich
  *
  */
 public class CheckedExamsAuto implements Observer {
-	private ArrayList<QuestionInExamObject> questionsInExamObject;
-	private Exam exam;
-	private ObservableClient client;
-	private User student;
-	private Map<String, Integer> questionInExam;
 
-	private MessageFactory messageFact;
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for auto check exam
+	 * 
+	 * A list of all the test questions and all the answers that the student has
+	 * marked them
+	 */
+	private ArrayList<QuestionInExamObject> questionsInExamObject;
+	/**
+	 * The auto exam that will be checked
+	 */
+	private Exam exam;
+	/**
+	 * 
+	 * Keeps our client in order to communicate with the server
+	 */
+	private ObservableClient client;
+	/**
+	 * The student who solved this exam
+	 */
+	private User student;
+	/**
+	 * Map<String, Integer> that holds the question id and the selected answer
+	 */
+	private Map<String, Integer> questionInExam;
+
+	/**
+	 * Generates new communications between server and client
+	 */
+	private MessageFactory messageFact;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the CheckedExamsAuto
 	 * 
 	 * @param questionsInExamObject
-	 *            the list of question in exam object(what the student answered)
+	 *            the list of all the test questions and all the answers that the
+	 *            student has marked them
 	 * @param exam
-	 *            the exam that executed
+	 *            the auto exam that will be checked
 	 */
 	public CheckedExamsAuto(ArrayList<QuestionInExamObject> questionsInExamObject, Exam exam) {
 		super();
 		this.questionsInExamObject = questionsInExamObject;
 		this.exam = exam;
-		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");// get the client from
-																								// DataKeep, but dont
-																								// remove it from there,
-																								// for later use.
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
 		student = DataKeepManager.getInstance().getUser();
 		messageFact = MessageFactory.getInstance();
@@ -53,7 +80,11 @@ public class CheckedExamsAuto implements Observer {
 
 	}
 
+	// CLASS METHODS *************************************************
+
 	/**
+	 * 
+	 * A method that checks the exam and calculates the grade and returns it
 	 * 
 	 * @return the student grade
 	 */
@@ -69,7 +100,9 @@ public class CheckedExamsAuto implements Observer {
 	}
 
 	/**
-	 * Creates new csv
+	 * 
+	 * 
+	 * A method that generates a new CSV file containing the exam data
 	 */
 	public void createCsv() {
 
@@ -85,14 +118,21 @@ public class CheckedExamsAuto implements Observer {
 	}
 
 	/**
-	 * Method that occurs when server sends message
+	 *
+	 * A method that is responsible for handling messages sent from the server
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * A method that returns the map<String, Integer> that holds the question id and
+	 * the selected answer
+	 * 
+	 * @return the map<String, Integer> that holds the question id and the selected
+	 *         answer
+	 */
 	public Map<String, Integer> getQuestionInExam() {
 		return questionInExam;
 	}

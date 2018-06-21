@@ -36,12 +36,14 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for update the exam
+ * A class that is responsible for choose exam for update window
  * 
  * @author Omer Haimovich
  *
  */
 public class UpdateDeleteExamController implements Observer {
+
+	// FXML variables **********************************************
 
 	@FXML
 	private ComboBox<String> cmbCourse;
@@ -67,25 +69,76 @@ public class UpdateDeleteExamController implements Observer {
 	@FXML
 	private GridPane gridPane;
 
-	private int count;
-	private MessageFactory messageFact;
-	private ObservableClient client;
-	private ScreensManager screenManager;
-	private Log log;
-	private User teacher;
-	private ArrayList<Subject> teacherSubject;
-	private Subject newSubject;
-	private ArrayList<Course> CourseInSubject;
-	private Course newCourse;
-	private DataKeepManager dbk;
-	private Stage mainApp;
-	private ArrayList<String> courses;
+	// Instance variables **********************************************
 
 	/**
-	 * Method that occurs when teacher select subject
+	 * Counter that counts how many time teacher select subject from the subject
+	 * combo box
+	 */
+	private int count;
+	/**
+	 * Generates new communications between server and client
+	 */
+	private MessageFactory messageFact;
+
+	/**
+	 * 
+	 * Keeps our client in order to communicate with the server
+	 */
+	private ObservableClient client;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
+	private ScreensManager screenManager;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
+	private Log log;
+	/**
+	 * The login teacher
+	 */
+	private User teacher;
+	/**
+	 * 
+	 * A list of all the subjects taught by the teacher
+	 */
+	private ArrayList<Subject> teacherSubject;
+	/**
+	 * The chosen subject
+	 */
+	private Subject newSubject;
+	/**
+	 * A list of all the courses taught by the teacher
+	 */
+	private ArrayList<Course> CourseInSubject;
+	/**
+	 * The chosen course
+	 */
+	private Course newCourse;
+	/**
+	 * The manager that responsible for transmit data between windows in the system
+	 */
+	private DataKeepManager dbk;
+	/**
+	 * The main window of the application
+	 */
+	private Stage mainApp;
+	/**
+	 * A list of all data in course combo box
+	 */
+	private ArrayList<String> courses;
+
+	// CLASS METHODS *************************************************
+
+	/**
+	 * 
+	 * A method that allows the teacher to select a subject
 	 * 
 	 * @param event
-	 *            on action in subject combo box
+	 * 
+	 *            An event that happens when a teacher select from subject combo box
 	 */
 	@FXML
 	void SelectSubject(ActionEvent event) {
@@ -118,10 +171,12 @@ public class UpdateDeleteExamController implements Observer {
 	}
 
 	/**
-	 * Method that occurs when teacher select course
+	 * 
+	 * A method that allows the teacher to select a course
 	 * 
 	 * @param event
-	 *            on action in course combo box
+	 * 
+	 *            An event that happens when a teacher select from course combo box
 	 */
 	@FXML
 	void SelectCourse(ActionEvent event) {
@@ -142,10 +197,11 @@ public class UpdateDeleteExamController implements Observer {
 	}
 
 	/**
-	 * Method that occurs when teacher press update button
+	 * A method that allows the teacher to update an exam
 	 * 
 	 * @param event
-	 *            on action in update button
+	 *            An event occurs when the teacher presses a `update exam` button
+	 * 
 	 */
 	@FXML
 	void UpdateExam(ActionEvent event) {
@@ -173,7 +229,8 @@ public class UpdateDeleteExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the server send message to the client
+	 *
+	 * A method that is responsible for handling messages sent from the server
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -209,7 +266,9 @@ public class UpdateDeleteExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the window is shown up.
+	 * 
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown

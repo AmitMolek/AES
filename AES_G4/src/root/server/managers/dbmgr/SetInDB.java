@@ -72,10 +72,23 @@ public class SetInDB {
 		message = MessageFactory.getInstance();
 	}
 
-	// OVERRIDDEN METHODS *************************************************
+	// CLASS METHODS *************************************************
 
 	
-	 
+	/**
+	 * 
+	 * A method that update in the database in the solved exam table the cheating
+	 * flag column
+	 * 
+	 * @author Amit Molek
+	 * @param user_id
+	 *            the id of the teacher who executed the exam
+	 * @param exam_id
+	 *            the exam id
+	 * @param cheated
+	 *            true if the student cheated or false if not cheated
+	 * @return true if the updated successful and false otherwise
+	 */	 
 	public boolean updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(int grade, String expl, String teacher_id, SolvedExams se) {
 		String updateQuery = "UPDATE `solved exams` SET solved_exam_grade = ?, grade_alteration_explanation = ?,"
 				+ "approving_teacher_id = ?, grade_approval_by_teacher = ? WHERE User_ID = ? AND exam_ID = ? AND exam_executing_Date = ?;";

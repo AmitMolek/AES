@@ -51,11 +51,14 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for manually exam
+ * A class that is responsible for manually exam window
+ * 
  * @author Omer Haimovich
  *
  */
 public class ManuallyExamController implements Observer {
+
+	// FXML variables **********************************************
 
 	@FXML
 	private Button btnGetExam;
@@ -80,23 +83,66 @@ public class ManuallyExamController implements Observer {
 
 	@FXML
 	private Button btnSubmit;
-	
 
-
-	private User student;
-	private MessageFactory messageFact;
-	private ObservableClient client;
-	private Log log;
-	private ScreensManager screenManager;
-	private DataKeepManager dkm;
-	private Stage mainApp;
-	private int stopWatch;
-	private Exam newExam;
-	private Timeline examStopWatch;
-	public static String CLIENTPATH;
+	// Instance variables **********************************************
 
 	/**
-	 * This method occurs when the window is shown up.
+	 * 
+	 * The login student
+	 */
+	private User student;
+	/**
+	 * Generates new communications between server and client
+	 */
+	private MessageFactory messageFact;
+	/**
+	 * 
+	 * Keeps our client in order to communicate with the server
+	 */
+	private ObservableClient client;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
+	private Log log;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
+	private ScreensManager screenManager;
+	/**
+	 * The manager that responsible for transmit data between windows in the system
+	 */
+	private DataKeepManager dkm;
+	/**
+	 * The main window of the application
+	 */
+	private Stage mainApp;
+	/**
+	 * 
+	 * Represents the exam clock
+	 */
+	private int stopWatch;
+	/**
+	 * The exam that need to be executed
+	 */
+	private Exam newExam;
+	/**
+	 * Represents the exam clock
+	 */
+	private Timeline examStopWatch;
+	/**
+	 * Absolute path to a student exam folder in the client that contains exams word
+	 * files
+	 */
+	public static String CLIENTPATH;
+
+	// CLASS METHODS *************************************************
+
+	/**
+	 * 
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown
@@ -107,7 +153,7 @@ public class ManuallyExamController implements Observer {
 		int i = 0;
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		String fullPath = s+"//src//root//client//studentExam//";
+		String fullPath = s + "//src//root//client//studentExam//";
 		CLIENTPATH = fullPath;
 		dkm = DataKeepManager.getInstance();
 		screenManager = ScreensManager.getInstance();
@@ -147,7 +193,7 @@ public class ManuallyExamController implements Observer {
 							e.printStackTrace();
 						}
 					});
-					
+
 				}
 				stopWatch--;
 			}
@@ -185,10 +231,11 @@ public class ManuallyExamController implements Observer {
 	}
 
 	/**
-	 * Method that occurs when Student press get exam button
+	 * A method that allows the student to get exam file word
 	 * 
 	 * @param event
-	 *            on action when student press get exam button
+	 *            An event occurs when the teacher presses a `get exam` button
+	 * 
 	 */
 	@FXML
 	void getExamDocument(ActionEvent event) {
@@ -205,16 +252,18 @@ public class ManuallyExamController implements Observer {
 	}
 
 	/**
-	 * Method that occurs when student press submit button
+	 * A method that allows the student to submit exam file word
 	 * 
 	 * @param event
+	 *            An event occurs when the teacher presses a `submit exam` button
+	 * 
 	 */
 
 	@FXML
 	void SubmitExam(ActionEvent event) {
 		root.dao.message.MyFile wordFile = new root.dao.message.MyFile(
 				student.getUserID() + "-" + newExam.getExamId() + ".docx");
-		String LocalfilePath = CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx";
+		String LocalfilePath = CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx";
 
 		try {
 
@@ -238,7 +287,8 @@ public class ManuallyExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the server send message to the client
+	 *
+	 * A method that is responsible for handling messages sent from the server
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -259,9 +309,9 @@ public class ManuallyExamController implements Observer {
 				wordFile.initArray(mybytearray.length);
 				wordFile.setSize(mybytearray.length);
 				bis.read(wordFile.getMybytearray(), 0, mybytearray.length);
-				File Word = new File(CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx");
-				FileOutputStream fos = new FileOutputStream(CLIENTPATH + student.getUserID()
-								+ "-" + newExam.getExamId() + ".docx");
+				File Word = new File(CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx");
+				FileOutputStream fos = new FileOutputStream(
+						CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx");
 				fos.write(wordFile.getMybytearray());
 				fos.close();
 				bis.close();
@@ -271,7 +321,8 @@ public class ManuallyExamController implements Observer {
 					alert.initOwner(mainApp);
 					alert.setTitle("Exam path");
 					alert.setHeaderText("Exam path in the computer");
-					alert.setContentText("You can start your exam\n The path is: "+ CLIENTPATH+ student.getUserID() + "-" + newExam.getExamId() + ".docx\n" + "do not change the path");
+					alert.setContentText("You can start your exam\n The path is: " + CLIENTPATH + student.getUserID()
+							+ "-" + newExam.getExamId() + ".docx\n" + "do not change the path");
 					alert.showAndWait();
 				});
 
@@ -284,7 +335,7 @@ public class ManuallyExamController implements Observer {
 		if (arg1 instanceof SimpleMessage) {
 			Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 				try {
-					File newFile = new File(CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx" );
+					File newFile = new File(CLIENTPATH + student.getUserID() + "-" + newExam.getExamId() + ".docx");
 					newFile.delete();
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.initOwner(mainApp);

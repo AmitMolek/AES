@@ -34,12 +34,17 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 
 /**
- * Class for Update exam
+ * 
+ * 
+ * 
+ * A class that is responsible for update exam window
  * 
  * @author Omer Haimovich
  *
  */
 public class UpdateExamController implements Observer {
+
+	// FXML variables **********************************************
 
 	@FXML
 	private AnchorPane rootPane;
@@ -59,20 +64,54 @@ public class UpdateExamController implements Observer {
 	@FXML
 	private Button btnRemove;
 
+	// Instance variables **********************************************
+
+	/**
+	 * Generates new communications between server and client
+	 */
 	private MessageFactory messageFact;
+	/**
+	 * 
+	 * Keeps our client in order to communicate with the server
+	 */
 	private ObservableClient client;
+	/**
+	 * The manager that responsible for switching between windows in the system
+	 */
 	private ScreensManager screenManager;
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
 	private Log log;
+	/**
+	 * The manager that responsible for transmit data between windows in the system
+	 */
 	private DataKeepManager dbk;
+	/**
+	 * The updated exam
+	 */
 	private Exam updateExam;
+	/**
+	 * List of question in exam for the table
+	 */
 	private ObservableList<root.dao.app.QuestionInExam> examQuestions;
+	/**
+	 * The total points in the exam
+	 */
 	private int totalPoints;
+	/**
+	 * The main window of the application
+	 */
 	private Stage mainApp;
 
 	/**
-	 * Update the question in the specific exam
+	 * A method that allows the teacher to update an exam
 	 * 
 	 * @param event
+	 *            An event occurs when the teacher presses a `update` button
+	 * 
 	 */
 	@FXML
 	void UpdateQuestionInExam(ActionEvent event) {
@@ -104,9 +143,11 @@ public class UpdateExamController implements Observer {
 	}
 
 	/**
-	 * Delete question from the exam
+	 * A method that allows the teacher to remove question from exam
 	 * 
 	 * @param event
+	 *            An event occurs when the teacher presses a `remove` button
+	 * 
 	 */
 	@FXML
 	void RemoveQuestionFromExam(ActionEvent event) {
@@ -129,7 +170,9 @@ public class UpdateExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the window is shown up.
+	 * 
+	 * 
+	 * The method initializes the window when it comes up
 	 * 
 	 * @throws IOException
 	 *             if the window cannot be shown
@@ -162,9 +205,11 @@ public class UpdateExamController implements Observer {
 	}
 
 	/**
-	 * Edit the points of question
+	 * 
+	 * A method that edits the question points
 	 * 
 	 * @param pointEditEvent
+	 *            event when teacher edit the point in the table
 	 */
 	@FXML
 	void updatePoints(TableColumn.CellEditEvent<QuestionInExam, Integer> pointEditEvent) {
@@ -183,7 +228,8 @@ public class UpdateExamController implements Observer {
 	}
 
 	/**
-	 * This method occurs when the server send message to the client
+	 *
+	 * A method that is responsible for handling messages sent from the server
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {

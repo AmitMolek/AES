@@ -8,10 +8,17 @@ import root.client.managers.ScreensManager;
 import root.util.log.Log;
 import root.util.log.LogLine.LineType;
 
+/**
+ * 
+ * 
+ * A main class responsible for updating the manager responsible for
+ * switching between the windows and running the application
+ * 
+ * @author Amit Molek
+ *
+ */
 public class Main extends ScreensManager {
-    
-   
-    
+
 	public static void main(String[] args) {
 		Log log = Log.getInstance();
 		DataKeepManager dkm = DataKeepManager.getInstance();

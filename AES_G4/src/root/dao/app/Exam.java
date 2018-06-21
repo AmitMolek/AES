@@ -2,29 +2,65 @@ package root.dao.app;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 /**
- * Class for exams
+ * A class that is responsible for keeping data about course
+ * 
  * @author Omer Haimovich
  *
  */
 public class Exam implements Serializable {
-	private String examId;
-	private User author;
-	private int examDuration;
-	private int ExamState;//0 - clean, 1- dirty
-	private int lock;// 0-locked, 1- unlocked
-	private ArrayList<QuestionInExam> examQuestions;
-	private String teacherId;
-	private ExecuteExam executeExam;
-	
-	
+
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for exam
-	 * @param examId the exam id
-	 * @param author the teacher author
-	 * @param examDuration the exam duration
-	 * @param examQuestions the list of the questions in the exam
+	 * The id of the exam
+	 */
+	private String examId;
+
+	/**
+	 * The teacher who wrote this exam
+	 */
+	private User author;
+
+	/**
+	 * The duration time of the exam
+	 */
+	private int examDuration;
+	/**
+	 * The state of the exam : 0 - clean, 1- dirty
+	 */
+	private int ExamState;
+	/**
+	 * The exam is locked or unlocked : 0-locked, 1- unlocked
+	 */
+	private int lock;
+
+	/**
+	 * 
+	 * The questions that belong to the exam
+	 */
+	private ArrayList<QuestionInExam> examQuestions;
+	/**
+	 * The id of the teacher who wrote the exam
+	 */
+	private String teacherId;
+	/**
+	 * The exam after the teacher prepared him to be executed
+	 */
+	private ExecuteExam executeExam;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the Exam
+	 * 
+	 * @param examId
+	 *            the id of the exam
+	 * @param author
+	 *            the teacher who wrote the exam
+	 * @param examDuration
+	 *            the duration time of the exam
 	 */
 	public Exam(String examId, String teacherId, int examDuration) {
 		super();
@@ -34,16 +70,20 @@ public class Exam implements Serializable {
 		this.lock = 1;
 		this.teacherId = teacherId;
 	}
-	
+
 	/**
-	 * Constructor for exam
-	 * @param examId the exam id
-	 * @param author the teacher that wrote the id
-	 * @param examDuration the exam duration
-	 * @param examQuestions the exam questions
+	 * Constructs the Exam
+	 * 
+	 * @param examId
+	 *            the id of the exam
+	 * @param author
+	 *            the teacher who wrote the exam
+	 * @param examDuration
+	 *            the duration time of the exam
+	 * @param examQuestions
+	 *            the list of all questions that belong to the exam
 	 */
-	public Exam(String examId, User author, int examDuration,
-			ArrayList<QuestionInExam> examQuestions) {
+	public Exam(String examId, User author, int examDuration, ArrayList<QuestionInExam> examQuestions) {
 		super();
 		this.examId = examId;
 		this.author = author;
@@ -54,102 +94,124 @@ public class Exam implements Serializable {
 		teacherId = author.getUserID();
 	}
 
+	// CLASS METHODS *************************************************
+
 	/**
+	 * A method that returns the id of the exam
 	 * 
-	 * @return the exam id
+	 * @return the id of the exam
 	 */
 	public String getExamId() {
 		return examId;
 	}
-	
+
 	/**
-	 * Set new id value for exam
-	 * @param examId new exam id value
+	 * A method that set the id of the exam
+	 * 
+	 * @param examId
+	 *            the id of the exam
 	 */
 	public void setExamId(String examId) {
 		this.examId = examId;
 	}
-	
+
 	/**
+	 * A method that returns the teacher who wrote the exam
 	 * 
-	 * @return the author teacher
+	 * @return the teacher who wrote the exam
 	 */
 	public User getAuthor() {
 		return author;
 	}
-	
+
 	/**
-	 *  Set new author value for exam
-	 * @param author new teacher author
+	 * A method that set the teacher who wrote the exam
+	 * 
+	 * @param author
+	 *            the teacher who wrote the exam
 	 */
 	public void setAuthor(User author) {
 		this.author = author;
 	}
-	
+
 	/**
+	 * A method that returns the duration time of the exam
 	 * 
-	 * @return the exam duration
+	 * @return the the duration time of the exam
 	 */
 	public int getExamDuration() {
 		return examDuration;
 	}
+
 	/**
-	 * Set new duration for exam
-	 * @param examDuration the new duration value
+	 * A method that set the duration time of the exam
+	 * 
+	 * @param examDuration
+	 *            the new duration value
 	 */
 	public void setExamDuration(int examDuration) {
 		this.examDuration = examDuration;
 	}
-	
+
 	/**
+	 * A method that returns the state of the exam
 	 * 
-	 * @return the exam state(clear or dirty)
+	 * @return the exam state(clean or dirty)
 	 */
 	public int getExamState() {
 		return ExamState;
 	}
-	
+
 	/**
-	 * Set new state for exam
-	 * @param examState the new exam state
+	 * A method that set the state of the exam
+	 * 
+	 * @param examState
+	 *            the exam state(clean or dirty)
 	 */
 	public void setExamState(int examState) {
 		ExamState = examState;
 	}
-	
+
 	/**
+	 * A method that returns the lock state of the exam
 	 * 
-	 * @return the lock state of exam
+	 * @return the lock state of exam (locked or unlocked)
 	 */
 	public int getLock() {
 		return lock;
 	}
-	
+
 	/**
-	 * Set new lock state for the exam
-	 * @param lock the new lock state of exam
+	 * A method that set the lock state of the exam
+	 * 
+	 * @param lock
+	 *            the lock state of exam (locked or unlocked)
 	 */
 	public void setLock(int lock) {
 		this.lock = lock;
 	}
-	
+
 	/**
+	 * A method that returns the questions that belong to the exam
 	 * 
-	 * @return the questions in the exam
+	 * @return list of all the questions that belong to the exam
 	 */
 	public ArrayList<QuestionInExam> getExamQuestions() {
 		return examQuestions;
 	}
-	
+
 	/**
-	 * Set new list of questions to the exam
-	 * @param examQuestions the new list of questions
+	 * A method that set new list of questions that belong to the exam
+	 * 
+	 * @param examQuestions
+	 *            list of questions that belong to the exam
 	 */
 	public void setExamQuestions(ArrayList<QuestionInExam> examQuestions) {
 		this.examQuestions = examQuestions;
 	}
-	
+
 	/**
+	 * A method that returns The exam after the teacher prepared him to be executed
 	 * 
 	 * @return the execute exam
 	 */
@@ -158,8 +220,10 @@ public class Exam implements Serializable {
 	}
 
 	/**
-	 * Set new execute exam
-	 * @param executeExam the new execute exam
+	 * A method that set execute exam
+	 * 
+	 * @param executeExam
+	 *            the execute exam
 	 */
 	public void setExecuteExam(ExecuteExam executeExam) {
 		this.executeExam = executeExam;

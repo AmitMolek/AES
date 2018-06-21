@@ -5,27 +5,34 @@ import java.util.ArrayList;
 import root.dao.app.QuestionInExam;
 
 /**
- * Class for question in exam message
- * @author omer1
+ * A class that transmits messages between the server and the client with regard
+ * to question in exam information
+ * 
+ * @author Omer Haimovich
  *
  */
 public class QuestionInExamMessage extends AbstractMessage {
 
-	private String examId;
-	private ArrayList<QuestionInExam> questionInExam;
-	
-	/**
-	 * Return question in exam type
-	 */
-	@Override
-	public String getType() {
-		return "QuestionInExam";
-	}
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for send message from client
-	 * @param examId the exam id
-	 * @param payload the question list
+	 * The id of the exam
+	 */
+	private String examId;
+	/**
+	 * List of all question belong to the exam
+	 */
+	private ArrayList<QuestionInExam> questionInExam;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the CourseMessage
+	 * 
+	 * @param examId
+	 *            the id of the exam
+	 * @param payload
+	 *            list of all question belong to the exam
 	 */
 	public QuestionInExamMessage(ArrayList<QuestionInExam> payload) {
 		super("put-questioninexam");
@@ -33,32 +40,46 @@ public class QuestionInExamMessage extends AbstractMessage {
 	}
 
 	/**
+	 * Returns the type of message
+	 */
+	@Override
+	public String getType() {
+		return "QuestionInExam";
+	}
+
+	/**
+	 * A method that returns the id of the exam
 	 * 
-	 * @return the exam id
+	 * @return the id of the exam
 	 */
 	public String getExamId() {
 		return examId;
 	}
 
 	/**
-	 * Set the exam id
-	 * @param examId the new exam id value
+	 * A method that set the id of the exam
+	 * 
+	 * @param examId
+	 *            the id of the exam
 	 */
 	public void setExamId(String examId) {
 		this.examId = examId;
 	}
 
 	/**
+	 * A method that returns the list of all question belong to the exam
 	 * 
-	 * @return list of questions in exam
+	 * @return the list of all question belong to the exam
 	 */
 	public ArrayList<QuestionInExam> getQuestionInExam() {
 		return questionInExam;
 	}
 
 	/**
-	 * Sets new list of question in exam
-	 * @param questionInExam the new list 
+	 * A method that set the list of all question belong to the exam
+	 * 
+	 * @param questionInExam
+	 *            the list of all question belong to the exam
 	 */
 	public void setQuestionInExam(ArrayList<QuestionInExam> questionInExam) {
 		this.questionInExam = questionInExam;

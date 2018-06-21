@@ -3,25 +3,38 @@ package root.dao.message;
 import root.dao.app.SolvedExams;
 
 /**
- * Class for solved exam message
+ * A class that transmits messages between the server and the client with regard
+ * to solved exam information
+ * 
  * @author Omer Haimovich
  *
  */
 public class SolvedExamMessage extends AbstractMessage {
 
-	private SolvedExams solvedExam;
-	
+	// Instance variables **********************************************
+
 	/**
-	 * Constructor for client message
-	 * @param solvedExam the solved exam
+	 * The solved exam
+	 */
+	private SolvedExams solvedExam;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the SolvedExamMessage
+	 * 
+	 * @param payload
+	 *            the solved exam
 	 */
 	public SolvedExamMessage(SolvedExams payload) {
 		super("put-solvedexams");
-		this.solvedExam = payload;	
-		}
+		this.solvedExam = payload;
+	}
 
+	// CLASS METHODS *************************************************
 
 	/**
+	 * A method that returns the solved exam
 	 * 
 	 * @return the solved exam
 	 */
@@ -29,18 +42,19 @@ public class SolvedExamMessage extends AbstractMessage {
 		return solvedExam;
 	}
 
-
 	/**
-	 * Set new solved exam
-	 * @param solvedExam the new solved exam
+	 * A method that set the the solved exam
+	 * 
+	 * @param solvedExam
+	 *            the solved exam
 	 */
 	public void setSolvedExam(SolvedExams solvedExam) {
 		this.solvedExam = solvedExam;
 	}
 
-
 	/**
-	 * Returns solvedExams type
+	 * 
+	 * Returns the type of message
 	 */
 	@Override
 	public String getType() {

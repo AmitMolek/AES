@@ -3,28 +3,48 @@ package root.dao.app;
 import java.io.Serializable;
 
 /**
- * Class for question in exam include grade and free text for each question
+ * A class that is responsible for keeping data about question in exam
  * 
  * @author Omer Haimovich
  *
  */
 public class QuestionInExam implements Serializable {
-	private Question question;
-	private int questionGrade;
-	private String freeTextForTeacher;
-	private String freeTextForStudent;
+
+	// Instance variables **********************************************
 
 	/**
-	 * Constructor for question in exam
+	 * 
+	 * The question that we want to add to the exam
+	 */
+	private Question question;
+	/**
+	 * The score of the question
+	 */
+	private int questionGrade;
+	/**
+	 * 
+	 * Free text of the question intended only for teachers
+	 */
+	private String freeTextForTeacher;
+	/**
+	 * 
+	 * Free text of the question intended for students
+	 */
+	private String freeTextForStudent;
+
+	// CONSTRUCTORS *****************************************************
+
+	/**
+	 * Constructs the Exam
 	 * 
 	 * @param question
-	 *            the question itself
+	 *            the question that we want to add to the exam
 	 * @param questionGrade
-	 *            the question scoring points
+	 *            the score of the question
 	 * @param freeTextForTeacher
-	 *            the teacher free text(only teacher can see that)
+	 *            the free text of the question intended only for teachers
 	 * @param freeTextForStudent
-	 *            the free text for students
+	 *            the free text of the question intended for students
 	 */
 	public QuestionInExam(Question question, int questionGrade, String freeTextForTeacher, String freeTextForStudent) {
 		super();
@@ -34,76 +54,86 @@ public class QuestionInExam implements Serializable {
 		this.freeTextForStudent = freeTextForStudent;
 	}
 
+	/**
+	 * Constructs the Exam
+	 */
 	public QuestionInExam() {
 	}
 
+	// CLASS METHODS *************************************************
+
 	/**
+	 * A method that returns the question
 	 * 
-	 * @return the question itself
+	 * @return the question
 	 */
 	public Question getQuestion() {
 		return question;
 	}
 
 	/**
-	 * Set new value for question in exam
+	 * A method that set the question
 	 * 
 	 * @param question
-	 *            the new question value
+	 *            the question
 	 */
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
 
 	/**
+	 * A method that returns the score of the question
 	 * 
-	 * @return the scoring for a question
+	 * @return the score of the question
 	 */
 	public int getQuestionGrade() {
 		return questionGrade;
 	}
 
 	/**
-	 * Set new question scoring
+	 * A method that set the score of the question
 	 * 
 	 * @param questionGrade
-	 *            the new question scoring
+	 *            the score of the question
 	 */
 	public void setQuestionGrade(int questionGrade) {
 		this.questionGrade = questionGrade;
 	}
 
 	/**
+	 * A method that returns the free text of the question intended only for
+	 * teachers
 	 * 
-	 * @return the question free text (for the teacher only)
+	 * @return the free text of the question intended only for teachers
 	 */
 	public String getFreeTextForTeacher() {
 		return freeTextForTeacher;
 	}
 
 	/**
-	 * Set new free text for teacher
+	 * A method that set the free text of the question intended only for teachers
 	 * 
 	 * @param freeTextForTeacher
-	 *            the new free text for teacher
+	 *            the free text of the question intended only for teachers
 	 */
 	public void setFreeTextForTeacher(String freeTextForTeacher) {
 		this.freeTextForTeacher = freeTextForTeacher;
 	}
 
 	/**
+	 * A method that returns the free text of the question intended for students
 	 * 
-	 * @return the question free text for student
+	 * @return the free text of the question intended for students
 	 */
 	public String getFreeTextForStudent() {
 		return freeTextForStudent;
 	}
 
 	/**
-	 * Set new free text for teacher
+	 * A method that set the free text of the question intended for students
 	 * 
 	 * @param freeTextForStudent
-	 *            the new free text for student
+	 *           the free text of the question intended for students
 	 */
 	public void setFreeTextForStudent(String freeTextForStudent) {
 		this.freeTextForStudent = freeTextForStudent;
