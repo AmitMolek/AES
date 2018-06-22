@@ -341,7 +341,6 @@ public class GetFromDB implements DbManagerInterface {
 			while (rs.next()) {
 				String temp_user_id = rs.getString(1);
 				String temp_exam_id = rs.getString(2);
-				Date temp_date = rs.getDate(6);
 				boolean cheating_flag = false;
 
 				String temp_cheating_flag_str = rs.getString(11);
@@ -349,7 +348,7 @@ public class GetFromDB implements DbManagerInterface {
 				if (temp_cheating_flag_str == "yes")
 					cheating_flag = true;
 
-				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, temp_date, cheating_flag));
+				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, cheating_flag));
 			}
 
 			rs.close();
@@ -680,7 +679,7 @@ public class GetFromDB implements DbManagerInterface {
 				if (temp_cheating_flag_str == "yes")
 					cheating_flag = true;
 
-				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, temp_date, cheating_flag));
+				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, cheating_flag));
 			}
 
 			rs.close();

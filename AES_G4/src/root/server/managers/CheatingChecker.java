@@ -249,8 +249,6 @@ public class CheatingChecker {
 			String folderName = exam_id + "-" + String.format("%d-%02d-%d", cal_date.get(Calendar.YEAR), (cal_date.get(Calendar.MONTH) + 1), cal_date.get(Calendar.DATE));
 			CSVReader reader = new CSVReader(new FileReader(csv_path + folderName + "/" + user_id + ".csv"));
 	    	List<String[]> myEntries = reader.readAll();
-	    	System.out.println("Reader: " + reader);
-	    	System.out.println("Entries: " + myEntries.size());
 	    	CSVData userData = new CSVData();
 	    	for(int i = 1; i < myEntries.size(); i++) {
 	    		String ques_id = (myEntries.get(i))[0];

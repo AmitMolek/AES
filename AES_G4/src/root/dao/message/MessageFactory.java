@@ -409,8 +409,6 @@ public class MessageFactory {
 				return new UserInfoMessage((HashMap<String, String>) payload);
 			else
 				return new ErrorMessage(new Exception("Your pyaload is not hashmap"));
-		case "cheatingexamstest":
-			return (CheatingExamsTestMessage) payload;
 		case "solvedexams":
 			if (payload instanceof ArrayList<?>)
 				return new UserSolvedExamsMessage((ArrayList<SolvedExams>) payload);

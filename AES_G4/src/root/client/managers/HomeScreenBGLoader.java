@@ -21,8 +21,8 @@ import root.util.log.LogLine.LineType;
 public class HomeScreenBGLoader {
 	
 	/**
-	 * Used to load all the home screen backgrounds
-	 * Loads on startup
+	 * Used to load all the home screen backgrounds images
+	 * 
 	 * @author Amit Molek
 	 *
 	 */
