@@ -52,104 +52,166 @@ import root.dao.message.UserInfoMessage;
 import root.dao.message.UserSolvedExamsMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
+
 /**
+ * 
+ * 
  * this class handle all that related to student's solved exams
- * @author gal
+ * 
+ * @author Gal Brandwine
  *
  */
 public class SolvedExamsController  implements Observer{
 
-    @FXML
-    private AnchorPane rootPane;
+	// FXML variables **********************************************
 
-    @FXML
-    private TableView<SolvedExams> tblSolvedExams;
+	@FXML
+	private AnchorPane rootPane;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcId;
+	@FXML
+	private TableView<SolvedExams> tblSolvedExams;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcCourse;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcId;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcExecutingDate;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcCourse;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcTeacherNotes;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcExecutingDate;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcAlteredHradeExplenation;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcTeacherNotes;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcApprovingTeacherName;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcAlteredHradeExplenation;
 
-    @FXML
-    private TableColumn<SolvedExams, String> tbcGetCopy;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcApprovingTeacherName;
 
-    @FXML
-    private TableColumn<SolvedExams, Integer> tbcIdGrade;
+	@FXML
+	private TableColumn<SolvedExams, String> tbcGetCopy;
 
-    @FXML
-    private TextField txtFieldId;
+	@FXML
+	private TableColumn<SolvedExams, Integer> tbcIdGrade;
 
-    @FXML
-    private TextField txtFieldName;
+	@FXML
+	private TextField txtFieldId;
 
-    @FXML
-    private TextField txtFieldSolvedExams;
+	@FXML
+	private TextField txtFieldName;
 
-    @FXML
-    private ComboBox<String> courseCombobox;
+	@FXML
+	private TextField txtFieldSolvedExams;
 
-    @FXML
-    private Button newQuestion;
+	@FXML
+	private ComboBox<String> courseCombobox;
 
-    @FXML
-    private Button btnSearch;
+	@FXML
+	private Button newQuestion;
 
-    @FXML
-    private Button editQuestion;
+	@FXML
+	private Button btnSearch;
 
-    @FXML
-    private Button deleteQuestion;
+	@FXML
+	private Button editQuestion;
 
-    @FXML
-    private Label fstNameLbl;
+	@FXML
+	private Button deleteQuestion;
 
-    @FXML
-    private Label lstNamelbl;
+	@FXML
+	private Label fstNameLbl;
 
-    @FXML
-    private Label teacherIDLbl;
+	@FXML
+	private Label lstNamelbl;
 
-    @FXML
-    private Label TeacherPremissionLbl;
-    
-    private ObservableList<String> observableCourses;
-    private ObservableList<SolvedExams> observabaleSolvedExams;
-    private ArrayList<SolvedExams> solvedExams;
-    private ObservableClient client;
-    private MessageFactory message;
-    private User user;
-    private ScreensManager screenManager;
-    private HashMap<String, String> courseMap;			// key = subjectID, value = subject name
-	private HashMap<String, String> teachersMap;		// key = teacherID, value = teacher full name. 
+	@FXML
+	private Label teacherIDLbl;
+
+	@FXML
+	private Label TeacherPremissionLbl;
+
+	// Instance variables **********************************************
+
+	/**
+	 * the relevant coursese to be shown in combobox
+	 */
+	private ObservableList<String> observableCourses;
+
+	/**
+	 * this observabale shows the solves exam in the tableView
+	 */
+	private ObservableList<SolvedExams> observabaleSolvedExams;
+
+	/**
+	 * the students solved exams
+	 */
+	private ArrayList<SolvedExams> solvedExams;
+
+	/**
+	 * the client of this student
+	 */
+	private ObservableClient client;
+
+	/**
+	 * the message factory to get our dao messages
+	 */
+	private MessageFactory message;
+
+	/**
+	 * the logged in user
+	 */
+	private User user;
+
+	/**
+	 * the screen manager to pass bewteen screens
+	 */
+	private ScreensManager screenManager;
+
+	/**
+	 * the hashMap to hold courseId with relevant course name
+	 */
+	private HashMap<String, String> courseMap;			// key = subjectID, value = subject name
+
+	/**
+	 *  the hashMap to hold relevant teacher id with teacher name
+	 */
+	private HashMap<String, String> teachersMap;		// key = teacherID, value = teacher full name.
+
+	/**
+	 * a specific solved exams CSV
+	 */
 	private ArrayList<String[]> csvData;				// csvData contains per solvedExam questions: {questionID, selectedQuestion, question Weight}
+
+	/**
+	 * this strudent solved exams
+	 */
 	private ArrayList<Question> solvedExamQuestions;
+
+	/**
+	 * a selected solved exam for downloading
+	 */
 	private SolvedExams solvedExam;
+
+	/**
+	 * 
+	 * A log file that is responsible for documenting the actions performed in the
+	 * application
+	 */
 	Log log = Log.getInstance();
-	
-	
+
+	// CLASS METHODS *************************************************
+
 	public SolvedExamsController() {
 		super();
 	}
-	
+
 	/**
 	 * This method fires when theres a selection from combobox
 	 * @param event
 	 */
 	@FXML
-    void selectFromCombobox(ActionEvent event) {
+	void selectFromCombobox(ActionEvent event) {
 		String selectedCourse = courseCombobox.getSelectionModel().getSelectedItem();
 		observabaleSolvedExams.clear();
 		if (selectedCourse.equals("show all exams"))observabaleSolvedExams.addAll(solvedExams);
@@ -160,52 +222,52 @@ public class SolvedExamsController  implements Observer{
 				}
 			}
 		}	
-    }
-	
-	/**
-     * This method occurs when the window is shown up.
-     * @throws IOException if the window cannot be shown
-     */
-    @FXML
-	public void initialize() throws IOException{
-    	Platform.runLater(() -> rootPane.requestFocus());
-    	message = MessageFactory.getInstance();
-    	screenManager = ScreensManager.getInstance();
+	}
 
-    	client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
-    	client.deleteObservers();
-    	client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
-    	
-    	user = (User) DataKeepManager.getInstance().getUser();
-    	solvedExams = new ArrayList<SolvedExams>();
-    	teachersMap = new HashMap<String, String>();
-    	courseMap = new HashMap<String, String>();
-    	csvData = new ArrayList<String[]>();
-    	solvedExamQuestions = new ArrayList<Question>();
-    	
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldId.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldName.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	// Listen for selection changes and show the person details when changed.
-    	txtFieldSolvedExams.setOnMouseClicked(e -> {
-    		btnSearch.setDisable(false);
-        });
-    	
-    	btnSearch.setDisable(true);
-    	
-    	setUserDetails(user);
-    	getUserSolvedExamsByUserID();
-    	initSolvedExamTable();
-    }
-    /**
-     * this method is called when need to fill courseMap, first get all solvedExams course ID, from examID. Than get all course names 
-     * @param solvedExams2
-     */
+	/**
+	 * This method occurs when the window is shown up.
+	 * @throws IOException if the window cannot be shown
+	 */
+	@FXML
+	public void initialize() throws IOException{
+		Platform.runLater(() -> rootPane.requestFocus());
+		message = MessageFactory.getInstance();
+		screenManager = ScreensManager.getInstance();
+
+		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+		client.deleteObservers();
+		client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
+
+		user = (User) DataKeepManager.getInstance().getUser();
+		solvedExams = new ArrayList<SolvedExams>();
+		teachersMap = new HashMap<String, String>();
+		courseMap = new HashMap<String, String>();
+		csvData = new ArrayList<String[]>();
+		solvedExamQuestions = new ArrayList<Question>();
+
+		// Listen for selection changes and show the person details when changed.
+		txtFieldId.setOnMouseClicked(e -> {
+			btnSearch.setDisable(false);
+		});
+		// Listen for selection changes and show the person details when changed.
+		txtFieldName.setOnMouseClicked(e -> {
+			btnSearch.setDisable(false);
+		});
+		// Listen for selection changes and show the person details when changed.
+		txtFieldSolvedExams.setOnMouseClicked(e -> {
+			btnSearch.setDisable(false);
+		});
+
+		btnSearch.setDisable(true);
+
+		setUserDetails(user);
+		getUserSolvedExamsByUserID();
+		initSolvedExamTable();
+	}
+	/**
+	 * this method is called when need to fill courseMap, first get all solvedExams course ID, from examID. Than get all course names 
+	 * @param solvedExams2
+	 */
 	private void getSolvedExamsCourse(ArrayList<SolvedExams> solvedExams2) {
 		for(SolvedExams solvedExam: solvedExams) {
 			courseMap.put(solvedExam.getExamID().substring(2, 4), "");
@@ -220,7 +282,7 @@ public class SolvedExamsController  implements Observer{
 			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
-	
+
 	private void getUserSolvedExamsByUserID() {
 		if (solvedExams.isEmpty() != true)return;	// if solvedExams has been loaded already, do nothing
 		UserSolvedExamsMessage userSolvedExamMessage =(UserSolvedExamsMessage) message.getMessage("get-solvedExams-user",user);
@@ -246,40 +308,40 @@ public class SolvedExamsController  implements Observer{
 		 *  all this, is pre-settings for adding a button into the column
 		 */
 		tbcGetCopy.setCellValueFactory(new PropertyValueFactory<SolvedExams,String>("action"));
-		
-        Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
-                = //
-                new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
-	            @Override
-	            public TableCell call(final TableColumn<SolvedExams, String> param) {
-	            	
-	                final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
-	
-	                    final Button btn = new Button("Download copy");
 
-	                    @Override
-	                    public void updateItem(String item, boolean empty) {
-	                        super.updateItem(item, empty);
-	                        if (empty) {
-	                            setGraphic(null);
-	                            setText(null);
-	                        } else {
-	                            btn.setOnAction(event -> {
-	                            	solvedExam = getTableView().getItems().get(getIndex());
-	                            	perapeDownload(solvedExam);
-	                            });
-	                            setGraphic(btn);
-	                            setText(null);
-	                        }
-	                    }
-	
-	                };
-	                return cell;
-	            }
-        	};
-        tbcGetCopy.setCellFactory(cellFactory);
+		Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
+		= //
+		new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
+			@Override
+			public TableCell call(final TableColumn<SolvedExams, String> param) {
+
+				final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
+
+					final Button btn = new Button("Download copy");
+
+					@Override
+					public void updateItem(String item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+							setText(null);
+						} else {
+							btn.setOnAction(event -> {
+								solvedExam = getTableView().getItems().get(getIndex());
+								perapeDownload(solvedExam);
+							});
+							setGraphic(btn);
+							setText(null);
+						}
+					}
+
+				};
+				return cell;
+			}
+		};
+		tbcGetCopy.setCellFactory(cellFactory);
 	}
-	
+
 	private void setUserDetails(User user1) {
 		teacherIDLbl.setText(user.getUserID());
 		fstNameLbl.setText(user.getUserFirstName());
@@ -292,7 +354,7 @@ public class SolvedExamsController  implements Observer{
 	 * @param solvedExam
 	 */
 	private void perapeDownload(SolvedExams solvedExam) {
-        System.out.println(solvedExam);
+		System.out.println(solvedExam);
 		/**
 		 * get CSV of this solved exam, from server 
 		 */
@@ -307,7 +369,7 @@ public class SolvedExamsController  implements Observer{
 			String errorText = e.getMessage();
 			showErrorDialog(setTitle,errorHeader,errorText);
 		}
-		
+
 	}
 	/**
 	 * this method get all solvedExam's questions
@@ -335,138 +397,138 @@ public class SolvedExamsController  implements Observer{
 	 */
 	private void createWord() {
 		/** Word formation:
-		* 
-		*	SolvingDate
-		*	Exam ID
-		*	StudentID
-		*	Approving teacher full name
-		*	Exam Grade
-		*
-		*	question (from Questions)
-		*	Question weight
-		*	selected answer
-		*
-		*	question (from Questions)
-		*	Question weight
-		*	selected answer
-		*		*
-		*		*
-		*		*
-		*
-		*/
+		 * 
+		 *	SolvingDate
+		 *	Exam ID
+		 *	StudentID
+		 *	Approving teacher full name
+		 *	Exam Grade
+		 *
+		 *	question (from Questions)
+		 *	Question weight
+		 *	selected answer
+		 *
+		 *	question (from Questions)
+		 *	Question weight
+		 *	selected answer
+		 *		*
+		 *		*
+		 *		*
+		 *
+		 */
 
 		Platform.runLater(() -> {
 			System.out.println("opening fileChooser");
 			FileChooser fileChooser = new FileChooser();
-	        fileChooser.setTitle("Save solvedExam"); 
-	        fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");
-	        File file = fileChooser.showSaveDialog(screenManager.getPrimaryStage());
-	        if (file != null) {
-	        	try {
-	    			//Blank Document
-	                XWPFDocument document = new XWPFDocument();
-	                //Write the Document in file system
-	                FileOutputStream out = new FileOutputStream(file);
-	                /**
-	                 * Printing:
-	                 *	SolvingDate
-	    			 *	Exam ID
-	    			 *	StudentID
-	    			 *	Approving teacher full name
-	    			 *	Exam Grade
-	                 */
-	                // solving date
-	                XWPFParagraph dateParagraph = document.createParagraph();
-	                XWPFRun runDate = dateParagraph.createRun();
-	                runDate.setBold(true);
-	                runDate.setItalic(true);
-	                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	                String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
-	                runDate.setText(solvedExsamDate);
-	                // Exam ID + Exam course
-	                XWPFParagraph titleParagraph = document.createParagraph();
-	                titleParagraph.setAlignment(ParagraphAlignment.CENTER);
-	                XWPFRun runTitle = titleParagraph.createRun();
-	                runTitle.setBold(true);
-	                runTitle.setItalic(true);
-	                runTitle.setText("ExamID: "+ solvedExam.getExamID());
-	                runTitle.addBreak();
-	                runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
-	                runTitle.addBreak();
-	                runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
-	                runTitle.addBreak();
-	                runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
-	                runTitle.addBreak();
-	                runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
-	                runTitle.addBreak();
-	                /**
-	                 * printing Questions and selected answeres
-	                 */
-	                for (Question question: solvedExamQuestions) {
-	    	            //create Paragraph
-	    	            XWPFParagraph questionParagraph = document.createParagraph();
-	    	            XWPFRun runQuestions = questionParagraph.createRun();
-	    	            runQuestions.setText(question.getQuestionText()+"\n");
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            if(question.getIdquestionIntruction() != null) {
-		    	            runQuestions.setText(question.getIdquestionIntruction()+"\n");
-		    	            runQuestions.addBreak();
-		    	            runQuestions.addTab();
-	    	            }
-	    	            runQuestions.setText("Possible answeres:");
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            runQuestions.setText("1) "+question.getAns1());
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            runQuestions.setText("2) "+question.getAns2());
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            runQuestions.setText("3) "+question.getAns3());
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            runQuestions.setText("4) "+question.getAns4());
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            runQuestions.setText("Correct answer: " + question.getCorrectAns());
-	    	            runQuestions.addBreak();
-	    	            runQuestions.addTab();
-	    	            // getting the selected answer from csvData.
-	    	            for (String[] csvLine: csvData) {
-	    	    			String slectedQuestionID = csvLine[0].replaceAll("\"", "");
-	    	    			String questionID = question.getQuestionId();
-	    	    			int correctAnswer = question.getCorrectAns();
-	    	    			if (slectedQuestionID.equals(questionID) ) {
-	    	    				runQuestions.setText("Your selected answer: "+ csvLine[1].replaceAll("\"", ""));
-	    	    				runQuestions.addBreak();
-	    	    				if (Integer.parseInt(csvLine[1].replaceAll("\"", "")) == correctAnswer) {
-	    	    					runQuestions.setText("Question points: "+ csvLine[2].replaceAll("\"", "") +"/"+csvLine[2].replaceAll("\"", ""));
-	    	    				}
-	    	    				else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2].replaceAll("\"", ""));
-	    	    			}
-	    	    		}
-	    	            runQuestions.addBreak();
-	    			}// end of printing questions
-	                document.enforceReadonlyProtection();
-	                document.write(out);
-	
-	                //Close document
-	                out.close();
-	                System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
-	    	      
-	    		}catch (IOException e) {
-	    			String setTitle = "IOException";
-	    			String errorHeader = "In SolvedExamsController, createWord()";
-	    			String errorText = e.getMessage();
-	    			showErrorDialog(setTitle,errorHeader,errorText);
-	    		}catch (Exception e) {
-	    			String setTitle = "Exception";
-	    			String errorHeader = "In SolvedExamsController, createWord()";
-	    			String errorText = e.getMessage();
-	    			showErrorDialog(setTitle,errorHeader,errorText);
-	    		}
-	        }
+			fileChooser.setTitle("Save solvedExam"); 
+			fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");
+			File file = fileChooser.showSaveDialog(screenManager.getPrimaryStage());
+			if (file != null) {
+				try {
+					//Blank Document
+					XWPFDocument document = new XWPFDocument();
+					//Write the Document in file system
+					FileOutputStream out = new FileOutputStream(file);
+					/**
+					 * Printing:
+					 *	SolvingDate
+					 *	Exam ID
+					 *	StudentID
+					 *	Approving teacher full name
+					 *	Exam Grade
+					 */
+					// solving date
+					XWPFParagraph dateParagraph = document.createParagraph();
+					XWPFRun runDate = dateParagraph.createRun();
+					runDate.setBold(true);
+					runDate.setItalic(true);
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+					String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
+					runDate.setText(solvedExsamDate);
+					// Exam ID + Exam course
+					XWPFParagraph titleParagraph = document.createParagraph();
+					titleParagraph.setAlignment(ParagraphAlignment.CENTER);
+					XWPFRun runTitle = titleParagraph.createRun();
+					runTitle.setBold(true);
+					runTitle.setItalic(true);
+					runTitle.setText("ExamID: "+ solvedExam.getExamID());
+					runTitle.addBreak();
+					runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
+					runTitle.addBreak();
+					runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
+					runTitle.addBreak();
+					runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
+					runTitle.addBreak();
+					runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
+					runTitle.addBreak();
+					/**
+					 * printing Questions and selected answeres
+					 */
+					for (Question question: solvedExamQuestions) {
+						//create Paragraph
+						XWPFParagraph questionParagraph = document.createParagraph();
+						XWPFRun runQuestions = questionParagraph.createRun();
+						runQuestions.setText(question.getQuestionText()+"\n");
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						if(question.getIdquestionIntruction() != null) {
+							runQuestions.setText(question.getIdquestionIntruction()+"\n");
+							runQuestions.addBreak();
+							runQuestions.addTab();
+						}
+						runQuestions.setText("Possible answeres:");
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						runQuestions.setText("1) "+question.getAns1());
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						runQuestions.setText("2) "+question.getAns2());
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						runQuestions.setText("3) "+question.getAns3());
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						runQuestions.setText("4) "+question.getAns4());
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						runQuestions.setText("Correct answer: " + question.getCorrectAns());
+						runQuestions.addBreak();
+						runQuestions.addTab();
+						// getting the selected answer from csvData.
+						for (String[] csvLine: csvData) {
+							String slectedQuestionID = csvLine[0].replaceAll("\"", "");
+							String questionID = question.getQuestionId();
+							int correctAnswer = question.getCorrectAns();
+							if (slectedQuestionID.equals(questionID) ) {
+								runQuestions.setText("Your selected answer: "+ csvLine[1].replaceAll("\"", ""));
+								runQuestions.addBreak();
+								if (Integer.parseInt(csvLine[1].replaceAll("\"", "")) == correctAnswer) {
+									runQuestions.setText("Question points: "+ csvLine[2].replaceAll("\"", "") +"/"+csvLine[2].replaceAll("\"", ""));
+								}
+								else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2].replaceAll("\"", ""));
+							}
+						}
+						runQuestions.addBreak();
+					}// end of printing questions
+					document.enforceReadonlyProtection();
+					document.write(out);
+
+					//Close document
+					out.close();
+					System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
+
+				}catch (IOException e) {
+					String setTitle = "IOException";
+					String errorHeader = "In SolvedExamsController, createWord()";
+					String errorText = e.getMessage();
+					showErrorDialog(setTitle,errorHeader,errorText);
+				}catch (Exception e) {
+					String setTitle = "Exception";
+					String errorHeader = "In SolvedExamsController, createWord()";
+					String errorText = e.getMessage();
+					showErrorDialog(setTitle,errorHeader,errorText);
+				}
+			}
 		});
 	}
 	/**
@@ -486,15 +548,15 @@ public class SolvedExamsController  implements Observer{
 			}
 		}
 	}
-	
+
 	/**
-     *  This method is called in order to fill theacherMap, 
-     *  for each solvedExam in the subject this teacher teaches, we need the teacher assembled name.
-     * @param questions2
-     */
+	 *  This method is called in order to fill theacherMap, 
+	 *  for each solvedExam in the subject this teacher teaches, we need the teacher assembled name.
+	 * @param questions2
+	 */
 	void getTeachersMap(ArrayList<SolvedExams> solvedExams2) {
 		// by sending all solvedExams of THIS, well loop over all solvedExams and get the relevant ApprovringteacherName Full name
-		 for (SolvedExams solvedExam: solvedExams) {
+		for (SolvedExams solvedExam: solvedExams) {
 			teachersMap.put(solvedExam.getApprovingTeacherID(), "");
 		}
 		UserInfo teachersInfo = new UserInfo(teachersMap,null);
@@ -507,7 +569,7 @@ public class SolvedExamsController  implements Observer{
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
-	
+
 	private void fillCombobox(HashMap<String, String> subjectMap) {
 		if (courseCombobox.getItems().isEmpty()) {
 			observableCourses = FXCollections.observableArrayList(subjectMap.values());
@@ -515,27 +577,26 @@ public class SolvedExamsController  implements Observer{
 			courseCombobox.getItems().addAll(observableCourses);
 		}
 	}
-	
 
-    /**
-     * This method is called when there's a need to ErrorDialog
-     * @param HeaderTitle
-     * @param HeaderText
-     * @param Errormessage
-     */
-    private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
-    	Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+	/**
+	 * This method is called when there's a need to ErrorDialog
+	 * @param HeaderTitle
+	 * @param HeaderText
+	 * @param Errormessage
+	 */
+	private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
+		Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
 			// Show the error message.
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.initOwner(screenManager.getPrimaryStage());
-            alert.setTitle(HeaderTitle);//"ServerIP error");
-            alert.setHeaderText(HeaderText);//"Please contact system administrator");
-            alert.setContentText(Errormessage);
-            alert.showAndWait();       
-        	log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(screenManager.getPrimaryStage());
+			alert.setTitle(HeaderTitle);//"ServerIP error");
+			alert.setHeaderText(HeaderText);//"Please contact system administrator");
+			alert.setContentText(Errormessage);
+			alert.showAndWait();       
+			log.writeToLog(LogLine.LineType.ERROR,Errormessage);
 		});
-    }
-	
+	}
+
 	/**
 	 * after getting all courses relevant for these solved exams, i want to update solvedExam.examcourse field, for further use
 	 */
@@ -544,14 +605,14 @@ public class SolvedExamsController  implements Observer{
 			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4); 
 			if (courseMap.containsKey(tempCourseIDinSolvedExam) ) {
 				solvedExam.setExamCourse(courseMap.get(tempCourseIDinSolvedExam));
-				
+
 			}
 		}
 		for (SolvedExams solvedExam: observabaleSolvedExams) {
 			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4); 
 			if (courseMap.containsKey(tempCourseIDinSolvedExam) ) {
 				solvedExam.setExamCourse(courseMap.get(tempCourseIDinSolvedExam));
-				
+
 			}
 		}
 	}
@@ -559,8 +620,8 @@ public class SolvedExamsController  implements Observer{
 	 * this method fires when pressing the search button
 	 * @param event
 	 */
-    @FXML
- 	void searchQuestion(ActionEvent event) {
+	@FXML
+	void searchQuestion(ActionEvent event) {
 		String errorMessage = "";
 		if (txtFieldSolvedExams.getText().length() != 0) {
 			String solvedExamID = txtFieldSolvedExams.getText();
@@ -595,16 +656,16 @@ public class SolvedExamsController  implements Observer{
 			txtFieldName.clear();
 			return;
 		}else {
-            // Nothing selected.
+			// Nothing selected.
 			String setTitle = "No selection";
 			String errorHeader = "No field Selected";
 			String errorText = "Please fill selected field";
 			showErrorDialog(setTitle,errorHeader,errorText);
 		}
 	}
-    
 
-    /**
+
+	/**
 	 * This method happens when the server send an message 
 	 */
 	@Override
