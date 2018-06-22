@@ -16,6 +16,7 @@
          <center>
             <TableView fx:id="tbl_viewExams" editable="true" prefHeight="245.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
               <columns>
+                  <TableColumn fx:id="tb_approve" editable="false" maxWidth="1500.0" minWidth="1.0" prefWidth="20.0" styleClass="tableColumn" text="Approve" />
                 <TableColumn fx:id="tb_examid" editable="false" maxWidth="3000.0" minWidth="1.0" prefWidth="20.0" styleClass="tableColumn" text="Exam ID" />
                   <TableColumn fx:id="tb_userid" editable="false" maxWidth="3000.0" prefWidth="182.0" text="User ID" />
                   <TableColumn fx:id="tb_course" editable="false" prefWidth="75.0" text="Course" />

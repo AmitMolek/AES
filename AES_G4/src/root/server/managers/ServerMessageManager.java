@@ -43,7 +43,6 @@ import root.dao.app.User;
 import root.dao.app.UserInfo;
 import root.dao.message.AbstractMessage;
 import root.dao.message.AllTablesMessage;
-import root.dao.message.CheatingExamsTestMessage;
 import root.dao.message.ChangeTimeDurationRequest;
 import root.dao.message.CourseMessage;
 import root.dao.message.CsvMessage;
@@ -377,25 +376,6 @@ public class ServerMessageManager {
 	}
 
 	/**
-	 * A method that is called when the client wants to get all the exams in which
-	 * students cheated
-	 * 
-	 * @author Amit Molek
-	 * @param msg
-	 *            type of CheatingExamsTestMessage
-	 * @return AbstrackMessage that includes all exams in which students cheated
-	 */
-	private static AbstractMessage handleGetCheatingExamsTest(AbstractMessage msg) {
-		CheatingExamsTestMessage examsMsg = (CheatingExamsTestMessage) msg;
-		GetFromDB getExams = new GetFromDB();
-		// ArrayList<CheatingExamTest> dbExams =
-		// getExams.solvedExamCheatingTest(examsMsg.getExam_id());
-
-		// examsMsg.setExams(dbExams);
-		return message.getOkGetMessage("ok-get-cheatingexamstest".split("-"), examsMsg);
-	}
-
-	/**
 	 * A method that handle with messages of getting data from the database (must
 	 * contains the word `get` in the message)
 	 * 
@@ -423,8 +403,6 @@ public class ServerMessageManager {
 			return handleGetExamMessage(msg);
 		case "user":
 			return handleFetUserMessage(msgContent, msg);
-		case "cheatingexamstest":
-			return handleGetCheatingExamsTest(msg);
 		case "solvedexams":
 			return handleGetSolvedExams(msgContent, msg); // this methos handeles all Get requests from solvedExams
 															// table
