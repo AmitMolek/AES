@@ -295,6 +295,9 @@ public class RawDataViewController implements Observer {
     @FXML
     private TableColumn<User, String> users_permissions;
     
+    /**
+	 * An instance of client, used for observing
+     */
     private ObservableClient client;
     
     /**

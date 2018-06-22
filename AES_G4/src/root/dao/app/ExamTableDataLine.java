@@ -2,13 +2,37 @@ package root.dao.app;
 
 import java.io.Serializable;
 import java.sql.Date;
-
+/**
+ *
+ * @author Alon Ben-yosef
+ * A class that represents a row in the teacher's exam table
+ */
 public class ExamTableDataLine implements Serializable {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The exam's ID
+	 */
 	private String examID;
+	/**
+	 * The exam's date
+	 */
 	private String date;
+	/**
+	 * The name of the exam'ss course
+	 */
 	private String courseName;
+	/**
+	 * The name the exam's subject
+	 */
 	private String subjectName;
 	
+	/**
+	 * A constructor that reflects this data type in the database
+	 * @param examID
+	 * @param date
+	 * @param courseName
+	 * @param subjectName
+	 */
 	public ExamTableDataLine(String examID, String date, String courseName, String subjectName) {
 		this.examID=examID;
 		this.date=date;

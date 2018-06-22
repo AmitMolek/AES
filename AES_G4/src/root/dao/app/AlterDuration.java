@@ -12,14 +12,48 @@ import java.io.Serializable;
 public class AlterDuration implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The user's ID
+	 */
 	private String userID;
+	
+	/**
+	 * The exam ID
+	 */
 	private String examID;
+	
+	/**
+	 * The request's date
+	 */
 	private String date;
+	
+	/**
+	 * The teacher's explanation 
+	 */
 	private String teacherExp;
+	/**
+	 * The principal's response
+	 */
 	private String principalAns;
+	/**
+	 * The exam's duration before the change
+	 */
 	private int original_duration;
+	/**
+	 * The exam's duration after the change
+	 */
 	private int after_change_duration;
 	
+	/**
+	 * A constructor that reflects this data type in the database
+	 * @param userID
+	 * @param examID
+	 * @param date
+	 * @param teacherExp
+	 * @param principalAns
+	 * @param original_duration
+	 * @param after_change_duration
+	 */
 	public AlterDuration(String userID, String examID, String date, String teacherExp, String principalAns,
 			int original_duration, int after_change_duration) {
 		super();

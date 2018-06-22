@@ -2,16 +2,31 @@ package root.dao.app;
 
 import java.io.Serializable;
 /**
- * @author Alon
+ * @author Alon Ben-yosef
  * Question in exam data represents a single question in exam row as exists in the database
  */
 public class QuestionInExamData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The question's ID
+	 */
 	private String questionId;
+	/**
+	 * The exam ID
+	 */
 	private String examId;
+	/**
+	 * The question's weight in points
+	 */
 	private int grade;
+	/**
+	 * A note for the student
+	 */
 	private String studentText;
+	/**
+	 * A note for the teacher
+	 */
 	private String teacherText;
 	
 	/**

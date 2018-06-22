@@ -53,7 +53,9 @@ public class TestGradesPrincipalController implements Observer{
 	private TextField value3Field;
 	 @FXML
 	private Text errorText;
-
+	/**
+	 * An instance of client, used for observing
+	 */
 	private ObservableClient client;	
 
     
@@ -93,7 +95,6 @@ public class TestGradesPrincipalController implements Observer{
 			client.sendToServer(msg);
     	}
 	    catch (IOException e) {
-	    		System.out.println("ERROR");
 				showAlert("Error Communicating With AES Sever","Please contact system administrator");
 			}
     	catch (Exception e) {
@@ -225,7 +226,11 @@ public class TestGradesPrincipalController implements Observer{
 		}
 		return query;
 	}
-	
+	/**
+	 * Converts a string to a name format (Uppercase letter, rest is lowercase)
+	 * @param name The name to convert
+	 * @return a name in "Name" format
+	 */
 	private String toStandardNameConvention(String name) {
     	String fullname=name.toLowerCase();
 		String prefix=fullname.substring(0, 1);
