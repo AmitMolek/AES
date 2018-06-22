@@ -91,11 +91,11 @@ public class ServerMessageManager {
 	// Instance variables **********************************************
 
 	/**
-	 * 
+	 * Manager for of all students currently under exam
 	 */
 	private static ExecuteStudentManager examinees = ExecuteStudentManager.getInstance();
 	/**
-	 * 
+	 * Manager for of all principal currently logged in 
 	 */
 	private static PrincipleManager principles = new PrincipleManager();
 	/**
@@ -107,7 +107,7 @@ public class ServerMessageManager {
 	 */
 	private static MessageFactory message = MessageFactory.getInstance();
 	/**
-	 * 
+	 * Manager all users currently logged in
 	 */
 	private static LoggedInUsersManager usersManager = LoggedInUsersManager.getInstance();
 	/**
@@ -128,7 +128,7 @@ public class ServerMessageManager {
 	 */
 	public static String PATHCSV;
 	/**
-	 * 
+	 * Manager for of all students currently under exam
 	 */
 	public static ExamExecutedManager executedUsersManager = new ExamExecutedManager();
 
