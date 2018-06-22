@@ -69,6 +69,7 @@ public class ExamExecutedManager {
 			set.deleteExecutedExam(examId);
 			set.lockExam(examId);
 			examsTime.remove(examId);
+			examinees.removeExam(examId);
 		}
 	}
 	
