@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,25 +39,26 @@ public class CheatingChecker {
 	}
 	
 	String exam_id;
-	Date date;
+	Calendar cal_date;
 	ArrayList<CheatingExamTest> exams;
 	ArrayList<CheatingExamTest> cheatedExams;
 	HashMap<String, Integer> qusCorrect;
 	HashMap<String, CSVData> users_data;
 	
-	private final String csv_path = "src/root/server/csvExam/";
+	private final String csv_path;
 	
 	/**
 	 * Checks the exam (associated with exam_id in the date) for cheating
 	 * @param exam_id the id of the exam you want to check for cheating
 	 * @param date the date of the exam you want to check for cheating
 	 */
-	public CheatingChecker(String exam_id, Date date) {
+	public CheatingChecker(String exam_id, Calendar date) {
+		this.cal_date = date;
+		csv_path = ServerMessageManager.PATHCSV;
 		this.cheatedExams = new ArrayList<>();
 		this.qusCorrect = new HashMap<>();
 		this.users_data = new HashMap<>();
 		this.exam_id = exam_id;
-		this.date = date;
 		getExamsFromDB();
 		getCorrectAnswersFromDB();
 		getEntriesFromCSV();
@@ -68,9 +69,8 @@ public class CheatingChecker {
 	/**
 	 * Prints all the cheated exams
 	 */
-	@SuppressWarnings("deprecation")
 	public void printCheatedExams() {
-		System.out.println("Exam ID: " + exam_id + ", Date: " + date.getYear() + "-" + date.getMonth() + "-" + date.getDate());
+		System.out.println("Exam ID: " + exam_id + ", Date: " + cal_date.get(Calendar.YEAR) + "-" + (cal_date.get(Calendar.MONTH) + 1) + "-" + cal_date.get(Calendar.DATE));
 		System.out.println("Cheated: " + cheatedExams.size());
 		for (CheatingExamTest cheatingExamTest : cheatedExams) {
 			String msg = "User: " + cheatingExamTest.getUser_id() + " Exam ID: " + cheatingExamTest.getExam_id();
@@ -103,6 +103,18 @@ public class CheatingChecker {
 	}
 	
 	/**
+	 * Checks if the user has cheated in this exam
+	 * @param user_id the id of the user you want to check if he cheated
+	 * @return true if the user cheated
+	 */
+	private boolean isUserCheated(String user_id) {
+		for (CheatingExamTest cet : cheatedExams) {
+			if (cet.getUser_id().equals(user_id)) return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Checks the exams for cheating
 	 * Constructs all the wrong answers and compares them to other wrong answers of other exams
 	 */
@@ -119,7 +131,6 @@ public class CheatingChecker {
 				CheatingExamTest a = getExam(exam_a.getKey());
 				CheatingExamTest b = getExam(exam_b.getKey());
 				if (checkTwoExams(exam_a_wrong, exam_b_wrong) && (!cheatedExams.contains(a) || !cheatedExams.contains(b))) {
-					System.out.println(exam_a.getKey() + " & " + exam_b.getKey() + " Cheated");
 					if (!cheatedExams.contains(a)) cheatedExams.add(a);
 					if (!cheatedExams.contains(b)) cheatedExams.add(b);
 				}
@@ -177,7 +188,7 @@ public class CheatingChecker {
 	 * Gets the exams from the database
 	 */
 	public void getExamsFromDB() {
-		exams = new GetFromDB().solvedExamCheatingTest(exam_id, date);
+		exams = new GetFromDB().solvedExamCheatingTest(exam_id, cal_date);
 	}
 	
 	/**
@@ -198,8 +209,11 @@ public class CheatingChecker {
 	 * Sets the cheating flag of the cheating exams in the DB to 'yes'
 	 */
 	private void setCheatedExamsFlag() {
-		for (CheatingExamTest cheatingExamTest : cheatedExams) {
-			setUserCheatingFlag(cheatingExamTest.getUser_id(), true);
+		for (CheatingExamTest cheatingExamTest : exams) {
+			boolean cheated = false;
+			if (isUserCheated(cheatingExamTest.getUser_id()))
+				cheated = true;
+			setUserCheatingFlag(cheatingExamTest.getUser_id(), cheated);
 		}
 	}
 	
@@ -229,14 +243,14 @@ public class CheatingChecker {
 	 * @param user_id the user you want to get the csv data of
 	 * @return CSVData object filled with the questions and the user's answer
 	 */
-	@SuppressWarnings("deprecation")
 	private CSVData getEntryFromCSV(String user_id) {
 		try {
 			
-			String folderName = exam_id + "-" + String.format("%d-%02d-%d", date.getYear(), date.getMonth(), date.getDate());
+			String folderName = exam_id + "-" + String.format("%d-%02d-%d", cal_date.get(Calendar.YEAR), (cal_date.get(Calendar.MONTH) + 1), cal_date.get(Calendar.DATE));
 			CSVReader reader = new CSVReader(new FileReader(csv_path + folderName + "/" + user_id + ".csv"));
 	    	List<String[]> myEntries = reader.readAll();
-	    	
+	    	System.out.println("Reader: " + reader);
+	    	System.out.println("Entries: " + myEntries.size());
 	    	CSVData userData = new CSVData();
 	    	for(int i = 1; i < myEntries.size(); i++) {
 	    		String ques_id = (myEntries.get(i))[0];

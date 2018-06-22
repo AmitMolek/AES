@@ -20,6 +20,7 @@ import root.dao.message.AbstractMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.QuestionsMessage;
 import root.server.AES_Server;
+import root.server.managers.SolvedExamsFinishedStatistics;
 import root.util.log.Log;
 import root.util.log.LogLine;
 import root.util.log.LogLine.LineType;
@@ -104,6 +105,8 @@ public class SetInDB {
 			newStmt.setTimestamp(7, se.getExamDateTime());
 			newStmt.execute();
 			
+			new SolvedExamsFinishedStatistics(se.getExamID());
+			
 			return true;
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -187,6 +190,44 @@ public class SetInDB {
 
 	}
 
+	public void addSolvedExamStatistics(Statistic examStatistic) {
+		String insertQuery = "INSERT INTO `solved exams statistics`("
+				+ "exam_ID, Date, real_time_duration, submitted_students_counter, interrupted_students_counter, students_started_counter,"
+				+ "exams_avg, exams_median, grade_derivative_0_10, grade_derivative_11_20, grade_derivative_21_30, grade_derivative_31_40,"
+				+ "grade_derivative_41_50, grade_derivative_51_60, grade_derivative_61_70, grade_derivative_71_80, grade_derivative_81_90,"
+				+ "grade_derivative_91_100)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		
+		try {
+			newStmt = conn.prepareStatement(insertQuery);
+			
+			newStmt.setString(1, examStatistic.getExam_ID());
+			newStmt.setTimestamp(2, examStatistic.getDateTime());
+			newStmt.setInt(3, Integer.parseInt(examStatistic.getReal_time_duration()));
+			newStmt.setInt(4, examStatistic.getSubmitted_students_counter());
+			newStmt.setInt(5, examStatistic.getInterrupted_students_counter());
+			newStmt.setInt(6, examStatistic.getStudents_started_counter());
+			newStmt.setDouble(7, examStatistic.getExams_avg());
+			newStmt.setDouble(8, examStatistic.getExams_median());
+			
+			newStmt.setDouble(9, examStatistic.getGrade_derivative_0_10());
+			newStmt.setDouble(10, examStatistic.getGrade_derivative_11_20());
+			newStmt.setDouble(11, examStatistic.getGrade_derivative_21_30());
+			newStmt.setDouble(12, examStatistic.getGrade_derivative_31_40());
+			newStmt.setDouble(13, examStatistic.getGrade_derivative_41_50());
+			newStmt.setDouble(14, examStatistic.getGrade_derivative_51_60());
+			newStmt.setDouble(15, examStatistic.getGrade_derivative_61_70());
+			newStmt.setDouble(16, examStatistic.getGrade_derivative_71_80());
+			newStmt.setDouble(17, examStatistic.getGrade_derivative_81_90());
+			newStmt.setDouble(18, examStatistic.getGrade_derivative_91_100());
+			newStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+	
 	/**
 	 * A method that adds a question to the database to the question table
 	 * 

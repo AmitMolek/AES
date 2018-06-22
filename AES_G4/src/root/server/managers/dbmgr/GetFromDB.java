@@ -327,12 +327,11 @@ public class GetFromDB implements DbManagerInterface {
 	 * @return A list of all the exams of a particular exam on a given date
 	 * @author Amit Molek
 	 */
-	@SuppressWarnings("deprecation")
-	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Date date) {
+	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Calendar cal) {
 		ArrayList<CheatingExamTest> exams = new ArrayList<>();
 		ResultSet rs;
 
-		String examDate = String.format("%d-%02d-%d", date.getYear(), date.getMonth(), date.getDate());
+		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), (cal.get(Calendar.MONTH) + 1), cal.get(Calendar.DATE));
 		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id
 				+ "%' AND exam_executing_Date LIKE '" + examDate + "%'";
 
@@ -460,6 +459,28 @@ public class GetFromDB implements DbManagerInterface {
 
 	}
 
+	/**
+	 * Returns true if the exam_id exist in the Solved Exams Statistics table
+	 * @param exam_id the id of the exam you want to check
+	 * @return true if the exam exist, false otherwise
+	 */
+	public boolean isSolvedExamStatisticsExist(String exam_id) {
+		String getQuery = "SELECT exam_ID FROM `solved exams statistics` WHERE exam_ID = '" + exam_id + "';";
+		ResultSet rs;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(getQuery);
+			
+			if (rs.next()) {
+				return true;
+			}else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	/**
 	 * 
 	 * A method that returns all executed exams when given the teacher id
@@ -891,6 +912,31 @@ public class GetFromDB implements DbManagerInterface {
 
 	}
 
+	public ArrayList<SolvedExams> getSolvedExamsByExamID(String exam_id) {
+		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
+		ResultSet rs;
+		String query = "SELECT * FROM `solved exams` WHERE exam_ID = " + exam_id + ";";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				SolvedExams se = new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4),
+						rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10), rs.getString(11));
+				se.setApprovingTeacherID(rs.getString(9));
+				solvedExams.add(se);
+			}
+			
+			return solvedExams;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public ArrayList<Integer> getGradesQuery(String query) throws SQLException {
 		String query1=query;
 		ResultSet rs;
@@ -924,6 +970,20 @@ public class GetFromDB implements DbManagerInterface {
 			}
 		return list;
 	}
+	
+	/**
+	 * Returns the Exam with the exam_id
+	 * @param exam_id the id of the exam you want to get
+	 * @return Exam if exam was found, null if not
+	 */
+	public Exam getExam(String exam_id) {
+		ArrayList<Exam> exams = getExams();
+		for (Exam e : exams) {
+			if (e.getExamId().equals(exam_id)) return e;
+		}
+		return null;
+	}
+	
 	/**
 	 * @author Alon Ben-yosef
 	 * Get all exams as written in the DB

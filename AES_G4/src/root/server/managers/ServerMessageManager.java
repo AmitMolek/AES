@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -219,6 +220,11 @@ public class ServerMessageManager {
 		SetInDB set = new SetInDB();
 		set.deleteExecutedExam(examId);
 		set.lockExam(examId);
+		
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) + "-" + cal.get(Calendar.DATE));
+		
+		new CheatingChecker(examId, Calendar.getInstance());
 		return null;
 	}
 
