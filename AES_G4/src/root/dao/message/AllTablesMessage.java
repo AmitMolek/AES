@@ -14,7 +14,11 @@ import root.dao.app.Statistic;
 import root.dao.app.Subject;
 import root.dao.app.SubjectATeacherTeach;
 import root.dao.app.User;
-
+/**
+ * 
+ * @author Alon Ben-yosef
+ * A message containing all the DB's tables
+ */
 public class AllTablesMessage extends AbstractMessage{
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +37,7 @@ public class AllTablesMessage extends AbstractMessage{
 	private ArrayList<User> userList;
 	
 	/**
-	 * a constructor for an empty AllTablesMessage
+	 * a constructor for an empty AllTablesMessage, should be filled by the MessageFactory
 	 * @param msg
 	 */
 	public AllTablesMessage(String msg) {

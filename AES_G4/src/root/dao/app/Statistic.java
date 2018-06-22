@@ -11,26 +11,105 @@ public class Statistic implements Serializable {
 	 * Repersents a statistics item as described in the AES DB, used to show histograms
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * The exam's ID
+	 */
 	private String exam_ID;
+	/**
+	 * The exam's date
+	 */
 	private String date;
+	/**
+	 * The exam's date
+	 */
 	private Timestamp dateTime;
+	/**
+	 * The exam's actual duration (after all alteration requests)
+	 */
 	private String real_time_duration;
+	/**
+	 * Counts how many students submitted the exam within time
+	 */
 	private int submitted_students_counter;
+	/**
+	 * Counts how many students were interrupted by the cloak
+	 */
 	private int interrupted_students_counter;
+	/**
+	 * Counts how many students started the exam
+	 */
 	private int students_started_counter;
+	/**
+	 * The exam's avarage grade
+	 */
 	private double exams_avg;
+	/**
+	 * The exam's median grade
+	 */
 	private int exams_median;
+	/**
+	 * How many students scored between 0-10
+	 */
 	private int grade_derivative_0_10;
+	/**
+	 * How many students scored between 11-20
+	 */
 	private int grade_derivative_11_20;
+	/**
+	 * How many students scored between 21-30
+	 */
 	private int grade_derivative_21_30;
+	/**
+	 * How many students scored between 31-40
+	 */
 	private int grade_derivative_31_40;
+	/**
+	 * How many students scored between 41-50
+	 */
 	private int grade_derivative_41_50;
+	/**
+	 * How many students scored between 51-60
+	 */
 	private int grade_derivative_51_60;
+	/**
+	 * How many students scored between 61-70
+	 */
 	private int grade_derivative_61_70;
+	/**
+	 * How many students scored between 71-80
+	 */
 	private int grade_derivative_71_80;
+	/**
+	 * How many students scored between 81-90
+	 */
 	private int grade_derivative_81_90;
+	/**
+	 * How many students scored between 91-100
+	 */
 	private int grade_derivative_91_100;
 	
+	/**
+	 * Used to pull a statistic data from the DB
+	 * @param exam_ID
+	 * @param date
+	 * @param real_time_duration
+	 * @param submitted_students_counter
+	 * @param interrupted_students_counter
+	 * @param students_started_counter
+	 * @param exams_avg
+	 * @param exams_median
+	 * @param grade_derivative_0_10
+	 * @param grade_derivative_11_20
+	 * @param grade_derivative_21_30
+	 * @param grade_derivative_31_40
+	 * @param grade_derivative_41_50
+	 * @param grade_derivative_51_60
+	 * @param grade_derivative_61_70
+	 * @param grade_derivative_71_80
+	 * @param grade_derivative_81_90
+	 * @param grade_derivative_91_100
+	 */
 	public Statistic(String exam_ID, String date, String real_time_duration, int submitted_students_counter,
 			int interrupted_students_counter, int students_started_counter, double exams_avg, int exams_median,
 			int grade_derivative_0_10, int grade_derivative_11_20, int grade_derivative_21_30,
@@ -78,8 +157,8 @@ public class Statistic implements Serializable {
 	}
 	
 	/**
-	 * Generate statistics by a list of grades
-	 * @param grades
+	 * Generate statistics by a list of grades, will calculate median and average independently
+	 * @param grades a list of integer grades
 	 */
 	public Statistic(List<Integer> grades) {
 		super();

@@ -31,7 +31,14 @@ public class HistogramsScreenController {
     @FXML
     private Text averageText;
 
+    /**
+     * Used for building the graph's Y axis
+     */
     private CategoryAxis xAxis;
+    
+    /**
+     * Used for building the graph's X axis
+     */
     private NumberAxis yAxis;
     
     /**

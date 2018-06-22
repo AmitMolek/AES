@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import ocsf.client.ObservableClient;
@@ -20,6 +21,7 @@ import root.dao.message.ExamDataLinesMessage;
 import root.dao.message.MessageFactory;
 import root.dao.message.StatsMessage;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 /**
@@ -99,9 +101,25 @@ public class TestGradesTeacherController implements Observer {
 	    	try {
 				client.sendToServer(msg);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				showAlert("Error Communicating With AES Sever","Please contact system administrator");
+
 			}
 			}
 		}
+	
+	 /**
+     * This will show a temporary warning text for invalid queries or server errors
+     * @param header the head of the warning
+     * @param errorMessage the content of thrown exception
+     */
+    private void showAlert(String header,String errorMessage) {
+        	Platform.runLater(() -> {								
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(ScreensManager.getInstance().getPrimaryStage());
+                alert.setTitle("Error");
+                alert.setHeaderText(header);
+                alert.setContentText(errorMessage);
+                alert.showAndWait();       
+    		});
+    }
 	}
