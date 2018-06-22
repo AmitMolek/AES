@@ -246,6 +246,9 @@ public class ExecuteExamController implements Observer {
 				}
 
 			});
+			if(questionsInExam.size()==1) {
+				btnNext.setDisable(true);
+			}
 			tabsButton.add(tab);
 			vbxQuetionsTab.getChildren().add(tab);
 			QuestionInExamObject qie = new QuestionInExamObject(q.getQuestion(), q.getQuestionGrade());

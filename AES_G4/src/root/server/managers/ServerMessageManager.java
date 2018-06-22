@@ -194,7 +194,7 @@ public class ServerMessageManager {
 		case "changetimeduration":
 			return handleChangeTimeDurationRequest(msg);
 		case "confirmchangeduration":
-			return handleChangeTimeConfirm(msg);
+			 handleChangeTimeConfirm(msg);
 		case "startexam":
 			return handlStartExam(msg);
 		case "closeexam":
@@ -1024,10 +1024,9 @@ private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
 	 * @return simple message with ok if the server handle it or error message
 	 *         otherwise
 	 */
-	private static AbstractMessage handleChangeTimeConfirm(AbstractMessage msg) {
+	private static void handleChangeTimeConfirm(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht = (ChangeTimeDurationRequest) msg;
 		examinees.sendAllDurations(cht.getExamId(), cht.getNewTime());
-		return message.getMessage("SimpleMessage", null);
 	}
 
 	/**

@@ -141,7 +141,11 @@ public class ExecuteStudentManager {
 		}
 		
 	}
-
+	
+	/**
+	 * remove the examId from the exams list
+	 * @param examId
+	 */
 	public void removeExam(String examId) {
 		studentInExecute.remove(examId);
 	}
