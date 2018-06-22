@@ -220,7 +220,8 @@ public class ServerMessageManager {
 		SetInDB set = new SetInDB();
 		set.deleteExecutedExam(examId);
 		set.lockExam(examId);
-		new CheatingChecker(examId, new Date(Calendar.getInstance().getTime().getYear(),Calendar.getInstance().getTime().getMonth(),Calendar.getInstance().getTime().getDate()));
+		Calendar cal = Calendar.getInstance();
+		new CheatingChecker(examId, Calendar.getInstance());
 		return null;
 	}
 
@@ -755,7 +756,7 @@ public class ServerMessageManager {
 	 * @return simple message with ok if the server handle it or error message
 	 *         otherwise
 	 */
-private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
+	private static AbstractMessage handleUpdateSolvedExam(AbstractMessage msg) {
 		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
 		SetInDB setDb = new SetInDB();
 		SolvedExams solved = exam.getExam();

@@ -25,6 +25,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -65,6 +66,10 @@ public class TeacherExamsViewController {
     @FXML
     protected TableView<SolvedExams> tbl_viewExams;
 
+
+    @FXML
+    private TableColumn<SolvedExams, Boolean> tb_approve;
+    
     @FXML
     protected TableColumn<SolvedExams, String> tb_examid;
 
@@ -126,6 +131,7 @@ public class TeacherExamsViewController {
     	private ObservableList<SolvedExams> observableSolvedExams;
     	
     	private TableView<SolvedExams> viewExamsTable;
+    	private TableColumn<SolvedExams, Boolean> tb_approve;
     	private TableColumn<SolvedExams, String> tb_examid;
     	private TableColumn<SolvedExams, String> tb_userid;
     	private TableColumn<SolvedExams, String> tb_course;
@@ -185,7 +191,7 @@ public class TeacherExamsViewController {
 				ArrayList<SolvedExams> se = ((SolvedExamBySubjectCourseMessage) arg).getSolvedExams(); 
 				
 				for (SolvedExams e : se) {
-					if (e.getApprovingTeacherID() == null || e.getApprovingTeacherID() == "") {
+					if (checkIfToShowSolvedExam(e)) {
 						String course_id = e.getExamID().substring(2, 4);
 						String courseName = getCourseName(course_id);
 						e.setCourseName(courseName);
@@ -201,6 +207,17 @@ public class TeacherExamsViewController {
 				this.solvedExamQuestions = ((QuestionsMessage) arg).getQuestions();
 				createWord();
 			}
+		}
+		
+		/**
+		 * Checks if the solved exam should be displayed to the teacher
+		 * @param e the exam you want to check
+		 * @return true if the exam should be displayed to the teacher
+		 */
+		private boolean checkIfToShowSolvedExam(SolvedExams e) {
+			if (e.getApprovingTeacherID() != null) return false;
+			if (e.getCheatingFlag() == null) return false;
+			return true;
 		}
 		
 		/**
@@ -335,6 +352,7 @@ public class TeacherExamsViewController {
 						SolvedExams se = event.getTableView().getItems().get(event.getTablePosition().getRow());
 						se.setExamGrade(newGrade);
 						if (!isChangedExamExistAlready(se)) {
+							se.setGradeChanged(true);
 							changedExams.add(se);
 						}
 						
@@ -346,7 +364,7 @@ public class TeacherExamsViewController {
 			
 			tb_suspected.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("cheatingFlag"));
 			tb_download.setCellValueFactory(new PropertyValueFactory<SolvedExams,String>("action"));
-
+			tb_approve.setCellValueFactory(new PropertyValueFactory<SolvedExams, Boolean>("gg"));
 			
 	        Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
             = //
@@ -379,32 +397,69 @@ public class TeacherExamsViewController {
                 return cell;
             }
     	};
-	        tb_download.setCellFactory(cellFactory);
-	        
+    	
+        Callback<TableColumn<SolvedExams, Boolean>, TableCell<SolvedExams, Boolean>> approveCellFactory
+        = //
+        new Callback<TableColumn<SolvedExams, Boolean>, TableCell<SolvedExams, Boolean>>() {
+        @SuppressWarnings("rawtypes")
+		@Override
+        public TableCell call(final TableColumn<SolvedExams, Boolean> param) {
+        	
+            final TableCell<SolvedExams, Boolean> cell = new TableCell<SolvedExams, Boolean>() {
+
+				final CheckBox checkBox = new CheckBox();
+				
+				@Override
+                public void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                    	SolvedExams se = getTableView().getItems().get(getIndex());
+                    	checkBox.setOnAction(event -> {
+                        	if (checkBox.isSelected()) {
+                        		se.setApproved(true);
+                        	}else {
+                        		se.setApproved(false);
+                        	}
+                    	});
+                        setGraphic(checkBox);
+                        setText(null);
+                    }
+                }
+			};
+			return cell;
+        }};
+
+	    tb_download.setCellFactory(cellFactory);
+	    tb_approve.setCellFactory(approveCellFactory);
 		}
 		
 		/**
 		 * The function that the parent controller calls when the submit button is pressed
 		 */
 		public void sumbitClicked() {
-			for (SolvedExams se : changedExams) {
-				if (se.getGradeAlturationExplanation() == null || se.getGradeAlturationExplanation() == "") {
-					setErrorLabelText("Missing explanation", ERROR_DISPLAY_TIME);
-					return;
-				}
-				UpdateSolvedExam uExam = new UpdateSolvedExam(user.getUserID(), se);
-				
-				try {
-					client.sendToServer(uExam);
-					Platform.runLater(() -> {
-						try {
-							screenManager.activate("teacherExamsView");
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
-				} catch (IOException e) {
-					e.printStackTrace();
+			for (SolvedExams se : solvedExams) {
+				if (se.isApproved()) {
+					if ((se.getGradeAlturationExplanation() == null || se.getGradeAlturationExplanation() == "") && se.isGradeChanged()) {
+						setErrorLabelText("Missing explanation", ERROR_DISPLAY_TIME);
+						return;
+					}
+					UpdateSolvedExam uExam = new UpdateSolvedExam(user.getUserID(), se);
+					
+					try {
+						client.sendToServer(uExam);
+						Platform.runLater(() -> {
+							try {
+								screenManager.activate("teacherExamsView");
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						});
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -696,7 +751,7 @@ public class TeacherExamsViewController {
 		 */
 		public void setup_table(TableView<SolvedExams> tbl, TableColumn<SolvedExams, String> exam_id, TableColumn<SolvedExams, String> user_id, TableColumn<SolvedExams, String> course,
 				TableColumn<SolvedExams, String> date, TableColumn<SolvedExams, String> grade, TableColumn<SolvedExams, String> expl, TableColumn<SolvedExams, String> cheating, TableColumn<SolvedExams, String> download,
-				Text errorTxt) {
+				Text errorTxt, TableColumn<SolvedExams, Boolean> tb_approve) {
 			this.viewExamsTable = tbl;
 			this.tb_examid = exam_id;
 			this.tb_userid = user_id;
@@ -707,6 +762,7 @@ public class TeacherExamsViewController {
 			this.tb_suspected = cheating;
 			this.tb_download = download;
 			this.errorTxt = errorTxt;
+			this.tb_approve = tb_approve;
 		}
 		
 		/**
@@ -737,7 +793,7 @@ public class TeacherExamsViewController {
     	ObservableClient client = (ObservableClient) dkm.getObject_NoRemove("client");
     	Updater.createUpdater();
     	Updater updater = Updater.getInstance();
-    	updater.setup_table(tbl_viewExams, tb_examid, tb_userid, tb_course, tb_executingDate, tb_grade, tb_explanation, tb_suspected, tb_download, errorTxt);
+    	updater.setup_table(tbl_viewExams, tb_examid, tb_userid, tb_course, tb_executingDate, tb_grade, tb_explanation, tb_suspected, tb_download, errorTxt, tb_approve);
     	updater.setup(client, dkm.getUser());
     }
 	

@@ -1,6 +1,8 @@
 package root.dao.app;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Statistic implements Serializable {
@@ -11,6 +13,7 @@ public class Statistic implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String exam_ID;
 	private String date;
+	private Timestamp dateTime;
 	private String real_time_duration;
 	private int submitted_students_counter;
 	private int interrupted_students_counter;
@@ -110,6 +113,12 @@ public class Statistic implements Serializable {
 	}
 	public String getDate() {
 		return date;
+	}
+	public Timestamp getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(Timestamp dateTime) {
+		this.dateTime = dateTime;
 	}
 	public void setDate(String string) {
 		this.date = string;

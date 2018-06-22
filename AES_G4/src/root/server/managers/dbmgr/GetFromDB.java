@@ -888,7 +888,32 @@ public class GetFromDB implements DbManagerInterface {
 		return false;
 
 	}
-
+	
+	public ArrayList<SolvedExams> getSolvedExamsByExamID(String exam_id) {
+		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
+		ResultSet rs;
+		String query = "SELECT * FROM `solved exams` WHERE exam_ID = " + exam_id + ";";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				SolvedExams se = new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4),
+						rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9),
+						rs.getString(10), rs.getString(11));
+				se.setApprovingTeacherID(rs.getString(9));
+				solvedExams.add(se);
+			}
+			
+			return solvedExams;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public ArrayList<Integer> getGradesQuery(String query) throws SQLException {
 		String query1=query;
 		ResultSet rs;
@@ -922,6 +947,20 @@ public class GetFromDB implements DbManagerInterface {
 			}
 		return list;
 	}
+	
+	/**
+	 * Returns the Exam with the exam_id
+	 * @param exam_id the id of the exam you want to get
+	 * @return Exam if exam was found, null if not
+	 */
+	public Exam getExam(String exam_id) {
+		ArrayList<Exam> exams = getExams();
+		for (Exam e : exams) {
+			if (e.getExamId().equals(exam_id)) return e;
+		}
+		return null;
+	}
+	
 	/**
 	 * @author Alon Ben-yosef
 	 * Get all exams as written in the DB

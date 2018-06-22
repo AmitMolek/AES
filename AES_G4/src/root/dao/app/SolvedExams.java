@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+
+import javafx.scene.image.ImageView;
 /**
  * 
  * @author gal
@@ -30,6 +32,8 @@ public class SolvedExams implements Serializable {
 	private String action;
 	private String strGrade;
 	private String courseName;
+	private Boolean approved = false;
+	private Boolean gradeChanged = false;
 	
 	/**
 	 * Constructor for solved exam
@@ -264,6 +268,38 @@ public class SolvedExams implements Serializable {
 		return date;
 	}
 
+	/*
+	 * Returns the approve state of the solved exam
+	 * Used for the table view for the teacher view exams
+	 */
+	public Boolean isApproved() {
+		return approved;
+	}
+
+	/**
+	 * Sets the state of the solved exam (if approved or not)
+	 * Used for the table view for the teacher view exams
+	 * @param approved the state of the approve state
+	 */
+	public void setApproved(Boolean approved) {
+		this.approved = approved;
+	}
+
+	/**
+	 * Returns if the grade of this exam changed
+	 * @return true if the grade changed
+	 */
+	public Boolean isGradeChanged() {
+		return gradeChanged;
+	}
+
+	/**
+	 * Sets the the flag of grade change (if the grade changed)
+	 * @param gradeChanged the state of the flag you want
+	 */
+	public void setGradeChanged(Boolean gradeChanged) {
+		this.gradeChanged = gradeChanged;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
