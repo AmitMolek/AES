@@ -51,9 +51,6 @@ public class ChangeDurationTimeCntroller implements Observer{
     private TableColumn<ExecuteExam, String> examType;
 
     @FXML
-    private TableColumn<ExecuteExam, String> startTime;
-
-    @FXML
     private TableColumn<ExecuteExam, String> examPassword;
     
     @FXML
@@ -73,7 +70,6 @@ public class ChangeDurationTimeCntroller implements Observer{
     	durationTime.setCellValueFactory(new PropertyValueFactory("durationTime"));
     	examId.setCellValueFactory(new PropertyValueFactory("examId"));
     	examType.setCellValueFactory(new PropertyValueFactory("examType"));
-    	startTime.setCellValueFactory(new PropertyValueFactory("startTime"));
     	examPassword.setCellValueFactory(new PropertyValueFactory("examPassword"));
 		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);

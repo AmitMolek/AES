@@ -8,7 +8,7 @@ import ocsf.server.ConnectionToClient;
 import root.dao.message.SimpleMessage;
 
 /**
- * @author Naor Saadias
+ * @author Naor Saadia
  * this class is singleTone
  * the class manage all the student that in the execute exam
  * it also manage the change time duration observes
@@ -45,8 +45,8 @@ public class ExecuteStudentManager {
 	 * @param client
 	 */
 	public void addDuration(String examId, ConnectionToClient client) {
-		if(studentInExecute.containsKey(examId)){
-			studentInExecute.get(examId).add(client);
+		if(waitForChangeDuration.containsKey(examId)){
+			waitForChangeDuration.get(examId).add(client);
 		}
 		else {
 			ArrayList<ConnectionToClient> ar = new ArrayList<ConnectionToClient>();
@@ -108,9 +108,9 @@ public class ExecuteStudentManager {
 	 * @param client
 	 */
 	public void removeStudent(String examId,ConnectionToClient client) {
-		ArrayList<ConnectionToClient> c= studentInExecute.get(examId);
+		ArrayList<ConnectionToClient> c = studentInExecute.get(examId);
 		c.remove(c.indexOf(client));
-		studentInExecute.remove(examId, client);
+		studentInExecute.replace(examId, c);
 	}
 	
 	/**
@@ -140,6 +140,14 @@ public class ExecuteStudentManager {
 			}
 		}
 		
+	}
+	
+	/**
+	 * remove the examId from the exams list
+	 * @param examId
+	 */
+	public void removeExam(String examId) {
+		studentInExecute.remove(examId);
 	}
 	
 }

@@ -191,16 +191,20 @@ public class ServerMessageManager {
 		case "loggedout":
 			return handleLoggedOutMessage(msg);
 		case "changetimeduration":
-			return handleChangeTimeDurationRequest(msg);
+			 handleChangeTimeDurationRequest(msg);
+			 break;
 		case "confirmchangeduration":
-			return handleChangeTimeConfirm(msg);
+			 handleChangeTimeConfirm(msg);
+			 break;
 		case "startexam":
-			return handlStartExam(msg);
+			 handlStartExam(msg);
+			 break;
 		case "closeexam":
 			return handlCloseExam(msg);
 		default:
 			return null;
 		}
+		return null;
 	}
 
 	/**
@@ -229,11 +233,10 @@ public class ServerMessageManager {
 	 * @param msg
 	 * @return
 	 */
-	private static AbstractMessage handlStartExam(AbstractMessage msg) {
+	private static void handlStartExam(AbstractMessage msg) {
 		SimpleMessage newMsg = (SimpleMessage) msg;
 		String examId = newMsg.getMsg().split("-")[1];
 		examinees.addStudent(examId, AES_Server.CLIENT);
-		return null;
 	}
 
 	/**
@@ -986,10 +989,9 @@ public class ServerMessageManager {
 	 * @return simple message with ok if the server handle it or error message
 	 *         otherwise
 	 */
-	private static AbstractMessage handleChangeTimeDurationRequest(AbstractMessage msg) {
+	private static void handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht = (ChangeTimeDurationRequest) msg;
 		principles.sendAll((ChangeTimeDurationRequest) msg);
-		return message.getMessage("SimpleMessage", null);
 	}
 
 	/**
@@ -1003,10 +1005,9 @@ public class ServerMessageManager {
 	 * @return simple message with ok if the server handle it or error message
 	 *         otherwise
 	 */
-	private static AbstractMessage handleChangeTimeConfirm(AbstractMessage msg) {
+	private static void handleChangeTimeConfirm(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht = (ChangeTimeDurationRequest) msg;
 		examinees.sendAllDurations(cht.getExamId(), cht.getNewTime());
-		return message.getMessage("SimpleMessage", null);
 	}
 
 	/**
