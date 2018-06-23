@@ -28,10 +28,10 @@ public class ExamTableDataLine implements Serializable {
 	
 	/**
 	 * A constructor that reflects this data type in the database
-	 * @param examID
-	 * @param date
-	 * @param courseName
-	 * @param subjectName
+	 * @param examID exam id
+	 * @param date date
+	 * @param courseName course name
+	 * @param subjectName subjectName
 	 */
 	public ExamTableDataLine(String examID, String date, String courseName, String subjectName) {
 		this.examID=examID;

@@ -198,13 +198,14 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<AlterDuration> alterDuration(String... str) {
 		ArrayList<AlterDuration> list = new ArrayList<AlterDuration>();
 		ResultSet rs;
-		if(str.length==0) {
+		if (str.length == 0) {
 			String query = "SELECT * FROM aes.`alter duration request`;";
 			try {
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					list.add(new AlterDuration(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7)));
+				while (rs.next()) {
+					list.add(new AlterDuration(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getInt(6), rs.getInt(7)));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -353,7 +354,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * 
 	 * A method that returns all exams when given the exam code
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param pass
 	 *            the exam code
 	 * @return list of all exams that have this specific code
@@ -413,7 +414,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * 
 	 * A method that returns all executed exams when given the teacher id
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param teacherId
 	 *            the id of the teacher who executed the exam
 	 * @return list of all executed exams that the specific teacher executed
@@ -501,15 +502,15 @@ public class GetFromDB implements DbManagerInterface {
 	 */
 	@Override
 	public ArrayList<Statistic> solvedExamStatistic(String... str) {
-		if(str.length==0) {
+		if (str.length == 0) {
 			String query1 = "SELECT * FROM aes.`exams stats`";
 			ResultSet rs;
 			Statistic stat;
 			try {
-				ArrayList<Statistic> stats=new ArrayList<Statistic>();
+				ArrayList<Statistic> stats = new ArrayList<Statistic>();
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(query1);
-				while(rs.next()) {
+				while (rs.next()) {
 					stat = new Statistic();
 					stat.setExam_ID(rs.getString(1));
 					stat.setDate(rs.getString(2));
@@ -531,14 +532,14 @@ public class GetFromDB implements DbManagerInterface {
 					stat.setGrade_derivative_91_100(rs.getInt(18));
 					stats.add(stat);
 				}
-			rs.close();
-			return stats;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				rs.close();
+				return stats;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-	return null;
+		return null;
 	}
 
 	/**
@@ -573,28 +574,32 @@ public class GetFromDB implements DbManagerInterface {
 			return null;
 		}
 	}
+
 	/**
 	 * Returns true if the exam_id exist in the Solved Exams Statistics table
-	 * @param exam_id the id of the exam you want to check
+	 * 
+	 * @param exam_id
+	 *            the id of the exam you want to check
 	 * @return true if the exam exist, false otherwise
 	 */
 	public boolean isSolvedExamStatisticsExist(String exam_id) {
 		String getQuery = "SELECT exam_ID FROM `exams stats` WHERE exam_ID = '" + exam_id + "';";
 		ResultSet rs;
-		
+
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(getQuery);
-			
+
 			if (rs.next()) {
 				return true;
-			}else return false;
+			} else
+				return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -603,7 +608,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * 
 	 * @param exam_id
 	 *            the exam id
-	 * @param date
+	 * @param cal
 	 *            the date of the exam
 	 * @return A list of all the exams of a particular exam on a given date
 	 * @author Amit Molek
@@ -612,7 +617,8 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<CheatingExamTest> exams = new ArrayList<>();
 		ResultSet rs;
 
-		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE));
+		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1,
+				cal.get(Calendar.DATE));
 		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id
 				+ "%' AND exam_executing_Date LIKE '" + examDate + "%'";
 
@@ -642,7 +648,7 @@ public class GetFromDB implements DbManagerInterface {
 
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -782,15 +788,16 @@ public class GetFromDB implements DbManagerInterface {
 	public ArrayList<Course> courseOfTeacher(String... str) {
 		return null;
 	}
-	
+
 	private Question returnQuestion(String id) {
-		String QuestionQuery = "SELECT * FROM questions WHERE question_id = "+id;
+		String QuestionQuery = "SELECT * FROM questions WHERE question_id = " + id;
 		ResultSet qs;
 		Question q = null;
 		try {
-			qs = stmt.executeQuery(QuestionQuery+";");
-			while(qs.next()) {
-				 q = new Question(qs.getString(1),qs.getString(2),qs.getString(3),qs.getString(4),qs.getString(5),qs.getString(6),qs.getString(7),qs.getInt(8),qs.getString(9));
+			qs = stmt.executeQuery(QuestionQuery + ";");
+			while (qs.next()) {
+				q = new Question(qs.getString(1), qs.getString(2), qs.getString(3), qs.getString(4), qs.getString(5),
+						qs.getString(6), qs.getString(7), qs.getInt(8), qs.getString(9));
 			}
 			qs.close();
 			return q;
@@ -798,15 +805,15 @@ public class GetFromDB implements DbManagerInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;	
+		return null;
 	}
-	
+
 	/**
 	 * 
 	 * A method that returns all exam table data line when given the teacher id from
 	 * the data base
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param id
 	 *            the id of the teacher
 	 * @return list of all exam table data lined
@@ -908,16 +915,16 @@ public class GetFromDB implements DbManagerInterface {
 		return false;
 
 	}
-	
+
 	public ArrayList<SolvedExams> getSolvedExamsByExamID(String exam_id) {
 		ArrayList<SolvedExams> solvedExams = new ArrayList<>();
 		ResultSet rs;
 		String query = "SELECT * FROM `solved exams` WHERE exam_ID = " + exam_id + ";";
-		
+
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
-			
+
 			while (rs.next()) {
 				SolvedExams se = new SolvedExams(rs.getString(2), rs.getString(1), rs.getInt(3), rs.getInt(4),
 						rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getString(8), rs.getString(9),
@@ -925,30 +932,29 @@ public class GetFromDB implements DbManagerInterface {
 				se.setApprovingTeacherID(rs.getString(9));
 				solvedExams.add(se);
 			}
-			
+
 			return solvedExams;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Integer> getGradesQuery(String query) throws SQLException {
-		String query1=query;
+		String query1 = query;
 		ResultSet rs;
-		ArrayList<Integer> list=new ArrayList<Integer>();
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		stmt = conn.createStatement();
-		rs= stmt.executeQuery(query1);
-		while(rs.next()){
+		rs = stmt.executeQuery(query1);
+		while (rs.next()) {
 			list.add(rs.getInt(1));
 		}
 		return list;
 	}
 
 	/**
-	 * @author Alon Ben-yosef
-	 * Get all courses in subject rows from DB
+	 * @author Alon Ben-yosef Get all courses in subject rows from DB
 	 * @return arraylist of CourseInSubject from DB
 	 */
 	public ArrayList<CourseInSubject> getCoursesInSubject() {
@@ -956,56 +962,61 @@ public class GetFromDB implements DbManagerInterface {
 		ResultSet rs;
 		String query = "SELECT * FROM aes.`courses in subject`;";
 		try {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					list.add(new CourseInSubject(rs.getString(1), rs.getString(2)));
-				}
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				list.add(new CourseInSubject(rs.getString(1), rs.getString(2)));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
-	
+
 	/**
 	 * Returns the Exam with the exam_id
-	 * @param exam_id the id of the exam you want to get
+	 * 
+	 * @param exam_id
+	 *            the id of the exam you want to get
 	 * @return Exam if exam was found, null if not
 	 */
 	public Exam getExam(String exam_id) {
 		ArrayList<Exam> exams = getExams();
 		for (Exam e : exams) {
-			if (e.getExamId().equals(exam_id)) return e;
+			if (e.getExamId().equals(exam_id))
+				return e;
 		}
 		return null;
 	}
-	
+
 	/**
-	 * @author Alon Ben-yosef
-	 * Get all exams as written in the DB
+	 * @author Alon Ben-yosef Get all exams as written in the DB
 	 * @return list of all exams
 	 */
-	public ArrayList<Exam> getExams(){
+	public ArrayList<Exam> getExams() {
 		ArrayList<Exam> list = new ArrayList<Exam>();
 		ResultSet rs;
 		String query = "SELECT * FROM aes.`exams`;";
 		try {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					int clean=0;
-					int locked=0;
-					if(rs.getString(4).equals("dirty")) clean=1;
-					if(rs.getString(5).equals("unlocked")) locked=1;
-					list.add(new Exam(rs.getString(1), rs.getInt(3),clean, locked, rs.getString(2)));
-				}
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				int clean = 0;
+				int locked = 0;
+				if (rs.getString(4).equals("dirty"))
+					clean = 1;
+				if (rs.getString(5).equals("unlocked"))
+					locked = 1;
+				list.add(new Exam(rs.getString(1), rs.getInt(3), clean, locked, rs.getString(2)));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
+
 	/**
 	 * @author Alon Ben-yosef
 	 * @return a list of all executed exams from DB
@@ -1015,15 +1026,16 @@ public class GetFromDB implements DbManagerInterface {
 		ResultSet rs;
 		String query = "SELECT * FROM aes.`execute exams`;";
 		try {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					list.add(new ExecuteExam(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-				}
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				list.add(new ExecuteExam(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -1032,15 +1044,16 @@ public class GetFromDB implements DbManagerInterface {
 		ResultSet rs;
 		String query = "SELECT * FROM aes.`questions in exam`;";
 		try {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					list.add(new QuestionInExamData(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
-				}
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				list.add(new QuestionInExamData(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4),
+						rs.getString(5)));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -1049,15 +1062,15 @@ public class GetFromDB implements DbManagerInterface {
 		ResultSet rs;
 		String query = "SELECT * FROM aes.`subject a teacher teach`;";
 		try {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					list.add(new SubjectATeacherTeach(rs.getString(1), rs.getString(2)));
-				}
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				list.add(new SubjectATeacherTeach(rs.getString(1), rs.getString(2)));
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 

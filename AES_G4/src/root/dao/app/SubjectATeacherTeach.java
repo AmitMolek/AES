@@ -56,7 +56,7 @@ public class SubjectATeacherTeach implements Serializable {
 	 * 
 	 * A method that set the id of the Teacher
 	 * 
-	 * @param TeacherId
+	 * @param teacherID
 	 *            the id of the Teacher
 	 */
 	public void setTeacherID(String teacherID) {

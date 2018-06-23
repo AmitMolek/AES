@@ -18,7 +18,7 @@ public class CourseMessage extends AbstractMessage {
 	// Instance variables **********************************************
 
 	/**
-	 * Map<String,String> for send course from server to client : key = courseID,
+	 * Map(String,String) for send course from server to client : key = courseID,
 	 * value = course name.
 	 */
 	private HashMap<String, String> courseMap;
@@ -43,7 +43,7 @@ public class CourseMessage extends AbstractMessage {
 	 * @param message
 	 *            The message that you want to transmit to the server or client
 	 * @param courseMap
-	 *            Map<String,String> for send course from server to client : key =
+	 *            Map(String,String) for send course from server to client : key =
 	 *            courseID, value = course name.
 	 * 
 	 */
@@ -115,7 +115,7 @@ public class CourseMessage extends AbstractMessage {
 	}
 
 	/**
-	 * A method that returns the map<String,String>
+	 * A method that returns the map(String,String)
 	 * 
 	 * @return the courseMap
 	 */
@@ -124,7 +124,7 @@ public class CourseMessage extends AbstractMessage {
 	}
 
 	/**
-	 * A method that set the map<String,String>
+	 * A method that set the map(String,String)
 	 * 
 	 * @param courseMap
 	 *            the courseMap

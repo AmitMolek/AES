@@ -7,25 +7,25 @@ import root.dao.app.Question;
 import root.dao.app.Subject;
 import root.dao.app.User;
 
-
 /**
  * 
- * this dao message class used when need to get all teaching subjects of a specific user (Teacher)
+ * this dao message class used when need to get all teaching subjects of a
+ * specific user (Teacher)
  * 
  * @author Gal Brandwine
  * 
  */
-public class UserSubjectMessage  extends AbstractMessage implements Serializable{
+public class UserSubjectMessage extends AbstractMessage implements Serializable {
 
 	// Instance variables **********************************************
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * the subjects to send 
+	 * the subjects to send
 	 */
 	private ArrayList<Subject> subjects;
-	
+
 	/**
 	 * the user whos subjects is needed to fing
 	 */
@@ -34,24 +34,26 @@ public class UserSubjectMessage  extends AbstractMessage implements Serializable
 	// CONSTRUCTORS *****************************************************
 
 	/**
-	 * Constructs the UserSubjectMessage - client asking from server to retrieve subject relevants to this userID
+	 * Constructs the UserSubjectMessage - client asking from server to retrieve
+	 * subject relevants to this userID
 	 * 
-	 * @param user
+	 * @param payload
 	 *            The message that you want to transmit to the server or client
 	 * 
-	 */	
+	 */
 	public UserSubjectMessage(User payload) {
 		super("UserSubjects");
 		this.user = payload;
 	}
 
 	/**
-	 * Constructs the UserSubjectMessage - toe send found relevant subject from server back to client
+	 * Constructs the UserSubjectMessage - toe send found relevant subject from
+	 * server back to client
 	 * 
 	 * @param payload
 	 *            The message that you want to transmit to the server or client
 	 * 
-	 */	
+	 */
 	public UserSubjectMessage(UserSubjectMessage payload) {
 		super("UserSubjects");
 		this.user = payload.getUser();
@@ -59,15 +61,16 @@ public class UserSubjectMessage  extends AbstractMessage implements Serializable
 	}
 
 	/**
-	 * Constructs the UserSubjectMessage - to send found relevant subject from server back to client
+	 * Constructs the UserSubjectMessage - to send found relevant subject from
+	 * server back to client
 	 * 
-	 * @param payload
+	 * @param subjects
 	 *            The message that you want to transmit to the server or client
 	 * 
-	 */		
+	 */
 	public UserSubjectMessage(User user, ArrayList<Subject> subjects) {
 		super("UserSubjects");
-		this.subjects=subjects;
+		this.subjects = subjects;
 		this.user = user;
 	}
 
@@ -81,29 +84,31 @@ public class UserSubjectMessage  extends AbstractMessage implements Serializable
 	public ArrayList<Subject> getSubjects() {
 		return subjects;
 	}
-	
+
 	/**
 	 * A method that sets the usersubjects
 	 * 
-	 * @param usersubjects the usersubjects that needed to be saved in THIS
+	 * @param subjects
+	 *            the usersubjects that needed to be saved in THIS
 	 */
 	public void setSubjects(ArrayList<Subject> subjects) {
 		this.subjects = subjects;
 	}
 
 	/**
-	 * A method that returns the user 
+	 * A method that returns the user
 	 * 
-	 * @return the user 
+	 * @return the user
 	 */
 	public User getUser() {
 		return user;
 	}
-	
+
 	/**
 	 * A method that sets the user
 	 * 
-	 * @param usersubjects the user that needed to be saved in THIS
+	 * @param user
+	 *            the user that needed to be saved in THIS
 	 */
 	public void setUser(User user) {
 		this.user = user;

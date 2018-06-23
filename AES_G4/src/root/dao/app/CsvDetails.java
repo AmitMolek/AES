@@ -27,7 +27,7 @@ public class CsvDetails implements Serializable {
 	private User userId;
 	/**
 	 * 
-	 * A map<String,Integer> that contains all the exam questions and the answers
+	 * A map(String,Integer) that contains all the exam questions and the answers
 	 * that student selected
 	 */
 	private Map<String, Integer> questionInExam;
@@ -63,8 +63,8 @@ public class CsvDetails implements Serializable {
 	 *            The exam that will be recorded in CSV file
 	 * @param userId
 	 *            The teacher that wrote this exam
-	 * @param questionsInExamObject
-	 *            A map<String,Integer> that contains all the exam questions and the
+	 * @param questionInExam
+	 *            A map(String,Integer) that contains all the exam questions and the
 	 *            answers that student selected
 	 */
 	public CsvDetails(Exam examId, User userId, Map<String, Integer> questionInExam) {
@@ -95,10 +95,10 @@ public class CsvDetails implements Serializable {
 	}
 
 	/**
-	 * A method that returns a map<String,Integer> that contains all the exam
+	 * A method that returns a map(String,Integer) that contains all the exam
 	 * questions and the answers
 	 * 
-	 * @return the map<String,Integer> that contains all the exam questions and the
+	 * @return the map(String,Integer) that contains all the exam questions and the
 	 *         answers
 	 */
 	public Map<String, Integer> getQuestionInExam() {

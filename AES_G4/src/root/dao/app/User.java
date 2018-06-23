@@ -4,7 +4,7 @@ import java.io.Serializable;
 /**
  * this dao class contain user information
  * 
- * @author gal & omer
+ * @author gal
  *
  */
 public class User implements Serializable{
@@ -115,7 +115,7 @@ public class User implements Serializable{
 	 * 
 	 * A method that set the user last name
 	 * 
-	 * @param userlastName
+	 * @param userLastName
 	 *            the user last name
 	 */
 	public void setUserLastName(String userLastName) {
@@ -155,7 +155,7 @@ public class User implements Serializable{
 	 * 
 	 * A method that set the user premission
 	 * 
-	 * @param userpremission
+	 * @param userPremission
 	 *            the user premission
 	 */
 	public void setUserPremission(String userPremission) {

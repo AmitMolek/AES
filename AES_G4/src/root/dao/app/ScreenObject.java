@@ -48,7 +48,7 @@ public class ScreenObject {
 	
 	/**
 	 * Returns the screen pane of the screen
-	 * @return
+	 * @return screenPane the screen
 	 */
 	public Pane getScreenPane() {
 		return screenPane;

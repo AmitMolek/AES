@@ -1,8 +1,7 @@
 package root.dao.app;
 
 /**
- * @author gal, alon, naor, omer, amit 
- * Class that responsible for saving question details
+ * @author gal Class that responsible for saving question details
  */
 public class Question implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +18,25 @@ public class Question implements java.io.Serializable {
 
 	/**
 	 * Constructor of question class
+	 * 
+	 * @param questionId
+	 *            the quesiton id
+	 * @param questionText
+	 *            the question text
+	 * @param idquestionIntruction
+	 *            the question instruction
+	 * @param ans1
+	 *            the ans
+	 * @param ans2
+	 *            the ans
+	 * @param ans3
+	 *            the ans
+	 * @param ans4
+	 *            the ans
+	 * @param correctAns
+	 *            the ocrrect ans
+	 * @param teacherAssembeld
+	 *            the teacher assembeled id
 	 */
 	public Question(String questionId, String questionText, String idquestionIntruction, String ans1, String ans2,
 			String ans3, String ans4, int correctAns, String teacherAssembeld) {
@@ -34,10 +52,13 @@ public class Question implements java.io.Serializable {
 		this.teacherAssembeld = teacherAssembeld;
 		this.teacherFullName = "";
 	}
-/**
- * copy constractor
- * @param question
- */
+
+	/**
+	 * copy constractor
+	 * 
+	 * @param question
+	 *            the question to enter
+	 */
 
 	public Question(Question question) {
 		// TODO Auto-generated constructor stub
@@ -61,7 +82,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param questionId the questionId to set
+	 * @param questionId
+	 *            the questionId to set
 	 */
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
@@ -75,7 +97,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param questionText the questionText to set
+	 * @param questionText
+	 *            the questionText to set
 	 */
 	public void setQuestionText(String questionText) {
 		this.questionText = questionText;
@@ -89,7 +112,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param idquestionIntruction the idquestionIntruction to set
+	 * @param idquestionIntruction
+	 *            the idquestionIntruction to set
 	 */
 	public void setIdquestionIntruction(String idquestionIntruction) {
 		this.idquestionIntruction = idquestionIntruction;
@@ -103,7 +127,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param ans1 the ans1 to set
+	 * @param ans1
+	 *            the ans1 to set
 	 */
 	public void setAns1(String ans1) {
 		this.ans1 = ans1;
@@ -117,7 +142,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param ans2 the ans2 to set
+	 * @param ans2
+	 *            the ans2 to set
 	 */
 	public void setAns2(String ans2) {
 		this.ans2 = ans2;
@@ -131,7 +157,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param ans3 the ans3 to set
+	 * @param ans3
+	 *            the ans3 to set
 	 */
 	public void setAns3(String ans3) {
 		this.ans3 = ans3;
@@ -145,7 +172,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param ans4 the ans4 to set
+	 * @param ans4
+	 *            the ans4 to set
 	 */
 	public void setAns4(String ans4) {
 		this.ans4 = ans4;
@@ -159,7 +187,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param correctAns the correctAns to set
+	 * @param correctAns
+	 *            the correctAns to set
 	 */
 	public void setCorrectAns(int correctAns) {
 		this.correctAns = correctAns;
@@ -173,7 +202,8 @@ public class Question implements java.io.Serializable {
 	}
 
 	/**
-	 * @param teacherAssembeld the teacherAssembeld to set
+	 * @param teacherAssembeld
+	 *            the teacherAssembeld to set
 	 */
 	public void setTeacherAssembeld(String teacherAssembeld) {
 		this.teacherAssembeld = teacherAssembeld;
@@ -185,26 +215,26 @@ public class Question implements java.io.Serializable {
 	public String getTeacherFullName() {
 		return teacherFullName;
 	}
+
 	/**
-	 * @param teacherFullName the teacherFullName to set
+	 * @param teacherFullName
+	 *            the teacherFullName to set
 	 */
 	public void setTeacherFullName(String teacherFullName) {
 		this.teacherFullName = teacherFullName;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "QuestionId = " + questionId + ", \n"
-				+ "questionText = " + questionText +", \n" 
-				+ "idquestionIntruction = "+ idquestionIntruction +", \n" 
-				+ "ans1 = " + ans1+", \n"
-				+ "ans2 = " + ans2+", \n"
-				+ "ans3 = " + ans3+", \n"
-				+ "ans4 = " + ans4+", \n"
-				+ "correctAns = " + correctAns+", \n" 
-				+ "teacherAssembeld = " + teacherAssembeld +", \n\n";
+		return "QuestionId = " + questionId + ", \n" + "questionText = " + questionText + ", \n"
+				+ "idquestionIntruction = " + idquestionIntruction + ", \n" + "ans1 = " + ans1 + ", \n" + "ans2 = "
+				+ ans2 + ", \n" + "ans3 = " + ans3 + ", \n" + "ans4 = " + ans4 + ", \n" + "correctAns = " + correctAns
+				+ ", \n" + "teacherAssembeld = " + teacherAssembeld + ", \n\n";
 	}
 
 }

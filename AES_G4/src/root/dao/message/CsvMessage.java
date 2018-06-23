@@ -14,27 +14,33 @@ public class CsvMessage extends AbstractMessage {
 
 	private CsvDetails csv;
 	private ArrayList<String[]> csvDetailofSolvedExam;
-	
+
 	/**
 	 * Constructor send message from client
-	 * @param csv the csv details
+	 * 
+	 * @param csv
+	 *            the csv details
 	 */
 	public CsvMessage(CsvDetails csv) {
 		super("get-csv");
 		this.csv = csv;
 	}
+
 	/**
-	 * @author gal
-	 * constructor for getting a csv of a solvedExam
-	 * @param string
+	 * @author gal constructor for getting a csv of a solvedExam
+	 * @param message
+	 *            the string for the message
 	 * @param payload
+	 *            the precieved payload
 	 */
 	public CsvMessage(String message, CsvDetails payload) {
 		super(message);
 		this.csv = payload;
 	}
+
 	/**
 	 * Constructor for returning csvData from server to client
+	 * 
 	 * @param message
 	 * @param payload
 	 */
@@ -42,6 +48,7 @@ public class CsvMessage extends AbstractMessage {
 		super(message);
 		this.csvDetailofSolvedExam = payload;
 	}
+
 	/**
 	 * 
 	 * @return csv details
@@ -57,14 +64,17 @@ public class CsvMessage extends AbstractMessage {
 	public String getType() {
 		return "csv";
 	}
+
 	/**
 	 * @return the csvDetailofSolvedExam
 	 */
 	public ArrayList<String[]> getCsvDetailofSolvedExam() {
 		return csvDetailofSolvedExam;
 	}
+
 	/**
-	 * @param csvDetailofSolvedExam the csvDetailofSolvedExam to set
+	 * @param csvDetailofSolvedExam
+	 *            the csvDetailofSolvedExam to set
 	 */
 	public void setCsvDetailofSolvedExam(ArrayList<String[]> csvDetailofSolvedExam) {
 		this.csvDetailofSolvedExam = csvDetailofSolvedExam;

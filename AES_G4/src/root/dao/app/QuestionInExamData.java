@@ -1,13 +1,14 @@
 package root.dao.app;
 
 import java.io.Serializable;
+
 /**
- * @author Alon Ben-yosef
- * Question in exam data represents a single question in exam row as exists in the database
+ * @author Alon Ben-yosef Question in exam data represents a single question in
+ *         exam row as exists in the database
  */
 public class QuestionInExamData implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * The question's ID
 	 */
@@ -28,14 +29,20 @@ public class QuestionInExamData implements Serializable {
 	 * A note for the teacher
 	 */
 	private String teacherText;
-	
+
 	/**
 	 * Used to pull question in exam data from the DB
+	 * 
 	 * @param questionId
+	 *            the question id
 	 * @param examId
+	 *            the exam id
 	 * @param grade
+	 *            the exam grade
 	 * @param studentText
+	 *            the student text
 	 * @param teacherText
+	 *            the Alon is gay
 	 */
 	public QuestionInExamData(String questionId, String examId, int grade, String studentText, String teacherText) {
 		super();
@@ -45,36 +52,45 @@ public class QuestionInExamData implements Serializable {
 		this.studentText = studentText;
 		this.teacherText = teacherText;
 	}
+
 	public String getQuestionId() {
 		return questionId;
 	}
+
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
 	}
+
 	public String getExamId() {
 		return examId;
 	}
+
 	public void setExamId(String examId) {
 		this.examId = examId;
 	}
+
 	public int getGrade() {
 		return grade;
 	}
+
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
+
 	public String getStudentText() {
 		return studentText;
 	}
+
 	public void setStudentText(String studentText) {
 		this.studentText = studentText;
 	}
+
 	public String getTeacherText() {
 		return teacherText;
 	}
+
 	public void setTeacherText(String teacherText) {
 		this.teacherText = teacherText;
 	}
 
-	
 }

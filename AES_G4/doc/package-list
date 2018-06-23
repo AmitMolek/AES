@@ -1,0 +1,15 @@
+ocsf.client
+ocsf.server
+root.client
+root.client.controllers
+root.client.managers
+root.dao.app
+root.dao.message
+root.server
+root.server.managers
+root.server.managers.dbmgr
+root.server.managers.usersmgr
+root.util.csvReader
+root.util.log
+root.util.properties
+root.util.worddocumentmgr

@@ -52,12 +52,13 @@ public class Enter4digitPasswordController implements Observer {
 	 * manager and dataKeeper and open connection with the server
 	 * 
 	 * @throws IOException
+	 *             the io exception
 	 */
 	public void initialize() throws IOException {
 		txt4Digit.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
 		scrMgr = ScreensManager.getInstance();
 		dataKeeper = DataKeepManager.getInstance();
-    	client = new ObservableClient((String)dataKeeper.getObject_NoRemove("ip"), 8000);
+		client = new ObservableClient((String) dataKeeper.getObject_NoRemove("ip"), 8000);
 		client.addObserver(this);
 		client.openConnection();
 	}
@@ -65,6 +66,9 @@ public class Enter4digitPasswordController implements Observer {
 	/**
 	 * This method run when the user click on Start when he start we take the input
 	 * and send to server the send message is simple message with get-exams-pass
+	 * 
+	 * @param e
+	 *            the actionEvent
 	 */
 	public void StartExam(ActionEvent e) {
 
@@ -72,8 +76,7 @@ public class Enter4digitPasswordController implements Observer {
 		String txt = txt4Digit.getText();
 		txt = "'" + txt + "'";
 		SimpleMessage getExamMessage = (SimpleMessage) msgFactory.getMessage("get-simple", new Object());
-		getExamMessage.setMessage("get-exams-pass-" + txt
-				+"-"+dataKeeper.getUser().getUserID());
+		getExamMessage.setMessage("get-exams-pass-" + txt + "-" + dataKeeper.getUser().getUserID());
 		try {
 			client.sendToServer(getExamMessage);
 		} catch (IOException e1) {
@@ -84,9 +87,8 @@ public class Enter4digitPasswordController implements Observer {
 	}
 
 	/**
-	 * This method calls from the server
-	 *  the server return or exam message
-	 *  or error message if had any problem
+	 * This method calls from the server the server return or exam message or error
+	 * message if had any problem
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -94,7 +96,7 @@ public class Enter4digitPasswordController implements Observer {
 		if (arg1 instanceof ExamMessage) {
 			examMessage = (ExamMessage) arg1;
 			ArrayList<Exam> examsList = examMessage.getExams();
-			Exam newExam = examsList.get(0);	
+			Exam newExam = examsList.get(0);
 			dataKeeper.keepObject("RunningExam", newExam);
 			if (newExam.getExecuteExam().getExamType().equals("auto")) {
 				client.deleteObservers();
@@ -107,9 +109,8 @@ public class Enter4digitPasswordController implements Observer {
 						e.printStackTrace();
 					}
 				});
-				
-			}
-			else {
+
+			} else {
 				Platform.runLater(() -> {
 					try {
 						scrMgr.activate("manuallyExam");
@@ -135,6 +136,9 @@ public class Enter4digitPasswordController implements Observer {
 
 	/**
 	 * This is event handler for check if the user enter more than 4 digit
+	 * 
+	 * @param i
+	 *            Naor invention
 	 */
 	public EventHandler<KeyEvent> maxLength(final Integer i) {
 		return new EventHandler<KeyEvent>() {

@@ -29,8 +29,6 @@ public class QuestionInExamMessage extends AbstractMessage {
 	/**
 	 * Constructs the CourseMessage
 	 * 
-	 * @param examId
-	 *            the id of the exam
 	 * @param payload
 	 *            list of all question belong to the exam
 	 */

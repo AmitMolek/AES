@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * this dao class is the payload of userInfoMessage, after inserting login information, this payload is sent to server
  * 
- *  @author gal & omer
+ *  @author gal
  *  
  */
 public class LoginInfo implements Serializable{
@@ -54,7 +54,7 @@ public class LoginInfo implements Serializable{
 	 * 
 	 * A method that set the id of the user
 	 * 
-	 * @param userId
+	 * @param userID
 	 *            the id of the user
 	 */
 	public void setUserID(String userID) {

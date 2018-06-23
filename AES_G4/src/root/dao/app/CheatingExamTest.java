@@ -61,7 +61,7 @@ public class CheatingExamTest {
 
 	/**
 	 * Sets the id of the exam ti exam_id
-	 * @param exam_id
+	 * @param exam_id the exm id 
 	 */
 	public void setExam_id(String exam_id) {
 		this.exam_id = exam_id;
@@ -77,7 +77,7 @@ public class CheatingExamTest {
 
 	/**
 	 * Sets if the user cheated in the exam or not
-	 * @param cheating_flag
+	 * @param cheating_flag the flag of cheating
 	 */
 	public void setCheating_flag(boolean cheating_flag) {
 		this.cheating_flag = cheating_flag;

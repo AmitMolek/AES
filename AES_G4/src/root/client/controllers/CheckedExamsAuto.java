@@ -48,7 +48,7 @@ public class CheckedExamsAuto implements Observer {
 	 */
 	private User student;
 	/**
-	 * Map<String, Integer> that holds the question id and the selected answer
+	 * Map(String, Integer) that holds the question id and the selected answer
 	 */
 	private Map<String, Integer> questionInExam;
 
@@ -127,10 +127,10 @@ public class CheckedExamsAuto implements Observer {
 	}
 
 	/**
-	 * A method that returns the map<String, Integer> that holds the question id and
+	 * A method that returns the map(String, Integer) that holds the question id and
 	 * the selected answer
 	 * 
-	 * @return the map<String, Integer> that holds the question id and the selected
+	 * @return the map(String, Integer) that holds the question id and the selected
 	 *         answer
 	 */
 	public Map<String, Integer> getQuestionInExam() {

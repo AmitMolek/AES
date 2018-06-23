@@ -95,7 +95,7 @@ public class ServerMessageManager {
 	 */
 	private static ExecuteStudentManager examinees = ExecuteStudentManager.getInstance();
 	/**
-	 * Manager for of all principal currently logged in 
+	 * Manager for of all principal currently logged in
 	 */
 	private static PrincipleManager principles = new PrincipleManager();
 	/**
@@ -139,13 +139,13 @@ public class ServerMessageManager {
 	 */
 	private ServerMessageManager() {
 		String s = System.getProperty("user.home");
-		new File(s+"//CSV").mkdir();
-		new File(s+"//word").mkdir();
-		new File(s+"//solution").mkdir();
-		String fullPath = s+"//word//";
+		new File(s + "//CSV").mkdir();
+		new File(s + "//word").mkdir();
+		new File(s + "//solution").mkdir();
+		String fullPath = s + "//word//";
 		PATH = fullPath;
-		PATHSOLUTION = s+"//solution//";
-		PATHCSV = s+ "//CSV//";
+		PATHSOLUTION = s + "//solution//";
+		PATHCSV = s + "//CSV//";
 	}
 
 	// CLASS METHODS *************************************************
@@ -191,14 +191,14 @@ public class ServerMessageManager {
 		case "loggedout":
 			return handleLoggedOutMessage(msg);
 		case "changetimeduration":
-			 handleChangeTimeDurationRequest(msg);
-			 break;
+			handleChangeTimeDurationRequest(msg);
+			break;
 		case "confirmchangeduration":
-			 handleChangeTimeConfirm(msg);
-			 break;
+			handleChangeTimeConfirm(msg);
+			break;
 		case "startexam":
-			 handlStartExam(msg);
-			 break;
+			handlStartExam(msg);
+			break;
 		case "closeexam":
 			return handlCloseExam(msg);
 		default:
@@ -211,7 +211,7 @@ public class ServerMessageManager {
 	 * A method that closes an exam in the database means that it changes the exams
 	 * to lock and deletes the exams from a `execute exams` table in the database
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param msg
 	 *            type of simple message sent includes exam id
 	 * @return simple message with ok if the server handle it or error message
@@ -230,7 +230,7 @@ public class ServerMessageManager {
 	/**
 	 * 
 	 * @param msg
-	 * @return
+	 * 
 	 */
 	private static void handlStartExam(AbstractMessage msg) {
 		SimpleMessage newMsg = (SimpleMessage) msg;
@@ -434,7 +434,7 @@ public class ServerMessageManager {
 
 	private static AbstractMessage handleGetAllTables(AbstractMessage msg) {
 		GetFromDB getDB = new GetFromDB();
-		AllTablesMessage allMessage=(AllTablesMessage)message.getMessage("ok-get-alltables", null);
+		AllTablesMessage allMessage = (AllTablesMessage) message.getMessage("ok-get-alltables", null);
 		allMessage.setAlterDurList(getDB.alterDuration());
 		allMessage.setCourseList(getDB.courses());
 		allMessage.setCourseInSubList(getDB.getCoursesInSubject());
@@ -454,44 +454,43 @@ public class ServerMessageManager {
 	private static AbstractMessage handleGetSolvedExamsBySubjectIDCourseID(AbstractMessage msg) {
 		SolvedExamBySubjectCourseMessage sebsc = (SolvedExamBySubjectCourseMessage) msg;
 		GetFromDB getSolved = new GetFromDB();
-		
+
 		sebsc.setSolvedExams(getSolved.getSolvedExamsByCourseId(sebsc.getCourse().getCourseId()));
-		
+
 		return sebsc;
 	}
-	
+
 	/**
 	 * @author Alon Ben-yosef
-	 * @param msg Assuming QueryMessage, runs the query and returns statistics
+	 * @param msg
+	 *            Assuming QueryMessage, runs the query and returns statistics
 	 * @return a StatMessage with query results
 	 */
 	private static AbstractMessage handleGetQuery(AbstractMessage msg) {
 		GetFromDB getGrades = new GetFromDB();
 		ArrayList<Integer> list;
 		try {
-			list = getGrades.getGradesQuery(((QueryMessage)msg).getQuery());
-			if(list.isEmpty()) {
-				return message.getMessage("error-get-query",new Exception("No valid results"));
-			}
-			else {
+			list = getGrades.getGradesQuery(((QueryMessage) msg).getQuery());
+			if (list.isEmpty()) {
+				return message.getMessage("error-get-query", new Exception("No valid results"));
+			} else {
 				Statistic data = new Statistic(list);
 				return message.getMessage("ok-get-query", data);
 			}
 		} catch (SQLException e) {
-			return message.getMessage("error-get-query",new Exception("SQL error in server"));
+			return message.getMessage("error-get-query", new Exception("SQL error in server"));
 		}
-	
-		
+
 	}
 
 	/**
-	 * A method that is called when have map<courseID,courseName> and want to fill
+	 * A method that is called when have map(courseID,courseName) and want to fill
 	 * it with course names.
 	 * 
 	 * @author gal
 	 * @param msg
 	 *            tyoe of CourseMessage
-	 * @return the map<courseID,courseName> if the server handle this request and
+	 * @return the map(courseID,courseName) if the server handle this request and
 	 *         error message otherwise
 	 */
 	private static AbstractMessage handleGetCourseByCourseIDMessage(AbstractMessage msg) {
@@ -509,13 +508,13 @@ public class ServerMessageManager {
 	}
 
 	/**
-	 * A method that is called when have map<subjectID,subectName> and want to fill
+	 * A method that is called when have map(subjectID,subectName) and want to fill
 	 * it with subject names.
 	 * 
 	 * @author gal
 	 * @param msg
 	 *            type of SubjectMessage
-	 * @return the map<subjectID,subectName> if the server handle this request and
+	 * @return the map(subjectID,subectName) if the server handle this request and
 	 *         error message otherwise
 	 */
 	private static AbstractMessage handleGetSubjectBySubjectIDMessage(AbstractMessage msg) {
@@ -600,7 +599,7 @@ public class ServerMessageManager {
 	 * @author gal
 	 * @param msg
 	 *            type of UserInfoMessage
-	 * @return the map<UserId,First name + Last name> if the server handle this
+	 * @return the map(UserId,First name + Last name) if the server handle this
 	 *         request and error message otherwise
 	 */
 	private static AbstractMessage getUserName(AbstractMessage msg) {
@@ -651,9 +650,8 @@ public class ServerMessageManager {
 				}
 			}
 		}
-		return message.getMessage("error-login",new Exception("User not exist"));
+		return message.getMessage("error-login", new Exception("User not exist"));
 	}
-	
 
 	/**
 	 * 
@@ -740,14 +738,16 @@ public class ServerMessageManager {
 		UpdateSolvedExam exam = (UpdateSolvedExam) msg;
 		SetInDB setDb = new SetInDB();
 		SolvedExams solved = exam.getExam();
-		setDb.updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(solved.getExamGrade(), solved.getGradeAlturationExplanation(), exam.getTeacher_id(), solved);
+		setDb.updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(solved.getExamGrade(),
+				solved.getGradeAlturationExplanation(), exam.getTeacher_id(), solved);
 		return null;
 	}
-	
+
 	private static AbstractMessage handlePutQuestion(AbstractMessage msg) {
 		// TODO Auto-generated method stub
-		QuestionsMessage recievedNewQuestion = (QuestionsMessage)msg;
-		Question newQuestionTooAdd = recievedNewQuestion.getQuestions().get(0); // ArrayList<Question> will contain only 1 new question
+		QuestionsMessage recievedNewQuestion = (QuestionsMessage) msg;
+		Question newQuestionTooAdd = recievedNewQuestion.getQuestions().get(0); // ArrayList<Question> will contain only
+																				// 1 new question
 		SetInDB putQuestion = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putQuestion.AddNewQuestion(newQuestionTooAdd);
 		return null;
@@ -951,7 +951,8 @@ public class ServerMessageManager {
 		ExecuteExamMessage recivedMessage = (ExecuteExamMessage) msg;
 		ExecuteExam newExecuteExam = recivedMessage.getNewExam();
 		SetInDB putExecuteExam = new SetInDB();
-		executedUsersManager.add(newExecuteExam.getExamId(), newExecuteExam.getStartTime()); //Send time to executedManager
+		executedUsersManager.add(newExecuteExam.getExamId(), newExecuteExam.getStartTime()); // Send time to
+																								// executedManager
 		AbstractMessage sendMessage = (AbstractMessage) putExecuteExam.addExecuteExam(newExecuteExam);
 		return sendMessage;
 	}
@@ -984,8 +985,7 @@ public class ServerMessageManager {
 	 * @author Naor Saadia
 	 * @param msg
 	 *            type of ChangeTimeDurationRequest
-	 * @return simple message with ok if the server handle it or error message
-	 *         otherwise
+	 *
 	 */
 	private static void handleChangeTimeDurationRequest(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht = (ChangeTimeDurationRequest) msg;
@@ -1000,8 +1000,7 @@ public class ServerMessageManager {
 	 * @author Naor Saadia
 	 * @param msg
 	 *            type of ChangeTimeDurationRequest
-	 * @return simple message with ok if the server handle it or error message
-	 *         otherwise
+	 * 
 	 */
 	private static void handleChangeTimeConfirm(AbstractMessage msg) {
 		ChangeTimeDurationRequest cht = (ChangeTimeDurationRequest) msg;
@@ -1099,17 +1098,19 @@ public class ServerMessageManager {
 	private static AbstractMessage handleGetCSVfromServer(AbstractMessage msg) {
 		SimpleDateFormat monthDayYearformatter = new SimpleDateFormat("yyyy-MM-dd");
 		CSVReader instace = CSVReader.getInstace();
-		CsvMessage newMessage = (CsvMessage)msg;
+		CsvMessage newMessage = (CsvMessage) msg;
 		CsvDetails csv = newMessage.getCsv();
 		SolvedExams solvedExam = csv.getSolvedExam();
 		String date = monthDayYearformatter.format((java.util.Date) solvedExam.getExamDateTime());
 		String path = PATHCSV + solvedExam.getExamID() + "-" + date;
-		String pathInsideSolvedExamFolder = path + "/" + solvedExam.getSovingStudentID()+ ".csv";
+		String pathInsideSolvedExamFolder = path + "/" + solvedExam.getSovingStudentID() + ".csv";
 		instace.setCsvFile(pathInsideSolvedExamFolder);
-		System.out.println("Path to csv: "+pathInsideSolvedExamFolder);
+		System.out.println("Path to csv: " + pathInsideSolvedExamFolder);
 		ArrayList<String[]> csvDATA = instace.readCSV();
-		if (csvDATA != null)return (CsvMessage)message.getMessage("ok-get-csv", csvDATA);
-		return new ErrorMessage(new Exception("Error,\nnot a valid csv path,\nplease check in:"+path+ ",\nthat csv name: "+solvedExam.getSovingStudentID()+",\nexist."));
+		if (csvDATA != null)
+			return (CsvMessage) message.getMessage("ok-get-csv", csvDATA);
+		return new ErrorMessage(new Exception("Error,\nnot a valid csv path,\nplease check in:" + path
+				+ ",\nthat csv name: " + solvedExam.getSovingStudentID() + ",\nexist."));
 	}
 
 	/**
@@ -1142,7 +1143,7 @@ public class ServerMessageManager {
 		String s = path + "/";
 		try {
 			System.out.println(s);
-			csvWriter = new CSVWriter(new FileWriter(s + student.getUserID()+".csv"));
+			csvWriter = new CSVWriter(new FileWriter(s + student.getUserID() + ".csv"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1209,9 +1210,12 @@ public class ServerMessageManager {
 		set.deleteSolvedExam(simp);
 		return msg;
 	}
+
 	/**
 	 * 
-	 * @param msg Assuming ExamStatsByIdDateMessage, countaining id and date for a statistics
+	 * @param msg
+	 *            Assuming ExamStatsByIdDateMessage, countaining id and date for a
+	 *            statistics
 	 * @return Message countaining the stats for that exam
 	 */
 	private static AbstractMessage handleExamStatsByIdDate(AbstractMessage msg) {

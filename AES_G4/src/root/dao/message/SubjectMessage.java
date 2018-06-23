@@ -16,7 +16,7 @@ public class SubjectMessage extends AbstractMessage {
 	// Instance variables **********************************************
 
 	/**
-	 * Map<String,String> for send subject from server to client : key = subjectID,
+	 * Map(String,String) for send subject from server to client : key = subjectID,
 	 * value = subject name
 	 */
 	private HashMap<String, String> subjectsMap;
@@ -37,7 +37,7 @@ public class SubjectMessage extends AbstractMessage {
 	 * @param message
 	 *            the message sent between the server and the client
 	 * @param subjectsMap
-	 *            Map<String,String> for send subject from server to client : key =
+	 *            Map(String,String) for send subject from server to client : key =
 	 *            subjectID, value = subject name
 	 */
 	public SubjectMessage(String message, HashMap<String, String> subjectsMap) {
@@ -108,7 +108,7 @@ public class SubjectMessage extends AbstractMessage {
 	}
 
 	/**
-	 * A method that returns the map<String,String> for send subject from server to
+	 * A method that returns the map(String,String) for send subject from server to
 	 * client : key = subjectID, value = subject name
 	 * 
 	 * @return the subjectsMap
@@ -118,7 +118,7 @@ public class SubjectMessage extends AbstractMessage {
 	}
 
 	/**
-	 * A method that set the map<String,String> for send subject from server to
+	 * A method that set the map(String,String) for send subject from server to
 	 * client : key = subjectID, value = subject name
 	 * 
 	 * @param subjectsMap

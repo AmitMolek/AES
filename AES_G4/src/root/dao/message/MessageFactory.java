@@ -84,9 +84,9 @@ public class MessageFactory {
 		case "put":
 			return getPutMessage(msgContent, payload);
 		case "delete":
-			return getDelMessage(msgContent,payload);
+			return getDelMessage(msgContent, payload);
 		case "error":
-			return getErrorMessage(msgContent,payload);
+			return getErrorMessage(msgContent, payload);
 		case "simple":
 			return new SimpleMessage("simple");
 
@@ -108,7 +108,7 @@ public class MessageFactory {
 		case "loggedout":
 			return new LogoutErrorMessage((Exception) payload);
 		}
-		return new ErrorMessage((Exception)payload);		
+		return new ErrorMessage((Exception) payload);
 	}
 
 	/**
@@ -242,7 +242,7 @@ public class MessageFactory {
 		case "solvedbysubjectcourse":
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		case "query":
-			return new QueryMessage("get-query",(String)payload);
+			return new QueryMessage("get-query", (String) payload);
 		case "alltables":
 			return new SimpleMessage("get-alltables");
 		default:
@@ -273,7 +273,7 @@ public class MessageFactory {
 	 *
 	 * @param payload
 	 *            - User
-	 * @return {@link AbstractMessage} with arrayList<SolvedExams>
+	 * @return {@link AbstractMessage} with arrayList(SolvedExams)
 	 */
 	private AbstractMessage getUserSolvedExams(String[] msgContent, Object payload) {
 		switch (msgContent[2]) {
@@ -284,10 +284,10 @@ public class MessageFactory {
 		// return new UserSolvedExamsMessage(payload);
 	}
 
-	
 	/**
 	 * A method that creates new userInfo message
-	 *  @param msgContent
+	 * 
+	 * @param msgContent
 	 *            array that contains the message
 	 * @param payload
 	 *            the object with the message(arrayList, exam ,question , etc), can
@@ -301,7 +301,6 @@ public class MessageFactory {
 		}
 		return null;
 	}
-
 
 	/**
 	 * A method that generates a new login message that includes the object with the
@@ -319,8 +318,6 @@ public class MessageFactory {
 
 		return new LoginMessage((LoginInfo) payload);
 	}
-
-	
 
 	/**
 	 * A method that generates a new ok message that includes the object with the
@@ -353,10 +350,9 @@ public class MessageFactory {
 		return new ErrorMessage(new Exception("Invalid request"));
 	}
 
-
 	/**
-	 * A method that generates a new ok-get message that includes the object with the
-	 * message(arrayList, exam ,question , etc)
+	 * A method that generates a new ok-get message that includes the object with
+	 * the message(arrayList, exam ,question , etc)
 	 * 
 	 * @param msgContent
 	 *            array that contains the message
@@ -428,7 +424,7 @@ public class MessageFactory {
 		case "solvedbysubjectcourse":
 			return new SolvedExamBySubjectCourseMessage((SolvedExamBySubjectCourseMessage) payload);
 		case "query":
-			return new StatsMessage("ok-get-query", (Statistic)payload);
+			return new StatsMessage("ok-get-query", (Statistic) payload);
 		case "alltables":
 			return new AllTablesMessage("ok-get-alltables");
 		}

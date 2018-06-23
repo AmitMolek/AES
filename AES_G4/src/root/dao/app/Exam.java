@@ -52,13 +52,17 @@ public class Exam implements Serializable {
 
 	// CONSTRUCTORS *****************************************************
 	/**
-	 * @author Alon Ben-yosef
-	 * Constructor for exam for DB pulling
+	 * @author Alon Ben-yosef Constructor for exam for DB pulling
 	 * @param examId
+	 *            the exam id
 	 * @param examDuration
+	 *            exam duration
 	 * @param examState
+	 *            exam state
 	 * @param lock
+	 *            lock
 	 * @param teacherId
+	 *            teacher id
 	 */
 	public Exam(String examId, int examDuration, int examState, int lock, String teacherId) {
 		super();
@@ -68,12 +72,13 @@ public class Exam implements Serializable {
 		this.lock = lock;
 		this.setTeacherId(teacherId);
 	}
+
 	/**
 	 * Constructs the Exam
 	 * 
 	 * @param examId
 	 *            the id of the exam
-	 * @param author
+	 * @param teacherId
 	 *            the teacher who wrote the exam
 	 * @param examDuration
 	 *            the duration time of the exam
@@ -244,7 +249,7 @@ public class Exam implements Serializable {
 	public void setExecuteExam(ExecuteExam executeExam) {
 		this.executeExam = executeExam;
 	}
-	
+
 	public String getTeacherId() {
 		return teacherId;
 	}

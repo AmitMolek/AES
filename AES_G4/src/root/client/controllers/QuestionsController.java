@@ -56,9 +56,10 @@ import root.util.properties.PropertiesFile;
  * 
  * 
  * This class handle with questions window
+ * 
  * @author gal
  */
-public class QuestionsController implements Observer{
+public class QuestionsController implements Observer {
 
 	// FXML variables **********************************************
 
@@ -94,7 +95,6 @@ public class QuestionsController implements Observer{
 
 	@FXML // fx:id="tbcCorr"
 	private TableColumn<Question, Integer> tbcCorr; // Value injected by FXMLLoader
-
 
 	@FXML // fx:id="txtFieldId"
 	private TextField txtFieldId; // Value injected by FXMLLoader
@@ -155,7 +155,8 @@ public class QuestionsController implements Observer{
 	 */
 	private ObservableClient client;
 	/**
-	 * The Arraylist that contains all question's that relevant to this teacher teaching subjects
+	 * The Arraylist that contains all question's that relevant to this teacher
+	 * teaching subjects
 	 */
 	private ArrayList<Question> questions;
 	/**
@@ -177,7 +178,7 @@ public class QuestionsController implements Observer{
 	/**
 	 * The hashMap that contain theacherID and its corresponding teacherName
 	 */
-	private HashMap<String, String> teachersMap;			// key = teacherID, value = teacher full name.
+	private HashMap<String, String> teachersMap; // key = teacherID, value = teacher full name.
 	/**
 	 * 
 	 * A log file that is responsible for documenting the actions performed in the
@@ -195,17 +196,20 @@ public class QuestionsController implements Observer{
 	 * 
 	 * This method occurs when the window is shown up.
 	 * 
-	 * @throws IOException if the window cannot be shown
+	 * @throws IOException
+	 *             if the window cannot be shown
 	 */
 	@FXML
-	public void initialize() throws IOException{
+	public void initialize() throws IOException {
 		Platform.runLater(() -> rootPane.requestFocus());
 		message = MessageFactory.getInstance();
 		screenManager = ScreensManager.getInstance();
 
-		client = (ObservableClient)dkm.getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
-		client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
-		user = (User) dkm.getUser();//loggedInManager.getUser();
+		client = (ObservableClient) dkm.getObject_NoRemove("client"); // get the client from DataKeep, but dont remove
+																		// it from there, for later use.
+		client.addObserver(this); // add THIS to clinet's observer, so THIS.update will be triggered when server
+									// send messages.
+		user = (User) dkm.getUser();// loggedInManager.getUser();
 
 		// Listen for selection changes and show the person details when changed.
 		txtFieldId.setOnMouseClicked(e -> {
@@ -235,8 +239,9 @@ public class QuestionsController implements Observer{
 		teachersMap = new HashMap<String, String>();
 		setUserDetails(user);
 		getUserSubjects(user);
-		initQuestionsTable();   	
+		initQuestionsTable();
 	}
+
 	/**
 	 * 
 	 * A method that initiate tableView every time window is initialized
@@ -256,6 +261,7 @@ public class QuestionsController implements Observer{
 		tbcCorr.setCellValueFactory(new PropertyValueFactory<Question, Integer>("correctAns"));
 		tbcTeacherName.setCellValueFactory(new PropertyValueFactory<Question, String>("teacherFullName"));
 	}
+
 	/**
 	 * 
 	 * A method that allows the teacher to select a subject
@@ -268,17 +274,18 @@ public class QuestionsController implements Observer{
 	void selectFromCombobox(ActionEvent event) {
 		Subject selectedSucjet = subjectCombobox.getSelectionModel().getSelectedItem();
 		observabaleQuestions.clear();
-		if (selectedSucjet.getSubjectID().equals("00"))observabaleQuestions.addAll(questions);
+		if (selectedSucjet.getSubjectID().equals("00"))
+			observabaleQuestions.addAll(questions);
 		else {
-			for(Question question: questions) {
-				if (question.getQuestionId().substring(0, 2).equals(selectedSucjet.getSubjectID()) ) {
+			for (Question question : questions) {
+				if (question.getQuestionId().substring(0, 2).equals(selectedSucjet.getSubjectID())) {
 					observabaleQuestions.add(question);
 				}
 			}
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * A method that allows the teacher to search a question
@@ -293,8 +300,8 @@ public class QuestionsController implements Observer{
 		if (txtFieldQuestion.getText().length() != 0) {
 			String questionID = txtFieldQuestion.getText();
 			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getQuestionId().equals(questionID) ) {
+			for (Question question : questions) {
+				if (question.getQuestionId().equals(questionID)) {
 					observabaleQuestions.add(question);
 				}
 			}
@@ -305,8 +312,8 @@ public class QuestionsController implements Observer{
 		if (txtFieldId.getText().length() != 0) {
 			String teacherID = txtFieldId.getText();
 			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getTeacherAssembeld().equals(teacherID) ) {
+			for (Question question : questions) {
+				if (question.getTeacherAssembeld().equals(teacherID)) {
 					observabaleQuestions.add(question);
 				}
 			}
@@ -314,47 +321,49 @@ public class QuestionsController implements Observer{
 			unselectSelectionFromTable();
 			return;
 		}
-		if (txtFieldName.getText().length() != 0){
+		if (txtFieldName.getText().length() != 0) {
 			String teacherName = txtFieldName.getText();
 			observabaleQuestions.clear();
-			for(Question question: questions) {
-				if (question.getTeacherFullName().equals(teacherName) ) {
+			for (Question question : questions) {
+				if (question.getTeacherFullName().equals(teacherName)) {
 					observabaleQuestions.add(question);
 				}
 			}
 			txtFieldName.clear();
 			unselectSelectionFromTable();
 			return;
-		}else {
+		} else {
 			// Nothing selected.
 			String setTitle = "No selection";
 			String errorHeader = "No field Selected";
 			String errorText = "Please fill selected field";
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 			unselectSelectionFromTable();
 
 		}
 	}
 
-
 	/**
 	 * This method is called when theres a need to ErrrorDialog
 	 * 
-	 * @param HeaderTitle the text to show in the window header
-	 * @param HeaderText the test to show in the window upper body
-	 * @param Errormessage the text to show in the window lower  body
+	 * @param HeaderTitle
+	 *            the text to show in the window header
+	 * @param HeaderText
+	 *            the test to show in the window upper body
+	 * @param Errormessage
+	 *            the text to show in the window lower body
 	 * 
 	 */
-	private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
-		Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+	private void showErrorDialog(String HeaderTitle, String HeaderText, String Errormessage) {
+		Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 			// Show the error message.
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.initOwner(screenManager.getPrimaryStage());
-			alert.setTitle(HeaderTitle);//"ServerIP error");
-			alert.setHeaderText(HeaderText);//"Please contact system administrator");
+			alert.setTitle(HeaderTitle);// "ServerIP error");
+			alert.setHeaderText(HeaderText);// "Please contact system administrator");
 			alert.setContentText(Errormessage);
-			alert.showAndWait();       
-			log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+			alert.showAndWait();
+			log.writeToLog(LogLine.LineType.ERROR, Errormessage);
 		});
 	}
 
@@ -376,7 +385,7 @@ public class QuestionsController implements Observer{
 			String setTitle = "No selection";
 			String errorHeader = "No field Selected";
 			String errorText = "Please fill selected field";
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 			unselectSelectionFromTable();
 		}
 	}
@@ -384,105 +393,125 @@ public class QuestionsController implements Observer{
 	/**
 	 * 
 	 * This method happens when the user press on the delete button
-	 *  
+	 * 
 	 * @param event
 	 * 
-	 * 				An event that happens when a teacher press "delete".
+	 *            An event that happens when a teacher press "delete".
 	 */
 	@FXML
 	void deleteSelectedQuestion(ActionEvent event) {
 		Question questionToDelete;
 		int selectedIndex = tblQuestions.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {  	
+		if (selectedIndex >= 0) {
 			questionToDelete = tblQuestions.getSelectionModel().getSelectedItem();
-			deleteQuestionFromDB(questionToDelete);				// remove question from DB
-			tblQuestions.getItems().remove(selectedIndex);		// remove question from tableview
-			questions.remove(questionToDelete);					// remove question from THIS.questions
+			deleteQuestionFromDB(questionToDelete); // remove question from DB
+			tblQuestions.getItems().remove(selectedIndex); // remove question from tableview
+			questions.remove(questionToDelete); // remove question from THIS.questions
 			unselectSelectionFromTable();
 		} else {
 			// Nothing selected.
 			String setTitle = "No selection";
 			String errorHeader = "No question Selected";
 			String errorText = "Please select a question in the table.";
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 			unselectSelectionFromTable();
 		}
 	}
+
 	/**
 	 * 
-	 *  This method is called in order to fill theacherMap, 
-	 *  for each question in the subject this teacher teaches, we need the teacher assembled name.
-	 *  
+	 * This method is called in order to fill theacherMap, for each question in the
+	 * subject this teacher teaches, we need the teacher assembled name.
+	 * 
 	 * @param questions2
-	 * 					this param is the questions recieved from the server
+	 *            this param is the questions recieved from the server
 	 */
 	void getTeachersMap(ArrayList<Question> questions2) {
-		// by sending all question of THIS teacher teaching subject, well loop over all user and get the relevant users Full name
-		for (Question question: questions) {
+		// by sending all question of THIS teacher teaching subject, well loop over all
+		// user and get the relevant users Full name
+		for (Question question : questions) {
 			teachersMap.put(question.getTeacherAssembeld(), "");
 		}
-		UserInfo teachersInfo = new UserInfo(teachersMap,questions);
-		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name",teachersInfo);	// we can send the specific question because we have table "Questions"
+		UserInfo teachersInfo = new UserInfo(teachersMap, questions);
+		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name", teachersInfo); // we
+																													// can
+																													// send
+																													// the
+																													// specific
+																													// question
+																													// because
+																													// we
+																													// have
+																													// table
+																													// "Questions"
 		try {
 			client.sendToServer(teacehrInfoMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In QuestionsController, getTeachersMap()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
+
 	/**
 	 * 
 	 * this method called when deleting Question from DB
 	 * 
 	 * @param questionToDelete
-	 * 							the question teacher want to delete
+	 *            the question teacher want to delete
 	 */
 	void deleteQuestionFromDB(Question questionToDelete) {
-		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",questionToDelete);	// we can send the specific question because we have table "Questions"
+		QuestionsMessage questionDeleteMessage = (QuestionsMessage) message.getMessage("delete-Questions",
+				questionToDelete); // we can send the specific question because we have table "Questions"
 		try {
 			client.sendToServer(questionDeleteMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In QuestionsController, deleteQuestionFromDB()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
+
 	/**
 	 * 
-	 *  if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save&Close" 
-	 *  add newly created question to Questions in THIS, and to DB.
-	 *  
+	 * if NEW Question pressed, open NewQuestionWizzard, than, after pressing "Save
+	 * and Close" add newly created question to Questions in THIS, and to DB.
+	 * 
 	 * @param event
-	 * 					An event that happens when a teacher press "newQuestion".
+	 *            An event that happens when a teacher press "newQuestion".
 	 * 
 	 * @throws IOException
-	 * 					
+	 * 
 	 */
 	@FXML
 	void newQuestionDialog(ActionEvent event) throws IOException {
 		runNewQuestionWizzard(null);
 	}
+
 	/**
-	 * This method is called when pressing New-Question, or Edit-Question buttons. It opens a new window
-	 * @param selectedQuestionToEdit the selected question to edit, if null - then assume "New-Question" pressed,
-	 * proceed accordingly.
+	 * This method is called when pressing New-Question, or Edit-Question buttons.
+	 * It opens a new window
+	 * 
+	 * @param selectedQuestionToEdit
+	 *            the selected question to edit, if null - then assume
+	 *            "New-Question" pressed, proceed accordingly.
 	 */
 	private void runNewQuestionWizzard(Question selectedQuestionToEdit) {
 		unselectSelectionFromTable();
-		Platform.runLater(() -> {				// In order to run javaFX thread.(we receive from server a java thread)
+		Platform.runLater(() -> { // In order to run javaFX thread.(we receive from server a java thread)
 			try {
-				observebaleNewQuestion = FXCollections.observableArrayList(); 
+				observebaleNewQuestion = FXCollections.observableArrayList();
 				FXMLLoader fxmlLoader;
 				String questionId;
 				String addNewQuestionfxmlPath;// = "../resources/view/AddQuestionWizzard.fxml";
 				CodeSource src = Main.class.getProtectionDomain().getCodeSource();
 				URL jarLocation = src.getLocation();
-				//InputStream jarPath;
+				// InputStream jarPath;
 				if (jarLocation.toString().startsWith("jar") || jarLocation.toString().endsWith("jar")) {
-					fxmlLoader = new FXMLLoader(getClass().getResource("/root/client/resources/view/AddQuestionWizzard.fxml"));
+					fxmlLoader = new FXMLLoader(
+							getClass().getResource("/root/client/resources/view/AddQuestionWizzard.fxml"));
 					System.out.println("loading jar's FXML");
 
 				} else {
@@ -507,23 +536,25 @@ public class QuestionsController implements Observer{
 				stage.setTitle("New question wizzard");
 				stage.showAndWait();
 
-				if (observebaleNewQuestion.isEmpty() == false) {	// if false, than no new question created, that means a question was updated
-					if (selectedQuestionToEdit != null) {		// if 'selectedQuestionToEdit' changed, remove old question form list's 
-						String tempOldQID =selectedQuestionToEdit.getQuestionId(); 
+				if (observebaleNewQuestion.isEmpty() == false) { // if false, than no new question created, that means a
+																	// question was updated
+					if (selectedQuestionToEdit != null) { // if 'selectedQuestionToEdit' changed, remove old question
+															// form list's
+						String tempOldQID = selectedQuestionToEdit.getQuestionId();
 						observabaleQuestions.remove(selectedQuestionToEdit);
 						questions.remove(selectedQuestionToEdit);
 						questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
 						observebaleNewQuestion.get(0).setQuestionId(questionId);
 						observabaleQuestions.add(observebaleNewQuestion.get(0));
 						questions.add(observebaleNewQuestion.get(0));
-						if ( tempOldQID.equals(questionId.substring(0, 2)) ){	// if equal, then updated question didn't changed its subject
+						if (tempOldQID.equals(questionId.substring(0, 2))) { // if equal, then updated question didn't
+																				// changed its subject
 							setChangedQuestion(observebaleNewQuestion.get(0));
 						}
-						deleteQuestionFromDB(selectedQuestionToEdit);			// delete from DB, old question
-						putNewQuestion(observebaleNewQuestion.get(0));			// insert updated question
+						deleteQuestionFromDB(selectedQuestionToEdit); // delete from DB, old question
+						putNewQuestion(observebaleNewQuestion.get(0)); // insert updated question
 						updateTeacherAssemblerFullName(teachersMap);
-					}
-					else {	// if "selectedQuestionToEdit" == null, than it means a "NEW Question" pressed.
+					} else { // if "selectedQuestionToEdit" == null, than it means a "NEW Question" pressed.
 						questionId = prepareQuestionID(observebaleNewQuestion.get(0).getQuestionId());
 						observebaleNewQuestion.get(0).setQuestionId(questionId);
 						observabaleQuestions.add(observebaleNewQuestion.get(0));
@@ -537,7 +568,7 @@ public class QuestionsController implements Observer{
 				String setTitle = "IOException";
 				String errorHeader = "In QuestionsController, runNewQuestionWizzard()";
 				String errorText = e.getMessage();
-				showErrorDialog(setTitle,errorHeader,errorText);
+				showErrorDialog(setTitle, errorHeader, errorText);
 			}
 		});
 	}
@@ -549,56 +580,61 @@ public class QuestionsController implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if (arg1 instanceof QuestionsMessage) {
-			if(this.getQuestions().size() == 0)
-				this.setQuestions(((QuestionsMessage) arg1).getQuestions());		// only when there no question's - at first load or a new Teacher.
-			else addQuestions(((QuestionsMessage) arg1).getQuestions());			// add new questions to a teacher.
-			observabaleQuestions = FXCollections.observableArrayList(); 			// add new question to ObservebaleList
-			for (Question question: questions) {
+			if (this.getQuestions().size() == 0)
+				this.setQuestions(((QuestionsMessage) arg1).getQuestions()); // only when there no question's - at first
+																				// load or a new Teacher.
+			else
+				addQuestions(((QuestionsMessage) arg1).getQuestions()); // add new questions to a teacher.
+			observabaleQuestions = FXCollections.observableArrayList(); // add new question to ObservebaleList
+			for (Question question : questions) {
 				observabaleQuestions.add(question);
 			}
-			getTeachersMap(questions);												// add newly teacher's ID to teacherMap
-			tblQuestions.setItems(observabaleQuestions);							// insert newly fetched question's to tblQuestion
+			getTeachersMap(questions); // add newly teacher's ID to teacherMap
+			tblQuestions.setItems(observabaleQuestions); // insert newly fetched question's to tblQuestion
 		}
-		if(arg1 instanceof UserSubjectMessage) {
+		if (arg1 instanceof UserSubjectMessage) {
 			this.setUserSubjects(((UserSubjectMessage) arg1).getSubjects());
 			fillCombobox(this.userSubjects);
 			getUserQuestions(this.userSubjects);
 		}
 		if (arg1 instanceof UserInfoMessage) {
-			for (Question question: questions) {
+			for (Question question : questions) {
 				String tempTeacherAssembeledID = question.getTeacherAssembeld();
-				if(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempTeacherAssembeledID))
-					question.setTeacherFullName(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempTeacherAssembeledID));
-				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap();	// update teacherMap to hold new <teacherID,teacherFullName>.
+				if (((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempTeacherAssembeledID))
+					question.setTeacherFullName(
+							((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempTeacherAssembeledID));
+				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap(); // update teacherMap to hold new
+																						// <teacherID,teacherFullName>.
 			}
 			updateTeacherAssemblerFullName(teachersMap);
 		}
-		if(arg1 instanceof SimpleMessage) {
-			SimpleMessage simple = (SimpleMessage)arg1;
+		if (arg1 instanceof SimpleMessage) {
+			SimpleMessage simple = (SimpleMessage) arg1;
 			log.writeToLog(LogLine.LineType.INFO, "Question deleted");
 		}
 		if (arg1 instanceof ErrorMessage) {
 			String setTitle = "Server error";
 			String errorHeader = ((ErrorMessage) arg1).getMsg();
 			String errorText = arg1.toString();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
 
 	/**
 	 * 
-	 * This method called when we need to update in tblQuestions the TeacherName column
+	 * This method called when we need to update in tblQuestions the TeacherName
+	 * column
 	 */
 	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
-		for (Question question: questions) {				// update the questions array, to keep updated
+		for (Question question : questions) { // update the questions array, to keep updated
 			String tempTeacherAssembeledID = question.getTeacherAssembeld();
-			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+			if (userInfo.containsKey(tempTeacherAssembeledID)) {
 				question.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
 			}
 		}
-		for (Question obsQuestion: observabaleQuestions) {	// update observableQuestion to update the tblQuestions
+		for (Question obsQuestion : observabaleQuestions) { // update observableQuestion to update the tblQuestions
 			String tempTeacherAssembeledID = obsQuestion.getTeacherAssembeld();
-			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+			if (userInfo.containsKey(tempTeacherAssembeledID)) {
 				obsQuestion.setTeacherFullName(userInfo.get(tempTeacherAssembeledID));
 			}
 		}
@@ -606,44 +642,55 @@ public class QuestionsController implements Observer{
 
 	/**
 	 * 
-	 *  function to create a valid Question ID
-	 *  
-	 * @param subjectID
-	 * 						subjectID needed to retrieve all relevant questions
+	 * function to create a valid Question ID
 	 * 
-	 * @return String 
-	 * 						a Question valid ID
+	 * @param subjectID
+	 *            subjectID needed to retrieve all relevant questions
+	 * 
+	 * @return String a Question valid ID
 	 */
 	private String prepareQuestionID(String subjectID) {
 		String newId = subjectID;
 		int newQuestionID = 0;
-		for (Question question: this.getQuestions()) {
+		for (Question question : this.getQuestions()) {
 			String questionID = question.getQuestionId();
 			if (subjectID.equals(questionID.substring(0, 2))) {
 				int tempId = Integer.parseInt(questionID.substring(2));
-				if (newQuestionID <= tempId) newQuestionID = tempId;
+				if (newQuestionID <= tempId)
+					newQuestionID = tempId;
 			}
 		}
 		newQuestionID++;
-		int temp  =100;
-		while(temp > newQuestionID){
-			newId =  newId.concat("0");
-			temp = temp/10;
+		int temp = 100;
+		while (temp > newQuestionID) {
+			newId = newId.concat("0");
+			temp = temp / 10;
 		}
 		newId = newId.concat(String.valueOf(newQuestionID));
-		System.out.println("My tst "+newId);
+		System.out.println("My tst " + newId);
 		return newId;
 	}
+
 	/**
 	 * 
-	 * Here well prepare a message with {"put-new-Question", Question }
-	 * in order to insert new Question to DB.
+	 * Here well prepare a message with {"put-new-Question", Question } in order to
+	 * insert new Question to DB.
 	 * 
 	 * @param question
-	 * 					the question we want to put in DB
+	 *            the question we want to put in DB
 	 */
 	private void putNewQuestion(Question question) {
-		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions",question);	// we can send the specific question because we have table "Questions"
+		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("put-Questions", question); // we
+																												// can
+																												// send
+																												// the
+																												// specific
+																												// question
+																												// because
+																												// we
+																												// have
+																												// table
+																												// "Questions"
 		try {
 			client.sendToServer(newQuestionMessage);
 		} catch (IOException e) {
@@ -654,59 +701,72 @@ public class QuestionsController implements Observer{
 
 	/**
 	 * 
-	 * this method is called when updating existing message.
-	 * here well prepare a message with {"set-new-Question", Question }
+	 * this method is called when updating existing message. here well prepare a
+	 * message with {"set-new-Question", Question }
 	 * 
-	 * @param question 
-	 * 					updated question needed to be inserted the DB
+	 * @param question
+	 *            updated question needed to be inserted the DB
 	 */
 	private void setChangedQuestion(Question question) {
-		QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions",question);	// we can send the specific question because we have table "Questions"
+		QuestionsMessage updatedQuestionMessage = (QuestionsMessage) message.getMessage("set-Questions", question); // we
+																													// can
+																													// send
+																													// the
+																													// specific
+																													// question
+																													// because
+																													// we
+																													// have
+																													// table
+																													// "Questions"
 		try {
 			client.sendToServer(updatedQuestionMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In QuestionsController, setChangedQuestion()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
+
 	/**
 	 * 
 	 * Here well get all question that in the same subject of the user
 	 * 
 	 * @param userSubjects
-	 * 							this param relevant in order to get relevant teacher questions
+	 *            this param relevant in order to get relevant teacher questions
 	 */
 	private void getUserQuestions(ArrayList<Subject> userSubjects) {
-		for (Subject subject: userSubjects) {
-			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",subject);
+		for (Subject subject : userSubjects) {
+			QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions", subject);
 			try {
 				client.sendToServer(newQuestionMessage);
 			} catch (IOException e) {
 				String setTitle = "IOException";
 				String errorHeader = "In QuestionsController, getUserQuestions()";
 				String errorText = e.getMessage();
-				showErrorDialog(setTitle,errorHeader,errorText);
+				showErrorDialog(setTitle, errorHeader, errorText);
 			}
 		}
 	}
+
 	/**
 	 * 
-	 * This method is called in order to get all user teaching subjects - nessecary to get relevant questions
+	 * This method is called in order to get all user teaching subjects - nessecary
+	 * to get relevant questions
 	 * 
 	 * @param user
-	 * 				the user that needed to get his teaching subjects
+	 *            the user that needed to get his teaching subjects
 	 */
 	private void getUserSubjects(User user) {
-		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects",user);
+		UserSubjectMessage newUserSubjectMessage = (UserSubjectMessage) message.getMessage("get-UserSubjects", user);
 		try {
 			client.sendToServer(newUserSubjectMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In QuestionsController, getUserSubjects()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
 
@@ -719,13 +779,15 @@ public class QuestionsController implements Observer{
 	}
 
 	/**
-	 *  this moethod filling the teacher teaching subjects combobox
+	 * this moethod filling the teacher teaching subjects combobox
+	 * 
 	 * @param teacherSubject
-	 * 							the subjects to enter the combobox
+	 *            the subjects to enter the combobox
 	 */
 	private void fillCombobox(ArrayList<Subject> teacherSubject) {
 		observableSubjects = FXCollections.observableArrayList(teacherSubject);
-		subjectCombobox.getItems().add(new Subject("00", "Show all Questions"));		// DUMMY subject, for showing all table rows
+		subjectCombobox.getItems().add(new Subject("00", "Show all Questions")); // DUMMY subject, for showing all table
+																					// rows
 		subjectCombobox.getItems().addAll(observableSubjects);
 	}
 
@@ -737,24 +799,27 @@ public class QuestionsController implements Observer{
 	}
 
 	/**
-	 * @param questions the questions to set
+	 * @param questions
+	 *            the questions to set
 	 */
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
-	
+
 	/**
 	 *
-	 * A method that is responsible for adding questions recieved from server into this.questions
+	 * A method that is responsible for adding questions recieved from server into
+	 * this.questions
+	 * 
 	 * @param questions
-	 * 						recieved from server
+	 *            recieved from server
 	 */
 	public void addQuestions(ArrayList<Question> questions) {
 		Boolean identFlag = false;
-		for (Question question: questions) {
-			for (Question question2: this.questions) {
-				if (question.getQuestionId().equals(question2.getQuestionId()) ){
-					identFlag = true; 
+		for (Question question : questions) {
+			for (Question question2 : this.questions) {
+				if (question.getQuestionId().equals(question2.getQuestionId())) {
+					identFlag = true;
 				}
 			}
 			if (identFlag == false) {
@@ -762,7 +827,7 @@ public class QuestionsController implements Observer{
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -774,6 +839,7 @@ public class QuestionsController implements Observer{
 		btnSearch.setDisable(true);
 		deleteQuestion.setDisable(true);
 	}
+
 	/**
 	 * 
 	 * 

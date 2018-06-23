@@ -75,25 +75,27 @@ public class SetInDB {
 
 	// CLASS METHODS *************************************************
 
-	
 	/**
 	 * 
 	 * A method that update in the database in the solved exam table the cheating
 	 * flag column
 	 * 
 	 * @author Amit Molek
-	 * @param user_id
+	 * @param grade
 	 *            the id of the teacher who executed the exam
-	 * @param exam_id
+	 * @param expl
 	 *            the exam id
-	 * @param cheated
+	 * @param teacher_id
 	 *            true if the student cheated or false if not cheated
+	 * @param se
+	 *            teacher_id true if the student cheated or false if not cheated
 	 * @return true if the updated successful and false otherwise
-	 */	 
-	public boolean updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(int grade, String expl, String teacher_id, SolvedExams se) {
+	 */
+	public boolean updateSolvedExamGrade_Approval_Explenation_ApprovingTeacherID(int grade, String expl,
+			String teacher_id, SolvedExams se) {
 		String updateQuery = "UPDATE `solved exams` SET solved_exam_grade = ?, grade_alteration_explanation = ?,"
 				+ "approving_teacher_id = ?, grade_approval_by_teacher = ? WHERE User_ID = ? AND exam_ID = ? AND exam_executing_Date = ?;";
-		
+
 		try {
 			newStmt = conn.prepareStatement(updateQuery);
 			newStmt.setInt(1, grade);
@@ -104,15 +106,15 @@ public class SetInDB {
 			newStmt.setString(6, se.getExamID());
 			newStmt.setTimestamp(7, se.getExamDateTime());
 			newStmt.execute();
-			
+
 			new SolvedExamsFinishedStatistics(se.getExamID());
 			return true;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * A method that update in the database in the solved exam table the cheating
@@ -192,19 +194,20 @@ public class SetInDB {
 
 	/**
 	 * Add statistics about the solved exam to the database
-	 * @param examStatistic the Statistics object filled with all the exam statistical data
+	 * 
+	 * @param examStatistic
+	 *            the Statistics object filled with all the exam statistical data
 	 */
 	public void addSolvedExamStatistics(Statistic examStatistic) {
 		String insertQuery = "INSERT INTO `exams stats`("
 				+ "exam_ID, exam_date, real_time_duration, submitted_students_counter, interrupted_students_counter, students_started_counter,"
 				+ "exams_avg, exams_median, grade_derivative_0_10, grade_derivative_11_20, grade_derivative_21_30, grade_derivative_31_40,"
 				+ "grade_derivative_41_50, grade_derivative_51_60, grade_derivative_61_70, grade_derivative_71_80, grade_derivative_81_90,"
-				+ "grade_derivative_91_100)"
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-		
+				+ "grade_derivative_91_100)" + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
 		try {
 			newStmt = conn.prepareStatement(insertQuery);
-			
+
 			newStmt.setString(1, examStatistic.getExam_ID());
 			newStmt.setTimestamp(2, examStatistic.getDateTime());
 			newStmt.setInt(3, Integer.parseInt(examStatistic.getReal_time_duration()));
@@ -213,7 +216,7 @@ public class SetInDB {
 			newStmt.setInt(6, examStatistic.getStudents_started_counter());
 			newStmt.setDouble(7, examStatistic.getExams_avg());
 			newStmt.setDouble(8, examStatistic.getExams_median());
-			
+
 			newStmt.setDouble(9, examStatistic.getGrade_derivative_0_10());
 			newStmt.setDouble(10, examStatistic.getGrade_derivative_11_20());
 			newStmt.setDouble(11, examStatistic.getGrade_derivative_21_30());
@@ -231,7 +234,7 @@ public class SetInDB {
 			e2.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * A method that adds a question to the database to the question table
 	 * 
@@ -410,7 +413,7 @@ public class SetInDB {
 	/**
 	 * A method that add to the database in a solved exams table
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param newExam
 	 *            the solved exam
 	 * @return abstract message if the solved exam added successful
@@ -439,7 +442,7 @@ public class SetInDB {
 	/**
 	 * A method that add to the database in a execute exams table
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param newExam
 	 *            the execute exam
 	 * @return abstract message if the execute exam added successful
@@ -495,7 +498,7 @@ public class SetInDB {
 	/**
 	 * A method that deletes from the database in a solved exam table
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param examId
 	 *            the solved exam id
 	 */
@@ -513,7 +516,7 @@ public class SetInDB {
 	/**
 	 * A method that deletes from the database in a execute exams table
 	 * 
-	 * @autor Naor Saadia
+	 * @author Naor Saadia
 	 * @param examId
 	 *            the execute exam id
 	 */

@@ -61,7 +61,7 @@ import root.util.log.LogLine;
  * @author Gal Brandwine
  *
  */
-public class SolvedExamsController  implements Observer{
+public class SolvedExamsController implements Observer {
 
 	// FXML variables **********************************************
 
@@ -171,17 +171,18 @@ public class SolvedExamsController  implements Observer{
 	/**
 	 * the hashMap to hold courseId with relevant course name
 	 */
-	private HashMap<String, String> courseMap;			// key = subjectID, value = subject name
+	private HashMap<String, String> courseMap; // key = subjectID, value = subject name
 
 	/**
-	 *  the hashMap to hold relevant teacher id with teacher name
+	 * the hashMap to hold relevant teacher id with teacher name
 	 */
-	private HashMap<String, String> teachersMap;		// key = teacherID, value = teacher full name.
+	private HashMap<String, String> teachersMap; // key = teacherID, value = teacher full name.
 
 	/**
 	 * a specific solved exams CSV
 	 */
-	private ArrayList<String[]> csvData;				// csvData contains per solvedExam questions: {questionID, selectedQuestion, question Weight}
+	private ArrayList<String[]> csvData; // csvData contains per solvedExam questions: {questionID, selectedQuestion,
+											// question Weight}
 
 	/**
 	 * this strudent solved exams
@@ -208,35 +209,43 @@ public class SolvedExamsController  implements Observer{
 
 	/**
 	 * This method fires when theres a selection from combobox
+	 * 
 	 * @param event
 	 */
 	@FXML
 	void selectFromCombobox(ActionEvent event) {
 		String selectedCourse = courseCombobox.getSelectionModel().getSelectedItem();
 		observabaleSolvedExams.clear();
-		if (selectedCourse.equals("show all exams"))observabaleSolvedExams.addAll(solvedExams);
+		if (selectedCourse.equals("show all exams"))
+			observabaleSolvedExams.addAll(solvedExams);
 		else {
-			for(SolvedExams solveExam: solvedExams) {
-				if (solveExam.getExamCourse().equals(selectedCourse) ) {
+			for (SolvedExams solveExam : solvedExams) {
+				if (solveExam.getExamCourse().equals(selectedCourse)) {
 					observabaleSolvedExams.add(solveExam);
 				}
 			}
-		}	
+		}
 	}
 
 	/**
 	 * This method occurs when the window is shown up.
-	 * @throws IOException if the window cannot be shown
+	 * 
+	 * @throws IOException
+	 *             if the window cannot be shown
 	 */
 	@FXML
-	public void initialize() throws IOException{
+	public void initialize() throws IOException {
 		Platform.runLater(() -> rootPane.requestFocus());
 		message = MessageFactory.getInstance();
 		screenManager = ScreensManager.getInstance();
 
-		client = (ObservableClient)DataKeepManager.getInstance().getObject_NoRemove("client");			// get the client from DataKeep, but dont remove it from there, for later use.
+		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client"); // get the client from
+																								// DataKeep, but dont
+																								// remove it from there,
+																								// for later use.
 		client.deleteObservers();
-		client.addObserver(this);																		// add THIS to clinet's observer, so THIS.update will be triggered when server send messages.
+		client.addObserver(this); // add THIS to clinet's observer, so THIS.update will be triggered when server
+									// send messages.
 
 		user = (User) DataKeepManager.getInstance().getUser();
 		solvedExams = new ArrayList<SolvedExams>();
@@ -264,28 +273,33 @@ public class SolvedExamsController  implements Observer{
 		getUserSolvedExamsByUserID();
 		initSolvedExamTable();
 	}
+
 	/**
-	 * this method is called when need to fill courseMap, first get all solvedExams course ID, from examID. Than get all course names 
+	 * this method is called when need to fill courseMap, first get all solvedExams
+	 * course ID, from examID. Than get all course names
+	 * 
 	 * @param solvedExams2
 	 */
 	private void getSolvedExamsCourse(ArrayList<SolvedExams> solvedExams2) {
-		for(SolvedExams solvedExam: solvedExams) {
+		for (SolvedExams solvedExam : solvedExams) {
 			courseMap.put(solvedExam.getExamID().substring(2, 4), "");
 		}
-		CourseMessage newCourseMessage = (CourseMessage) message.getMessage("get-coursesbyid",courseMap);
+		CourseMessage newCourseMessage = (CourseMessage) message.getMessage("get-coursesbyid", courseMap);
 		try {
 			client.sendToServer(newCourseMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In SolvedExamsController, getSolvedExamsCourse()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
 
 	private void getUserSolvedExamsByUserID() {
-		if (solvedExams.isEmpty() != true)return;	// if solvedExams has been loaded already, do nothing
-		UserSolvedExamsMessage userSolvedExamMessage =(UserSolvedExamsMessage) message.getMessage("get-solvedExams-user",user);
+		if (solvedExams.isEmpty() != true)
+			return; // if solvedExams has been loaded already, do nothing
+		UserSolvedExamsMessage userSolvedExamMessage = (UserSolvedExamsMessage) message
+				.getMessage("get-solvedExams-user", user);
 		try {
 			client.sendToServer(userSolvedExamMessage);
 		} catch (IOException e) {
@@ -293,6 +307,7 @@ public class SolvedExamsController  implements Observer{
 			log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 		}
 	}
+
 	/**
 	 * this method fires when SolvedExamsController is initialized
 	 */
@@ -301,44 +316,45 @@ public class SolvedExamsController  implements Observer{
 		tbcCourse.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("examCourse"));
 		tbcExecutingDate.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("examDateTime"));
 		tbcTeacherNotes.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("teacherNotes"));
-		tbcAlteredHradeExplenation.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("gradeAlturationExplanation"));
-		tbcApprovingTeacherName.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("approvingTeacherName"));
-		tbcIdGrade.setCellValueFactory(new PropertyValueFactory<SolvedExams, Integer>("examGrade"));		
+		tbcAlteredHradeExplenation
+				.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("gradeAlturationExplanation"));
+		tbcApprovingTeacherName
+				.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("approvingTeacherName"));
+		tbcIdGrade.setCellValueFactory(new PropertyValueFactory<SolvedExams, Integer>("examGrade"));
 		/**
-		 *  all this, is pre-settings for adding a button into the column
+		 * all this, is pre-settings for adding a button into the column
 		 */
-		tbcGetCopy.setCellValueFactory(new PropertyValueFactory<SolvedExams,String>("action"));
+		tbcGetCopy.setCellValueFactory(new PropertyValueFactory<SolvedExams, String>("action"));
 
-		Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory
-		= //
-		new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
-			@Override
-			public TableCell call(final TableColumn<SolvedExams, String> param) {
-
-				final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
-
-					final Button btn = new Button("Download copy");
-
+		Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>> cellFactory = //
+				new Callback<TableColumn<SolvedExams, String>, TableCell<SolvedExams, String>>() {
 					@Override
-					public void updateItem(String item, boolean empty) {
-						super.updateItem(item, empty);
-						if (empty) {
-							setGraphic(null);
-							setText(null);
-						} else {
-							btn.setOnAction(event -> {
-								solvedExam = getTableView().getItems().get(getIndex());
-								perapeDownload(solvedExam);
-							});
-							setGraphic(btn);
-							setText(null);
-						}
-					}
+					public TableCell call(final TableColumn<SolvedExams, String> param) {
 
+						final TableCell<SolvedExams, String> cell = new TableCell<SolvedExams, String>() {
+
+							final Button btn = new Button("Download copy");
+
+							@Override
+							public void updateItem(String item, boolean empty) {
+								super.updateItem(item, empty);
+								if (empty) {
+									setGraphic(null);
+									setText(null);
+								} else {
+									btn.setOnAction(event -> {
+										solvedExam = getTableView().getItems().get(getIndex());
+										perapeDownload(solvedExam);
+									});
+									setGraphic(btn);
+									setText(null);
+								}
+							}
+
+						};
+						return cell;
+					}
 				};
-				return cell;
-			}
-		};
 		tbcGetCopy.setCellFactory(cellFactory);
 	}
 
@@ -351,12 +367,13 @@ public class SolvedExamsController  implements Observer{
 
 	/**
 	 * this method is called when student pressed the "Download copy" button.
+	 * 
 	 * @param solvedExam
 	 */
 	private void perapeDownload(SolvedExams solvedExam) {
 		System.out.println(solvedExam);
 		/**
-		 * get CSV of this solved exam, from server 
+		 * get CSV of this solved exam, from server
 		 */
 		CsvDetails csv = new CsvDetails(solvedExam, solvedExam.getSovingStudentID());
 		CsvMessage newMessage = (CsvMessage) message.getMessage("get-csvFromServer", csv);
@@ -367,75 +384,63 @@ public class SolvedExamsController  implements Observer{
 			String setTitle = "IOException";
 			String errorHeader = "In SolvedExamsController, perapeDownload()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 
 	}
+
 	/**
 	 * this method get all solvedExam's questions
 	 */
 	private void getExamQuestions() {
 		ArrayList<String> questionIDList = new ArrayList<String>();
-		for (String[] csvLine: csvData) {
+		for (String[] csvLine : csvData) {
 			String questionID = csvLine[0];
 			if (questionID.equals("QuestionID") == false) {// do this check to pass the first line of the csvData file.
 				questionIDList.add(questionID);
 			}
 		}
-		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions",questionIDList);
+		QuestionsMessage newQuestionMessage = (QuestionsMessage) message.getMessage("get-Questions", questionIDList);
 		try {
 			client.sendToServer(newQuestionMessage);
 		} catch (IOException e) {
 			String setTitle = "IOException";
 			String errorHeader = "In SolvedExamsController, getExamQuestions()";
 			String errorText = e.getMessage();
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
+
 	/**
-	 * this method create the solvedExam's PDF. 
+	 * this method create the solvedExam's PDF.
 	 */
 	private void createWord() {
-		/** Word formation:
+		/**
+		 * Word formation:
 		 * 
-		 *	SolvingDate
-		 *	Exam ID
-		 *	StudentID
-		 *	Approving teacher full name
-		 *	Exam Grade
+		 * SolvingDate Exam ID StudentID Approving teacher full name Exam Grade
 		 *
-		 *	question (from Questions)
-		 *	Question weight
-		 *	selected answer
+		 * question (from Questions) Question weight selected answer
 		 *
-		 *	question (from Questions)
-		 *	Question weight
-		 *	selected answer
-		 *		*
-		 *		*
-		 *		*
+		 * question (from Questions) Question weight selected answer * * *
 		 *
 		 */
 
 		Platform.runLater(() -> {
 			System.out.println("opening fileChooser");
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Save solvedExam"); 
-			fileChooser.setInitialFileName(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx");
+			fileChooser.setTitle("Save solvedExam");
+			fileChooser.setInitialFileName(solvedExam.getExamID() + "-" + solvedExam.getSovingStudentID() + ".docx");
 			File file = fileChooser.showSaveDialog(screenManager.getPrimaryStage());
 			if (file != null) {
 				try {
-					//Blank Document
+					// Blank Document
 					XWPFDocument document = new XWPFDocument();
-					//Write the Document in file system
+					// Write the Document in file system
 					FileOutputStream out = new FileOutputStream(file);
 					/**
-					 * Printing:
-					 *	SolvingDate
-					 *	Exam ID
-					 *	StudentID
-					 *	Approving teacher full name
-					 *	Exam Grade
+					 * Printing: SolvingDate Exam ID StudentID Approving teacher full name Exam
+					 * Grade
 					 */
 					// solving date
 					XWPFParagraph dateParagraph = document.createParagraph();
@@ -443,7 +448,7 @@ public class SolvedExamsController  implements Observer{
 					runDate.setBold(true);
 					runDate.setItalic(true);
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-					String solvedExsamDate  = dateFormat.format(solvedExam.getExamDateTime());
+					String solvedExsamDate = dateFormat.format(solvedExam.getExamDateTime());
 					runDate.setText(solvedExsamDate);
 					// Exam ID + Exam course
 					XWPFParagraph titleParagraph = document.createParagraph();
@@ -451,117 +456,135 @@ public class SolvedExamsController  implements Observer{
 					XWPFRun runTitle = titleParagraph.createRun();
 					runTitle.setBold(true);
 					runTitle.setItalic(true);
-					runTitle.setText("ExamID: "+ solvedExam.getExamID());
+					runTitle.setText("ExamID: " + solvedExam.getExamID());
 					runTitle.addBreak();
-					runTitle.setText("Exam course: "+ solvedExam.getExamCourse());
+					runTitle.setText("Exam course: " + solvedExam.getExamCourse());
 					runTitle.addBreak();
-					runTitle.setText("Strudet ID: "+ solvedExam.getSovingStudentID());
+					runTitle.setText("Strudet ID: " + solvedExam.getSovingStudentID());
 					runTitle.addBreak();
-					runTitle.setText("Approving Teacher: "+ solvedExam.getApprovingTeacherName());
+					runTitle.setText("Approving Teacher: " + solvedExam.getApprovingTeacherName());
 					runTitle.addBreak();
-					runTitle.setText("Exam grade: "+ solvedExam.getExamGrade());
+					runTitle.setText("Exam grade: " + solvedExam.getExamGrade());
 					runTitle.addBreak();
 					/**
 					 * printing Questions and selected answeres
 					 */
-					for (Question question: solvedExamQuestions) {
-						//create Paragraph
+					for (Question question : solvedExamQuestions) {
+						// create Paragraph
 						XWPFParagraph questionParagraph = document.createParagraph();
 						XWPFRun runQuestions = questionParagraph.createRun();
-						runQuestions.setText(question.getQuestionText()+"\n");
+						runQuestions.setText(question.getQuestionText() + "\n");
 						runQuestions.addBreak();
 						runQuestions.addTab();
-						if(question.getIdquestionIntruction() != null) {
-							runQuestions.setText(question.getIdquestionIntruction()+"\n");
+						if (question.getIdquestionIntruction() != null) {
+							runQuestions.setText(question.getIdquestionIntruction() + "\n");
 							runQuestions.addBreak();
 							runQuestions.addTab();
 						}
 						runQuestions.setText("Possible answeres:");
 						runQuestions.addBreak();
 						runQuestions.addTab();
-						runQuestions.setText("1) "+question.getAns1());
+						runQuestions.setText("1) " + question.getAns1());
 						runQuestions.addBreak();
 						runQuestions.addTab();
-						runQuestions.setText("2) "+question.getAns2());
+						runQuestions.setText("2) " + question.getAns2());
 						runQuestions.addBreak();
 						runQuestions.addTab();
-						runQuestions.setText("3) "+question.getAns3());
+						runQuestions.setText("3) " + question.getAns3());
 						runQuestions.addBreak();
 						runQuestions.addTab();
-						runQuestions.setText("4) "+question.getAns4());
+						runQuestions.setText("4) " + question.getAns4());
 						runQuestions.addBreak();
 						runQuestions.addTab();
 						runQuestions.setText("Correct answer: " + question.getCorrectAns());
 						runQuestions.addBreak();
 						runQuestions.addTab();
 						// getting the selected answer from csvData.
-						for (String[] csvLine: csvData) {
+						for (String[] csvLine : csvData) {
 							String slectedQuestionID = csvLine[0].replaceAll("\"", "");
 							String questionID = question.getQuestionId();
 							int correctAnswer = question.getCorrectAns();
-							if (slectedQuestionID.equals(questionID) ) {
-								runQuestions.setText("Your selected answer: "+ csvLine[1].replaceAll("\"", ""));
+							if (slectedQuestionID.equals(questionID)) {
+								runQuestions.setText("Your selected answer: " + csvLine[1].replaceAll("\"", ""));
 								runQuestions.addBreak();
 								if (Integer.parseInt(csvLine[1].replaceAll("\"", "")) == correctAnswer) {
-									runQuestions.setText("Question points: "+ csvLine[2].replaceAll("\"", "") +"/"+csvLine[2].replaceAll("\"", ""));
-								}
-								else runQuestions.setText("Recieved points: "+ "0" +"/"+csvLine[2].replaceAll("\"", ""));
+									runQuestions.setText("Question points: " + csvLine[2].replaceAll("\"", "") + "/"
+											+ csvLine[2].replaceAll("\"", ""));
+								} else
+									runQuestions
+											.setText("Recieved points: " + "0" + "/" + csvLine[2].replaceAll("\"", ""));
 							}
 						}
 						runQuestions.addBreak();
-					}// end of printing questions
+					} // end of printing questions
 					document.enforceReadonlyProtection();
 					document.write(out);
 
-					//Close document
+					// Close document
 					out.close();
-					System.out.println(solvedExam.getExamID()+"-"+solvedExam.getSovingStudentID() + ".docx" + " written successfully");
+					System.out.println(solvedExam.getExamID() + "-" + solvedExam.getSovingStudentID() + ".docx"
+							+ " written successfully");
 
-				}catch (IOException e) {
+				} catch (IOException e) {
 					String setTitle = "IOException";
 					String errorHeader = "In SolvedExamsController, createWord()";
 					String errorText = e.getMessage();
-					showErrorDialog(setTitle,errorHeader,errorText);
-				}catch (Exception e) {
+					showErrorDialog(setTitle, errorHeader, errorText);
+				} catch (Exception e) {
 					String setTitle = "Exception";
 					String errorHeader = "In SolvedExamsController, createWord()";
 					String errorText = e.getMessage();
-					showErrorDialog(setTitle,errorHeader,errorText);
+					showErrorDialog(setTitle, errorHeader, errorText);
 				}
 			}
 		});
 	}
+
 	/**
-	 * This method called when we need to update in tblQuestions the TeacherName column
+	 * This method called when we need to update in tblQuestions the TeacherName
+	 * column
 	 */
 	private void updateTeacherAssemblerFullName(HashMap<String, String> userInfo) {
-		for (SolvedExams solvedExam: solvedExams) {					// update the questions array, to keep updated
+		for (SolvedExams solvedExam : solvedExams) { // update the questions array, to keep updated
 			String tempTeacherAssembeledID = solvedExam.getApprovingTeacherID();
-			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+			if (userInfo.containsKey(tempTeacherAssembeledID)) {
 				solvedExam.setApprovingTeacherName(userInfo.get(tempTeacherAssembeledID));
 			}
 		}
-		for (SolvedExams obsSolvedExam: observabaleSolvedExams) {	// update observableQuestion to update the tblQuestions
+		for (SolvedExams obsSolvedExam : observabaleSolvedExams) { // update observableQuestion to update the
+																	// tblQuestions
 			String tempTeacherAssembeledID = obsSolvedExam.getApprovingTeacherID();
-			if(userInfo.containsKey(tempTeacherAssembeledID)) {
+			if (userInfo.containsKey(tempTeacherAssembeledID)) {
 				obsSolvedExam.setApprovingTeacherName(userInfo.get(tempTeacherAssembeledID));
 			}
 		}
 	}
 
 	/**
-	 *  This method is called in order to fill theacherMap, 
-	 *  for each solvedExam in the subject this teacher teaches, we need the teacher assembled name.
-	 * @param questions2
+	 * This method is called in order to fill theacherMap, for each solvedExam in
+	 * the subject this teacher teaches, we need the teacher assembled name.
+	 * 
+	 * @param solvedExams2
 	 */
 	void getTeachersMap(ArrayList<SolvedExams> solvedExams2) {
-		// by sending all solvedExams of THIS, well loop over all solvedExams and get the relevant ApprovringteacherName Full name
-		for (SolvedExams solvedExam: solvedExams) {
+		// by sending all solvedExams of THIS, well loop over all solvedExams and get
+		// the relevant ApprovringteacherName Full name
+		for (SolvedExams solvedExam : solvedExams) {
 			teachersMap.put(solvedExam.getApprovingTeacherID(), "");
 		}
-		UserInfo teachersInfo = new UserInfo(teachersMap,null);
+		UserInfo teachersInfo = new UserInfo(teachersMap, null);
 		teachersInfo.setSolvedExams(solvedExams2);
-		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name",teachersInfo);	// we can send the specific question because we have table "Questions"
+		UserInfoMessage teacehrInfoMessage = (UserInfoMessage) message.getMessage("get-user-name", teachersInfo); // we
+																													// can
+																													// send
+																													// the
+																													// specific
+																													// question
+																													// because
+																													// we
+																													// have
+																													// table
+																													// "Questions"
 		try {
 			client.sendToServer(teacehrInfoMessage);
 		} catch (IOException e) {
@@ -580,44 +603,48 @@ public class SolvedExamsController  implements Observer{
 
 	/**
 	 * This method is called when there's a need to ErrorDialog
+	 * 
 	 * @param HeaderTitle
 	 * @param HeaderText
 	 * @param Errormessage
 	 */
-	private void showErrorDialog(String HeaderTitle,String HeaderText,String Errormessage){
-		Platform.runLater(() -> {								// In order to run javaFX thread.(we recieve from server a java thread)
+	private void showErrorDialog(String HeaderTitle, String HeaderText, String Errormessage) {
+		Platform.runLater(() -> { // In order to run javaFX thread.(we recieve from server a java thread)
 			// Show the error message.
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.initOwner(screenManager.getPrimaryStage());
-			alert.setTitle(HeaderTitle);//"ServerIP error");
-			alert.setHeaderText(HeaderText);//"Please contact system administrator");
+			alert.setTitle(HeaderTitle);// "ServerIP error");
+			alert.setHeaderText(HeaderText);// "Please contact system administrator");
 			alert.setContentText(Errormessage);
-			alert.showAndWait();       
-			log.writeToLog(LogLine.LineType.ERROR,Errormessage);
+			alert.showAndWait();
+			log.writeToLog(LogLine.LineType.ERROR, Errormessage);
 		});
 	}
 
 	/**
-	 * after getting all courses relevant for these solved exams, i want to update solvedExam.examcourse field, for further use
+	 * after getting all courses relevant for these solved exams, i want to update
+	 * solvedExam.examcourse field, for further use
 	 */
 	private void updateSolvedExamsCourse() {
-		for (SolvedExams solvedExam: solvedExams) {
-			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4); 
-			if (courseMap.containsKey(tempCourseIDinSolvedExam) ) {
+		for (SolvedExams solvedExam : solvedExams) {
+			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4);
+			if (courseMap.containsKey(tempCourseIDinSolvedExam)) {
 				solvedExam.setExamCourse(courseMap.get(tempCourseIDinSolvedExam));
 
 			}
 		}
-		for (SolvedExams solvedExam: observabaleSolvedExams) {
-			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4); 
-			if (courseMap.containsKey(tempCourseIDinSolvedExam) ) {
+		for (SolvedExams solvedExam : observabaleSolvedExams) {
+			String tempCourseIDinSolvedExam = solvedExam.getExamID().substring(2, 4);
+			if (courseMap.containsKey(tempCourseIDinSolvedExam)) {
 				solvedExam.setExamCourse(courseMap.get(tempCourseIDinSolvedExam));
 
 			}
 		}
 	}
+
 	/**
 	 * this method fires when pressing the search button
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -626,8 +653,8 @@ public class SolvedExamsController  implements Observer{
 		if (txtFieldSolvedExams.getText().length() != 0) {
 			String solvedExamID = txtFieldSolvedExams.getText();
 			observabaleSolvedExams.clear();
-			for(SolvedExams solvedExam: solvedExams) {
-				if (solvedExam.getExamID().equals(solvedExamID) ) {
+			for (SolvedExams solvedExam : solvedExams) {
+				if (solvedExam.getExamID().equals(solvedExamID)) {
 					observabaleSolvedExams.add(solvedExam);
 				}
 			}
@@ -637,36 +664,35 @@ public class SolvedExamsController  implements Observer{
 		if (txtFieldId.getText().length() != 0) {
 			String teacherID = txtFieldId.getText();
 			observabaleSolvedExams.clear();
-			for(SolvedExams solvedExam: solvedExams) {
-				if (solvedExam.getApprovingTeacherID().equals(teacherID) ) {
+			for (SolvedExams solvedExam : solvedExams) {
+				if (solvedExam.getApprovingTeacherID().equals(teacherID)) {
 					observabaleSolvedExams.add(solvedExam);
 				}
 			}
 			txtFieldId.clear();
 			return;
 		}
-		if (txtFieldName.getText().length() != 0){
+		if (txtFieldName.getText().length() != 0) {
 			String teacherName = txtFieldName.getText();
 			observabaleSolvedExams.clear();
-			for(SolvedExams solvedExam: solvedExams) {
-				if (solvedExam.getApprovingTeacherName().equals(teacherName) ) {
+			for (SolvedExams solvedExam : solvedExams) {
+				if (solvedExam.getApprovingTeacherName().equals(teacherName)) {
 					observabaleSolvedExams.add(solvedExam);
 				}
 			}
 			txtFieldName.clear();
 			return;
-		}else {
+		} else {
 			// Nothing selected.
 			String setTitle = "No selection";
 			String errorHeader = "No field Selected";
 			String errorText = "Please fill selected field";
-			showErrorDialog(setTitle,errorHeader,errorText);
+			showErrorDialog(setTitle, errorHeader, errorText);
 		}
 	}
 
-
 	/**
-	 * This method happens when the server send an message 
+	 * This method happens when the server send an message
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -675,45 +701,48 @@ public class SolvedExamsController  implements Observer{
 			createWord();
 		}
 		if (arg1 instanceof CsvMessage) {
-			ArrayList<String[]> tempCsv =((CsvMessage) arg1).getCsvDetailofSolvedExam();
+			ArrayList<String[]> tempCsv = ((CsvMessage) arg1).getCsvDetailofSolvedExam();
 			this.csvData = tempCsv;
 			getExamQuestions();
 		}
 		if (arg1 instanceof UserSolvedExamsMessage) {
-			ArrayList<SolvedExams> tempSolvedExams =  ((UserSolvedExamsMessage) arg1).getUserSolvedExams();
-			for (SolvedExams solvedExam: tempSolvedExams) {
-				if (solvedExam.getCalculatedGradeApprovalStateByTeacher().equals("approved"))this.solvedExams.add(solvedExam);
+			ArrayList<SolvedExams> tempSolvedExams = ((UserSolvedExamsMessage) arg1).getUserSolvedExams();
+			for (SolvedExams solvedExam : tempSolvedExams) {
+				if (solvedExam.getCalculatedGradeApprovalStateByTeacher().equals("approved"))
+					this.solvedExams.add(solvedExam);
 			}
-			observabaleSolvedExams = FXCollections.observableArrayList(); 			// add new solvedExams to ObservebaleList
-			for (SolvedExams solvedExam: solvedExams) {
+			observabaleSolvedExams = FXCollections.observableArrayList(); // add new solvedExams to ObservebaleList
+			for (SolvedExams solvedExam : solvedExams) {
 				observabaleSolvedExams.add(solvedExam);
 			}
-			getTeachersMap(solvedExams);												// add newly teacher's ID to teacherMap
+			getTeachersMap(solvedExams); // add newly teacher's ID to teacherMap
 			getSolvedExamsCourse(solvedExams);
-			tblSolvedExams.setItems(observabaleSolvedExams);							// insert newly fetched question's to tblQuestion
+			tblSolvedExams.setItems(observabaleSolvedExams); // insert newly fetched question's to tblQuestion
 		}
-		if(arg1 instanceof CourseMessage) {
-			if (this.courseMap.isEmpty())this.courseMap = ((CourseMessage) arg1).getCourseMap();
+		if (arg1 instanceof CourseMessage) {
+			if (this.courseMap.isEmpty())
+				this.courseMap = ((CourseMessage) arg1).getCourseMap();
 			this.courseMap.putAll(((CourseMessage) arg1).getCourseMap());
 			fillCombobox(this.courseMap);
 			updateSolvedExamsCourse();
 		}
 		if (arg1 instanceof UserInfoMessage) {
-			for (SolvedExams solvedExam: solvedExams) {
+			for (SolvedExams solvedExam : solvedExams) {
 				String tempApprovingTeaherId = solvedExam.getApprovingTeacherID();
-				if(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempApprovingTeaherId))
-					solvedExam.setApprovingTeacherName(((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempApprovingTeaherId));
-				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap();	// update teacherMap to hold new <teacherID,teacherFullName>.
+				if (((UserInfoMessage) arg1).getUserInfo().getTeachersMap().containsKey(tempApprovingTeaherId))
+					solvedExam.setApprovingTeacherName(
+							((UserInfoMessage) arg1).getUserInfo().getTeachersMap().get(tempApprovingTeaherId));
+				teachersMap = ((UserInfoMessage) arg1).getUserInfo().getTeachersMap(); // update teacherMap to hold new
+																						// <teacherID,teacherFullName>.
 			}
 			updateTeacherAssemblerFullName(teachersMap);
 		}
-		if(arg1 instanceof SimpleMessage) {
+		if (arg1 instanceof SimpleMessage) {
 			log.writeToLog(LogLine.LineType.INFO, "simpleMessage Recieved in SolvedExamController,  what the Fuck ?!");
-		}
-		else if (arg1 instanceof ErrorMessage) {
+		} else if (arg1 instanceof ErrorMessage) {
 			String errorHeader = ((ErrorMessage) arg1).getMsg();
 			String errorText = arg1.toString();
-			showErrorDialog("Server error",errorHeader,errorText);
+			showErrorDialog("Server error", errorHeader, errorText);
 		}
 	}
 }

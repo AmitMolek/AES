@@ -53,7 +53,7 @@ public class Subject implements Serializable{
 	 * 
 	 * A method that set the id of the subject
 	 * 
-	 * @param subjectId
+	 * @param subjectID
 	 *            the id of the subject
 	 */
 	public void setSubjectID(String subjectID) {
