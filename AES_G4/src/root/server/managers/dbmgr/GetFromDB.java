@@ -579,7 +579,7 @@ public class GetFromDB implements DbManagerInterface {
 	 * @return true if the exam exist, false otherwise
 	 */
 	public boolean isSolvedExamStatisticsExist(String exam_id) {
-		String getQuery = "SELECT exam_ID FROM `solved exams statistics` WHERE exam_ID = '" + exam_id + "';";
+		String getQuery = "SELECT exam_ID FROM `exams stats` WHERE exam_ID = '" + exam_id + "';";
 		ResultSet rs;
 		
 		try {
