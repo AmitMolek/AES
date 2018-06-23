@@ -24,6 +24,7 @@ import root.server.managers.*;
 import root.server.managers.dbmgr.GetFromDB;
 import root.util.log.Log;
 import root.util.log.LogLine;
+import root.util.properties.PropertiesFile;
 
 /**
  * 
@@ -66,6 +67,41 @@ public class AES_Server extends AbstractServer {
 	 */
 	public static ConnectionToClient CLIENT;
 
+	/**
+	 * The default database username
+	 */
+	final private static String DEFAULT_DB_USER = "root";
+	
+	/**
+	 * The default database password
+	 */
+	final private static String DEFAULT_DB_PASSWORD = "root";
+	
+	/**
+	 * The default database server ip
+	 */
+	final private static String DEFAULT_DB_IP = "localhost";
+	
+	/**
+	 * The name of the config property of database username
+	 */
+	final private static String CONFIG_DB_USER = "db_user";
+	
+	/**
+	 * The name of the config property of database password
+	 */
+	final private static String CONFIG_DB_PASSWORD = "db_password";
+	
+	/**
+	 * The name of the config property of database server ip
+	 */
+	final private static String CONFIG_DB_IP = "db_server_ip";
+	
+	/**
+	 * The instance of the config manager
+	 */
+	private static PropertiesFile properties = PropertiesFile.getInstance();
+	
 	// CONSTRUCTORS *****************************************************
 	
 	/**
@@ -137,9 +173,25 @@ public class AES_Server extends AbstractServer {
 		} catch (Exception ex) {
 			log.writeToLog(LogLine.LineType.ERROR, ex.getMessage());
 			/* handle the error */}
-		// fuck
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/aes", "root", "308023");
+			String db_user = properties.getFromConfig(CONFIG_DB_USER);
+			String db_password = properties.getFromConfig(CONFIG_DB_PASSWORD);
+			String db_ip = properties.getFromConfig(CONFIG_DB_IP);
+			
+			if(db_user == null) {
+				db_user = DEFAULT_DB_USER;
+				properties.writeToConfig(CONFIG_DB_USER, DEFAULT_DB_USER);
+			}
+			if(db_password == null) {
+				db_password = DEFAULT_DB_PASSWORD;
+				properties.writeToConfig(CONFIG_DB_PASSWORD, DEFAULT_DB_PASSWORD);
+			}
+			if(db_ip == null) {
+				db_ip = DEFAULT_DB_IP;
+				properties.writeToConfig(CONFIG_DB_IP, DEFAULT_DB_IP);
+			}
+			
+			conn = DriverManager.getConnection("jdbc:mysql://" + db_ip + "/aes", db_user, db_password);
 
 			System.out.println("SQL connection succeed");
 		} catch (SQLException ex) {/* handle any errors */
