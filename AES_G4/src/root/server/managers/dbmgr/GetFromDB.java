@@ -315,54 +315,6 @@ public class GetFromDB implements DbManagerInterface {
 	/**
 	 * 
 	 * 
-	 * A method that returns solved exams belonging to a specific exam id held on a
-	 * specific date from the database
-	 * 
-	 * @param exam_id
-	 *            the exam id
-	 * @param date
-	 *            the date of the exam
-	 * @return A list of all the exams of a particular exam on a given date
-	 * @author Amit Molek
-	 */
-	@SuppressWarnings("deprecation")
-	public ArrayList<CheatingExamTest> solvedExamCheatingTest(String exam_id, Date date) {
-		ArrayList<CheatingExamTest> exams = new ArrayList<>();
-		ResultSet rs;
-
-		String examDate = String.format("%d-%02d-%d", date.getYear(), date.getMonth(), date.getDate());
-		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id
-				+ "%' AND exam_executing_Date LIKE '" + examDate + "%'";
-
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(solvedExamsSqlQuery + ";");
-
-			while (rs.next()) {
-				String temp_user_id = rs.getString(1);
-				String temp_exam_id = rs.getString(2);
-				boolean cheating_flag = false;
-
-				String temp_cheating_flag_str = rs.getString(11);
-
-				if (temp_cheating_flag_str == "yes")
-					cheating_flag = true;
-
-				exams.add(new CheatingExamTest(temp_user_id, temp_exam_id, cheating_flag));
-			}
-
-			rs.close();
-			return exams;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	/**
-	 * 
-	 * 
 	 * 
 	 * A method that returns all exams from the database
 	 * 
@@ -660,7 +612,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<CheatingExamTest> exams = new ArrayList<>();
 		ResultSet rs;
 
-		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), (cal.get(Calendar.MONTH) + 1), cal.get(Calendar.DATE));
+		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id
 				+ "%' AND exam_executing_Date LIKE '" + examDate + "%'";
 
