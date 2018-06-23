@@ -23,6 +23,13 @@ import root.dao.message.LoggedOutMessage;
 import root.dao.message.LogoutErrorMessage;
 import root.dao.message.SimpleMessage;
 
+/**
+ * Controller of the utility bar
+ * The utility bar is the bar with the window controllers (minimize, exit, ...)
+ * @author Amit Molek
+ *
+ */
+
 public class UtilityBarController implements Observer{
 
     @FXML
@@ -62,8 +69,11 @@ public class UtilityBarController implements Observer{
     
     private static final int ERROR_DISPLAY_TIME = 7;
     
+    /**
+     * Used to init the whole screen
+     */
     @FXML
-	public void initialize() throws IOException{
+	public void initialize() {
     	dkm = DataKeepManager.getInstance();
     	primaryStage = ScreensManager.getInstance().getPrimaryStage();
     	exitApp = false;
@@ -130,7 +140,7 @@ public class UtilityBarController implements Observer{
     
     /**
      * Logs out the user and exits the app
-     * @param event
+     * @param event the event that happend
      */
     @FXML
     void logExitBtn(MouseEvent event) {
@@ -146,7 +156,7 @@ public class UtilityBarController implements Observer{
     
     /**
      * The exit button, event function
-     * @param event
+     * @param event the event that happend
      */
     @FXML
     void exitBtn(MouseEvent event) {
@@ -185,7 +195,7 @@ public class UtilityBarController implements Observer{
     
     /**
      * Logout the current user
-     * @param event
+     * @param event the event that happend
      */
     @FXML
     void logoutBtn(MouseEvent event) {

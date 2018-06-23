@@ -21,15 +21,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Observable;
-import java.util.Observer;
+
 /**
  * The controller of the home screen
  * @author Amit Molek
  *
  */
 
-public class HomeController  implements Observer{
+public class HomeController {
 
     @FXML
     private Text good_lbl;
@@ -74,13 +73,16 @@ public class HomeController  implements Observer{
 
 	private ObservableClient client;
     
+	/**
+	 * FXML init func
+	 * Used to init the whole screen
+	 */
     @FXML
     public void initialize() {
     	String serverIP = (String) dkm.getObject_NoRemove("ip");
     	 
     	if (dkm.getObject_NoRemove("client")== null) {
-    	   	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.
-        	//client.addObserver(this);												// --||--
+    	   	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.										// --||--
         	try {
     			client.openConnection();
     			dkm.keepObject("client", client);
@@ -125,20 +127,6 @@ public class HomeController  implements Observer{
      */
     private void init_BgImage() {
     	bgImg.setImage(HomeScreenBGLoader.getInstance().getRandomImage(getStageOfDay()));
-    	/*
-    	String mainPath = "root/client/resources/images/bg/home/";
-    	try {
-    		ArrayList<Image> images = ImageLoader.loadImagesFromFolder(mainPath + getStageOfDay().toLowerCase());
-    		Random rnd = new Random();
-    		if (images.size() != 0) {
-    			int rndImg = rnd.nextInt(images.size());
-    			bgImg.setImage(images.get(rndImg));
-    		}
-    	}catch (Exception e) {
-    		Log.getInstance().writeToLog(LineType.ERROR, "Tried loading background images.");
-    		e.printStackTrace();
-    	}
-    	*/
     }
     
     /**
@@ -181,18 +169,6 @@ public class HomeController  implements Observer{
     	}else {
     		return HomeScreenStages.EVENING;
     	}
-    	/*
-    	int sec = LocalTime.now().getSecond();
-    	if (sec >= 0 & sec < 10) {
-    		return "Morning";
-    	}else if (sec == 10) {
-    		return "Noon";
-    	}else if (sec > 10 && sec < 20) {
-    		return "Afternoon";
-    	}else {
-    		return "Evening";
-    	}
-    	*/
     }
     
     /**
@@ -268,10 +244,4 @@ public class HomeController  implements Observer{
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -51,6 +51,11 @@ public class MenuController {
     
     private final String aboutUsNames = "Group 4\nGal Brandwine\nAlon Ben-yosef\nNaor Saadia\nAmit Molek\nOmer Haimovich";
     
+    /**
+     * FXML init func
+     * Used to init the whole screen
+     * @throws IOException if the menu could not be initialized, image could not be loaded
+     */
     @FXML
 	public void initialize() throws IOException{
     	user = DataKeepManager.getInstance().getUser();
@@ -69,18 +74,15 @@ public class MenuController {
     	initExamsMenu();
     	if (user.getUserPremission().equals("Teacher")) {
         	initQuestionsMenu();
-        	
-    	}else if (user.getUserPremission().equals("Student")) {
-    		
-    	}else {
-    		
     	}
-    	
     	initExecuteExamMenu();
     	initStatisticsMenu();
     	initGoHelp();
     }
     
+    /**
+     * Used to init the execute exam menu
+     */
     public void initExecuteExamMenu() {
     	if (!user.getUserPremission().equals("Principal")) {
     		Image img = new Image(getClass().getResourceAsStream(executeExamIconPath));
@@ -96,6 +98,9 @@ public class MenuController {
     	}
     }
     
+    /**
+     * Used to init the exams menu
+     */
     public void initExamsMenu() {
     	Image img = new Image(getClass().getResourceAsStream(examsIconPath));
     	
@@ -111,6 +116,9 @@ public class MenuController {
     	}
     }
     
+    /**
+     * Used to init the questions menu
+     */
     public void initQuestionsMenu() {
     	Image img = new Image(getClass().getResourceAsStream(questionsIconPath));
     	
@@ -118,6 +126,9 @@ public class MenuController {
     	createMenuItem(new Menu(), img, "Questions", 100, 25, e);
     }
     
+    /**
+     * Used to init the statistics menu
+     */
     public void initStatisticsMenu() {
     	String per = user.getUserPremission();
     	Image img = new Image(getClass().getResourceAsStream(statisticsIconPath));

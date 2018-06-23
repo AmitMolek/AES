@@ -58,6 +58,12 @@ import root.dao.message.UserSubjectMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
 
+/**
+ * The controller for the Teacher view solved exams
+ * @author Amit Molek
+ *
+ */
+
 public class TeacherExamsViewController {
 
     @FXML
