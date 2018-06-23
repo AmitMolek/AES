@@ -196,7 +196,7 @@ public class SetInDB {
 	 */
 	public void addSolvedExamStatistics(Statistic examStatistic) {
 		String insertQuery = "INSERT INTO `exams stats`("
-				+ "exam_ID, Date, real_time_duration, submitted_students_counter, interrupted_students_counter, students_started_counter,"
+				+ "exam_ID, exam_date, real_time_duration, submitted_students_counter, interrupted_students_counter, students_started_counter,"
 				+ "exams_avg, exams_median, grade_derivative_0_10, grade_derivative_11_20, grade_derivative_21_30, grade_derivative_31_40,"
 				+ "grade_derivative_41_50, grade_derivative_51_60, grade_derivative_61_70, grade_derivative_71_80, grade_derivative_81_90,"
 				+ "grade_derivative_91_100)"
