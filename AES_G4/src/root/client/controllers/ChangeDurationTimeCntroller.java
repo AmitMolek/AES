@@ -36,33 +36,63 @@ import root.dao.message.SimpleMessage;
  * This controller response for change duration screen
  */
 public class ChangeDurationTimeCntroller implements Observer{
+	/**
+	 * The connection to server
+	 */
 	ObservableClient client;
-		
-	@FXML
-	private TextArea  txtNotes;
-
+	
+	/**
+	 * The column of duration time
+	 */
     @FXML
     private TableColumn<ExecuteExam, Integer> durationTime;
-
+    
+    /**
+     * the column of exam id
+     */
     @FXML
     private TableColumn<ExecuteExam, String> examId;
 
+    /**
+     * the column of exam type
+     */
     @FXML
     private TableColumn<ExecuteExam, String> examType;
 
+    /**
+     * the column of the start time
+     */
+    @FXML
+    private TableColumn<ExecuteExam, String> startTime;
+
+    /**
+     * the column of the exam password
+     */
     @FXML
     private TableColumn<ExecuteExam, String> examPassword;
     
+    /**
+     * the table of the execute exams
+     */
     @FXML
     private TableView<ExecuteExam> exeTable;
     
+    /**
+     * button to lock the exam
+     */
     @FXML
     private Button btnLock;
     
+    /**
+     * Message factory to get communication messages 
+     */
     MessageFactory messageFact;
     
-    
-    
+    /**
+     * This method called when the screen displayed
+     * this method initialize the table.
+     * this method init the connection
+     */
     @FXML
 	public void initialize() {  	
     	exeTable.setEditable(true);
@@ -70,13 +100,13 @@ public class ChangeDurationTimeCntroller implements Observer{
     	durationTime.setCellValueFactory(new PropertyValueFactory("durationTime"));
     	examId.setCellValueFactory(new PropertyValueFactory("examId"));
     	examType.setCellValueFactory(new PropertyValueFactory("examType"));
+    	startTime.setCellValueFactory(new PropertyValueFactory("startTime"));
     	examPassword.setCellValueFactory(new PropertyValueFactory("examPassword"));
 		client = (ObservableClient) DataKeepManager.getInstance().getObject_NoRemove("client");
 		client.addObserver(this);
 		try {
 			client.openConnection();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		durationTime.setCellFactory(
@@ -87,11 +117,14 @@ public class ChangeDurationTimeCntroller implements Observer{
 		try {
 			client.sendToServer(executedMsg);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
 
+    /**
+     * this method called when the server 
+     * send message to this observer
+     */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		if(arg1 instanceof ExecutedExamsMessage){
@@ -105,6 +138,11 @@ public class ChangeDurationTimeCntroller implements Observer{
 		}
 	}
 	
+	/**
+	 * this method called when the user change 
+	 * the duration column
+	 * @param durationEditEvent
+	 */
     @FXML
     public void updateTime(TableColumn.CellEditEvent<ExecuteExam, Integer> durationEditEvent) {
 		ChangeTimeDurationRequest cht = new ChangeTimeDurationRequest();
@@ -131,7 +169,12 @@ public class ChangeDurationTimeCntroller implements Observer{
     	
 }
     
-    
+    /**
+     * this method send message of change duration time to server 
+     * @param cht
+     * @param newTime
+     * @param examID
+     */
     public void sendMessage(ChangeTimeDurationRequest cht, int newTime, String examID) {
 		cht.setExamId(examID);
 		cht.setNewTime(newTime);
@@ -143,6 +186,10 @@ public class ChangeDurationTimeCntroller implements Observer{
 		}
     }
     
+    /**
+     * this method lock the exam
+     * @param event
+     */
     @FXML
     void LockExam(ActionEvent event) {
     	ExecuteExam executed = exeTable.getSelectionModel().getSelectedItem();
