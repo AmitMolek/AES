@@ -24,6 +24,11 @@ public class SendRequests {
 		}
 	}
 	
+	/**
+	 * this method send change time duration request
+	 * @param cht
+	 * @throws IOException
+	 */
 	public void send(ChangeTimeDurationRequest cht) throws IOException {
 		client.sendToServer(cht);
 		client.closeConnection();
