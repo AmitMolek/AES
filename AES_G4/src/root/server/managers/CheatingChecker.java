@@ -55,7 +55,7 @@ public class CheatingChecker {
 	public CheatingChecker(String exam_id, Calendar date) {
 		this.cal_date = date;
 		
-		String dateStr = cal_date.get(Calendar.YEAR) + "-" + cal_date.get(Calendar.MONTH) + "-" + cal_date.get(Calendar.DATE);
+		String dateStr = cal_date.get(Calendar.YEAR) + "-" + (cal_date.get(Calendar.MONTH)+1) + "-" + cal_date.get(Calendar.DATE);
 		System.out.println("Cheating Checker: " + exam_id + "-" + dateStr);
 		
 		csv_path = ServerMessageManager.PATHCSV;
@@ -75,7 +75,7 @@ public class CheatingChecker {
 	 * Prints all the cheated exams
 	 */
 	public void printCheatedExams() {
-		System.out.println("Exam ID: " + exam_id + ", Date: " + cal_date.get(Calendar.YEAR) + "-" + cal_date.get(Calendar.MONTH) + "-" + cal_date.get(Calendar.DATE));
+		System.out.println("Exam ID: " + exam_id + ", Date: " + cal_date.get(Calendar.YEAR) + "-" + (cal_date.get(Calendar.MONTH)+1) + "-" + cal_date.get(Calendar.DATE));
 		System.out.println("Cheated: " + cheatedExams.size());
 		for (CheatingExamTest cheatingExamTest : cheatedExams) {
 			String msg = "User: " + cheatingExamTest.getUser_id() + " Exam ID: " + cheatingExamTest.getExam_id();
@@ -255,7 +255,7 @@ public class CheatingChecker {
 	private CSVData getEntryFromCSV(String user_id) {
 		try {
 			
-			String folderName = exam_id + "-" + String.format("%d-%02d-%d", cal_date.get(Calendar.YEAR), cal_date.get(Calendar.MONTH), cal_date.get(Calendar.DATE));
+			String folderName = exam_id + "-" + String.format("%d-%02d-%d", cal_date.get(Calendar.YEAR), cal_date.get(Calendar.MONTH)+1, cal_date.get(Calendar.DATE));
 			CSVReader reader = new CSVReader(new FileReader(csv_path + folderName + "/" + user_id + ".csv"));
 	    	List<String[]> myEntries = reader.readAll();
 	    	CSVData userData = new CSVData();

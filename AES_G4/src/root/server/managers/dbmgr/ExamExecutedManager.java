@@ -3,10 +3,12 @@ package root.server.managers.dbmgr;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 
+import root.server.managers.CheatingChecker;
 import root.server.managers.usersmgr.ExecuteStudentManager;
 
 /**
@@ -70,6 +72,7 @@ public class ExamExecutedManager {
 			set.lockExam(examId);
 			examsTime.remove(examId);
 			examinees.removeExam(examId);
+			new CheatingChecker(examId, Calendar.getInstance());
 		}
 	}
 	

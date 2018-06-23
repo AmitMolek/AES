@@ -223,7 +223,6 @@ public class ServerMessageManager {
 		SetInDB set = new SetInDB();
 		set.deleteExecutedExam(examId);
 		set.lockExam(examId);
-		Calendar cal = Calendar.getInstance();
 		new CheatingChecker(examId, Calendar.getInstance());
 		return null;
 	}

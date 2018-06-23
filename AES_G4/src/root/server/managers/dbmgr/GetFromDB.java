@@ -612,7 +612,7 @@ public class GetFromDB implements DbManagerInterface {
 		ArrayList<CheatingExamTest> exams = new ArrayList<>();
 		ResultSet rs;
 
-		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+		String examDate = String.format("%d-%02d-%d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE));
 		String solvedExamsSqlQuery = "SELECT * FROM `solved exams` WHERE exam_ID LIKE '" + exam_id
 				+ "%' AND exam_executing_Date LIKE '" + examDate + "%'";
 

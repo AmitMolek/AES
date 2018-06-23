@@ -19,8 +19,10 @@ public class WaitForChangeTIme implements Observer{
 	**/
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		int time = (int)arg1;
-		ExamDuration.setTime(time);
+		
+			int time = (int)arg1;
+			ExamDuration.setTime(time);
+		
 	}
 
 }
