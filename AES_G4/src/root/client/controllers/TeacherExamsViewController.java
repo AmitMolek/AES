@@ -458,7 +458,7 @@ public class TeacherExamsViewController {
 						client.sendToServer(uExam);
 						Platform.runLater(() -> {
 							try {
-								screenManager.activate("teacherExamsView");
+								screenManager.activate("home");
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
