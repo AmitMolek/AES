@@ -54,6 +54,10 @@ public class CheatingChecker {
 	 */
 	public CheatingChecker(String exam_id, Calendar date) {
 		this.cal_date = date;
+		
+		String dateStr = cal_date.get(Calendar.YEAR) + "-" + cal_date.get(Calendar.MONTH) + "-" + cal_date.get(Calendar.DATE);
+		System.out.println("Cheating Checker: " + exam_id + "-" + dateStr);
+		
 		csv_path = ServerMessageManager.PATHCSV;
 		this.cheatedExams = new ArrayList<>();
 		this.qusCorrect = new HashMap<>();
@@ -64,6 +68,7 @@ public class CheatingChecker {
 		getEntriesFromCSV();
 		checkForCheating();
 		setCheatedExamsFlag();
+		printCheatedExams();
 	}
 	
 	/**
@@ -189,6 +194,10 @@ public class CheatingChecker {
 	 */
 	public void getExamsFromDB() {
 		exams = new GetFromDB().solvedExamCheatingTest(exam_id, cal_date);
+		
+		for (CheatingExamTest t : exams) {
+			System.out.println("Got exam: " + t.getExam_id() + "-" + t.getUser_id());
+		}
 	}
 	
 	/**
