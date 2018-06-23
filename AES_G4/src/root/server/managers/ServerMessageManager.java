@@ -911,7 +911,6 @@ public class ServerMessageManager {
 		SolvedExamMessage recivedMessage = (SolvedExamMessage) msg;
 		examinees.removeDuration(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
 		examinees.removeStudent(recivedMessage.getSolvedExam().getExamID(), AES_Server.CLIENT);
-		executedUsersManager.remove(recivedMessage.getSolvedExam().getExamID());
 		SolvedExams newSolvedExam = recivedMessage.getSolvedExam();
 		SetInDB putSolvedExam = new SetInDB();
 		AbstractMessage sendMessage = (AbstractMessage) putSolvedExam.addSolvedExam(newSolvedExam);
