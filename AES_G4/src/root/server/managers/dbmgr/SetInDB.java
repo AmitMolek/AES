@@ -190,6 +190,10 @@ public class SetInDB {
 
 	}
 
+	/**
+	 * Add statistics about the solved exam to the database
+	 * @param examStatistic the Statistics object filled with all the exam statistical data
+	 */
 	public void addSolvedExamStatistics(Statistic examStatistic) {
 		String insertQuery = "INSERT INTO `solved exams statistics`("
 				+ "exam_ID, Date, real_time_duration, submitted_students_counter, interrupted_students_counter, students_started_counter,"

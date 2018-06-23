@@ -1,7 +1,5 @@
 package root.dao.app;
 
-import java.util.Date;
-
 /**
  * Data storage class for the cheating checker
  * @author Amit Molek

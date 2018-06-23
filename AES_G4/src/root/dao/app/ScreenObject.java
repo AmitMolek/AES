@@ -10,7 +10,14 @@ import javafx.scene.layout.Pane;
 
 public class ScreenObject {
 
+	/**
+	 * The name of the screen
+	 */
 	private String screenName;
+	
+	/**
+	 * The pane of the screen
+	 */
 	private Pane screenPane;
 
 	/**

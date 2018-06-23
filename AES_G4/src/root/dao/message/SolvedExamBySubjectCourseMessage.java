@@ -15,6 +15,11 @@ import root.dao.app.Subject;
  */
 public class SolvedExamBySubjectCourseMessage extends AbstractMessage{
 
+	/**
+	 * Default serial version id
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// Instance variables **********************************************
 
 	/**
