@@ -37,6 +37,7 @@ import root.dao.message.MessageFactory;
 import root.dao.message.UserMessage;
 import root.util.log.Log;
 import root.util.log.LogLine;
+import root.util.log.LogLine.LineType;
 import root.util.properties.PropertiesFile;
 
 public class LoginController implements Observer {
@@ -81,7 +82,7 @@ public class LoginController implements Observer {
     private String serverIP;
     Log log = Log.getInstance();
 	PropertiesFile propertFile = PropertiesFile.getInstance();
-
+	DataKeepManager dkm = DataKeepManager.getInstance();
 	
 	
     /**
@@ -99,9 +100,24 @@ public class LoginController implements Observer {
     		serverIP = txtFieldserverIP.getText();
     		DataKeepManager.getInstance().keepObject("ip", serverIP);
     	}
+    	DataKeepManager dkm = DataKeepManager.getInstance();
     	
-    	client = new ObservableClient(serverIP, 8000);				// opens a connection only if user exist.
-    	client.addObserver(this);												// --||--
+    	String ip = (String)dkm.getObject_NoRemove("ip");
+    	if (ip != null) {
+    		if ((ObservableClient)dkm.getObject_NoRemove("login_client") != null) {
+    			client = (ObservableClient)dkm.getObject_NoRemove("login_client");
+    		}else {
+            	client = new ObservableClient(serverIP, 8000);    			
+            	dkm.keepObject("login_client", client);
+    		}
+        	client.addObserver(this);
+
+    	}else {
+    		showErrorDialog("Server ip error", "Please enter server ip", "Server ip is null");
+    		log.writeToLog(LineType.ERROR, "Server ip is null");
+    		return;
+    	}
+    	
     	String userId = txtId.getText();
     	String userPassword = txtPassword.getText();
     	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
@@ -109,11 +125,15 @@ public class LoginController implements Observer {
     	try {
     		client.openConnection();
 			client.sendToServer(newLoginMessage);
-			propertFile.writeToConfig("IP", serverIP);				// if no exceptions thrown by client, than save serverIP.
+			propertFile.writeToConfig("IP", serverIP);
 		} catch (IOException e) {	
-			//e.printStackTrace();
+			e.printStackTrace();
 			showErrorDialog("ServerIP error","Please contact system administrator",e.getMessage());
 		}
+    }
+    
+    public void createClient() {
+    	
     }
     
     /**
@@ -225,6 +245,9 @@ public class LoginController implements Observer {
 		serverIP = propertFile.getFromConfig("IP");
 		if(serverIP == null) {
 			serverIPpane.setVisible(true);
+		}else {
+			DataKeepManager.getInstance().keepObject("ip", serverIP);
+			log.writeToLog(LineType.INFO, "Got the server ip from the config: " + serverIP);
 		}
 	}
 	
