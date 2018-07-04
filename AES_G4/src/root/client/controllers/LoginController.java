@@ -27,8 +27,18 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import ocsf.client.ObservableClient;
+import root.client.interface_classes.RealMessageFactory;
+import root.client.interface_classes.RealObservableClient;
+import root.client.interface_classes.RealPane;
+import root.client.interface_classes.RealTextField;
+import root.client.interfaces.IClient;
+import root.client.interfaces.IFieldText;
+import root.client.interfaces.IMessageFactory;
+import root.client.interfaces.IMock;
+import root.client.interfaces.IVisiblePane;
 import root.client.managers.DataKeepManager;
 import root.client.managers.ScreensManager;
+import root.client.mocks.RealTimeMock;
 import root.dao.app.LoginInfo;
 import root.dao.app.User;
 import root.dao.message.ErrorMessage;
@@ -84,6 +94,86 @@ public class LoginController implements Observer {
 	PropertiesFile propertFile = PropertiesFile.getInstance();
 	DataKeepManager dkm = DataKeepManager.getInstance();
 	
+	IMock mockService;
+	
+	/**
+	 * Sets the mock service of this class
+	 * @param mockService the mock service
+	 */
+	public void setMockService(IMock mockService) {
+		this.mockService = mockService;
+	}
+	
+	/**
+	 * 1st step in the sign in
+	 * Gets the server ip from the text field if needed 
+	 * @param ipPane the server ip pane
+	 * @param ipTextField the server ip text field
+	 */
+	public void signIn_GetIP(IVisiblePane ipPane, IFieldText ipTextField) {
+    	if (ipPane.isVisible()) {
+    		String ipTextFieldText = ipTextField.getText();
+    		if (ipTextFieldText.isEmpty()) {
+    			mockService.LogMsg("Server IP error");
+    			showErrorDialog("ServerIP error","Please contact system administrator","Please enter serverIP");
+    			return;
+    		}
+    		serverIP = ipTextFieldText;
+    		dkm.keepObject("ip", serverIP);
+    		mockService.LogMsg("Stored IP in keep");
+    	}
+	}
+	
+	/**
+	 * This is the 2nd step in the sign in
+	 * Gets the server ip and gets/creates the client that will talk to the server
+	 */
+	public void signIn_Client() {
+    	String ip = (String)dkm.getObject_NoRemove("ip");
+    	if (ip != null) {
+    		IClient iClient = (IClient) dkm.getObject_NoRemove("login_client");
+    		if (iClient != null && iClient.getObservableClient() != null) {
+    			client = iClient.getObservableClient();
+    			mockService.LogMsg("Got Client from keep");
+    		}else {
+            	client = new ObservableClient(serverIP, 8000);    			
+            	dkm.keepObject("login_client", new RealObservableClient(client));
+            	mockService.LogMsg("Created Client and stored it");
+    		}
+        	client.addObserver(this);
+
+    	}else {
+    		mockService.LogMsg("Server IP is null");
+    		showErrorDialog("Server ip error", "Please enter server ip", "Server ip is null");
+    		log.writeToLog(LineType.ERROR, "Server ip is null");
+    		return;
+    	}
+	}
+	
+	/**
+	 * The 3rd step in the sign in
+	 * Sends to the server the login info
+	 * @param realClient the client connected to the server
+	 * @param usernameField the username text field
+	 * @param passwordField the password text field
+	 * @param factory the message factory to get the messages
+	 */
+	public void signInUser(IClient realClient, IFieldText usernameField, IFieldText passwordField, IMessageFactory factory) {
+    	String userId = usernameField.getText();
+    	String userPassword = passwordField.getText();
+    	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
+    	LoginMessage newLoginMessage = (LoginMessage) factory.getMessage("login",loginInformation);
+    	try {
+    		realClient.openConnection();
+    		realClient.sendToServer(newLoginMessage);
+			propertFile.writeToConfig("IP", serverIP);
+			mockService.LogMsg("Sent message to server");
+		} catch (IOException e) {
+			mockService.LogMsg("Failed sending the message");
+			e.printStackTrace();
+			showErrorDialog("ServerIP error","Please contact system administrator",e.getMessage());
+		}
+	}
 	
     /**
      * This method occurs when someone presses the sign in button
@@ -91,49 +181,9 @@ public class LoginController implements Observer {
      */
     @FXML
     public void SignIn(ActionEvent event) {
-    	
-    	if (serverIPpane.isVisible()) {
-    		if (txtFieldserverIP.getText().isEmpty()) {
-    			showErrorDialog("ServerIP error","Please contact system administrator","Please enter serverIP");
-    			return;
-    		}
-    		serverIP = txtFieldserverIP.getText();
-    		DataKeepManager.getInstance().keepObject("ip", serverIP);
-    	}
-    	DataKeepManager dkm = DataKeepManager.getInstance();
-    	
-    	String ip = (String)dkm.getObject_NoRemove("ip");
-    	if (ip != null) {
-    		if ((ObservableClient)dkm.getObject_NoRemove("login_client") != null) {
-    			client = (ObservableClient)dkm.getObject_NoRemove("login_client");
-    		}else {
-            	client = new ObservableClient(serverIP, 8000);    			
-            	dkm.keepObject("login_client", client);
-    		}
-        	client.addObserver(this);
-
-    	}else {
-    		showErrorDialog("Server ip error", "Please enter server ip", "Server ip is null");
-    		log.writeToLog(LineType.ERROR, "Server ip is null");
-    		return;
-    	}
-    	
-    	String userId = txtId.getText();
-    	String userPassword = txtPassword.getText();
-    	LoginInfo loginInformation = new LoginInfo(userId,userPassword);
-    	LoginMessage newLoginMessage = (LoginMessage) message.getMessage("login",loginInformation);
-    	try {
-    		client.openConnection();
-			client.sendToServer(newLoginMessage);
-			propertFile.writeToConfig("IP", serverIP);
-		} catch (IOException e) {	
-			e.printStackTrace();
-			showErrorDialog("ServerIP error","Please contact system administrator",e.getMessage());
-		}
-    }
-    
-    public void createClient() {
-    	
+    	signIn_GetIP(new RealPane(serverIPpane), new RealTextField(txtFieldserverIP));
+    	signIn_Client();
+    	signInUser(new RealObservableClient(client) ,new RealTextField(txtId), new RealTextField(txtPassword), new RealMessageFactory(message));
     }
     
     /**
@@ -225,6 +275,8 @@ public class LoginController implements Observer {
 
     	screenManager.clearStack();
     	
+    	mockService = new RealTimeMock();
+    	
     	tryGettingServerIP();
     	// Listen for selection changes and show the person details when changed.
     	txtId.setOnMouseClicked(e -> {
@@ -241,6 +293,7 @@ public class LoginController implements Observer {
 		propertFile.writeToConfig("IP", null);
 		serverIPpane.setVisible(true);
 	}
+    
 	private void tryGettingServerIP() {
 		serverIP = propertFile.getFromConfig("IP");
 		if(serverIP == null) {
@@ -258,26 +311,26 @@ public class LoginController implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		
 		if(arg1 instanceof UserMessage) {
-			
 			UserMessage newMessasge = (UserMessage) arg1;
 			user = newMessasge.getUser();
 			DataKeepManager.getInstance().keepUser(user);
 			System.out.println("Logged In Users: "+ DataKeepManager.getInstance().getUser());
-			Platform.runLater(() -> {				// In order to run javaFX thread.(we recieve from server a java thread)
+			if(user.getUserPremission().equals("Principal")) {
+				mockService.LogMsg("Principal detected");
+				client.deleteObservers();
+				client.addObserver(new WaitForPirncipleMessage());
+			}
+			Platform.runLater(() -> {
 				try {
-					if(user.getUserPremission().equals("Principal")) {
-						client.deleteObservers();
-						client.addObserver(new WaitForPirncipleMessage());
-					}
 					screenManager.activate("home");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					log.writeToLog(LogLine.LineType.ERROR, e.getMessage());
 				}
 			});
 		}
 		else if (arg1 instanceof ErrorMessage) {
+			mockService.LogMsg("Got an ErrorMessage");
 			showErrorDialog("Invalid Fields","Please correct invalid fields",arg1.toString());
 		}
 	}

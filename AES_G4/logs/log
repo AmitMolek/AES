@@ -2077,3 +2077,868 @@
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-22 22:53:29.65
 [INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-22 22:53:29.665
 [INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-22 22:53:29.679
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ null] | 2018-07-04 12:07:56.874
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ null] | 2018-07-04 12:07:56.882
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ null] | 2018-07-04 12:07:56.883
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_user[ root] | 2018-07-04 12:07:56.89
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_password[ root] | 2018-07-04 12:07:56.892
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_server_ip[ localhost] | 2018-07-04 12:07:56.898
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 12:07:57.236
+[INFO] Application started | 2018-07-04 12:08:00.34
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:08:00.834
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:08:00.834
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:08:00.835
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:08:00.878
+[INFO] Application started | 2018-07-04 12:08:45.73
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:08:46.167
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:08:46.168
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:08:46.168
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:08:46.197
+[INFO] Application started | 2018-07-04 12:10:15.285
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:10:15.705
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:10:15.705
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:10:15.705
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:10:15.738
+[INFO] Application started | 2018-07-04 12:10:53.755
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:10:54.216
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:10:54.217
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:10:54.217
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:10:54.249
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:10:59.851
+[INFO] Application started | 2018-07-04 12:11:59.309
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:11:59.675
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:11:59.675
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:11:59.675
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:11:59.705
+[INFO] Application started | 2018-07-04 12:12:19.21
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:12:19.578
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:12:19.605
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:12:27.035
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:12:28.429
+[INFO] Application started | 2018-07-04 12:13:10.289
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:13:10.685
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:13:10.711
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:13:17.659
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:13:21.111
+[INFO] Application started | 2018-07-04 12:13:47.857
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:13:48.292
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:13:48.319
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:13:54.856
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:13:56.048
+[INFO] Application started | 2018-07-04 12:14:20.899
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:14:21.48
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:14:21.507
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:14:27.785
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:14:41.446
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:14:43.97
+[INFO] Application started | 2018-07-04 12:15:08.723
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:15:09.108
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:15:09.136
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:15:15.746
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:15:16.631
+[INFO] Application started | 2018-07-04 12:15:49.594
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:15:49.958
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:15:49.985
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:15:56.812
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:15:57.684
+[INFO] Application started | 2018-07-04 12:16:14.311
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:16:14.791
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:16:14.823
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:16:21.429
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:16:22.323
+[INFO] Application started | 2018-07-04 12:18:01.656
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:18:02.058
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:18:02.086
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:18:08.317
+[ERROR][root.client.controllers.LoginController] Please enter serverIP | 2018-07-04 12:18:09.168
+[INFO] Application started | 2018-07-04 12:18:50.574
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:18:51.012
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:18:51.038
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:18:57.119
+[ERROR][root.client.controllers.LoginController] Please fix IClient | 2018-07-04 12:18:58.818
+[INFO] Application started | 2018-07-04 12:20:12.71
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 12:20:13.152
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:20:13.187
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:20:19.403
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 12:20:19.405
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 12:20:19.535
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 12:20:19.548
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 12:20:19.564
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 12:20:20.094
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 12:20:20.194
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 12:20:20.194
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 12:20:21.448
+[INFO] Application started | 2018-07-04 12:26:41.916
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:26:42.307
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:26:42.307
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:26:42.307
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:26:42.337
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 12:26:46.378
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 12:26:46.402
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 12:26:46.405
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 12:26:46.421
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 12:26:46.929
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 12:26:47.02
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 12:26:47.02
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 12:26:47.88
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 12:26:47.893
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 12:26:47.893
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 12:26:47.902
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 12:26:52.042
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 12:26:52.042
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 12:26:52.069
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 12:26:52.125
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 12:26:54.012
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:50:07.717
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:50:07.719
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:52:47.7
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:52:47.702
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:53:17.924
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:53:17.927
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:54:01.332
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:54:01.334
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:54:16.752
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:54:16.754
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:54:33.468
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:54:33.47
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:56:22.729
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:56:22.731
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:56:22.731
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 12:56:22.731
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 12:56:22.733
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:56:22.734
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 12:56:22.735
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 12:56:22.735
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:00:57.632
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:00:57.636
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:00:57.637
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:00:57.637
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:00:57.637
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:00:57.638
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:00:57.64
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:00:57.64
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:00:57.641
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:00:57.641
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.327
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.33
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.33
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.33
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.331
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.331
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.331
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.332
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:05:08.332
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:05:08.332
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.333
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.333
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:05:08.333
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:05:08.333
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.014
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.028
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.028
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.028
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.03
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.031
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.032
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.032
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:06:38.033
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:06:38.033
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.033
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.034
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:06:38.034
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:06:38.034
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.268
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.272
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.278
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.279
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.28
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.28
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:08:42.281
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:08:42.281
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.281
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.281
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:08:42.282
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:08:42.282
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.976
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.978
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.978
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.978
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.978
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.978
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.979
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.979
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.979
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.979
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.98
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.98
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:11:19.98
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:11:19.98
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.981
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.981
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:19.981
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:19.981
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.505
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.507
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.615
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.615
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.615
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.615
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.616
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.617
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.617
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:11:37.618
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:11:37.618
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.618
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.619
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:11:37.619
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:11:37.619
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.635
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.707
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.707
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.708
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.708
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.708
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.708
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.708
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.709
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.709
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.71
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.71
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:18:50.71
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:18:50.71
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.712
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.712
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:18:50.712
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:18:50.713
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:18:50.716
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.791
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.845
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.845
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.845
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.846
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.846
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.846
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.847
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.847
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.847
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.849
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.849
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:19:54.851
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:19:54.851
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.851
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.852
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:19:54.852
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:19:54.852
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:19:54.86
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.862
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:20:00.939
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.945
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.946
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.947
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.947
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.948
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.948
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.948
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.948
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.948
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.949
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.949
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:20:00.949
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:20:00.95
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.95
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.95
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:00.95
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:00.95
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:20:00.951
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.208
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:20:47.268
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.273
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.273
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.274
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.274
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.274
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.274
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.274
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.275
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.275
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:20:47.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:20:47.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:20:47.278
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:20:47.278
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:20:47.279
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.085
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.153
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.153
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.153
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.154
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.155
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:22:06.155
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:22:06.155
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.155
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.155
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:06.156
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:06.156
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:22:06.161
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.345
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.449
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.449
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.449
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.449
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.449
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:22:30.45
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:22:30.451
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.451
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.451
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:30.451
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:30.451
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:22:30.456
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.089
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.182
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.182
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.182
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.183
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:22:51.184
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:22:51.184
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.184
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.184
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:22:51.184
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:22:51.184
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:22:51.189
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.549
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.631
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.632
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.632
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.632
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.633
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.634
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:23:10.634
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:23:10.634
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.635
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.635
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:10.635
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:10.635
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:23:10.645
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.684
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.79
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.79
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.79
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.79
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.791
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.791
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.791
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.791
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.791
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.792
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.792
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:23:19.792
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:23:19.792
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.792
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.793
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:19.793
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:19.796
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:23:19.802
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.576
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.66
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.66
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.661
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.661
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.662
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.662
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.662
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.662
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.662
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.663
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.663
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:23:49.663
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:23:49.663
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.664
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.665
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:23:49.665
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:23:49.665
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:23:49.67
+[INFO] Application started | 2018-07-04 13:33:39.088
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 13:33:39.525
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:33:39.562
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:33:45.706
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:33:45.708
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:33:45.733
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:33:45.736
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:33:45.751
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:33:46.295
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:33:46.412
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:33:46.412
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:33:47.72
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:33:47.74
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:33:47.741
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:33:47.749
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:33:52.397
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:33:52.397
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:33:52.431
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:33:52.491
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:33:53.981
+[INFO] Application started | 2018-07-04 13:34:29.036
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:34:29.43
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:34:29.43
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:34:29.43
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:34:29.463
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:34:33.343
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:34:33.366
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:34:33.368
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:34:33.384
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:34:33.923
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:34:34.021
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:34:34.021
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:34:35.937
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:34:35.95
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:34:35.95
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:34:35.962
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:34:39.928
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:34:39.929
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:34:39.959
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:34:40.015
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:34:41.656
+[INFO] Application started | 2018-07-04 13:35:29.47
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:35:29.868
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:35:29.868
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:35:29.868
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:35:29.915
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:35:33.376
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:35:33.404
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:35:33.406
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:35:33.422
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:35:33.938
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:35:34.038
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:35:34.039
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:35:37.841
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:35:37.854
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:35:37.854
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:35:37.864
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:35:41.773
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:35:41.775
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:35:41.805
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:35:41.86
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:35:43.442
+[INFO] Application started | 2018-07-04 13:38:56.456
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:38:56.861
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:38:56.861
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:38:56.861
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:38:56.927
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:07.986
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.073
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.074
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.074
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.074
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.075
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.075
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.075
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.076
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.076
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.076
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.077
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:39:08.077
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:39:08.077
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.078
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.078
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:08.079
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:08.082
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:39:08.09
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ null] | 2018-07-04 13:39:17.179
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ null] | 2018-07-04 13:39:17.187
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ null] | 2018-07-04 13:39:17.187
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_user[ root] | 2018-07-04 13:39:17.197
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_password[ root] | 2018-07-04 13:39:17.198
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_server_ip[ localhost] | 2018-07-04 13:39:17.199
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 13:39:17.437
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.186
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:39:25.268
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.274
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.274
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.274
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.275
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.275
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.275
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.275
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.275
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:39:25.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:39:25.278
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:39:25.285
+[INFO] Application started | 2018-07-04 13:42:11.304
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 13:42:11.727
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:42:11.751
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:42:17.836
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:42:17.838
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:42:17.901
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:42:17.912
+[ERROR][root.client.managers.ScreensManager] Failed switching screens, Screen name: home | 2018-07-04 13:42:17.913
+[INFO] Application started | 2018-07-04 13:43:24.745
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:43:25.196
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:43:25.197
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:43:25.197
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:43:25.225
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 13:43:31.753
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-04 13:43:31.761
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 13:43:31.762
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 13:43:32.006
+[INFO] Application started | 2018-07-04 13:43:33.629
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:43:34.007
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:43:34.007
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:43:34.007
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:43:34.038
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:43:40.228
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:43:40.288
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:43:40.3
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:43:40.315
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:43:40.329
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:43:40.329
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:43:40.838
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:43:44.737
+[ERROR][root.client.controllers.LoginController] User is logged in | 2018-07-04 13:43:45.825
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:43:46.683
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 13:44:17.962
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-04 13:44:17.969
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 13:44:17.97
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 13:44:18.22
+[INFO] Application started | 2018-07-04 13:44:20.091
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:44:20.506
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:44:20.506
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:44:20.506
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:44:20.534
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:44:24.856
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:44:24.923
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:44:24.934
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:44:24.949
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:44:24.967
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:44:24.968
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:44:25.475
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:44:32.524
+[ERROR][root.client.controllers.LoginController] User is logged in | 2018-07-04 13:44:33.194
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:44:34.04
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 13:45:15.797
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-04 13:45:15.804
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 13:45:15.805
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 13:45:16.042
+[INFO] Application started | 2018-07-04 13:45:16.957
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 13:45:17.333
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:45:17.334
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 13:45:17.334
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:45:17.362
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-04 13:45:21.562
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 13:45:21.626
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:45:21.638
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 13:45:21.658
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 13:45:22.189
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 13:45:22.267
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 13:45:22.267
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-04 13:45:24.031
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.689
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:46:54.766
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.77
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.771
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.771
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.773
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.773
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.773
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.773
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.773
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.774
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.774
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.774
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:46:54.774
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:46:54.776
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.777
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.777
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:46:54.778
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:46:54.778
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:46:54.784
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.012
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:47:31.096
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.098
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.098
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.098
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.099
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.1
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.1
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:47:31.1
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:47:31.1
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.101
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.101
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:47:31.101
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:47:31.101
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:47:31.106
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.588
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:48:33.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.671
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.672
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.672
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.673
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.673
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.673
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.673
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:48:33.674
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.675
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.675
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:48:33.675
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:48:33.675
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:48:33.68
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.838
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.914
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.914
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.914
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.914
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.914
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.915
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.915
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.915
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.915
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.916
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.916
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:49:38.916
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:49:38.916
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.917
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.918
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:49:38.918
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:49:38.918
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:49:38.924
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.179
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:50:26.273
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.275
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.275
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.275
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.276
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.276
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.276
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:50:26.277
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:50:26.277
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.278
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.278
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:50:26.278
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:50:26.278
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:50:26.287
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.236
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:51:17.312
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.317
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.317
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.317
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.318
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.318
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.318
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.318
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.319
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.319
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.319
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.319
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:51:17.319
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:51:17.32
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.32
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.32
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:51:17.32
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:51:17.32
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:51:17.325
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.185
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.269
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.269
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.269
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.27
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.27
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.27
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.27
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.271
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:54:51.272
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:54:51.272
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:54:51.273
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:54:51.282
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.752
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.753
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.753
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.754
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.754
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.754
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.754
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.754
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.755
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:18.756
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:18.756
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:55:18.756
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:55:18.766
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.762
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.825
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.825
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.825
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.827
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.828
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.828
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.828
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.828
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.828
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.829
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.829
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:55:56.829
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:55:56.829
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.83
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.831
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:55:56.831
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:55:56.831
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:55:56.833
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:55:56.84
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.15
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.219
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.22
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.22
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.221
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.222
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.222
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.222
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.223
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.223
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.223
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.223
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 13:56:14.223
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 13:56:14.224
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.225
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.226
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 13:56:14.226
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 13:56:14.227
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 13:56:14.229
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 13:56:14.237
+[INFO] Application started | 2018-07-04 13:58:41.751
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-04 13:58:42.163
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 13:58:42.191
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:09:08.438
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:27:26.986
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:27:27.002
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:32:37.518
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.533
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.534
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.535
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.61
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.612
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:32:37.616
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:33:19.729
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.742
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.743
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.745
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.811
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.814
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:33:19.817
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.672
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.734
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.735
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.735
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.736
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.736
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.736
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.736
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.737
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.737
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.738
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.738
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 14:34:20.739
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 14:34:20.739
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.739
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.74
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:20.74
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:20.74
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 14:34:20.741
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:20.747
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.603
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.666
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.666
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.666
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.668
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.668
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.668
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.668
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-04 14:34:49.669
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.67
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.67
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-04 14:34:49.67
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.67
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-04 14:34:49.671
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.676
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 14:34:49.677
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.702
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.706
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.71
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.714
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.715
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-04 14:34:49.72
