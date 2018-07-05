@@ -28,7 +28,7 @@ public class PropertiesFile {
 	/**
 	 * Private singleton constructor
 	 */
-	private PropertiesFile() {
+	public PropertiesFile() {
 		Logger.getRootLogger().setLevel(Level.OFF);
 		try {
 			writer = new PropertiesWriter();

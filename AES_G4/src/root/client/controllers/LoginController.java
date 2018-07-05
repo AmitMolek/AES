@@ -39,6 +39,9 @@ import root.util.log.Log;
 import root.util.log.LogLine;
 import root.util.log.LogLine.LineType;
 import root.util.properties.PropertiesFile;
+import unittests.stubs.Dependancy;
+import unittests.stubs.IClient;
+import unittests.stubs.RealClient;
 
 public class LoginController implements Observer {
 
@@ -75,7 +78,7 @@ public class LoginController implements Observer {
     private TextField txtFieldserverIP;
     
     
-    private ObservableClient client;
+    private IClient client;
     private MessageFactory message;
     private User user;
     private ScreensManager screenManager;
@@ -83,7 +86,26 @@ public class LoginController implements Observer {
     Log log = Log.getInstance();
 	PropertiesFile propertFile = PropertiesFile.getInstance();
 	DataKeepManager dkm = DataKeepManager.getInstance();
+	private Dependancy dependancy;
 	
+	
+	public void setDependancy(Dependancy dependancy) {
+		this.dependancy = dependancy;
+		log = dependancy.getLogStub();
+		propertFile = dependancy.getPropertiesFileStub();
+		txtId = dependancy.getFxmlStub().getTxtId();
+		txtPassword = dependancy.getFxmlStub().getTxtPass();
+		txtFieldserverIP = dependancy.getFxmlStub().getTxtIp();	
+		client = dependancy.getClientStub();
+		serverIPpane = dependancy.getFxmlStub().getIpPane();
+		try {
+			initialize();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
     /**
      * This method occurs when someone presses the sign in button
@@ -104,10 +126,10 @@ public class LoginController implements Observer {
     	
     	String ip = (String)dkm.getObject_NoRemove("ip");
     	if (ip != null) {
-    		if ((ObservableClient)dkm.getObject_NoRemove("login_client") != null) {
-    			client = (ObservableClient)dkm.getObject_NoRemove("login_client");
+    		if ((IClient)dkm.getObject_NoRemove("login_client") != null) {
+    			client = (IClient)dkm.getObject_NoRemove("login_client");
     		}else {
-            	client = new ObservableClient(serverIP, 8000);    			
+            	client = new RealClient(serverIP, 8000);    			
             	dkm.keepObject("login_client", client);
     		}
         	client.addObserver(this);

@@ -17,12 +17,13 @@ public class Log {
 	 * Private constructor (because singleton)
 	 * Gets the log file
 	 */
-	private Log() {
+	public Log() {
 		try {
 			logFile = new LogFile();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	/**

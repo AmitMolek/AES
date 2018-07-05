@@ -75,7 +75,7 @@ public class AES_Server extends AbstractServer {
 	/**
 	 * The default database password
 	 */
-	final private static String DEFAULT_DB_PASSWORD = "root";
+	final private static String DEFAULT_DB_PASSWORD = "204403257";
 	
 	/**
 	 * The default database server ip

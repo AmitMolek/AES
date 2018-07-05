@@ -2077,3 +2077,135 @@
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-22 22:53:29.65
 [INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-22 22:53:29.665
 [INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-22 22:53:29.679
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ null] | 2018-07-04 19:33:55.164
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ null] | 2018-07-04 19:33:55.178
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ null] | 2018-07-04 19:33:55.179
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_user[ root] | 2018-07-04 19:33:55.187
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_password[ root] | 2018-07-04 19:33:55.19
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_server_ip[ localhost] | 2018-07-04 19:33:55.195
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 19:33:55.434
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 19:34:16.145
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-04 19:34:16.158
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 19:34:16.159
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 19:34:16.341
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-07-04 19:34:16.342
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 19:34:25.542
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-04 19:34:25.555
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 19:34:25.555
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 19:34:25.737
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 19:34:51.205
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 19:34:51.218
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 19:34:51.218
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 19:34:51.466
+[INFO] Application started | 2018-07-04 19:34:53.949
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 19:34:54.443
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 19:34:54.443
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 19:34:54.444
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 19:34:54.479
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class ocsf.client.ObservableClient | 2018-07-04 19:35:02.177
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 19:35:02.199
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-07-04 19:35:02.217
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 19:35:02.238
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 19:35:02.647
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 19:35:02.733
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 19:35:02.733
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-07-04 19:35:04.333
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:08:03.555
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:08:03.582
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:08:03.584
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:08:03.84
+[INFO] Application started | 2018-07-04 21:08:05.53
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:08:05.637
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:08:18.274
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:08:18.286
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:08:18.287
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:08:18.489
+[INFO] Application started | 2018-07-04 21:08:20.306
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:08:20.407
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:08:50.255
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:08:50.272
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:08:50.273
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:08:50.488
+[INFO] Application started | 2018-07-04 21:08:52.501
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:08:52.621
+[INFO] Application started | 2018-07-04 21:09:44.872
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:09:45.154
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:10:13.385
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:10:13.409
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:10:13.41
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:10:13.628
+[INFO] Application started | 2018-07-04 21:10:17.513
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 21:10:17.922
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 21:10:17.922
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 21:10:17.922
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 21:10:17.954
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:11:53.182
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:11:53.199
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:11:53.199
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:11:53.481
+[ERROR][root.server.AES_Server] Address already in use: NET_Bind | 2018-07-04 21:11:53.482
+[INFO] Application started | 2018-07-04 21:11:59.086
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:11:59.185
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:12:01.47
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:12:01.483
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:12:01.484
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:12:01.686
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:12:16.642
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:12:16.657
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:12:16.657
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:12:16.886
+[INFO] Application started | 2018-07-04 21:12:18.452
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 21:12:18.823
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 21:12:18.823
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 21:12:18.823
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 21:12:18.856
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class unittests.stubs.RealClient | 2018-07-04 21:12:24.865
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 21:12:24.89
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-07-04 21:12:24.892
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 21:12:24.911
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 21:12:25.316
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 21:12:25.403
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 21:12:25.403
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-07-04 21:12:28.143
+[INFO][root.client.managers.ScreensManager] Added screen to stack: updateDeleteExam | 2018-07-04 21:12:29.355
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-07-04 21:12:30.739
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:21:37.701
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:21:37.731
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:21:37.734
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:21:38.188
+[INFO] Application started | 2018-07-04 21:21:40.699
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:18
+ | 2018-07-04 21:21:40.91
+[INFO] Application started | 2018-07-04 21:21:56.542
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 21:21:57.451
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 21:21:57.452
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 21:21:57.452
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 21:21:57.538
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-04 21:23:33.233
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-04 21:23:33.261
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-04 21:23:33.263
+[INFO][root.server.AES_Server] The server is connected | 2018-07-04 21:23:33.722
+[INFO] Application started | 2018-07-04 21:23:35.937
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-04 21:23:36.787
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-04 21:23:36.789
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-04 21:23:36.79
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-04 21:23:36.854
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class unittests.stubs.RealClient | 2018-07-04 21:23:43.595
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-04 21:23:43.639
+[INFO][root.client.managers.DataKeepManager] Keep user: 204403257 | 2018-07-04 21:23:43.647
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-04 21:23:43.686
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-04 21:23:44.234
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 21:23:44.434
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 21:23:44.434
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-07-04 21:23:48.394
