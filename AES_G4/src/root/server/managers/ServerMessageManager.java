@@ -132,6 +132,7 @@ public class ServerMessageManager {
 	 */
 	public static ExamExecutedManager executedUsersManager = new ExamExecutedManager();
 
+	public static GetFromDB getLogin = new GetFromDB();
 	// CONSTRUCTORS *****************************************************
 
 	/**
@@ -146,6 +147,10 @@ public class ServerMessageManager {
 		PATH = fullPath;
 		PATHSOLUTION = s + "//solution//";
 		PATHCSV = s + "//CSV//";
+	}
+	
+	public ServerMessageManager(GetFromDB mock) {
+		this.getLogin = mock;
 	}
 
 	// CLASS METHODS *************************************************
@@ -628,7 +633,6 @@ public class ServerMessageManager {
 	 */
 	private static AbstractMessage handleLoginMessage(AbstractMessage msg) {
 		LoginMessage login = (LoginMessage) msg;
-		GetFromDB getLogin = new GetFromDB();
 		ArrayList<User> users = getLogin.users(login.getUser().getUserID());
 		LoginInfo loginInformation = login.getUser();
 		if (users.isEmpty() == false) {

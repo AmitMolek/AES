@@ -2077,3 +2077,19 @@
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-06-22 22:53:29.65
 [INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-06-22 22:53:29.665
 [INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-06-22 22:53:29.679
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ null] | 2018-07-07 10:05:18.42
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ null] | 2018-07-07 10:05:18.438
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ null] | 2018-07-07 10:05:18.439
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_user[ root] | 2018-07-07 10:05:18.449
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_password[ root] | 2018-07-07 10:05:18.453
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: db_server_ip[ localhost] | 2018-07-07 10:05:18.457
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 10:05:18.702
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 10:05:39.096
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 10:05:39.108
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 10:05:39.109
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 10:05:39.326
+[INFO] Application started | 2018-07-07 10:05:41.62
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-07 10:05:42.034
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 10:05:42.034
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-07 10:05:42.034
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 10:05:42.067
