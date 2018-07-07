@@ -9,13 +9,18 @@ public class TextPasswordStub implements IFxml {
 		return password;
 	}
 	
-	public void setId(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	@Override
-	public void setVisable(boolean visable) {
+	public void setVisible(boolean visable) {
 		
+	}
+
+	@Override
+	public boolean isVisible() {
+		return false;
 	}
 	
 }

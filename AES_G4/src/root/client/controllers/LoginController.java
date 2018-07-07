@@ -41,7 +41,12 @@ import root.util.log.LogLine.LineType;
 import root.util.properties.PropertiesFile;
 import unittests.stubs.Dependancy;
 import unittests.stubs.IClient;
+import unittests.stubs.IFxml;
 import unittests.stubs.RealClient;
+import unittests.stubs.RealPane;
+import unittests.stubs.RealTextId;
+import unittests.stubs.RealTextIp;
+import unittests.stubs.RealTextPassword;
 
 public class LoginController implements Observer {
 
@@ -58,13 +63,13 @@ public class LoginController implements Observer {
     private Label lblId;
 
     @FXML
-    private TextField txtId;
+    private IFxml txtId;
 
     @FXML
     private Label lblPassword;
 
     @FXML
-    private PasswordField txtPassword;
+    private IFxml txtPassword;
     
     @FXML
     private Label ErrorTxtField;
@@ -72,10 +77,10 @@ public class LoginController implements Observer {
     private RowConstraints serverServiesRow;
     
     @FXML
-    private Pane serverIPpane;
+    private IFxml serverIPpane;
 
     @FXML
-    private TextField txtFieldserverIP;
+    private IFxml txtFieldserverIP;
     
     
     private IClient client;
@@ -90,21 +95,23 @@ public class LoginController implements Observer {
 	
 	
 	public void setDependancy(Dependancy dependancy) {
-		this.dependancy = dependancy;
-		log = dependancy.getLogStub();
-		propertFile = dependancy.getPropertiesFileStub();
-		txtId = dependancy.getFxmlStub().getTxtId();
-		txtPassword = dependancy.getFxmlStub().getTxtPass();
-		txtFieldserverIP = dependancy.getFxmlStub().getTxtIp();	
-		client = dependancy.getClientStub();
-		serverIPpane = dependancy.getFxmlStub().getIpPane();
-		try {
+		/*try {
 			initialize();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		this.dependancy = dependancy;
+		log = dependancy.getLogMock();
+		propertFile = dependancy.getPropertiesFileStub();
+		client = dependancy.getClientStub();
+		txtId = dependancy.getTxtId();
+		txtPassword = dependancy.getTxtPassword();
+		txtFieldserverIP = dependancy.getTxtIp();
+		serverIPpane = dependancy.getPane();
+		
+		
 	}
 	
     /**
@@ -240,6 +247,10 @@ public class LoginController implements Observer {
      */
     @FXML
 	public void initialize() throws IOException{
+    	txtId = new RealTextId(new TextField());
+		txtPassword = new RealTextPassword(new PasswordField());
+		txtFieldserverIP = new RealTextIp(new TextField());
+		serverIPpane = new RealPane(new Pane());
     	Platform.runLater(() -> rootPane.requestFocus());
     	message = MessageFactory.getInstance();
     	screenManager = ScreensManager.getInstance();
@@ -249,9 +260,9 @@ public class LoginController implements Observer {
     	
     	tryGettingServerIP();
     	// Listen for selection changes and show the person details when changed.
-    	txtId.setOnMouseClicked(e -> {
+    	/*txtId.setOnMouseClicked(e -> {
     		btnSignIn.setDisable(false);
-        });
+        });*/
     	btnSignIn.setDisable(true);
     }
     /**

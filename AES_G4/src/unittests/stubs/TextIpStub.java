@@ -9,12 +9,17 @@ public class TextIpStub implements IFxml {
 		return ip;
 	}
 	
-	public void setId(String ip) {
+	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
 	@Override
-	public void setVisable(boolean visable) {
+	public void setVisible(boolean visable) {
 		
+	}
+
+	@Override
+	public boolean isVisible() {
+		return false;
 	}
 }

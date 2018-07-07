@@ -20,8 +20,13 @@ public class RealTextId implements IFxml {
 	}
 
 	@Override
-	public void setVisable(boolean visable) {
+	public void setVisible(boolean visable) {
 
+	}
+
+	@Override
+	public boolean isVisible() {
+		return txtId.isVisible();
 	}
 
 }

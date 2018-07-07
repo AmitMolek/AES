@@ -2209,3 +2209,43 @@
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-04 21:23:44.434
 [INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-04 21:23:44.434
 [INFO][root.client.managers.DataKeepManager] Removed user from keep: 204403257 | 2018-07-04 21:23:48.394
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 09:13:59.458
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 09:13:59.483
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 09:13:59.484
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 09:13:59.976
+[INFO] Application started | 2018-07-07 09:14:01.735
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:23
+ | 2018-07-07 09:14:01.973
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 09:14:51.638
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 09:14:51.66
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 09:14:51.661
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 09:14:51.938
+[INFO] Application started | 2018-07-07 09:14:54.888
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:23
+ | 2018-07-07 09:14:55.109
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 09:18:25.187
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 09:18:25.2
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 09:18:25.201
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 09:18:25.409
+[INFO] Application started | 2018-07-07 09:18:27.089
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:23
+ | 2018-07-07 09:18:27.305
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 09:19:20.618
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 09:19:20.63
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 09:19:20.631
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 09:19:20.856
+[INFO] Application started | 2018-07-07 09:19:22.518
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:23
+ | 2018-07-07 09:19:22.738
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 09:20:34.912
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 09:20:34.925
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 09:20:34.926
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 09:20:35.144
+[INFO] Application started | 2018-07-07 09:20:37.345
+[ERROR][root.client.managers.ScreensManager] 
+/C:/Users/omer1/git/AES/AES_G4/bin/root/client/resources/view/LoginScreen.fxml:23
+ | 2018-07-07 09:20:37.796

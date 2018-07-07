@@ -17,8 +17,13 @@ public class RealTextIp implements IFxml{
 	}
 
 	@Override
-	public void setVisable(boolean visable) {
+	public void setVisible(boolean visable) {
 
+	}
+
+	@Override
+	public boolean isVisible() {
+		return txtIp.isVisible();
 	}
 	
 }
