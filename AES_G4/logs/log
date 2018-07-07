@@ -3022,3 +3022,105 @@
 [INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 10:36:12.496
 [INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 10:36:12.498
 [INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 10:36:12.501
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 13:00:27.188
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ 204403257] | 2018-07-07 13:00:27.198
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 13:00:27.199
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 13:00:27.54
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 13:00:52.347
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-07 13:00:52.355
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 13:00:52.356
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 13:00:52.863
+[INFO] Application started | 2018-07-07 13:00:57.794
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-07 13:00:58.527
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 13:00:58.567
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 13:01:08.702
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-07 13:01:08.706
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-07 13:01:08.841
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-07 13:01:08.942
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-07 13:01:08.962
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-07 13:01:09.743
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-07 13:01:09.896
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-07 13:01:09.897
+[INFO][root.client.managers.ScreensManager] Added screen to stack: updateDeleteExam | 2018-07-07 13:01:12.123
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: view solved exams observer Object: class root.client.controllers.TeacherExamsViewController$Updater | 2018-07-07 13:01:13.495
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: view solved exams observer Object: class root.client.controllers.TeacherExamsViewController$Updater | 2018-07-07 13:01:13.496
+[INFO][root.client.managers.ScreensManager] Added screen to stack: teacherExamsView | 2018-07-07 13:01:13.539
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-07-07 13:01:14.141
+[INFO][root.client.managers.ScreensManager] Added screen to stack: changeDurations | 2018-07-07 13:01:21.879
+[INFO][root.client.managers.ScreensManager] Added screen to stack: PrepareExam | 2018-07-07 13:01:22.839
+[INFO][root.client.managers.ScreensManager] Added screen to stack: testTeacherGradesStats | 2018-07-07 13:01:24.133
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-07-07 13:01:25.543
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-07-07 13:01:26.813
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-07 13:01:28.143
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-07 13:01:33.044
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-07 13:01:33.081
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-07 13:01:33.081
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 13:01:33.089
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.57
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.857
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.857
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.857
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.892
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.892
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.893
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.893
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.894
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.894
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.894
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.895
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip | 2018-07-07 19:01:12.895
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip | 2018-07-07 19:01:12.895
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.896
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.896
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: login_client Object: class root.client.interface_classes.StubClient | 2018-07-07 19:01:12.896
+[INFO][root.client.managers.DataKeepManager] Removed object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.896
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-07 19:01:12.922
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.936
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:01:12.937
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.975
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.981
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.985
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.991
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:12.995
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ null] | 2018-07-07 19:01:13.005
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 19:22:12.509
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-07 19:22:12.515
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 19:22:12.516
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 19:22:12.918
+[INFO] Application started | 2018-07-07 19:22:21.405
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ null] | 2018-07-07 19:22:21.904
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 19:22:22.002
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:22:31.393
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-07 19:22:31.395
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-07 19:22:31.497
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-07 19:22:31.507
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-07 19:22:31.584
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-07 19:22:33.178
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-07 19:22:33.335
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-07 19:22:33.335
+[INFO][root.client.managers.ScreensManager] Added screen to stack: questions | 2018-07-07 19:22:35.531
+[INFO][root.client.managers.ScreensManager] Added screen to stack: addExam | 2018-07-07 19:22:37.814
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-07 19:22:40.242
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-07 19:22:40.272
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-07 19:22:40.272
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 19:22:40.285
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_user[ root] | 2018-07-07 19:22:53.178
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_password[ root] | 2018-07-07 19:22:53.186
+[INFO][root.util.properties.PropertiesFile] Got property from config:db_server_ip[ localhost] | 2018-07-07 19:22:53.187
+[INFO][root.server.AES_Server] The server is connected | 2018-07-07 19:22:53.501
+[INFO] Application started | 2018-07-07 19:23:00.669
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-07 19:23:01.164
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: ip Object: class java.lang.String | 2018-07-07 19:23:01.164
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-07 19:23:01.165
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 19:23:01.2
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: login_client Object: class root.client.interface_classes.RealObservableClient | 2018-07-07 19:23:21.397
+[INFO][root.util.properties.PropertiesFile] Wrote property to config: IP[ localhost] | 2018-07-07 19:23:21.479
+[INFO][root.client.managers.DataKeepManager] Keep user: 301726717 | 2018-07-07 19:23:21.489
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: client Object: class ocsf.client.ObservableClient | 2018-07-07 19:23:21.529
+[INFO][root.client.managers.ScreensManager] Added screen to stack: home | 2018-07-07 19:23:22.243
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: currentstageofday Object: class java.lang.String | 2018-07-07 19:23:22.373
+[INFO][root.client.managers.DataKeepManager] Keep object: Key: pervstageofday Object: class java.lang.String | 2018-07-07 19:23:22.373
+[INFO][root.client.managers.DataKeepManager] Removed user from keep: 301726717 | 2018-07-07 19:23:25.407
+[INFO][root.util.properties.PropertiesFile] Got property from config:IP[ localhost] | 2018-07-07 19:23:25.433
+[INFO][root.client.controllers.LoginController] Got the server ip from the config: localhost | 2018-07-07 19:23:25.433
+[INFO][root.client.managers.ScreensManager] Added screen to stack: main | 2018-07-07 19:23:25.446
