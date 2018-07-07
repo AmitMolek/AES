@@ -624,7 +624,7 @@ public class ServerMessageManager {
 	/**
 	 * 
 	 * A method that is called when the client sent a login message contains the
-	 * word `login`
+	 * word `login` sd
 	 * 
 	 * @author Omer Haimovich
 	 * @param msg
