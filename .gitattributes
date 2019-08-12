@@ -2,6 +2,11 @@
 # and leave all files detected as binary untouched.
 * text=auto
 
+*.java linguist-detectable=true
+*.js linguist-detectable=false
+*.html linguist-detectable=false
+*.xml linguist-detectable=false
+
 #
 # The above will handle all files NOT found below
 #
