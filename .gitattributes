@@ -2,8 +2,6 @@
 # and leave all files detected as binary untouched.
 * text=auto
 
-*.rb linguist-language=Java
-
 #
 # The above will handle all files NOT found below
 #
