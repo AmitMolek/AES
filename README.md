@@ -1,2 +1,2 @@
 # AES
-Project of 5'th semester
+Team Project! Project of 5'th semester
